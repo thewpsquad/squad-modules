@@ -32,7 +32,7 @@ For general support or questions regarding the Squad Modules for Divi plugin, pl
 
 ## Contributing
 
-While this repository is primarily intended for issue tracking, we welcome contributions from the community to improve the Squad Modules for Divi project. If you would like to contribute code, documentation, or other resources, please refer to the [main repository](https://github.com/your-repo/squad-modules-for-divi) and follow the guidelines outlined in the `CONTRIBUTING.md` file.
+While this repository is primarily intended for issue tracking, we welcome contributions from the community to improve the Squad Modules for Divi project. If you would like to contribute code, documentation, or other resources, please refer to the [this repository](https://github.com/thewpsquad/squad-modules) and follow the guidelines outlined in the `CONTRIBUTING.md` file.
 
 **Note: No one can modify the files in this repository without explicit permission from WP Squad.**
 
