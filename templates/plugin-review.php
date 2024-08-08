@@ -21,11 +21,11 @@ defined( 'ABSPATH' ) || die();
 		</svg>
 	</div>
 	<div class="divi-squad-banner-content">
-		<h2><?php esc_html_e( 'Enjoy Using Squad Modules for Divi Builder?', 'squad-modules-for-divi' ); ?></h2>
+		<h2><?php esc_html_e( 'Enjoy Using Divi Squad Lite?', 'squad-modules-for-divi' ); ?></h2>
 		<p><?php esc_html_e( "Hello! It's been a while since you've been using the Squad Modules plugin. We trust that our plugin has been beneficial in your website development journey. If you could take a moment, we'd greatly appreciate your feedback by leaving a rating. Your input means a lot to us—thank you!", 'squad-modules-for-divi' ); ?></p>
 		<div class="divi-squad-notice-action">
 			<div class="divi-squad-notice-action-left">
-				<a href="https://wordpress.org/support/plugin/squad-modules-for-divi/reviews/#new-post" target="_blank" class="divi-squad-notice-action-button">
+				<a href="https://wordpress.org/support/plugin/squad-modules-for-divi/reviews/?rate=5#new-post" target="_blank" class="divi-squad-notice-action-button">
 					<?php esc_html_e( 'Yes, You deserve ★★★★★', 'squad-modules-for-divi' ); ?>
 				</a>
 				<a href="#" class="divi-squad-notice-close"><?php esc_html_e( 'Remind me again next week', 'squad-modules-for-divi' ); ?></a>

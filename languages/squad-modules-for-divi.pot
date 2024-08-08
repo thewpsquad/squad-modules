@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-3.0-only.
 msgid ""
 msgstr ""
-"Project-Id-Version: Squad Modules for Divi Builder 1.3.1\n"
+"Project-Id-Version: Divi Squad Lite 1.3.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/temp\n"
-"POT-Creation-Date: 2023-09-30 19:16:19+00:00\n"
+"POT-Creation-Date: 2023-10-05 16:46:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -189,6 +189,19 @@ msgstr ""
 
 #: admin/Plugin_Action_Links.php:42
 msgid "Settings"
+msgstr ""
+
+#: admin/Plugin_Admin_Footer_Text.php:47
+#. translators: 1: Divi Squad Lite 2:: five stars
+msgid "If you like %1$s please leave us a %2$s rating. A huge thanks in advance!"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Divi Squad Lite"
+msgstr ""
+
+#: admin/Plugin_Admin_Footer_Text.php:49
+msgid "Thanks :)"
 msgstr ""
 
 #: admin/Plugin_Row_Meta.php:44
@@ -399,19 +412,19 @@ msgstr ""
 msgid "Select one"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:195
+#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:193
 msgid "Author archive for "
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:243
+#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:240
 msgid "Search query for: "
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:248
+#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:245
 msgid "Error 404"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:254
+#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:251
 msgid " ( Page %s )"
 msgstr ""
 
@@ -947,10 +960,6 @@ msgstr ""
 
 #: includes/integration/WP.php:78
 msgid "Note"
-msgstr ""
-
-#. Plugin Name of the plugin/theme
-msgid "Squad Modules for Divi Builder"
 msgstr ""
 
 #: includes/integration/WP.php:94
@@ -4444,7 +4453,7 @@ msgid "Here you can define a custom padding size for the after text."
 msgstr ""
 
 #: templates/plugin-review.php:24
-msgid "Enjoy Using Squad Modules for Divi Builder?"
+msgid "Enjoy Using Divi Squad Lite?"
 msgstr ""
 
 #: templates/plugin-review.php:25
@@ -4477,8 +4486,8 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Elevate your Divi Builder experience with Squad Modules for Divi. Unlock a "
-"powerful collection of modules designed to enhance design and functionality."
+"Unlock your potential Divi Builder experience with advanced Divi plugin "
+"with powerful Divi modules and extensions."
 msgstr ""
 
 #. Author of the plugin/theme
@@ -4522,7 +4531,7 @@ msgid "Comments: "
 msgstr ""
 
 #: includes/integration/Divi/Backend.php:42
-#: includes/integration/Divi/Backend.php:262
+#: includes/integration/Divi/Backend.php:263
 msgctxt "Modules dummy content"
 msgid "Sun Day"
 msgstr ""
@@ -4532,7 +4541,7 @@ msgstr ""
 #: includes/integration/Divi/Backend.php:53
 #: includes/integration/Divi/Backend.php:58
 #: includes/integration/Divi/Backend.php:63
-#: includes/integration/Divi/Backend.php:263
+#: includes/integration/Divi/Backend.php:264
 msgctxt "Modules dummy content"
 msgid "10AM - 5PM"
 msgstr ""
@@ -4583,77 +4592,77 @@ msgctxt "Modules dummy content"
 msgid "Your Gradient Text Here"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:225
+#: includes/integration/Divi/Backend.php:226
 msgctxt "Modules dummy content"
 msgid "Your"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:227
+#: includes/integration/Divi/Backend.php:228
 msgctxt "Modules dummy content"
 msgid "Goes Here"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:241
+#: includes/integration/Divi/Backend.php:242
 msgctxt "Modules dummy content"
 msgid "Older"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:242
+#: includes/integration/Divi/Backend.php:243
 msgctxt "Modules dummy content"
 msgid "Next"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:243
+#: includes/integration/Divi/Backend.php:244
 msgctxt "Modules dummy content"
 msgid "Load More"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:247
+#: includes/integration/Divi/Backend.php:248
 msgctxt "Modules dummy content"
 msgid "Flip Right"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:250
+#: includes/integration/Divi/Backend.php:251
 msgctxt "Modules dummy content"
 msgid "View More"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:258
+#: includes/integration/Divi/Backend.php:259
 msgctxt "Modules dummy content"
 msgid "Business Hours"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:270
+#: includes/integration/Divi/Backend.php:271
 msgctxt "Modules dummy content"
 msgid "Before"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:271
+#: includes/integration/Divi/Backend.php:272
 msgctxt "Modules dummy content"
 msgid "After"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:283
+#: includes/integration/Divi/Backend.php:284
 msgctxt "Modules dummy content"
 msgid "Reading Time"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:284
+#: includes/integration/Divi/Backend.php:285
 msgctxt "Modules dummy content"
 msgid "minutes"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:285
+#: includes/integration/Divi/Backend.php:286
 msgctxt "Modules dummy content"
 msgid "minute"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:288
+#: includes/integration/Divi/Backend.php:289
 msgctxt "Modules dummy content"
 msgid "Your Glitch Text Here"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:296
+#: includes/integration/Divi/Backend.php:297
 msgctxt "Modules dummy content"
 msgid "Your Scrolling Text Here"
 msgstr ""

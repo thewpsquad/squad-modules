@@ -24,7 +24,7 @@ class Str {
 	 * Polyfill for `str_starts_with()` function added in PHP 8.0.
 	 *
 	 * Performs a case-sensitive check indicating if
-	 * the haystack begins with needle.
+	 * the haystack begins with a needle.
 	 *
 	 * @param String $haystack The string to search in.
 	 * @param String $needle   The substring to search for in the `$haystack`.
@@ -47,7 +47,7 @@ class Str {
 	 * Polyfill for `str_ends_with()` function added in PHP 8.0.
 	 *
 	 * Performs a case-sensitive check indicating if
-	 * the haystack ends with needle.
+	 * the haystack ends with a needle.
 	 *
 	 * @param string $haystack The string to search in.
 	 * @param string $needle   The substring to search for in the `$haystack`.
@@ -95,7 +95,7 @@ class Str {
 	 *
 	 * Performs a case-sensitive check indicating if a needle is contained in a haystack.
 	 *
-	 * @param string  $string_content The string
+	 * @param string  $string_content The string.
 	 * @param int     $format Specify the return value of this function. The current supported values are:
 	 *                        <ul>
 	 *                            <li>0: returns the number of words found</li>

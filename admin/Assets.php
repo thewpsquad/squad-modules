@@ -162,7 +162,7 @@ class Assets {
 
 		// for what's new.
 		$whats_new_routes = array(
-			'getWnatsNew' => array(
+			'getWhatsNew' => array(
 				'root'    => 'whats-new',
 				'methods' => array( 'get' ),
 			),

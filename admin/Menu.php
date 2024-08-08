@@ -64,7 +64,7 @@ class Menu {
 	 * @return string
 	 */
 	public function admin_management_permission() {
-		return is_multisite() ? 'manage_network_options' : 'manage_options';
+		return 'manage_options';
 	}
 
 	/**

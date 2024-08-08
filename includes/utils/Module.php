@@ -21,7 +21,7 @@ namespace DiviSquad\Utils;
 class Module {
 
 	/**
-	 * decode json data from properties in module.
+	 * Decode json data from properties in module.
 	 *
 	 * @param string $html_content json data raw content from module.
 	 *

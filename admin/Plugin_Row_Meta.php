@@ -20,7 +20,7 @@ namespace DiviSquad\Admin;
 class Plugin_Row_Meta {
 
 	/**
-	 * Get the instance of self-class
+	 * Get the plugin base name.
 	 *
 	 * @return string
 	 */
