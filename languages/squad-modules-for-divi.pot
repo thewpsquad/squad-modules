@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Squad Modules for Divi 1.0.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/squad-modules-for-divi\n"
-"POT-Creation-Date: 2023-06-20 18:55:24+00:00\n"
+"POT-Creation-Date: 2023-06-20 18:24:20+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,7 +47,7 @@ msgid "Settings"
 msgstr ""
 
 #: squad-wporg-admin/Plugin_Row_Meta.php:54
-msgid "Rate It"
+msgid "Rate The Plugin"
 msgstr ""
 
 #: squad-wporg-admin/Plugin_Row_Meta.php:55
@@ -172,7 +172,7 @@ msgstr ""
 #: squad-wporg-includes/base/BuilderModule/Traits/Field_Definition.php:259
 #: squad-wporg-includes/base/BuilderModule/Traits/Field_Definition.php:296
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:654
-#: squad-wporg-includes/modules/Divider/Divider.php:779
+#: squad-wporg-includes/modules/Divider/Divider.php:775
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3086
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3119
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:784
@@ -226,47 +226,47 @@ msgid "This controls the transition speed curve of the animation."
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:34
-#: squad-wporg-includes/modules/Divider/Divider.php:654
+#: squad-wporg-includes/modules/Divider/Divider.php:650
 msgid "H1 tag"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:35
-#: squad-wporg-includes/modules/Divider/Divider.php:655
+#: squad-wporg-includes/modules/Divider/Divider.php:651
 msgid "H2 tag"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:36
-#: squad-wporg-includes/modules/Divider/Divider.php:656
+#: squad-wporg-includes/modules/Divider/Divider.php:652
 msgid "H3 tag"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:37
-#: squad-wporg-includes/modules/Divider/Divider.php:657
+#: squad-wporg-includes/modules/Divider/Divider.php:653
 msgid "H4 tag"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:38
-#: squad-wporg-includes/modules/Divider/Divider.php:658
+#: squad-wporg-includes/modules/Divider/Divider.php:654
 msgid "H5 tag"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:39
-#: squad-wporg-includes/modules/Divider/Divider.php:659
+#: squad-wporg-includes/modules/Divider/Divider.php:655
 msgid "H6 tag"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:40
-#: squad-wporg-includes/modules/Divider/Divider.php:660
+#: squad-wporg-includes/modules/Divider/Divider.php:656
 msgid "P tag"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:41
-#: squad-wporg-includes/modules/Divider/Divider.php:661
+#: squad-wporg-includes/modules/Divider/Divider.php:657
 msgid "SPAN tag"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:42
-#: squad-wporg-includes/modules/Divider/Divider.php:662
+#: squad-wporg-includes/modules/Divider/Divider.php:658
 msgid "DIV tag"
 msgstr ""
 
@@ -385,7 +385,7 @@ msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:414
 #: squad-wporg-includes/modules/Divider/Divider.php:514
-#: squad-wporg-includes/modules/Divider/Divider.php:857
+#: squad-wporg-includes/modules/Divider/Divider.php:853
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2796
 #: squad-wporg-includes/modules/Lottie/Lottie.php:180
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:555
@@ -393,7 +393,7 @@ msgid "None"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:435
-#: squad-wporg-includes/modules/Divider/Divider.php:561
+#: squad-wporg-includes/modules/Divider/Divider.php:557
 #: squad-wporg-includes/modules/DualButton/DualButton.php:396
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2824
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:585
@@ -412,7 +412,7 @@ msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:453
 #: squad-wporg-includes/modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:614
-#: squad-wporg-includes/modules/Divider/Divider.php:579
+#: squad-wporg-includes/modules/Divider/Divider.php:575
 #: squad-wporg-includes/modules/DualButton/DualButton.php:414
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2842
 #: squad-wporg-includes/modules/ImageMask/ImageMask.php:128
@@ -422,7 +422,7 @@ msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:454
 #: squad-wporg-includes/modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:615
-#: squad-wporg-includes/modules/Divider/Divider.php:580
+#: squad-wporg-includes/modules/Divider/Divider.php:576
 #: squad-wporg-includes/modules/DualButton/DualButton.php:415
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2843
 #: squad-wporg-includes/modules/ImageMask/ImageMask.php:129
@@ -441,7 +441,7 @@ msgid ""
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:573
-#: squad-wporg-includes/modules/Divider/Divider.php:684
+#: squad-wporg-includes/modules/Divider/Divider.php:680
 #: squad-wporg-includes/modules/DualButton/DualButton.php:436
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2878
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:677
@@ -454,7 +454,7 @@ msgid "Here you can define a custom color for your button icon."
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:585
-#: squad-wporg-includes/modules/Divider/Divider.php:703
+#: squad-wporg-includes/modules/Divider/Divider.php:699
 #: squad-wporg-includes/modules/DualButton/DualButton.php:445
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2898
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:704
@@ -463,7 +463,7 @@ msgid "Icon Size"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:587
-#: squad-wporg-includes/modules/Divider/Divider.php:705
+#: squad-wporg-includes/modules/Divider/Divider.php:701
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2900
 #: squad-wporg-includes/modules/PostGrid/PostGrid.php:935
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:706
@@ -472,7 +472,7 @@ msgid "Here you can choose icon size."
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:601
-#: squad-wporg-includes/modules/Divider/Divider.php:721
+#: squad-wporg-includes/modules/Divider/Divider.php:717
 #: squad-wporg-includes/modules/DualButton/DualButton.php:463
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2932
 #: squad-wporg-includes/modules/ImageMask/ImageMask.php:271
@@ -481,7 +481,7 @@ msgid "Image Width"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:603
-#: squad-wporg-includes/modules/Divider/Divider.php:723
+#: squad-wporg-includes/modules/Divider/Divider.php:719
 #: squad-wporg-includes/modules/DualButton/DualButton.php:465
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2934
 #: squad-wporg-includes/modules/ImageMask/ImageMask.php:273
@@ -490,7 +490,7 @@ msgid "Here you can choose image width."
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:616
-#: squad-wporg-includes/modules/Divider/Divider.php:739
+#: squad-wporg-includes/modules/Divider/Divider.php:735
 #: squad-wporg-includes/modules/DualButton/DualButton.php:481
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2965
 #: squad-wporg-includes/modules/ImageMask/ImageMask.php:290
@@ -499,7 +499,7 @@ msgid "Image Height"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:618
-#: squad-wporg-includes/modules/Divider/Divider.php:741
+#: squad-wporg-includes/modules/Divider/Divider.php:737
 #: squad-wporg-includes/modules/DualButton/DualButton.php:483
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2967
 #: squad-wporg-includes/modules/ImageMask/ImageMask.php:292
@@ -521,7 +521,7 @@ msgid "Here you can choose gap between icon and text."
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:652
-#: squad-wporg-includes/modules/Divider/Divider.php:777
+#: squad-wporg-includes/modules/Divider/Divider.php:773
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3084
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:782
 msgid "Icon Placement"
@@ -577,7 +577,7 @@ msgid "Icon/Image Margin"
 msgstr ""
 
 #: squad-wporg-includes/base/BuilderModule/Traits/Fields.php:737
-#: squad-wporg-includes/modules/Divider/Divider.php:833
+#: squad-wporg-includes/modules/Divider/Divider.php:829
 #: squad-wporg-includes/modules/DualButton/DualButton.php:543
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3170
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:862
@@ -698,7 +698,7 @@ msgid "Here you can choose whether or not show the label on hover effect."
 msgstr ""
 
 #: squad-wporg-includes/modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:301
-#: squad-wporg-includes/modules/Divider/Divider.php:1024
+#: squad-wporg-includes/modules/Divider/Divider.php:1020
 #: squad-wporg-includes/modules/Lottie/Lottie.php:347
 msgid "Direction"
 msgstr ""
@@ -805,7 +805,7 @@ msgid "Upload an image to display."
 msgstr ""
 
 #: squad-wporg-includes/modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:622
-#: squad-wporg-includes/modules/Divider/Divider.php:589
+#: squad-wporg-includes/modules/Divider/Divider.php:585
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2852
 #: squad-wporg-includes/modules/ImageMask/ImageMask.php:135
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:613
@@ -813,7 +813,7 @@ msgid "Image Alt Text"
 msgstr ""
 
 #: squad-wporg-includes/modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:623
-#: squad-wporg-includes/modules/Divider/Divider.php:590
+#: squad-wporg-includes/modules/Divider/Divider.php:586
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2853
 #: squad-wporg-includes/modules/ImageMask/ImageMask.php:136
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:614
@@ -854,13 +854,6 @@ msgid "Business Hours"
 msgstr ""
 
 #: squad-wporg-includes/modules/BusinessHours/BusinessHours.php:53
-msgid "Title Content"
-msgstr ""
-
-#: squad-wporg-includes/modules/BusinessHours/BusinessHours.php:59
-msgid "Day & Time Wrapper"
-msgstr ""
-
 #: squad-wporg-includes/modules/BusinessHours/BusinessHours.php:60
 #: squad-wporg-includes/modules/BusinessHours/BusinessHours.php:85
 #: squad-wporg-includes/modules/BusinessHours/BusinessHours.php:233
@@ -871,6 +864,10 @@ msgstr ""
 #: squad-wporg-includes/modules/PostGrid/PostGrid.php:576
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:61
 msgid "Title"
+msgstr ""
+
+#: squad-wporg-includes/modules/BusinessHours/BusinessHours.php:59
+msgid "Day & Time Wrapper"
 msgstr ""
 
 #: squad-wporg-includes/modules/BusinessHours/BusinessHours.php:61
@@ -1012,7 +1009,7 @@ msgstr ""
 
 #: squad-wporg-includes/modules/BusinessHours/BusinessHours.php:358
 #: squad-wporg-includes/modules/BusinessHoursChild/BusinessHoursChild.php:326
-#: squad-wporg-includes/modules/Divider/Divider.php:1124
+#: squad-wporg-includes/modules/Divider/Divider.php:1122
 #: squad-wporg-includes/modules/DualButton/DualButton.php:581
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:1385
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:1394
@@ -1061,7 +1058,7 @@ msgstr ""
 
 #: squad-wporg-includes/modules/BusinessHours/BusinessHours.php:428
 #: squad-wporg-includes/modules/BusinessHoursChild/BusinessHoursChild.php:350
-#: squad-wporg-includes/modules/Divider/Divider.php:1134
+#: squad-wporg-includes/modules/Divider/Divider.php:1132
 #: squad-wporg-includes/modules/DualButton/DualButton.php:649
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3228
 #: squad-wporg-includes/modules/PostGrid/PostGrid.php:1037
@@ -1073,7 +1070,7 @@ msgstr ""
 
 #: squad-wporg-includes/modules/BusinessHours/BusinessHours.php:430
 #: squad-wporg-includes/modules/BusinessHoursChild/BusinessHoursChild.php:352
-#: squad-wporg-includes/modules/Divider/Divider.php:1136
+#: squad-wporg-includes/modules/Divider/Divider.php:1134
 #: squad-wporg-includes/modules/DualButton/DualButton.php:651
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3230
 #: squad-wporg-includes/modules/PostGrid/PostGrid.php:1209
@@ -1085,7 +1082,7 @@ msgstr ""
 
 #: squad-wporg-includes/modules/BusinessHours/BusinessHours.php:437
 #: squad-wporg-includes/modules/BusinessHoursChild/BusinessHoursChild.php:362
-#: squad-wporg-includes/modules/Divider/Divider.php:1146
+#: squad-wporg-includes/modules/Divider/Divider.php:1144
 #: squad-wporg-includes/modules/DualButton/DualButton.php:661
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3238
 #: squad-wporg-includes/modules/PostGrid/PostGrid.php:1056
@@ -1097,7 +1094,7 @@ msgstr ""
 
 #: squad-wporg-includes/modules/BusinessHours/BusinessHours.php:439
 #: squad-wporg-includes/modules/BusinessHoursChild/BusinessHoursChild.php:364
-#: squad-wporg-includes/modules/Divider/Divider.php:1148
+#: squad-wporg-includes/modules/Divider/Divider.php:1146
 #: squad-wporg-includes/modules/DualButton/DualButton.php:663
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3240
 #: squad-wporg-includes/modules/PostGrid/PostGrid.php:1218
@@ -1264,7 +1261,7 @@ msgid "Amount Of Line"
 msgstr ""
 
 #: squad-wporg-includes/modules/Divider/Divider.php:254
-#: squad-wporg-includes/modules/Divider/Divider.php:943
+#: squad-wporg-includes/modules/Divider/Divider.php:939
 #: squad-wporg-includes/modules/Lottie/Lottie.php:266
 msgid ""
 "This option is only available if Yes is selected for Loop. Enter the number "
@@ -1329,73 +1326,73 @@ msgstr ""
 msgid "Choose an icon type to display with your divider."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:562
+#: squad-wporg-includes/modules/Divider/Divider.php:558
 msgid "Choose an icon to display with your divider."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:575
+#: squad-wporg-includes/modules/Divider/Divider.php:571
 msgid "Upload an image to display at the top of your divider."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:599
+#: squad-wporg-includes/modules/Divider/Divider.php:595
 #: squad-wporg-includes/modules/Lottie/Lottie.php:129
 msgid "Source Type"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:601
+#: squad-wporg-includes/modules/Divider/Divider.php:597
 #: squad-wporg-includes/modules/Lottie/Lottie.php:131
 msgid "Choose a source type to display from your lottie."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:603
+#: squad-wporg-includes/modules/Divider/Divider.php:599
 #: squad-wporg-includes/modules/Lottie/Lottie.php:133
 msgid "External URL"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:604
+#: squad-wporg-includes/modules/Divider/Divider.php:600
 #: squad-wporg-includes/modules/Lottie/Lottie.php:134
 msgid "Upload"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:618
-#: squad-wporg-includes/modules/Divider/Divider.php:641
+#: squad-wporg-includes/modules/Divider/Divider.php:614
+#: squad-wporg-includes/modules/Divider/Divider.php:637
 msgid "The title of your divider will appear in bold below your divider image."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:627
+#: squad-wporg-includes/modules/Divider/Divider.php:623
 #: squad-wporg-includes/modules/Lottie/Lottie.php:156
 msgid "Upload a Lottie json"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:630
+#: squad-wporg-includes/modules/Divider/Divider.php:626
 #: squad-wporg-includes/modules/Lottie/Lottie.php:159
 msgid "A json file is chosen for lottie."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:631
+#: squad-wporg-includes/modules/Divider/Divider.php:627
 #: squad-wporg-includes/modules/Lottie/Lottie.php:160
 msgid "Upload a lottie json file"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:632
+#: squad-wporg-includes/modules/Divider/Divider.php:628
 #: squad-wporg-includes/modules/Lottie/Lottie.php:161
 msgid "Choose a lottie json file"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:633
+#: squad-wporg-includes/modules/Divider/Divider.php:629
 #: squad-wporg-includes/modules/Lottie/Lottie.php:162
 msgid "Set As a lottie json"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:650
+#: squad-wporg-includes/modules/Divider/Divider.php:646
 msgid "Icon Text Tag"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:652
+#: squad-wporg-includes/modules/Divider/Divider.php:648
 msgid "Choose a tag to display with your icon text."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:686
+#: squad-wporg-includes/modules/Divider/Divider.php:682
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2880
 #: squad-wporg-includes/modules/PostGrid/PostGrid.php:926
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:679
@@ -1403,290 +1400,290 @@ msgstr ""
 msgid "Here you can define a custom color for your icon."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:694
+#: squad-wporg-includes/modules/Divider/Divider.php:690
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2888
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:686
 msgid "Icon Background Color"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:696
+#: squad-wporg-includes/modules/Divider/Divider.php:692
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:2890
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:688
 msgid "Here you can define a custom background color."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:757
+#: squad-wporg-includes/modules/Divider/Divider.php:753
 msgid "Gap Between Icon and Divider"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:759
+#: squad-wporg-includes/modules/Divider/Divider.php:755
 msgid "Here you can choose gap between icon and divider."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:792
+#: squad-wporg-includes/modules/Divider/Divider.php:788
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3135
 msgid "Icon Wrapper Margin"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:794
+#: squad-wporg-includes/modules/Divider/Divider.php:790
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3137
 msgid "Here you can define a custom margin size for the icon wrapper."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:805
+#: squad-wporg-includes/modules/Divider/Divider.php:801
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3146
 msgid "Icon Wrapper Padding"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:807
+#: squad-wporg-includes/modules/Divider/Divider.php:803
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3148
 msgid "Here you can define a custom padding size for the icon wrapper."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:818
+#: squad-wporg-includes/modules/Divider/Divider.php:814
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3157
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:850
 msgid "Icon Margin"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:820
+#: squad-wporg-includes/modules/Divider/Divider.php:816
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3159
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:852
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:872
 msgid "Here you can define a custom margin size for the icon."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:831
+#: squad-wporg-includes/modules/Divider/Divider.php:827
 #: squad-wporg-includes/modules/FlipBox/FlipBox.php:3168
 #: squad-wporg-includes/modules/PostGridChild/PostGridChild.php:860
 msgid "Icon Padding"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:848
+#: squad-wporg-includes/modules/Divider/Divider.php:844
 #: squad-wporg-includes/modules/Lottie/Lottie.php:171
 msgid "Animation Interaction"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:850
+#: squad-wporg-includes/modules/Divider/Divider.php:846
 #: squad-wporg-includes/modules/Lottie/Lottie.php:173
 msgid "Here you can choose interactivity with your Lottie animation."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:852
+#: squad-wporg-includes/modules/Divider/Divider.php:848
 #: squad-wporg-includes/modules/Lottie/Lottie.php:175
 msgid "Play on hover/mouse over"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:853
+#: squad-wporg-includes/modules/Divider/Divider.php:849
 #: squad-wporg-includes/modules/Lottie/Lottie.php:176
 msgid "Play on click"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:854
+#: squad-wporg-includes/modules/Divider/Divider.php:850
 #: squad-wporg-includes/modules/Lottie/Lottie.php:177
 msgid "Play on scroll"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:855
+#: squad-wporg-includes/modules/Divider/Divider.php:851
 #: squad-wporg-includes/modules/Lottie/Lottie.php:178
 msgid "Play when container is visible"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:856
+#: squad-wporg-includes/modules/Divider/Divider.php:852
 #: squad-wporg-includes/modules/Lottie/Lottie.php:179
 msgid "Freeze on click"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:874
+#: squad-wporg-includes/modules/Divider/Divider.php:870
 #: squad-wporg-includes/modules/Lottie/Lottie.php:197
 msgid "On Mouseout Action"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:876
+#: squad-wporg-includes/modules/Divider/Divider.php:872
 #: squad-wporg-includes/modules/Lottie/Lottie.php:199
 msgid "Here you can choose an action when mouse out with your Lottie animation."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:880
-#: squad-wporg-includes/modules/Divider/Divider.php:894
+#: squad-wporg-includes/modules/Divider/Divider.php:876
+#: squad-wporg-includes/modules/Divider/Divider.php:890
 #: squad-wporg-includes/modules/Lottie/Lottie.php:203
 #: squad-wporg-includes/modules/Lottie/Lottie.php:217
 msgid "No action"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:881
-#: squad-wporg-includes/modules/Divider/Divider.php:1029
+#: squad-wporg-includes/modules/Divider/Divider.php:877
+#: squad-wporg-includes/modules/Divider/Divider.php:1025
 #: squad-wporg-includes/modules/Lottie/Lottie.php:204
 #: squad-wporg-includes/modules/Lottie/Lottie.php:352
 msgid "Reverse"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:890
+#: squad-wporg-includes/modules/Divider/Divider.php:886
 #: squad-wporg-includes/modules/Lottie/Lottie.php:213
 msgid "On Click Action"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:892
+#: squad-wporg-includes/modules/Divider/Divider.php:888
 #: squad-wporg-includes/modules/Lottie/Lottie.php:215
 msgid "Here you can choose an action when click with your Lottie animation."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:895
+#: squad-wporg-includes/modules/Divider/Divider.php:891
 #: squad-wporg-includes/modules/Lottie/Lottie.php:218
 msgid "Lock animation"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:904
+#: squad-wporg-includes/modules/Divider/Divider.php:900
 #: squad-wporg-includes/modules/Lottie/Lottie.php:227
 msgid "Relative To"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:906
+#: squad-wporg-includes/modules/Divider/Divider.php:902
 #: squad-wporg-includes/modules/Lottie/Lottie.php:229
 msgid "Here you can choose a relation when scroll event with your Lottie animation."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:908
+#: squad-wporg-includes/modules/Divider/Divider.php:904
 #: squad-wporg-includes/modules/Lottie/Lottie.php:231
 msgid "Entire page"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:909
+#: squad-wporg-includes/modules/Divider/Divider.php:905
 #: squad-wporg-includes/modules/Lottie/Lottie.php:232
 msgid "Within this section/row"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:918
+#: squad-wporg-includes/modules/Divider/Divider.php:914
 #: squad-wporg-includes/modules/Lottie/Lottie.php:241
 msgid "Play On Hover"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:920
+#: squad-wporg-includes/modules/Divider/Divider.php:916
 #: squad-wporg-includes/modules/Lottie/Lottie.php:243
 msgid "Here you can choose whether or not your Lottie will animate on hover."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:928
+#: squad-wporg-includes/modules/Divider/Divider.php:924
 #: squad-wporg-includes/modules/Lottie/Lottie.php:251
 msgid "Loop"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:930
+#: squad-wporg-includes/modules/Divider/Divider.php:926
 #: squad-wporg-includes/modules/Lottie/Lottie.php:253
 msgid "Here you can choose whether or not your Lottie will animate in loop."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:941
+#: squad-wporg-includes/modules/Divider/Divider.php:937
 #: squad-wporg-includes/modules/Lottie/Lottie.php:264
 msgid "Amount Of Loops"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:964
+#: squad-wporg-includes/modules/Divider/Divider.php:960
 #: squad-wporg-includes/modules/Lottie/Lottie.php:287
 msgid "Delay"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:966
+#: squad-wporg-includes/modules/Divider/Divider.php:962
 #: squad-wporg-includes/modules/Lottie/Lottie.php:289
 msgid "Delay the lottie animation (in ms)."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:987
+#: squad-wporg-includes/modules/Divider/Divider.php:983
 #: squad-wporg-includes/modules/Lottie/Lottie.php:310
 msgid "Animation Speed"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:989
+#: squad-wporg-includes/modules/Divider/Divider.php:985
 #: squad-wporg-includes/modules/Lottie/Lottie.php:312
 msgid "The speed of the animation."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1011
+#: squad-wporg-includes/modules/Divider/Divider.php:1007
 #: squad-wporg-includes/modules/Lottie/Lottie.php:334
 msgid "Play Mode"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1013
+#: squad-wporg-includes/modules/Divider/Divider.php:1009
 #: squad-wporg-includes/modules/Lottie/Lottie.php:336
 msgid "Here you can choose play mode for your Lottie animation."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1015
-#: squad-wporg-includes/modules/Divider/Divider.php:1028
+#: squad-wporg-includes/modules/Divider/Divider.php:1011
+#: squad-wporg-includes/modules/Divider/Divider.php:1024
 #: squad-wporg-includes/modules/Lottie/Lottie.php:338
 #: squad-wporg-includes/modules/Lottie/Lottie.php:351
 msgid "Normal"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1016
+#: squad-wporg-includes/modules/Divider/Divider.php:1012
 #: squad-wporg-includes/modules/Lottie/Lottie.php:339
 msgid "Reverse on complete"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1026
+#: squad-wporg-includes/modules/Divider/Divider.php:1022
 #: squad-wporg-includes/modules/Lottie/Lottie.php:349
 msgid "Here you can choose play direction for your Lottie animation."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1038
+#: squad-wporg-includes/modules/Divider/Divider.php:1034
 #: squad-wporg-includes/modules/Lottie/Lottie.php:361
 msgid "Render"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1040
+#: squad-wporg-includes/modules/Divider/Divider.php:1036
 #: squad-wporg-includes/modules/Lottie/Lottie.php:363
 msgid "Here you can choose renderer for your Lottie animation."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1042
+#: squad-wporg-includes/modules/Divider/Divider.php:1038
 #: squad-wporg-includes/modules/Lottie/Lottie.php:365
 msgid "SVG"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1043
+#: squad-wporg-includes/modules/Divider/Divider.php:1039
 #: squad-wporg-includes/modules/Lottie/Lottie.php:366
 msgid "Canvas"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1059
+#: squad-wporg-includes/modules/Divider/Divider.php:1055
 msgid "Lottie Background Color"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1061
+#: squad-wporg-includes/modules/Divider/Divider.php:1057
 msgid "Here you can define a custom background color for lottie image."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1071
+#: squad-wporg-includes/modules/Divider/Divider.php:1067
 #: squad-wporg-includes/modules/Lottie/Lottie.php:380
 msgid "Lottie Color"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1073
+#: squad-wporg-includes/modules/Divider/Divider.php:1069
 #: squad-wporg-includes/modules/Lottie/Lottie.php:382
 msgid "Here you can define a custom color for lottie image."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1083
+#: squad-wporg-includes/modules/Divider/Divider.php:1079
 #: squad-wporg-includes/modules/Lottie/Lottie.php:392
 msgid "Lottie Width"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1085
+#: squad-wporg-includes/modules/Divider/Divider.php:1081
 #: squad-wporg-includes/modules/Lottie/Lottie.php:394
 msgid "Here you can choose lottie width."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1102
+#: squad-wporg-includes/modules/Divider/Divider.php:1099
 #: squad-wporg-includes/modules/Lottie/Lottie.php:411
 msgid "Lottie Height"
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1104
+#: squad-wporg-includes/modules/Divider/Divider.php:1101
 #: squad-wporg-includes/modules/Lottie/Lottie.php:413
 msgid "Here you can choose lottie height."
 msgstr ""
 
-#: squad-wporg-includes/modules/Divider/Divider.php:1258
+#: squad-wporg-includes/modules/Divider/Divider.php:1256
 msgid "Please turn on the show divider settings from content tab to view divider."
 msgstr ""
 

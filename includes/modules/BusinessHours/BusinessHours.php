@@ -50,7 +50,7 @@ class BusinessHours extends DISQ_Builder_Module {
 		$this->settings_modal_toggles = array(
 			'general'  => array(
 				'toggles' => array(
-					'title_content'    => esc_html__( 'Title Content', 'squad-modules-for-divi' ),
+					'title_content'    => esc_html__( 'Title', 'squad-modules-for-divi' ),
 					'general_settings' => esc_html__( 'General Settings', 'squad-modules-for-divi' ),
 				),
 			),
