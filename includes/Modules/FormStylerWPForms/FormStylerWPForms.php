@@ -411,7 +411,7 @@ class FormStylerWPForms extends Squad_Form_Styler {
 		// Show a notice message in the frontend if the form is not selected.
 		return sprintf(
 			'<div class="divi_squad_notice">%s</div>',
-			esc_html__( 'Please select a wp form.', 'squad-modules-for-divi' )
+			esc_html__( 'Please select a form.', 'squad-modules-for-divi' )
 		);
 	}
 

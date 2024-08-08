@@ -56,7 +56,7 @@ abstract class SquadFeatures {
 	protected function get_details_by_name( $registries, $name ) {
 		$details = array();
 		foreach ( $registries as $registry ) {
-			if ( isset( $registry['name'] ) && $registry['name'] === $name ) {
+			if ( isset( $registry['name'] ) && $name === $registry['name'] ) {
 				$details[] = $registry;
 				break;
 			}
@@ -78,7 +78,7 @@ abstract class SquadFeatures {
 			$filtered_registries = array();
 
 			foreach ( $registered as $registry ) {
-				if ( $callback( $registry ) ) {
+				if ( null !== $callback && $callback( $registry ) ) {
 					$filtered_registries[] = $registry;
 				}
 			}
@@ -98,7 +98,13 @@ abstract class SquadFeatures {
 	 * @return bool
 	 */
 	protected function verify_requirements( $registry_info, $active_plugins ) {
-		if ( ! empty( $registry_info['required'] ) && ! empty( $registry_info['required']['plugin'] ) ) {
+		// Verify if the registry has no requirements.
+		if ( empty( $registry_info['required'] ) ) {
+			return true;
+		}
+
+		// Verify if the registry has required plugins.
+		if ( ! empty( $registry_info['required']['plugin'] ) ) {
 			// Collect required plugins by current module.
 			$required_plugins = $registry_info['required']['plugin'];
 
@@ -116,9 +122,9 @@ abstract class SquadFeatures {
 
 				// Collect all active plugins that are required by current plugin.
 				$activated_plugins = array();
-				foreach ( $active_plugins as $plugin ) {
+				foreach ( $verified_plugins as $plugin ) {
 					// Verify optional plugins are activated.
-					if ( in_array( $plugin, $verified_plugins, true ) ) {
+					if ( in_array( $plugin, $active_plugins, true ) ) {
 						$activated_plugins[] = $plugin;
 					}
 				}
@@ -130,8 +136,8 @@ abstract class SquadFeatures {
 			// Verify for the multiple requirements.
 			if ( gettype( $required_plugins ) === 'array' ) {
 				$dependencies_plugins = array();
-				foreach ( $active_plugins as $plugin ) {
-					if ( in_array( $plugin, $required_plugins, true ) ) {
+				foreach ( $required_plugins as $plugin ) {
+					if ( in_array( $plugin, $active_plugins, true ) ) {
 						$dependencies_plugins[] = $plugin;
 					}
 				}
@@ -161,15 +167,15 @@ abstract class SquadFeatures {
 	protected function get_verified_registries( $registered, $defaults, $activated ) {
 		$verified = array();
 
-		if ( is_array( $activated ) && count( $activated ) !== 0 ) {
+		if ( is_array( $activated ) && 0 !== count( $activated ) ) {
 			// Get all registry names that activated by user.
 			$activated_names = array();
 			foreach ( $activated as $activate ) {
-				if ( gettype( $activate ) === 'string' ) {
+				if ( 'string' === gettype( $activate ) ) {
 					$activated_names[] = $activate;
 				}
 
-				if ( gettype( $activate ) === 'array' ) {
+				if ( 'array' === gettype( $activate ) ) {
 					if ( ! empty( $activate['name'] ) ) {
 						$activated_names[] = $activate['name'];
 					}

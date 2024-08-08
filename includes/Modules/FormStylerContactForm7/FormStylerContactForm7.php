@@ -90,18 +90,22 @@ class FormStylerContactForm7 extends Squad_Form_Styler {
 			),
 		);
 
-		// update fields.
-		$parent_fields['form_button_icon_type']['toggle_slug'] = 'field_icons';
-		$parent_fields['form_button_icon']['toggle_slug']      = 'field_icons';
-		$parent_fields['form_button_image']['toggle_slug']     = 'field_icons';
-
 		// Remove unneeded fields.
 		$parent_fields = $this->squad_remove_pre_assigned_fields(
 			$parent_fields,
 			array(
 				'form_button_text',
+				'form_button_icon_type',
+				'form_button_icon',
+				'form_button_icon_color',
+				'form_button_image',
 				'form_button_icon_size',
+				'form_button_image_width',
+				'form_button_image_height',
 				'form_button_icon_gap',
+				'form_button_icon_placement',
+				'form_button_icon_margin',
+				'form_button_icon_on_hover',
 				'form_button_icon_hover_move_icon',
 				'form_button_hover_animation__enable',
 				'form_button_hover_animation_type',
@@ -164,8 +168,8 @@ class FormStylerContactForm7 extends Squad_Form_Styler {
 							'default' => '14px',
 						),
 						'css'       => array(
-							'main'  => "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button",
-							'hover' => "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button:hover",
+							'main'  => "$form_selector .wpcf7-form-control.wpcf7-submit",
+							'hover' => "$form_selector .wpcf7-form-control.wpcf7-submit:hover",
 						),
 					)
 				),
@@ -241,10 +245,10 @@ class FormStylerContactForm7 extends Squad_Form_Styler {
 					'label_prefix' => esc_html__( 'Button', 'squad-modules-for-divi' ),
 					'css'          => array(
 						'main' => array(
-							'border_radii'        => "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button",
-							'border_radii_hover'  => "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button:hover",
-							'border_styles'       => "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button",
-							'border_styles_hover' => "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button:hover",
+							'border_radii'        => "$form_selector .wpcf7-form-control.wpcf7-submit",
+							'border_radii_hover'  => "$form_selector .wpcf7-form-control.wpcf7-submit:hover",
+							'border_styles'       => "$form_selector .wpcf7-form-control.wpcf7-submit",
+							'border_styles_hover' => "$form_selector .wpcf7-form-control.wpcf7-submit:hover",
 						),
 					),
 					'defaults'     => array(
@@ -329,8 +333,8 @@ class FormStylerContactForm7 extends Squad_Form_Styler {
 					'label'             => esc_html__( 'Button Box Shadow', 'squad-modules-for-divi' ),
 					'option_category'   => 'layout',
 					'css'               => array(
-						'main'  => "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button",
-						'hover' => "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button:hover",
+						'main'  => "$form_selector .wpcf7-form-control.wpcf7-submit",
+						'hover' => "$form_selector .wpcf7-form-control.wpcf7-submit:hover",
 					),
 					'default_on_fronts' => array(
 						'color'    => 'rgba(0,0,0,0.3)',
@@ -435,21 +439,17 @@ class FormStylerContactForm7 extends Squad_Form_Styler {
 		// Generic styles.
 		Utils::fix_fonts_transition( $fields, 'field_label_text', "$form_selector label, $form_selector legend" );
 		Utils::fix_fonts_transition( $fields, 'placeholder_text', "$form_selector input::placeholder, $form_selector select::placeholder, $form_selector textarea::placeholder" );
-		Utils::fix_fonts_transition( $fields, 'form_button_text', "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button" );
+		Utils::fix_fonts_transition( $fields, 'form_button_text', "$form_selector .wpcf7-form-control.wpcf7-submit" );
 		Utils::fix_fonts_transition( $fields, 'message_error_text', "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors" );
 		Utils::fix_fonts_transition( $fields, 'message_success_text', "$this->main_css_element div .wpcf7 form.sent .wpcf7-response-output, $form_selector .wpcf7-response-output.wpcf7-mail-sent-ok" );
 		Utils::fix_border_transition( $fields, 'wrapper', $form_selector );
-		Utils::fix_border_transition( $fields, 'form_button', "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button" );
+		Utils::fix_border_transition( $fields, 'form_button', "$form_selector .wpcf7-form-control.wpcf7-submit" );
 		Utils::fix_border_transition( $fields, 'message_error', "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors" );
 		Utils::fix_border_transition( $fields, 'message_success', "$this->main_css_element div .wpcf7 form.sent .wpcf7-response-output, $form_selector .wpcf7-response-output.wpcf7-mail-sent-ok" );
 		Utils::fix_box_shadow_transition( $fields, 'wrapper', $form_selector );
-		Utils::fix_box_shadow_transition( $fields, 'form_button', "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button" );
+		Utils::fix_box_shadow_transition( $fields, 'form_button', "$form_selector .wpcf7-form-control.wpcf7-submit" );
 		Utils::fix_box_shadow_transition( $fields, 'message_error', "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors" );
 		Utils::fix_box_shadow_transition( $fields, 'message_success', "$this->main_css_element div .wpcf7 form.sent .wpcf7-response-output, $form_selector .wpcf7-response-output.wpcf7-mail-sent-ok" );
-
-		// button styles.
-		$fields['form_button_icon_color']  = array( 'color' => "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button::before, $form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button::after" );
-		$fields['form_button_icon_margin'] = array( 'margin' => "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button::before, $form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button::after" );
 
 		return $fields;
 	}
@@ -482,7 +482,7 @@ class FormStylerContactForm7 extends Squad_Form_Styler {
 		// Show a notice message in the frontend if the form is not selected.
 		return sprintf(
 			'<div class="divi_squad_notice">%s</div>',
-			esc_html__( 'Please select a contact form.', 'squad-modules-for-divi' )
+			esc_html__( 'Please select a form.', 'squad-modules-for-divi' )
 		);
 	}
 
@@ -503,134 +503,6 @@ class FormStylerContactForm7 extends Squad_Form_Styler {
 		}
 
 		return null;
-	}
-
-	/**
-	 * Generate styles.
-	 *
-	 * @param array $attrs List of unprocessed attributes.
-	 *
-	 * @return void
-	 */
-	protected function squad_generate_all_styles( $attrs ) {
-		// Fixed: the custom background doesn't work at frontend.
-		$this->props = array_merge( $attrs, $this->props );
-
-		// Load generated styles from parent.
-		parent::squad_generate_all_styles( $attrs );
-
-		if ( ! empty( $this->props['form_button_icon'] ) ) {
-			// Load font Awesome css for frontend.
-			Divi::inject_fa_icons( $this->props['form_button_icon'] );
-
-			$form_button_icon       = $this->props['form_button_icon'];
-			$clean_form_button_icon = Divi::get_icon_data_to_unicode( $form_button_icon );
-			self::set_style(
-				$this->slug,
-				array(
-					'selector'    => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button:before, $this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button:after",
-					'declaration' => sprintf( 'content: "%s";', $clean_form_button_icon ),
-				)
-			);
-		}
-
-		$this->generate_styles(
-			array(
-				'utility_arg'    => 'icon_font_family',
-				'render_slug'    => $this->slug,
-				'base_attr_name' => 'form_button_icon',
-				'important'      => true,
-				'selector'       => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button:before, $this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button:after",
-				'processor'      => array(
-					'ET_Builder_Module_Helper_Style_Processor',
-					'process_extended_icon',
-				),
-			)
-		);
-
-		// Set color for form button icon with default, responsive, hover.
-		$this->generate_styles(
-			array(
-				'base_attr_name' => 'form_button_icon_color',
-				'selector'       => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit.et_pb_button:before, $this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit.et_pb_button:after",
-				'hover_selector' => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit.et_pb_button:hover:before, $this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit.et_pb_button:hover:after",
-				'css_property'   => 'color',
-				'render_slug'    => $this->slug,
-				'type'           => 'color',
-			)
-		);
-
-		// View the icon on the estimated position.
-		if ( 'row-reverse' === $this->prop( 'form_button_icon_placement', 'row' ) ) {
-			self::set_style(
-				$this->slug,
-				array(
-					'selector'    => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button:before",
-					'declaration' => 'line-height: inherit; font-size: inherit !important;  margin-left: -1.3em; right: auto; opacity: 0; display: inline-block;',
-				)
-			);
-			self::set_style(
-				$this->slug,
-				array(
-					'selector'    => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button:hover:before",
-					'declaration' => 'margin-right: 0.3em;  right: auto; opacity: 1;',
-				)
-			);
-			self::set_style(
-				$this->slug,
-				array(
-					'selector'    => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button:after",
-					'declaration' => "content: ''; display: none;",
-				)
-			);
-
-			if ( 'off' === $this->prop( 'form_button_icon_on_hover', 'off' ) ) {
-				self::set_style(
-					$this->slug,
-					array(
-						'selector'    => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button",
-						'declaration' => 'background-image: initial; padding-left: 2em; padding-right: 0.7em;',
-					)
-				);
-				self::set_style(
-					$this->slug,
-					array(
-						'selector'    => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button:before",
-						'declaration' => 'opacity: 1;',
-					)
-				);
-				self::set_style(
-					$this->slug,
-					array(
-						'selector'    => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button:after",
-						'declaration' => "content: ''; display: none;",
-					)
-				);
-			} else {
-				self::set_style(
-					$this->slug,
-					array(
-						'selector'    => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button:hover",
-						'declaration' => 'padding-left: 2em; padding-right: 0.7em;',
-					)
-				);
-			}
-		} elseif ( 'off' === $this->prop( 'form_button_icon_on_hover', 'off' ) ) {
-			self::set_style(
-				$this->slug,
-				array(
-					'selector'    => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button",
-					'declaration' => 'padding-left: 0.7em; padding-right: 2em;',
-				)
-			);
-			self::set_style(
-				$this->slug,
-				array(
-					'selector'    => "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-submit.et_pb_button:after",
-					'declaration' => 'line-height: inherit; font-size: inherit !important;  margin-left: 0.3em; left: auto; opacity: 1; display: inline-block;',
-				)
-			);
-		}
 	}
 
 	/**
@@ -727,7 +599,7 @@ class FormStylerContactForm7 extends Squad_Form_Styler {
 	 * @return string
 	 */
 	protected function get_submit_button_selector_default() {
-		return "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit.et_pb_button";
+		return "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit";
 	}
 
 	/**
@@ -736,7 +608,7 @@ class FormStylerContactForm7 extends Squad_Form_Styler {
 	 * @return string
 	 */
 	protected function get_submit_button_selector_hover() {
-		return "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit.et_pb_button:hover";
+		return "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit:hover";
 	}
 }
 

@@ -1,4 +1,28 @@
 == Changelog ==
+= 2.1.0 (03-04-2024) =
+
+**New Features:**
+
+* Introduced loading preview for modules and extensions at the dashboard
+* Introduced available professional modules in the lite version for preview
+* Introduced upgrade to professional plan feature for the lite version
+* Introduced Plugin localization support with JSON format.
+
+**Bug Fixes:**
+
+* Fixed the plugin name in the plugin dashboard at affiliate page.
+* Fixed all dependent modules (Contact Form 7, Fluent Forms, Ninja Forms, WP Forms, Gravity Forms) is not loaded in the divi builder event when the module is active.
+* Fixed the issue with the Fluent Form Styler module where the form is not styled properly.
+* Fixed the issue with the Contact Form 7 Styler module where the form button is not styled properly.
+* Fixed the issue with the WP Form Styler module where the module will be crashed when user selects a form.
+* Fixed the issue with Third-party plugin break the ui of the Divi Squad Dashboard.
+
+
+**✨ Improvements:**
+
+* Tested for compatibility with Divi Theme 4.24.3
+* Tested for compatibility with WordPress 6.5.
+
 = 2.0.0 (01-02-2024) =
 
 **New Features:**
@@ -184,4 +208,4 @@
 * Added 9 elegant Divi modules including Divi Advanced Divider Module, Divi Before After Image Slider Module, Divi Business Hours Module, Divi Dual Button Module, Divi Flip Box Module, Divi Image Mask Module, Divi Lottie Module, Divi Typing Text Module and Divi Post Grid Module.
 * Basic customization options.
 * Tested for compatibility with Divi 4.9.2.
-
+* Tested for compatibility with WordPress 6.2.

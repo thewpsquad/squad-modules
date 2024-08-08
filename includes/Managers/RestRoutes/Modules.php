@@ -27,7 +27,7 @@ class Modules extends RouteCore {
 	 * @return WP_Error|WP_HTTP_Response|WP_REST_Response
 	 */
 	public function get_available_modules() {
-		return rest_ensure_response( divi_squad()->modules->get_registered_list() );
+		return rest_ensure_response( divi_squad()->modules->get_modules_with_extra() );
 	}
 
 	/**

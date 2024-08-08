@@ -32,11 +32,11 @@ class WelcomeCampaign extends NoticeCore {
 		static $can_render;
 
 		if ( ! isset( $can_render ) ) {
-			$current_version_dot  = function_exists( 'divi_squad_pro' ) ? divi_squad_pro()->get_version_dot() : '';
+			$current_version_dot  = function_exists( 'divi_squad' ) ? divi_squad()->get_version_dot() : '';
 			$can_use_premium_code = function_exists( 'divi_squad_fs' ) && divi_squad_fs()->can_use_premium_code();
 			$is_pro_notice_closed = divi_squad()->memory->get( 'beta_campaign_notice_close', false );
 
-			$can_render = '1.0.0' === $current_version_dot && ! $can_use_premium_code && ! $is_pro_notice_closed;
+			$can_render = '2.1.0' === $current_version_dot && ! $can_use_premium_code && ! $is_pro_notice_closed;
 		}
 
 		return $can_render;

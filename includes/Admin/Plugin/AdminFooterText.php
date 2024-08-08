@@ -29,18 +29,6 @@ use function get_current_screen;
 class AdminFooterText {
 
 	/**
-	 * Get the plugin screen name.
-	 *
-	 * @return string[]
-	 */
-	public static function get_plugin_screens() {
-		return array_merge(
-			array( 'toplevel_page_divi_squad_dashboard' ),
-			Freemius::get_menu_lists()
-		);
-	}
-
-	/**
 	 * Filters the "Thank you" text displayed in the admin footer.
 	 *
 	 * @param string $footer_text The content that will be printed.
@@ -51,7 +39,7 @@ class AdminFooterText {
 	public function add_plugin_footer_text( $footer_text ) {
 		$screen = get_current_screen();
 
-		if ( in_array( $screen->id, self::get_plugin_screens(), true ) ) {
+		if ( Freemius::is_squad_page( $screen->id ) ) {
 			$footer_text = '';
 
 			// Add support url.
@@ -87,7 +75,7 @@ class AdminFooterText {
 	public function add_update_footer_text( $content ) {
 		$screen = get_current_screen();
 
-		if ( in_array( $screen->id, self::get_plugin_screens(), true ) ) {
+		if ( Freemius::is_squad_page( $screen->id ) ) {
 			$content = '';
 
 			// Add sponsor url.

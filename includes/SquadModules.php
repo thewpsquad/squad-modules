@@ -34,13 +34,13 @@ final class SquadModules extends Integrations\Core {
 		$default_options = array( 'RequiresDIVI' => '4.14.0' );
 
 		// Set plugin options and others.
+		$this->opt_prefix = 'disq';
+		$this->name       = $options['TextDomain'];
 		$this->version    = $options['Version'];
 		$this->options    = array_merge( $default_options, $options );
-		$this->name       = 'squad-modules-for-divi';
-		$this->opt_prefix = 'disq';
 
 		// Translations path.
-		$this->localize_path = DIVI_SQUAD_DIR_PATH;
+		$this->localize_path = DIVI_SQUAD_DIR_PATH . 'languages';
 	}
 
 	/**

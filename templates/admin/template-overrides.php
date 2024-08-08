@@ -14,6 +14,6 @@ if ( ! ( defined( 'ABSPATH' ) && ! wp_doing_ajax() && isset( $args ) ) ) {
 
 ?>
 
-<section class="squad-components">
+<main id="squad-generic-pages" class="squad-components">
 	<?php echo $args; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-</section>
+</main>

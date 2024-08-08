@@ -68,42 +68,9 @@ class Assets {
 	 */
 	public function wp_localize_script_data( $output ) {
 		if ( function_exists( 'et_core_is_fb_enabled' ) && et_core_is_fb_enabled() ) {
-			$numbers = array(
-				'num_1' => esc_html__( '1', 'squad-modules-for-divi' ),
-				'num_2' => esc_html__( '2', 'squad-modules-for-divi' ),
-				'num_3' => esc_html__( '3', 'squad-modules-for-divi' ),
-				'num_4' => esc_html__( '4', 'squad-modules-for-divi' ),
-				'num_5' => esc_html__( '5', 'squad-modules-for-divi' ),
-				'num_6' => esc_html__( '6', 'squad-modules-for-divi' ),
-				'num_7' => esc_html__( '7', 'squad-modules-for-divi' ),
-				'num_8' => esc_html__( '8', 'squad-modules-for-divi' ),
-				'num_9' => esc_html__( '9', 'squad-modules-for-divi' ),
-				'dot_3' => esc_html__( '...', 'squad-modules-for-divi' ),
-			);
-
 			// Set all localized data here.
-			$localize = array(
-				'l10n' => array_merge(
-					$numbers,
-					array(
-						'home'              => esc_html__( 'Home', 'squad-modules-for-divi' ),
-						'no_posts'          => esc_html__( 'Posts not available according to your criteria.', 'squad-modules-for-divi' ),
-						'add_post_elements' => esc_html__( 'Add one or more post element(s).', 'squad-modules-for-divi' ),
-						'add_ba_images'     => esc_html__( 'Add <strong>Before</strong> and <strong>After</strong> images from <strong>Image</strong> Toggle under the Content tab. You are see a preview.', 'squad-modules-for-divi' ),
-						'add_business_days' => esc_html__( 'Add one or more business day(s).', 'squad-modules-for-divi' ),
-						'field_is_required' => esc_html__( 'The field is required.', 'squad-modules-for-divi' ),
-						'add_form'          => esc_html__( 'Please select a form.', 'squad-modules-for-divi' ),
-						'form_not_found'    => esc_html__( 'Forms are not available.', 'squad-modules-for-divi' ),
-						'field_error'       => esc_html__( 'One or more fields have an error. Please check and try again.', 'squad-modules-for-divi' ),
-						'message_sent'      => esc_html__( 'Thank you for your message. It has been sent.', 'squad-modules-for-divi' ),
-						'thanks_contact'    => esc_html__( 'Thanks for contacting us! We will be in touch with you shortly.', 'squad-modules-for-divi' ),
-						'empty_map_place'   => esc_html__( 'Enter a place on google map.', 'squad-modules-for-divi' ),
-						'scrolling_text'    => esc_html__( 'Scrolling Placeholder Text Here', 'squad-modules-for-divi' ),
-					)
-				),
-			);
-
-			$output .= sprintf( 'window.DISQBuilderLocalize = %1$s;', wp_json_encode( $localize ) );
+			$localize = array();
+			$output  .= sprintf( 'window.DISQBuilderLocalize = %1$s;', wp_json_encode( $localize ) );
 		}
 
 		return $output;

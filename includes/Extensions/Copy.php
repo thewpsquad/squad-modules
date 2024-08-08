@@ -14,6 +14,7 @@ namespace DiviSquad\Extensions;
 
 use DiviSquad\Base\Extension;
 use DiviSquad\Utils\Asset;
+use DiviSquad\Utils\WP;
 use function add_action;
 use function add_filter;
 use function check_ajax_referer;
@@ -155,6 +156,9 @@ class Copy extends Extension {
 
 			// Load localize data.
 			add_filter( 'divi_squad_assets_backend_extra_data', array( $this, 'wp_localize_script_data' ) );
+
+			// Load script translations.
+			WP::set_script_translations( 'squad-ext-copy', divi_squad()->get_name(), divi_squad()->get_localize_path() );
 		}
 	}
 

@@ -1,17 +1,19 @@
-# Copyright (C) 2024 WP Squad <support@thewpsquad.com
 msgid ""
 msgstr ""
-"Project-Id-Version: Squad Modules Lite 2.1.0\n"
+"Project-Id-Version: Squad Modules Lite 2.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/squad-modules-for-divi\n"
-"Last-Translator: WP Squad <support@thewpsquad.com>\n"
-"Language-Team: WP Squad <support@thewpsquad.com>\n"
+"Last-Translator: \n"
+"Language-Team: German\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-04-03T14:43:50+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0-alpha-e30b356\n"
+"POT-Creation-Date: 2024-04-02T20:41:56+00:00\n"
+"PO-Revision-Date: 2024-04-03 12:33+0000\n"
+"Language: de_DE\n"
+"X-Generator: Loco https://localise.biz/\n"
 "X-Domain: squad-modules-for-divi\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Loco-Version: 2.6.7; wp-6.6-alpha-57916\n"
 
 #. Plugin Name of the plugin
 #: squad-modules-for-divi.php
@@ -3527,15 +3529,6 @@ msgstr ""
 msgid "Contact Form 7 is not installed"
 msgstr ""
 
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:485
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:600
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:742
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:715
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:414
-#: build/divi-builder-4/scripts/builder-bundle.js:1
-msgid "Please select a form."
-msgstr ""
-
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:64
 msgid "Here you can choose the fluent form."
 msgstr ""
@@ -6124,6 +6117,15 @@ msgstr ""
 
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Forms are not available."
+msgstr ""
+
+#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:485
+#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:600
+#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:742
+#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:715
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:414
+#: build/divi-builder-4/scripts/builder-bundle.js:1
+msgid "Please select a form."
 msgstr ""
 
 #: build/divi-builder-4/scripts/builder-bundle.js:1
