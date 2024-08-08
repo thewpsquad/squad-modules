@@ -5,25 +5,55 @@
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
- * @since   3.1.0
+ * @since   3.1.1
  */
 
 namespace DiviSquad\Base\Traits;
 
+use DiviSquad\Utils\WP;
 use function add_action;
 use function apply_filters;
+use function version_compare;
 
 /**
  * Deprecated Classes Trait
  *
  * @package DiviSquad
- * @since   3.1.0
+ * @since   3.1.1
  */
 trait DeprecatedClassLoader {
 	/**
 	 * Load deprecated classes after Divi Squad has initialized.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
+	 *
+	 * @return void
+	 */
+	public function load_deprecated_class_compatibility() {
+		if ( ! defined( '\DIVI_SQUAD__FILE__' ) ) {
+			return;
+		}
+
+		$active_plugins = WP::get_active_plugins();
+		foreach ( $active_plugins as $plugin ) {
+			if ( ! isset( $plugin['slug'], $plugin['version'] ) ) {
+				continue;
+			}
+
+			if ( $plugin['slug'] !== $this->get_pro_basename() ) {
+				continue;
+			}
+
+			if ( version_compare( $plugin['version'], '1.1.0', '>=' ) ) {
+				$this->load_deprecated_classes();
+				break;
+			}
+		}
+	}
+	/**
+	 * Load deprecated classes after Divi Squad has initialized.
+	 *
+	 * @since 3.1.1
 	 *
 	 * @return void
 	 */
@@ -37,7 +67,7 @@ trait DeprecatedClassLoader {
 		/**
 		 * Filters the list of deprecated classes to be loaded.
 		 *
-		 * @since 3.1.0
+		 * @since 3.1.1
 		 *
 		 * @param array $deprecated_classes Array of deprecated class names and their configurations.
 		 */
@@ -68,7 +98,9 @@ trait DeprecatedClassLoader {
 		}
 
 		if ( empty( $config ) ) {
-			require_once $valid_path;
+			if ( ! class_exists( $class_name ) ) {
+				require_once $valid_path;
+			}
 			return;
 		}
 
@@ -76,8 +108,8 @@ trait DeprecatedClassLoader {
 
 		if ( isset( $config['action']['name'] ) ) {
 			$this->add_deprecated_class_action( $config, $class_name, $valid_path );
-		} else {
-			require_once $valid_path;
+		} elseif ( ! class_exists( $class_name ) ) {
+				require_once $valid_path;
 		}
 
 		$this->execute_after_load_callback( $config, $class_name );
@@ -109,7 +141,7 @@ trait DeprecatedClassLoader {
 			'DiviSquad\Managers\Extensions'               => array(),
 			'DiviSquad\Managers\Modules'                  => array(),
 			'DiviSquad\Modules\PostGridChild\PostGridChild' => array(
-				'action'    => array(
+				'action' => array(
 					'name'     => 'divi_extensions_init',
 					'priority' => 9,
 				),
@@ -172,11 +204,11 @@ trait DeprecatedClassLoader {
 				$callback_args     = isset( $config['condition']['callback_inside_args'] ) ? $config['condition']['callback_inside_args'] : array( $class_name );
 				$should_load_class = call_user_func_array( $config['condition']['callback_inside'], $callback_args );
 
-				if ( $should_load_class ) {
+				if ( $should_load_class && ! class_exists( $class_name ) ) {
 					require_once $valid_path;
 				}
-			} else {
-				require_once $valid_path;
+			} elseif ( ! class_exists( $class_name ) ) {
+					require_once $valid_path;
 			}
 		};
 

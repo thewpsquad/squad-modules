@@ -14,7 +14,6 @@ use DiviSquad\Utils\Polyfills\Constant;
 use DiviSquad\Utils\WP;
 use function add_action;
 use function do_action;
-use function is_admin;
 use function plugin_basename;
 use function plugin_dir_url;
 use function trailingslashit;
@@ -59,6 +58,9 @@ final class SquadModules extends Integrations\Core {
 		$this->init_plugin();
 		$this->init_memory();
 		$this->register_hooks();
+
+		// Ensure the compatibility with the premium version (older).
+		$this->load_deprecated_class_compatibility();
 	}
 
 	/**
@@ -69,7 +71,6 @@ final class SquadModules extends Integrations\Core {
 	private function register_hooks() {
 		add_action( 'activate_' . $this->get_basename(), array( $this, 'hook_activation' ) );
 		add_action( 'deactivate_' . $this->get_basename(), array( $this, 'hook_deactivation' ) );
-		add_action( 'plugin_loaded', array( $this, 'init_publisher' ) );
 		add_action( 'plugins_loaded', array( $this, 'run' ) );
 		add_action( 'divi_squad_loaded', array( $this, 'load_deprecated_classes' ), Constant::PHP_INT_MIN ); // @phpstan-ignore-line
 		add_action( 'init', array( $this, 'load_additional_components' ) );
@@ -214,15 +215,6 @@ final class SquadModules extends Integrations\Core {
 	}
 
 	/**
-	 * Create a helper function for easy SDK access.
-	 *
-	 * @return \Freemius
-	 */
-	public static function publisher() {
-		return \DiviSquad\Integrations\Publisher::get_instance()->get_fs();
-	}
-
-	/**
 	 * Initialize the memory.
 	 *
 	 * @return void
@@ -251,28 +243,6 @@ final class SquadModules extends Integrations\Core {
 		$this->name          = $this->textdomain;
 		$this->options       = wp_parse_args( $options, array( 'RequiresDIVI' => '4.14.0' ) );
 		$this->localize_path = $this->get_path( '/languages' );
-	}
-
-	/**
-	 * Initialize the publisher.
-	 *
-	 * @return void
-	 */
-	public function init_publisher() {
-		if ( is_admin() && \DiviSquad\Integrations\Publisher::is_installed() ) {
-			if ( function_exists( '\divi_squad_fs' ) ) {
-				\divi_squad_fs()->set_basename( false, DIVI_SQUAD__FILE__ );
-			} else {
-				self::publisher();
-
-				/**
-				 * Fires after the Freemius SDK has been loaded.
-				 *
-				 * @since 3.0.0
-				 */
-				do_action( 'divi_squad_fs_loaded' );
-			}
-		}
 	}
 
 	/**

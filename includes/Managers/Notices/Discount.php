@@ -36,7 +36,7 @@ class Discount extends Notice {
 		static $can_render;
 
 		if ( ! isset( $can_render ) ) {
-			$can_use_premium_code = divi_squad()->publisher() instanceof \Freemius && divi_squad()->publisher()->can_use_premium_code();
+			$can_use_premium_code = divi_squad_fs() instanceof \Freemius && divi_squad_fs()->can_use_premium_code();
 			$is_pro_notice_closed = divi_squad()->memory->get( 'beta_campaign_notice_close', false );
 
 			$can_render = ! $can_use_premium_code && ! $is_pro_notice_closed;

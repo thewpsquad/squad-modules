@@ -180,12 +180,12 @@ class Admin extends PluginAsset {
 			'version_wp_real'    => $version_dot,
 			'admin_menus'        => $admin_menus,
 			'premium'            => array(
-				'is_active'    => divi_squad()->publisher() instanceof \Freemius && divi_squad()->publisher()->can_use_premium_code(),
+				'is_active'    => divi_squad_fs() instanceof \Freemius && divi_squad_fs()->can_use_premium_code(),
 				'is_installed' => $is_pro_installed,
 			),
 			'links'              => array(
 				'site_url'   => home_url( '/' ),
-				'my_account' => divi_squad()->publisher() instanceof \Freemius ? divi_squad()->publisher()->get_account_url() : '',
+				'my_account' => divi_squad_fs() instanceof \Freemius ? divi_squad_fs()->get_account_url() : '',
 				'plugins'    => admin_url( 'plugins.php' ),
 				'dashboard'  => admin_url( 'admin.php?page=divi_squad_dashboard#/' ),
 				'modules'    => admin_url( 'admin.php?page=divi_squad_dashboard#/modules' ),

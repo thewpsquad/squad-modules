@@ -25,12 +25,12 @@ msgid " Ignore sticky  posts for the current page."
 msgstr " تجاهل المشاركات مثبت على الصفحة الحالية."
 
 #. translators: %1$s: Product title; %2$s: Plan title; %3$s: Activation link
-#: includes/Integrations/Publisher.php:95
+#: includes/Integrations/Publisher.php:93
 msgid " The paid plugin of %1$s is already installed. Please activate it to start benefiting the %2$s plugin. %3$s"
 msgstr " دفعت المساعد من %1$s مثبتا بالفعل. يرجى تفعيل لبدء الاستفادة %2$s المساعد. %3$s"
 
 #. translators: %1$s: Product title;
-#: includes/Managers/Notices/ProActivation.php:86
+#: includes/Managers/Notices/ProActivation.php:87
 msgid " The paid plugin of %1$s is already installed. Please activate it to start benefiting the Pro features."
 msgstr " دفعت المساعد من %1$s مثبتا بالفعل. يرجى تفعيل لبدء الاستفادة من ميزات برو."
 
@@ -71,7 +71,7 @@ msgid "%s Padding"
 msgstr "%s الحشو"
 
 #. translators: %s The plugin name, example: Squad Modules Lite
-#: includes/Integrations/Publisher.php:91
+#: includes/Integrations/Publisher.php:89
 msgid "%s was successfully activated."
 msgstr "%s بنجاح تفعيلها."
 
@@ -116,11 +116,6 @@ msgstr "8"
 msgid "A json file is chosen for lottie."
 msgstr "ملف json هو المختار لوتي."
 
-#. translators: %s: Plan title
-#: includes/Integrations/Publisher.php:89
-msgid "Activate %s Plugin"
-msgstr "تفعيل %s المساعد"
-
 #: build/admin/scripts/admin.js:175
 msgid "Activate Pro Plugin"
 msgstr "تفعيل برو البرنامج المساعد"
@@ -138,7 +133,7 @@ msgstr "نشط ترقيم الصفحات"
 msgid "Active Pagination Text"
 msgstr "نشط ترقيم الصفحات النص"
 
-#: includes/Managers/Notices/ProActivation.php:93
+#: includes/Managers/Notices/ProActivation.php:94
 msgid "Active Pro Plugin"
 msgstr "نشط برو البرنامج المساعد"
 
@@ -397,7 +392,7 @@ msgstr "نوع الرسوم المتحركة"
 msgid "Apply stunning masks to your images, adding creativity and visual appeal to your website."
 msgstr "تطبيق مذهل أقنعة الصور الخاصة بك ، إضافة والإبداع نداء البصرية إلى موقع الويب الخاص بك."
 
-#: includes/Managers/Notices/ProActivation.php:83
+#: includes/Managers/Notices/ProActivation.php:84
 msgid "Approaching closer to unlocking the benefits of the Pro plugin."
 msgstr "تقترب أقرب إلى فتح فوائد برو البرنامج المساعد."
 
@@ -1477,15 +1472,13 @@ msgstr "ديفي مكتبة رمز قصير"
 #: includes/Managers/Menus/AdminMenu.php:45
 #: includes/Managers/Menus/AdminMenu.php:46
 #: includes/Managers/SiteHealth.php:68
-#: templates/admin/subscription.php:61
+#: templates/admin/subscription.php:56
 #: build/admin/scripts/admin.js:172
 #: build/admin/scripts/admin.js:175
 msgid "Divi Squad"
 msgstr "ديفي فرقة"
 
-#: templates/admin/subscription.php:59
 #: build/admin/scripts/admin.js:172
-#: build/admin/scripts/admin.js:175
 msgid "Divi Squad Pro"
 msgstr "ديفي فرقة برو"
 
@@ -2358,7 +2351,7 @@ msgstr "البند 6"
 msgid "Height"
 msgstr "ارتفاع"
 
-#: includes/Integrations/Publisher.php:85
+#: includes/Integrations/Publisher.php:82
 msgid "Hello Friend"
 msgstr "مرحبا صديق"
 
@@ -3164,7 +3157,7 @@ msgstr "هنا يمكنك اختيار نوع مختلف من اللعب رمز 
 msgid "Here you can set the separator between the start time and end time."
 msgstr "هنا يمكنك تعيين الفاصل بين بداية ونهاية الوقت."
 
-#: includes/Integrations/Publisher.php:84
+#: includes/Integrations/Publisher.php:81
 msgid "Hey"
 msgstr "مرحبا"
 
@@ -4270,7 +4263,7 @@ msgstr "التالية إدخالات النص"
 msgid "Nickname"
 msgstr "لقب"
 
-#: templates/admin/subscription.php:41
+#: templates/admin/subscription.php:62
 #: build/admin/scripts/admin.js:175
 msgid "Nightly"
 msgstr "ليلا"
@@ -4336,7 +4329,7 @@ msgstr "لا شيء"
 msgid "Normal"
 msgstr "عادي"
 
-#: includes/Integrations/Publisher.php:87
+#: includes/Integrations/Publisher.php:83
 msgid "Not today"
 msgstr "ليس اليوم"
 
@@ -4683,7 +4676,7 @@ msgid "Pre-Sale Question"
 msgstr "ما قبل البيع السؤال"
 
 #. translators: %s The module type
-#: includes/Integrations/Publisher.php:93
+#: includes/Integrations/Publisher.php:91
 msgid "Premium %s was successfully activated."
 msgstr "قسط %s بنجاح تفعيلها."
 
@@ -4718,6 +4711,7 @@ msgstr "التسعير"
 msgid "Primary Color"
 msgstr "اللون الأساسي"
 
+#: templates/admin/subscription.php:74
 #: build/admin/scripts/admin.js:175
 msgid "Pro"
 msgstr "برو"
@@ -5250,11 +5244,11 @@ msgstr "فرقة نسخ امتداد"
 #: squad-modules-for-divi.php
 #: includes/Integrations/WP.php:116
 #: includes/Integrations/WP.php:132
-#: includes/Managers/Notices/ProActivation.php:87
+#: includes/Managers/Notices/ProActivation.php:88
 msgid "Squad Modules Lite"
 msgstr "فرقة وحدات لايت"
 
-#: includes/Integrations/Publisher.php:236
+#: includes/Integrations/Publisher.php:233
 msgid "Squad Modules Pro"
 msgstr "فرقة وحدات برو"
 
@@ -6415,7 +6409,7 @@ msgstr "المجمع الحشو"
 msgid "Yes"
 msgstr "نعم"
 
-#: includes/Integrations/Publisher.php:86
+#: includes/Integrations/Publisher.php:84
 msgid "Yes - I'm in!"
 msgstr "نعم أنا!"
 
@@ -6512,3 +6506,21 @@ msgstr "التكبير"
 #: includes/Modules/FlipBox.php:1209
 msgid "Zoom In"
 msgstr "التكبير في"
+
+#: includes/Integrations/Publisher.php:85
+msgid "Update Now"
+msgstr ""
+
+#. translators: %s: Plan title
+#: includes/Integrations/Publisher.php:87
+msgid "Activate %s"
+msgstr ""
+
+#: templates/admin/subscription.php:63
+msgid "current"
+msgstr ""
+
+#: templates/admin/subscription.php:68
+#: build/admin/scripts/admin.js:175
+msgid "Lite"
+msgstr ""

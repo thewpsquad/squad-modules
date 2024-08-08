@@ -5,7 +5,7 @@
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
- * @since   3.1.0
+ * @since   3.1.1
  */
 
 namespace DiviSquad\Utils\Polyfills;
@@ -14,7 +14,7 @@ namespace DiviSquad\Utils\Polyfills;
  * Constant class.
  *
  * @package DiviSquad
- * @since   3.1.0
+ * @since   3.1.1
  */
 class Constant {
 	/**

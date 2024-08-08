@@ -53,7 +53,7 @@ class AdminFooterText extends BrandAsset {
 		$footer_text = '';
 
 		// Add support url.
-		if ( divi_squad()->publisher() instanceof \Freemius && divi_squad()->publisher()->is_free_plan() ) {
+		if ( divi_squad_fs() instanceof \Freemius && divi_squad_fs()->is_free_plan() ) {
 			$footer_text .= sprintf(
 				'<a target="_blank" href="%2$s">%1$s</a> | ',
 				esc_html__( 'Contact Support', 'squad-modules-for-divi' ),
@@ -84,7 +84,7 @@ class AdminFooterText extends BrandAsset {
 		$content = '';
 
 		// Add sponsor url.
-		if ( divi_squad()->publisher() instanceof \Freemius && divi_squad()->publisher()->is_free_plan() ) {
+		if ( divi_squad_fs() instanceof \Freemius && divi_squad_fs()->is_free_plan() ) {
 			$donate_text  = esc_html__( 'Donate', 'squad-modules-for-divi' );
 			$donate_style = 'margin-right: 5px; text-decoration: none';
 

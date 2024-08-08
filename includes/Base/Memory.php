@@ -90,6 +90,34 @@ class Memory {
 	}
 
 	/**
+	 * Get all stored options.
+	 *
+	 * @return array All stored options.
+	 */
+	public function get_all() {
+		return $this->data;
+	}
+
+	/**
+	 * Get the number of stored fields.
+	 *
+	 * @return int The number of stored fields.
+	 */
+	public function count() {
+		return count( $this->data );
+	}
+
+	/**
+	 * Check if a field exists.
+	 *
+	 * @param string $field The field key to check.
+	 * @return bool True if the field exists, false otherwise.
+	 */
+	public function has( $field ) {
+		return array_key_exists( $field, $this->data );
+	}
+
+	/**
 	 * Get the value of a field.
 	 *
 	 * @param string $field The field key.
@@ -98,15 +126,6 @@ class Memory {
 	 */
 	public function get( $field, $default_value = null ) {
 		return isset( $this->data[ $field ] ) ? $this->data[ $field ] : $default_value;
-	}
-
-	/**
-	 * Get all stored options.
-	 *
-	 * @return array All stored options.
-	 */
-	public function get_all() {
-		return $this->data;
 	}
 
 	/**
@@ -251,25 +270,6 @@ class Memory {
 	public function clear_all() {
 		$this->data        = array();
 		$this->is_modified = true;
-	}
-
-	/**
-	 * Check if a field exists.
-	 *
-	 * @param string $field The field key to check.
-	 * @return bool True if the field exists, false otherwise.
-	 */
-	public function has( $field ) {
-		return array_key_exists( $field, $this->data );
-	}
-
-	/**
-	 * Get the number of stored fields.
-	 *
-	 * @return int The number of stored fields.
-	 */
-	public function count() {
-		return count( $this->data );
 	}
 }
 
