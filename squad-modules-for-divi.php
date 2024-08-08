@@ -11,7 +11,7 @@
  * Plugin Name:         Squad Modules Lite
  * Plugin URI:          https://squadmodules.com/
  * Description:         The Advanced Divi plugin you install after Divi or Extra Theme!
- * Version:             3.1.0
+ * Version:             3.1.1
  * Requires at least:   5.0.0
  * Requires PHP:        5.6.40
  * Author:              WP Squad
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 spl_autoload_register(
 	static function ( $class_name ) {
 		// Bail out if the class name doesn't start with our prefix.
-		if ( strpos( $class_name, 'DiviSquad\\' ) !== 0 ) {
+		if ( 0 !== strpos( $class_name, 'DiviSquad\\' ) ) {
 			return;
 		}
 
@@ -59,18 +59,54 @@ if ( ! class_exists( DiviSquad\SquadModules::class ) ) {
 	return;
 }
 
-/**
- * Helper function to get the Divi Squad Plugin instance.
- *
- * @return DiviSquad\SquadModules
- */
-function divi_squad() {
-	return DiviSquad\SquadModules::get_instance();
-}
+// Define the core constants.
+define( 'DIVI_SQUAD__FILE__', __FILE__ );
 
 try {
-	// Define the core constants.
-	define( 'DIVI_SQUAD__FILE__', __FILE__ );
+
+	/**
+	 * Helper function to get the Divi Squad Plugin instance.
+	 *
+	 * @return DiviSquad\SquadModules
+	 */
+	function divi_squad() {
+		return DiviSquad\SquadModules::get_instance();
+	}
+
+	if ( is_admin() ) {
+		// Special logic for premium only plugin
+		if ( function_exists( 'divi_squad_fs' ) ) {
+			// Declare the plugin as premium only.
+			divi_squad_fs()->set_basename( false, __FILE__ );
+		} else {
+			/**
+			 * Initialize Freemius SDK.
+			 *
+			 * @return bool|\Freemius
+			 * @throws Exception If the SDK cannot be initialized.
+			 */
+			function divi_squad_fs() {
+				global $divi_squad_fs;
+
+				if ( ! isset( $divi_squad_fs ) ) {
+					$squad_publisher = new DiviSquad\Integrations\Publisher();
+					$divi_squad_fs   = $squad_publisher->get_fs();
+				}
+
+				return $divi_squad_fs;
+			}
+
+			// Init Freemius.
+			divi_squad_fs();
+
+			/**
+			 * Fires after the Freemius SDK is loaded.
+			 *
+			 * @since 3.0.0
+			 */
+			do_action( 'divi_squad_fs_loaded' );
+		}
+	}
 
 	/**
 	 * Fires before the plugin is loaded.

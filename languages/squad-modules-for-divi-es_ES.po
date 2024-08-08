@@ -25,12 +25,12 @@ msgid " Ignore sticky  posts for the current page."
 msgstr " Ignorar sticky posts de la página actual."
 
 #. translators: %1$s: Product title; %2$s: Plan title; %3$s: Activation link
-#: includes/Integrations/Publisher.php:95
+#: includes/Integrations/Publisher.php:93
 msgid " The paid plugin of %1$s is already installed. Please activate it to start benefiting the %2$s plugin. %3$s"
 msgstr " El plugin de pago de %1$s ya está instalado. Por favor, active para comenzar a %2$s plugin. %3$s"
 
 #. translators: %1$s: Product title;
-#: includes/Managers/Notices/ProActivation.php:86
+#: includes/Managers/Notices/ProActivation.php:87
 msgid " The paid plugin of %1$s is already installed. Please activate it to start benefiting the Pro features."
 msgstr " El plugin de pago de %1$s ya está instalado. Por favor, active para comenzar a las características de la versión Pro."
 
@@ -71,7 +71,7 @@ msgid "%s Padding"
 msgstr "%s de Relleno"
 
 #. translators: %s The plugin name, example: Squad Modules Lite
-#: includes/Integrations/Publisher.php:91
+#: includes/Integrations/Publisher.php:89
 msgid "%s was successfully activated."
 msgstr "%s se ha activado correctamente."
 
@@ -116,11 +116,6 @@ msgstr "8"
 msgid "A json file is chosen for lottie."
 msgstr "Un archivo json es elegido para lottie."
 
-#. translators: %s: Plan title
-#: includes/Integrations/Publisher.php:89
-msgid "Activate %s Plugin"
-msgstr "Activar %s Plugin"
-
 #: build/admin/scripts/admin.js:175
 msgid "Activate Pro Plugin"
 msgstr "Activar Pro Plugin"
@@ -138,7 +133,7 @@ msgstr "Activa La Paginación"
 msgid "Active Pagination Text"
 msgstr "Activa La Paginación Del Texto"
 
-#: includes/Managers/Notices/ProActivation.php:93
+#: includes/Managers/Notices/ProActivation.php:94
 msgid "Active Pro Plugin"
 msgstr "Pro Activas El Plugin"
 
@@ -397,7 +392,7 @@ msgstr "Tipo De Animación"
 msgid "Apply stunning masks to your images, adding creativity and visual appeal to your website."
 msgstr "Aplicar máscaras a las imágenes, añadir la creatividad y el atractivo visual de su sitio web."
 
-#: includes/Managers/Notices/ProActivation.php:83
+#: includes/Managers/Notices/ProActivation.php:84
 msgid "Approaching closer to unlocking the benefits of the Pro plugin."
 msgstr "Acercarse más para aprovechar los beneficios de la Pro plugin."
 
@@ -1437,15 +1432,13 @@ msgstr "Divi Biblioteca De Código Corto"
 #: includes/Managers/Menus/AdminMenu.php:45
 #: includes/Managers/Menus/AdminMenu.php:46
 #: includes/Managers/SiteHealth.php:68
-#: templates/admin/subscription.php:61
+#: templates/admin/subscription.php:56
 #: build/admin/scripts/admin.js:172
 #: build/admin/scripts/admin.js:175
 msgid "Divi Squad"
 msgstr "Divi Squad"
 
-#: templates/admin/subscription.php:59
 #: build/admin/scripts/admin.js:172
-#: build/admin/scripts/admin.js:175
 msgid "Divi Squad Pro"
 msgstr "Divi Escuadrón De Pro"
 
@@ -2313,7 +2306,7 @@ msgstr "Título 6"
 msgid "Height"
 msgstr "Altura"
 
-#: includes/Integrations/Publisher.php:85
+#: includes/Integrations/Publisher.php:82
 msgid "Hello Friend"
 msgstr "Hola Amigo"
 
@@ -3115,7 +3108,7 @@ msgstr "Aquí usted puede seleccionar diferentes tipos de icono de reproducción
 msgid "Here you can set the separator between the start time and end time."
 msgstr "Aquí usted puede configurar el separador entre la hora de inicio y hora de finalización."
 
-#: includes/Integrations/Publisher.php:84
+#: includes/Integrations/Publisher.php:81
 msgid "Hey"
 msgstr "Hey"
 
@@ -4215,7 +4208,7 @@ msgstr "El Próximo Entradas De Texto"
 msgid "Nickname"
 msgstr "Apodo"
 
-#: templates/admin/subscription.php:41
+#: templates/admin/subscription.php:62
 #: build/admin/scripts/admin.js:175
 msgid "Nightly"
 msgstr "Cada noche"
@@ -4281,7 +4274,7 @@ msgstr "Ninguno"
 msgid "Normal"
 msgstr "Normal"
 
-#: includes/Integrations/Publisher.php:87
+#: includes/Integrations/Publisher.php:83
 msgid "Not today"
 msgstr "Hoy no"
 
@@ -4616,7 +4609,7 @@ msgid "Pre-Sale Question"
 msgstr "La Pre-Venta De La Pregunta"
 
 #. translators: %s The module type
-#: includes/Integrations/Publisher.php:93
+#: includes/Integrations/Publisher.php:91
 msgid "Premium %s was successfully activated."
 msgstr "Prima %s se ha activado correctamente."
 
@@ -4640,6 +4633,7 @@ msgstr "Precios"
 msgid "Primary Color"
 msgstr "Color Primario"
 
+#: templates/admin/subscription.php:74
 #: build/admin/scripts/admin.js:175
 msgid "Pro"
 msgstr "Pro"
@@ -5172,11 +5166,11 @@ msgstr "Escuadrón De La Copia De Extensión"
 #: squad-modules-for-divi.php
 #: includes/Integrations/WP.php:116
 #: includes/Integrations/WP.php:132
-#: includes/Managers/Notices/ProActivation.php:87
+#: includes/Managers/Notices/ProActivation.php:88
 msgid "Squad Modules Lite"
 msgstr "Escuadrón De Módulos Lite"
 
-#: includes/Integrations/Publisher.php:236
+#: includes/Integrations/Publisher.php:233
 msgid "Squad Modules Pro"
 msgstr "Escuadrón De Los Módulos Pro"
 
@@ -6314,7 +6308,7 @@ msgstr "Contenedor De Relleno"
 msgid "Yes"
 msgstr "Sí"
 
-#: includes/Integrations/Publisher.php:86
+#: includes/Integrations/Publisher.php:84
 msgid "Yes - I'm in!"
 msgstr "Sí, estoy en!"
 
@@ -6467,6 +6461,15 @@ msgstr ""
 msgid "Choose a custom field to display for the current post."
 msgstr ""
 
+#: includes/Integrations/Publisher.php:85
+msgid "Update Now"
+msgstr ""
+
+#. translators: %s: Plan title
+#: includes/Integrations/Publisher.php:87
+msgid "Activate %s"
+msgstr ""
+
 #: includes/Managers/Features/Extensions.php:44
 #: includes/Managers/Features/Extensions.php:55
 #: includes/Managers/Features/Extensions.php:66
@@ -6511,4 +6514,13 @@ msgstr ""
 
 #: includes/Modules/PostGridChild.php:73
 msgid "Custom Fields (ACF)"
+msgstr ""
+
+#: templates/admin/subscription.php:63
+msgid "current"
+msgstr ""
+
+#: templates/admin/subscription.php:68
+#: build/admin/scripts/admin.js:175
+msgid "Lite"
 msgstr ""

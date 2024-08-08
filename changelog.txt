@@ -1,4 +1,13 @@
 == Changelog ==
+= 3.1.1 (04-08-2024) =
+
+**Improvements:**
+
+- feat(freemius): fixed an issue to receive update from freemius server
+- feat(admin-app): update badges with nightly, lite and pro
+- compatibility: ensure older version from 1.0.0 working with current version
+
+
 = 3.1.0 (01-08-2024) =
 
 **New Features:**

@@ -32,12 +32,13 @@ class ProActivation extends Notice {
 
 	/**
 	 * Check if we can render notice.
+	 * @throws \Exception If the notice can't be rendered.
 	 */
 	public function can_render_it() {
 		static $can_render;
 
 		if ( ! isset( $can_render ) ) {
-			$can_use_premium_code = divi_squad()->publisher() instanceof \Freemius && divi_squad()->publisher()->can_use_premium_code();
+			$can_use_premium_code = divi_squad_fs() instanceof \Freemius && divi_squad_fs()->can_use_premium_code();
 			$is_pro_notice_closed = divi_squad()->memory->get( 'pro_activation_notice_close', false );
 
 			if ( ! $is_pro_notice_closed && $can_use_premium_code && ! divi_squad()->is_pro_activated() ) {

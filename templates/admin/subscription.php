@@ -30,15 +30,14 @@ if ( is_wp_error( $divi_squad_image->is_path_validated() ) ) {
 	return;
 }
 
-// Verify current plugin version.
-if ( ( divi_squad()->is_pro_activated() && divi_squad()->publisher()->can_use_premium_code() ) && false !== strpos( divi_squad_pro()->get_version(), '.' ) ) {
-	$divi_squad_pro_version = divi_squad_pro()->get_version();
-	$divi_squad_version     = "v$divi_squad_pro_version";
+// Verify current plugin life type.
+$divi_squad_plugin_life_type = '';
+if ( ( divi_squad()->is_pro_activated() && divi_squad_fs()->can_use_premium_code() ) && false !== strpos( divi_squad_pro()->get_version(), '.' ) ) {
+	$divi_squad_plugin_life_type = 'stable';
 } elseif ( ! divi_squad()->is_pro_activated() && ( false !== strpos( divi_squad()->get_version(), '.' ) ) ) {
-	$divi_squad_core_version = divi_squad()->get_version();
-		$divi_squad_version  = "v$divi_squad_core_version";
+	$divi_squad_plugin_life_type = 'stable';
 } else {
-	$divi_squad_version = esc_html__( 'Nightly', 'squad-modules-for-divi' );
+	$divi_squad_plugin_life_type = 'nightly';
 }
 
 ?>
@@ -47,21 +46,37 @@ if ( ( divi_squad()->is_pro_activated() && divi_squad()->publisher()->can_use_pr
 	<div class="app-wrapper">
 		<div class="app-header">
 			<div class="app-title">
-				<div class="title-wrapper" data-badge-text="<?php echo esc_attr( $divi_squad_version ); ?>">
-
+				<div class="title-wrapper">
 					<?php $divi_squad_subscription_logo = $divi_squad_image->get_image( 'divi-squad-default.png', 'png' ); ?>
 					<?php if ( ! is_wp_error( $divi_squad_subscription_logo ) ) : ?>
 						<img class='logo' alt='Divi Squad' src="<?php echo esc_url( $divi_squad_subscription_logo, array( 'data' ) ); ?>"/>
 					<?php endif; ?>
 
 					<h1 class="title">
-						<?php if ( divi_squad()->is_pro_activated() && divi_squad()->publisher()->can_use_premium_code() ) : ?>
-							<?php esc_html_e( 'Divi Squad Pro', 'squad-modules-for-divi' ); ?>
-						<?php else : ?>
-							<?php esc_html_e( 'Divi Squad', 'squad-modules-for-divi' ); ?>
-						<?php endif; ?>
+						<?php esc_html_e( 'Divi Squad', 'squad-modules-for-divi' ); ?>
 					</h1>
 
+					<ul class='badges'>
+						<?php if ( 'nightly' === $divi_squad_plugin_life_type ) : ?>
+							<li class='nightly-badge'>
+								<span class='badge-name'><?php esc_html_e( 'Nightly', 'squad-modules-for-divi' ); ?></span>
+								<span class='badge-version'><?php esc_html_e( 'current', 'squad-modules-for-divi' ); ?></span>
+							</li>
+						<?php endif; ?>
+						<?php if ( 'stable' === $divi_squad_plugin_life_type ) : ?>
+							<li class='stable-lite-badge'>
+								<span class='badge-name'><?php esc_html_e( 'Lite', 'squad-modules-for-divi' ); ?></span>
+								<span class='badge-version'><?php echo esc_html( divi_squad()->get_version() ); ?></span>
+							</li>
+
+							<?php if ( divi_squad()->is_pro_activated() ) : ?>
+								<li class='stable-pro-badge'>
+									<span class='badge-name'><?php esc_html_e( 'Pro', 'squad-modules-for-divi' ); ?></span>
+									<span class='badge-version'><?php echo esc_html( divi_squad_pro()->get_version() ); ?></span>
+								</li>
+							<?php endif; ?>
+						<?php endif; ?>
+					</ul>
 				</div>
 			</div>
 		</div>

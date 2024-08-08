@@ -23,14 +23,14 @@ use function divi_squad;
  * structure changes when upgrading from older versions.
  *
  * @package DiviSquad
- * @since   3.1.0
+ * @since   3.1.1
  */
 class Upgraders {
 
 	/**
 	 * The name of the summary table in the database.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 * @var string
 	 */
 	private $summary_table_name;
@@ -38,7 +38,7 @@ class Upgraders {
 	/**
 	 * The option name used to store the current version in the database.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 * @var string
 	 */
 	private $version_option_name = 'custom_fields_summary_version';
@@ -46,7 +46,7 @@ class Upgraders {
 	/**
 	 * The current version of the database structure.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 * @var string
 	 */
 	private $current_version = '1.0';
@@ -54,7 +54,7 @@ class Upgraders {
 	/**
 	 * Constructor.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @param string $summary_table_name The name of the summary table in the database.
 	 */
@@ -68,7 +68,7 @@ class Upgraders {
 	 * Checks the installed version against the current version and
 	 * performs any necessary upgrade procedures.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @return void
 	 */
@@ -87,7 +87,7 @@ class Upgraders {
 	 * This method contains the logic for upgrading the database
 	 * structure from one version to another.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @param string $from_version The version to upgrade from.
 	 * @return void
@@ -106,7 +106,7 @@ class Upgraders {
 	/**
 	 * Get the current version of the database structure.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @return string The current version.
 	 */
@@ -119,7 +119,7 @@ class Upgraders {
 	 *
 	 * This method is primarily used for testing purposes or manual version management.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @param string $version The version to set.
 	 * @return void
@@ -134,7 +134,7 @@ class Upgraders {
 	 * Compares the installed version with the current version to determine
 	 * if an upgrade is necessary.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @return bool True if an upgrade is needed, false otherwise.
 	 */
@@ -146,7 +146,7 @@ class Upgraders {
 	/**
 	 * Get the installed version of the database structure.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @return string The installed version.
 	 */

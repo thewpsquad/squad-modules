@@ -7,7 +7,7 @@
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
- * @since   3.1.0
+ * @since   3.1.1
  */
 
 namespace DiviSquad\Base\DiviBuilder\Utils\Elements\CustomFields;
@@ -18,7 +18,7 @@ namespace DiviSquad\Base\DiviBuilder\Utils\Elements\CustomFields;
  * Defines the contract for manager classes in the DiviSquad plugin.
  *
  * @package DiviSquad
- * @since   3.1.0
+ * @since   3.1.1
  */
 interface ManagerInterface {
 
@@ -27,7 +27,7 @@ interface ManagerInterface {
 	 *
 	 * This method should set up any necessary hooks or initial configurations.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @return void
 	 */
@@ -38,7 +38,7 @@ interface ManagerInterface {
 	 *
 	 * This method should retrieve the main data that the manager is responsible for.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @param array $args Optional. Arguments to modify the query.
 	 * @return array The retrieved data.
@@ -50,7 +50,7 @@ interface ManagerInterface {
 	 *
 	 * This method should clear any cached data that the manager maintains.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @return void
 	 */

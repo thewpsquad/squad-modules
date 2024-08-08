@@ -5,8 +5,8 @@ Tags: divi, divi module, divi theme, divi builder, divi page builder
 Requires at least: 5.0.0
 Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 3.1.0
-License: GPL-3.0-only
+Stable tag: 3.1.1
+License: GPLv3-only
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
 The Essential Divi plugin, offering 25+ stunning free modules like Advanced Divider, Flip box, and more.
@@ -186,37 +186,16 @@ If you need assistance with Squad Modules Lite, you can reach out to [our suppor
 13. Typing Text Module - This is a module that allows you to create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 
 == Upgrade Notice ==
-= 3.1.0 =
-- New languages, bugfixing and compatibility with WordPress, Divi Theme, and other thirdparty plugins.
+= 3.1.1 =
+- Bug fixing and compatibility with latest pro plugin
 
 == Changelog ==
-= 3.1.0 (01-08-2024) =
+= 3.1.1 (04-08-2024) =
 
-**New Features:**
+****Fixing:**
 
-- New Elements (custom icon, custom fields, custom fields(acf)) Divi Post Grid Module
-- New support for custom fields including acf with Divi Post Grid Module
-- New languages (Arabic, Dutch, English (UK), French (Canada), French (France), German, German (Austria), Spanish (Peru), Spanish (Spain) ) for Divi Squad Modules Lite plugin
-- Update languages (Bengali (Bangladesh), Portuguese (Brazil)) for Divi Squad Modules Lite plugin
-
-**Bug Fixes:**
-
-- Fix: Filter by tags is not working in frontend with Divi Post Grid Module
-- Fix: An fatal errors issue when old vesion of Divi Squad Modules Pro is installed with Divi Squad Modules Lite
-
-**Improvements:**
-
-- Improved: Divi Squad Modules Admin UI (More flexible, more user-friendly)
-- Improved: Security issues, Data sanitization and validation for all modules
-- Improved: Squad Copy Extension.
-- Tested for compatibility with WordPress (6.7 beta)
-- Tested for compatibility with WordPress (6.6.1 stable)
-- Tested for compatibility with Divi Theme (4.27.0)
-- Tested for compatibility with Contact Form 7 (5.9.8)
-- Tested for compatibility with Fluent Forms (5.1.20)
-- Tested for compatibility with WPForms (1.8.9.6)
-- Tested for compatibility with Gravity Forms (2.8.15)
-- Tested for compatibility with Ninja Forms (3.8.9)
+- feat(freemius): fixed an issue to receive update from freemius server
+- feat(admin-app): update badges with nightly, lite and pro
+- compatibility: ensure older version from 1.0.0 working with current version
 
 [Read more](https://squadmodules.com/changelog)
-

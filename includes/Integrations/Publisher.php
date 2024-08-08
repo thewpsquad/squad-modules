@@ -32,81 +32,78 @@ use function remove_all_actions;
  */
 final class Publisher {
 
-	use Singleton;
-
 	/**
 	 * Store and retrieve the instance of Freemius SDK
 	 *
 	 * @var \Freemius The instance of Freemius SDK.
 	 */
-	private static $fs;
+	private $fs;
 
 	/**
 	 * Integration Constructor
 	 *
 	 * @throws \Freemius_Exception Thrown when an API call returns an exception.
 	 */
-	private function __construct() {
+	public function __construct() {
 		if ( self::is_installed() ) {
-			if ( null === self::$fs ) {
-				// Include Freemius SDK.
-				require_once self::get_sdk_start_file_path();
+			// Include Freemius SDK.
+			require_once self::get_sdk_start_file_path();
 
-				// Create Freemius SDK instance.
-				self::$fs = fs_dynamic_init(
-					array(
-						'id'                  => '14784',
-						'slug'                => 'squad-modules-for-divi',
-						'premium_slug'        => 'squad-modules-pro-for-divi',
-						'type'                => 'plugin',
-						'public_key'          => 'pk_016b4bcadcf416ffec072540ef065',
-						'is_premium'          => divi_squad()->is_pro_activated(),
-						'premium_suffix'      => esc_html__( 'Pro', 'squad-modules-pro-for-divi' ),
-						'has_premium_version' => true,
-						'has_addons'          => false,
-						'has_paid_plans'      => true,
-						'has_affiliation'     => 'selected',
-						'menu'                => array(
-							'slug'        => 'divi_squad_dashboard',
-							'first-path'  => 'admin.php?page=divi_squad_dashboard',
-							'affiliation' => ! WpUtils::is_playground(),
-						),
-						'permission'          => array(
-							'enable_anonymous' => true,
-							'anonymous_mode'   => true,
-						),
-					)
-				);
+			// Create Freemius SDK instance.
+			$this->fs = fs_dynamic_init(
+				array(
+					'id'                  => 14784,
+					'slug'                => 'squad-modules-for-divi',
+					'premium_slug'        => 'squad-modules-pro-for-divi',
+					'type'                => 'plugin',
+					'public_key'          => 'pk_016b4bcadcf416ffec072540ef065',
+					'is_premium'          => divi_squad()->is_pro_activated(),
+					'premium_suffix'      => esc_html__( 'Pro', 'squad-modules-pro-for-divi' ),
+					'has_premium_version' => true,
+					'has_addons'          => false,
+					'has_paid_plans'      => true,
+					'has_affiliation'     => 'selected',
+					'menu'                => array(
+						'slug'        => 'divi_squad_dashboard',
+						'first-path'  => 'admin.php?page=divi_squad_dashboard',
+						'affiliation' => ! WpUtils::is_playground(),
+					),
+					'permission'          => array(
+						'enable_anonymous' => true,
+						'anonymous_mode'   => true,
+					),
+				)
+			);
 
-				// Update some features.
-				self::$fs->override_i18n(
-					array(
-						'hey'                         => esc_html__( 'Hey', 'squad-modules-for-divi' ),
-						'yee-haw'                     => esc_html__( 'Hello Friend', 'squad-modules-for-divi' ),
-						'opt-in-connect'              => esc_html__( "Yes - I'm in!", 'squad-modules-for-divi' ),
-						'skip'                        => esc_html__( 'Not today', 'squad-modules-for-divi' ),
-						/* translators: %s: Plan title */
-						'activate-x-features'         => esc_html__( 'Activate %s Plugin', 'squad-modules-for-divi' ),
-						/* translators: %s The plugin name, example: Squad Modules Lite */
-						'plugin-x-activation-message' => esc_html__( '%s was successfully activated.', 'squad-modules-for-divi' ),
-						/* translators: %s The module type */
-						'premium-activated-message'   => esc_html__( 'Premium %s was successfully activated.', 'squad-modules-for-divi' ),
-						/* translators: %1$s: Product title; %2$s: Plan title; %3$s: Activation link */
-						'activate-premium-version'    => esc_html__( ' The paid plugin of %1$s is already installed. Please activate it to start benefiting the %2$s plugin. %3$s', 'squad-modules-for-divi' ),
-					)
-				);
-				self::$fs->add_filter( 'hide_account_tabs', '__return_true' );
-				self::$fs->add_filter( 'deactivate_on_activation', '__return_false' );
-				self::$fs->add_filter( 'show_deactivation_subscription_cancellation', '__return_false' );
-				self::$fs->add_filter( 'is_submenu_visible', array( $this, 'fs_hook_is_submenu_visible' ), 10, 2 );
-				self::$fs->add_filter( 'show_admin_notice', array( $this, 'fs_hook_show_admin_notice' ), 10, 2 );
-				self::$fs->add_filter( 'plugin_icon', array( $this, 'fs_hook_plugin_icon' ) );
-				self::$fs->add_filter( 'plugin_title', array( $this, 'fs_hook_plugin_title' ) );
-				self::$fs->add_filter( 'plugin_version', array( $this, 'fs_hook_plugin_version' ) );
-				self::$fs->add_filter( 'templates/connect.php', array( $this, 'fs_hook_get_overrides_template' ) );
-				self::$fs->add_filter( 'templates/account.php', array( $this, 'fs_hook_get_overrides_account_template' ) );
-				self::$fs->add_filter( '/forms/affiliation.php', array( $this, 'fs_hook_get_overrides_account_template' ) );
-			}
+			// Update some features.
+			$this->fs->override_i18n(
+				array(
+					'hey'                         => esc_html__( 'Hey', 'squad-modules-for-divi' ),
+					'yee-haw'                     => esc_html__( 'Hello Friend', 'squad-modules-for-divi' ),
+					'skip'                        => esc_html__( 'Not today', 'squad-modules-for-divi' ),
+					'opt-in-connect'              => esc_html__( "Yes - I'm in!", 'squad-modules-for-divi' ),
+					'install-update-now'          => esc_html__( 'Update Now', 'squad-modules-for-divi' ),
+					/* translators: %s: Plan title */
+					'activate-x-features'         => esc_html__( 'Activate %s', 'squad-modules-for-divi' ),
+					/* translators: %s The plugin name, example: Squad Modules Lite */
+					'plugin-x-activation-message' => esc_html__( '%s was successfully activated.', 'squad-modules-for-divi' ),
+					/* translators: %s The module type */
+					'premium-activated-message'   => esc_html__( 'Premium %s was successfully activated.', 'squad-modules-for-divi' ),
+					/* translators: %1$s: Product title; %2$s: Plan title; %3$s: Activation link */
+					'activate-premium-version'    => esc_html__( ' The paid plugin of %1$s is already installed. Please activate it to start benefiting the %2$s plugin. %3$s', 'squad-modules-for-divi' ),
+				)
+			);
+			$this->fs->add_filter( 'hide_account_tabs', '__return_true' );
+			$this->fs->add_filter( 'deactivate_on_activation', '__return_false' );
+			$this->fs->add_filter( 'show_deactivation_subscription_cancellation', '__return_false' );
+			$this->fs->add_filter( 'is_submenu_visible', array( $this, 'fs_hook_is_submenu_visible' ), 10, 2 );
+			$this->fs->add_filter( 'show_admin_notice', array( $this, 'fs_hook_show_admin_notice' ), 10, 2 );
+			$this->fs->add_filter( 'plugin_icon', array( $this, 'fs_hook_plugin_icon' ) );
+			$this->fs->add_filter( 'plugin_title', array( $this, 'fs_hook_plugin_title' ) );
+			$this->fs->add_filter( 'plugin_version', array( $this, 'fs_hook_plugin_version' ) );
+			$this->fs->add_filter( 'templates/connect.php', array( $this, 'fs_hook_get_overrides_template' ) );
+			$this->fs->add_filter( 'templates/account.php', array( $this, 'fs_hook_get_overrides_account_template' ) );
+			$this->fs->add_filter( '/forms/affiliation.php', array( $this, 'fs_hook_get_overrides_account_template' ) );
 
 			// Enqueue the plugin's scripts and styles files in the WordPress admin area.
 			add_action( 'admin_enqueue_scripts', array( $this, 'wp_hook_enqueue_scripts' ) );
@@ -122,8 +119,8 @@ final class Publisher {
 	 *
 	 * @return \Freemius The instance of Freemius SDK.
 	 */
-	public static function get_fs() {
-		return self::$fs;
+	public function get_fs() {
+		return $this->fs;
 	}
 
 	/**
@@ -155,7 +152,7 @@ final class Publisher {
 	 */
 	public function fs_hook_is_submenu_visible( $is_visible, $menu_id ) {
 		if ( 'support' === $menu_id ) {
-			return divi_squad()->publisher()->is_free_plan();
+			return $this->fs->is_free_plan();
 		}
 
 		if ( 'contact' !== $menu_id ) {
@@ -232,7 +229,7 @@ final class Publisher {
 	 * @since  2.0.0
 	 */
 	public function fs_hook_plugin_title( $title ) {
-		if ( divi_squad()->publisher() instanceof \Freemius && divi_squad()->publisher()->can_use_premium_code() && divi_squad()->is_pro_activated() ) {
+		if ( $this->fs->can_use_premium_code() && divi_squad()->is_pro_activated() ) {
 			return esc_html__( 'Squad Modules Pro', 'squad-modules-for-divi' );
 		}
 
@@ -248,7 +245,7 @@ final class Publisher {
 	 * @since  2.0.0
 	 */
 	public function fs_hook_plugin_version( $version ) {
-		if ( divi_squad()->publisher() instanceof \Freemius && divi_squad()->is_pro_activated() && divi_squad()->publisher()->can_use_premium_code() ) {
+		if ( divi_squad()->is_pro_activated() && $this->fs->can_use_premium_code() ) {
 			// Premium plugin basename.
 			$pro_basename = divi_squad()->get_pro_basename();
 			$path_root    = realpath( dirname( divi_squad()->get_path() ) );

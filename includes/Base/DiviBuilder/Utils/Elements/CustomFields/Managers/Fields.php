@@ -27,7 +27,7 @@ use DiviSquad\Utils\Polyfills\Constant;
  * for database structure management.
  *
  * @package DiviSquad
- * @since   3.1.0
+ * @since   3.1.1
  */
 class Fields extends Manager {
 
@@ -64,7 +64,7 @@ class Fields extends Manager {
 	 *
 	 * Initializes the Fields class with specified post types to track.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @param array $post_types Array of post types to track custom fields for.
 	 */
@@ -80,7 +80,7 @@ class Fields extends Manager {
 	 *
 	 * Sets up action hooks for various WordPress events related to custom fields.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @return void
 	 */
@@ -99,25 +99,23 @@ class Fields extends Manager {
 	/**
 	 * Get data from the manager.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @param array $args Optional. Arguments to modify the query.
 	 * @return array The retrieved data.
 	 */
 	public function get_data( $args = array() ) {
-		$defaults = array(
-			'post_type' => 'post',
-			'limit'     => 30,
-		);
+		$defaults = array( 'post_type' => 'post', 'limit'  => 30 );
 		$args     = wp_parse_args( $args, $defaults );
+		$cache_key = 'divi_squad_custom_field_keys_' . md5( $args['post_type'] . $args['limit'] );
 
-		return $this->get_custom_field_keys( $args['post_type'], $args['limit'] );
+		return $this->get_cached_data( $cache_key, array( $this, 'get_custom_field_keys' ), $args );
 	}
 
 	/**
 	 * Clear the custom fields cache.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @return void
 	 */
@@ -131,7 +129,7 @@ class Fields extends Manager {
 	/**
 	 * Run database upgrades using the Upgrader.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @return void
 	 */
@@ -142,7 +140,7 @@ class Fields extends Manager {
 	/**
 	 * Check if the table needs to be created or updated.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @return void
 	 */
@@ -162,7 +160,7 @@ class Fields extends Manager {
 	 *
 	 * This method creates the custom fields summary table if it doesn't exist.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @return void
 	 */
@@ -189,7 +187,7 @@ class Fields extends Manager {
 	 * This method populates the summary table with existing custom field data.
 	 * It uses caching to prevent unnecessary database queries on each page load.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @return void
 	 */
@@ -231,14 +229,13 @@ class Fields extends Manager {
 		}
 	}
 
-
 	/**
 	 * Update the summary table when postmeta is added or updated.
 	 *
 	 * This method checks for the existence of an underscore version of the meta key
 	 * and updates the summary table accordingly. It uses caching to reduce database queries.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @param int    $meta_id    ID of the metadata field.
 	 * @param int    $object_id  ID of the object metadata is for.
@@ -292,14 +289,13 @@ class Fields extends Manager {
 		$this->clear_cache();
 	}
 
-
 	/**
 	 * Update the summary table when postmeta is deleted.
 	 *
 	 * This method removes the corresponding entry from the summary table
 	 * when a post meta is deleted.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @param string[] $meta_ids  An array of metadata entry IDs to delete.
 	 * @param int      $object_id ID of the object metadata is for.
@@ -327,36 +323,27 @@ class Fields extends Manager {
 		$this->clear_cache();
 	}
 
-
 	/**
 	 * Get custom field keys, optionally filtered by post type.
 	 *
 	 * This method retrieves custom field keys from the database, filtered by post type
 	 * and limited to a specified number of results. It uses caching to improve performance.
 	 *
-	 * @since 3.1.0
+	 * @since 3.1.1
 	 *
 	 * @param string $post_type Optional. Post type to filter by. Default 'post'.
 	 * @param int    $limit     Optional. Number of results to return. Default 30.
 	 * @return array            Array of custom field keys.
 	 */
-	private function get_custom_field_keys( $post_type = 'post', $limit = 30 ) {
-		$cache_key = 'divi_squad_custom_field_keys_' . md5( $post_type . $limit );
+	public function get_custom_field_keys( $post_type = 'post', $limit = 30 ) {
+		global $wpdb;
 
-		return $this->get_cached_data(
-			$cache_key,
-			function () use ( $post_type, $limit ) {
-				global $wpdb;
-
-				return $wpdb->get_col( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-					$wpdb->prepare(
-						"SELECT DISTINCT meta_key FROM {$this->table_name} WHERE post_type = %s ORDER BY meta_key LIMIT %d", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery
-						$post_type,
-						$limit
-					)
-				);
-			},
-			3600
+		return $wpdb->get_col( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->prepare(
+				"SELECT DISTINCT meta_key FROM {$this->table_name} WHERE post_type = %s ORDER BY meta_key LIMIT %d", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery
+				$post_type,
+				$limit
+			)
 		);
 	}
 }

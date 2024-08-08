@@ -6,7 +6,7 @@
  * @package     DiviSquad
  * @author      WP Squad <wp@thewpsquad.com>
  * @since       1.0.0
- * @deprecated  3.1.0 marked as deprecated.
+ * @deprecated  3.0.0 marked as deprecated.
  */
 
 namespace DiviSquad\Managers;
@@ -16,6 +16,6 @@ namespace DiviSquad\Managers;
  *
  * @package     DiviSquad
  * @since       1.0.0
- * @deprecated  3.1.0 marked as deprecated.
+ * @deprecated  3.0.0 marked as deprecated.
  */
 class Modules extends \DiviSquad\Managers\Features\Modules {}
