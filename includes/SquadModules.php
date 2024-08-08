@@ -50,6 +50,9 @@ final class SquadModules extends Integrations\Core {
 		add_action( 'plugin_loaded', array( $this, 'init_plugin' ) );
 		add_action( 'plugin_loaded', array( $this, 'init_publisher' ) );
 		add_action( 'plugins_loaded', array( $this, 'run' ), 0 );
+
+		// Hook the deprecated class loader to run after Divi Squad has initialized.
+		add_action( 'divi_squad_loaded', array( $this, 'load_deprecated_classes' ), 0 );
 	}
 
 	/**
@@ -151,7 +154,7 @@ final class SquadModules extends Integrations\Core {
 	public function get_wp_path() {
 		$wp_root_path = ABSPATH;
 
-		if ( ! Str::ends_with( $wp_root_path, DIRECTORY_SEPARATOR ) ) {
+		if ( strlen( $wp_root_path ) > 0 && ! Str::ends_with( $wp_root_path, DIRECTORY_SEPARATOR ) ) {
 			$wp_root_path .= DIRECTORY_SEPARATOR;
 		}
 
@@ -206,9 +209,14 @@ final class SquadModules extends Integrations\Core {
 
 		// Set plugin options and others.
 		$this->opt_prefix = 'disq';
-		$this->name       = ! empty( $options['TextDomain'] ) ? $options['TextDomain'] : 'squad-modules-for-divi';
-		$this->version    = ! empty( $options['Version'] ) ? $options['Version'] : '3.0.0';
-		$this->options    = wp_parse_args( $options, $defaults );
+		$this->textdomain = ! empty( $options['TextDomain'] ) ? $options['TextDomain'] : 'squad-modules-for-divi';
+
+		// Set the plugin name.
+		$this->name = $this->textdomain;
+
+		// Set the plugin version and options.
+		$this->version = ! empty( $options['Version'] ) ? $options['Version'] : '3.0.1';
+		$this->options = wp_parse_args( $options, $defaults );
 
 		// Translations path.
 		$this->localize_path = $this->get_path( '/languages' );
@@ -270,5 +278,41 @@ final class SquadModules extends Integrations\Core {
 		 * @param SquadModules $plugin The plugin instance.
 		 */
 		do_action( 'divi_squad_loaded', $this );
+	}
+
+	/**
+	 * Load deprecated classes after Divi Squad has initialized.
+	 *
+	 * @since 3.0.1
+	 *
+	 * @return void
+	 */
+	public function load_deprecated_classes() {
+		$deprecated_classes = array(
+			'DiviSquad\Admin\Assets',
+			'DiviSquad\Admin\Plugin\AdminFooterText',
+			'DiviSquad\Admin\Plugin\ActionLinks',
+			'DiviSquad\Admin\Plugin\RowMeta',
+			'DiviSquad\Base\Factories\AdminMenu\MenuCore',
+			'DiviSquad\Integrations\Admin',
+			'DiviSquad\Managers\Assets',
+			'DiviSquad\Managers\Extensions',
+			'DiviSquad\Managers\Modules',
+			'DiviSquad\Modules\PostGridChild\PostGridChild',
+		);
+
+		foreach ( $deprecated_classes as $class ) {
+			// Replace the namespace separator with the path prefix and the directory separator.
+			$class_path = str_replace( 'DiviSquad\\', '', $class );
+			$valid_path = str_replace( array( '\\', '//' ), DIRECTORY_SEPARATOR, $class );
+
+			// Add the includes directory and the .php extension.
+			$valid_path = 'deprecated/' . $valid_path;
+			$class_file = realpath( __DIR__ . "/$valid_path.php" );
+
+			if ( file_exists( $class_file ) ) {
+				require_once $class_file;
+			}
+		}
 	}
 }

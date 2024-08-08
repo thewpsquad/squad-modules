@@ -288,12 +288,12 @@ final class Publisher {
 	 */
 	public function wp_hook_enqueue_scripts( $hook_suffix ) {
 		// Load plugin asset in the all admin pages.
-		Asset::style_enqueue( 'admin-publisher', Asset::admin_asset_path( 'admin-publisher', array( 'ext' => 'css' ) ) );
+		Asset::enqueue_style( 'admin-publisher', Asset::admin_asset_path( 'admin-publisher', array( 'ext' => 'css' ) ) );
 
 		// Load special styles for freemius pages.
 		if ( 'plugins.php' === $hook_suffix || Helper::is_squad_page( $hook_suffix ) ) {
-			Asset::style_enqueue( 'admin-components', Asset::admin_asset_path( 'admin-components', array( 'ext' => 'css' ) ) );
-			Asset::style_enqueue( 'admin', Asset::admin_asset_path( 'admin', array( 'ext' => 'css' ) ) );
+			Asset::enqueue_style( 'admin-components', Asset::admin_asset_path( 'admin-components', array( 'ext' => 'css' ) ) );
+			Asset::enqueue_style( 'admin', Asset::admin_asset_path( 'admin', array( 'ext' => 'css' ) ) );
 		}
 	}
 

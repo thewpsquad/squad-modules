@@ -302,14 +302,26 @@ class Asset {
 	 *
 	 * @return void
 	 * @since 1.0.0
+	 * @deprecated 3.0.1
 	 */
 	public static function style_enqueue( $keyword, $path, $deps = array(), $media = 'all', $no_prefix = false ) {
-		$asset_data = static::process_asset_path_data( $path, $deps );
-		$handle     = $no_prefix ? $keyword : sprintf( 'squad-%1$s', $keyword );
-		$version    = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
+		self::enqueue_style( $keyword, $path, $deps, $media, $no_prefix );
+	}
 
-		// Load stylesheet file.
-		wp_enqueue_style( $handle, $asset_data['path'], $asset_data['dependencies'], $version, $media );
+	/**
+	 * Enqueue javascript.
+	 *
+	 * @param string $keyword   Name of the javascript. Should be unique.
+	 * @param array  $path      Relative path of the javascript with options for the WordPress root directory.
+	 * @param array  $deps      Optional. An array of registered javascript handles this stylesheet depends on. Default empty array.
+	 * @param bool   $no_prefix Optional. Set the plugin prefix with asset handle name is or not.
+	 *
+	 * @return void
+	 * @since 1.0.0
+	 * @deprecated 3.0.1
+	 */
+	public static function asset_enqueue( $keyword, $path, array $deps = array(), $no_prefix = false ) {
+		self::enqueue_script( $keyword, $path, $deps, $no_prefix );
 	}
 
 	/**
@@ -323,13 +335,34 @@ class Asset {
 	 * @return void
 	 * @since 1.0.0
 	 */
-	public static function asset_enqueue( $keyword, $path, array $deps = array(), $no_prefix = false ) {
+	public static function enqueue_script( $keyword, $path, array $deps = array(), $no_prefix = false ) {
 		$asset_data = self::process_asset_path_data( $path, $deps );
 		$handle     = $no_prefix ? $keyword : sprintf( 'squad-%1$s', $keyword );
 		$version    = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
 
 		// Load script file.
 		wp_enqueue_script( $handle, $asset_data['path'], $asset_data['dependencies'], $version, self::footer_arguments( true ) );
+	}
+
+	/**
+	 * Enqueue styles.
+	 *
+	 * @param string $keyword   Name of the stylesheet. Should be unique.
+	 * @param array  $path      Relative path of the stylesheet with options for the WordPress root directory.
+	 * @param array  $deps      Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
+	 * @param string $media     Optional. The media for which this stylesheet has been defined. Default 'all'.
+	 * @param bool   $no_prefix Optional. Set the plugin prefix with asset handle name is or not.
+	 *
+	 * @return void
+	 * @since 1.0.0
+	 */
+	public static function enqueue_style( $keyword, $path, $deps = array(), $media = 'all', $no_prefix = false ) {
+		$asset_data = static::process_asset_path_data( $path, $deps );
+		$handle     = $no_prefix ? $keyword : sprintf( 'squad-%1$s', $keyword );
+		$version    = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
+
+		// Load stylesheet file.
+		wp_enqueue_style( $handle, $asset_data['path'], $asset_data['dependencies'], $version, $media );
 	}
 
 	/**

@@ -12,6 +12,7 @@ namespace DiviSquad\Integrations;
 
 use DiviSquad\Base as SquadBase;
 use DiviSquad\Managers as SquadManagers;
+use DiviSquad\Utils\DateTime;
 use function add_action;
 use function add_filter;
 use function divi_squad;
@@ -26,11 +27,85 @@ use const DIVI_SQUAD__FILE__;
  * @package DiviSquad
  * @since   1.0.0
  *
- * @property SquadBase\Memory         $memory     Squad memory.
- * @property SquadManagers\Modules    $modules    Squad module manager.
- * @property SquadManagers\Extensions $extensions Squad extension manger.
+ * @property SquadBase\Memory                        $memory     Squad memory.
+ * @property \DiviSquad\Managers\Features\Modules    $modules    Squad module manager.
+ * @property \DiviSquad\Managers\Features\Extensions $extensions Squad extension manger.
  */
 abstract class Core extends SquadBase\Core {
+
+	/**
+	 * Initialize the plugin with required components.
+	 *
+	 * @param array $options Options data.
+	 *
+	 * @return void
+	 */
+	protected function init( $options = array() ) {
+		$this->container['memory']     = new SquadBase\Memory( $this->opt_prefix );
+		$this->container['modules']    = new SquadManagers\Features\Modules();
+		$this->container['extensions'] = new SquadManagers\Features\Extensions();
+
+		// Register all hooks for plugin.
+		register_activation_hook( DIVI_SQUAD__FILE__, array( $this, 'hook_activation' ) );
+		register_deactivation_hook( DIVI_SQUAD__FILE__, array( $this, 'hook_deactivation' ) );
+	}
+
+	/**
+	 * Load all assets.
+	 *
+	 * @return void
+	 */
+	protected function load_assets() {
+		// Load all plugin assets.
+		SquadManagers\PluginAssets::load();
+	}
+
+	/**
+	 * Load all extensions.
+	 *
+	 * @return void
+	 */
+	protected function load_extensions() {
+		// Load all extensions.
+		$this->extensions->load_extensions( realpath( dirname( __DIR__ ) ) );
+	}
+
+	/**
+	 * Load the divi custom modules for the divi builder.
+	 *
+	 * @return void
+	 */
+	protected function load_modules_for_builder() {
+		// Register all hooks for divi integration.
+		add_action( 'wp_loaded', array( $this, 'hook_initialize_builder_asset_definitions' ) );
+		add_action( 'divi_extensions_init', array( $this, 'hook_migrate_builder_settings' ) );
+		add_action( 'divi_extensions_init', array( $this, 'hook_initialize_builder_extension' ) );
+
+		// Force the legacy backend builder to reload its template cache.
+		// This ensures that custom modules are available for use right away.
+		if ( function_exists( 'et_pb_force_regenerate_templates' ) ) {
+			\et_pb_force_regenerate_templates();
+		}
+	}
+
+	/**
+	 * The admin interface asset and others.
+	 *
+	 * @return void
+	 */
+	protected function load_admin() {
+		SquadManagers\Ajax::load();
+		SquadManagers\RestRoutes::load();
+
+		if ( is_admin() ) {
+			SquadManagers\Branding::load();
+			SquadManagers\Menus::load();
+			SquadManagers\Notices::load();
+
+			// Load the site health integration.
+			SquadManagers\SiteHealth::get_instance()->load();
+		}
+	}
 
 	/**
 	 * Set the activation hook.
@@ -95,61 +170,6 @@ abstract class Core extends SquadBase\Core {
 	}
 
 	/**
-	 * Initialize the plugin with required components.
-	 *
-	 * @param array $options Options data.
-	 *
-	 * @return void
-	 */
-	protected function init( $options = array() ) {
-		$this->container['memory']     = new SquadBase\Memory( $this->opt_prefix );
-		$this->container['modules']    = new SquadManagers\Modules();
-		$this->container['extensions'] = new SquadManagers\Extensions();
-
-		// Register all hooks for plugin.
-		register_activation_hook( DIVI_SQUAD__FILE__, array( $this, 'hook_activation' ) );
-		register_deactivation_hook( DIVI_SQUAD__FILE__, array( $this, 'hook_deactivation' ) );
-	}
-
-	/**
-	 * Load all assets.
-	 *
-	 * @return void
-	 */
-	protected function load_assets() {
-		// Load all plugin assets.
-		SquadManagers\PluginAssets::load();
-	}
-
-	/**
-	 * Load all extensions.
-	 *
-	 * @return void
-	 */
-	protected function load_extensions() {
-		// Load all extensions.
-		$this->extensions->load_extensions( realpath( dirname( __DIR__ ) ) );
-	}
-
-	/**
-	 * Load the divi custom modules for the divi builder.
-	 *
-	 * @return void
-	 */
-	protected function load_modules_for_builder() {
-		// Register all hooks for divi integration.
-		add_action( 'wp_loaded', array( $this, 'hook_initialize_builder_asset_definitions' ) );
-		add_action( 'divi_extensions_init', array( $this, 'hook_migrate_builder_settings' ) );
-		add_action( 'divi_extensions_init', array( $this, 'hook_initialize_builder_extension' ) );
-
-		// Force the legacy backend builder to reload its template cache.
-		// This ensures that custom modules are available for use right away.
-		if ( function_exists( 'et_pb_force_regenerate_templates' ) ) {
-			\et_pb_force_regenerate_templates();
-		}
-	}
-
-	/**
 	 *  Load the extensions.
 	 *
 	 * @return void
@@ -170,22 +190,6 @@ abstract class Core extends SquadBase\Core {
 			$helpers = new DiviBuilderBackend();
 			add_filter( 'et_fb_backend_helpers', array( $helpers, 'static_asset_definitions' ), 11 );
 			add_filter( 'et_fb_get_asset_helpers', array( $helpers, 'asset_definitions' ), 11 );
-		}
-	}
-
-	/**
-	 * The admin interface asset and others.
-	 *
-	 * @return void
-	 */
-	protected function load_admin() {
-		SquadManagers\Ajax::load();
-		SquadManagers\RestRoutes::load();
-
-		if ( is_admin() ) {
-			SquadManagers\Branding::load();
-			SquadManagers\Menus::load();
-			SquadManagers\Notices::load();
 		}
 	}
 }

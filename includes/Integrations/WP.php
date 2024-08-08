@@ -55,7 +55,7 @@ class WP {
 	 * @since 1.2.3
 	 */
 	public static function version_compare( $required, $target_version ) {
-		return empty( $required ) || version_compare( $target_version, $required, '>=' );
+		return empty( $required ) || empty( $target_version ) || version_compare( $target_version, $required, '>=' );
 	}
 
 	/**

@@ -1,4 +1,7 @@
 == Upgrade Notice ==
+= 3.0.1 =
+- Fatal error when activating the pro plugin
+
 = 3.0.0 =
 - Load more posts feature for Divi Post Grid Module
 - Some bug fixes and improvements.

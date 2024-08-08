@@ -27,7 +27,6 @@ abstract class Base {
 	use Utils\Fields\Processor;
 	use Utils\Elements\Breadcrumbs;
 	use Utils\Elements\Divider;
-	use Utils\Elements\Forms;
 	use Utils\Elements\MaskShape;
 
 	/**

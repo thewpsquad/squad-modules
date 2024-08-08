@@ -111,7 +111,7 @@ abstract class DiviSquad_Form_Styler extends DiviSquad_Module {
 			)
 		);
 
-		$custom_spacing_prefixes  = Utils::form_get_custom_spacing_prefixes();
+		$custom_spacing_prefixes  = Utils\Elements\Forms::get_custom_spacing_prefixes();
 		$additional_custom_fields = array();
 		$custom_spacing_fields    = array();
 

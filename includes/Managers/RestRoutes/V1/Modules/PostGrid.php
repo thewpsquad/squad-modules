@@ -74,11 +74,11 @@ class PostGrid extends Route {
 		$query_params['is_rest_query'] = 'on';
 
 		// Assign the CPT Grid module to the variable.
-		$post_grid_module = new Modules\PostGrid\PostGrid();
+		$post_grid_module = new Modules\PostGrid();
 		$post_grid_module->squad_init_custom_hooks();
 
 		// Get all posts.
-		$posts = Modules\PostGrid\PostGrid::squad_get_posts_html( $query_params, wp_kses_post( $params['content'] ) );
+		$posts = Modules\PostGrid::squad_get_posts_html( $query_params, wp_kses_post( $params['content'] ) );
 		if ( empty( $posts ) ) {
 			$response['code']    = 'rest_no_data';
 			$response['message'] = esc_html__( 'No data found.', 'squad-modules-for-divi' );

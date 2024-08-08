@@ -9,320 +9,119 @@
 
 namespace DiviSquad\Base\DiviBuilder\Utils\Elements;
 
-use WP_Post;
-use function esc_html__;
-use function get_posts;
-
 /**
- * Form Utils Helper Class
+ * Main class for handling various form types.
  *
  * @package DiviSquad
- * @since   1.5.0
+ * @since 1.5.0
  */
-trait Forms {
+class Forms {
+	const DEFAULT_FORM_ID = 'cfcd208495d565ef66e7dff9f98764da';
 
 	/**
-	 * Get default value for form id.
+	 * Supported form types with their corresponding processor classes.
 	 *
-	 * @var string
+	 * @var array<string, string>
 	 */
-	public static $default_form_id = 'cfcd208495d565ef66e7dff9f98764da';
-
-	/**
-	 * Store all forms and remove redundancy.
-	 *
-	 * @var array<string, array<string, array>> The collection of forms.
-	 */
-	public static $form_collections = array(
-		'cf7'           => array(
-			'id'    => array(),
-			'title' => array(),
-		),
-		'wpforms'       => array(
-			'id'    => array(),
-			'title' => array(),
-		),
-		'fluent_forms'  => array(
-			'id'    => array(),
-			'title' => array(),
-		),
-		'ninja_forms'   => array(
-			'id'    => array(),
-			'title' => array(),
-		),
-		'gravity_forms' => array(
-			'id'    => array(),
-			'title' => array(),
-		),
+	private static $supported_form_types = array(
+		'cf7'           => Forms\Processors\ContactForm7::class,
+		'wpforms'       => Forms\Processors\WPForms::class,
+		'fluent_forms'  => Forms\Processors\FluentForms::class,
+		'ninja_forms'   => Forms\Processors\NinjaForms::class,
+		'gravity_forms' => Forms\Processors\GravityForms::class,
+		'forminator'    => Forms\Processors\Forminator::class,
+		'formidable'    => Forms\Processors\Formidable::class,
 	);
 
 	/**
-	 * Declare allowed fields for the module.
+	 * Form collections.
 	 *
-	 * @return array
+	 * @var array<string, array<string, string>>
 	 */
-	public static function form_get_allowed_fields() {
-		return array( 'input[type=email]', 'input[type=text]', 'input[type=url]', 'input[type=tel]', 'input[type=number]', 'input[type=date]', 'input[type=file]', 'select', 'textarea' );
-	}
+	private static $form_collections = array();
 
 	/**
-	 * Declare all prefixes for custom spacing fields for the module.
+	 * Form processors.
 	 *
-	 * @return array
+	 * @var array<string, Forms\FormInterface>
 	 */
-	public static function form_get_custom_spacing_prefixes() {
-		return array(
-			'wrapper'         => array( 'label' => esc_html__( 'Wrapper', 'squad-modules-for-divi' ) ),
-			'field'           => array( 'label' => esc_html__( 'Field', 'squad-modules-for-divi' ) ),
-			'message_error'   => array( 'label' => esc_html__( 'Message', 'squad-modules-for-divi' ) ),
-			'message_success' => array( 'label' => esc_html__( 'Message', 'squad-modules-for-divi' ) ),
-		);
-	}
+	private static $form_processors = array();
 
 	/**
-	 * Collect all contact form from the database.
+	 * Get allowed fields for the module.
 	 *
-	 * @param string $form_type       The form type, available are cf7, fluetforms, ninjaforms, gravityforms, wpforms.
-	 * @param string $collection The collection type of form data.
-	 *
-	 * @return array
+	 * @return array List of allowed field types
 	 */
-	public static function form_get_all_items( $form_type, $collection = 'title' ) {
-		$forms = array(
-			self::$default_form_id => esc_html__( 'Select one', 'squad-modules-for-divi' ),
-		);
-
-		// Collect all forms from contact form 7.
-		if ( 'cf7' === $form_type ) {
-			self::get_cf7_forms( $collection );
-		}
-
-		// Collect all forms from fluent forms.
-		if ( 'fluent_forms' === $form_type ) {
-			self::get_fluent_forms( $collection );
-		}
-
-		// Collect all forms from gravity forms.
-		if ( 'gravity_forms' === $form_type ) {
-			self::get_gravity_forms( $collection );
-		}
-
-		// Collect all forms from ninja forms.
-		if ( 'ninja_forms' === $form_type ) {
-			self::get_ninja_forms( $collection );
-		}
-
-		// Collect all forms from wp forms.
-		if ( 'wpforms' === $form_type ) {
-			self::get_wp_forms( $collection );
-		}
-
-		return array_merge( $forms, self::$form_collections[ $form_type ][ $collection ] );
-	}
-
-	/**
-	 * Get all contact form 7 forms.
-	 *
-	 * @param string $collection The collection type of form data.
-	 *
-	 * @return array
-	 */
-	private static function get_cf7_forms( $collection = 'title' ) {
-		// Check if the collection is already set.
-		if ( ! empty( self::$form_collections['cf7'][ $collection ] ) ) {
-			return self::$form_collections['cf7'][ $collection ];
-		}
-
-		// Set the default value for the collection.
-		self::$form_collections['cf7'][ $collection ] = array();
-
-		// Collect all forms from contact form 7.
-		if ( class_exists( 'WPCF7' ) ) {
-			$args = array(
-				'post_type'      => 'wpcf7_contact_form',
-				'posts_per_page' => -1,
+	public static function get_allowed_fields() {
+		static $allowed_fields = null;
+		if ( null === $allowed_fields ) {
+			$allowed_fields = array(
+				'input[type=email]',
+				'input[type=text]',
+				'input[type=url]',
+				'input[type=tel]',
+				'input[type=number]',
+				'input[type=date]',
+				'input[type=file]',
+				'select',
+				'textarea',
 			);
-
-			// Collect available contact form from the database.
-			$forms = get_posts( $args );
-
-			if ( count( $forms ) ) {
-				/**
-				 * Collect form iad and title based on conditions.
-				 *
-				 * @var WP_Post[] $forms
-				 * @var WP_Post   $form
-				 */
-				foreach ( $forms as $form ) {
-					$hash_id   = hash( 'sha256', (string) $form->ID );
-					$form_data = 'title' === $collection ? $form->post_title : $form->ID;
-
-					// Store the form data in the collection.
-					self::$form_collections['cf7'][ $collection ][ $hash_id ] = $form_data;
-				}
-			}
 		}
-
-		return self::$form_collections['cf7'][ $collection ];
+		return $allowed_fields;
 	}
 
 	/**
-	 * Get all fluent forms.
+	 * Get custom spacing prefixes for the module.
 	 *
-	 * @param string $collection The collection type of form data.
-	 *
-	 * @return array
+	 * @return array Custom spacing prefixes
 	 */
-	private static function get_fluent_forms( $collection = 'title' ) {
-		// Check if the collection is already set.
-		if ( ! empty( self::$form_collections['fluent_forms'][ $collection ] ) ) {
-			return self::$form_collections['fluent_forms'][ $collection ];
-		}
-
-		// Set the default value for the collection.
-		self::$form_collections['fluent_forms'][ $collection ] = array();
-
-		// Collect all forms from fluent forms.
-		if ( function_exists( 'wpFluentForm' ) ) {
-			// Collect available contact form from the database.
-			$forms_table = \wpFluent()->table( 'fluentform_forms' );
-			$collections = $forms_table->select( array( 'id', 'title' ) )->orderBy( 'id', 'DESC' )->get();
-
-			/**
-			 * Collect form iad and title based on conditions.
-			 *
-			 * @var \FluentForm\Framework\Database\Query\Builder[]|array  $collections
-			 * @var \FluentForm\Framework\Database\Query\Builder|object $form
-			 */
-			foreach ( $collections as $form ) {
-				$hash_id   = hash( 'sha256', (string) $form->id );
-				$form_data = 'title' === $collection ? $form->title : $form->id;
-
-				// Store the form data in the collection.
-				self::$form_collections['fluent_forms'][ $collection ][ $hash_id ] = $form_data;
-			}
-		}
-
-		return self::$form_collections['fluent_forms'][ $collection ];
-	}
-
-	/**
-	 * Get all gravity forms.
-	 *
-	 * @param string $collection The collection type of form data.
-	 *
-	 * @return array
-	 */
-	private static function get_gravity_forms( $collection = 'title' ) {
-		// Check if the collection is already set.
-		if ( ! empty( self::$form_collections['gravity_forms'][ $collection ] ) ) {
-			return self::$form_collections['gravity_forms'][ $collection ];
-		}
-
-		// Set the default value for the collection.
-		self::$form_collections['gravity_forms'][ $collection ] = array();
-
-		// Collect all forms from gravity forms.
-		if ( class_exists( '\GFCommon' ) && class_exists( '\RGFormsModel' ) ) {
-			// Collect available contact form from the database.
-			$forms = \RGFormsModel::get_forms( null, 'title' );
-			if ( count( $forms ) ) {
-				foreach ( $forms as $form ) {
-					$hash_id   = hash( 'sha256', (string) $form->id );
-					$form_data = 'title' === $collection ? $form->title : $form->id;
-
-					// Store the form data in the collection.
-					self::$form_collections['gravity_forms'][ $collection ][ $hash_id ] = $form_data;
-				}
-			}
-		}
-
-		return self::$form_collections['gravity_forms'][ $collection ];
-	}
-
-	/**
-	 * Get all wp forms.
-	 *
-	 * @param string $collection The collection type of form data.
-	 *
-	 * @return array
-	 */
-	private static function get_ninja_forms( $collection = 'title' ) {
-		// Check if the collection is already set.
-		if ( ! empty( self::$form_collections['ninja_forms'][ $collection ] ) ) {
-			return self::$form_collections['ninja_forms'][ $collection ];
-		}
-
-		// Set the default value for the collection.
-		self::$form_collections['ninja_forms'][ $collection ] = array();
-
-		// Collect all forms from ninja forms.
-		if ( function_exists( '\Ninja_Forms' ) ) {
-			// Collect available wp form from a database.
-			$ninja_forms = \Ninja_Forms()->form()->get_forms();
-			if ( is_array( $ninja_forms ) && count( $ninja_forms ) ) {
-				/**
-				 * Collect form iad and title based on conditions.
-				 *
-				 * @var \NF_Abstracts_Model[] $ninja_forms
-				 * @var \NF_Abstracts_Model   $form
-				 */
-				foreach ( $ninja_forms as $form ) {
-					$hash_id   = hash( 'sha256', (string) $form->get_id() );
-					$form_data = 'title' === $collection ? $form->get_setting( 'title' ) : $form->get_id();
-
-					// Store the form data in the collection.
-					self::$form_collections['ninja_forms'][ $collection ][ $hash_id ] = $form_data;
-				}
-			}
-		}
-
-		return self::$form_collections['ninja_forms'][ $collection ];
-	}
-
-	/**
-	 * Get all wp forms.
-	 *
-	 * @param string $collection The collection type of form data.
-	 *
-	 * @return array
-	 */
-	private static function get_wp_forms( $collection = 'title' ) {
-		// Check if the collection is already set.
-		if ( ! empty( self::$form_collections['wpforms'][ $collection ] ) ) {
-			return self::$form_collections['wpforms'][ $collection ];
-		}
-
-		// Set the default value for the collection.
-		self::$form_collections['wpforms'][ $collection ] = array();
-
-		// Collect all forms from wp forms.
-		if ( function_exists( 'wpforms' ) ) {
-			// Collect available wp form from a database.
-			$args = array(
-				'post_type'      => 'wpforms',
-				'posts_per_page' => - 1,
+	public static function get_custom_spacing_prefixes() {
+		static $prefixes = null;
+		if ( null === $prefixes ) {
+			$prefixes = array(
+				'wrapper'         => array( 'label' => __( 'Wrapper', 'squad-modules-for-divi' ) ),
+				'field'           => array( 'label' => __( 'Field', 'squad-modules-for-divi' ) ),
+				'message_error'   => array( 'label' => __( 'Message', 'squad-modules-for-divi' ) ),
+				'message_success' => array( 'label' => __( 'Message', 'squad-modules-for-divi' ) ),
 			);
+		}
+		return $prefixes;
+	}
 
-			// Collect available wp form from a database.
-			$forms = get_posts( $args );
-			if ( count( $forms ) ) {
-				/**
-				 * Collect form iad and title based on conditions.
-				 *
-				 * @var WP_Post[] $forms
-				 * @var WP_Post   $form
-				 */
-				foreach ( $forms as $form ) {
-					$hash_id   = hash( 'sha256', (string) $form->ID );
-					$form_data = 'title' === $collection ? $form->post_title : $form->ID;
-
-					// Store the form data in the collection.
-					self::$form_collections['wpforms'][ $collection ][ $hash_id ] = $form_data;
-				}
-			}
+	/**
+	 * Get all forms of a specific type.
+	 *
+	 * @param string $form_type The form type (cf7, fluent_forms, etc.).
+	 * @param string $collection The collection type (title or id).
+	 *
+	 * @return array<string, string>
+	 * @throws \InvalidArgumentException If the form type is not supported.
+	 */
+	public static function get_all_forms( $form_type, $collection = 'title' ) {
+		if ( ! isset( self::$supported_form_types[ $form_type ] ) ) {
+			throw new \InvalidArgumentException( esc_html__( 'Unsupported form type.', 'squad-modules-for-divi' ) );
 		}
 
-		return self::$form_collections['wpforms'][ $collection ];
+		if ( ! isset( self::$form_collections[ $form_type ][ $collection ] ) ) {
+			self::$form_collections[ $form_type ][ $collection ] = self::fetch_forms( $form_type, $collection );
+		}
+
+		return array( self::DEFAULT_FORM_ID => esc_html__( 'Select one', 'squad-modules-for-divi' ) ) + self::$form_collections[ $form_type ][ $collection ];
+	}
+
+	/**
+	 * Fetch forms of a specific type.
+	 *
+	 * @param string $form_type The form type (cf7, fluent_forms, etc.).
+	 * @param string $collection The collection type (title or id).
+	 *
+	 * @return array<string, string>
+	 */
+	private static function fetch_forms( $form_type, $collection ) {
+		if ( ! isset( self::$form_processors[ $form_type ] ) ) {
+			self::$form_processors[ $form_type ] = new self::$supported_form_types[ $form_type ]();
+		}
+
+		return self::$form_processors[ $form_type ]->get_forms( $collection );
 	}
 }
