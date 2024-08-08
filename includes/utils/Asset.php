@@ -144,7 +144,7 @@ class Asset {
 				$path_validate = $minified_asset_file;
 			}
 
-			// Load the version and dependencies data for javascript file
+			// Load the version and dependencies data for javascript file.
 			if ( 'js' === $extension ) {
 				// Verify that the current file is a minified and located in the current physical device.
 				if ( Str::ends_with( $path_validate, ".min.$extension" ) && file_exists( static::resolve_file_path( $path_validate ) ) ) {

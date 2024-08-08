@@ -44,10 +44,10 @@ class Assets {
 		$vendor_asset_options = array( 'path' => 'vendor' );
 		$module_asset_options = array( 'path' => 'divi4/scripts/modules' );
 
-		$lottie_js        = Asset::asset_path( 'lottie', $vendor_asset_options );
-		$typed_js         = Asset::asset_path( 'typed.umd', $vendor_asset_options );
-		$images_loaded_js = Asset::asset_path( 'imagesloaded.pkgd', $vendor_asset_options );
-		$isotope_js       = Asset::asset_path( 'isotope.pkgd', $vendor_asset_options );
+		$lottie_js         = Asset::asset_path( 'lottie', $vendor_asset_options );
+		$typed_js          = Asset::asset_path( 'typed.umd', $vendor_asset_options );
+		$images_loaded_js  = Asset::asset_path( 'imagesloaded.pkgd', $vendor_asset_options );
+		$isotope_js        = Asset::asset_path( 'isotope.pkgd', $vendor_asset_options );
 		$light_gallery_js = Asset::asset_path( 'lightgallery.umd', array_merge( $vendor_asset_options, array( 'prod_file' => 'lightgallery' )) ); // phpcs:ignore
 		$scrolling_text_js = Asset::asset_path( 'jquery.marquee', $vendor_asset_options ); // phpcs:ignore
 

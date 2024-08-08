@@ -313,12 +313,12 @@ class GlitchText extends DISQ_Builder_Module {
 			$glitch_text_tag    = $this->prop( 'glitch_text_tag', 'p' );
 			$glitch_text        = esc_html( $this->prop( 'glitch_text', '' ) );
 
-			// Effect 3: Wrap text with span tag
+			// Effect 3: Wrap text with span tag.
 			if ( 'three' === $glitch_text_effect ) {
 				$glitch_text = "<span>$glitch_text</span>";
 			}
 
-			// Effect 5: Wrap text with span tags
+			// Effect 5: Wrap text with span tags.
 			if ( 'five' === $glitch_text_effect ) {
 				$glitch_text = "<span style='--disq-gte-index: 0;'>$glitch_text</span><span style='--disq-gte-index: 1;'>$glitch_text</span><span style='--disq-gte-index: 2;'>$glitch_text</span>";
 			}

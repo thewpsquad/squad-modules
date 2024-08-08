@@ -213,7 +213,8 @@ class Backend extends BuilderBackendPlaceholder {
 					)
 				),
 				'disq_divider'                   => array(
-					'divider_icon' => $defaults['icon']['check'],
+					'divider_icon_type' => 'icon',
+					'divider_icon'      => $defaults['icon']['check'],
 				),
 				'disq_dual_button'               => array(
 					'left_button_text'  => $defaults['button'],

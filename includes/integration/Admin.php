@@ -30,6 +30,7 @@ class Admin {
 		$admin_asset  = new \DiviSquad\Admin\Assets();
 		$action_links = new \DiviSquad\Admin\Plugin_Action_Links();
 		$row_meta     = new \DiviSquad\Admin\Plugin_Row_Meta();
+		$footer_text  = new \DiviSquad\Admin\Plugin_Admin_Footer_Text();
 
 		// Load all main menus and submenus for admin interface.
 		add_action( 'admin_menu', array( $admin_menu, 'admin_menu_create' ) );
@@ -43,6 +44,9 @@ class Admin {
 
 		// Include all row metas for the plugin.
 		self::register_plugin_row_meta( $row_meta );
+
+		// Include admin footer text for the plugin.
+		self::register_plugin_footer_text( $footer_text );
 	}
 
 	/**
@@ -80,7 +84,6 @@ class Admin {
 	protected static function register_plugin_action_links( $action_links ) {
 		$plugin_base    = $action_links->get_plugin_base();
 		$callback_array = array( $action_links, 'add_plugin_action_links' );
-		add_filter( 'network_admin_plugin_action_links_' . $plugin_base, $callback_array );
 		add_filter( 'plugin_action_links_' . $plugin_base, $callback_array );
 	}
 
@@ -94,5 +97,17 @@ class Admin {
 	 */
 	protected static function register_plugin_row_meta( $row_meta ) {
 		add_filter( 'plugin_row_meta', array( $row_meta, 'add_plugin_row_meta' ), 10, 2 );
+	}
+
+	/**
+	 * Include admin footer text for the plugin.
+	 *
+	 * @param \DiviSquad\Admin\Plugin_Admin_Footer_Text $footer_text The instance of the Plugin row meta.
+	 *
+	 * @return void
+	 * @since 1.2.0
+	 */
+	protected static function register_plugin_footer_text( $footer_text ) {
+		add_filter( 'admin_footer_text', array( $footer_text, 'add_plugin_footer_text' ) );
 	}
 }

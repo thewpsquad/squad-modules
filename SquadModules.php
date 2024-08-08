@@ -1,6 +1,6 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 /**
- * Squad Modules for Divi Builder
+ * Divi Squad Lite
  *
  * @package     divi-squad
  * @author      WP Squad <wp@thewpsquad.com>
