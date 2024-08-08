@@ -1096,7 +1096,7 @@ class PostGridChild extends DISQ_Builder_Module {
 	 *
 	 * @return string|null
 	 */
-	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
+	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed,  // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
 		if ( 'none' !== $this->prop( 'element', 'none' ) ) {
 
 			$this->disq_generate_all_styles( $attrs );
