@@ -76,7 +76,7 @@ class WP {
 			/* translators: 1: Plugin name 2: Required WordPress version */
 				esc_html__( '%1$s The %2$s plugin is disabled on your site until you fix the issue.', 'squad-modules-for-divi' ),
 				'<strong>' . esc_html__( 'Note', 'squad-modules-for-divi' ) . ':</strong>',
-				'<strong>' . esc_html__( 'Divi Squad Lite', 'squad-modules-for-divi' ) . ':</strong>'
+				'<strong>' . esc_html__( 'Squad Modules Lite', 'squad-modules-for-divi' ) . ':</strong>'
 			)
 		);
 	}
@@ -92,7 +92,7 @@ class WP {
 			sprintf(
 			/* translators: 1: Plugin name 2: Required WordPress version */
 				esc_html__( 'The %1$s plugin is disabled because it requires WordPress "%2$s" or later.', 'squad-modules-for-divi' ),
-				'<strong>' . esc_html__( 'Divi Squad Lite', 'squad-modules-for-divi' ) . '</strong>',
+				'<strong>' . esc_html__( 'Squad Modules Lite', 'squad-modules-for-divi' ) . '</strong>',
 				esc_html( DISQ_MINIMUM_WP_VERSION )
 			)
 		);

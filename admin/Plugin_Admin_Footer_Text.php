@@ -43,9 +43,9 @@ class Plugin_Admin_Footer_Text {
 		$current_screen = get_current_screen();
 		if ( self::get_plugin_screen() === $current_screen->id ) {
 			$footer_text = sprintf(
-			/* translators: 1: Divi Squad Lite 2:: five stars */
+			/* translators: 1: Squad Modules Lite 2:: five stars */
 				__( 'If you like %1$s please leave us a %2$s rating. A huge thanks in advance!', 'squad-modules-for-divi' ),
-				sprintf( '<strong>%s</strong>', esc_html__( 'Divi Squad Lite', 'squad-modules-for-divi' ) ),
+				sprintf( '<strong>%s</strong>', esc_html__( 'Squad Modules Lite', 'squad-modules-for-divi' ) ),
 				'<a href="https://wordpress.org/support/plugin/squad-modules-for-divi/reviews/?rate=5#new-post" target="_blank" class="disq-rating-link" data-rated="' . esc_attr__( 'Thanks :)', 'squad-modules-for-divi' ) . '">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
 			);
 		}

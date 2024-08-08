@@ -39,6 +39,7 @@ class Extensions {
 				'release_version'    => '1.2.0',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
+				'category'           => 'media-upload',
 			),
 			array(
 				'name'               => 'SVG',
@@ -47,6 +48,7 @@ class Extensions {
 				'release_version'    => '1.2.0',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
+				'category'           => 'media-upload',
 			),
 			array(
 				'name'               => 'Font_Upload',
@@ -55,6 +57,7 @@ class Extensions {
 				'release_version'    => '1.2.0',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
+				'category'           => 'media-upload',
 			),
 			array(
 				'name'               => 'Divi_Library_Shortcode',
@@ -63,6 +66,7 @@ class Extensions {
 				'release_version'    => '1.2.0',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
+				'category'           => 'divi-enhancement',
 			),
 		);
 

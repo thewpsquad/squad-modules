@@ -3,7 +3,7 @@
  * Template file to manage layouts.
  *
  * @since           1.0.0
- * @package         squad-modules-pro-for-divi
+ * @package         squad-modules-for-divi
  * @author          WP Squad <support@thewpsquad.com>
  * @license         GPL-3.0-only
  */
