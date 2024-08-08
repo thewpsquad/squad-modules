@@ -67,7 +67,7 @@ class Assets {
 			add_filter( 'divi_squad_assets_backend_extra_data', array( $this, 'wp_localize_script_data' ) );
 
 			// Load script translations.
-			WP::set_script_translations( 'squad-admin', divi_squad()->get_name(), divi_squad()->get_localize_path() );
+			WP::set_script_translations( 'squad-admin', divi_squad()->get_name() );
 		}
 	}
 
@@ -127,33 +127,38 @@ class Assets {
 		// Collect factories.
 		$menu_register = \DiviSquad\Base\Factories\AdminMenu::get_instance();
 
+		// Get installed plugins.
+		$is_pro_installed  = false;
+		$pro_basename      = divi_squad_get_pro_basename();
+		$installed_plugins = get_plugins();
+		if ( ! empty( $installed_plugins ) ) {
+			$installed_plugins = array_keys( $installed_plugins );
+			$is_pro_installed  = in_array( $pro_basename, $installed_plugins, true );
+		}
+
 		// Localize data for squad admin.
 		$admin_localize = array(
 			'version_wp_current' => $version_current,
 			'version_wp_real'    => $version_dot,
-			'site_url'           => home_url( '/' ),
 			'admin_menus'        => $menu_register->get_registered_submenus(),
+			'premium'            => array(
+				'is_active'    => function_exists( 'divi_squad_fs' ) && divi_squad_fs()->can_use_premium_code(),
+				'is_installed' => $is_pro_installed,
+			),
 			'links'              => array(
+				'site_url'   => home_url( '/' ),
+				'my_account' => function_exists( 'divi_squad_fs' ) ? divi_squad_fs()->get_account_url() : '',
+				'plugins'    => admin_url( 'plugins.php' ),
 				'dashboard'  => admin_url( 'admin.php?page=divi_squad_dashboard#/' ),
 				'modules'    => admin_url( 'admin.php?page=divi_squad_dashboard#/modules' ),
 				'extensions' => admin_url( 'admin.php?page=divi_squad_dashboard#/extensions' ),
 				'whats_new'  => admin_url( 'admin.php?page=divi_squad_dashboard#/whats-new' ),
 			),
 			'l10n'               => array(
-				'plugin_label'            => esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
 				'dashboard'               => esc_html__( 'Dashboard', 'squad-modules-for-divi' ),
 				'modules'                 => esc_html__( 'Modules', 'squad-modules-for-divi' ),
 				'extensions'              => esc_html__( 'Extension', 'squad-modules-for-divi' ),
 				'whats_new'               => esc_html__( 'What\'s New', 'squad-modules-for-divi' ),
-				'view_all'                => esc_html__( 'View All', 'squad-modules-for-divi' ),
-				'upgrade'                 => esc_html__( 'Upgrade to Pro', 'squad-modules-for-divi' ),
-				'active'                  => esc_html__( 'Active License', 'squad-modules-for-divi' ),
-				'activate_all'            => esc_html__( 'Active All', 'squad-modules-for-divi' ),
-				'deactivate_all'          => esc_html__( 'Deactivate All', 'squad-modules-for-divi' ),
-				'save_changes'            => esc_html__( 'Save Changes', 'squad-modules-for-divi' ),
-				'badge_text_new'          => esc_html__( 'NEW', 'squad-modules-for-divi' ),
-				'badge_text_updated'      => esc_html__( 'Updated', 'squad-modules-for-divi' ),
-				'uncategories'            => esc_html__( 'Uncategories', 'squad-modules-for-divi' ),
 				'content-modules'         => esc_html__( 'Content Modules', 'squad-modules-for-divi' ),
 				'creative-modules'        => esc_html__( 'Creative Modules', 'squad-modules-for-divi' ),
 				'dynamic-content-modules' => esc_html__( 'Dynamic Content Modules', 'squad-modules-for-divi' ),
@@ -161,12 +166,6 @@ class Assets {
 				'image-&-media-modules'   => esc_html__( 'Image & Media Modules', 'squad-modules-for-divi' ),
 				'media-upload'            => esc_html__( 'Media Upload', 'squad-modules-for-divi' ),
 				'enhancement'             => esc_html__( 'Enhancement', 'squad-modules-for-divi' ),
-				'preparing'               => esc_html__( 'Preparing', 'squad-modules-for-divi' ),
-				'modules_saved'           => esc_html__( 'Enabled modules saved!', 'squad-modules-for-divi' ),
-				'modules_saving_failed'   => esc_html__( 'Whoops! Enabled modules not saved. Try again later.', 'squad-modules-for-divi' ),
-				'not_found_title'         => esc_html__( 'Oops, Page not found!', 'squad-modules-for-divi' ),
-				'not_found_message'       => esc_html__( 'The page you are looking for might have been removed had its name changed or is temporarily unavailable.', 'squad-modules-for-divi' ),
-				'go_back'                 => esc_html__( 'Go Back', 'squad-modules-for-divi' ),
 			),
 			'plugins'            => WP::get_active_plugins(),
 			'notices'            => array(

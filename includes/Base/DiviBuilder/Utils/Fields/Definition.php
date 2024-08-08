@@ -145,7 +145,7 @@ trait Definition {
 	 */
 	public function add_background_field( $properties = array() ) {
 		// General variables.
-		list( $base_name, $context, $tab_slug, $toggle_slug ) = self::get_background_field_options( $properties );
+		list( , $base_name, $context, $tab_slug, $toggle_slug ) = self::get_background_field_options( $properties );
 
 		// Definitions.
 		$background_fields = array_merge_recursive(

@@ -16,15 +16,4 @@ abstract class NoticeCore implements NoticeInterface {
 	 * @return string
 	 */
 	abstract public function get_template();
-
-	/**
-	 * Show Notice.
-	 *
-	 * @return void
-	 */
-	public function show_admin_notice() {
-		if ( file_exists( $this->get_template() ) ) {
-			load_template( $this->get_template() );
-		}
-	}
 }

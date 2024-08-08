@@ -30,23 +30,23 @@ trait Forms {
 	 * @var array The collection of forms.
 	 */
 	public static $form_collections = array(
-		'cf7'          => array(
+		'cf7'           => array(
 			'id'    => array(),
 			'title' => array(),
 		),
-		'wpforms'      => array(
+		'wpforms'       => array(
 			'id'    => array(),
 			'title' => array(),
 		),
-		'fluetforms'   => array(
+		'fluent_forms'  => array(
 			'id'    => array(),
 			'title' => array(),
 		),
-		'ninjaforms'   => array(
+		'ninja_forms'   => array(
 			'id'    => array(),
 			'title' => array(),
 		),
-		'gravityforms' => array(
+		'gravity_forms' => array(
 			'id'    => array(),
 			'title' => array(),
 		),
@@ -268,7 +268,7 @@ trait Forms {
 					$form_data = 'title' === $collection ? $form->get_setting( 'title' ) : $form->get_id();
 
 					// Store the form data in the collection.
-					self::$form_collections['gravity_forms'][ $collection ][ $hash_id ] = $form_data;
+					self::$form_collections['ninja_forms'][ $collection ][ $hash_id ] = $form_data;
 				}
 			}
 		}

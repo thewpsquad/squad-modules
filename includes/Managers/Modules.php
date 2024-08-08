@@ -463,7 +463,7 @@ class Modules extends ManagerBase {
 	 */
 	protected function load_module_files( $path, $memory, $dependency_tree = null ) {
 		// Load enabled modules.
-		$activated  = $memory->get( 'active_modules' );
+		$activated  = $memory->get( 'active_modules', array() );
 		$registered = $this->get_filtered_registries( $this->get_registered_list(), array( $this, 'verify_module_type' ) );
 		$defaults   = $this->get_default_registries();
 

@@ -15,13 +15,6 @@ interface NoticeInterface {
 	public function can_render_it();
 
 	/**
-	 * Show Notice.
-	 *
-	 * @return bool
-	 */
-	public function show_admin_notice();
-
-	/**
 	 * Add the CSS classes for the body tag in the admin.
 	 *
 	 * @return string

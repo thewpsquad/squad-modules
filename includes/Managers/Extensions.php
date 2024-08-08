@@ -100,7 +100,7 @@ class Extensions extends ManagerBase {
 	 */
 	protected function load_extensions_files( $path, $memory ) {
 		// Load enabled extensions.
-		$activated  = $memory->get( 'active_extensions' );
+		$activated  = $memory->get( 'active_extensions', array() );
 		$registered = $this->get_registered_list();
 		$defaults   = $this->get_default_registries();
 
