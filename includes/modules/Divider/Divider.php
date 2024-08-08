@@ -57,12 +57,12 @@ class Divider extends DISQ_Builder_Module {
 			),
 			'advanced' => array(
 				'toggles' => array(
-					'wrapper'                   => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
-					'divider'                   => esc_html__( 'Divider', 'squad-modules-for-divi' ),
-					'icon_element'              => esc_html__( 'Icon & Image', 'squad-modules-for-divi' ),
-					'divider_icon_text_element' => esc_html__( 'Icon Text Clip', 'squad-modules-for-divi' ),
-					'divider_icon_text'         => esc_html__( 'Icon Text', 'squad-modules-for-divi' ),
-					'lottie_element'            => esc_html__( 'Lottie', 'squad-modules-for-divi' ),
+					'wrapper'           => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
+					'divider'           => esc_html__( 'Divider', 'squad-modules-for-divi' ),
+					'divider_element'   => esc_html__( 'Divider Elements', 'squad-modules-for-divi' ),
+					'icon_element'      => esc_html__( 'Icon & Image', 'squad-modules-for-divi' ),
+					'divider_icon_text' => esc_html__( 'Divider Text', 'squad-modules-for-divi' ),
+					'lottie_element'    => esc_html__( 'Lottie', 'squad-modules-for-divi' ),
 				),
 			),
 		);
@@ -80,7 +80,7 @@ class Divider extends DISQ_Builder_Module {
 						),
 						'text_shadow'     => array(
 							'show_if' => array(
-								'divider_icon_type' => 'text',
+								'divider_type' => 'text',
 							),
 						),
 						'hide_text_align' => true,
@@ -159,7 +159,7 @@ class Divider extends DISQ_Builder_Module {
 						'position' => 'outer',
 					),
 					'show_if_not'       => array(
-						'divider_icon_type' => 'none',
+						'divider_type' => array( 'none', 'text' ),
 					),
 					'tab_slug'          => 'advanced',
 					'toggle_slug'       => 'icon_element',
@@ -191,7 +191,7 @@ class Divider extends DISQ_Builder_Module {
 						'hover' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper .icon-element",
 					),
 					'depends_on'          => array( 'divider_icon_type' ),
-					'depends_show_if_not' => array( 'none', 'icon', 'text', 'lottie' ),
+					'depends_show_if_not' => array( 'none', 'icon', 'lottie' ),
 					'tab_slug'            => 'advanced',
 					'toggle_slug'         => 'icon_element',
 				),
@@ -213,28 +213,69 @@ class Divider extends DISQ_Builder_Module {
 	 */
 	public function get_fields() {
 		$divider_default_fields     = array(
-			'show_divider'         => $this->disq_add_yes_no_field(
-				esc_html__( 'Show Divider', 'squad-modules-for-divi' ),
+			'divider_type'          => $this->disq_add_select_box_field(
+				esc_html__( 'Divider Type', 'squad-modules-for-divi' ),
 				array(
-					'description'      => esc_html__( 'This settings turns on and off the 1px divider line, but does not affect the divider height.', 'squad-modules-for-divi' ),
-					'options'          => $this->show_divider_options,
-					'default'          => 'on',
-					'default_on_front' => 'on',
+					'description'      => esc_html__( 'Choose an divider type to display.', 'squad-modules-for-divi' ),
+					'options'          => array(
+						'none' => esc_html__( 'Only Line', 'squad-modules-for-divi' ),
+						'text' => esc_html__( 'Line With Text', 'squad-modules-for-divi' ),
+						'icon' => esc_html__( 'Liner With Icon', 'squad-modules-for-divi' ),
+					),
+					'default_on_front' => 'icon',
+					'default'          => 'icon',
+					'depends_show_if'  => 'on',
 					'affects'          => array(
 						'divider_icon_type',
-						'use_divider_custom_color',
-						'divider_style',
-						'divider_position',
-						'divider_weight',
-						'divider_max_width',
-						'divider_border_radius',
+						'divider_element_gap',
+						'divider_icon_text',
+						'divider_icon_text_font',
+						'divider_icon_text_text_color',
+						'divider_icon_text_font_size',
+						'divider_icon_text_letter_spacing',
+						'divider_icon_text_line_height',
+						'divider_icon_text_tag',
+						'divider_icon_text_clip__enable',
+						'divider_element_placement',
+						'divider_element_margin',
+						'divider_element_padding',
 					),
 					'tab_slug'         => 'general',
 					'toggle_slug'      => 'divider',
-					'mobile_options'   => true,
 				)
 			),
-			'multiple_divider'     => $this->disq_add_yes_no_field(
+			'divider_icon_text'     => array(
+				'label'           => et_builder_i18n( 'Text' ),
+				'description'     => esc_html__( 'The title of your divider will appear in bold below your divider image.', 'squad-modules-for-divi' ),
+				'type'            => 'text',
+				'option_category' => 'basic_option',
+				'depends_show_if' => 'text',
+				'dynamic_content' => 'text',
+				'tab_slug'        => 'general',
+				'toggle_slug'     => 'divider',
+			),
+			'divider_icon_text_tag' => $this->disq_add_select_box_field(
+				esc_html__( 'Icon Text Tag', 'squad-modules-for-divi' ),
+				array(
+					'description'      => esc_html__( 'Choose a tag to display with your icon text.', 'squad-modules-for-divi' ),
+					'options'          => array(
+						'h1'   => esc_html__( 'H1 tag', 'squad-modules-for-divi' ),
+						'h2'   => esc_html__( 'H2 tag', 'squad-modules-for-divi' ),
+						'h3'   => esc_html__( 'H3 tag', 'squad-modules-for-divi' ),
+						'h4'   => esc_html__( 'H4 tag', 'squad-modules-for-divi' ),
+						'h5'   => esc_html__( 'H5 tag', 'squad-modules-for-divi' ),
+						'h6'   => esc_html__( 'H6 tag', 'squad-modules-for-divi' ),
+						'p'    => esc_html__( 'P tag', 'squad-modules-for-divi' ),
+						'span' => esc_html__( 'SPAN tag', 'squad-modules-for-divi' ),
+						'div'  => esc_html__( 'DIV tag', 'squad-modules-for-divi' ),
+					),
+					'default_on_front' => 'h2',
+					'depends_show_if'  => 'text',
+					'tab_slug'         => 'general',
+					'toggle_slug'      => 'divider',
+				)
+			),
+			'multiple_divider'      => $this->disq_add_yes_no_field(
 				esc_html__( 'Use Multiple Line', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'This settings turns on and off the multiple divider line.', 'squad-modules-for-divi' ),
@@ -248,7 +289,7 @@ class Divider extends DISQ_Builder_Module {
 					'toggle_slug'      => 'divider',
 				)
 			),
-			'multiple_divider_no'  => $this->disq_add_range_fields(
+			'multiple_divider_no'   => $this->disq_add_range_fields(
 				esc_html__( 'Amount Of Line', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'This option is only available if Yes is selected for Loop. Enter the number of times you wish to have the animation loop before stopping.', 'squad-modules-for-divi' ),
@@ -272,7 +313,7 @@ class Divider extends DISQ_Builder_Module {
 					'mobile_options' => false,
 				)
 			),
-			'multiple_divider_gap' => $this->disq_add_range_fields(
+			'multiple_divider_gap'  => $this->disq_add_range_fields(
 				esc_html__( 'Gap Between Multiple Line', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose gap between multiple line.', 'squad-modules-for-divi' ),
@@ -292,7 +333,7 @@ class Divider extends DISQ_Builder_Module {
 					'toggle_slug'     => 'divider',
 				)
 			),
-			'divider_color'        => $this->disq_add_color_field(
+			'divider_color'         => $this->disq_add_color_field(
 				esc_html__( 'Line Color', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'This will adjust the color of the 1px divider line.', 'squad-modules-for-divi' ),
@@ -509,24 +550,19 @@ class Divider extends DISQ_Builder_Module {
 					'options'          => array(
 						'icon'   => esc_html__( 'Icon', 'squad-modules-for-divi' ),
 						'image'  => et_builder_i18n( 'Image' ),
-						'text'   => et_builder_i18n( 'Text' ),
 						'lottie' => esc_html__( 'Lottie', 'squad-modules-for-divi' ),
-						'none'   => esc_html__( 'None', 'squad-modules-for-divi' ),
 					),
 					'default_on_front' => 'icon',
 					'default'          => 'icon',
-					'depends_show_if'  => 'on',
+					'depends_show_if'  => 'icon',
 					'affects'          => array(
 						'divider_icon',
 						'divider_image',
-						'divider_icon_text',
-						'divider_icon_text_font',
-						'divider_icon_text_text_color',
-						'divider_icon_text_font_size',
-						'divider_icon_text_letter_spacing',
-						'divider_icon_text_line_height',
-						'divider_icon_text_tag',
-						'divider_icon_text_clip__enable',
+						'divider_icon_color',
+						'divider_icon_size',
+						'divider_image_width',
+						'divider_image_height',
+						'alt',
 						'divider_icon_lottie_src_type',
 						'divider_icon_lottie_trigger_method',
 						'divider_icon_lottie_speed',
@@ -536,16 +572,7 @@ class Divider extends DISQ_Builder_Module {
 						'divider_icon_lottie_background_color',
 						'divider_icon_lottie_width',
 						'divider_icon_lottie_height',
-						'divider_icon_color',
-						'divider_icon_size',
-						'divider_image_width',
-						'divider_image_height',
-						'alt',
 						'divider_image_icon_background_color',
-						'divider_icon_text_gap',
-						'divider_icon_placement',
-						'divider_icon_wrapper_margin',
-						'divider_icon_wrapper_padding',
 						'divider_icon_margin',
 						'divider_icon_padding',
 					),
@@ -632,46 +659,74 @@ class Divider extends DISQ_Builder_Module {
 				'tab_slug'           => 'general',
 				'toggle_slug'        => 'icon_element',
 			),
-			'divider_icon_text'              => array(
-				'label'           => et_builder_i18n( 'Text' ),
-				'description'     => esc_html__( 'The title of your divider will appear in bold below your divider image.', 'squad-modules-for-divi' ),
-				'type'            => 'text',
-				'option_category' => 'basic_option',
-				'depends_show_if' => 'text',
-				'dynamic_content' => 'text',
-				'tab_slug'        => 'general',
-				'toggle_slug'     => 'icon_element',
-			),
-			'divider_icon_text_tag'          => $this->disq_add_select_box_field(
-				esc_html__( 'Icon Text Tag', 'squad-modules-for-divi' ),
-				array(
-					'description'      => esc_html__( 'Choose a tag to display with your icon text.', 'squad-modules-for-divi' ),
-					'options'          => array(
-						'h1'   => esc_html__( 'H1 tag', 'squad-modules-for-divi' ),
-						'h2'   => esc_html__( 'H2 tag', 'squad-modules-for-divi' ),
-						'h3'   => esc_html__( 'H3 tag', 'squad-modules-for-divi' ),
-						'h4'   => esc_html__( 'H4 tag', 'squad-modules-for-divi' ),
-						'h5'   => esc_html__( 'H5 tag', 'squad-modules-for-divi' ),
-						'h6'   => esc_html__( 'H6 tag', 'squad-modules-for-divi' ),
-						'p'    => esc_html__( 'P tag', 'squad-modules-for-divi' ),
-						'span' => esc_html__( 'SPAN tag', 'squad-modules-for-divi' ),
-						'div'  => esc_html__( 'DIV tag', 'squad-modules-for-divi' ),
-					),
-					'default_on_front' => 'h2',
-					'depends_show_if'  => 'text',
-					'tab_slug'         => 'general',
-					'toggle_slug'      => 'icon_element',
-				)
-			),
 		);
 
 		$icon_text_clip = $this->disq_text_clip_fields(
 			array(
 				'base_attr_name'  => 'divider_icon_text',
-				'toggle_slug'     => 'divider_icon_text_element',
+				'toggle_slug'     => 'divider_element',
 				'tab_slug'        => 'advanced',
 				'depends_show_if' => 'text',
 			)
+		);
+
+		// Divider_element fields definitions.
+		$divider_element_fields = array(
+			'divider_element_gap'       => $this->disq_add_range_fields(
+				esc_html__( 'Gap Between Element and Divider', 'squad-modules-for-divi' ),
+				array(
+					'description'         => esc_html__( 'Here you can choose gap between element and divider.', 'squad-modules-for-divi' ),
+					'range_settings'      => array(
+						'min_limit' => '1',
+						'min'       => '1',
+						'max_limit' => '200',
+						'max'       => '200',
+						'step'      => '1',
+					),
+					'default'             => '10px',
+					'default_unit'        => 'px',
+					'depends_show_if_not' => array( 'none' ),
+					'tab_slug'            => 'advanced',
+					'toggle_slug'         => 'divider_element',
+					'mobile_options'      => true,
+				),
+				array( 'use_hover' => false )
+			),
+			'divider_element_placement' => $this->disq_add_placement_field(
+				esc_html__( 'Element Placement', 'squad-modules-for-divi' ),
+				array(
+					'description'         => esc_html__( 'Here you can choose where to place the element.', 'squad-modules-for-divi' ),
+					'options'             => array(
+						'center' => et_builder_i18n( 'Default' ),
+						'left'   => et_builder_i18n( 'Left' ),
+						'right'  => et_builder_i18n( 'Right' ),
+					),
+					'default_on_front'    => 'center',
+					'depends_show_if_not' => array( 'none' ),
+					'tab_slug'            => 'advanced',
+					'toggle_slug'         => 'divider_element',
+				)
+			),
+			'divider_element_margin'    => $this->disq_add_margin_padding_field(
+				esc_html__( 'Element Margin', 'squad-modules-for-divi' ),
+				array(
+					'description'         => esc_html__( 'Here you can define a custom margin size for the element.', 'squad-modules-for-divi' ),
+					'type'                => 'custom_margin',
+					'depends_show_if_not' => array( 'none' ),
+					'tab_slug'            => 'advanced',
+					'toggle_slug'         => 'divider_element',
+				)
+			),
+			'divider_element_padding'   => $this->disq_add_margin_padding_field(
+				esc_html__( 'Element Padding', 'squad-modules-for-divi' ),
+				array(
+					'description'         => esc_html__( 'Here you can define a custom padding size for the element.', 'squad-modules-for-divi' ),
+					'type'                => 'custom_padding',
+					'depends_show_if_not' => array( 'none' ),
+					'tab_slug'            => 'advanced',
+					'toggle_slug'         => 'divider_element',
+				)
+			),
 		);
 
 		// Icon & Image associate fields definitions.
@@ -747,67 +802,6 @@ class Divider extends DISQ_Builder_Module {
 					'depends_show_if' => 'image',
 					'tab_slug'        => 'advanced',
 					'toggle_slug'     => 'icon_element',
-				)
-			),
-			'divider_icon_divider_gap'            => $this->disq_add_range_fields(
-				esc_html__( 'Gap Between Icon and Divider', 'squad-modules-for-divi' ),
-				array(
-					'description'         => esc_html__( 'Here you can choose gap between icon and divider.', 'squad-modules-for-divi' ),
-					'range_settings'      => array(
-						'min_limit' => '1',
-						'min'       => '1',
-						'max_limit' => '200',
-						'max'       => '200',
-						'step'      => '1',
-					),
-					'default'             => '10px',
-					'default_unit'        => 'px',
-					'depends_show_if_not' => array( 'none' ),
-					'tab_slug'            => 'advanced',
-					'toggle_slug'         => 'icon_element',
-					'mobile_options'      => true,
-				),
-				array( 'use_hover' => false )
-			),
-			'divider_icon_placement'              => $this->disq_add_placement_field(
-				esc_html__( 'Icon Placement', 'squad-modules-for-divi' ),
-				array(
-					'description'         => esc_html__( 'Here you can choose where to place the icon.', 'squad-modules-for-divi' ),
-					'options'             => array(
-						'center' => et_builder_i18n( 'Default' ),
-						'left'   => et_builder_i18n( 'Left' ),
-						'right'  => et_builder_i18n( 'Right' ),
-					),
-					'default_on_front'    => 'center',
-					'depends_show_if_not' => array( 'none' ),
-					'tab_slug'            => 'advanced',
-					'toggle_slug'         => 'icon_element',
-				)
-			),
-			'divider_icon_wrapper_margin'         => $this->disq_add_margin_padding_field(
-				esc_html__( 'Icon Wrapper Margin', 'squad-modules-for-divi' ),
-				array(
-					'description'         => esc_html__(
-						'Here you can define a custom margin size for the icon wrapper.',
-						'squad-modules-for-divi'
-					),
-					'type'                => 'custom_margin',
-					'depends_show_if_not' => array( 'none' ),
-					'tab_slug'            => 'advanced',
-					'toggle_slug'         => 'icon_element',
-				)
-			),
-			'divider_icon_wrapper_padding'        => $this->disq_add_margin_padding_field(
-				esc_html__( 'Icon Wrapper Padding', 'squad-modules-for-divi' ),
-				array(
-					'description'         => esc_html__(
-						'Here you can define a custom padding size for the icon wrapper.',
-						'squad-modules-for-divi'
-					),
-					'type'                => 'custom_padding',
-					'depends_show_if_not' => array( 'none' ),
-					'tab_slug'            => 'advanced',
-					'toggle_slug'         => 'icon_element',
 				)
 			),
 			'divider_icon_margin'                 => $this->disq_add_margin_padding_field(
@@ -1131,10 +1125,7 @@ class Divider extends DISQ_Builder_Module {
 			'wrapper_margin'  => $this->disq_add_margin_padding_field(
 				esc_html__( 'Wrapper Margin', 'squad-modules-for-divi' ),
 				array(
-					'description' => esc_html__(
-						'Here you can define a custom margin size for the wrapper.',
-						'squad-modules-for-divi'
-					),
+					'description' => esc_html__( 'Here you can define a custom margin size for the wrapper.', 'squad-modules-for-divi' ),
 					'type'        => 'custom_margin',
 					'tab_slug'    => 'advanced',
 					'toggle_slug' => 'wrapper',
@@ -1143,12 +1134,8 @@ class Divider extends DISQ_Builder_Module {
 			'wrapper_padding' => $this->disq_add_margin_padding_field(
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
-					'description' => esc_html__(
-						'Here you can define a custom padding size for the wrapper.',
-						'squad-modules-for-divi'
-					),
+					'description' => esc_html__( 'Here you can define a custom padding size for the wrapper.', 'squad-modules-for-divi' ),
 					'type'        => 'custom_padding',
-					'default'     => '10px|15px|10px|15px|false|false',
 					'tab_slug'    => 'advanced',
 					'toggle_slug' => 'wrapper',
 				)
@@ -1161,6 +1148,7 @@ class Divider extends DISQ_Builder_Module {
 			$divider_fields,
 			$icon_image_fields_all,
 			$icon_text_clip,
+			$divider_element_fields,
 			$icon_image_associated_fields_all,
 			$lottie_animation_fields,
 			$lottie_associated_fields
@@ -1239,14 +1227,6 @@ class Divider extends DISQ_Builder_Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
-		// Show a notice message in the frontend if the show divider is turned off.
-		if ( 'off' === $this->prop( 'show_divider', 'on' ) ) {
-			return sprintf(
-				'<div class="disq_notice">%s</div>',
-				esc_html__( 'Please turn on the show divider settings from content tab to view divider.', 'squad-modules-for-divi' )
-			);
-		}
-
 		if ( 'lottie' === $this->props['divider_icon_type'] ) {
 			// Load the lottie library for lottie image in the frontend.
 			wp_enqueue_script( 'disq-module-lottie' );
@@ -1260,7 +1240,7 @@ class Divider extends DISQ_Builder_Module {
 		$wrapper_classes = array(
 			'divider-elements',
 			'et_pb_with_background',
-			$this->prop( 'divider_icon_placement', 'center' ),
+			$this->prop( 'divider_element_placement', 'center' ),
 		);
 
 		if ( 'on' === $this->prop( 'use_divider_custom_color', 'off' ) ) {
@@ -1297,7 +1277,7 @@ class Divider extends DISQ_Builder_Module {
 				'use_background_mask'    => false,
 				'prop_name_aliases'      => array(
 					'use_wrapper_background_color_gradient' => 'wrapper_background_use_color_gradient',
-					'wrapper_background' => 'wrapper_background_color',
+					'wrapper_background'                    => 'wrapper_background_color',
 				),
 			)
 		);
@@ -1332,176 +1312,207 @@ class Divider extends DISQ_Builder_Module {
 	 * @return null|string
 	 */
 	private function disq_render_divider( $multi_view, $attrs ) {
-		if ( 'on' === $this->prop( 'show_divider', 'off' ) ) {
-			// Fixed: a custom background doesn't work at frontend.
-			$this->props = array_merge( $attrs, $this->props );
+		// Fixed: a custom background doesn't work at frontend.
+		$this->props = array_merge( $attrs, $this->props );
 
-			$divider_classes = array( 'divider-item', 'divider-element' );
-			$divider_left    = array_merge( $divider_classes, array( 'left' ) );
-			$divider_right   = array_merge( $divider_classes, array( 'right' ) );
+		$divider_classes = array( 'divider-item', 'divider-element' );
+		$divider_left    = array_merge( $divider_classes, array( 'left' ) );
+		$divider_right   = array_merge( $divider_classes, array( 'right' ) );
 
-			if ( 'on' === $this->prop( 'multiple_divider', 'off' ) ) {
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'multiple_divider_gap',
-						'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element",
-						'css_property'   => 'gap',
-						'render_slug'    => $this->slug,
-						'type'           => 'range',
-						'important'      => true,
-					)
-				);
-			}
+		if ( 'none' !== $this->prop( 'divider_type', 'none' ) ) {
+			$this->generate_styles(
+				array(
+					'base_attr_name' => 'divider_element_gap',
+					'selector'       => "$this->main_css_element div .divider-elements",
+					'css_property'   => 'gap',
+					'render_slug'    => $this->slug,
+					'type'           => 'range',
+					'important'      => true,
+				)
+			);
+			// Divider Element margin with default, responsive, hover.
+			$this->disq_process_margin_padding_styles(
+				array(
+					'field'          => 'divider_element_margin',
+					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper",
+					'hover_selector' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
+					'important'      => true,
+				)
+			);
+			$this->disq_process_margin_padding_styles(
+				array(
+					'field'          => 'divider_element_padding',
+					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper",
+					'hover_selector' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
+					'important'      => true,
+				)
+			);
+		}
 
-			if ( 'on' === $this->prop( 'use_divider_custom_color', 'off' ) ) {
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'divider_weight',
-						'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
-						'css_property'   => 'min-height',
-						'render_slug'    => $this->slug,
-						'type'           => 'range',
-						'important'      => true,
-					)
-				);
-				et_pb_background_options()->get_background_style(
-					array(
-						'base_prop_name'         => 'divider_left',
-						'props'                  => $this->props,
-						'selector'               => "$this->main_css_element div .divider-elements .divider-item.divider-element.left hr",
-						'selector_hover'         => "$this->main_css_element div .divider-elements:hover .divider-item.divider-element.left hr",
-						'selector_sticky'        => "$this->main_css_element div .divider-elements .divider-item.divider-element.left hr",
-						'function_name'          => $this->slug,
-						'use_background_image'   => false,
-						'use_background_video'   => false,
-						'use_background_pattern' => false,
-						'use_background_mask'    => false,
-						'prop_name_aliases'      => array(
-							'use_divider_left_color_gradient' => 'divider_left_use_color_gradient',
-							'divider_left' => 'divider_left_color',
-						),
-					)
-				);
-				et_pb_background_options()->get_background_style(
-					array(
-						'base_prop_name'         => 'divider_right',
-						'props'                  => $this->props,
-						'selector'               => "$this->main_css_element div .divider-elements .divider-item.divider-element.right hr",
-						'selector_hover'         => "$this->main_css_element div .divider-elements:hover .divider-item.divider-element.right hr",
-						'selector_sticky'        => "$this->main_css_element div .divider-elements .divider-item.divider-element.right hr",
-						'function_name'          => $this->slug,
-						'use_background_image'   => false,
-						'use_background_video'   => false,
-						'use_background_pattern' => false,
-						'use_background_mask'    => false,
-						'prop_name_aliases'      => array(
-							'use_divider_right_color_gradient' => 'divider_right_use_color_gradient',
-							'divider_right' => 'divider_right_color',
-						),
-					)
-				);
-			} else {
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'divider_color',
-						'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
-						'css_property'   => 'border-top-color',
-						'render_slug'    => $this->slug,
-						'type'           => 'color',
-						'important'      => true,
-					)
-				);
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'divider_style',
-						'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
-						'css_property'   => 'border-top-style',
-						'render_slug'    => $this->slug,
-						'type'           => 'style',
-						'important'      => true,
-					)
-				);
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'divider_weight',
-						'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
-						'css_property'   => 'border-top-width',
-						'render_slug'    => $this->slug,
-						'type'           => 'input',
-						'important'      => true,
-					)
-				);
-			}
+		if ( 'on' === $this->prop( 'multiple_divider', 'off' ) ) {
+			$this->generate_styles(
+				array(
+					'base_attr_name' => 'multiple_divider_gap',
+					'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element",
+					'css_property'   => 'gap',
+					'render_slug'    => $this->slug,
+					'type'           => 'range',
+					'important'      => true,
+				)
+			);
+		}
 
-			if ( 'on' === $this->prop( 'divider_custom_size', 'off' ) ) {
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'divider_custom_size_left',
-						'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element.left",
-						'selector_hover' => "$this->main_css_element div .divider-elements:hover .divider-item.divider-element.left",
-						'css_property'   => 'width',
-						'render_slug'    => $this->slug,
-						'type'           => 'range',
-						'important'      => true,
-					)
-				);
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'divider_custom_size_right',
-						'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element.right",
-						'selector_hover' => "$this->main_css_element div .divider-elements:hover .divider-item.divider-element.right",
-						'css_property'   => 'width',
-						'render_slug'    => $this->slug,
-						'type'           => 'range',
-						'important'      => true,
-					)
-				);
-			}
-
+		if ( 'on' === $this->prop( 'use_divider_custom_color', 'off' ) ) {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'divider_weight',
 					'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
-					'css_property'   => 'height',
+					'css_property'   => 'min-height',
 					'render_slug'    => $this->slug,
-					'type'           => 'input',
+					'type'           => 'range',
 					'important'      => true,
 				)
 			);
-			$this->generate_styles(
+			et_pb_background_options()->get_background_style(
 				array(
-					'base_attr_name' => 'divider_max_width',
-					'selector'       => "$this->main_css_element div .divider-elements",
-					'css_property'   => 'max-width',
-					'render_slug'    => $this->slug,
-					'type'           => 'input',
-					'important'      => true,
+					'base_prop_name'         => 'divider_left',
+					'props'                  => $this->props,
+					'selector'               => "$this->main_css_element div .divider-elements .divider-item.divider-element.left hr",
+					'selector_hover'         => "$this->main_css_element div .divider-elements:hover .divider-item.divider-element.left hr",
+					'selector_sticky'        => "$this->main_css_element div .divider-elements .divider-item.divider-element.left hr",
+					'function_name'          => $this->slug,
+					'use_background_image'   => false,
+					'use_background_video'   => false,
+					'use_background_pattern' => false,
+					'use_background_mask'    => false,
+					'prop_name_aliases'      => array(
+						'use_divider_left_color_gradient' => 'divider_left_use_color_gradient',
+						'divider_left'                    => 'divider_left_color',
+					),
 				)
 			);
+			et_pb_background_options()->get_background_style(
+				array(
+					'base_prop_name'         => 'divider_right',
+					'props'                  => $this->props,
+					'selector'               => "$this->main_css_element div .divider-elements .divider-item.divider-element.right hr",
+					'selector_hover'         => "$this->main_css_element div .divider-elements:hover .divider-item.divider-element.right hr",
+					'selector_sticky'        => "$this->main_css_element div .divider-elements .divider-item.divider-element.right hr",
+					'function_name'          => $this->slug,
+					'use_background_image'   => false,
+					'use_background_video'   => false,
+					'use_background_pattern' => false,
+					'use_background_mask'    => false,
+					'prop_name_aliases'      => array(
+						'use_divider_right_color_gradient' => 'divider_right_use_color_gradient',
+						'divider_right'                    => 'divider_right_color',
+					),
+				)
+			);
+		} else {
 			$this->generate_styles(
 				array(
-					'base_attr_name' => 'divider_border_radius',
+					'base_attr_name' => 'divider_color',
 					'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
-					'css_property'   => 'border-radius',
+					'css_property'   => 'border-top-color',
+					'render_slug'    => $this->slug,
+					'type'           => 'color',
+					'important'      => true,
+				)
+			);
+			$this->generate_styles(
+				array(
+					'base_attr_name' => 'divider_style',
+					'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
+					'css_property'   => 'border-top-style',
+					'render_slug'    => $this->slug,
+					'type'           => 'style',
+					'important'      => true,
+				)
+			);
+			$this->generate_styles(
+				array(
+					'base_attr_name' => 'divider_weight',
+					'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
+					'css_property'   => 'border-top-width',
 					'render_slug'    => $this->slug,
 					'type'           => 'input',
 					'important'      => true,
 				)
-			);
-
-			$no_of_line = 'on' === $this->prop( 'multiple_divider', 'off' ) ? (int) $this->prop( 'multiple_divider_no', '2' ) : 1;
-			$hr_tags    = array_fill( 0, $no_of_line, '<hr/>' );
-
-			return sprintf(
-				'<span class="%1$s">%4$s</span>%3$s<span class="%2$s">%4$s</span>',
-				et_core_esc_previously( implode( ' ', $divider_left ) ),
-				et_core_esc_previously( implode( ' ', $divider_right ) ),
-				et_core_esc_previously( $this->disq_render_divider_icon( $multi_view ) ),
-				et_core_esc_previously( implode( '', $hr_tags ) )
 			);
 		}
 
-		return null;
+		if ( 'on' === $this->prop( 'divider_custom_size', 'off' ) ) {
+			$this->generate_styles(
+				array(
+					'base_attr_name' => 'divider_custom_size_left',
+					'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element.left",
+					'selector_hover' => "$this->main_css_element div .divider-elements:hover .divider-item.divider-element.left",
+					'css_property'   => 'width',
+					'render_slug'    => $this->slug,
+					'type'           => 'range',
+					'important'      => true,
+				)
+			);
+			$this->generate_styles(
+				array(
+					'base_attr_name' => 'divider_custom_size_right',
+					'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element.right",
+					'selector_hover' => "$this->main_css_element div .divider-elements:hover .divider-item.divider-element.right",
+					'css_property'   => 'width',
+					'render_slug'    => $this->slug,
+					'type'           => 'range',
+					'important'      => true,
+				)
+			);
+		}
+
+		$this->generate_styles(
+			array(
+				'base_attr_name' => 'divider_weight',
+				'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
+				'css_property'   => 'height',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+				'important'      => true,
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => 'divider_max_width',
+				'selector'       => "$this->main_css_element div .divider-elements",
+				'css_property'   => 'max-width',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+				'important'      => true,
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => 'divider_border_radius',
+				'selector'       => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
+				'css_property'   => 'border-radius',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+				'important'      => true,
+			)
+		);
+
+
+		$no_of_line = 'on' === $this->prop( 'multiple_divider', 'off' ) ? (int) $this->prop( 'multiple_divider_no', '2' ) : 1;
+		$hr_tags    = array_fill( 0, $no_of_line, '<hr/>' );
+
+		return sprintf(
+			'<span class="%1$s">%4$s</span>%3$s<span class="%2$s">%4$s</span>',
+			et_core_esc_previously( implode( ' ', $divider_left ) ),
+			et_core_esc_previously( implode( ' ', $divider_right ) ),
+			et_core_esc_previously( $this->disq_render_divider_icon( $multi_view ) ),
+			et_core_esc_previously( implode( '', $hr_tags ) )
+		);
 	}
 
 	/**
@@ -1512,18 +1523,7 @@ class Divider extends DISQ_Builder_Module {
 	 * @return string
 	 */
 	private function disq_render_divider_icon( $multi_view ) {
-		if ( 'none' !== $this->props['divider_icon_type'] ) {
-			$this->generate_styles(
-				array(
-					'base_attr_name' => 'divider_icon_divider_gap',
-					'selector'       => "$this->main_css_element div .divider-elements",
-					'css_property'   => 'gap',
-					'render_slug'    => $this->slug,
-					'type'           => 'range',
-					'important'      => true,
-				)
-			);
-
+		if ( 'icon' !== $this->props['divider_type'] ) {
 			// Set icon background color.
 			if ( ! in_array( $this->props['divider_icon_type'], array( 'image', 'lottie' ), true ) ) {
 				$this->generate_styles(
@@ -1540,26 +1540,6 @@ class Divider extends DISQ_Builder_Module {
 			}
 
 			// Icon wrapper margin with default, responsive, hover.
-			$this->disq_process_margin_padding_styles(
-				array(
-					'field'          => 'divider_icon_wrapper_margin',
-					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper",
-					'hover_selector' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
-					'important'      => true,
-				)
-			);
-			$this->disq_process_margin_padding_styles(
-				array(
-					'field'          => 'divider_icon_wrapper_padding',
-					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper",
-					'hover_selector' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper",
-					'css_property'   => 'padding',
-					'type'           => 'padding',
-					'important'      => true,
-				)
-			);
 			$this->disq_process_margin_padding_styles(
 				array(
 					'field'          => 'divider_icon_margin',
@@ -1604,7 +1584,7 @@ class Divider extends DISQ_Builder_Module {
 	 * @return null|string
 	 */
 	private function disq_render_divider_font_icon( $multi_view ) {
-		if ( 'icon' === $this->props['divider_icon_type'] ) {
+		if ( 'icon' === $this->props['divider_type'] && 'icon' === $this->props['divider_icon_type'] ) {
 			$icon_classes = array( 'et-pb-icon', 'divider-icon' );
 
 			// Load font Awesome css for frontend.
@@ -1660,9 +1640,7 @@ class Divider extends DISQ_Builder_Module {
 			return $multi_view->render_element(
 				array(
 					'content'        => '{{divider_icon}}',
-					'attrs'          => array(
-						'class' => implode( ' ', $icon_classes ),
-					),
+					'attrs'          => array( 'class' => implode( ' ', $icon_classes ) ),
 					'hover_selector' => "$this->main_css_element div .divider-elements",
 				)
 			);
@@ -1679,7 +1657,7 @@ class Divider extends DISQ_Builder_Module {
 	 * @return null|string
 	 */
 	private function disq_render_divider_icon_image( $multi_view ) {
-		if ( 'image' === $this->props['divider_icon_type'] ) {
+		if ( 'icon' === $this->props['divider_type'] && 'image' === $this->props['divider_icon_type'] ) {
 			$alt_text      = $this->_esc_attr( 'alt' );
 			$title_text    = $this->_esc_attr( 'title_text' );
 			$image_classes = array( 'divider-image', 'et_pb_image_wrap' );
@@ -1750,7 +1728,7 @@ class Divider extends DISQ_Builder_Module {
 	 * @return null|string
 	 */
 	private function disq_render_divider_icon_text( $multi_view ) {
-		if ( 'text' === $this->props['divider_icon_type'] ) {
+		if ( 'text' === $this->props['divider_type'] ) {
 			$icon_text_classes = array( 'divider-icon-text' );
 
 			$this->disq_process_text_clip(

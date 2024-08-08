@@ -39,7 +39,7 @@ final class SquadModules extends Integration\Core {
 	public function __construct() {
 		$this->name             = 'squad-modules-for-divi';
 		$this->option_prefix    = 'disq';
-		$this->version          = '1.2.1';
+		$this->version          = '1.2.2';
 		$this->min_version_divi = '4.0.0';
 		$this->min_version_php  = '5.6';
 		$this->min_version_wp   = '5.8';
@@ -107,8 +107,8 @@ final class SquadModules extends Integration\Core {
 						self::$instance->load_divi_modules_for_builder();
 					}
 				);
-			} catch ( \Exception $err ) {
-				error_log( $err->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			} catch ( \Exception $exception ) {
+				error_log( $exception->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 			}
 		}
 

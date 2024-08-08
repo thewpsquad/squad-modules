@@ -36,6 +36,7 @@ class Modules {
 				'name'               => 'Divider',
 				'label'              => esc_html__( 'Advanced Divider', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
+				'last_modified'      => '1.2.2',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => '4',
@@ -62,7 +63,7 @@ class Modules {
 				'child_name'         => 'PostGridChild',
 				'child_label'        => esc_html__( 'Post Element', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
-				'last_modified'      => '1.2.0',
+				'last_modified'      => '1.2.2',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => '4',
@@ -114,6 +115,7 @@ class Modules {
 				'name'               => 'ImageGallery',
 				'label'              => esc_html__( 'Image Gallery', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
+				'last_modified'      => '1.2.2',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => '4',
@@ -125,6 +127,7 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => '4',
+				'required'           => array( 'plugin' => 'contact-form-7' ),
 			),
 			array(
 				'name'               => 'FormStylerWPForms',
@@ -133,6 +136,7 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => '4',
+				'required'           => array( 'plugin' => 'wpforms-lite|wpforms' ),
 			),
 			array(
 				'name'               => 'FormStylerGravityForms',
@@ -141,7 +145,16 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => '4',
-			)
+				'required'           => array( 'plugin' => 'gravityforms' ),
+			),
+			array(
+				'name'               => 'PostReadingTime',
+				'label'              => esc_html__( 'Post Reading Time', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.2',
+				'is_default_active'  => false,
+				'is_premium_feature' => false,
+				'type'               => '4',
+			),
 		);
 
 		return array_values( Helper::array_sort( $available_modules, 'name' ) );

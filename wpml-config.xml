@@ -1,13 +1,13 @@
 <wpml-config>
     <built-with-page-builder>/\[(et_pb_section|et_pb_row|et_pb_column)/</built-with-page-builder>
-    <shortcode-list>disq_accordion,disq_accordion_child,disq_bai_slider,disq_business_hours,disq_business_day,disq_divider,disq_dual_button,disq_flip_box,disq_image_mask,disq_lottie,disq_post_grid,disq_post_grid_child,disq_typing_text</divi4-list>
+    <shortcode-list>disq_accordion,disq_accordion_child,disq_bai_slider,disq_business_hours,disq_business_day,disq_divider,disq_dual_button,disq_flip_box,disq_image_mask,disq_lottie,disq_post_grid,disq_post_grid_child,disq_typing_text,disq_post_reading_time</shortcode-list>
     <shortcodes>
         <shortcode>
             <tag>disq_accordion</tag>
             <attributes>
                 <attribute type="media-url">background_image</attribute>
             </attributes>
-        </divi4>
+        </shortcode>
         <shortcode>
             <tag>disq_accordion_child</tag>
             <attributes>
@@ -27,7 +27,7 @@
                 <attribute type="link">link_option_url</attribute>
                 <attribute type="link">url</attribute>
             </attributes>
-        </divi4>
+        </shortcode>
         <shortcode>
             <tag>disq_bai_slider</tag>
             <attributes>
@@ -39,7 +39,7 @@
                 <attribute type="link">link_option_url</attribute>
                 <attribute type="link">url</attribute>
             </attributes>
-        </divi4>
+        </shortcode>
         <shortcode>
             <tag>disq_business_hours</tag>
             <attributes>
@@ -51,7 +51,7 @@
                 <attribute type="link">link_option_url</attribute>
                 <attribute type="link">url</attribute>
             </attributes>
-        </divi4>
+        </shortcode>
         <shortcode>
             <tag>disq_business_day</tag>
             <attributes>
@@ -84,7 +84,7 @@
                 <attribute type="link">link_option_url</attribute>
                 <attribute type="link">url</attribute>
             </attributes>
-        </divi4>
+        </shortcode>
         <shortcode>
             <tag>disq_divider</tag>
             <attributes>
@@ -93,7 +93,7 @@
                 <attribute type="link">link_option_url</attribute>
                 <attribute type="link">url</attribute>
             </attributes>
-        </divi4>
+        </shortcode>
         <shortcode>
             <tag>disq_dual_button</tag>
             <attributes>
@@ -118,7 +118,7 @@
                 <attribute type="link">left_button_url</attribute>
                 <attribute type="link">right_button_url</attribute>
             </attributes>
-        </divi4>
+        </shortcode>
         <shortcode>
             <tag>disq_flip_box</tag>
             <attributes>
@@ -157,7 +157,7 @@
                 <attribute type="link">front_button_url</attribute>
                 <attribute type="link">back_button_url</attribute>
             </attributes>
-        </divi4>
+        </shortcode>
         <shortcode>
             <tag>disq_image_mask</tag>
             <attributes>
@@ -167,7 +167,7 @@
                 <attribute type="link">link_option_url</attribute>
                 <attribute type="link">url</attribute>
             </attributes>
-        </divi4>
+        </shortcode>
         <shortcode>
             <tag>disq_lottie</tag>
             <attributes>
@@ -177,7 +177,7 @@
                 <attribute type="link">link_option_url</attribute>
                 <attribute type="link">url</attribute>
             </attributes>
-        </divi4>
+        </shortcode>
         <shortcode>
             <tag>disq_post_grid</tag>
             <attributes>
@@ -188,7 +188,7 @@
                 <attribute type="media-url">load_more_button_image</attribute>
                 <attribute type="media-url">background_image</attribute>
             </attributes>
-        </divi4>
+        </shortcode>
         <shortcode>
             <tag>disq_post_grid_child</tag>
             <attributes>
@@ -223,7 +223,7 @@
                 <attribute type="link">link_option_url</attribute>
                 <attribute type="link">url</attribute>
             </attributes>
-        </divi4>
+        </shortcode>
         <shortcode>
             <tag>disq_typing_text</tag>
             <attributes>
@@ -234,6 +234,16 @@
                 <attribute type="link">link_option_url</attribute>
                 <attribute type="link">url</attribute>
             </attributes>
-        </divi4>
-    </divi4s>
+        </shortcode>
+        <shortcode>
+            <tag>disq_post_reading_time</tag>
+            <attributes>
+                <attribute>time_prefix_text</attribute>
+                <attribute>time_suffix_text</attribute>
+                <attribute type="media-url">background_image</attribute>
+                <attribute type="link">link_option_url</attribute>
+                <attribute type="link">url</attribute>
+            </attributes>
+        </shortcode>
+    </shortcodes>
 </wpml-config>

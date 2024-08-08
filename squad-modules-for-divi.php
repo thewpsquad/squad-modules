@@ -11,7 +11,7 @@
  * Plugin Name:         Squad Modules for Divi Builder
  * Plugin URI:          https://squadmodules.com/
  * Description:         Enhance your Divi-powered websites with an elegant collection of Divi modules.
- * Version:             1.2.1
+ * Version:             1.2.2
  * Requires at least:   5.8
  * Requires PHP:        5.6
  * Author:              WP Squad
@@ -24,73 +24,75 @@
 
 namespace DiviSquad;
 
+use Exception;
+
 defined( 'ABSPATH' ) || die();
 
-/**
- * Autoload function.
- *
- * @param string $class_name Class name.
- *
- * @return void
- */
-spl_autoload_register(
-	static function ( $class_name ) {
-		// Bail out if the class name doesn't start with our prefix.
-		if ( strpos( $class_name, 'DiviSquad\\' ) !== 0 ) {
-			return;
+try {
+	/**
+	 * Autoload function.
+	 *
+	 * @param string $class_name Class name.
+	 *
+	 * @return void
+	 */
+	spl_autoload_register(
+		static function ( $class_name ) {
+			// Bail out if the class name doesn't start with our prefix.
+			if ( strpos( $class_name, 'DiviSquad\\' ) !== 0 ) {
+				return;
+			}
+			// Generate paths by namespace.
+			$regex = array(
+				'DiviSquad\\Admin\\'       => '/admin/',
+				'DiviSquad\\Base\\'        => '/includes/base/',
+				'DiviSquad\\Extensions\\'  => '/includes/extensions',
+				'DiviSquad\\Integration\\' => '/includes/integration/',
+				'DiviSquad\\Manager\\'     => '/includes/manager/',
+				'DiviSquad\\Modules\\'     => '/includes/modules/',
+				'DiviSquad\\Utils\\'       => '/includes/utils/',
+			);
+
+			// Replace the namespace separator with the path prefix.
+			$class_path_name = str_replace( array_keys( $regex ), array_values( $regex ), $class_name );
+
+			// Replace the namespace separator with the directory separator.
+			$valid_path_name = str_replace( array( '\\', '//' ), DIRECTORY_SEPARATOR, $class_path_name );
+
+			// Add the .php extension.
+			$file_path = __DIR__ . $valid_path_name . '.php';
+
+			if ( file_exists( $file_path ) ) {
+				require_once $file_path;
+			}
 		}
-		// Generate paths by namespace.
-		$regex = array(
-			'DiviSquad\\Admin\\'       => '/admin/',
-			'DiviSquad\\Base\\'        => '/includes/base/',
-			'DiviSquad\\Extensions\\'  => '/includes/extensions',
-			'DiviSquad\\Integration\\' => '/includes/integration/',
-			'DiviSquad\\Manager\\'     => '/includes/manager/',
-			'DiviSquad\\Modules\\'     => '/includes/modules/',
-			'DiviSquad\\Utils\\'       => '/includes/utils/',
-		);
+	);
 
-		// Replace the namespace separator with the path prefix.
-		$class_path_name = str_replace( array_keys( $regex ), array_values( $regex ), $class_name );
+	// Define the core constants.
+	define( 'DISQ__FILE__', __FILE__ );
+	define( 'DISQ_PLUGIN_BASE', plugin_basename( DISQ__FILE__ ) );
+	define( 'DISQ_DIR_PATH', dirname( DISQ__FILE__ ) );
+	define( 'DISQ_DIR_URL', plugin_dir_url( DISQ__FILE__ ) );
+	define( 'DISQ_ASSET_URL', trailingslashit( DISQ_DIR_URL . 'build' ) );
 
-		// Replace the namespace separator with the directory separator.
-		$valid_path_name = str_replace( array( '\\', '//' ), DIRECTORY_SEPARATOR, $class_path_name );
+	/**
+	 * Load the Plugin (free version).
+	 *
+	 * @since 1.2.0
+	 */
+	require_once __DIR__ . '/SquadModules.php';
 
-		// Add the .php extension.
-		$file_path = __DIR__ . $valid_path_name . '.php';
-
-		if ( file_exists( $file_path ) ) {
-			require_once $file_path;
-		}
+	/**
+	 * The instance of Divi Squad Plugin (Free).
+	 *
+	 * @return SquadModules
+	 */
+	function divi_squad() {
+		return SquadModules::get_instance();
 	}
-);
 
-/**
- * Define the core constants.
- *
- * @since 1.2.1
- */
-define( 'DISQ__FILE__', __FILE__ );
-define( 'DISQ_PLUGIN_BASE', plugin_basename( DISQ__FILE__ ) );
-define( 'DISQ_DIR_PATH', dirname( DISQ__FILE__ ) );
-define( 'DISQ_DIR_URL', plugin_dir_url( DISQ__FILE__ ) );
-define( 'DISQ_ASSET_URL', trailingslashit( DISQ_DIR_URL . 'build' ) );
-
-/**
- * Load the Plugin (free version).
- *
- * @since 1.2.0
- */
-require_once __DIR__ . '/SquadModules.php';
-
-/**
- * The instance of Divi Squad Plugin (Free).
- *
- * @return SquadModules
- */
-function divi_squad() {
-	return SquadModules::get_instance();
+	// Load the plugin.
+	divi_squad();
+} catch ( Exception $exception ) {
+	error_log( $exception->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 }
-
-// Load the plugin.
-divi_squad();

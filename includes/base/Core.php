@@ -266,10 +266,10 @@ abstract class Core {
 	public function wp_hook_enqueue_admin_scripts() {
 		// Set current required data into variables.
 		$admin_page_id     = 'divi_squad_admin_assets_backend';
-		$logo_fill_colord  = DISQ_DIR_URL . 'build/assets/logos/defaults/divi-squad-fill-colord.png';
-		$logo_fill_default = DISQ_DIR_URL . 'build/assets/logos/menu-icons/default.png';
-		$logo_fill_active  = DISQ_DIR_URL . 'build/assets/logos/menu-icons/active.png';
-		$logo_fill_focus   = DISQ_DIR_URL . 'build/assets/logos/menu-icons/focus.png';
+		$logo_fill_colord  = DISQ_DIR_URL . 'build/admin/images/divi-squad-default.png';
+		$logo_fill_default = DISQ_DIR_URL . 'build/admin/images/divi-squad-menu-default.png';
+		$logo_fill_active  = DISQ_DIR_URL . 'build/admin/images/divi-squad-menu-active.png';
+		$logo_fill_focus   = DISQ_DIR_URL . 'build/admin/images/divi-squad-menu-focus.png';
 
 		// Start style tag.
 		printf( '<style id="%1$s">', esc_attr( $admin_page_id ) );

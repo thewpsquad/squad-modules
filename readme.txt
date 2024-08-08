@@ -5,7 +5,7 @@ Tags: divi, divi module, divi theme, divi page builder, divi builder, extra them
 Requires at least: 5.8
 Tested up to: 6.4
 Requires PHP: 5.6
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -32,10 +32,10 @@ With [Squad Modules for Divi Builder](https://squadmodules.com/), you can effort
 
 
 
-== 13+ free modules and counting ==
-Squad Modules for Divi Builder includes over 13+ free modules that you can use to create stunning layouts, add interactive elements, and engage your website visitors.
+== 14+ free modules and counting ==
+Squad Modules for Divi Builder includes over 14+ free modules that you can use to create stunning layouts, add interactive elements, and engage your website visitors.
 
-== General Modules ==
+== 11 General Modules ==
 1. **Advanced Divider Module**: Create visually appealing dividers with various styles, shapes, and customization options.
 2. **Before After Image Slider**: Engage your visitors with interactive image comparisons using the Before After Image Slider module.
 3. **Business Hours**: Display your business hours in a clear and organized manner.
@@ -46,16 +46,17 @@ Squad Modules for Divi Builder includes over 13+ free modules that you can use t
 8. **Post Grid**: Display your blog posts, portfolio items, or custom post types in a stylish and organized grid layout. The Post Grid module provides flexibility and customization options to showcase your content in an appealing manner.
 9. **Typing Text**: Create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 10. **Image Gallery**: Showcase your visuals with elegance using the Image Gallery module from Squad Modules for Divi. Effortlessly create stunning galleries to engage and captivate your audience.
+11. **Post Reading Time**: It allows you to display an estimated reading time for your blog posts. This can be helpful for users who want to know how long it will take them to read a particular post.
 
-=== Form Styler Modules ===
-11. **Form Styler: Contact Form 7**: Enhance the design of your Contact Form 7 form with the Form Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
-12. **Form Styler: WP Forms**: Enhance the design of your WP Forms form with the Form Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
-13. **Form Styler: Gravity Forms**: Enhance the design of your Gravity Forms form with the Form Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
+== 3 Form Styler Modules ==
+1. **Form Styler: Contact Form 7**: Enhance the design of your Contact Form 7 form with the Form Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
+2. **Form Styler: WP Forms**: Enhance the design of your WP Forms form with the Form Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
+3. **Form Styler: Gravity Forms**: Enhance the design of your Gravity Forms form with the Form Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
 
-=== 4 Divi Squad Extensions ===
+== 4 Divi Squad Extensions ==
 Squad Modules for Divi Builder also includes four extensions that can help you take your website to the next level:
 
-1. **Divi Library Shortcode**: This extension adds a shortcode column to the Divi Library, so you can easily insert any layout into a Divi module or PHP file by using [divi_library_layout id=””] or [disq_divi_library_layout id=”123”].
+1. **Divi Library Shortcode**: This extension adds a shortcode column to the Divi Library, so you can easily insert any layout into a Divi module or PHP file by using ```[divi_library_layout id=””]``` or ```[disq_divi_library_layout id=”123”]```.
 2. **Font Upload**: This extension allows you to upload custom fonts to your website, so you can create a unique and consistent visual identity.
 3. **JSON Upload**: This extension makes it easy to import and export layouts, settings, and other data using JSON files. This can save you a lot of time when working on your website.
 4. **SVG Upload**: This extension allows you to upload custom SVG graphics to your website. SVG graphics are vector-based, so they can be scaled without losing quality. This makes them a great choice for logos, illustrations, and other graphics that need to be displayed at high resolutions.
@@ -127,7 +128,7 @@ Start using the elegant Divi modules in your Divi Builder and enjoy the enhanced
  Yes. If you don't have the Divi theme, you will need to have the Extra theme or Divi Builder plugin installed.
 
 = What are the system requirements for Squad Modules for Divi Builder? =
- Squad Modules for Divi Builder requires WordPress 5.8 or higher and Divi 4.10 or higher. It also requires PHP 5.6 or higher.
+ Squad Modules for Divi Builder require WordPress 5.8 or higher and Divi 4.10 or higher. It also requires PHP 5.6 or higher.
 
 
 
@@ -159,8 +160,12 @@ If you would like to contribute to the translation efforts for Squad Modules for
 12. Typing Text Module - This is a module that allows you to create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 
 
-
 == Upgrade Notice ==
+= 1.2.2 =
+* Introduced the Post Reading Time Module
+* Improved: Image Gallery, Post Grid modules
+* Improved: Admin Panel
+
 = 1.2.0 =
 * Introduced the Image Gallery Module
 * Introduced the Form Styler: Contact Form 7
@@ -184,8 +189,13 @@ If you would like to contribute to the translation efforts for Squad Modules for
 
 
 == Changelog ==
+= 1.2.2 (08-09-2023) =
+* Introduced the Post Reading Time Module
+* Improved: Image Gallery, Post Grid modules
+* Improved: Admin Panel
+
 = 1.2.1 (01-09-2023) =
-* Fixed: Plugin Actions links is not added.
+* Fixed: Plugin Actions links are not added.
 
 = 1.2.0 (01-09-2023) =
 * Introduced the Image Gallery Module

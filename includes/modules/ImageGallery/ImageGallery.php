@@ -3,9 +3,9 @@
 /**
  * Image Gallery Module Class which extend the Divi Builder Module Class.
  *
- * This class provides gallery adding functionalities for image in the visual builder.
+ * This class provides a gallery adding functionalities for image in the visual builder.
  *
- * @since           1.0.0
+ * @since           1.2.0
  * @package         squad-modules-for-divi
  * @author          WP Squad <wp@thewpsquad.com>
  * @license         GPL-3.0-only
@@ -20,7 +20,7 @@ use WP_Post;
 /**
  * Image Gallery Module Class.
  *
- * @since           1.0.0
+ * @since           1.2.0
  * @package         squad-modules-for-divi
  */
 class ImageGallery extends DISQ_Builder_Module {
@@ -29,7 +29,7 @@ class ImageGallery extends DISQ_Builder_Module {
 	 * Set the module name on init.
 	 *
 	 * @return void
-	 * @since 1.0.0
+	 * @since 1.2.0
 	 */
 	public function init() {
 		$this->name      = esc_html__( 'Image Gallery', 'squad-modules-for-divi' );
