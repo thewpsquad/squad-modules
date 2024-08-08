@@ -70,20 +70,6 @@ abstract class BuilderIntegrationAPIBase {
 	protected $build_path = 'build/divi-builder-4/';
 
 	/**
-	 * Dependencies for the plugin's JavaScript bundles.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @var array {
-	 *                          JavaScript Bundle Dependencies
-	 *
-	 * @type string[] $builder  Dependencies for the builder bundle
-	 * @type string[] $frontend Dependencies for the frontend bundle
-	 *                          }
-	 */
-	protected $bundle_dependencies = array();
-
-	/**
 	 * Divi Squad constructor.
 	 *
 	 * @param string $name           The plugin's WP Plugin name.

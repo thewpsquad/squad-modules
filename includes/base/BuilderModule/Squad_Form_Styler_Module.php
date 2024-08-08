@@ -695,13 +695,13 @@ abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 					$option   = wp_parse_args( $option, $defaults );
 
 					// Generate margin and padding for module.
-					$this->generate_styles(
+					$this->disq_process_margin_padding_styles(
 						array(
-							'base_attr_name' => $option_key,
+							'field'          => $option_key,
 							'selector'       => $option['selector'],
 							'hover_selector' => $option['hover_selector'],
 							'css_property'   => $option['type'],
-							'render_slug'    => $this->slug,
+							'type'           => $option['type'],
 						)
 					);
 				}

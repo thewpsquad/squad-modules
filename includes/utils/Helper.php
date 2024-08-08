@@ -16,6 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
+use function get_shortcode_regex;
+use function wp_doing_ajax;
+
 /**
  * Helper class.
  *

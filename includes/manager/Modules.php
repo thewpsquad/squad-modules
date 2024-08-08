@@ -146,7 +146,7 @@ class Modules {
 				'label'              => esc_html__( 'Image Gallery', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Effortlessly create stunning galleries to engage and captivate your audience.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
-				'last_modified'      => array( '1.2.2', '1.2.3', '1.3.0', '1.4.5', '1.4.8' ),
+				'last_modified'      => array( '1.2.2', '1.2.3', '1.3.0', '1.4.5', '1.4.8', '1.4.9' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -315,6 +315,33 @@ class Modules {
 	}
 
 	/**
+	 * Check the current module type.
+	 *
+	 * @param array  $module The array of current module.
+	 * @param string $type   The type of Divi Builder module, default is: D4. Available opinions are: D4, D5.
+	 *
+	 * @return bool
+	 */
+	protected function check_module_type( $module, $type = 'D4' ) {
+		$single        = isset( $module['type'] ) && is_string( $module['type'] ) && $type === $module['type'];
+		$compatibility = isset( $module['type'] ) && is_array( $module['type'] ) && in_array( $type, $module['type'], true );
+
+		return ( $single || $compatibility );
+	}
+
+	/**
+	 * Check the current module is an inactive module.
+	 *
+	 * @param array  $module The array of current module.
+	 * @param string $type   The type of Divi Builder module, default is: D4. Available opinions are: D4, D5.
+	 *
+	 * @return array|null
+	 */
+	protected function is_inactive_module( $module, $type = 'D4' ) {
+		return $this->check_module_type( $module, $type ) && ! $module['is_default_active'] ? $module : null;
+	}
+
+	/**
 	 *  Check the current module is an active module.
 	 *
 	 * @param array  $module The array of current module.
@@ -323,10 +350,7 @@ class Modules {
 	 * @return array|null
 	 */
 	protected function is_active_module( $module, $type = 'D4' ) {
-		$single        = isset( $module['type'] ) && is_string( $module['type'] ) && $type === $module['type'];
-		$compatibility = isset( $module['type'] ) && is_array( $module['type'] ) && in_array( $type, $module['type'], true );
-
-		return ( $single || $compatibility ) && $module['is_default_active'] ? $module : null;
+		return $this->check_module_type( $module, $type ) && $module['is_default_active'] ? $module : null;
 	}
 
 	/**
@@ -341,7 +365,10 @@ class Modules {
 	protected function get_filtered_modules( $callback, $modules, $type = 'D4' ) {
 		$filtered_modules = array();
 		foreach ( $modules as $module ) {
-			$filtered_modules[] = call_user_func_array( $callback, array( $module, $type ) );
+			$filtered_module = call_user_func_array( $callback, array( $module, $type ) );
+			if ( is_array( $filtered_module ) ) {
+				$filtered_modules[] = $filtered_module;
+			}
 		}
 
 		return $filtered_modules;
@@ -376,20 +403,40 @@ class Modules {
 	/**
 	 * Load the module class.
 	 *
-	 * @param string $path    The module class path.
-	 * @param mixed  $modules The available modules list.
+	 * @param string      $path            The module class path.
+	 * @param mixed       $my_modules      The available modules list.
+	 * @param string      $type            The type of Divi Builder module, default is: D4. Available opinions are: D4, D5.
 	 *
 	 * @return void
 	 */
-	protected function load_module_files( $path, $modules ) {
+	protected function load_module_files( $path, $my_modules, $type = 'D4' ) {
 		// Collect all active modules.
-		$active_modules = $this->get_default_active_modules();
+		$available_modules = $this->get_available_modules();
+		$default_modules   = $this->get_default_active_modules( $type );
+		$activated_modules = array();
 
-		if ( is_array( $modules ) ) {
-			$active_modules = $modules;
+		if ( is_array( $my_modules ) && count( $my_modules ) !== 0 ) {
+			// Get activated modules names that user activates.
+			$my_module_names = array();
+			foreach ( $my_modules as $my_module ) {
+				if ( $this->check_module_type( $my_module, $type ) && ! empty( $my_module['name'] ) ) {
+					$my_module_names[] = $my_module['name'];
+				}
+			}
+
+			// Get modules details that user activates.
+			foreach ( $available_modules as $module ) {
+				if ( in_array( $module['name'], $my_module_names, true ) ) {
+					$activated_modules[] = $module;
+				}
+			}
 		}
 
-		foreach ( $active_modules as $active_module ) {
+		// Collect all activate modules.
+		$activated_modules = array_merge( $default_modules, $activated_modules );
+		$activated_modules = array_unique( $activated_modules, SORT_REGULAR );
+
+		foreach ( $activated_modules as $active_module ) {
 			if ( file_exists( sprintf( '%1$s/modules/%2$s/%2$s.php', $path, $active_module['name'] ) ) ) {
 				$this->require_module_path( $path, $active_module['name'] );
 

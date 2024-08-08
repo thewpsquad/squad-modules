@@ -18,15 +18,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use DiviSquad\Base\Extensions;
 use DiviSquad\Utils\Asset;
-use DiviSquad\Utils\WP;
+use function add_filter;
 use function check_ajax_referer;
+use function current_user_can;
+use function esc_attr;
+use function esc_attr__;
 use function esc_html__;
-use function get_blog_option;
 use function get_current_blog_id;
+use function get_current_screen;
+use function get_object_taxonomies;
 use function get_post;
 use function is_multisite;
+use function load_template;
+use function sanitize_post;
+use function switch_to_blog;
+use function wp_create_nonce;
 use function wp_get_current_user;
+use function wp_get_object_terms;
 use function wp_insert_post;
+use function wp_send_json;
+use function wp_set_object_terms;
 
 /**
  * The Post Duplicator class.
@@ -126,8 +137,6 @@ class Copy extends Extensions {
 	 * @return void
 	 */
 	public function admin_enqueue_scripts() {
-		global $wpdb;
-
 		if ( $this->is_ignored_admin_screen() ) {
 			return;
 		}
@@ -138,39 +147,37 @@ class Copy extends Extensions {
 			Asset::register_script( 'vendor-toast', Asset::vendor_asset_path( 'jquery.toast' ), array( 'jquery' ) );
 			Asset::register_style( 'vendor-toast', Asset::vendor_asset_path( 'jquery.toast', array( 'ext' => 'css' ) ) );
 
-			Asset::asset_enqueue( 'ext-copy', Asset::extension_asset_path( 'copy' ), array( 'disq-vendor-tooltipster', 'disq-vendor-toast' ) );
+			Asset::asset_enqueue( 'ext-copy', Asset::extension_asset_path( 'copy' ), array( 'lodash', 'jquery', 'disq-vendor-tooltipster', 'disq-vendor-toast' ) );
 			Asset::style_enqueue( 'ext-copy', Asset::extension_asset_path( 'copy', array( 'ext' => 'css' ) ), array( 'disq-vendor-tooltipster', 'disq-vendor-toast' ) );
-			Asset::asset_enqueue( 'ext-copy-bulk', Asset::extension_asset_path( 'copy-bulk' ), array( 'disq-vendor-toast' ) );
+			Asset::asset_enqueue( 'ext-copy-bulk', Asset::extension_asset_path( 'copy-bulk' ), array( 'lodash', 'jquery', 'disq-vendor-toast' ) );
 			Asset::style_enqueue( 'ext-copy-bulk', Asset::extension_asset_path( 'copy-bulk', array( 'ext' => 'css' ) ), array( 'disq-vendor-toast' ) );
 
-			$select_options = array();
-			if ( is_multisite() ) :
-				$sites = $wpdb->get_results( "SELECT blog_id FROM $wpdb->blogs ORDER BY blog_id" );
-				foreach ( $sites as $site ) :
-					$select_options[ $site->blog_id ] = get_blog_option( $site->blog_id, 'blogname' );
-				endforeach;
-			endif;
-
-			// Load localize scripts.
-			WP::localize_script(
-				'disq-ext-copy',
-				'DiviSquadExtCopy',
-				array(
-					'isMultisite'   => is_multisite(),
-					'currentSiteID' => get_current_blog_id(),
-					'selectOptions' => $select_options,
-					'ajaxURL'       => admin_url( 'admin-ajax.php' ),
-					'ajaxNonce'     => wp_create_nonce( '_wpnonce' ),
-					'ajaxAction'    => 'disq_ext_duplicate_post',
-					'l10n'          => array(
-						'copy'        => esc_html__( 'Copy', 'squad-modules-for-divi' ),
-						'toast_title' => esc_html__( 'Squad Copy Extension', 'squad-modules-for-divi' ),
-						'empty_post'  => esc_html__( 'Kindly choose a minimum of one row for copying.', 'squad-modules-for-divi' ),
-						'unknown_er'  => esc_html__( 'Something went wrong!', 'squad-modules-for-divi' ),
-					),
-				)
-			);
+			// Load localize data.
+			add_filter( 'divi_squad_assets_backend_extra_data', array( $this, 'wp_localize_script_data' ) );
 		}
+	}
+
+	/**
+	 * Set localize data for admin area.
+	 *
+	 * @param array $exists_data Exists extra data.
+	 *
+	 * @return array
+	 */
+	public function wp_localize_script_data( $exists_data ) {
+		// Localize data.
+		$admin_localize = array(
+			'ajax_nonce_copy'  => wp_create_nonce( '_wpnonce' ),
+			'ajax_action_copy' => 'disq_ext_duplicate_post',
+			'l10n'             => array(
+				'copy'             => esc_html__( 'Copy', 'squad-modules-for-divi' ),
+				'copy_toast_title' => esc_html__( 'Squad Copy Extension', 'squad-modules-for-divi' ),
+				'copy_empty_post'  => esc_html__( 'Kindly choose a minimum of one row for copying.', 'squad-modules-for-divi' ),
+				'unknown_er'       => esc_html__( 'Something went wrong!', 'squad-modules-for-divi' ),
+			),
+		);
+
+		return array_merge( $exists_data, $admin_localize );
 	}
 
 	/**
@@ -271,7 +278,7 @@ class Copy extends Extensions {
 						$new_post_id = wp_insert_post( $args );
 
 						// get all current post-terms ad set them to the new post-draft.
-						$taxonomies = \get_object_taxonomies( $post->post_type );
+						$taxonomies = get_object_taxonomies( $post->post_type );
 						foreach ( $taxonomies as $taxonomy ) {
 							$post_terms = wp_get_object_terms( $post_id, $taxonomy, array( 'fields' => 'slugs' ) );
 							wp_set_object_terms( $new_post_id, $post_terms, $taxonomy, false );

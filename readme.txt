@@ -5,7 +5,7 @@ Tags: divi, divi module, divi theme, divi builder, divi page builder, divi plugi
 Requires at least: 5.0.0
 Tested up to: 6.5
 Requires PHP: 5.6
-Stable tag: 1.4.8
+Stable tag: 1.4.9
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -13,7 +13,7 @@ The Essential Divi plugin you install after Divi or Extra Theme! Packed with 25+
 
 == Description ==
 
-= A All-in-One advanced Divi plugin for the Divi Page Builder =
+= An All-in-One advanced Divi plugin for the Divi Page Builder =
 
 Enhance your Divi page building experience with 25+ creative modules and extensions. Add powers to your page builder using our easy-to-use modules those were designed to make your next WordPress page and posts design easier and prettier than ever before.
 
@@ -163,6 +163,11 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 13. Typing Text Module - This is a module that allows you to create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 
 == Upgrade Notice ==
+= 1.4.9 =
+* Improved:Modules locales support
+* Improved:Managers (Modules & Extensions)
+* Improved:Spacing Generation for form stylers
+
 = 1.4.8 =
 * Extension: Copy Post or Page (Multisite Supported)
 * Image Gallery Module: Overlay Feature with lightbox:
@@ -240,6 +245,15 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 * Enjoy the new collection of elegant Divi modules and enhance your website.
 
 == Changelog ==
+= 1.4.9 (11-01-2023) =
+
+**✨ Improvements:**
+
+* **Extension: Copy:** Improved the Copy Extension
+* **Modules locales support:** Enhanced localization support for modules.
+* **Managers (Modules & Extensions):** Improved the managers for Modules and Extensions
+* **Spacing Generation:** Improved the spacing generation for all form stylers.
+
 = 1.4.8 (06-01-2023) =
 
 **New Features:**
@@ -250,9 +264,9 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 
 **✨ Improvements:**
 
-* **Compatibility with Divi 4.23.3 & 4.23.4: ** Rest assured, Squad Modules plays nice with the latest Divi update.
-* **Modules locales support: ** Enhanced localization support for modules.
-* **Plugin Preview Banner: ** We've made it user-friendly for yours.
+* **Compatibility with Divi 4.23.3 & 4.23.4:** Rest assured, Squad Modules plays nice with the latest Divi update.
+* **Modules locales support:** Enhanced localization support for modules.
+* **Plugin Preview Banner:** We've made it user-friendly for yours.
 
 = 1.4.7 (21-12-2023) =
 

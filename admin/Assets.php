@@ -67,22 +67,20 @@ class Assets {
 	 */
 	public function wp_hook_enqueue_plugin_admin_asset( $hook_suffix ) {
 		// Load plugin asset in the all admin pages.
-		Asset::asset_enqueue( 'admin-common', Asset::admin_asset_path( 'admin-common' ) );
+		Asset::asset_enqueue( 'admin-common', Asset::admin_asset_path( 'admin-common' ), array( 'jquery', 'wp-api-fetch' ) );
 		Asset::style_enqueue( 'admin-common', Asset::admin_asset_path( 'admin-common', array( 'ext' => 'css' ) ) );
 
-		// Load localize scripts.
-		$admin_localize_scripts = $this->wp_common_localize_script_data();
-		WP::localize_script( 'disq-admin-common', 'DISQAdminCommonBackend', $admin_localize_scripts );
+		// Load localize data.
+		add_filter( 'divi_squad_assets_backend_extra_data', array( $this, 'wp_common_localize_script_data' ) );
 
 		// Load plugin asset in the allowed admin pages only.
 		if ( in_array( $hook_suffix, self::get_plugin_asset_allowed_pages(), true ) ) {
 			// Load all assets including scripts and stylesheets.
-			Asset::asset_enqueue( 'admin', Asset::admin_asset_path( 'admin' ) );
+			Asset::asset_enqueue( 'admin', Asset::admin_asset_path( 'admin' ), array( 'lodash', 'react', 'react-dom', 'wp-api-fetch', 'wp-element' ) );
 			Asset::style_enqueue( 'admin', Asset::admin_asset_path( 'admin', array( 'ext' => 'css' ) ) );
 
-			// Load localize scripts.
-			$admin_localize_scripts = $this->wp_localize_script_data();
-			WP::localize_script( 'disq-admin', 'DISQAdminBackend', $admin_localize_scripts );
+			// Load localize data.
+			add_filter( 'divi_squad_assets_backend_extra_data', array( $this, 'wp_localize_script_data' ) );
 
 			// Load script translations.
 			$localize_path = divi_squad()->get_localize_path();
@@ -102,13 +100,15 @@ class Assets {
 	/**
 	 * Set localize data for admin area.
 	 *
+	 * @param array $exists_data Exists extra data.
+	 *
 	 * @return array
 	 */
-	public function wp_common_localize_script_data() {
+	public function wp_common_localize_script_data( $exists_data ) {
 		// Collect the plugin name.
 		$namespace = divi_squad()->get_name();
 
-		// for review notice.
+		// For review notice.
 		$review_routes = array(
 			'reviewNextWeek'         => array(
 				'root'    => 'review/next_week',
@@ -128,24 +128,30 @@ class Assets {
 			),
 		);
 
-		return array(
-			'rest_api' => array(
+		// Rest API routes for admin.
+		$admin_rest_routes = array(
+			'rest_api_review' => array(
 				'route'     => get_rest_url(),
 				'namespace' => "/$namespace/v1",
 				'routes'    => array_merge( $review_routes, array() ),
 			),
 		);
+
+		return array_merge( $exists_data, $admin_rest_routes );
 	}
 
 	/**
 	 * Set localize data for admin area.
 	 *
+	 * @param array $exists_data Exists extra data.
+	 *
 	 * @return array
 	 */
-	public function wp_localize_script_data() {
+	public function wp_localize_script_data( $exists_data ) {
 		// Collect the plugin data.
-		$name    = $this->options['Name'];
-		$version = $this->options['Version'];
+		$namespace       = $this->options['Name'];
+		$version_dot     = $this->options['Version'];
+		$version_current = divi_squad()->get_version();
 
 		// Collect admin menus.
 		$admin_menu = new \DiviSquad\Admin\Menu();
@@ -182,23 +188,24 @@ class Assets {
 			),
 		);
 
-		return array(
-			'version'      => divi_squad()->get_version(),
-			'version_real' => $version,
-			'rest_api'     => array(
+		// Localize data for squad admin.
+		$admin_localize = array(
+			'version_wp_current' => $version_current,
+			'version_wp_real'    => $version_dot,
+			'rest_api_wp'        => array(
 				'route'     => get_rest_url(),
-				'namespace' => "/$name/v1",
+				'namespace' => "/$namespace/v1",
 				'routes'    => array_merge( $module_routes, $extension_routes, $whats_new_routes ),
 			),
-			'admin_menus'  => $admin_menu->get_admin_sub_menu(),
-			'links'        => array(
+			'admin_menus'        => $admin_menu->get_admin_sub_menu(),
+			'links'              => array(
 				'dashboard'  => admin_url( 'admin.php?page=divi_squad_dashboard' ),
 				'modules'    => admin_url( 'admin.php?page=divi_squad_dashboard#/modules' ),
 				'extensions' => admin_url( 'admin.php?page=divi_squad_dashboard#/extensions' ),
 				'whatsNew'   => admin_url( 'admin.php?page=divi_squad_dashboard#/whats-new' ),
 				'premium'    => admin_url( 'admin.php?page=divi_squad_dashboard#/go-premium' ),
 			),
-			'l10n'         => array(
+			'l10n'               => array(
 				'divi_squad'                  => esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
 				'menu_dashboard'              => esc_html__( 'Dashboard', 'squad-modules-for-divi' ),
 				'menu_modules'                => esc_html__( 'Modules', 'squad-modules-for-divi' ),
@@ -249,14 +256,19 @@ class Assets {
 				'preparing'                   => esc_html__( 'Preparing', 'squad-modules-for-divi' ),
 				'modules_saved'               => esc_html__( 'Enabled modules saved!', 'squad-modules-for-divi' ),
 				'modules_saving_failed'       => esc_html__( 'Whoops! Enabled modules not saved. Try again later.', 'squad-modules-for-divi' ),
-				'extensions_saved'            => esc_html__( 'Enabled modules saved!', 'squad-modules-for-divi' ),
-				'extensions_saving_failed'    => esc_html__( 'Whoops! Enabled modules not saved. Try again later.', 'squad-modules-for-divi' ),
+				'extensions_saved'            => esc_html__( 'Enabled extensions saved!', 'squad-modules-for-divi' ),
+				'extensions_saving_failed'    => esc_html__( 'Whoops! Enabled extensions not saved. Try again later.', 'squad-modules-for-divi' ),
 				'support'                     => array(
 					'popup_title'     => esc_html__( 'We are here to assist you with any queries you may have. Feel free to ask us anything!', 'squad-modules-for-divi' ),
 					'message_default' => esc_html__( 'Hi, how can I help?', 'squad-modules-for-divi' ),
 				),
+				'not_found_title'             => esc_html__( 'Oops, Page not found!', 'squad-modules-for-divi' ),
+				'not_found_message'           => esc_html__( 'The page you are looking for might have been removed had its name changed or is temporarily unavailable.', 'squad-modules-for-divi' ),
+				'go_back'                     => esc_html__( 'Go Back', 'squad-modules-for-divi' ),
 			),
-			'plugins'      => WP::get_active_plugins(),
+			'plugins'            => WP::get_active_plugins(),
 		);
+
+		return array_merge( $exists_data, $admin_localize );
 	}
 }

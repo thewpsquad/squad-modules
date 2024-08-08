@@ -133,13 +133,13 @@ final class SquadModules extends Integration\Core {
 			$wp->let_the_journey_start(
 				static function () {
 					self::$instance->load_global_assets();
-					self::$instance->localize_scripts_data();
 					self::$instance->load_admin_interface( self::$instance->get_options() );
-					self::$instance->register_ajax_rest_api_routes();
 					self::$instance->init();
 					self::$instance->load_text_domain();
 					self::$instance->load_all_extensions();
 					self::$instance->load_divi_modules_for_builder();
+					self::$instance->register_ajax_rest_api_routes();
+					self::$instance->localize_scripts_data();
 				}
 			);
 		}
