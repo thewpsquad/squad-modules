@@ -5,32 +5,31 @@
  *
  * This class provides item adding functionalities for Lottie Image in the visual builder.
  *
- * @since           1.0.0
- * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
- * @license         GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Modules\Lottie;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use ET_Builder_Module_Helper_MultiViewOptions;
 use function esc_attr__;
 use function esc_html__;
-use function et_core_esc_previously;
 use function et_pb_multi_view_options;
 use function wp_enqueue_script;
 use function wp_json_encode;
+use function wp_kses_post;
 
 /**
  * Lottie Image Module Class.
  *
- * @since           1.0.0
- * @package         squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.0.0
  */
-class Lottie extends Squad_Module {
+class Lottie extends DiviSquad_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -41,7 +40,7 @@ class Lottie extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Lottie Image', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Lottie Images', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/lottie.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/lottie.svg' );
 
 		$this->slug             = 'disq_lottie';
 		$this->vb_support       = 'on';
@@ -439,7 +438,7 @@ class Lottie extends Squad_Module {
 
 		return sprintf(
 			'<div class="squad-lottie-wrapper">%1$s</div>',
-			et_core_esc_previously( $this->squad_render_lottie( $multi_view ) )
+			wp_kses_post( $this->squad_render_lottie( $multi_view ) )
 		);
 	}
 
@@ -448,7 +447,7 @@ class Lottie extends Squad_Module {
 	 *
 	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view Multiview object instance.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_lottie( $multi_view ) {
 		if ( '' !== $this->props['lottie_src_type'] && ( '' !== $this->props['lottie_src_upload'] || '' !== $this->props['lottie_src_remote'] ) ) {
@@ -524,6 +523,6 @@ class Lottie extends Squad_Module {
 			);
 		}
 
-		return null;
+		return '';
 	}
 }

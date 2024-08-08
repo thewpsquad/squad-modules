@@ -5,20 +5,18 @@
  *
  * This class provides item adding functionalities for a post-reading time element in the visual builder.
  *
- * @since           1.2.2
- * @package         squad-modules-for-divi
- * @author          WP Squad <support@thewpsquad.com>
- * @license         GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.2
  */
 
 namespace DiviSquad\Modules\PostReadingTime;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function esc_attr;
 use function esc_html__;
-use function et_core_esc_previously;
 use function et_pb_background_options;
 use function get_comments;
 use function get_post_field;
@@ -26,15 +24,16 @@ use function get_post_type;
 use function get_the_ID;
 use function in_the_loop;
 use function is_singular;
+use function wp_kses_post;
 use function wp_strip_all_tags;
 
 /**
  * Post-Reading Time Module Class.
  *
- * @since           1.2.2
- * @package         squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.2.2
  */
-class PostReadingTime extends Squad_Module {
+class PostReadingTime extends DiviSquad_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -45,7 +44,7 @@ class PostReadingTime extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Post Reading Time', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Post Reading Times', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/post-reading-time.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/post-reading-time.svg' );
 
 		$this->slug             = 'disq_post_reading_time';
 		$this->vb_support       = 'on';
@@ -415,11 +414,11 @@ class PostReadingTime extends Squad_Module {
 
 		return sprintf(
 			'<div class="time-text-wrapper et_pb_with_background"><%5$s class="time-text-container">%1$s%2$s%3$s</%5$s>%4$s</div>',
-			et_core_esc_previously( $time_prefix_text ),
-			et_core_esc_previously( $reading_time_text ),
-			et_core_esc_previously( $updated_suffix_text ),
-			et_core_esc_previously( $time_divider ),
-			et_core_esc_previously( $time_level )
+			wp_kses_post( $time_prefix_text ),
+			wp_kses_post( $reading_time_text ),
+			wp_kses_post( $updated_suffix_text ),
+			wp_kses_post( $time_divider ),
+			wp_kses_post( $time_level )
 		);
 	}
 
@@ -428,7 +427,7 @@ class PostReadingTime extends Squad_Module {
 	 *
 	 * @param array $attrs List of attributes.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_reading_time_text( $attrs ) {
 		if ( in_the_loop() ) {
@@ -438,7 +437,7 @@ class PostReadingTime extends Squad_Module {
 			return sprintf( '<div class="time-text-item time-text-element" data-text="%1$s"></div>', esc_attr( $time_text ) );
 		}
 
-		return null;
+		return '';
 	}
 
 	/**
@@ -505,7 +504,6 @@ class PostReadingTime extends Squad_Module {
 
 	/**
 	 * Adds additional reading time for images.
-	 * Calculate additional reading time added by images in posts based on calculations by Medium. https://blog.medium.com/read-time-and-you-bc2048ab620c
 	 *
 	 * @param int   $total_images     number of images in post.
 	 * @param array $words_per_minute words per minute.
@@ -519,9 +517,9 @@ class PostReadingTime extends Squad_Module {
 		// For the first image adds 12 seconds, the second image adds 11, ..., for image 10+ add 3 seconds.
 		for ( $i = 1; $i <= $total_images; $i++ ) {
 			if ( $i >= 10 ) {
-				$additional_time += 3 * (int) $words_per_minute / 60;
+				$additional_time += 3 * absint( $words_per_minute ) / 60;
 			} else {
-				$additional_time += ( 12 - ( $i - 1 ) ) * (int) $words_per_minute / 60;
+				$additional_time += ( 12 - ( $i - 1 ) ) * absint( $words_per_minute ) / 60;
 			}
 		}
 
@@ -534,14 +532,14 @@ class PostReadingTime extends Squad_Module {
 	 * @param string $attribute    The text attribute name.
 	 * @param string $css_selector The stylesheet selector for the attribute.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_time_optional_text( $attribute, $css_selector ) {
 		if ( ! empty( $this->prop( $attribute, '' ) ) ) {
 			return sprintf( '<div class="%1$s" data-text="%2$s"></div>', esc_attr( $css_selector ), esc_attr( $this->prop( $attribute, '' ) ) );
 		}
 
-		return null;
+		return '';
 	}
 
 	/**
@@ -549,7 +547,7 @@ class PostReadingTime extends Squad_Module {
 	 *
 	 * @param array $attrs List of unprocessed attributes.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_time_divider( $attrs ) {
 		if ( 'on' === $this->prop( 'show_divider', 'off' ) ) {
@@ -571,11 +569,11 @@ class PostReadingTime extends Squad_Module {
 
 			return sprintf(
 				' <span class="%1$s"></span>',
-				et_core_esc_previously( implode( ' ', $time_divider_classes ) )
+				wp_kses_post( implode( ' ', $time_divider_classes ) )
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**

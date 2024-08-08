@@ -2,11 +2,9 @@
 /**
  * The main class for Divi Squad.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Integrations;
@@ -16,8 +14,8 @@ use DiviSquad\Base\DiviBuilder\IntegrationAPI;
 /**
  * Divi Squad Class.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.0.0
  */
 class DiviBuilder extends IntegrationAPI {
 

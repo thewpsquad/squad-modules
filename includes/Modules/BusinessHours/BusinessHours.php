@@ -7,21 +7,21 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@squadmodules.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\BusinessHours;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function esc_html__;
 use function et_builder_get_text_orientation_options;
 use function et_builder_i18n;
-use function et_core_esc_previously;
 use function et_pb_background_options;
 use function et_pb_multi_view_options;
+use function wp_kses_post;
 
 /**
  * Business Hours Module Class.
@@ -29,7 +29,7 @@ use function et_pb_multi_view_options;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class BusinessHours extends Squad_Module {
+class BusinessHours extends DiviSquad_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -40,7 +40,7 @@ class BusinessHours extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Business Hours', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Business Hours', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/business-hours.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/business-hours.svg' );
 
 		$this->slug             = 'disq_business_hours';
 		$this->child_slug       = 'disq_business_day';
@@ -525,7 +525,7 @@ class BusinessHours extends Squad_Module {
 	 */
 	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
 		// Show a notice message in the frontend if the list item is empty.
-		$content_warning  = sprintf( '<div class="divi_squad_notice">%s</div>', esc_html__( 'Add one or more business day.', 'squad-modules-for-divi' ) );
+		$content_warning  = sprintf( '<div class="squad-notice">%s</div>', esc_html__( 'Add one or more business day.', 'squad-modules-for-divi' ) );
 		$title_verified   = 'on' === $this->prop( 'title__enable', 'off' ) ? $this->squad_render_title_text() : null;
 		$content_verified = '' === $this->content ? $content_warning : $this->content;
 
@@ -543,7 +543,7 @@ class BusinessHours extends Squad_Module {
 	/**
 	 * Render title
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_title_text() {
 		$multi_view = et_pb_multi_view_options( $this );
@@ -562,7 +562,7 @@ class BusinessHours extends Squad_Module {
 
 		return sprintf(
 			'<div class="bh-element bh-title-wrapper">%1$s</div>',
-			et_core_esc_previously( $title_text )
+			wp_kses_post( $title_text )
 		);
 	}
 

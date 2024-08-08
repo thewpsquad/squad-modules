@@ -5,18 +5,15 @@
  *
  * This class provides contact form 7 with customization opportunities in the visual builder.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.0
  */
 
 namespace DiviSquad\Modules\FormStylerContactForm7;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Form_Styler as Squad_Form_Styler;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Form_Styler as SquadFormStyler;
 use DiviSquad\Base\DiviBuilder\Utils;
-use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
 use function do_shortcode;
 use function esc_html__;
@@ -24,10 +21,10 @@ use function esc_html__;
 /**
  * The Form Styler: Contact Form 7 Module Class.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.2.0
  */
-class ContactForm7 extends Squad_Form_Styler {
+class ContactForm7 extends SquadFormStyler {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -38,7 +35,7 @@ class ContactForm7 extends Squad_Form_Styler {
 	public function init() {
 		$this->name      = esc_html__( 'Contact Form 7', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Contact Form 7', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/contact-form-7.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/contact-form-7.svg' );
 
 		$this->slug             = 'disq_form_styler_cf7';
 		$this->vb_support       = 'on';
@@ -83,7 +80,7 @@ class ContactForm7 extends Squad_Form_Styler {
 			),
 			'__forms'               => array(
 				'type'                => 'computed',
-				'computed_callback'   => array( self::class, 'disq_form_styler__get_form_html' ),
+				'computed_callback'   => array( self::class, 'squad_form_styler__get_form_html' ),
 				'computed_depends_on' => array(
 					'form_id',
 				),
@@ -118,7 +115,7 @@ class ContactForm7 extends Squad_Form_Styler {
 	/**
 	 * Declare advanced fields for the module
 	 *
-	 * @return array[]
+	 * @return array
 	 */
 	public function get_advanced_fields_config() {
 		$form_selector = $this->get_form_selector_default();
@@ -205,9 +202,9 @@ class ContactForm7 extends Squad_Form_Styler {
 					'label_prefix' => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
 					'css'          => array(
 						'main' => array(
-							'border_radii'        => "$form_selector",
+							'border_radii'        => $form_selector,
 							'border_radii_hover'  => "$form_selector:hover",
-							'border_styles'       => "$form_selector",
+							'border_styles'       => $form_selector,
 							'border_styles_hover' => "$form_selector:hover",
 						),
 					),
@@ -305,7 +302,7 @@ class ContactForm7 extends Squad_Form_Styler {
 					'label'             => esc_html__( 'Wrapper Box Shadow', 'squad-modules-for-divi' ),
 					'option_category'   => 'layout',
 					'css'               => array(
-						'main'  => "$form_selector",
+						'main'  => $form_selector,
 						'hover' => "$form_selector:hover",
 					),
 					'default_on_fronts' => array(
@@ -384,6 +381,49 @@ class ContactForm7 extends Squad_Form_Styler {
 	}
 
 	/**
+	 * Get the stylesheet selector for form tag.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_default() {
+		return "$this->main_css_element div .wpcf7 form.wpcf7-form";
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_default() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils::form_get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_hover() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils::form_get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field:hover";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
 	 * Declare custom css fields for the module
 	 *
 	 * @return array[]
@@ -394,7 +434,7 @@ class ContactForm7 extends Squad_Form_Styler {
 		return array(
 			'wrapper'         => array(
 				'label'    => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
-				'selector' => "$form_selector",
+				'selector' => $form_selector,
 			),
 			'field'           => array(
 				'label'    => esc_html__( 'Field', 'squad-modules-for-divi' ),
@@ -421,6 +461,33 @@ class ContactForm7 extends Squad_Form_Styler {
 				'selector' => $this->get_success_message_selector_default(),
 			),
 		);
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_default() {
+		return "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_default() {
+		return "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_default() {
+		return "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors";
 	}
 
 	/**
@@ -468,20 +535,20 @@ class ContactForm7 extends Squad_Form_Styler {
 		// Show a notice message in the frontend if the contact form is not installed.
 		if ( ! class_exists( 'WPCF7' ) ) {
 			return sprintf(
-				'<div class="divi_squad_notice">%s</div>',
+				'<div class="squad-notice">%s</div>',
 				esc_html__( 'Contact Form 7 is not installed', 'squad-modules-for-divi' )
 			);
 		}
 
-		if ( ! empty( self::disq_form_styler__get_form_html( $attrs ) ) ) {
+		if ( ! empty( self::squad_form_styler__get_form_html( $attrs ) ) ) {
 			$this->squad_generate_all_styles( $attrs );
 
-			return self::disq_form_styler__get_form_html( $attrs );
+			return self::squad_form_styler__get_form_html( $attrs );
 		}
 
 		// Show a notice message in the frontend if the form is not selected.
 		return sprintf(
-			'<div class="divi_squad_notice">%s</div>',
+			'<div class="squad-notice">%s</div>',
 			esc_html__( 'Please select a form.', 'squad-modules-for-divi' )
 		);
 	}
@@ -495,57 +562,21 @@ class ContactForm7 extends Squad_Form_Styler {
 	 * @return string the html output.
 	 * @since 1.0.0
 	 */
-	public static function disq_form_styler__get_form_html( $attrs, $content = null ) {
+	public static function squad_form_styler__get_form_html( $attrs, $content = null ) {
+		// Check if the form id is empty or not.
+		if ( empty( $attrs['form_id'] ) || Utils::$default_form_id === $attrs['form_id'] || ! class_exists( '\WPCF7' ) ) {
+				return '';
+		}
+
 		// Collect all from the database.
-		$data = Utils::form_get_all_items( 'cf7', 'id' );
-		if ( ! empty( $attrs['form_id'] ) && Utils::$default_form_id !== $attrs['form_id'] && isset( $data[ $attrs['form_id'] ] ) ) {
-			return do_shortcode( sprintf( '[contact-form-7 id="%s"]', esc_attr( $data[ $attrs['form_id'] ] ) ) );
+		$collection = Utils::form_get_all_items( 'cf7', 'id' );
+
+		// Check if the form id is existing.
+		if ( ! isset( $collection[ $attrs['form_id'] ] ) ) {
+			return '';
 		}
 
-		return null;
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_default() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils::form_get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_hover() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils::form_get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field:hover";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_default() {
-		return "$this->main_css_element div .wpcf7 form.wpcf7-form";
+		return do_shortcode( sprintf( '[contact-form-7 id="%s"]', esc_attr( $collection[ $attrs['form_id'] ] ) ) );
 	}
 
 	/**
@@ -558,15 +589,6 @@ class ContactForm7 extends Squad_Form_Styler {
 	}
 
 	/**
-	 * Get the stylesheet selector for the error message.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_default() {
-		return "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors";
-	}
-
-	/**
 	 * Get the stylesheet selector for the error message to use in hover.
 	 *
 	 * @return string
@@ -576,30 +598,12 @@ class ContactForm7 extends Squad_Form_Styler {
 	}
 
 	/**
-	 * Get the stylesheet selector for the success message.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_default() {
-		return "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors";
-	}
-
-	/**
 	 * Get the stylesheet selector for the success message to use in hover.
 	 *
 	 * @return string
 	 */
 	protected function get_success_message_selector_hover() {
 		return "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output:hover, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output:hover, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output:hover, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_default() {
-		return "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit";
 	}
 
 	/**

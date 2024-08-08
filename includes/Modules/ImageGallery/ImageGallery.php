@@ -5,24 +5,26 @@
  *
  * This class provides a gallery adding functionalities for image in the visual builder.
  *
- * @since           1.2.0
- * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
- * @license         GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.0
  */
 
 namespace DiviSquad\Modules\ImageGallery;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
-use ET_Builder_Module_Helper_Overlay;
+use ET_Builder_Module_Helper_Overlay as OverlayHelper;
 use WP_Post;
 use function _wp_get_image_size_from_meta;
 use function apply_filters;
+use function divi_squad;
+use function esc_attr;
 use function esc_html__;
 use function et_builder_i18n;
 use function et_builder_is_loading_data;
+use function et_pb_background_layout_options;
 use function et_pb_media_options;
 use function get_permalink;
 use function get_post_meta;
@@ -32,15 +34,16 @@ use function wp_enqueue_script;
 use function wp_get_attachment_image_src;
 use function wp_get_attachment_metadata;
 use function wp_json_encode;
+use function wp_kses_post;
 use function wp_parse_args;
 
 /**
  * Image Gallery Module Class.
  *
- * @since           1.2.0
- * @package         squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.2.0
  */
-class ImageGallery extends Squad_Module {
+class ImageGallery extends DiviSquad_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -51,7 +54,7 @@ class ImageGallery extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Image Gallery', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Image Galleries', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/image-gallery.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/image-gallery.svg' );
 
 		$this->slug             = 'disq_image_gallery';
 		$this->vb_support       = 'on';
@@ -132,13 +135,14 @@ class ImageGallery extends Squad_Module {
 			),
 			'filters'        => array(
 				'default'              => Utils::selectors_default( $this->main_css_element ),
-				'child_filters_target' => array(
-					'css'         => array(
+				'child_filters_target' => Utils::add_filters_field(
+					et_builder_i18n( 'Image' ),
+					'advanced',
+					'image',
+					array(
 						'main'  => "$this->main_css_element div .gallery-images img",
 						'hover' => "$this->main_css_element div .gallery-images img:hover",
-					),
-					'tab_slug'    => 'advanced',
-					'toggle_slug' => 'image',
+					)
 				),
 			),
 			'link_options'   => false,
@@ -368,8 +372,8 @@ class ImageGallery extends Squad_Module {
 				'depends_show_if' => 'on',
 				'tab_slug'        => 'advanced',
 				'toggle_slug'     => 'overlay',
-				'mobile_options'  => true,
-				'sticky'          => true,
+				'mobile_options'  => false,
+				'sticky'          => false,
 			),
 		);
 
@@ -410,19 +414,18 @@ class ImageGallery extends Squad_Module {
 		// Show a notice message in the frontend if the list item is empty.
 		if ( empty( $this->prop( 'gallery_ids', '' ) ) ) {
 			return sprintf(
-				'<div class="divi_squad_notice">%s</div>',
+				'<div class="squad-notice">%s</div>',
 				esc_html__( 'Add one or more image(s).', 'squad-modules-for-divi' )
 			);
 		}
 
-		if ( ! empty( $this->prop( 'gallery_ids', '' ) ) ) {
-			if ( 'on' === $this->prop( 'show_in_lightbox', 'off' ) ) {
-				wp_enqueue_script( 'squad-vendor-images-loaded' );
-				wp_enqueue_script( 'squad-vendor-light-gallery' );
-			}
-
-			wp_enqueue_script( 'squad-module-gallery' );
+		// Enqueue scripts and styles.
+		if ( 'on' === $this->prop( 'show_in_lightbox', 'off' ) ) {
+			wp_enqueue_script( 'squad-vendor-images-loaded' );
+			wp_enqueue_script( 'squad-vendor-light-gallery' );
 		}
+
+		wp_enqueue_script( 'squad-module-gallery' );
 
 		// Generate styles.
 		self::set_style(
@@ -505,14 +508,25 @@ class ImageGallery extends Squad_Module {
 			return '';
 		}
 
-		$gallery_options  = array(
-			'speed'   => 500,
-			'plugins' => apply_filters( 'divi_squad_module_gallery_plugins', array( 'fullscreen', 'thumbnail' ) ),
-		);
+		// Retrieve the gallery settings.
 		$gallery_settings = wp_array_slice_assoc( $args, array( 'show_in_lightbox' ) );
 
-		ob_start();
+		/**
+		 * Filter the gallery plugins.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @param array $gallery_plugins The gallery plugins.
+		 *
+		 * @return array
+		 */
+		$gallery_plugins = apply_filters( 'divi_squad_module_gallery_plugins', array( 'fullscreen', 'thumbnail' ) );
 
+		// Gallery options.
+		$gallery_options = array(
+			'speed'   => 500,
+			'plugins' => $gallery_plugins,
+		);
 		$images_quantity = $this->prop( 'images_quantity', 'default' );
 		$image_count     = $this->prop( 'gallery_image_count', 4 );
 
@@ -520,57 +534,14 @@ class ImageGallery extends Squad_Module {
 		$background_layout_class_names = et_pb_background_layout_options()->get_background_layout_class( $this->props );
 		$this->add_classname( $background_layout_class_names );
 
+		ob_start();
+
 		print sprintf(
-			'<div class="gallery-images" data-per_page="%1$s" data-setting=\'%2$s\'>',
-			esc_attr( $this->prop( 'gallery_image_count', '4' ) ),
+			'<div class="gallery-images" data-setting=\'%1$s\'>',
 			wp_json_encode( array_merge( $gallery_options, $gallery_settings ) )
 		);
 
-		foreach ( $attachments as $image_index => $attachment ) {
-			$image_attrs          = array();
-			$image_attrs['alt']   = $attachment->image_alt_text;
-			$image_attrs['style'] = ( 'custom' === $images_quantity && (int) $image_count < ( $image_index + 1 ) ) ? 'none' : '';
-
-			// Add classes.
-			$attachment_class      = et_pb_media_options()->get_image_attachment_class( $args, '', $attachment->ID );
-			$image_attrs['class']  = "squad-image $attachment_class";
-			$image_attrs['srcset'] = $attachment->image_src_full . ' 479w, ' . $attachment->image_src_thumb . ' 480w';
-			$image_attrs['sizes']  = '(max-width:479px) 479px, 100vw';
-
-			print sprintf(
-				'<a class="gallery-item" title="" href="%1$s" data-lg-size="%3$s" data-pinterest-text="%2$s" data-tweet-text="%2$s" data-src="%1$s" data-sub-html=""><div class="gallery-image">',
-				esc_url( $attachment->image_src_full ),
-				esc_attr( $attachment->post_excerpt ),
-				esc_attr( $attachment->lg_size )
-			);
-
-			$this->render_image( $attachment->image_src_thumb, $image_attrs );
-
-			if ( 'on' === $this->prop( 'show_in_lightbox', 'off' ) ) {
-				// Collect sticky object.
-				$sticky = et_pb_sticky_options();
-
-				// Collect hover icon.
-				$hover_icon        = $this->props['hover_icon'];
-				$hover_icon_values = et_pb_responsive_options()->get_property_values( $this->props, 'hover_icon' );
-				$hover_icon_tablet = isset( $hover_icon_values['tablet'] ) ? $hover_icon_values['tablet'] : '';
-				$hover_icon_phone  = isset( $hover_icon_values['phone'] ) ? $hover_icon_values['phone'] : '';
-				$hover_icon_sticky = $sticky->get_value( 'hover_icon', $this->props );
-
-				$overlay_output = ET_Builder_Module_Helper_Overlay::render(
-					array(
-						'icon'        => $hover_icon,
-						'icon_tablet' => $hover_icon_tablet,
-						'icon_phone'  => $hover_icon_phone,
-						'icon_sticky' => $hover_icon_sticky,
-					)
-				);
-
-				print wp_kses_post( $overlay_output );
-			}
-
-			print '</div></a>';
-		}
+		$this->render_gallery_items( $attachments, $images_quantity, $image_count );
 
 		print '</div>';
 
@@ -642,5 +613,59 @@ class ImageGallery extends Squad_Module {
 		}
 
 		return $attachments;
+	}
+
+	/**
+	 * Renders gallery items.
+	 *
+	 * @param array|WP_Post $attachments     Array of attachment objects.
+	 * @param string        $images_quantity Quantity of images to display.
+	 * @param int           $image_count     Count of images per page.
+	 */
+	public function render_gallery_items( $attachments, $images_quantity, $image_count ) {
+		/**
+		 * Loop through each attachment and render the image.
+		 *
+		 * @var int            $image_index The image index.
+		 * @var WP_Post|object $attachment {
+		 *     @property int    $ID                The attachment ID.
+		 *     @property string $post_excerpt      The attachment excerpt.
+		 *     @property string $image_title       The attachment title.
+		 *     @property string $image_caption     The attachment caption.
+		 *     @property string $image_description The attachment description.
+		 *     @property string $image_href        The attachment URL.
+		 *     @property string $image_src_full    The full-size image URL.
+		 *     @property string $image_src_thumb   The thumbnail image URL.
+		 *     @property string $image_alt_text    The image alt text.
+		 *     @property string $lg_size           The large image size.
+		 * }
+		 *
+		 * @see WP_Post
+		 * @see wp_prepare_attachment_for_js
+		 */
+		foreach ( $attachments as $image_index => $attachment ) {
+			$image_attrs = array(
+				'alt'    => $attachment->image_alt_text,
+				'style'  => ( 'custom' === $images_quantity && absint( $image_count ) < ( $image_index + 1 ) ) ? 'none' : '',
+				'class'  => 'squad-image ' . et_pb_media_options()->get_image_attachment_class( array(), '', $attachment->ID ),
+				'srcset' => $attachment->image_src_full . ' 479w, ' . $attachment->image_src_thumb . ' 480w',
+				'sizes'  => '(max-width:479px) 479px, 100vw',
+			);
+
+			printf(
+				'<a class="gallery-item" title="" href="%1$s" data-lg-size="%3$s" data-pinterest-text="%2$s" data-tweet-text="%2$s" data-src="%1$s" data-sub-html=""><div class="gallery-image">',
+				esc_url( $attachment->image_src_full ),
+				esc_attr( $attachment->post_excerpt ),
+				esc_attr( $attachment->lg_size )
+			);
+
+			$this->render_image( $attachment->image_src_thumb, $image_attrs );
+
+			if ( 'on' === $this->prop( 'show_in_lightbox', 'off' ) ) {
+				echo wp_kses_post( OverlayHelper::render( array( 'icon' => $this->props['hover_icon'] ) ) );
+			}
+
+			echo '</div></a>';
+		}
 	}
 }

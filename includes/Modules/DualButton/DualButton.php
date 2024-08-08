@@ -7,13 +7,13 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@squadmodules.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\DualButton;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
@@ -21,11 +21,11 @@ use ET_Builder_Module_Helper_MultiViewOptions;
 use function esc_attr__;
 use function esc_html__;
 use function et_builder_i18n;
-use function et_core_esc_previously;
 use function et_pb_background_options;
 use function et_pb_get_extended_font_icon_value;
 use function et_pb_media_options;
 use function et_pb_multi_view_options;
+use function wp_kses_post;
 
 /**
  * Dual-Button Module Class.
@@ -33,7 +33,7 @@ use function et_pb_multi_view_options;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class DualButton extends Squad_Module {
+class DualButton extends DiviSquad_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -44,7 +44,7 @@ class DualButton extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Dual Button', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Dual Buttons', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/dual-button.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/dual-button.svg' );
 
 		$this->slug             = 'disq_dual_button';
 		$this->vb_support       = 'on';
@@ -606,12 +606,9 @@ class DualButton extends Squad_Module {
 				)
 			),
 			'wrapper_elements_gap'         => Utils::add_range_field(
-				esc_html__( 'Gap Between Elements', 'squad-modules-for-divi' ),
+				esc_html__( 'Gap Between Buttons', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__(
-						'Adjust the width of the content within the blurb content.',
-						'squad-modules-for-divi'
-					),
+					'description'    => esc_html__( 'Adjust the width of the content within the blurb content.', 'squad-modules-for-divi' ),
 					'range_settings' => array(
 						'min_limit' => '0',
 						'min'       => '0',
@@ -642,12 +639,8 @@ class DualButton extends Squad_Module {
 			'wrapper_padding'              => Utils::add_margin_padding_field(
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
-					'description' => esc_html__(
-						'Here you can define a custom padding size.',
-						'squad-modules-for-divi'
-					),
+					'description' => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'        => 'custom_padding',
-					'default'     => '10px|15px|10px|15px|false|false',
 					'tab_slug'    => 'advanced',
 					'toggle_slug' => 'wrapper',
 				)
@@ -818,19 +811,15 @@ class DualButton extends Squad_Module {
 		$left_button_content  = $this->squad_render_element_text( $attrs, 'left_button' );
 		$right_button_content = $this->squad_render_element_text( $attrs, 'right_button' );
 
-		if ( null !== $left_button_content || null !== $right_button_content ) {
-			$this->generate_additional_styles( $attrs );
-			$separator_element = $this->squad_render_element_separator( $attrs );
+		$this->generate_additional_styles( $attrs );
+		$separator_element = $this->squad_render_element_separator( $attrs );
 
-			return sprintf(
-				'<div class="elements et_pb_with_background">%1$s%3$s%2$s</div>',
-				et_core_esc_previously( $left_button_content ),
-				et_core_esc_previously( $right_button_content ),
-				et_core_esc_previously( $separator_element )
-			);
-		}
-
-		return null;
+		return sprintf(
+			'<div class="elements et_pb_with_background">%1$s%3$s%2$s</div>',
+			wp_kses_post( $left_button_content ),
+			wp_kses_post( $right_button_content ),
+			wp_kses_post( $separator_element )
+		);
 	}
 
 	/**
@@ -839,7 +828,7 @@ class DualButton extends Squad_Module {
 	 * @param array  $attrs   List of unprocessed attributes.
 	 * @param string $element Dynamic element key.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_element_text( $attrs, $element ) {
 		$multi_view = et_pb_multi_view_options( $this );
@@ -999,7 +988,7 @@ class DualButton extends Squad_Module {
 					}
 
 					// set icon placement for button image with default, hover and responsive.
-					$this->squad_utils->genereate_show_icon_on_hover_styles(
+					$this->squad_utils->generate_show_icon_on_hover_styles(
 						array(
 							'field'          => "{$element}_icon_placement",
 							'trigger'        => "{$element}_icon_type",
@@ -1024,22 +1013,22 @@ class DualButton extends Squad_Module {
 				$icon_elements = sprintf(
 					'<span class="%1$s"><span class="icon-element">%2$s%3$s</span></span>',
 					implode( ' ', $icon_wrapper_class ),
-					et_core_esc_previously( $font_icon_element ),
-					et_core_esc_previously( $image_element )
+					wp_kses_post( $font_icon_element ),
+					wp_kses_post( $image_element )
 				);
 			}
 
 			return sprintf(
 				'<a class="%5$s" href="%3$s" target="%4$s">%1$s%2$s</a>',
-				et_core_esc_previously( $element_text ),
-				et_core_esc_previously( $icon_elements ),
+				wp_kses_post( $element_text ),
+				wp_kses_post( $icon_elements ),
 				esc_url_raw( $element_url ),
 				esc_attr( $url_target ),
-				et_core_esc_previously( implode( ' ', $button_classes ) )
+				wp_kses_post( implode( ' ', $button_classes ) )
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**
@@ -1047,7 +1036,7 @@ class DualButton extends Squad_Module {
 	 *
 	 * @param string $element Dynamic element key.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_element_font_icon( $element ) {
 		$multi_view = et_pb_multi_view_options( $this );
@@ -1107,7 +1096,7 @@ class DualButton extends Squad_Module {
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**
@@ -1115,7 +1104,7 @@ class DualButton extends Squad_Module {
 	 *
 	 * @param string $element Dynamic element key.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_element_icon_image( $element ) {
 		$multi_view = et_pb_multi_view_options( $this );
@@ -1165,7 +1154,7 @@ class DualButton extends Squad_Module {
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**
@@ -1273,7 +1262,7 @@ class DualButton extends Squad_Module {
 	 *
 	 * @param array $attrs List of unprocessed attributes.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_element_separator( $attrs ) {
 		$multi_view     = et_pb_multi_view_options( $this );
@@ -1289,8 +1278,8 @@ class DualButton extends Squad_Module {
 			if ( ( 'none' !== $icon_type ) && ( ! empty( $font_icon_element ) || ! empty( $image_element ) ) ) {
 				$icon_elements = sprintf(
 					'<span class="squad-icon-wrapper"><span class="icon-element">%1$s%2$s</span></span>',
-					et_core_esc_previously( $font_icon_element ),
-					et_core_esc_previously( $image_element )
+					wp_kses_post( $font_icon_element ),
+					wp_kses_post( $image_element )
 				);
 			}
 		} else {
@@ -1414,12 +1403,12 @@ class DualButton extends Squad_Module {
 
 			return sprintf(
 				'<div class="%3$s">%1$s%2$s</div>',
-				et_core_esc_previously( $text_element ),
-				et_core_esc_previously( $icon_elements ),
-				et_core_esc_previously( implode( ' ', $separator_text_classes ) )
+				wp_kses_post( $text_element ),
+				wp_kses_post( $icon_elements ),
+				wp_kses_post( implode( ' ', $separator_text_classes ) )
 			);
 		}
 
-		return null;
+		return '';
 	}
 }

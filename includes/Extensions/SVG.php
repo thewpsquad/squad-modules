@@ -4,11 +4,9 @@
  *
  * This class handles svg image upload and used in the WordPress setup.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.0
  */
 
 namespace DiviSquad\Extensions;
@@ -20,11 +18,8 @@ use function wp_check_filetype;
 /**
  * The SVG class.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.2.0
  */
 class SVG extends Extension {
 
@@ -49,17 +44,6 @@ class SVG extends Extension {
 	}
 
 	/**
-	 * All mime lists with newly appended mimes.
-	 *
-	 * @return array
-	 */
-	public function get_available_mime_types() {
-		return array(
-			'svg' => 'image/svg+xml',
-		);
-	}
-
-	/**
 	 * Allow extra mime type file upload in the current installation.
 	 *
 	 * @param array $existing_mimes The existing mime lists.
@@ -69,6 +53,17 @@ class SVG extends Extension {
 	 */
 	public function hook_add_extra_mime_types( $existing_mimes ) {
 		return array_merge( $existing_mimes, $this->get_available_mime_types() );
+	}
+
+	/**
+	 * All mime lists with newly appended mimes.
+	 *
+	 * @return array
+	 */
+	public function get_available_mime_types() {
+		return array(
+			'svg' => 'image/svg+xml',
+		);
 	}
 
 	/**
@@ -97,5 +92,3 @@ class SVG extends Extension {
 		return $wp_check;
 	}
 }
-
-new SVG();

@@ -3,48 +3,64 @@
 /**
  * Squad Modules Lite
  *
- * @package     divi-squad
- * @author      WP Squad <wp@thewpsquad.com>
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad;
 
+use DiviSquad\Utils\Polyfills\Str;
 use DiviSquad\Utils\Singleton;
+use DiviSquad\Utils\WP;
 use function add_action;
+use function plugin_basename;
+use function plugin_dir_url;
+use function trailingslashit;
+use function wp_parse_args;
+use const ABSPATH;
+use const DIVI_SQUAD__FILE__;
 
 /**
  * Squad Modules class.
  *
- * @since           1.0.0
- * @package         squad-modules-for-divi
- * @author          WP Squad <support@thewpsquad.com>
- * @license         GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.0.0
  */
 final class SquadModules extends Integrations\Core {
 
 	use Singleton;
 
+	/**
+	 * Admin menu slug.
+	 *
+	 * @var string
+	 */
 	protected $admin_menu_slug = 'divi_squad_dashboard';
 
 	/**
-	 * Constructor.
+	 * Plugin Constructor.
+	 *
+	 * @since 1.0.0
+	 * @since 3.0.0 Added the plugin initialization on `plugin_loaded` hook.
+	 * @since 3.0.0 Added the plugin publisher initialization on `plugin_loaded` hook.
 	 */
 	private function __construct() {
-		$options         = $this->get_plugin_data( DIVI_SQUAD__FILE__ );
-		$default_options = array( 'RequiresDIVI' => '4.14.0' );
-
-		// Set plugin options and others.
-		$this->opt_prefix = 'disq';
-		$this->name       = $options['TextDomain'];
-		$this->version    = $options['Version'];
-		$this->options    = array_merge( $default_options, $options );
-
-		// Translations path.
-		$this->localize_path = DIVI_SQUAD_DIR_PATH . 'languages';
-
 		// Initialize the plugin.
-		add_action( 'plugins_loaded', array( $this, 'run' ) );
+		add_action( 'plugin_loaded', array( $this, 'init_plugin' ) );
+		add_action( 'plugin_loaded', array( $this, 'init_publisher' ) );
+		add_action( 'plugins_loaded', array( $this, 'run' ), 0 );
+	}
+
+	/**
+	 * Get the plugin directory path.
+	 *
+	 * @param string $path The path to append.
+	 *
+	 * @return string
+	 */
+	public function get_path( $path = '' ) {
+		return realpath( dirname( DIVI_SQUAD__FILE__ ) ) . $path;
 	}
 
 	/**
@@ -71,28 +87,188 @@ final class SquadModules extends Integrations\Core {
 	 * @return string
 	 */
 	public function get_version_dot() {
-		return $this->options['Version'];
+		return ! empty( $this->options['Version'] ) ? $this->options['Version'] : $this->version;
 	}
 
 	/**
-	 * Run the plugin
+	 * Get the plugin name.
+	 *
+	 * @return string
+	 */
+	public function get_base() {
+		return plugin_basename( DIVI_SQUAD__FILE__ );
+	}
+
+	/**
+	 * Get the plugin template path.
+	 *
+	 * @return string
+	 */
+	public function get_template_path() {
+		return $this->get_path( '/templates' );
+	}
+
+	/**
+	 * Get the plugin asset URL.
+	 *
+	 * @return string
+	 */
+	public function get_asset_url() {
+		return trailingslashit( $this->get_url() . 'build' );
+	}
+
+	/**
+	 * Get the plugin directory URL.
+	 *
+	 * @return string
+	 */
+	public function get_url() {
+		return plugin_dir_url( DIVI_SQUAD__FILE__ );
+	}
+
+	/**
+	 * Get the plugin icon path.
+	 *
+	 * @return string
+	 */
+	public function get_icon_path() {
+		// Get the root path.
+		$root_path = $this->get_path();
+
+		// Add backslash when it not found.
+		if ( ! Str::ends_with( $root_path, '/' ) ) {
+			$root_path .= '/';
+		}
+
+		return $root_path . 'build/admin/icons';
+	}
+
+	/**
+	 * Retrieve the WordPress root path.
+	 *
+	 * @return string
+	 */
+	public function get_wp_path() {
+		$wp_root_path = ABSPATH;
+
+		if ( ! Str::ends_with( $wp_root_path, DIRECTORY_SEPARATOR ) ) {
+			$wp_root_path .= DIRECTORY_SEPARATOR;
+		}
+
+		return $wp_root_path;
+	}
+
+	/**
+	 * Retrieve the plugin basename of the premium version.
+	 *
+	 * @return string
+	 */
+	public function get_pro_basename() {
+		// Premium plugin path.
+		return 'squad-modules-pro-for-divi/squad-modules-pro-for-divi.php';
+	}
+
+	/**
+	 * Retrieve whether the pro-version is installed or not.
+	 *
+	 * @return bool
+	 */
+	public function is_pro_activated() {
+		static $pro_is_installed;
+
+		if ( isset( $pro_is_installed ) ) {
+			return $pro_is_installed;
+		}
+
+		// Verify the pro-plugin activation status.
+		$pro_is_installed = WP::is_plugin_active( $this->get_pro_basename() );
+
+		return $pro_is_installed;
+	}
+
+	/**
+	 * Create a helper function for easy SDK access.
+	 *
+	 * @return \Freemius
+	 */
+	public static function publisher() {
+		return \DiviSquad\Integrations\Publisher::get_instance()->get_fs();
+	}
+
+	/**
+	 * Initialize the plugin.
+	 *
+	 * @return void
+	 */
+	public function init_plugin() {
+		$options  = $this->get_plugin_data( DIVI_SQUAD__FILE__ );
+		$defaults = array( 'RequiresDIVI' => '4.14.0' );
+
+		// Set plugin options and others.
+		$this->opt_prefix = 'disq';
+		$this->name       = ! empty( $options['TextDomain'] ) ? $options['TextDomain'] : 'squad-modules-for-divi';
+		$this->version    = ! empty( $options['Version'] ) ? $options['Version'] : '3.0.0';
+		$this->options    = wp_parse_args( $options, $defaults );
+
+		// Translations path.
+		$this->localize_path = $this->get_path( '/languages' );
+	}
+
+	/**
+	 * Initialize the publisher.
+	 *
+	 * @return void
+	 */
+	public function init_publisher() {
+		if ( is_admin() && \DiviSquad\Integrations\Publisher::is_installed() ) {
+			if ( function_exists( '\divi_squad_fs' ) ) {
+				\divi_squad_fs()->set_basename( false, DIVI_SQUAD__FILE__ );
+			} else {
+				// Init Freemius.
+				self::publisher();
+
+				// Signal that SDK was initiated.
+				do_action( 'divi_squad_fs_loaded' );
+			}
+		}
+	}
+
+	/**
+	 * Load the plugin.
+	 *
+	 * @return void
 	 */
 	public function run() {
+		/**
+		 * Fires before the plugin is loaded.
+		 *
+		 * @param SquadModules $plugin The plugin instance.
+		 */
+		do_action( 'divi_squad_before_loaded', $this );
+
 		// Init the plugin.
 		$this->init();
 
 		// Load the core.
 		$wp = Integrations\WP::get_instance();
+		$wp->set_options( $this->options );
+
+		// Check if the journey can start.
 		if ( $wp->let_the_journey_start() ) {
 			$this->load_text_domain();
+			$this->load_assets();
+			$this->load_global_assets();
 			$this->load_extensions();
 			$this->load_modules_for_builder();
 			$this->load_admin();
-			$this->load_global_assets();
 			$this->localize_scripts_data();
 		}
 
-		// Signal that Core was initiated.
+		/**
+		 * Fires after the plugin is loaded.
+		 *
+		 * @param SquadModules $plugin The plugin instance.
+		 */
 		do_action( 'divi_squad_loaded', $this );
 	}
 }

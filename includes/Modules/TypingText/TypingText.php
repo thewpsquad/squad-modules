@@ -7,21 +7,22 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@squadmodules.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\TypingText;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
+use function divi_squad;
 use function esc_html__;
-use function et_core_esc_previously;
 use function et_pb_background_options;
 use function et_pb_multi_view_options;
 use function wp_enqueue_script;
+use function wp_kses_post;
 
 /**
  * Typing Text Module Class.
@@ -29,7 +30,7 @@ use function wp_enqueue_script;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class TypingText extends Squad_Module {
+class TypingText extends DiviSquad_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -40,7 +41,7 @@ class TypingText extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Typing Text', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Typing Texts', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/typing-text.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/typing-text.svg' );
 
 		$this->slug             = 'disq_typing_text';
 		$this->vb_support       = 'on';
@@ -926,14 +927,14 @@ class TypingText extends Squad_Module {
 
 			return sprintf(
 				'<div class="text-elements et_pb_with_background"><%4$s class="text-container">%1$s%2$s%3$s</%4$s></div>',
-				et_core_esc_previously( $prefix_content ),
-				et_core_esc_previously( $typed_content ),
-				et_core_esc_previously( $suffix_content ),
-				et_core_esc_previously( $level )
+				wp_kses_post( $prefix_content ),
+				wp_kses_post( $typed_content ),
+				wp_kses_post( $suffix_content ),
+				wp_kses_post( $level )
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**
@@ -941,7 +942,7 @@ class TypingText extends Squad_Module {
 	 *
 	 * @param array $attrs List of unprocessed attributes.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function render_prefix_text( $attrs ) {
 		if ( '' !== $this->prop( 'prefix_text' ) ) {
@@ -1021,7 +1022,7 @@ class TypingText extends Squad_Module {
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**
@@ -1029,7 +1030,7 @@ class TypingText extends Squad_Module {
 	 *
 	 * @param array $attrs List of unprocessed attributes.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function render_typed_text( $attrs ) {
 		if ( '' !== $this->prop( 'typed_text' ) ) {
@@ -1190,7 +1191,7 @@ class TypingText extends Squad_Module {
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**
@@ -1198,7 +1199,7 @@ class TypingText extends Squad_Module {
 	 *
 	 * @param array $attrs List of unprocessed attributes.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function render_suffix_text( $attrs ) {
 		if ( '' !== $this->prop( 'suffix_text' ) ) {
@@ -1278,7 +1279,7 @@ class TypingText extends Squad_Module {
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**

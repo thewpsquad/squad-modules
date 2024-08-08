@@ -5,7 +5,7 @@ Tags: divi, divi module, divi theme, divi builder, divi page builder
 Requires at least: 5.0.0
 Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 2.1.2
+Stable tag: 3.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -186,24 +186,48 @@ If you need assistance with Squad Modules Lite, you can reach out to [our suppor
 13. Typing Text Module - This is a module that allows you to create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 
 == Upgrade Notice ==
-= 2.1.2 =
-* Some bug fixes and improvements.
+= 3.0.0 =
+- Load more posts feature for Divi Post Grid Module
+- Some bug fixes and improvements.
 
 == Changelog ==
-= 2.1.2 (24-04-2024) =
+= 3.0.0 (23-06-2024) =
 
 **New Features:**
-- Introduced form field width feature for WPForms module
-- Introduced new font extensions support for Font Extensions
+
+- New Brand logo for Squad Modules Lite
+- Load More Feature for Divi Post Grid Module
+- New Issue or Feature request form through the GitHub repository
 
 **Bug Fixes:**
 
-- Fixed: the post grid show all the posts instead of the selected category.
+- Fix: Icon Vertical alignment does not work properly in the Divi Advanced List Module (PRO)
+- Fix: Item inner gap does working in builder for Advanced Blurb Module (PRO)
+- Fix: Unable to detect pro version installation from core plugin
+- Fix: Separator and Before icon does not show properly in Breadcrumbs Module
+- Fix: Pro plugin is not syncing with the lite plugin.
+- Fix: Fatal error when divi want to enqueue asset file out of squad page
+- Fix: Squad Module asset loaded by theme unexpectedly
+- Fix: Uncaught Error: Call to undefined function DiviSquad\Utils\get_current_screen().
+- Fix: Affiliate page does not working in WordPress Playground, currently it turn off here only.
+- Fix: The plugin review banner is not closing properly in WordPress Playground.
+- Fix: Modules are not saved properly when use try to save particular modules.
+- Fix: Divi Post Grid Module is not working properly.
 
 **✨ Improvements:**
 
-* Tested for compatibility with Divi Theme 4.25.0
-* Tested for compatibility with WordPress 6.5.2
+- Improved: Squad Modules Pro Admin UI (More flexible, more user-friendly)
+- Improved: Data sanitization and validation for all modules
+- Improved: Squad Copy Extension.
+- Tested for compatibility with WordPress 6.6 (beta)
+- Tested for compatibility with WordPress 6.5.4 (stable)
+- Tested for compatibility with Divi Theme 4.25.2
+- Tested for compatibility with Contact Form 7 5.9.6
+- Tested for compatibility with Fluent Forms 5.1.19
+- Tested for compatibility with WPForms 1.8.8.3
+- Tested for compatibility with Gravity Forms 2.8.11
+- Tested for compatibility with Ninja Forms 3.8.4
+
 
 
 [Read more](https://squadmodules.com/changelog)

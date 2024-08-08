@@ -2,11 +2,9 @@
 /**
  * Builder Utils Helper Class which help to the all module class.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Base\DiviBuilder\Utils\Fields;
@@ -14,11 +12,9 @@ namespace DiviSquad\Base\DiviBuilder\Utils\Fields;
 /**
  * Field Compatibility class
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 trait Compatibility {
 	/**

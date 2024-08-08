@@ -7,13 +7,13 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@squadmodules.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\Divider;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
@@ -22,13 +22,13 @@ use function esc_attr__;
 use function esc_html__;
 use function et_builder_get_border_styles;
 use function et_builder_i18n;
-use function et_core_esc_previously;
 use function et_pb_background_options;
 use function et_pb_get_extended_font_icon_value;
 use function et_pb_media_options;
 use function et_pb_multi_view_options;
 use function wp_enqueue_script;
 use function wp_json_encode;
+use function wp_kses_post;
 
 /**
  * Divider Module Class.
@@ -36,7 +36,7 @@ use function wp_json_encode;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class Divider extends Squad_Module {
+class Divider extends DiviSquad_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -47,7 +47,7 @@ class Divider extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Advanced Divider', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Advanced Dividers', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/divider.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/divider.svg' );
 
 		$this->slug             = 'disq_divider';
 		$this->vb_support       = 'on';
@@ -174,16 +174,16 @@ class Divider extends Squad_Module {
 			'max_width'      => Utils::selectors_max_width( $this->main_css_element ),
 			'height'         => Utils::selectors_default( $this->main_css_element ),
 			'filters'        => array(
-				'child_filters_target' => array(
-					'label'               => et_builder_i18n( 'Icon' ),
-					'css'                 => array(
+				'child_filters_target' => Utils::add_filters_field(
+					et_builder_i18n( 'Icon' ),
+					'advanced',
+					'icon_element',
+					array(
 						'main'  => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element",
 						'hover' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper .icon-element",
 					),
-					'depends_on'          => array( 'divider_icon_type' ),
-					'depends_show_if_not' => array( 'none', 'icon', 'lottie' ),
-					'tab_slug'            => 'advanced',
-					'toggle_slug'         => 'icon_element',
+					array( 'divider_icon_type' ),
+					array( 'none', 'icon', 'lottie' )
 				),
 			),
 			'image_icon'     => false,
@@ -1226,8 +1226,8 @@ class Divider extends Squad_Module {
 
 		return sprintf(
 			'<div class="%2$s">%1$s</div>',
-			et_core_esc_previously( $this->squad_render_divider( $multi_view, $attrs ) ),
-			et_core_esc_previously( implode( ' ', $wrapper_classes ) )
+			wp_kses_post( $this->squad_render_divider( $multi_view, $attrs ) ),
+			wp_kses_post( implode( ' ', $wrapper_classes ) )
 		);
 	}
 
@@ -1288,7 +1288,7 @@ class Divider extends Squad_Module {
 	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view Multiview object instance.
 	 * @param array                                     $attrs      List of unprocessed attributes.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_divider( $multi_view, $attrs ) {
 		// Fixed: a custom background doesn't work at frontend.
@@ -1481,15 +1481,15 @@ class Divider extends Squad_Module {
 			)
 		);
 
-		$no_of_line = 'on' === $this->prop( 'multiple_divider', 'off' ) ? (int) $this->prop( 'multiple_divider_no', '2' ) : 1;
+		$no_of_line = 'on' === $this->prop( 'multiple_divider', 'off' ) ? absint( $this->prop( 'multiple_divider_no', '2' ) ) : 1;
 		$hr_tags    = array_fill( 0, $no_of_line, '<hr/>' );
 
 		return sprintf(
 			'<span class="%1$s">%4$s</span>%3$s<span class="%2$s">%4$s</span>',
-			et_core_esc_previously( implode( ' ', $divider_left ) ),
-			et_core_esc_previously( implode( ' ', $divider_right ) ),
-			et_core_esc_previously( $this->squad_render_divider_icon( $multi_view ) ),
-			et_core_esc_previously( implode( '', $hr_tags ) )
+			wp_kses_post( implode( ' ', $divider_left ) ),
+			wp_kses_post( implode( ' ', $divider_right ) ),
+			wp_kses_post( $this->squad_render_divider_icon( $multi_view ) ),
+			wp_kses_post( implode( '', $hr_tags ) )
 		);
 	}
 
@@ -1544,14 +1544,14 @@ class Divider extends Squad_Module {
 
 			return sprintf(
 				'<span class="divider-icon-wrapper"><span class="icon-element">%1$s%2$s%3$s%4$s</span></span>',
-				et_core_esc_previously( $this->squad_render_divider_font_icon( $multi_view ) ),
-				et_core_esc_previously( $this->squad_render_divider_icon_image( $multi_view ) ),
-				et_core_esc_previously( $this->squad_render_divider_icon_text( $multi_view ) ),
-				et_core_esc_previously( $this->squad_render_divider_icon_lottie( $multi_view ) )
+				wp_kses_post( $this->squad_render_divider_font_icon( $multi_view ) ),
+				wp_kses_post( $this->squad_render_divider_icon_image( $multi_view ) ),
+				wp_kses_post( $this->squad_render_divider_icon_text( $multi_view ) ),
+				wp_kses_post( $this->squad_render_divider_icon_lottie( $multi_view ) )
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**
@@ -1559,7 +1559,7 @@ class Divider extends Squad_Module {
 	 *
 	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view Multiview object instance.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_divider_font_icon( $multi_view ) {
 		if ( 'icon' === $this->props['divider_type'] && 'icon' === $this->props['divider_icon_type'] ) {
@@ -1624,7 +1624,7 @@ class Divider extends Squad_Module {
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**
@@ -1632,7 +1632,7 @@ class Divider extends Squad_Module {
 	 *
 	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view Multiview object instance.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_divider_icon_image( $multi_view ) {
 		if ( 'icon' === $this->props['divider_type'] && 'image' === $this->props['divider_icon_type'] ) {
@@ -1695,7 +1695,7 @@ class Divider extends Squad_Module {
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**
@@ -1703,7 +1703,7 @@ class Divider extends Squad_Module {
 	 *
 	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view Multiview object instance.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_divider_icon_text( $multi_view ) {
 		if ( 'text' === $this->props['divider_type'] ) {
@@ -1728,7 +1728,7 @@ class Divider extends Squad_Module {
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**
@@ -1736,7 +1736,7 @@ class Divider extends Squad_Module {
 	 *
 	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view Multiview object instance.
 	 *
-	 * @return null|string
+	 * @return string
 	 */
 	private function squad_render_divider_icon_lottie( $multi_view ) {
 		if ( 'lottie' === $this->props['divider_icon_type'] ) {
@@ -1825,6 +1825,6 @@ class Divider extends Squad_Module {
 			);
 		}
 
-		return null;
+		return '';
 	}
 }

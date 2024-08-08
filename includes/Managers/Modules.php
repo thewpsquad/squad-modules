@@ -1,22 +1,112 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * Module Manager
+ *
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
+ */
+
 namespace DiviSquad\Managers;
 
 use DiviSquad\Base\Factories\SquadFeatures as ManagerBase;
 use DiviSquad\Base\Memory;
 use DiviSquad\Utils\WP;
 use function divi_squad;
+use function esc_html__;
 
 /**
- * Module Mangaer class
+ * Module Manager class
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.0.0
  */
 class Modules extends ManagerBase {
+
+	/**
+	 * Get all modules including extra modules.
+	 *
+	 * @return array[]
+	 */
+	public function get_modules_with_extra() {
+		// List of core modules.
+		$core_modules = $this->get_registered_list();
+
+		// List of pro-modules.
+		$pro_modules = array(
+			array(
+				'name'               => 'AdvancedList',
+				'label'              => esc_html__( 'Advanced List', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Elevate your content presentation providing versatile and stylish list formats for a captivating user experience.', 'squad-modules-for-divi' ),
+				'is_premium_feature' => true,
+				'type'               => 'D4',
+				'category'           => 'pro-modules',
+			),
+			array(
+				'name'               => 'Blurb',
+				'label'              => esc_html__( 'Advanced Blurb', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Craft engaging and informative content with advanced styling and layout options for a standout user experience.', 'squad-modules-for-divi' ),
+				'is_premium_feature' => true,
+				'type'               => 'D4',
+				'category'           => 'pro-modules',
+			),
+			array(
+				'name'               => 'UserList',
+				'label'              => esc_html__( 'User List', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Showcase your users allowing you to display user profiles in a sleek and customizable list format.', 'squad-modules-for-divi' ),
+				'is_premium_feature' => true,
+				'type'               => 'D4',
+				'category'           => 'pro-modules',
+			),
+			array(
+				'name'               => 'Heading',
+				'label'              => esc_html__( 'Advanced Heading', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Make a bold statement offering enhanced customization and design options for impactful and visually stunning headings.', 'squad-modules-for-divi' ),
+				'is_premium_feature' => true,
+				'type'               => 'D4',
+				'category'           => 'pro-modules',
+			),
+			array(
+				'name'               => 'Slider',
+				'label'              => esc_html__( 'Advanced Slider', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Transform your content offering dynamic and customizable sliders to captivate your audience effortlessly.', 'squad-modules-for-divi' ),
+				'is_premium_feature' => true,
+				'type'               => 'D4',
+				'category'           => 'pro-modules',
+			),
+			array(
+				'name'               => 'TaxonomyList',
+				'label'              => esc_html__( 'Taxonomy List', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Easily organize and display your taxonomy enhancing user experience.', 'squad-modules-for-divi' ),
+				'is_premium_feature' => true,
+				'type'               => 'D4',
+				'category'           => 'pro-modules',
+			),
+			array(
+				'name'               => 'CPTGrid',
+				'label'              => esc_html__( 'CPT Grid', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Showcase your Custom Post Types creating a visually appealing grid layout.', 'squad-modules-for-divi' ),
+				'is_premium_feature' => true,
+				'type'               => 'D4',
+				'category'           => 'pro-modules',
+			),
+			array(
+				'name'               => 'Accordion',
+				'label'              => esc_html__( 'Advanced Accordion', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Elevate your website bringing a sleek and interactive touch to content presentation.', 'squad-modules-for-divi' ),
+				'is_premium_feature' => true,
+				'type'               => 'D4',
+				'category'           => 'pro-modules',
+			),
+		);
+
+		if ( ! divi_squad()->is_pro_activated() ) {
+			return array_merge( $core_modules, $pro_modules );
+		}
+
+		return $core_modules;
+	}
 
 	/**
 	 *  Get available modules.
@@ -72,7 +162,7 @@ class Modules extends ManagerBase {
 				'child_name'         => 'PostGridChild',
 				'child_label'        => esc_html__( 'Post Element', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.0.2', '1.0.4', '1.1.0', '1.2.0', '1.2.2', '1.2.3', '1.4.4', '1.4.8', '1.4.10', '1.4.11' ),
+				'last_modified'      => array( '1.0.2', '1.0.4', '1.1.0', '1.2.0', '1.2.2', '1.2.3', '1.4.4', '1.4.8', '1.4.10', '1.4.11', '3.0.0' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -149,7 +239,7 @@ class Modules extends ManagerBase {
 				'label'              => esc_html__( 'Image Gallery', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Effortlessly create stunning galleries to engage and captivate your audience.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
-				'last_modified'      => array( '1.2.2', '1.2.3', '1.3.0', '1.4.5', '1.4.8', '1.4.9' ),
+				'last_modified'      => array( '1.2.2', '1.2.3', '1.3.0', '1.4.5', '1.4.8', '1.4.9', '3.0.0' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -161,7 +251,7 @@ class Modules extends ManagerBase {
 				'label'              => esc_html__( 'Contact Form 7', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Effortlessly customize Contact Form 7 design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
-				'last_modified'      => array( '1.2.3', '1.4.7', '1.4.8' ),
+				'last_modified'      => array( '1.2.3', '1.4.7', '1.4.8', '3.0.0' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -174,7 +264,7 @@ class Modules extends ManagerBase {
 				'label'              => esc_html__( 'WP Forms', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
-				'last_modified'      => array( '1.2.3', '1.4.7', '1.4.8' ),
+				'last_modified'      => array( '1.2.3', '1.4.7', '1.4.8', '3.0.0' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -187,7 +277,7 @@ class Modules extends ManagerBase {
 				'label'              => esc_html__( 'Gravity Forms', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Effortlessly customize Gravity Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
-				'last_modified'      => array( '1.2.3', '1.4.7', '1.4.8' ),
+				'last_modified'      => array( '1.2.3', '1.4.7', '1.4.8', '3.0.0' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -259,7 +349,7 @@ class Modules extends ManagerBase {
 				'label'              => esc_html__( 'Breadcrumbs', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Enhance navigation with a clear path for users to trace their steps through your website.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.0',
-				'last_modified'      => array( '1.4.1', '1.4.2', '1.4.6', '1.4.8' ),
+				'last_modified'      => array( '1.4.1', '1.4.2', '1.4.6', '1.4.8', '3.0.0' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -271,6 +361,7 @@ class Modules extends ManagerBase {
 				'label'              => esc_html__( 'Drop Cap Text', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Create visually appealing drop caps to add emphasis and style to your text content.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.0',
+				'last_modified'      => array( '1.4.0', '3.0.0' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -282,7 +373,7 @@ class Modules extends ManagerBase {
 				'label'              => esc_html__( 'Video Popup', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Engage visitors with customizable video popups for YouTube and Vimeo.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.1',
-				'last_modified'      => array( '1.4.4' ),
+				'last_modified'      => array( '1.4.4', '3.0.0' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -306,7 +397,7 @@ class Modules extends ManagerBase {
 				'label'              => esc_html__( 'Ninja Forms', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Effortlessly customize Ninja Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.7',
-				'last_modified'      => array( '1.4.8' ),
+				'last_modified'      => array( '1.4.8', '3.0.0' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -319,109 +410,13 @@ class Modules extends ManagerBase {
 				'label'              => esc_html__( 'Fluent Forms', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Effortlessly customize Fluent Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.7',
-				'last_modified'      => array( '1.4.8' ),
+				'last_modified'      => array( '1.4.8', '3.0.0' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
 				'required'           => array( 'plugin' => 'fluentform/fluentform.php' ),
 				'category'           => 'form-styler-modules',
 			),
-		);
-	}
-
-	/**
-	 * Get all modules including extra modules.
-	 *
-	 * @return array[]
-	 */
-	public function get_modules_with_extra() {
-		// List of core modules.
-		$core_modules = $this->get_registered_list();
-
-		// List of pro-modules.
-		$pro_modules = array(
-			array(
-				'name'               => 'AdvancedList',
-				'label'              => esc_html__( 'Advanced List', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Elevate your content presentation providing versatile and stylish list formats for a captivating user experience.', 'squad-modules-for-divi' ),
-				'is_premium_feature' => true,
-				'type'               => 'D4',
-				'category'           => 'pro-modules',
-			),
-			array(
-				'name'               => 'Blurb',
-				'label'              => esc_html__( 'Advanced Blurb', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Craft engaging and informative content with advanced styling and layout options for a standout user experience.', 'squad-modules-for-divi' ),
-				'is_premium_feature' => true,
-				'type'               => array( 'D4', 'D5' ),
-				'category'           => 'pro-modules',
-			),
-			array(
-				'name'               => 'UserList',
-				'label'              => esc_html__( 'User List', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Showcase your users allowing you to display user profiles in a sleek and customizable list format.', 'squad-modules-for-divi' ),
-				'is_premium_feature' => true,
-				'type'               => 'D4',
-				'category'           => 'pro-modules',
-			),
-			array(
-				'name'               => 'Heading',
-				'label'              => esc_html__( 'Advanced Heading', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Make a bold statement offering enhanced customization and design options for impactful and visually stunning headings.', 'squad-modules-for-divi' ),
-				'is_premium_feature' => true,
-				'type'               => 'D4',
-				'category'           => 'pro-modules',
-			),
-			array(
-				'name'               => 'TaxonomyList',
-				'label'              => esc_html__( 'Taxonomy List', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Easily organize and display your taxonomy enhancing user experience.', 'squad-modules-for-divi' ),
-				'is_premium_feature' => true,
-				'type'               => 'D4',
-				'category'           => 'pro-modules',
-			),
-			array(
-				'name'               => 'CPTGrid',
-				'label'              => esc_html__( 'CPT Grid', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Showcase your Custom Post Types creating a visually appealing grid layout.', 'squad-modules-for-divi' ),
-				'is_premium_feature' => true,
-				'type'               => 'D4',
-				'category'           => 'pro-modules',
-			),
-		);
-
-		if ( ! divi_squad_is_pro_activated() ) {
-			return array_merge( $core_modules, $pro_modules );
-		}
-
-		return $core_modules;
-	}
-
-	/**
-	 * Check the current module type.
-	 *
-	 * @param array $module The array of current module.
-	 *
-	 * @return bool
-	 */
-	protected function verify_module_type( $module ) {
-		$single        = isset( $module['type'] ) && is_string( $module['type'] ) && $this->builder_type === $module['type'];
-		$compatibility = isset( $module['type'] ) && is_array( $module['type'] ) && in_array( $this->builder_type, $module['type'], true );
-
-		return ( $single || $compatibility );
-	}
-
-	/**
-	 *  Get default active modules.
-	 *
-	 * @return array
-	 */
-	public function get_default_registries() {
-		return $this->get_filtered_registries(
-			$this->get_registered_list(),
-			function ( $module ) {
-				return $this->verify_module_type( $module ) && $module['is_default_active'];
-			}
 		);
 	}
 
@@ -440,60 +435,147 @@ class Modules extends ManagerBase {
 	}
 
 	/**
-	 * Load the module class from path.
+	 * Load enabled modules for Divi Builder from defined directory.
 	 *
-	 * @param string      $path            The module class path.
-	 * @param string      $module          The module name.
-	 * @param object|null $dependency_tree `DependencyTree` class is used as a utility to manage loading classes in a meaningful manner.
+	 * @param string $path The defined directory.
 	 *
 	 * @return void
 	 */
-	protected function require_module_path( $path, $module, $dependency_tree = null ) {
-		if ( 'D5' === $this->builder_type ) {
-			$module_path = sprintf( '%1$s/%2$s/%2$s.php', $path, $module );
-			if ( file_exists( $module_path ) && is_object( $dependency_tree ) && method_exists( $dependency_tree, 'add_dependency' ) ) {
-				$module_instance = require_once $module_path;
-				if ( 'object' === gettype( $module_instance ) ) {
-					$dependency_tree->add_dependency( $module_instance );
+	public function load_modules( $path ) {
+		// Validate the divi builder element base when the dependency tree is null.
+		if ( ! class_exists( \ET_Builder_Element::class ) ) {
+			return;
+		}
+
+		// Load enabled modules.
+		$this->load_module_files( $path, divi_squad()->memory );
+	}
+
+	/**
+	 * Load the module class.
+	 *
+	 * @param string $path   The module class path.
+	 * @param Memory $memory The instance of Memory class.
+	 *
+	 * @return void
+	 */
+	protected function load_module_files( $path, $memory ) {
+		// Retrieve total active modules and current version from the memory.
+		$current_version  = $memory->get( 'version' );
+		$active_modules   = $memory->get( 'active_modules' );
+		$inactive_modules = $memory->get( 'inactive_modules', array() );
+
+		// Get all registered and default modules.
+		$features = $this->get_registered_list();
+		$defaults = $this->get_default_registries();
+
+		// Filter and verify all active modules.
+		$available = $this->get_filtered_registries( $features, array( $this, 'verify_module_type' ) );
+		$activated = $this->get_verified_registries( $available, $defaults, $active_modules, $inactive_modules, $current_version );
+
+		// Collect all active plugins from the current installation.
+		$active_plugins = array_column( WP::get_active_plugins(), 'slug' );
+
+		foreach ( $activated as $activated_module ) {
+			/**
+			 * Load modules from the class path.
+			 *
+			 * @since 2.1.2
+			 */
+			if ( ! empty( $activated_module['classes']['root_class'] ) && class_exists( $activated_module['classes']['root_class'] ) ) {
+				if ( $this->verify_requirements( $activated_module, $active_plugins ) ) {
+					$this->load_module_if_exists( $activated_module, 'name' );
+					$this->load_module_if_exists( $activated_module, 'child_name' );
+					$this->load_module_if_exists( $activated_module, 'full_width_name' );
+					$this->load_module_if_exists( $activated_module, 'full_width_child_name' );
+				}
+			} else {
+				$module_path_full = sprintf( '%1$s/Modules/%2$s/%2$s.php', $path, $activated_module['name'] );
+
+				if ( $this->verify_requirements( $activated_module, $active_plugins ) && file_exists( $module_path_full ) ) {
+					$module_names = array_filter(
+						array(
+							! empty( $activated_module['name'] ) ? $activated_module['name'] : null,
+							! empty( $activated_module['child_name'] ) ? $activated_module['child_name'] : null,
+							! empty( $activated_module['full_width_name'] ) ? $activated_module['full_width_name'] : null,
+							! empty( $activated_module['full_width_child_name'] ) ? $activated_module['full_width_child_name'] : null,
+						)
+					);
+
+					foreach ( $module_names as $module_name ) {
+						$this->require_module_path( $path, $module_name );
+					}
 				}
 			}
-		} else {
-			$module_path = sprintf( '%1$s/Modules/%2$s/%2$s.php', $path, $module );
-			if ( file_exists( $module_path ) ) {
-				require_once $module_path;
+		}
+	}
+
+	/**
+	 *  Get default active modules.
+	 *
+	 * @return array
+	 */
+	public function get_default_registries() {
+		return $this->get_filtered_registries(
+			$this->get_registered_list(),
+			function ( $module ) {
+				return $this->verify_module_type( $module ) && $module['is_default_active'];
 			}
+		);
+	}
+
+	/**
+	 * Check the current module type.
+	 *
+	 * @param array $module The array of current module.
+	 *
+	 * @return bool
+	 */
+	protected function verify_module_type( $module ) {
+		$single        = isset( $module['type'] ) && is_string( $module['type'] ) && $this->builder_type === $module['type'];
+		$compatibility = isset( $module['type'] ) && is_array( $module['type'] ) && in_array( $this->builder_type, $module['type'], true );
+
+		return ( $single || $compatibility );
+	}
+
+	/**
+	 * Verify the requirements of the module.
+	 *
+	 * @param array  $activated_module       The module.
+	 * @param string $module_key            The module name key.
+	 *
+	 * @return void
+	 */
+	private function load_module_if_exists( $activated_module, $module_key ) {
+		if ( ! empty( $activated_module[ $module_key ] ) ) {
+			$this->require_module_class( $module_key, $activated_module );
 		}
 	}
 
 	/**
 	 * Load the module class.
 	 *
-	 * @param string      $module_key      The module specification key.
-	 * @param array       $module          The module.
-	 * @param \ET\Builder\Framework\DependencyManagement\DependencyTree|null $dependency_tree `DependencyTree` class is used as a utility to manage loading classes in a meaningful manner.
+	 * @param string $module_key    The module specification key.
+	 * @param array  $module    The module.
 	 *
 	 * @return void
 	 * @since 2.1.2
 	 */
-	protected function require_module_class( $module_key = 'name', $module = array(), $dependency_tree = null ) {
-		// Replace `name` from the module key string if include underscore or not
+	protected function require_module_class( $module_key = 'name', $module = array() ) {
+		// Replace `name` from the module key string if include underscore or not.
 		$module_key   = str_replace( array( '_', 'name' ), '', $module_key );
 		$module_class = empty( $module_key ) ? 'root' : $module_key;
 
-		// Load the module class for divi builder 5.
-		if ( isset( $module['classes'][ "{$module_class}_block_class" ] ) && class_exists( $module['classes'][ "{$module_class}_block_class" ] ) ) {
-			if ( is_object( $dependency_tree ) && method_exists( $dependency_tree, 'add_dependency' ) ) {
-				$block_module_class = $module['classes'][ "{$module_class}_block_class" ];
-				$class_interfaces   = class_implements( $block_module_class );
-				$core_interface     = 'ET\Builder\Framework\DependencyManagement\Interfaces\DependencyInterface';
-				if ( $class_interfaces && in_array( $core_interface, $class_interfaces, true ) ) {
-					$dependency_tree->add_dependency( new $block_module_class() );
-				}
-			}
-		}
-
-		// Load the module class for divi builder 4.
+		/**
+		 * Load the module class for divi builder 4.
+		 */
 		if ( isset( $module['classes'][ "{$module_class}_class" ] ) && class_exists( $module['classes'][ "{$module_class}_class" ] ) ) {
+			// Verify the module class.
+			if ( ! class_exists( $module['classes'][ "{$module_class}_class" ] ) ) {
+				return;
+			}
+
+			// Create an instance of the module class.
 			$squad_module = new $module['classes'][ "{$module_class}_class" ]();
 
 			// Initialize custom hooks.
@@ -504,91 +586,17 @@ class Modules extends ManagerBase {
 	}
 
 	/**
-	 * Verify the requirements of the module.
+	 * Load the module class from path.
 	 *
-	 * @param array $activated_module       The module.
-	 * @param object|null $dependency_tree `DependencyTree` class is used as a utility to manage loading classes in a meaningful manner.
-	 * @param string $module_key            The module name key.
-	 *
-	 * @return void
-	 */
-	private function load_module_if_exists( $activated_module, $dependency_tree, $module_key ) {
-		if ( ! empty( $activated_module[ $module_key ] ) ) {
-			$this->require_module_class( $module_key, $activated_module, $dependency_tree );
-		}
-	}
-
-	/**
-	 * Load enabled modules for Divi Builder from defined directory.
-	 *
-	 * @param string $path            The defined directory.
-	 * @param object $dependency_tree `DependencyTree` class is used as a utility to manage loading classes in a meaningful manner.
+	 * @param string $path   The module class path.
+	 * @param string $module The module name.
 	 *
 	 * @return void
 	 */
-	public function load_modules( $path, $dependency_tree = null ) {
-		// Validate the divi builder element base when the dependency tree is null.
-		if ( is_null( $dependency_tree ) && ! class_exists( \ET_Builder_Element::class ) ) {
-			return;
-		}
-
-		// Load enabled modules.
-		$this->builder_type = is_null( $dependency_tree ) ? 'D4' : 'D5';
-		$this->load_module_files( $path, divi_squad()->memory, $dependency_tree );
-	}
-
-	/**
-	 * Load the module class.
-	 *
-	 * @param string      $path            The module class path.
-	 * @param Memory      $memory          The instance of Memory class.
-	 * @param object|null $dependency_tree `DependencyTree` class is used as a utility to manage loading classes in a meaningful manner.
-	 *
-	 * @return void
-	 */
-	protected function load_module_files( $path, $memory, $dependency_tree = null ) {
-		// Load enabled modules.
-		$activated  = $memory->get( 'active_modules', array() );
-		$registered = $this->get_filtered_registries( $this->get_registered_list(), array( $this, 'verify_module_type' ) );
-		$defaults   = $this->get_default_registries();
-
-		// Get verified active modules.
-		$activated_modules = $this->get_verified_registries( $registered, $defaults, $activated );
-
-		// Collect all active plugins from the current installation.
-		$active_plugins = array_column( WP::get_active_plugins(), 'slug' );
-
-		foreach ( $activated_modules as $activated_module ) {
-			/**
-			 * Load modules from the class path.
-			 * @since 2.1.2
-			 */
-			if ( isset( $activated_module['classes']['root_class'] ) && class_exists( $activated_module['classes']['root_class'] ) ) {
-				if ( $this->verify_requirements( $activated_module, $active_plugins ) ) {
-					$this->load_module_if_exists( $activated_module, $dependency_tree, 'name' );
-					$this->load_module_if_exists( $activated_module, $dependency_tree, 'child_name' );
-					$this->load_module_if_exists( $activated_module, $dependency_tree, 'full_width_name' );
-					$this->load_module_if_exists( $activated_module, $dependency_tree, 'full_width_child_name' );
-				}
-			} else {
-				$module_path_root = 'D5' === $this->builder_type ? 'Block' : '';
-				$module_path_full = sprintf( '%1$s/%2$sModules/%3$s/%3$s.php', $path, $module_path_root, $activated_module['name'] );
-
-				if ( $this->verify_requirements( $activated_module, $active_plugins ) && file_exists( $module_path_full ) ) {
-					$module_names = array_filter(
-						array(
-							isset( $activated_module['name'] ) ? $activated_module['name'] : null,
-							isset( $activated_module['child_name'] ) ? $activated_module['child_name'] : null,
-							isset( $activated_module['full_width_name'] ) ? $activated_module['full_width_name'] : null,
-							isset( $activated_module['full_width_child_name'] ) ? $activated_module['full_width_child_name'] : null,
-						)
-					);
-
-					foreach ( $module_names as $module_name ) {
-						$this->require_module_path( $path, $module_name, $dependency_tree );
-					}
-				}
-			}
+	protected function require_module_path( $path, $module ) {
+		$module_path = sprintf( '%1$s/Modules/%2$s/%2$s.php', $path, $module );
+		if ( file_exists( $module_path ) ) {
+			require_once $module_path;
 		}
 	}
 }

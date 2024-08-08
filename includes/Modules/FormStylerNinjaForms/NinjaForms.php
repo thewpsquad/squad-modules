@@ -5,16 +5,14 @@
  *
  * This class provides the ninja forms with customization opportunities in the visual builder.
  *
- * @since       1.4.7
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.4.7
  */
 
 namespace DiviSquad\Modules\FormStylerNinjaForms;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Form_Styler as Squad_Form_Styler;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Form_Styler as SquadFormStyler;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function esc_html__;
@@ -23,10 +21,10 @@ use function wp_json_encode;
 /**
  * The Form Styler: WP Forms Module Class.
  *
- * @since       1.4.7
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.4.7
  */
-class NinjaForms extends Squad_Form_Styler {
+class NinjaForms extends SquadFormStyler {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -37,7 +35,7 @@ class NinjaForms extends Squad_Form_Styler {
 	public function init() {
 		$this->name      = esc_html__( 'Ninja Forms', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Ninja Forms', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/ninja-forms.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/ninja-forms.svg' );
 
 		$this->slug             = 'disq_form_styler_ninja_forms';
 		$this->vb_support       = 'on';
@@ -79,7 +77,7 @@ class NinjaForms extends Squad_Form_Styler {
 			),
 			'__forms'               => array(
 				'type'                => 'computed',
-				'computed_callback'   => array( self::class, 'disq_form_styler__get_form_html' ),
+				'computed_callback'   => array( self::class, 'squad_form_styler__get_form_html' ),
 				'computed_depends_on' => array(
 					'form_id',
 				),
@@ -170,7 +168,7 @@ class NinjaForms extends Squad_Form_Styler {
 	 */
 	public function get_form_styler_additional_custom_fields() {
 		return array(
-			'form_field_height'    => Utils::add_range_field(
+			'form_field_height'           => Utils::add_range_field(
 				esc_html__( 'General Field Height', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose gap between pagination elements.', 'squad-modules-for-divi' ),
@@ -188,7 +186,7 @@ class NinjaForms extends Squad_Form_Styler {
 					'toggle_slug'     => 'field',
 				)
 			),
-			'form_textarea_height' => Utils::add_range_field(
+			'form_textarea_height'        => Utils::add_range_field(
 				esc_html__( 'Textarea Field Height', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose gap between pagination elements.', 'squad-modules-for-divi' ),
@@ -232,7 +230,7 @@ class NinjaForms extends Squad_Form_Styler {
 	/**
 	 * Declare advanced fields for the module
 	 *
-	 * @return array[]
+	 * @return array
 	 */
 	public function get_advanced_fields_config() {
 		$form_selector = $this->get_form_selector_default();
@@ -578,6 +576,115 @@ class NinjaForms extends Squad_Form_Styler {
 	}
 
 	/**
+	 * Get the stylesheet selector for form tag.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_default() {
+		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form";
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_default() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils::form_get_allowed_fields();
+
+		// Add new fields.
+		$allowed_fields[] = '.listimage-wrap .nf-field-element label';
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_hover() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils::form_get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field:hover";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_default() {
+		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form input[type=submit], $this->main_css_element div .nf-form-wrap .nf-form-layout form button:not(.nf-remove-fieldset)";
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_hover() {
+		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form input[type=submit]:hover, $this->main_css_element div .nf-form-wrap .nf-form-layout form button:not(.nf-remove-fieldset):hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_default() {
+		return "$this->main_css_element div .nf-form-wrap .nf-response-msg";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_hover() {
+		return "$this->main_css_element div .nf-form-wrap .nf-response-msg:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for form tag to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_hover() {
+		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_default() {
+		return "$this->main_css_element div .nf-form-wrap .nf-form-errors, $this->main_css_element div .nf-form-wrap .nf-error-wrap";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_hover() {
+		return "$this->main_css_element div .nf-form-wrap .nf-form-errors:hover, $this->main_css_element div .nf-form-wrap .nf-error-wrap:hover";
+	}
+
+	/**
 	 * Declare custom css fields for the module
 	 *
 	 * @return array[]
@@ -698,20 +805,20 @@ class NinjaForms extends Squad_Form_Styler {
 		// Show a notice message in the frontend if the contact form is not installed.
 		if ( ! function_exists( '\Ninja_Forms' ) ) {
 			return sprintf(
-				'<div class="divi_squad_notice">%s</div>',
+				'<div class="squad-notice">%s</div>',
 				esc_html__( 'Ninja Forms is not installed', 'squad-modules-for-divi' )
 			);
 		}
 
-		if ( ! empty( self::disq_form_styler__get_form_html( $attrs ) ) ) {
+		if ( ! empty( self::squad_form_styler__get_form_html( $attrs ) ) ) {
 			$this->squad_generate_all_styles( $attrs );
 
-			return self::disq_form_styler__get_form_html( $attrs );
+			return self::squad_form_styler__get_form_html( $attrs );
 		}
 
 		// Show a notice message in the frontend if the form is not selected.
 		return sprintf(
-			'<div class="divi_squad_notice">%s</div>',
+			'<div class="squad-notice">%s</div>',
 			esc_html__( 'Please select a form.', 'squad-modules-for-divi' )
 		);
 	}
@@ -719,31 +826,56 @@ class NinjaForms extends Squad_Form_Styler {
 	/**
 	 * Show form in the frontend
 	 *
-	 * @param array  $attrs   List of unprocessed attributes.
-	 * @param string $content Content being processed.
+	 * @param array             $attrs   List of unprocessed attributes.
+	 * @param string|array|null $content Content being processed.
 	 *
 	 * @return string the html output.
 	 * @since 1.4.7
 	 */
-	public static function disq_form_styler__get_form_html( $attrs, $content = null ) {
-		// Collect all posts from the database.
-		$collection = Utils::form_get_all_items( 'ninja_forms', 'id' );
-		if ( ! empty( $attrs['form_id'] ) && Utils::$default_form_id !== $attrs['form_id'] && isset( $collection[ $attrs['form_id'] ] ) ) {
-			// Collect html output from shortcode.
-			ob_start();
-			\Ninja_Forms()->display( $collection[ $attrs['form_id'] ] );
-
-			if ( is_array( $content ) ) {
-				printf(
-					'<script id="squad-nf-builder-js-i18n" type="text/javascript">%s</script>',
-					wp_json_encode( \Ninja_Forms::config( 'i18nFrontEnd' ) )
-				);
-			}
-
-			return ob_get_clean();
+	public static function squad_form_styler__get_form_html( $attrs, $content = null ) {
+		// Check if the form id is empty or not.
+		if ( empty( $attrs['form_id'] ) || Utils::$default_form_id === $attrs['form_id'] || ! function_exists( '\Ninja_Forms' ) ) {
+			return '';
 		}
 
-		return null;
+		// Collect all posts from the database.
+		$collection = Utils::form_get_all_items( 'ninja_forms', 'id' );
+
+		// Check if the form id is existing.
+		if ( ! isset( $collection[ $attrs['form_id'] ] ) ) {
+			return '';
+		}
+
+		// Collect html output from shortcode.
+		ob_start();
+		\Ninja_Forms()->display( $collection[ $attrs['form_id'] ] );
+
+		if ( is_array( $content ) ) {
+			printf(
+				'<script type="application/json" id="squad-nf-builder-js-i18n">%s</script>',
+				wp_json_encode( \Ninja_Forms::config( 'i18nFrontEnd' ) )
+			);
+		}
+
+		return ob_get_clean();
+	}
+
+	/**
+	 * Generate styles.
+	 *
+	 * @param array $attrs List of unprocessed attributes.
+	 *
+	 * @return void
+	 */
+	protected function squad_generate_all_styles( $attrs ) {
+		// Get merge all attributes.
+		$attrs = array_merge( $attrs, $this->props );
+
+		// Get stylesheet selectors.
+		$options = $this->squad_get_module_stylesheet_selectors( $attrs );
+
+		// Generate module styles from hook.
+		$this->squad_form_styler_generate_module_styles( $attrs, $options );
 	}
 
 	/**
@@ -861,132 +993,5 @@ class NinjaForms extends Squad_Form_Styler {
 		);
 
 		return $options;
-	}
-
-	/**
-	 * Generate styles.
-	 *
-	 * @param array $attrs List of unprocessed attributes.
-	 *
-	 * @return void
-	 */
-	protected function squad_generate_all_styles( $attrs ) {
-		// Get merge all attributes.
-		$attrs = array_merge( $attrs, $this->props );
-
-		// Get stylesheet selectors.
-		$options = $this->squad_get_module_stylesheet_selectors( $attrs );
-
-		// Generate module styles from hook.
-		$this->form_styler_generate_module_styles( $attrs, $options );
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_default() {
-		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form";
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_hover() {
-		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_default() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils::form_get_allowed_fields();
-
-		// Add new fields.
-		$allowed_fields[] = '.listimage-wrap .nf-field-element label';
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_hover() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils::form_get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field:hover";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_default() {
-		return "$this->main_css_element div .nf-form-wrap .nf-form-errors, $this->main_css_element div .nf-form-wrap .nf-error-wrap";
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_hover() {
-		return "$this->main_css_element div .nf-form-wrap .nf-form-errors:hover, $this->main_css_element div .nf-form-wrap .nf-error-wrap:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_default() {
-		return "$this->main_css_element div .nf-form-wrap .nf-response-msg";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_hover() {
-		return "$this->main_css_element div .nf-form-wrap .nf-response-msg:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_default() {
-		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form input[type=submit], $this->main_css_element div .nf-form-wrap .nf-form-layout form button:not(.nf-remove-fieldset)";
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_hover() {
-		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form input[type=submit]:hover, $this->main_css_element div .nf-form-wrap .nf-form-layout form button:not(.nf-remove-fieldset):hover";
 	}
 }

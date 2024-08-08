@@ -5,15 +5,14 @@
  *
  * This class provides rating adding functionalities in the visual builder.
  *
- * @since           1.4.0
- * @package         squad-modules-for-divi
- * @author          WP Squad <support@thewpsquad.com>
- * @license         GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.4.0
  */
 
 namespace DiviSquad\Modules\StarRating;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function esc_attr;
@@ -23,10 +22,10 @@ use function wp_parse_args;
 /**
  * Star Rating Module Class.
  *
- * @since           1.4.0
- * @package         squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.4.0
  */
-class StarRating extends Squad_Module {
+class StarRating extends DiviSquad_Module {
 
 	/**
 	 * Initiate Module.
@@ -38,7 +37,7 @@ class StarRating extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Star Rating', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Star Ratings', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/star-rating.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/star-rating.svg' );
 
 		$this->slug             = 'disq_star_rating';
 		$this->vb_support       = 'on';
@@ -500,7 +499,7 @@ class StarRating extends Squad_Module {
 		}
 
 		// collect rating data with html.
-		$rating_scale = (int) $this->prop( 'rating_scale', 5 );
+		$rating_scale = absint( $this->prop( 'rating_scale', 5 ) );
 		$rating       = (float) ( 10 === $rating_scale ) ? $this->prop( 'rating_upto_10', 10 ) : $this->prop( 'rating_upto_5', 5 );
 		$stars_output = self::get_star_rating(
 			array(
@@ -515,8 +514,8 @@ class StarRating extends Squad_Module {
 			$position_output = sprintf(
 				'%1$s<div class="star-rating" %6$s title="%2$s/%3$s">%4$s</div>%5$s',
 				'left' === $title_inline_position ? $title : '',
-				esc_attr( $rating ),
-				esc_attr( $rating_scale ),
+				esc_attr( (string) $rating ),
+				esc_attr( (string) $rating_scale ),
 				$stars_output,
 				'right' === $title_inline_position ? $title : '',
 				'on' === $stars_schema_markup ? esc_attr( ' itemprop=reviewRating itemscope itemtype=http://schema.org/Rating' ) : ''
@@ -525,8 +524,8 @@ class StarRating extends Squad_Module {
 			$position_output = sprintf(
 				'%1$s<div class="star-rating" %6$s title="%2$s/%3$s">%4$s</div>%5$s',
 				'top' === $title_stacked_position ? $title : '',
-				esc_attr( $rating ),
-				esc_attr( $rating_scale ),
+				esc_attr( (string) $rating ),
+				esc_attr( (string) $rating_scale ),
 				$stars_output,
 				'bottom' === $title_stacked_position ? $title : '',
 				'on' === $stars_schema_markup ? esc_attr( ' itemprop=reviewRating itemscope itemtype=http://schema.org/Rating' ) : ''
@@ -573,6 +572,49 @@ class StarRating extends Squad_Module {
 				esc_html( $title_display )
 			);
 		}
+	}
+
+	/**
+	 * Generate html markup for stars.
+	 *
+	 * @param array $args List of attributes.
+	 *
+	 * @return string
+	 */
+	public static function get_star_rating( $args = array() ) {
+		$defaults = array(
+			'rating_scale'        => 5,
+			'rating'              => 5.0,
+			'show_number'         => 'off',
+			'stars_schema_markup' => 'off',
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+
+		$int_rating = absint( $args['rating'] );
+		$output     = '';
+
+		for ( $stars = 1; $stars <= $args['rating_scale']; $stars++ ) {
+			if ( $stars <= $int_rating ) {
+				$output .= '<i class="star-full">☆</i>';
+			} elseif ( $int_rating + 1 === $stars && $args['rating'] !== $int_rating ) {
+				$output .= '<i class="star-' . ( (float) $args['rating'] % 10 ) . '">☆</i>';
+			} else {
+				$output .= '<i class="star-empty">☆</i>';
+			}
+		}
+
+		if ( 'on' === $args['show_number'] ) {
+			if ( 'on' === $args['stars_schema_markup'] ) {
+				$stars_number_html = '<meta itemprop="worstRating" content="1">(<span itemprop="ratingValue">' . $args['rating'] . '</span>/<span itemprop="bestRating">' . $args['rating_scale'] . '</span>)';
+			} else {
+				$stars_number_html = '(<span>' . $args['rating'] . '</span>/<span>' . $args['rating_scale'] . '</span>)';
+			}
+
+			$output .= ' <span class="star-rating-text">' . $stars_number_html . '</span>';
+		}
+
+		return $output;
 	}
 
 	/**
@@ -669,48 +711,5 @@ class StarRating extends Squad_Module {
 				)
 			);
 		}
-	}
-
-	/**
-	 * Generate html markup for stars.
-	 *
-	 * @param array $args List of attributes.
-	 *
-	 * @return string
-	 */
-	public static function get_star_rating( $args = array() ) {
-		$defaults = array(
-			'rating_scale'        => 5,
-			'rating'              => 5.0,
-			'show_number'         => 'off',
-			'stars_schema_markup' => 'off',
-		);
-
-		$args = wp_parse_args( $args, $defaults );
-
-		$int_rating = (int) $args['rating'];
-		$output     = '';
-
-		for ( $stars = 1; $stars <= $args['rating_scale']; $stars++ ) {
-			if ( $stars <= $int_rating ) {
-				$output .= '<i class="star-full">☆</i>';
-			} elseif ( $int_rating + 1 === $stars && $args['rating'] !== $int_rating ) {
-				$output .= '<i class="star-' . ( (float) $args['rating'] % 10 ) . '">☆</i>';
-			} else {
-				$output .= '<i class="star-empty">☆</i>';
-			}
-		}
-
-		if ( 'on' === $args['show_number'] ) {
-			if ( 'on' === $args['stars_schema_markup'] ) {
-				$stars_number_html = '<meta itemprop="worstRating" content="1">(<span itemprop="ratingValue">' . $args['rating'] . '</span>/<span itemprop="bestRating">' . $args['rating_scale'] . '</span>)';
-			} else {
-				$stars_number_html = '(<span>' . $args['rating'] . '</span>/<span>' . $args['rating_scale'] . '</span>)';
-			}
-
-			$output .= ' <span class="star-rating-text">' . $stars_number_html . '</span>';
-		}
-
-		return $output;
 	}
 }

@@ -2,11 +2,9 @@
 /**
  * The main class for Divi Squad.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Base\DiviBuilder;
@@ -14,8 +12,8 @@ namespace DiviSquad\Base\DiviBuilder;
 /**
  * Divi Squad Class.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.0.0
  */
 abstract class IntegrationAPIBase {
 
@@ -84,11 +82,15 @@ abstract class IntegrationAPIBase {
 	 * Performs initialization tasks.
 	 *
 	 * @since 1.0.0
+	 *
+	 * @return void
 	 */
 	abstract public function initialize();
 
 	/**
 	 * Get the plugin version number
+	 *
+	 * @since 1.0.0
 	 *
 	 * @return string
 	 */

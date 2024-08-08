@@ -4,35 +4,35 @@
  *
  * This class provides comprehension image adding functionalities for comparable slider in the visual builder.
  *
- * @since           1.0.0
- * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
- * @license         GPL-3.0-only
+ * @package DiviSquad\Modules\BeforeAfterImageSlider
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Modules\BeforeAfterImageSlider;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\Media\Image;
 use function esc_attr__;
 use function esc_html__;
 use function et_builder_i18n;
-use function et_core_esc_previously;
 use function et_pb_background_options;
 use function et_pb_media_options;
 use function et_pb_multi_view_options;
 use function sanitize_text_field;
 use function wp_enqueue_script;
 use function wp_json_encode;
+use function wp_kses_post;
 
 /**
  * Before After Image Slider Module Class.
  *
- * @since           1.0.0
- * @package         squad-modules-for-divi
+ * @package DiviSquad\Modules\BeforeAfterImageSlider
+ * @since   1.0.0
  */
-class BeforeAfterImageSlider extends Squad_Module {
+class BeforeAfterImageSlider extends DiviSquad_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -43,7 +43,7 @@ class BeforeAfterImageSlider extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Before After Image Slider', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Before After Image Sliders', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/before-after-image-slider.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/before-after-image-slider.svg' );
 
 		$this->slug             = 'disq_bai_slider';
 		$this->vb_support       = 'on';
@@ -122,14 +122,14 @@ class BeforeAfterImageSlider extends Squad_Module {
 			),
 			'background'     => Utils::selectors_background( $this->main_css_element ),
 			'filters'        => array(
-				'child_filters_target' => array(
-					'label'       => '',
-					'css'         => array(
+				'child_filters_target' => Utils::add_filters_field(
+					'',
+					'advanced',
+					'before_image_filter',
+					array(
 						'main'  => "$this->main_css_element div .compare-images.icv .icv__img.icv__img-b",
 						'hover' => "$this->main_css_element div .compare-images.icv:hover .icv__img.icv__img-b",
-					),
-					'tab_slug'    => 'advanced',
-					'toggle_slug' => 'before_image_filter',
+					)
 				),
 				'css'                  => array(
 					'main'  => "$this->main_css_element div .compare-images.icv .icv__img.icv__img-a",
@@ -429,148 +429,6 @@ class BeforeAfterImageSlider extends Squad_Module {
 	}
 
 	/**
-	 * Get CSS fields transition.
-	 *
-	 * Add form field options group and background image on the field list.
-	 *
-	 * @since 1.0.0
-	 */
-	public function get_transition_fields_css_props() {
-		$fields = parent::get_transition_fields_css_props();
-
-		// before label styles.
-		$fields['before_label_background_color'] = array( 'background' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
-		$fields['before_label_margin']           = array( 'margin' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
-		$fields['before_label_padding']          = array( 'padding' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
-		Utils::fix_fonts_transition( $fields, 'before_label_text', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
-		Utils::fix_border_transition( $fields, 'before_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
-		Utils::fix_box_shadow_transition( $fields, 'before_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
-
-		// after label styles.
-		$fields['after_label_background_color'] = array( 'background' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
-		$fields['after_label_margin']           = array( 'margin' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
-		$fields['after_label_padding']          = array( 'padding' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
-		Utils::fix_fonts_transition( $fields, 'after_label_text', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
-		Utils::fix_border_transition( $fields, 'after_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
-		Utils::fix_box_shadow_transition( $fields, 'after_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
-
-		// Default styles.
-		$fields['background_layout'] = array( 'color' => $this->main_css_element );
-
-		return $fields;
-	}
-
-	/**
-	 * Renders the module output.
-	 *
-	 * @param array  $attrs       List of attributes.
-	 * @param string $content     Content being processed.
-	 * @param string $render_slug Slug of module that is used for rendering output.
-	 *
-	 * @return string
-	 */
-	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
-		$multi_view   = et_pb_multi_view_options( $this );
-		$before_label = $multi_view->render_element(
-			array(
-				'content'        => '{{before_label}}',
-				'hover_selector' => "$this->main_css_element div .compare-images.icv",
-			)
-		);
-		$after_label  = $multi_view->render_element(
-			array(
-				'content'        => '{{after_label}}',
-				'hover_selector' => "$this->main_css_element div .compare-images.icv",
-			)
-		);
-
-		$settings = array(
-			'controlColor'    => $this->prop( 'slide_control_color', '#FFFFFF' ),
-			'controlShadow'   => 'on' === $this->prop( 'slide_control_shadow__enable', 'off' ),
-			'addCircle'       => 'on' === $this->prop( 'slide_control_circle__enable', 'off' ),
-			'addCircleBlur'   => 'on' === $this->prop( 'slide_control_circle_blur__enable', 'off' ),
-			'showLabels'      => 'on' === $this->prop( 'image_label__enable', 'off' ),
-			'labelOptions'    => array(
-				'before'  => sanitize_text_field( $before_label ),
-				'after'   => sanitize_text_field( $after_label ),
-				'onHover' => 'on' === $this->prop( 'image_label_hover__enable', 'off' ),
-			),
-			'smoothing'       => 'on' === $this->prop( 'slide_control_smoothing__enable', 'off' ),
-			'smoothingAmount' => (int) $this->prop( 'slide_control_smoothing_amount', 100 ),
-			'hoverStart'      => 'hover' === $this->prop( 'slide_trigger_type', 'drag' ),
-			'verticalMode'    => 'vertical' === $this->prop( 'slide_direction_mode', 'horizontal' ),
-			'startingPoint'   => (int) $this->prop( 'slide_control_start_point', 25 ),
-		);
-
-		$default_image_url = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4MCIgaGVpZ2h0PSI1NDAiIHZpZXdCb3g9IjAgMCAxMDgwIDU0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZmlsbD0iI0VCRUJFQiIgZD0iTTAgMGgxMDgwdjU0MEgweiIvPgogICAgICAgIDxwYXRoIGQ9Ik00NDUuNjQ5IDU0MGgtOTguOTk1TDE0NC42NDkgMzM3Ljk5NSAwIDQ4Mi42NDR2LTk4Ljk5NWwxMTYuMzY1LTExNi4zNjVjMTUuNjItMTUuNjIgNDAuOTQ3LTE1LjYyIDU2LjU2OCAwTDQ0NS42NSA1NDB6IiBmaWxsLW9wYWNpdHk9Ii4xIiBmaWxsPSIjMDAwIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz4KICAgICAgICA8Y2lyY2xlIGZpbGwtb3BhY2l0eT0iLjA1IiBmaWxsPSIjMDAwIiBjeD0iMzMxIiBjeT0iMTQ4IiByPSI3MCIvPgogICAgICAgIDxwYXRoIGQ9Ik0xMDgwIDM3OXYxMTMuMTM3TDcyOC4xNjIgMTQwLjMgMzI4LjQ2MiA1NDBIMjE1LjMyNEw2OTkuODc4IDU1LjQ0NmMxNS42Mi0xNS42MiA0MC45NDgtMTUuNjIgNTYuNTY4IDBMMTA4MCAzNzl6IiBmaWxsLW9wYWNpdHk9Ii4yIiBmaWxsPSIjMDAwIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz4KICAgIDwvZz4KPC9zdmc+Cg==';
-		$default_class     = 'squad-image et_pb_image_wrap';
-		$empty_notice      = '';
-
-		// Generate fallback image for before and after.
-		$default_before_image = sprintf( '<img alt="" src="%1$s" class="%2$s"/>', $default_image_url, $default_class );
-		$default_after_image  = sprintf( '<img alt="" src="%1$s" class="%2$s" style="%3$s;"/>', $default_image_url, $default_class, 'filter: brightness(60%)' );
-
-		// Verify and set actual and fallback image for before and after.
-		$before_image = ! empty( $this->prop( 'before_image', '' ) ) ? $this->squad_render_image( 'before' ) : $default_before_image;
-		$after_image  = ! empty( $this->prop( 'after_image', '' ) ) ? $this->squad_render_image( 'after' ) : $default_after_image;
-
-		if ( empty( $this->prop( 'before_image', '' ) ) && empty( $this->prop( 'after_image', '' ) ) ) {
-			$empty_notice = sprintf(
-				'<div class="divi_squad_notice" style="margin-bottom: 20px;">%s</div>',
-				esc_html__( 'Add before and after images for comprehension. You are see a preview.', 'squad-modules-for-divi' )
-			);
-		}
-
-		// Process styles for module output.
-		$this->squad_generate_all_styles( $attrs );
-
-		// Images: Add CSS Filters and Mix Blend Mode rules.
-		$this->generate_css_filters( $this->slug, '', "$this->main_css_element div .compare-images.icv .icv__img.icv__img-a" );
-		$this->generate_css_filters( $this->slug, 'child_', "$this->main_css_element div .compare-images.icv .icv__wrapper" );
-
-		wp_enqueue_script( 'squad-module-bais' );
-
-		return sprintf(
-			'%1$s<div class="compare-images" data-setting="%4$s">%2$s%3$s</div>',
-			et_core_esc_previously( $empty_notice ),
-			et_core_esc_previously( $before_image ),
-			et_core_esc_previously( $after_image ),
-			esc_attr( wp_json_encode( $settings ) )
-		);
-	}
-
-	/**
-	 * Render image.
-	 *
-	 * @param string $image_type The image type.
-	 *
-	 * @return null|string
-	 */
-	private function squad_render_image( $image_type ) {
-		$multi_view = et_pb_multi_view_options( $this );
-		$alt_text   = $this->_esc_attr( "{$image_type}_alt" );
-
-		$image_classes          = 'squad-image et_pb_image_wrap';
-		$image_attachment_class = et_pb_media_options()->get_image_attachment_class( $this->props, "'{$image_type}_image' " );
-		if ( ! empty( $image_attachment_class ) ) {
-			$image_classes .= " $image_attachment_class";
-		}
-
-		return $multi_view->render_element(
-			array(
-				'tag'            => 'img',
-				'attrs'          => array(
-					'src'   => "{{{$image_type}_image}}",
-					'class' => $image_classes,
-					'alt'   => $alt_text,
-				),
-				'required'       => "{$image_type}_image",
-				'hover_selector' => "$this->main_css_element div .compare-images.icv",
-			)
-		);
-	}
-
-	/**
 	 * Get image and associated fields.
 	 *
 	 * @param string $image_type The current image name.
@@ -669,6 +527,151 @@ class BeforeAfterImageSlider extends Squad_Module {
 			$image_fields_all,
 			$label_background_fields,
 			$label_associate_fields
+		);
+	}
+
+	/**
+	 * Get CSS fields transition.
+	 *
+	 * Add form field options group and background image on the field list.
+	 *
+	 * @since 1.0.0
+	 */
+	public function get_transition_fields_css_props() {
+		$fields = parent::get_transition_fields_css_props();
+
+		// before label styles.
+		$fields['before_label_background_color'] = array( 'background' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
+		$fields['before_label_margin']           = array( 'margin' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
+		$fields['before_label_padding']          = array( 'padding' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
+		Utils::fix_fonts_transition( $fields, 'before_label_text', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
+		Utils::fix_border_transition( $fields, 'before_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
+		Utils::fix_box_shadow_transition( $fields, 'before_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
+
+		// after label styles.
+		$fields['after_label_background_color'] = array( 'background' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
+		$fields['after_label_margin']           = array( 'margin' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
+		$fields['after_label_padding']          = array( 'padding' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
+		Utils::fix_fonts_transition( $fields, 'after_label_text', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
+		Utils::fix_border_transition( $fields, 'after_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
+		Utils::fix_box_shadow_transition( $fields, 'after_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
+
+		// Default styles.
+		$fields['background_layout'] = array( 'color' => $this->main_css_element );
+
+		return $fields;
+	}
+
+	/**
+	 * Renders the module output.
+	 *
+	 * @param array  $attrs       List of attributes.
+	 * @param string $content     Content being processed.
+	 * @param string $render_slug Slug of module that is used for rendering output.
+	 *
+	 * @return string
+	 */
+	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
+		$multi_view   = et_pb_multi_view_options( $this );
+		$before_label = $multi_view->render_element(
+			array(
+				'content'        => '{{before_label}}',
+				'hover_selector' => "$this->main_css_element div .compare-images.icv",
+			)
+		);
+		$after_label  = $multi_view->render_element(
+			array(
+				'content'        => '{{after_label}}',
+				'hover_selector' => "$this->main_css_element div .compare-images.icv",
+			)
+		);
+
+		$settings = array(
+			'controlColor'    => $this->prop( 'slide_control_color', '#FFFFFF' ),
+			'controlShadow'   => 'on' === $this->prop( 'slide_control_shadow__enable', 'off' ),
+			'addCircle'       => 'on' === $this->prop( 'slide_control_circle__enable', 'off' ),
+			'addCircleBlur'   => 'on' === $this->prop( 'slide_control_circle_blur__enable', 'off' ),
+			'showLabels'      => 'on' === $this->prop( 'image_label__enable', 'off' ),
+			'labelOptions'    => array(
+				'before'  => sanitize_text_field( $before_label ),
+				'after'   => sanitize_text_field( $after_label ),
+				'onHover' => 'on' === $this->prop( 'image_label_hover__enable', 'off' ),
+			),
+			'smoothing'       => 'on' === $this->prop( 'slide_control_smoothing__enable', 'off' ),
+			'smoothingAmount' => absint( $this->prop( 'slide_control_smoothing_amount', 100 ) ),
+			'hoverStart'      => 'hover' === $this->prop( 'slide_trigger_type', 'drag' ),
+			'verticalMode'    => 'vertical' === $this->prop( 'slide_direction_mode', 'horizontal' ),
+			'startingPoint'   => absint( $this->prop( 'slide_control_start_point', 25 ) ),
+		);
+
+		// Load image loader.
+		$image = new Image( divi_squad()->get_path( '/build/admin/images/placeholders' ) );
+
+		$default_image_url = $image->get_image( 'landscape.svg', 'svg' );
+		$default_class     = 'squad-image et_pb_image_wrap';
+		$empty_notice      = '';
+
+		// Generate fallback image for before and after.
+		$default_before_image = sprintf( '<img alt="" src="%1$s" class="%2$s"/>', $default_image_url, $default_class );
+		$default_after_image  = sprintf( '<img alt="" src="%1$s" class="%2$s" style="%3$s;"/>', $default_image_url, $default_class, 'filter: brightness(60%)' );
+
+		// Verify and set actual and fallback image for before and after.
+		$before_image = ! empty( $this->prop( 'before_image', '' ) ) ? $this->squad_render_image( 'before' ) : $default_before_image;
+		$after_image  = ! empty( $this->prop( 'after_image', '' ) ) ? $this->squad_render_image( 'after' ) : $default_after_image;
+
+		if ( empty( $this->prop( 'before_image', '' ) ) && empty( $this->prop( 'after_image', '' ) ) ) {
+			$empty_notice = sprintf(
+				'<div class="squad-notice" style="margin-bottom: 20px;">%s</div>',
+				esc_html__( 'Add before and after images for comprehension. You are see a preview.', 'squad-modules-for-divi' )
+			);
+		}
+
+		// Process styles for module output.
+		$this->squad_generate_all_styles( $attrs );
+
+		// Images: Add CSS Filters and Mix Blend Mode rules.
+		$this->generate_css_filters( $this->slug, '', "$this->main_css_element div .compare-images.icv .icv__img.icv__img-a" );
+		$this->generate_css_filters( $this->slug, 'child_', "$this->main_css_element div .compare-images.icv .icv__wrapper" );
+
+		wp_enqueue_script( 'squad-module-bais' );
+
+		return sprintf(
+			'%1$s<div class="compare-images" data-setting="%4$s">%2$s%3$s</div>',
+			wp_kses_post( $empty_notice ),
+			wp_kses_post( $before_image ),
+			wp_kses_post( $after_image ),
+			esc_attr( wp_json_encode( $settings ) )
+		);
+	}
+
+	/**
+	 * Render image.
+	 *
+	 * @param string $image_type The image type.
+	 *
+	 * @return string
+	 */
+	private function squad_render_image( $image_type ) {
+		$multi_view = et_pb_multi_view_options( $this );
+		$alt_text   = $this->_esc_attr( "{$image_type}_alt" );
+
+		$image_classes          = 'squad-image et_pb_image_wrap';
+		$image_attachment_class = et_pb_media_options()->get_image_attachment_class( $this->props, "'{$image_type}_image' " );
+		if ( ! empty( $image_attachment_class ) ) {
+			$image_classes .= " $image_attachment_class";
+		}
+
+		return $multi_view->render_element(
+			array(
+				'tag'            => 'img',
+				'attrs'          => array(
+					'src'   => "{{{$image_type}_image}}",
+					'class' => $image_classes,
+					'alt'   => $alt_text,
+				),
+				'required'       => "{$image_type}_image",
+				'hover_selector' => "$this->main_css_element div .compare-images.icv",
+			)
 		);
 	}
 

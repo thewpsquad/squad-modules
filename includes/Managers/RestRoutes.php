@@ -1,15 +1,22 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * Rest API Routes Manager
+ *
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
+ */
+
 namespace DiviSquad\Managers;
+
+use DiviSquad\Base\Factories\RestRoute as RestRouteFactory;
 
 /**
  * Rest API Routes
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.0.0
  */
 class RestRoutes {
 
@@ -20,11 +27,25 @@ class RestRoutes {
 	 */
 	public static function load() {
 		// Register all rest api routes.
-		$rest_api = \DiviSquad\Base\Factories\RestRoute::get_instance();
-		$rest_api->add( RestRoutes\Modules::class );
-		$rest_api->add( RestRoutes\Extensions::class );
-		$rest_api->add( RestRoutes\PluginReview::class );
-		$rest_api->add( RestRoutes\WhatsNew::class );
-		$rest_api->add( RestRoutes\ProActivation::class );
+		$rest_api = RestRouteFactory::get_instance();
+		if ( $rest_api instanceof RestRouteFactory ) {
+			// Load rest routes for core features.
+			$rest_api->add( RestRoutes\V1\Modules::class );
+			$rest_api->add( RestRoutes\V1\Extensions::class );
+
+			// Load rest routes for what's new for the plugin.
+			$rest_api->add( RestRoutes\V1\WhatsNew\Changelog::class );
+
+			// Load rest routes for notices.
+			$rest_api->add( RestRoutes\V1\Notices\Discount::class );
+			$rest_api->add( RestRoutes\V1\Notices\Review::class );
+			$rest_api->add( RestRoutes\V1\Notices\ProActivation::class );
+
+			// Load rest routes for modules.
+			$rest_api->add( RestRoutes\V1\Modules\PostGrid::class );
+
+			// Load rest routes for extensions.
+			$rest_api->add( RestRoutes\V1\Extensions\Copy::class );
+		}
 	}
 }

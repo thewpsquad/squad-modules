@@ -2,11 +2,9 @@
 /**
  * The Font Upload extension class for Divi Squad.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.0
  */
 
 namespace DiviSquad\Extensions;
@@ -17,11 +15,8 @@ use function add_filter;
 /**
  * The Font Upload class.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.2.0
  */
 class Font_Upload extends Extension {
 
@@ -45,20 +40,6 @@ class Font_Upload extends Extension {
 	}
 
 	/**
-	 * All mime lists with newly appended mimes.
-	 *
-	 * @return array
-	 */
-	public function get_available_mime_types() {
-		return array(
-			'ttf'	=> 'font/ttf|application/font-ttf|application/x-font-ttf|application/octet-stream',
-			'otf'	=> 'font/otf|application/font-sfnt|application/font-otf|application/x-font-otf|application/octet-stream',
-			'woff'	=> 'font/woff|application/font-woff|application/x-font-woff|application/octet-stream',
-			'woff2'	=> 'font/woff2|application/font-woff2|application/x-font-woff2|application/octet-stream',
-		);
-	}
-
-	/**
 	 * Allow extra mime type file upload in the current installation.
 	 *
 	 * @param array $existing_mimes The existing mime lists.
@@ -68,6 +49,18 @@ class Font_Upload extends Extension {
 	public function hook_add_extra_mime_types( $existing_mimes ) {
 		return array_merge( $existing_mimes, $this->get_available_mime_types() );
 	}
-}
 
-new Font_Upload();
+	/**
+	 * All mime lists with newly appended mimes.
+	 *
+	 * @return array
+	 */
+	protected function get_available_mime_types() {
+		return array(
+			'ttf'   => 'font/ttf|application/font-ttf|application/x-font-ttf|application/octet-stream',
+			'otf'   => 'font/otf|application/font-sfnt|application/font-otf|application/x-font-otf|application/octet-stream',
+			'woff'  => 'font/woff|application/font-woff|application/x-font-woff|application/octet-stream',
+			'woff2' => 'font/woff2|application/font-woff2|application/x-font-woff2|application/octet-stream',
+		);
+	}
+}

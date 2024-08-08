@@ -5,28 +5,27 @@
  *
  * This class provides glitch text adding functionalities in the visual builder.
  *
- * @since           1.2.2
- * @package         squad-modules-for-divi
- * @author          WP Squad <support@thewpsquad.com>
- * @license         GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.2
  */
 
 namespace DiviSquad\Modules\GlitchText;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function esc_html;
 use function esc_html__;
-use function et_core_esc_previously;
+use function wp_kses_post;
 
 /**
  * Glitch Text Module Class.
  *
- * @since           1.2.2
- * @package         squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.2.2
  */
-class GlitchText extends Squad_Module {
+class GlitchText extends DiviSquad_Module {
 
 	/**
 	 * Initiate Module.
@@ -38,7 +37,7 @@ class GlitchText extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Glitch Text', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Glitch Texts', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/glitch-text.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/glitch-text.svg' );
 
 		$this->slug             = 'disq_glitch_text';
 		$this->vb_support       = 'on';
@@ -301,14 +300,14 @@ class GlitchText extends Squad_Module {
 
 			return sprintf(
 				'<div class="glitch-text-wrapper et_pb_with_background %3$s"><%4$s class="glitch-text-element" data-text="%2$s">%1$s</%4$s></div>',
-				et_core_esc_previously( $glitch_text ),
+				wp_kses_post( $glitch_text ),
 				esc_html( $this->prop( 'glitch_text', '' ) ),
-				et_core_esc_previously( $glitch_text_effect ),
-				et_core_esc_previously( $glitch_text_tag )
+				wp_kses_post( $glitch_text_effect ),
+				wp_kses_post( $glitch_text_tag )
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**

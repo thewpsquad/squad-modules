@@ -1,9 +1,20 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * Interface for the Menu class.
+ *
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   2.0.0
+ */
+
 namespace DiviSquad\Base\Factories\AdminMenu;
 
 /**
- * Interface for the Menu class.
+ * Menu Interface.
+ *
+ * @package DiviSquad
+ * @since   2.0.0
  */
 interface MenuInterface {
 
@@ -49,4 +60,3 @@ interface MenuInterface {
 	 */
 	public function get_body_classes();
 }
-

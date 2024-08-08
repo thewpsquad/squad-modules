@@ -2,11 +2,9 @@
 /**
  * Builder Utils Helper Class which help to the all module class
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Base\DiviBuilder\Utils;
@@ -22,18 +20,15 @@ use function wp_parse_args;
 /**
  * Fields class.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.0.0
  */
 trait Fields {
 
 	/**
 	 * Get HTML tag elements for text item.
 	 *
-	 * @return string[][]
+	 * @return array<string, string>
 	 */
 	public static function get_html_tag_elements() {
 		return array(
@@ -518,52 +513,13 @@ trait Fields {
 			)
 		);
 
-		$button_hover_effects = array(
-			"{$base_name}_hover_animation__enable" => array_merge_recursive(
-				$conditions,
-				self::add_yes_no_field(
-					esc_html__( 'Enable Hover Animation', 'squad-modules-for-divi' ),
-					array(
-						'description'      => esc_html__(
-							'By default, the button element will be not get any hover animation. If you would like get hover animation for the button, then you can enable this option.',
-							'squad-modules-for-divi'
-						),
-						'default_on_front' => 'off',
-						'affects'          => array(
-							"{$base_name}_hover_animation_type",
-						),
-						'tab_slug'         => 'advanced',
-						'toggle_slug'      => $config['toggle_slug'],
-					)
-				)
-			),
-			"{$base_name}_hover_animation_type"    => self::add_select_box_field(
-				esc_html__( 'Animation Type', 'squad-modules-for-divi' ),
-				array(
-					'description'      => esc_html__( 'Choose an animation type to display with your button.', 'squad-modules-for-divi' ),
-					'options'          => array(
-						'fill'   => esc_html__( 'fill', 'squad-modules-for-divi' ),
-						'pulse'  => esc_html__( 'pulse', 'squad-modules-for-divi' ),
-						'close'  => esc_html__( 'close', 'squad-modules-for-divi' ),
-						'raise'  => esc_html__( 'raise', 'squad-modules-for-divi' ),
-						'up'     => esc_html__( 'up', 'squad-modules-for-divi' ),
-						'slide'  => esc_html__( 'slide', 'squad-modules-for-divi' ),
-						'offset' => esc_html__( 'offset', 'squad-modules-for-divi' ),
-					),
-					'default_on_front' => 'icon',
-					'depends_show_if'  => 'on',
-					'tab_slug'         => 'advanced',
-					'toggle_slug'      => $config['toggle_slug'],
-				)
-			),
-		);
-
 		$background          = array();
 		$default_colors      = ET_Global_Settings::get_value( 'all_buttons_bg_color' );
 		$background_defaults = array(
 			'label'             => sprintf(
 				/* translators: Field Name */
-				esc_html__( '%1$s Background', 'squad-modules-for-divi' ), $config['title_prefix']
+				esc_html__( '%s Background', 'squad-modules-for-divi' ),
+				$config['title_prefix']
 			),
 			'description'       => esc_html__( 'Adjust the background style of the button by customizing the background color, gradient, and image.', 'squad-modules-for-divi' ),
 			'type'              => 'background-field',
@@ -743,7 +699,6 @@ trait Fields {
 					)
 				),
 			),
-			$button_hover_effects,
 			array(
 				"{$base_name}_custom_width"       => self::add_yes_no_field(
 					esc_html__( 'Resize Button', 'squad-modules-for-divi' ),

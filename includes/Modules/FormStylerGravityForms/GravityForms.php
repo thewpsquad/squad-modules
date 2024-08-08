@@ -5,16 +5,14 @@
  *
  * This class provides the gravity form customization functionalities in the visual builder.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.0
  */
 
 namespace DiviSquad\Modules\FormStylerGravityForms;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Form_Styler as Squad_Form_Styler;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Form_Styler as SquadFormStyler;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function esc_html__;
@@ -22,10 +20,10 @@ use function esc_html__;
 /**
  * The Form Styler: Gravity Forms Module Class.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.2.0
  */
-class GravityForms extends Squad_Form_Styler {
+class GravityForms extends SquadFormStyler {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -36,7 +34,7 @@ class GravityForms extends Squad_Form_Styler {
 	public function init() {
 		$this->name      = esc_html__( 'Gravity Forms', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Gravity Forms', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/gravity-forms.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/gravity-forms.svg' );
 
 		$this->slug             = 'disq_form_styler_gravity_forms';
 		$this->vb_support       = 'on';
@@ -175,7 +173,7 @@ class GravityForms extends Squad_Form_Styler {
 			),
 			'__forms'                  => array(
 				'type'                => 'computed',
-				'computed_callback'   => array( self::class, 'disq_form_styler__get_form_html' ),
+				'computed_callback'   => array( self::class, 'squad_form_styler__get_form_html' ),
 				'computed_depends_on' => array(
 					'form_id',
 					'form_title__enable',
@@ -308,7 +306,7 @@ class GravityForms extends Squad_Form_Styler {
 	/**
 	 * Declare advanced fields for the module
 	 *
-	 * @return array[]
+	 * @return array
 	 */
 	public function get_advanced_fields_config() {
 		$form_selector = $this->get_form_selector_default();
@@ -683,6 +681,112 @@ class GravityForms extends Squad_Form_Styler {
 	}
 
 	/**
+	 * Get the stylesheet selector for form tag.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_default() {
+		return "$this->main_css_element div .gform_wrapper.gravity-theme form";
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_default() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils::form_get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_hover() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils::form_get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field:hover";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_default() {
+		return "$this->main_css_element div .gform_wrapper form input[type=submit], $this->main_css_element div .gform_wrapper form button[type=submit], $this->main_css_element div .gform_wrapper form .gform-button";
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_hover() {
+		return "$this->main_css_element div .gform_wrapper form input[type=submit]:hover, $this->main_css_element div .gform_wrapper form button[type=submit]:hover, $this->main_css_element div .gform_wrapper form .gform-button:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_default() {
+		return "$this->main_css_element div .gform_wrapper .gform_validation_errors, $this->main_css_element div .gform_wrapper.gravity-theme .validation_error";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_hover() {
+		return "$this->main_css_element div .gform_wrapper .gform_validation_errors:hover, $this->main_css_element div .gform_wrapper.gravity-theme .validation_error:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_default() {
+		return "$this->main_css_element div .gform_wrapper.gform_confirmation_wrapper .gform_confirmation_message";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_hover() {
+		return "$this->main_css_element div .gform_wrapper.gform_confirmation_wrapper .gform_confirmation_message:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for form tag to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_hover() {
+		return "$this->main_css_element div .gform_wrapper.gravity-theme form:hover";
+	}
+
+	/**
 	 * Get CSS fields transition.
 	 *
 	 * Add form field options group and background image on the field list.
@@ -725,20 +829,20 @@ class GravityForms extends Squad_Form_Styler {
 		// Show a notice message in the frontend if the contact form is not installed.
 		if ( ! function_exists( 'gravity_form' ) ) {
 			return sprintf(
-				'<div class="divi_squad_notice">%s</div>',
+				'<div class="squad-notice">%s</div>',
 				esc_html__( 'Gravity Forms is not installed', 'squad-modules-for-divi' )
 			);
 		}
 
-		if ( ! empty( self::disq_form_styler__get_form_html( $attrs ) ) ) {
+		if ( ! empty( self::squad_form_styler__get_form_html( $attrs ) ) ) {
 			$this->squad_generate_all_styles( $attrs );
 
-			return self::disq_form_styler__get_form_html( $attrs );
+			return self::squad_form_styler__get_form_html( $attrs );
 		}
 
 		// Show a notice message in the frontend if the form is not selected.
 		return sprintf(
-			'<div class="divi_squad_notice">%s</div>',
+			'<div class="squad-notice">%s</div>',
 			esc_html__( 'Please select a form.', 'squad-modules-for-divi' )
 		);
 	}
@@ -752,124 +856,25 @@ class GravityForms extends Squad_Form_Styler {
 	 * @return string the html output.
 	 * @since 1.0.0
 	 */
-	public static function disq_form_styler__get_form_html( $attrs, $content = null ) {
-		if ( ! empty( $attrs['form_id'] ) && Utils::$default_form_id !== $attrs['form_id'] && function_exists( 'gravity_form' ) ) {
-			// Collect all posts from the database.
-			$collection       = Utils::form_get_all_items( 'gravity_forms', 'id' );
-			$form_id          = $collection[ $attrs['form_id'] ];
-			$form_title       = isset( $attrs['form_title__enable'] ) && 'on' === $attrs['form_title__enable'];
-			$form_description = isset( $attrs['form_description__enable'] ) && 'on' === $attrs['form_description__enable'];
-			$form_ajax        = isset( $attrs['form_with_ajax__enable'] ) && 'on' === $attrs['form_with_ajax__enable'];
-
-			return \gravity_form( $form_id, $form_title, $form_description, false, null, $form_ajax, '', false );
+	public static function squad_form_styler__get_form_html( $attrs, $content = null ) {
+		// Check if the form id is empty or not.
+		if ( empty( $attrs['form_id'] ) || Utils::$default_form_id === $attrs['form_id'] || ! function_exists( '\gravity_form' ) ) {
+			return '';
 		}
 
-		return null;
-	}
+		// Collect all posts from the database.
+		$collection = Utils::form_get_all_items( 'gravity_forms', 'id' );
 
-	/**
-	 * Get the stylesheet selector for form fields.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_default() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils::form_get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field";
+		// Check if the form id is existing.
+		if ( ! isset( $collection[ $attrs['form_id'] ] ) ) {
+			return '';
 		}
 
-		return implode( ', ', $selectors );
-	}
+		$form_id          = $collection[ $attrs['form_id'] ];
+		$form_title       = isset( $attrs['form_title__enable'] ) && 'on' === $attrs['form_title__enable'];
+		$form_description = isset( $attrs['form_description__enable'] ) && 'on' === $attrs['form_description__enable'];
+		$form_ajax        = isset( $attrs['form_with_ajax__enable'] ) && 'on' === $attrs['form_with_ajax__enable'];
 
-	/**
-	 * Get the stylesheet selector for form fields to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_hover() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils::form_get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field:hover";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_default() {
-		return "$this->main_css_element div .gform_wrapper.gravity-theme form";
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_hover() {
-		return "$this->main_css_element div .gform_wrapper.gravity-theme form:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_default() {
-		return "$this->main_css_element div .gform_wrapper .gform_validation_errors, $this->main_css_element div .gform_wrapper.gravity-theme .validation_error";
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_hover() {
-		return "$this->main_css_element div .gform_wrapper .gform_validation_errors:hover, $this->main_css_element div .gform_wrapper.gravity-theme .validation_error:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_default() {
-		return "$this->main_css_element div .gform_wrapper.gform_confirmation_wrapper .gform_confirmation_message";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_hover() {
-		return "$this->main_css_element div .gform_wrapper.gform_confirmation_wrapper .gform_confirmation_message:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_default() {
-		return "$this->main_css_element div .gform_wrapper form input[type=submit], $this->main_css_element div .gform_wrapper form button[type=submit], $this->main_css_element div .gform_wrapper form .gform-button";
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_hover() {
-		return "$this->main_css_element div .gform_wrapper form input[type=submit]:hover, $this->main_css_element div .gform_wrapper form button[type=submit]:hover, $this->main_css_element div .gform_wrapper form .gform-button:hover";
+		return \gravity_form( $form_id, $form_title, $form_description, false, null, $form_ajax, '', false );
 	}
 }

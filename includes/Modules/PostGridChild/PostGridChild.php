@@ -5,16 +5,14 @@
  *
  * This class provides post-element adding functionalities for the parent module in the visual builder.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package squad-modules-for-divi
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Modules\PostGridChild;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use function esc_attr__;
@@ -26,10 +24,10 @@ use function wp_json_encode;
 /**
  * Post-Grid Child Module Class.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.0.0
  */
-class PostGridChild extends Squad_Module {
+class PostGridChild extends DiviSquad_Module {
 	/**
 	 * The list of element types
 	 *
@@ -147,16 +145,16 @@ class PostGridChild extends Squad_Module {
 			),
 			'background'     => Utils::selectors_background( $this->main_css_element ),
 			'filters'        => array(
-				'child_filters_target' => array(
-					'label'               => et_builder_i18n( 'Icon' ),
-					'tab_slug'            => 'advanced',
-					'toggle_slug'         => 'element_icon_element',
-					'css'                 => array(
+				'child_filters_target' => Utils::add_filters_field(
+					et_builder_i18n( 'Icon' ),
+					'advanced',
+					'element_icon_element',
+					array(
 						'main'  => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper",
 						'hover' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper",
 					),
-					'depends_on'          => array( 'element_icon_type' ),
-					'depends_show_if_not' => array( 'none', 'icon', 'text' ),
+					array( 'element_icon_type' ),
+					array( 'none', 'icon', 'text' )
 				),
 			),
 			'borders'        => array(
@@ -1053,7 +1051,7 @@ class PostGridChild extends Squad_Module {
 	 * @param string $content     Content being processed.
 	 * @param string $render_slug Slug of module that is used for rendering output.
 	 *
-	 * @return string|null
+	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed, Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
 		if ( 'none' !== $this->prop( 'element', 'none' ) ) {
@@ -1437,7 +1435,7 @@ class PostGridChild extends Squad_Module {
 				}
 
 				// set icon placement for button image with default, hover, and responsive.
-				$this->squad_utils->genereate_show_icon_on_hover_styles(
+				$this->squad_utils->generate_show_icon_on_hover_styles(
 					array(
 						'props'          => $this->props,
 						'field'          => 'element_icon_placement',

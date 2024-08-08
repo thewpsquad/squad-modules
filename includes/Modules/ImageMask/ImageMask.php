@@ -5,15 +5,14 @@
  *
  * This class provides mask adding functionalities for image in the visual builder.
  *
- * @since           1.0.0
- * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
- * @license         GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Modules\ImageMask;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function apply_filters;
@@ -24,10 +23,10 @@ use function et_builder_i18n;
 /**
  * Image Mask Module Class.
  *
- * @since           1.0.0
- * @package         squad-modules
+ * @package DiviSquad
+ * @since   1.0.0
  */
-class ImageMask extends Squad_Module {
+class ImageMask extends DiviSquad_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -38,7 +37,7 @@ class ImageMask extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Image Mask', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Image Masks', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/image-mask.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/image-mask.svg' );
 
 		$this->slug             = 'disq_image_mask';
 		$this->vb_support       = 'on';

@@ -1,9 +1,21 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * Interface for the Route class.
+ *
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   2.0.0
+ */
+
+
 namespace DiviSquad\Base\Factories\RestRoute;
 
 /**
  * Interface for the Route class.
+ *
+ * @package DiviSquad
+ * @since   2.0.0
  */
 interface RouteInterface {
 
@@ -28,4 +40,3 @@ interface RouteInterface {
 	 */
 	public function get_routes();
 }
-

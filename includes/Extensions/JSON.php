@@ -2,11 +2,9 @@
 /**
  * The JSON extension class for Divi Squad.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.0
  */
 
 namespace DiviSquad\Extensions;
@@ -18,11 +16,8 @@ use function wp_strip_all_tags;
 /**
  * The JSON class.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.2.0
  */
 class JSON extends Extension {
 
@@ -47,18 +42,6 @@ class JSON extends Extension {
 	}
 
 	/**
-	 * All mime lists with newly appended mimes.
-	 *
-	 * @return array
-	 */
-	public function get_available_mime_types() {
-		return array(
-			'json'   => 'application/json',
-			'lottie' => 'application/zip',
-		);
-	}
-
-	/**
 	 * Allow extra mime type file upload in the current installation.
 	 *
 	 * @param array $existing_mimes The existing mime lists.
@@ -68,6 +51,18 @@ class JSON extends Extension {
 	 */
 	public function hook_add_extra_mime_types( $existing_mimes ) {
 		return array_merge( $existing_mimes, $this->get_available_mime_types() );
+	}
+
+	/**
+	 * All mime lists with newly appended mimes.
+	 *
+	 * @return array
+	 */
+	public function get_available_mime_types() {
+		return array(
+			'json'   => 'application/json',
+			'lottie' => 'application/zip',
+		);
 	}
 
 	/**
@@ -90,7 +85,7 @@ class JSON extends Extension {
 		if ( isset( $wp_checked['proper_filename'] ) ) {
 			$ext = $wp_checked['proper_filename'];
 		}
-		if ( false !== $type && false !== $ext ) {
+		if ( false !== $ext ) {
 			return $wp_checked;
 		}
 
@@ -101,12 +96,12 @@ class JSON extends Extension {
 		// Filename type is "XXX" (There is not a file extension).
 		if ( $f_exp_count <= 1 ) {
 			return $wp_checked;
-		} else {
-			$f_ext = $f_sp[ $f_exp_count - 1 ];
 		}
 
+		$f_ext = $f_sp[ $f_exp_count - 1 ];
+
 		$flag             = false;
-		$mime_type_values = array_keys( self::get_available_mime_types() );
+		$mime_type_values = array_keys( $this->get_available_mime_types() );
 		if ( ! empty( $mime_type_values ) ) {
 			foreach ( $mime_type_values as $line ) {
 				// Ignore to the right of '#' on a line.
@@ -135,5 +130,3 @@ class JSON extends Extension {
 		return $wp_checked;
 	}
 }
-
-new JSON();

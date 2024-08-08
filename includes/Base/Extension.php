@@ -2,11 +2,9 @@
 /**
  * The base class for Extension.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.0
  */
 
 namespace DiviSquad\Base;
@@ -14,8 +12,8 @@ namespace DiviSquad\Base;
 /**
  * Extension class.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.2.0
  */
 abstract class Extension {
 
@@ -51,15 +49,6 @@ abstract class Extension {
 		if ( ! in_array( $this->get_name(), $this->name_lists, true ) ) {
 			$this->load();
 		}
-	}
-
-	/**
-	 * Get the plugin version number
-	 *
-	 * @return string
-	 */
-	protected function get_version() {
-		return divi_squad()->get_version();
 	}
 
 	/**

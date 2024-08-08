@@ -2,22 +2,23 @@
 /**
  * Utils Common.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Base\DiviBuilder\Utils;
 
+use function esc_html;
+use function esc_html__;
+use function wp_kses_post;
 use function wp_strip_all_tags;
 
 /**
  * Common trait.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.0.0
  */
 trait Common {
 
@@ -52,10 +53,26 @@ trait Common {
 	 *
 	 * @param string $content The raw content form child element.
 	 *
-	 * @return string
+	 * @return array
+	 * @throws \RuntimeException When json error found.
 	 */
-	public static function json_format_raw_props( $content ) {
-		return sprintf( '[%s]', $content );
+	public static function collect_child_json_props( $content ) {
+		$raw_props   = static::json_format_raw_props( $content );
+		$clean_props = str_replace( array( '},||', '},]' ), array( '},', '}]' ), $raw_props );
+		$child_props = json_decode( $clean_props, true );
+
+		if ( JSON_ERROR_NONE !== json_last_error() ) {
+			throw new \RuntimeException(
+				sprintf(
+					/* translators: 1: Error message. */
+					esc_html__( '%1$s found when decoding the content: %2$s', 'squad-modules-for-divi' ),
+					esc_html( json_last_error_msg() ),
+					wp_kses_post( $content )
+				)
+			);
+		}
+
+		return $child_props;
 	}
 
 	/**
@@ -63,58 +80,10 @@ trait Common {
 	 *
 	 * @param string $content The raw content form child element.
 	 *
-	 * @return array
+	 * @return string
 	 */
-	public static function collect_child_json_props( $content ) {
-		$raw_props   = static::json_format_raw_props( $content );
-		$clean_props = str_replace( '},]', '}]', $raw_props );
-		$child_props = json_decode( $clean_props, true );
-
-		if ( JSON_ERROR_NONE !== json_last_error() ) {
-			trigger_error( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-				sprintf(
-				/* translators: 1: Error message. */
-					esc_html__( __( 'Error when decoding child props: %1$s', 'squad-modules-for-divi' ), 'squad-modules-for-divi' ), // phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText
-					json_last_error_msg() // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				)
-			);
-
-			return array();
-		}
-
-		return $child_props;
-	}
-
-	/**
-	 * Collect all modules from Divi Builder.
-	 *
-	 * @param array $modules_array  All modules array..
-	 * @param array $allowed_prefix The allowed prefix list.
-	 *
-	 * @return array
-	 */
-	public static function get_all_modules( $modules_array, $allowed_prefix = array() ) {
-		// Initiate default data.
-		$default_allowed_prefix = array( 'disq' );
-		$clean_modules          = array(
-			'none'   => esc_html__( 'Select Module', 'squad-modules-for-divi' ),
-			'custom' => esc_html__( 'Custom', 'squad-modules-for-divi' ),
-		);
-
-		// Merge new data with default prefix.
-		$all_prefix = array_merge( $default_allowed_prefix, $allowed_prefix );
-
-		foreach ( $modules_array as $module ) {
-			if ( strpos( $module['label'], '_' ) ) {
-				$module_explode = explode( '_', $module['label'] );
-
-				if ( in_array( $module_explode[0], $all_prefix, true ) ) {
-					$clean_modules[ $module['label'] ] = $module['title'];
-				}
-			}
-		}
-
-		return $clean_modules;
+	public static function json_format_raw_props( $content ) {
+		return sprintf( '[%s]', $content );
 	}
 
 	/**
@@ -134,22 +103,6 @@ trait Common {
 		}
 
 		return $order_classes;
-	}
-
-	/**
-	 * Get default selectors for main and hover
-	 *
-	 * @param string $main_css_element Main css selector of element.
-	 *
-	 * @return array[]
-	 */
-	public static function selectors_default( $main_css_element ) {
-		return array(
-			'css' => array(
-				'main'  => $main_css_element,
-				'hover' => "$main_css_element:hover",
-			),
-		);
 	}
 
 	/**
@@ -186,6 +139,22 @@ trait Common {
 					'module_alignment' => "$main_css_element.et_pb_module",
 				),
 			)
+		);
+	}
+
+	/**
+	 * Get default selectors for main and hover
+	 *
+	 * @param string $main_css_element Main css selector of element.
+	 *
+	 * @return array[]
+	 */
+	public static function selectors_default( $main_css_element ) {
+		return array(
+			'css' => array(
+				'main'  => $main_css_element,
+				'hover' => "$main_css_element:hover",
+			),
 		);
 	}
 
