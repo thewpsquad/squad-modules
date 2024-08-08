@@ -40,14 +40,14 @@ class Assets {
 		$typed_js          = Asset::asset_path( 'typed.umd', $vendor_asset_options );
 		$images_loaded_js  = Asset::asset_path( 'imagesloaded.pkgd', $vendor_asset_options );
 		$isotope_js        = Asset::asset_path( 'isotope.pkgd', $vendor_asset_options );
-		$light_gallery_js  = Asset::asset_path( 'lightgallery.umd', array_merge( $vendor_asset_options, array( 'prod_file' => 'lightgallery' ) ) ); // phpcs:ignore
-		$scrolling_text_js = Asset::asset_path( 'jquery.marquee', $vendor_asset_options ); // phpcs:ignore
+		$light_gallery_js  = Asset::asset_path( 'lightgallery.umd', array_merge( $vendor_asset_options, array( 'prod_file' => 'lightgallery' ) ) );
+		$scrolling_text_js = Asset::asset_path( 'jquery.marquee', $vendor_asset_options );
 
 		// All vendor scripts.
 		Asset::register_scripts( 'vendor-lottie', $lottie_js );
 		Asset::register_scripts( 'vendor-typed', $typed_js );
-		Asset::register_scripts( 'vendor-lightgallery', $light_gallery_js, $core_asset_deps );
-		Asset::register_scripts( 'vendor-imagesloaded', $images_loaded_js, $core_asset_deps );
+		Asset::register_scripts( 'vendor-light-gallery', $light_gallery_js, $core_asset_deps );
+		Asset::register_scripts( 'vendor-images-loaded', $images_loaded_js, $core_asset_deps );
 		Asset::register_scripts( 'vendor-isotope', $isotope_js, $core_asset_deps );
 		Asset::register_scripts( 'vendor-scrolling-text', $scrolling_text_js, $core_asset_deps );
 
@@ -77,7 +77,7 @@ class Assets {
 	 * @return void
 	 */
 	public function enqueue_scripts_vb() {
-		if ( et_core_is_fb_enabled() ) {
+		if ( function_exists( 'et_core_is_fb_enabled' ) && et_core_is_fb_enabled() ) {
 			wp_enqueue_script( 'disq-vendor-typed' );
 			wp_enqueue_script( 'disq-vendor-isotope' );
 			wp_enqueue_script( 'disq-vendor-imagesloaded' );

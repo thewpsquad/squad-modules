@@ -30,6 +30,22 @@ use function get_rest_url;
 class Assets {
 
 	/**
+	 * The plugin options.
+	 *
+	 * @var array
+	 */
+	protected $options;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param array $options The options.
+	 */
+	public function __construct( $options ) {
+		$this->options = $options;
+	}
+
+	/**
 	 * Get the lis of admin asset allowed page for the plugin.
 	 *
 	 * @return array
@@ -124,8 +140,9 @@ class Assets {
 	 * @return array
 	 */
 	public function wp_localize_script_data() {
-		// Collect the plugin name.
-		$namespace = divi_squad()->get_name();
+		// Collect the plugin data.
+		$name    = $this->options['Name'];
+		$version = $this->options['Version'];
 
 		// Collect admin menus.
 		$admin_menu = new \DiviSquad\Admin\Menu();
@@ -164,10 +181,10 @@ class Assets {
 
 		return array(
 			'version'      => divi_squad()->get_version(),
-			'version_real' => DISQ_VERSION,
+			'version_real' => $version,
 			'rest_api'     => array(
 				'route'     => get_rest_url(),
-				'namespace' => "/$namespace/v1",
+				'namespace' => "/$name/v1",
 				'routes'    => array_merge( $module_routes, $extension_routes, $whats_new_routes ),
 			),
 			'admin_menus'  => $admin_menu->get_admin_sub_menu(),

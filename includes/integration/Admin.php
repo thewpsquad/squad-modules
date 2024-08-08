@@ -27,11 +27,13 @@ class Admin {
 	/**
 	 * Get the instance of the current class.
 	 *
+	 * @param array $options The plugin options.
+	 *
 	 * @return void
 	 */
-	public static function load() {
+	public static function load( $options ) {
 		$admin_menu   = new \DiviSquad\Admin\Menu();
-		$admin_asset  = new \DiviSquad\Admin\Assets();
+		$admin_asset  = new \DiviSquad\Admin\Assets( $options );
 		$action_links = new \DiviSquad\Admin\Plugin_Action_Links();
 		$row_meta     = new \DiviSquad\Admin\Plugin_Row_Meta();
 		$footer_text  = new \DiviSquad\Admin\Plugin_Admin_Footer_Text();

@@ -3,9 +3,9 @@ Contributors: wpsquad, mralaminahamed
 Donate link: https://www.buymeacoffee.com/mralaminahamed
 Tags: divi, divi module, divi theme, divi builder, divi page builder, divi plugin, divi addons, divi extensions
 Requires at least: 5.0.0
-Tested up to: 6.4
+Tested up to: 6.5
 Requires PHP: 5.6
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -208,6 +208,12 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 * Enjoy the new collection of elegant Divi modules and enhance your website.
 
 == Changelog ==
+= 1.4.5 (12-11-2023) =
+* Fixed: External url cors origin issue in the lottie module
+* Fixed: Browser console log when light box not enabled in gallery module
+* Fixed: WordPress Playground issue
+* Compatibility: Tested up to WordPress 6.4.1
+
 = 1.4.4 (04-11-2023) =
 * Improved: Performance and Optimization
 * Improved: Post Grid, Video Popup Modules

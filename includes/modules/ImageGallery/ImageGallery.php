@@ -303,11 +303,11 @@ class ImageGallery extends Squad_Builder_Module {
 		}
 
 		if ( ! empty( $this->prop( 'gallery_ids', '' ) ) ) {
-			wp_enqueue_script( 'disq-vendor-imagesloaded' );
+			wp_enqueue_script( 'disq-vendor-images-loaded' );
 			wp_enqueue_script( 'disq-vendor-isotope' );
 
 			if ( 'on' === $this->prop( 'show_in_lightbox', 'off' ) ) {
-				wp_enqueue_script( 'disq-vendor-lightgallery' );
+				wp_enqueue_script( 'disq-vendor-light-gallery' );
 			}
 
 			wp_enqueue_script( 'disq-module-gallery' );

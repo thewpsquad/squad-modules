@@ -75,11 +75,13 @@ abstract class Core extends \DiviSquad\Base\Core {
 	/**
 	 * The admin interface asset and others.
 	 *
+	 * @param array $options The plugin options.
+	 *
 	 * @return void
 	 */
-	protected function load_admin_interface() {
+	protected function load_admin_interface( $options ) {
 		if ( is_admin() ) {
-			Admin::load();
+			Admin::load( $options );
 
 			// Load plugin review
 			new \DiviSquad\Admin\Plugin_Review();

@@ -31,7 +31,7 @@ class Plugin_Review {
 	 *
 	 * @var int
 	 */
-	private $first_time_show = 3;
+	private $first_time_show = 7;
 
 	/**
 	 * Init constructor.
@@ -99,10 +99,8 @@ class Plugin_Review {
 	 * Show Notice.
 	 */
 	public function notice() {
-		if ( $this->can_render_notice() ) {
-			if ( file_exists( sprintf( '%1$s/templates/plugin-review.php', DISQ_DIR_PATH ) ) ) {
-				load_template( sprintf( '%1$s/templates/plugin-review.php', DISQ_DIR_PATH ) );
-			}
+		if ( $this->can_render_notice() && file_exists( sprintf( '%1$s/templates/plugin-review.php', DISQ_DIR_PATH ) ) ) {
+			load_template( sprintf( '%1$s/templates/plugin-review.php', DISQ_DIR_PATH ) );
 		}
 	}
 }

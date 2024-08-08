@@ -152,9 +152,10 @@ class Asset {
 
 		if ( in_array( $extension, array( 'js', 'css' ), true ) ) {
 			// Check for the minified version in the server on production mode.
-			$minified_asset_file = str_replace( array( ".$extension" ), array( ".min.$extension" ), $path_validate );
-			$minified_asset_path = static::resolve_file_path( $minified_asset_file );
-			if ( Str::ends_with( $path_validate, ".$extension" ) && ! Str::ends_with( $path_validate, ".min.$extension" ) && file_exists( $minified_asset_path ) ) {
+			$minified_asset_file     = str_replace( array( ".$extension" ), array( ".min.$extension" ), $path_validate );
+			$is_minified_asset_file  = Str::ends_with( $path_validate, ".min.$extension" );
+			$is_minified_asset_found = file_exists( static::resolve_file_path( $minified_asset_file ) );
+			if ( Str::ends_with( $path_validate, ".$extension" ) && ! $is_minified_asset_file && $is_minified_asset_found ) {
 				$path_validate = $minified_asset_file;
 			}
 

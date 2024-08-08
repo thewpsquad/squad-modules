@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
  * Squad Modules Lite
  *
@@ -8,6 +9,10 @@
  */
 
 namespace DiviSquad;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
 
 /**
  * Free Plugin Load class.
@@ -34,14 +39,34 @@ final class SquadModules extends Integration\Core {
 	protected $plugin_memory;
 
 	/**
-	 * Constructor.
+	 * The plugin options.
+	 *
+	 * @var array
 	 */
-	public function __construct() {
-		$this->name          = 'squad-modules-for-divi';
-		$this->option_prefix = 'disq';
+	protected $options;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param array $options The plugin options.
+	 */
+	public function __construct( $options ) {
 		// translations.
-		$this->localize_path = __DIR__;
+		$this->localize_path = DISQ_DIR_PATH;
+
+		$this->options    = $options;
+		$this->opt_prefix = $this->options['OptionPrefix'];
+		$this->name       = $this->options['Name'];
+		$this->version    = $this->options['Version'];
+	}
+
+	/**
+	 * The plugin options.
+	 *
+	 * @return array
+	 */
+	public function get_options() {
+		return $this->options;
 	}
 
 	/**
@@ -50,7 +75,7 @@ final class SquadModules extends Integration\Core {
 	 * @return string
 	 */
 	public function get_version() {
-		return DISQ_VERSION;
+		return $this->version;
 	}
 
 	/**
@@ -76,24 +101,38 @@ final class SquadModules extends Integration\Core {
 	}
 
 	/**
+	 * Cloning is forbidden.
+	 *
+	 * @access public
+	 */
+	public function __clone() {}
+
+	/**
+	 * Unserializing instances of this class is forbidden.
+	 *
+	 * @access public
+	 */
+	public function __wakeup() {}
+
+	/**
 	 *  The instance of current class.
 	 *
 	 * @return self
 	 */
-	public static function get_instance() {
+	public static function get_instance( $options ) {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof self ) ) {
-			self::$instance = new self();
+			self::$instance = new self( $options );
 
-			self::$instance->set_memory( self::$instance->option_prefix );
+			self::$instance->set_memory( self::$instance->opt_prefix );
 			self::$instance->load_core_components();
 
 			// Load the core.
-			$wp = new Integration\WP();
+			$wp = new Integration\WP( $options );
 			$wp->let_the_journey_start(
 				static function () {
 					self::$instance->load_global_assets();
 					self::$instance->localize_scripts_data();
-					self::$instance->load_admin_interface();
+					self::$instance->load_admin_interface( self::$instance->get_options() );
 					self::$instance->register_ajax_rest_api_routes();
 					self::$instance->init();
 					self::$instance->load_text_domain();

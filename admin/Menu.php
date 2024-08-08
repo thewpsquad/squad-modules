@@ -109,7 +109,7 @@ class Menu {
 			array(
 				esc_html__( 'Dashboard', 'squad-modules-for-divi' ),
 				$this->admin_management_permission(),
-				$base . '#/',
+				$base,
 			),
 			array(
 				esc_html__( 'Modules', 'squad-modules-for-divi' ),
