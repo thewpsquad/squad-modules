@@ -26,5 +26,3 @@ if ( function_exists( 'delete_option' ) ) {
 	}
 	// Clean up cron events.
 }
-
-

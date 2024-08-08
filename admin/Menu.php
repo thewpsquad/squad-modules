@@ -12,6 +12,8 @@
 
 namespace DiviSquad\Admin;
 
+use function DiviSquad\divi_squad;
+
 /**
  * Menu class
  *
@@ -24,23 +26,7 @@ class Menu {
 	 *
 	 * @var self
 	 */
-	private static $instance;
-
-	/**
-	 * Get the instance of self-class.
-	 *
-	 * @return self
-	 */
-	public static function get_instance() {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof self ) ) {
-			self::$instance = new self();
-
-			add_action( 'admin_menu', array( self::$instance, 'admin_menu_create' ) );
-			add_filter( 'admin_body_class', array( self::$instance, 'admin_classes' ) );
-		}
-
-		return self::$instance;
-	}
+	protected static $instance;
 
 	/**
 	 * Enqueue scripts and styles files in the WordPress admin area.
@@ -127,6 +113,13 @@ class Menu {
 				'parent'     => 'divi_squad_dashboard',
 				'view'       => array( $this, 'get_template' ),
 			),
+			array(
+				'name'       => esc_html__( 'Extensions', 'squad-modules-for-divi' ),
+				'capability' => $this->admin_management_permission(),
+				'slug'       => 'divi_squad_extensions',
+				'parent'     => 'divi_squad_dashboard',
+				'view'       => array( $this, 'get_template' ),
+			),
 		);
 
 		// phpcs:disable
@@ -150,7 +143,94 @@ class Menu {
 	 * @return  void
 	 */
 	public static function get_template() {
-		printf( '<section id="squad-modules-app"></section>' );
+		print ( '<style>
+		#squad-modules-app {
+		  z-index: -1;
+		}
+		 /**===== Squad Modules App (Preloader) =====*/
+		#squad-modules-app-loader.square {
+		  display: block;
+		  position: absolute;
+		  top: 50%;
+		  left: 50%;
+		  height: 50px;
+		  width: 50px;
+		  margin: -25px 0 0 -25px;
+		}
+		
+		#squad-modules-app-loader.square span {
+		  width: 16px;
+		  height: 16px;
+		  background-color: #5E2EFF;
+		  display: inline-block;
+		  -webkit-animation: app-loader-square 1.7s infinite ease-in-out both;
+		          animation: app-loader-square 1.7s infinite ease-in-out both;
+		}
+		
+		#squad-modules-app-loader.square span:nth-child(1) {
+		  left: 0;
+		  -webkit-animation-delay: 0.1s;
+		          animation-delay: 0.1s;
+		}
+		
+		#squad-modules-app-loader.square span:nth-child(2) {
+		  left: 15px;
+		  -webkit-animation-delay: 0.6s;
+		          animation-delay: 0.6s;
+		}
+		
+		#squad-modules-app-loader.square span:nth-child(3) {
+		  left: 30px;
+		  -webkit-animation-delay: 1.1s;
+		          animation-delay: 1.1s;
+		}
+		
+		#squad-modules-app-loader.square span:nth-child(4) {
+		  left: 45px;
+		  -webkit-animation-delay: 1.5s;
+		          animation-delay: 1.5s;
+		}
+		
+		@keyframes app-loader-square {
+		  0% {
+		    	-webkit-transform: scale(0);
+		         transform: scale(0);
+		    	opacity: 0;
+		  }
+		  50% {
+		    	-webkit-transform: scale(1);
+		        transform: scale(1);
+		    	opacity: 1;
+		  }
+		  100% {
+		    	-webkit-transform: rotate(60deg);
+		        transform: rotate(60deg);
+		    	opacity: .5;
+		  }
+		}
+		@-webkit-keyframes app-loader-square {
+		  0% {
+		    -webkit-transform: scale(0);
+		            transform: scale(0);
+		    opacity: 0;
+		  }
+		  50% {
+		    -webkit-transform: scale(1);
+		            transform: scale(1);
+		    opacity: 1;
+		  }
+		  100% {
+		    -webkit-transform: rotate(60deg);
+		            transform: rotate(60deg);
+		    opacity: .5;
+		  }
+		}
+		/** END of square */ 
+		</style>' );
+		print ( '<div id="squad-modules-app-loader" class="square"> <span></span> <span></span> <span></span> <span></span> </div>' );
+
+		// show the admin page content.
+		print ( '<section id="squad-modules-app"></section>' );
 	}
 
 	/**
@@ -164,11 +244,16 @@ class Menu {
 	public function admin_classes( $classes ) {
 		global $current_screen;
 
+		// Add divi squad version class in the body.
+		$version  = divi_squad()->get_version();
+		$version  = str_replace( '.', '_', $version );
+		$classes .= sprintf( ' divi_squad_free_v%s', $version );
+
+		// Add specific class to detect the current page.
 		if ( isset( $current_screen ) && str_contains( $current_screen->id, 'divi_squad' ) ) {
 			$classes .= ' divi_squad_plugin_page';
 		}
 
 		return $classes;
 	}
-
 }

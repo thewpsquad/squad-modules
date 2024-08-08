@@ -13,6 +13,7 @@
 namespace DiviSquad\Integration;
 
 use DiviSquad\Manager;
+use function DiviSquad\divi_squad;
 use function et_pb_force_regenerate_templates;
 
 /**
@@ -24,11 +25,31 @@ use function et_pb_force_regenerate_templates;
 abstract class Core extends \DiviSquad\Base\Core {
 
 	/**
-	 * Initialize the plugin with required components.
+	 * Load all core components.
 	 *
 	 * @return void
 	 */
-	protected function init() {
+	protected function load_core_components() {
+		$this->modules    = new Manager\Modules();
+		$this->extensions = new Manager\Extensions();
+
+		// Activate all modules and extensions.
+		$this->modules->active_modules();
+		$this->extensions->activate_extensions();
+
+		// Load all rest api routes.
+		$this->modules_rest_api_routes    = new Manager\Rest_API_Routes\Modules();
+		$this->extensions_rest_api_routes = new Manager\Rest_API_Routes\Extensions();
+	}
+
+	/**
+	 * Initialize the plugin with required components.
+	 *
+	 * @param array $options Options data.
+	 *
+	 * @return void
+	 */
+	protected function init( $options = array() ) {
 		// Register all hooks for plugin.
 		register_activation_hook( DISQ__FILE__, array( $this, 'hook_activation' ) );
 		register_deactivation_hook( DISQ__FILE__, array( $this, 'hook_deactivation' ) );
@@ -40,15 +61,11 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 * @return void
 	 */
 	public function hook_activation() {
-		$this->memory->set( 'activation_time', time() );
-		$this->memory->set( 'version', DISQ_VERSION );
-		$this->memory->set( 'activate_version', DISQ_VERSION );
-
-		// add previous plugin version.
-		$previous_activate_version = $this->memory->get( 'previous_activate_version', DISQ_VERSION );
-		if ( DISQ_VERSION !== $previous_activate_version ) {
-			$this->memory->set( 'previous_activate_version', $previous_activate_version );
+		$this->get_memory()->set( 'activation_time', time() );
+		if ( divi_squad()->get_version() !== $this->get_memory()->get( 'version' ) ) {
+			$this->get_memory()->set( 'previous_version', $this->get_memory()->get( 'version' ) );
 		}
+		$this->get_memory()->set( 'version', divi_squad()->get_version() );
 	}
 
 	/**
@@ -58,7 +75,7 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 */
 	protected function load_admin_interface() {
 		if ( is_admin() ) {
-			Admin::get_instance();
+			Admin::load();
 		}
 	}
 
@@ -69,7 +86,17 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 */
 	protected function register_ajax_rest_api_routes() {
 		// Register all rest api.
-		Manager\Rest_API_Routes::get_instance()->register_all();
+		add_action( 'rest_api_init', array( new Manager\Rest_API_Routes(), 'register_all' ) );
+	}
+
+	/**
+	 * Load all extensions.
+	 *
+	 * @return void
+	 */
+	public function load_all_extensions() {
+		// Load all extensions.
+		$this->extensions->load_extensions( realpath( dirname( __DIR__ ) ) );
 	}
 
 	/**
@@ -79,10 +106,14 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 */
 	protected function load_divi_modules_for_builder() {
 		// Register all assets.
-		Manager\Assets::get_instance();
+		$asset_manager = new Manager\Assets();
+		add_action( 'wp_enqueue_scripts', array( $asset_manager, 'enqueue_scripts' ) );
+		if ( isset( $_GET['et_fb'] ) && '1' === $_GET['et_fb'] ) { // phpcs:ignore
+			add_action( 'wp_enqueue_scripts', array( $asset_manager, 'enqueue_scripts_vb' ) );
+		}
 
 		// Register all hooks for divi integration.
-		add_action( 'divi_extensions_init', array( $this, 'initialize_extension' ) );
+		add_action( 'divi_extensions_init', array( $this, 'initialize_divi_extension' ) );
 		add_action( 'wp_loaded', array( $this, 'initialize_divi_asset_definitions' ) );
 
 		// Force the legacy backend builder to reload its template cache.
@@ -97,7 +128,7 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 *
 	 * @return void
 	 */
-	public function initialize_extension() {
+	public function initialize_divi_extension() {
 		if ( class_exists( DiviSquad::class ) ) {
 			new DiviSquad( $this->name, DISQ_DIR_PATH, DISQ_DIR_URL );
 		}
@@ -111,8 +142,8 @@ abstract class Core extends \DiviSquad\Base\Core {
 	public function initialize_divi_asset_definitions() {
 		if ( function_exists( 'et_fb_process_shortcode' ) && class_exists( Divi\Backend::class ) ) {
 			$helpers = new Divi\Backend();
-			add_filter( 'et_fb_backend_helpers', array( $helpers, 'static_asset_definitions' ), 11 ); // load on functions when et-dynamic-asset-helpers are registered.
-			add_filter( 'et_fb_get_asset_helpers', array( $helpers, 'asset_definitions' ), 11 ); // this data load after written the required file.
+			add_filter( 'et_fb_backend_helpers', array( $helpers, 'static_asset_definitions' ), 11 );
+			add_filter( 'et_fb_get_asset_helpers', array( $helpers, 'asset_definitions' ), 11 );
 
 			$load_backend_data = static function () {
 				$helpers      = new Divi\Backend();

@@ -177,5 +177,4 @@ trait Divider {
 			),
 		);
 	}
-
 }

@@ -403,31 +403,21 @@ class BusinessHoursChild extends DISQ_Builder_Module {
 		$fields = parent::get_transition_fields_css_props();
 
 		// Item wrapper styles.
-		$fields['wrapper_background_color'] = array(
-			'background' => "$this->main_css_element div .day-elements",
-		);
-		$fields['wrapper_margin']           = array(
-			'margin' => "$this->main_css_element div .day-elements",
-		);
-		$fields['wrapper_padding']          = array(
-			'padding' => "$this->main_css_element div .day-elements",
-		);
+		$fields['wrapper_background_color'] = array( 'background' => "$this->main_css_element div .day-elements" );
+		$fields['wrapper_margin']           = array( 'margin' => "$this->main_css_element div .day-elements" );
+		$fields['wrapper_padding']          = array( 'padding' => "$this->main_css_element div .day-elements" );
 		$this->disq_fix_border_transition( $fields, 'wrapper', "$this->main_css_element div .day-elements" );
 		$this->disq_fix_box_shadow_transition( $fields, 'wrapper', "$this->main_css_element div .day-elements" );
 
 		// divider styles.
-		$fields['divider_color']  = array(
-			'border-top-color' => "$this->main_css_element div .day-elements .day-element.day-element-divider:before",
-		);
+		$fields['divider_color']  = array( 'border-top-color' => "$this->main_css_element div .day-elements .day-element.day-element-divider:before" );
 		$fields['divider_weight'] = array(
 			'border-top-width' => "$this->main_css_element div .day-elements .day-element.day-element-divider:before",
 			'height'           => "$this->main_css_element div .day-elements .day-element.day-element-divider:before",
 		);
 
 		// Default styles.
-		$fields['background_layout'] = array(
-			'color' => $this->main_css_element,
-		);
+		$fields['background_layout'] = array( 'color' => $this->main_css_element );
 
 		return $fields;
 	}
@@ -587,7 +577,6 @@ class BusinessHoursChild extends DISQ_Builder_Module {
 			)
 		);
 	}
-
 }
 
 new BusinessHoursChild();
