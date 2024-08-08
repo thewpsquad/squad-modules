@@ -17,6 +17,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use ET_Global_Settings;
+use function esc_attr__;
+use function esc_html__;
+use function et_builder_get_acceptable_css_string_values;
+use function et_builder_i18n;
+use function wp_array_slice_assoc;
+use function wp_parse_args;
 
 /**
  * Fields class.

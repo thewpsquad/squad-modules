@@ -5,17 +5,17 @@ Tags: divi, divi module, divi theme, divi builder, divi page builder, divi plugi
 Requires at least: 5.0.0
 Tested up to: 6.5
 Requires PHP: 5.6
-Stable tag: 1.4.7
+Stable tag: 1.4.8
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-The Essential Divi plugin you install after Divi or Extra Theme! Packed with 20+ stunning free modules including Advanced Divider, Flip box, Gallery, Breadcrumbs, and many more.
+The Essential Divi plugin you install after Divi or Extra Theme! Packed with 25+ stunning free modules including Advanced Divider, Flip box, Gallery, Breadcrumbs, and many more.
 
 == Description ==
 
 = A All-in-One advanced Divi plugin for the Divi Page Builder =
 
-Enhance your Divi page building experience with 20+ creative modules and extensions. Add powers to your page builder using our easy-to-use modules those were designed to make your next WordPress page and posts design easier and prettier than ever before.
+Enhance your Divi page building experience with 25+ creative modules and extensions. Add powers to your page builder using our easy-to-use modules those were designed to make your next WordPress page and posts design easier and prettier than ever before.
 
 ### Most Helpful Links
 <ul>
@@ -28,7 +28,7 @@ Enhance your Divi page building experience with 20+ creative modules and extensi
 Each modules comes with a bunch of options to customize your website in every possible way. You can achieve nearly any design with your imagination.
 
 ### Light Weight & Instant Loading
-No extra resources or messy codes to slow down your website. Optimized for super fast loading and instant Live editing.
+No extra resources or messy codes to slow down your website. Optimized for superfast loading and instant Live editing.
 
 ### Modules Control option
 Enable and disable individual modules to make your page loading faster and smoother. You can deactivate unnecessary modules to keep the site lite
@@ -56,20 +56,21 @@ Squad Modules Lite includes over 20+ free modules that you can use to create stu
 16. **Divi Breadcrumbs Module**: Enhance navigation with a clear path for users to trace their steps through your website.
 17. **Divi Drop Cap Text Module**: Create visually appealing drop caps to add emphasis and style to your text content.
 18. **Divi Video Popup Module**: Engage visitors with customizable video popups for YouTube and Vimeo.
-19. **Divi Form Styler: Contact Form 7 Module**: Effortlessly customize Contact Form 7 design. Adjust colors, fonts, spacing, and add CSS for your desired look.
-20. **Divi Form Styler: WP Forms Module**: Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
-21. **Divi Form Styler: Gravity Forms Module**: Effortlessly customize Gravity Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
-22. **Google Embed Map**: Google Embed Map right into your Divi's site easily without having to worry about anything else.
-23. **Divi Form Styler: Ninja Forms**: Effortlessly customize Ninja Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
-24. **Divi Form Styler: Fluent Forms**: Effortlessly customize Fluent Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
+19. **Divi Google Embed Map Module**: Google Embed Map right into your Divi's site easily without having to worry about anything else.
+20. **Divi Form Styler: Contact Form 7 Module**: Effortlessly customize Contact Form 7 design. Adjust colors, fonts, spacing, and add CSS for your desired look.
+21. **Divi Form Styler: WP Forms Module**: Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
+22. **Divi Form Styler: Gravity Forms Module**: Effortlessly customize Gravity Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
+23. **Divi Form Styler: Ninja Forms Module**: Effortlessly customize Ninja Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
+24. **Divi Form Styler: Fluent Forms Module**: Effortlessly customize Fluent Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
 
 == Free Extensions ==
-Squad Modules Lite also includes 4 extensions that can help you take your website to the next level:
+Squad Modules Lite also includes 5 extensions that can help you take your website to the next level:
 
-1. **Divi Library Shortcode**: This extension adds a shortcode column to the Divi Library, so you can easily insert any layout into a Divi module or PHP file by using ```[disq_divi_library_layout id="123"]```.
-2. **Font Upload**: This extension allows you to upload custom fonts to your website, so you can create a unique and consistent visual identity.
-3. **JSON Upload**: This extension makes it easy to import and export layouts, settings, and other data using JSON files. This can save you a lot of time when working on your website.
-4. **SVG Upload**: This extension allows you to upload custom SVG graphics to your website. SVG graphics are vector-based, so they can be scaled without losing quality. This makes them a great choice for logos, illustrations, and other graphics that need to be displayed at high resolutions.
+1. **Copy Post or Page (Multisite Supported)**: The best extension to easily make duplicates of your posts & pages them in one go.
+2. **Divi Library Shortcode**: This extension adds a shortcode column to the Divi Library, so you can easily insert any layout into a Divi module or PHP file by using ```[disq_divi_library_layout id="123"]```.
+3. **Font Upload**: This extension allows you to upload custom fonts to your website, so you can create a unique and consistent visual identity.
+4. **JSON Upload**: This extension makes it easy to import and export layouts, settings, and other data using JSON files. This can save you a lot of time when working on your website.
+5. **SVG Upload**: This extension allows you to upload custom SVG graphics to your website. SVG graphics are vector-based, so they can be scaled without losing quality. This makes them a great choice for logos, illustrations, and other graphics that need to be displayed at high resolutions.
 
 Many more advanced Divi Modules and Extensions coming soon…
 
@@ -162,6 +163,14 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 13. Typing Text Module - This is a module that allows you to create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 
 == Upgrade Notice ==
+= 1.4.8 =
+* Extension: Copy Post or Page (Multisite Supported)
+* Image Gallery Module: Overlay Feature with lightbox:
+* Image Gallery Module: Image orientation and Count
+* Compatibility with Divi 4.23.3 & 4.23.4
+* Improved Plugin Preview Banner
+* Improved Modules locales support
+
 = 1.4.7 =
 * Added: Preview Button support in the WP Plugin Directory
 * Added: Portuguese (Brazil) locales by Gianni Marinho, thanks a lot
@@ -231,20 +240,42 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 * Enjoy the new collection of elegant Divi modules and enhance your website.
 
 == Changelog ==
-= 1.4.7 (21-12-2023 =
-* Added: Preview Button support in the WP Plugin Directory
-* Added: Portuguese (Brazil) locales by Gianni Marinho, thanks a lot
-* New: Introduced the Divi Google Map Module
-* New: Introduced the Divi Form Styler: Ninja Forms
-* New: Introduced the Divi Form Styler: Fluent Forms
-* Improvement: Compatibility with Divi 4.23.2
-* Improvement: Squad Admin UI
-* Improvement: Checkbox and radio fields styles support for Contact Form 7, Gravity Forms, WP Froms Modules.
-* Improvement: Simplified locales for all languages.
-* Fixed: translation issue at Video Popup Module
-* Fixed: Ratings does not show in the visual builder at Star Rating Module
-* Improved: Memory uses and loading time
-* Improved: Plugin review actions
+= 1.4.8 (06-01-2023) =
+
+**New Features:**
+
+* **Extension: Copy Post or Page (Multisite Supported):** The best extension to easily make duplicates of your posts & pages them in one go.
+* **Image Gallery Module: Overlay Feature with lightbox:** Create captivating image displays with the new Overlay Feature, complete with lightbox functionality for immersive viewing experiences.
+* **Image Gallery Module: Image orientation and Count:** Take control of your gallery's visual layout with Image Orientation and Count Features align images perfectly and showcase the exact number you desire.
+
+**✨ Improvements:**
+
+* **Compatibility with Divi 4.23.3 & 4.23.4: ** Rest assured, Squad Modules plays nice with the latest Divi update.
+* **Modules locales support: ** Enhanced localization support for modules.
+* **Plugin Preview Banner: ** We've made it user-friendly for yours.
+
+= 1.4.7 (21-12-2023) =
+
+**New Features:**
+
+* **Preview Button support in the WP Plugin Directory:** Now you can see your modules in action right from the plugin page!
+* **Portuguese (Brazil) locales:** Grande abraço to Gianni Marinho for contributing this! 🇧🇷
+* **Divi Google Map Module:** Add beautiful and interactive Google Maps to your Divi pages with ease.
+* **Divi Form Styler: Ninja Forms & Fluent Forms:** Style your **Ninja Forms** and **Fluent Forms** forms effortlessly with Squad's powerful styling tools.
+
+**✨ Improvements:**
+
+* **Compatibility with Divi 4.23.2:** Rest assured, Squad Modules plays nice with the latest Divi update.
+* **Squad Admin UI:** We've made managing your modules even smoother and more intuitive.
+* **Checkbox & radio field styles for Contact Form 7, Gravity Forms, WPForms:** Style your forms like a pro, no matter which plugin you use.
+* **Simplified locales for all languages:** We've streamlined translations for a better user experience in every language.
+
+**Bug Fixes:**
+
+* **Video Popup Module translation issue:** Say goodbye to garbled translations!
+* **Star Rating Module ratings not showing:** Your star ratings will shine bright again!
+* **Improved memory usage and loading time:** Squad Modules now runs even faster and lighter.
+* **Improved plugin review actions:** We've made it easier to leave us a review (with stunning screenshots, of course ).
 
 = 1.4.6 (13-11-2023) =
 * Fixed: Squad Dashboard is broken

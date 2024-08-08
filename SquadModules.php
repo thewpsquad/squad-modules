@@ -108,7 +108,7 @@ final class SquadModules extends Integration\Core {
 	public function __clone() {}
 
 	/**
-	 * Unserializing instances of this class is forbidden.
+	 * Serializing instances of this class is forbidden.
 	 *
 	 * @access public
 	 */

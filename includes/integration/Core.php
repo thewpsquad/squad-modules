@@ -118,6 +118,7 @@ abstract class Core extends \DiviSquad\Base\Core {
 		$asset_manager = new Manager\Assets();
 		add_action( 'wp_enqueue_scripts', array( $asset_manager, 'enqueue_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $asset_manager, 'enqueue_scripts_vb' ) );
+		add_filter( 'divi_squad_assets_backend_extra', array( $asset_manager, 'wp_localize_script_data' ) );
 
 		// Register all hooks for divi integration.
 		add_action( 'divi_extensions_init', array( $this, 'initialize_divi_extension' ) );
@@ -136,8 +137,8 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 * @return void
 	 */
 	public function initialize_divi_extension() {
-		if ( class_exists( DiviSquad::class ) ) {
-			new DiviSquad( $this->name, DISQ_DIR_PATH, DISQ_DIR_URL );
+		if ( class_exists( DiviBuilder::class ) ) {
+			new DiviBuilder( $this->name, DISQ_DIR_PATH, DISQ_DIR_URL );
 		}
 	}
 
@@ -147,8 +148,8 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 * @return void
 	 */
 	public function initialize_divi_asset_definitions() {
-		if ( function_exists( 'et_fb_process_shortcode' ) && class_exists( Divi\Backend::class ) ) {
-			$helpers = new Divi\Backend();
+		if ( function_exists( 'et_fb_process_shortcode' ) && class_exists( DiviBuilderBackend::class ) ) {
+			$helpers = new DiviBuilderBackend();
 			add_filter( 'et_fb_backend_helpers', array( $helpers, 'static_asset_definitions' ), 11 );
 			add_filter( 'et_fb_get_asset_helpers', array( $helpers, 'asset_definitions' ), 11 );
 		}

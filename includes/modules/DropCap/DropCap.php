@@ -19,6 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\Module;
+use function sanitize_text_field;
+use function wp_kses_post;
 
 /**
  * The Drop Cap Module Class.
@@ -64,11 +67,9 @@ class DropCapText extends Squad_Divi_Builder_Module {
 			),
 		);
 
-		$default_css_selectors = $this->disq_get_module_default_selectors();
-
 		// Declare advanced fields for the module.
 		$this->advanced_fields = array(
-			'fonts'                => array(
+			'fonts'          => array(
 				'drop_cap_letter' => $this->disq_add_font_field(
 					esc_html__( 'Letter', 'squad-modules-for-divi' ),
 					array(
@@ -103,47 +104,16 @@ class DropCapText extends Squad_Divi_Builder_Module {
 					)
 				),
 			),
-			'background'           => array_merge(
-				$default_css_selectors,
-				array(
-					'settings' => array(
-						'color' => 'alpha',
-					),
-				)
-			),
-			'element_icon_element' => array(
-				'css' => array(
-					'main' => "$this->main_css_element div .post-elements span.disq-element-icon-wrapper",
-				),
-			),
-			'borders'              => array(
-				'default' => $default_css_selectors,
-			),
-			'box_shadow'           => array(
-				'default' => $default_css_selectors,
-			),
-			'margin_padding'       => array(
-				'use_padding' => true,
-				'use_margin'  => true,
-				'css'         => array(
-					'margin'    => $this->main_css_element,
-					'padding'   => $this->main_css_element,
-					'important' => 'all',
-				),
-			),
-			'max_width'            => array_merge(
-				$default_css_selectors,
-				array(
-					'css' => array(
-						'module_alignment' => "$this->main_css_element.et_pb_module",
-					),
-				)
-			),
-			'height'               => $default_css_selectors,
-			'image_icon'           => false,
-			'text'                 => false,
-			'button'               => false,
-			'link_options'         => false,
+			'background'     => Module::selectors_background( $this->main_css_element ),
+			'borders'        => array( 'default' => Module::selectors_default( $this->main_css_element ) ),
+			'box_shadow'     => array( 'default' => Module::selectors_default( $this->main_css_element ) ),
+			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
+			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
+			'height'         => Module::selectors_default( $this->main_css_element ),
+			'image_icon'     => false,
+			'text'           => false,
+			'button'         => false,
+			'link_options'   => false,
 		);
 
 		// Declare custom css fields for the module.
@@ -154,6 +124,7 @@ class DropCapText extends Squad_Divi_Builder_Module {
 			),
 		);
 	}
+
 	/**
 	 * Declare general fields for the module
 	 *
@@ -221,7 +192,11 @@ class DropCapText extends Squad_Divi_Builder_Module {
 			),
 		);
 
-		return array_merge( $text_fields, $drop_cap_letter_background_fields, $drop_cap_letter_associated_fields );
+		return array_merge(
+			$text_fields,
+			$drop_cap_letter_background_fields,
+			$drop_cap_letter_associated_fields
+		);
 	}
 
 	/**
@@ -257,8 +232,8 @@ class DropCapText extends Squad_Divi_Builder_Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
-		$highlighted_text = $this->props['body_content'];
-		$drop_cap_letter  = $this->props['drop_cap_letter'];
+		$drop_cap_letter = sanitize_text_field( $this->props['drop_cap_letter'] );
+		$body_content    = wp_kses_post( $this->props['body_content'] );
 
 		// Generate additional styles for frontend.
 		$this->generate_additional_styles( $attrs );
@@ -266,7 +241,7 @@ class DropCapText extends Squad_Divi_Builder_Module {
 		return sprintf(
 			'<div class="dropcap-text-container"><span class="drop-cap-letter">%1$s</span><span class="body-text">%2$s</span></div>',
 			$drop_cap_letter,
-			$highlighted_text
+			$body_content
 		);
 	}
 

@@ -18,9 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use DiviSquad\Utils\Polyfills\Str;
 use function DiviSquad\divi_squad;
-use function wp_parse_args;
 use function wp_enqueue_script;
 use function wp_enqueue_style;
+use function wp_parse_args;
 
 /**
  * Utils class.
@@ -47,7 +47,7 @@ class Asset {
 	 * @since 1.0.0
 	 */
 	public static function is_production_mode() {
-		return strpos( static::get_the_version(), '.' ) !== - 1;
+		return strpos( static::get_the_version(), '.' );
 	}
 
 	/**
@@ -119,8 +119,11 @@ class Asset {
 	public static function process_asset_path_data( $path ) {
 		$full_path   = '';
 		$pattern     = ! empty( $path['pattern'] ) ? $path['pattern'] : 'build/[path_prefix]/[file].[ext]';
-		$path_prefix = ! empty( $path['path'] ) ? $path['path'] : 'divi4/scripts/modules';
+		$path_prefix = ! empty( $path['path'] ) ? $path['path'] : 'divi-builder-4';
 		$extension   = ! empty( $path['ext'] ) ? $path['ext'] : 'js';
+
+		// Update path.
+		$path_prefix .= 'js' === $extension ? '/scripts' : '/styles';
 
 		if ( empty( $path['file'] ) ) {
 			return array(
@@ -195,6 +198,71 @@ class Asset {
 	}
 
 	/**
+	 * Get the admin asset path.
+	 *
+	 * @param string $file         The file name.
+	 * @param array  $file_options The options for current asset file.
+	 *
+	 * @return array
+	 */
+	public static function admin_asset_path( $file, $file_options = array() ) {
+		$default_options = array(
+			'path' => 'admin',
+		);
+
+		return self::asset_path( $file, wp_parse_args( $file_options, $default_options ) );
+	}
+
+	/**
+	 * Get the modules asset path.
+	 *
+	 * @param string $file         The file name.
+	 * @param array  $file_options The options for current asset file.
+	 *
+	 * @return array
+	 */
+	public static function module_asset_path( $file, $file_options = array() ) {
+		$default_options = array(
+			'path' => 'divi-builder-4',
+		);
+
+		return self::asset_path( $file, wp_parse_args( $file_options, $default_options ) );
+	}
+
+
+	/**
+	 * Get the extensions asset path.
+	 *
+	 * @param string $file         The file name.
+	 * @param array  $file_options The options for current asset file.
+	 *
+	 * @return array
+	 */
+	public static function extension_asset_path( $file, $file_options = array() ) {
+		$default_options = array(
+			'path' => 'extensions',
+		);
+
+		return self::asset_path( $file, wp_parse_args( $file_options, $default_options ) );
+	}
+
+	/**
+	 * Get the vendors asset path.
+	 *
+	 * @param string $file         The file name.
+	 * @param array  $file_options The options for current asset file.
+	 *
+	 * @return array
+	 */
+	public static function vendor_asset_path( $file, $file_options = array() ) {
+		$default_options = array(
+			'path' => 'vendor',
+		);
+
+		return self::asset_path( $file, wp_parse_args( $file_options, $default_options ) );
+	}
+
+	/**
 	 * Set the asset path.
 	 *
 	 * @param string $file         The file name.
@@ -233,23 +301,24 @@ class Asset {
 		$version      = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
 
 		// Load script file.
-		wp_enqueue_script( $handle, $asset_data['path'], $dependencies, $version, true );
+		wp_enqueue_script( $handle, $asset_data['path'], $dependencies, $version, self::footer_arguments( true ) );
 	}
 
 	/**
 	 * Enqueue styles.
 	 *
-	 * @param string $keyword Name of the stylesheet. Should be unique.
-	 * @param array  $path    Relative path of the stylesheet with options for the WordPress root directory.
-	 * @param array  $deps    Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
-	 * @param string $media   Optional. The media for which this stylesheet has been defined. Default 'all'.
+	 * @param string $keyword   Name of the stylesheet. Should be unique.
+	 * @param array  $path      Relative path of the stylesheet with options for the WordPress root directory.
+	 * @param array  $deps      Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
+	 * @param string $media     Optional. The media for which this stylesheet has been defined. Default 'all'.
+	 * @param bool   $no_prefix Optional. Set the plugin prefix with asset handle name is or not.
 	 *
 	 * @return void
 	 * @since 1.0.0
 	 */
-	public static function style_enqueue( $keyword, $path, $deps = array(), $media = 'all' ) {
+	public static function style_enqueue( $keyword, $path, $deps = array(), $media = 'all', $no_prefix = false ) {
 		$asset_data = static::process_asset_path_data( $path );
-		$handle     = sprintf( 'disq-%1$s', $keyword );
+		$handle     = $no_prefix ? $keyword : sprintf( 'disq-%1$s', $keyword );
 		$version    = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
 
 		// Load stylesheet file.
@@ -265,12 +334,52 @@ class Asset {
 	 *
 	 * @return void
 	 */
-	public static function register_scripts( $handle, $path, $deps = array() ) {
+	public static function register_script( $handle, $path, $deps = array() ) {
 		$asset_data   = self::process_asset_path_data( $path );
 		$handle       = sprintf( 'disq-%1$s', $handle );
 		$dependencies = array_merge( $asset_data['dependencies'], $deps );
 		$version      = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
 
-		wp_register_script( $handle, $asset_data['path'], $dependencies, $version, true );
+		wp_register_script( $handle, $asset_data['path'], $dependencies, $version, self::footer_arguments( true ) );
+	}
+
+	/**
+	 * Enqueue styles.
+	 *
+	 * @param string $keyword Name of the stylesheet. Should be unique.
+	 * @param array  $path    Relative path of the stylesheet with options for the WordPress root directory.
+	 * @param array  $deps    Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
+	 * @param string $media   Optional. The media for which this stylesheet has been defined. Default 'all'.
+	 *
+	 * @return void
+	 * @since 1.0.0
+	 */
+	public static function register_style( $keyword, $path, $deps = array(), $media = 'all' ) {
+		$asset_data = static::process_asset_path_data( $path );
+		$handle     = sprintf( 'disq-%1$s', $keyword );
+		$version    = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
+
+		// Load stylesheet file.
+		wp_register_style( $handle, $asset_data['path'], $deps, $version, $media );
+	}
+
+	/**
+	 * Get available script enqueue footer arguments.
+	 *
+	 * @param bool $add_strategy Optional. If provided, may be either 'defer' or 'async'.
+	 *
+	 * @return array
+	 * @since 1.4.8
+	 */
+	public static function footer_arguments( $add_strategy = false ) {
+		$footer_arguments = array(
+			'in_footer' => true,
+		);
+
+		if ( $add_strategy ) {
+			$footer_arguments['strategy'] = 'defer';
+		}
+
+		return $footer_arguments;
 	}
 }

@@ -19,6 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\Module;
 use function esc_html__;
 use function et_core_esc_previously;
 use function et_pb_background_options;
@@ -78,8 +79,6 @@ class PostReadingTime extends Squad_Divi_Builder_Module {
 			),
 		);
 
-		$default_module_css_selectors = $this->disq_get_module_default_selectors();
-
 		// Declare advanced fields for the module.
 		$this->advanced_fields = array(
 			'fonts'          => array(
@@ -93,16 +92,9 @@ class PostReadingTime extends Squad_Divi_Builder_Module {
 					)
 				),
 			),
-			'background'     => array_merge(
-				$default_module_css_selectors,
-				array(
-					'settings' => array(
-						'color' => 'alpha',
-					),
-				)
-			),
+			'background'     => Module::selectors_background( $this->main_css_element ),
 			'borders'        => array(
-				'default'      => $default_module_css_selectors,
+				'default'      => Module::selectors_default( $this->main_css_element ),
 				'time_element' => array(
 					'label_prefix' => esc_html__( 'Time', 'squad-modules-for-divi' ),
 					'css'          => array(
@@ -118,7 +110,7 @@ class PostReadingTime extends Squad_Divi_Builder_Module {
 				),
 			),
 			'box_shadow'     => array(
-				'default'      => $default_module_css_selectors,
+				'default'      => Module::selectors_default( $this->main_css_element ),
 				'time_element' => array(
 					'label'             => esc_html__( 'Time Box Shadow', 'squad-modules-for-divi' ),
 					'option_category'   => 'layout',
@@ -134,24 +126,9 @@ class PostReadingTime extends Squad_Divi_Builder_Module {
 					'toggle_slug'       => 'title_element',
 				),
 			),
-			'margin_padding' => array(
-				'use_padding' => true,
-				'use_margin'  => true,
-				'css'         => array(
-					'margin'    => $this->main_css_element,
-					'padding'   => $this->main_css_element,
-					'important' => 'all',
-				),
-			),
-			'max_width'      => array_merge(
-				$default_module_css_selectors,
-				array(
-					'css' => array(
-						'module_alignment' => "$this->main_css_element.et_pb_module",
-					),
-				)
-			),
-			'height'         => $default_module_css_selectors,
+			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
+			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
+			'height'         => Module::selectors_default( $this->main_css_element ),
 			'image_icon'     => false,
 			'text'           => false,
 			'button'         => false,

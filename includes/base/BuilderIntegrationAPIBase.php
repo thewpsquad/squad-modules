@@ -67,7 +67,7 @@ abstract class BuilderIntegrationAPIBase {
 	 *
 	 * @var string The plugin's version
 	 */
-	protected $build_path = 'build/divi4/';
+	protected $build_path = 'build/divi-builder-4/';
 
 	/**
 	 * Dependencies for the plugin's JavaScript bundles.

@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Divi;
+use DiviSquad\Utils\Module;
 use function esc_html__;
 use function esc_attr__;
 use function et_builder_get_element_style_css;
@@ -86,7 +87,6 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 
 		// The icon eligible elements.
 		$this->icon_not_eligible_elements = array( 'none', 'title', 'image', 'content', 'divider' );
-		$default_css_selectors            = $this->disq_get_module_default_selectors();
 
 		// Declare settings modal toggles for the module.
 		$this->settings_modal_toggles = array(
@@ -154,14 +154,7 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 					)
 				),
 			),
-			'background'           => array_merge(
-				$default_css_selectors,
-				array(
-					'settings' => array(
-						'color' => 'alpha',
-					),
-				)
-			),
+			'background'           => Module::selectors_background( $this->main_css_element ),
 			'element_icon_element' => array(
 				'css' => array(
 					'main' => "$this->main_css_element div .post-elements span.disq-element-icon-wrapper",
@@ -181,7 +174,7 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 				),
 			),
 			'borders'              => array(
-				'default'              => $default_css_selectors,
+				'default'              => Module::selectors_default( $this->main_css_element ),
 				'element_wrapper'      => array(
 					'label_prefix' => et_builder_i18n( 'Wrapper' ),
 					'tab_slug'     => 'advanced',
@@ -227,7 +220,7 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 				),
 			),
 			'box_shadow'           => array(
-				'default'              => $default_css_selectors,
+				'default'              => Module::selectors_default( $this->main_css_element ),
 				'element_wrapper'      => array(
 					'label'             => esc_html__( 'Wrapper Box Shadow', 'squad-modules-for-divi' ),
 					'option_category'   => 'layout',
@@ -276,24 +269,9 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 					'depends_show_if_not' => array( 'avatar' ),
 				),
 			),
-			'margin_padding'       => array(
-				'use_padding' => true,
-				'use_margin'  => true,
-				'css'         => array(
-					'margin'    => $this->main_css_element,
-					'padding'   => $this->main_css_element,
-					'important' => 'all',
-				),
-			),
-			'max_width'            => array_merge(
-				$default_css_selectors,
-				array(
-					'css' => array(
-						'module_alignment' => "$this->main_css_element.et_pb_module",
-					),
-				)
-			),
-			'height'               => $default_css_selectors,
+			'margin_padding'       => Module::selectors_margin_padding( $this->main_css_element ),
+			'max_width'            => Module::selectors_max_width( $this->main_css_element ),
+			'height'               => Module::selectors_default( $this->main_css_element ),
 			'image_icon'           => false,
 			'text'                 => false,
 			'button'               => false,

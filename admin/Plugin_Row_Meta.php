@@ -11,6 +11,9 @@
 
 namespace DiviSquad\Admin;
 
+use function esc_html__;
+use function esc_url;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
@@ -47,7 +50,6 @@ class Plugin_Row_Meta {
 		if ( static::get_plugin_base() === $plugin_file_name ) {
 			$links[] = sprintf( '<a href="%1$s" target="_blank" aria-label="%2$s">%2$s</a>', esc_url( 'https://wordpress.org/support/plugin/squad-modules-for-divi/reviews/#new-post' ), esc_html__( 'Rate The Plugin', 'squad-modules-for-divi' ) );
 			$links[] = sprintf( '<a href="%1$s" target="_blank" aria-label="%2$s">%2$s</a>', esc_url( 'https://wordpress.org/support/plugin/squad-modules-for-divi/#new-post' ), esc_html__( 'Support', 'squad-modules-for-divi' ) );
-			$links[] = sprintf( '<a href="%1$s" target="_blank" aria-label="%2$s">%2$s</a>', esc_url( 'https://squadmodules.com/?utm_campaign=wporg&utm_source=wp_plugin_dashboard&utm_medium=rowmeta' ), esc_html__( 'Documentation', 'squad-modules-for-divi' ) );
 			$links[] = sprintf( '<a href="%1$s" target="_blank" aria-label="%2$s">%2$s</a>', esc_url( 'https://wordpress.org/plugins/squad-modules-for-divi/?utm_campaign=wporg&utm_source=wp_plugin_dashboard&utm_medium=rowmeta' ), esc_html__( 'FAQ', 'squad-modules-for-divi' ) );
 
 			return $links;

@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\Module;
 
 /**
  * Breadcrumbs Module Class.
@@ -65,8 +66,6 @@ class Breadcrumbs extends Squad_Divi_Builder_Module {
 			),
 		);
 
-		$default_css_selectors = $this->disq_get_module_default_selectors();
-
 		// Declare advanced fields for the module.
 		$this->advanced_fields = array(
 			'fonts'          => array(
@@ -90,38 +89,12 @@ class Breadcrumbs extends Squad_Divi_Builder_Module {
 					)
 				),
 			),
-			'background'     => array_merge(
-				$default_css_selectors,
-				array(
-					'settings' => array(
-						'color' => 'alpha',
-					),
-				)
-			),
-			'borders'        => array(
-				'default' => $default_css_selectors,
-			),
-			'box_shadow'     => array(
-				'default' => $default_css_selectors,
-			),
-			'margin_padding' => array(
-				'use_padding' => true,
-				'use_margin'  => true,
-				'css'         => array(
-					'margin'    => $this->main_css_element,
-					'padding'   => $this->main_css_element,
-					'important' => 'all',
-				),
-			),
-			'max_width'      => array_merge(
-				$default_css_selectors,
-				array(
-					'css' => array(
-						'module_alignment' => "$this->main_css_element.et_pb_module",
-					),
-				)
-			),
-			'height'         => $default_css_selectors,
+			'background'     => Module::selectors_background( $this->main_css_element ),
+			'borders'        => array( 'default' => Module::selectors_default( $this->main_css_element ) ),
+			'box_shadow'     => array( 'default' => Module::selectors_default( $this->main_css_element ) ),
+			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
+			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
+			'height'         => Module::selectors_default( $this->main_css_element ),
 			'image_icon'     => false,
 			'text'           => false,
 			'button'         => false,
@@ -288,7 +261,7 @@ class Breadcrumbs extends Squad_Divi_Builder_Module {
 			esc_attr( et_pb_process_font_icon( $this->prop( 'before_icon', '%%24%%' ) ) )
 		);
 
-		// Divi icon fallback support
+		// Divi icon fallback support.
 		Divi::inject_fa_icons( $this->prop( 'font_icon', '&#x39;||divi||400' ) );
 		Divi::inject_fa_icons( $this->prop( 'before_icon', '&#x24;||divi||400' ) );
 
