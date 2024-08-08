@@ -4620,7 +4620,7 @@ msgstr "Voorbereiden"
 msgid "Press"
 msgstr "Druk op"
 
-#: includes/Managers/Branding/PluginRowActions.php:76
+#: includes/Managers/Branding/PluginRowActions.php:77
 msgid "Pricing"
 msgstr "Prijzen"
 
@@ -4714,7 +4714,7 @@ msgstr "Verwante derde partijen plug-in vereist."
 msgid "Relative To"
 msgstr "In Vergelijking Met"
 
-#. translators: Relevant Page url on Your Site
+#. translators: The relevant page url.
 #: build/admin/scripts/admin.js:181
 msgid "Relevant page on your site (E.g. %s)"
 msgstr "Relevante pagina op uw website (E. g. %s)"
@@ -5270,14 +5270,6 @@ msgstr "Bericht"
 msgid "Success Message Text"
 msgstr "Bericht Tekst"
 
-#: build/admin/scripts/admin.js:178
-msgid "Summary (in 10 words or less, summarize your issue or question)"
-msgstr "Samenvatting (10 woorden of minder, een overzicht van uw probleem of vraag)"
-
-#: build/admin/scripts/admin.js:178
-msgid "Summery"
-msgstr "Zomers"
-
 #: build/admin/scripts/admin.js:175
 msgid "Supercharge your experience with our game-changing new updates!"
 msgstr "Geef uw ervaring met het spel-veranderende nieuwe updates!"
@@ -5762,6 +5754,7 @@ msgstr "Tijd Tekst Breedte"
 #: includes/Modules/StarRating.php:67
 #: includes/Modules/StarRating.php:125
 #: includes/Modules/StarRating.php:219
+#: build/admin/scripts/admin.js:178
 msgid "Title"
 msgstr "Titel"
 
@@ -6371,7 +6364,7 @@ msgstr "Uw query verzenden is mislukt. Probeer het later opnieuw."
 msgid "Your query sent successfully."
 msgstr "De query is succesvol verstuurd."
 
-#. translators: Example site url
+#. translators: The site url.
 #: build/admin/scripts/admin.js:178
 msgid "Your site address (E.g %1$s)"
 msgstr "Uw site-adres (E. g %1$s)"
@@ -6522,4 +6515,12 @@ msgstr ""
 #: templates/admin/subscription.php:68
 #: build/admin/scripts/admin.js:175
 msgid "Lite"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Select a type"
+msgstr ""
+
+#: build/admin/scripts/admin.js:178
+msgid "Title (in 10 words or less, summarize your issue or question)"
 msgstr ""

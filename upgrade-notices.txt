@@ -1,4 +1,7 @@
 == Upgrade Notice ==
+= 3.1.2 =
+- Bug fixing and compatibility with latest pro plugin
+
 = 3.1.1 =
 - Bug fixing and compatibility with latest pro plugin
 

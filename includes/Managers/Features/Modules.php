@@ -185,8 +185,6 @@ class Modules extends ManagerBase {
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
-				'demo'               => admin_url( 'test.php' ),
-				'has_settings'       => true,
 				'settings_route'     => 'post-grid',
 				'category'           => 'dynamic-content-modules',
 				'category_title'     => esc_html__( 'Dynamic Content Modules', 'squad-modules-for-divi' ),

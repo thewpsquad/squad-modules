@@ -1,14 +1,14 @@
 # Copyright (C) 2024 WP Squad <support@squadmodules.com>
 msgid ""
 msgstr ""
-"Project-Id-Version: Squad Modules Lite 3.1.1\n"
+"Project-Id-Version: Squad Modules Lite 3.1.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/squad-modules-for-divi\n"
 "Last-Translator: $NAME <$EMAIL_ADDRESS>\n"
 "Language-Team: $NAME <$EMAIL_ADDRESS>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-04T09:22:47+00:00\n"
+"POT-Creation-Date: 2024-08-04T19:25:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: squad-modules-for-divi\n"
@@ -1329,7 +1329,7 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
-#: includes/Managers/Branding/PluginRowActions.php:76
+#: includes/Managers/Branding/PluginRowActions.php:77
 msgid "Pricing"
 msgstr ""
 
@@ -2252,6 +2252,7 @@ msgstr ""
 #: includes/Modules/StarRating.php:67
 #: includes/Modules/StarRating.php:125
 #: includes/Modules/StarRating.php:219
+#: build/admin/scripts/admin.js:178
 msgid "Title"
 msgstr ""
 
@@ -6354,6 +6355,10 @@ msgid "Support Type"
 msgstr ""
 
 #: build/admin/scripts/admin.js:175
+msgid "Select a type"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
 msgid "No options found"
 msgstr ""
 
@@ -6361,24 +6366,20 @@ msgstr ""
 msgid "Site Address"
 msgstr ""
 
-#. translators: Example site url
+#. translators: The site url.
 #: build/admin/scripts/admin.js:178
 msgid "Your site address (E.g %1$s)"
 msgstr ""
 
 #: build/admin/scripts/admin.js:178
-msgid "Summery"
-msgstr ""
-
-#: build/admin/scripts/admin.js:178
-msgid "Summary (in 10 words or less, summarize your issue or question)"
+msgid "Title (in 10 words or less, summarize your issue or question)"
 msgstr ""
 
 #: build/admin/scripts/admin.js:178
 msgid "If it's about a specific page on your site, please add the relevant link."
 msgstr ""
 
-#. translators: Relevant Page url on Your Site
+#. translators: The relevant page url.
 #: build/admin/scripts/admin.js:181
 msgid "Relevant page on your site (E.g. %s)"
 msgstr ""
