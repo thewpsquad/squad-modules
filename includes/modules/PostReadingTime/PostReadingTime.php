@@ -15,7 +15,16 @@ namespace DiviSquad\Modules\PostReadingTime;
 
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Helper;
+use function esc_html__;
+use function et_core_esc_previously;
+use function et_pb_background_options;
 use function get_the_ID;
+use function get_post_type;
+use function in_the_loop;
+use function is_singular;
+use function get_comments;
+use function get_post_field;
+use function wp_strip_all_tags;
 
 /**
  * Post-Reading Time Module Class.
@@ -24,7 +33,6 @@ use function get_the_ID;
  * @package         squad-modules-for-divi
  */
 class PostReadingTime extends DISQ_Builder_Module {
-
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -35,7 +43,7 @@ class PostReadingTime extends DISQ_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Post Reading Time', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Post Reading Times', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/post-reading-time.svg' );
 
 		$this->slug       = 'disq_post_reading_time';
 		$this->vb_support = 'on';
@@ -499,7 +507,11 @@ class PostReadingTime extends DISQ_Builder_Module {
 			$word_count += $additional_words_for_images;
 		}
 
-		$reading_time = ceil( $word_count / $attrs['words_per_minute'] );
+		if ( $word_count > $attrs['words_per_minute'] ) {
+			$reading_time = ceil( $word_count / $attrs['words_per_minute'] );
+		} else {
+			$reading_time = $word_count / $attrs['words_per_minute'];
+		}
 
 		// If the reading time is 0 then return it as < 1 instead of 0.
 		if ( 1 > $reading_time ) {

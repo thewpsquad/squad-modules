@@ -17,6 +17,9 @@ namespace DiviSquad\Modules\FormStylerContactForm7;
 use DiviSquad\Base\BuilderModule\DISQ_Form_Styler_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
+use function esc_html__;
+use function get_posts;
+use function do_shortcode;
 
 /**
  * The Form Styler: Contact Form 7 Module Class.
@@ -25,7 +28,6 @@ use DiviSquad\Utils\Helper;
  * @package     squad-modules-for-divi
  */
 class FormStylerContactForm7 extends DISQ_Form_Styler_Module {
-
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -36,7 +38,7 @@ class FormStylerContactForm7 extends DISQ_Form_Styler_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Contact Form 7', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Contact Form 7', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/contact-form-7.svg' );
 
 		$this->slug       = 'disq_form_styler_cf7';
 		$this->vb_support = 'on';

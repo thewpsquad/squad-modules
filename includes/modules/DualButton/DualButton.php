@@ -17,6 +17,14 @@ use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
 use ET_Builder_Module_Helper_MultiViewOptions;
+use function esc_html__;
+use function esc_attr__;
+use function et_builder_i18n;
+use function et_core_esc_previously;
+use function et_pb_multi_view_options;
+use function et_pb_background_options;
+use function et_pb_media_options;
+use function et_pb_get_extended_font_icon_value;
 
 /**
  * Dual-Button Module Class.
@@ -25,7 +33,6 @@ use ET_Builder_Module_Helper_MultiViewOptions;
  * @package         squad-modules-for-divi
  */
 class DualButton extends DISQ_Builder_Module {
-
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -36,7 +43,7 @@ class DualButton extends DISQ_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Dual Button', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Dual Buttons', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/dual-button.svg' );
 
 		$this->slug       = 'disq_dual_button';
 		$this->vb_support = 'on';

@@ -31,11 +31,11 @@ class Admin {
 		$action_links = new \DiviSquad\Admin\Plugin_Action_Links();
 		$row_meta     = new \DiviSquad\Admin\Plugin_Row_Meta();
 
-		// Load all main menus and sub menus for admin interface.
+		// Load all main menus and submenus for admin interface.
 		add_action( 'admin_menu', array( $admin_menu, 'admin_menu_create' ) );
 		add_filter( 'admin_body_class', array( $admin_menu, 'admin_classes' ) );
 
-		// Load all asset for admin interface and others asset.
+		// Load all assets for admin interface and another asset.
 		self::register_admin_scripts( $admin_asset );
 
 		// Include all actions links for the plugin.
@@ -87,7 +87,7 @@ class Admin {
 	/**
 	 * Include all row metas for the plugin.
 	 *
-	 * @param \DiviSquad\Admin\Plugin_Row_Meta $row_meta The instance of Plugin row meta class.
+	 * @param \DiviSquad\Admin\Plugin_Row_Meta $row_meta The instance of the Plugin row meta.
 	 *
 	 * @return void
 	 * @since 1.2.0

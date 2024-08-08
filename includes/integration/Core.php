@@ -76,6 +76,9 @@ abstract class Core extends \DiviSquad\Base\Core {
 	protected function load_admin_interface() {
 		if ( is_admin() ) {
 			Admin::load();
+
+			// Load plugin review
+			new \DiviSquad\Admin\Plugin_Review();
 		}
 	}
 

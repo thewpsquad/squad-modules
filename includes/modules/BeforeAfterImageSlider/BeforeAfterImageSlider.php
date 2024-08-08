@@ -14,6 +14,16 @@ namespace DiviSquad\Modules\BeforeAfterImageSlider;
 
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Helper;
+use function esc_html__;
+use function esc_attr__;
+use function et_builder_i18n;
+use function et_core_esc_previously;
+use function et_pb_media_options;
+use function et_pb_multi_view_options;
+use function et_pb_background_options;
+use function wp_strip_all_tags;
+use function wp_enqueue_script;
+use function wp_json_encode;
 
 /**
  * Before After Image Slider Module Class.
@@ -32,7 +42,7 @@ class BeforeAfterImageSlider extends DISQ_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Before After Image Slider', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Before After Image Sliders', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/before-after-image-slider.svg' );
 
 		$this->slug             = 'disq_bai_slider';
 		$this->main_css_element = "%%order_class%%.$this->slug";

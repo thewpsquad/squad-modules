@@ -56,34 +56,6 @@ abstract class Core {
 	protected $option_prefix;
 
 	/**
-	 * Plugin version
-	 *
-	 * @var string
-	 */
-	protected $version;
-
-	/**
-	 * Minimum version of Divi Theme
-	 *
-	 * @var string
-	 */
-	protected $min_version_divi;
-
-	/**
-	 * Minimum version of PHP
-	 *
-	 * @var string
-	 */
-	protected $min_version_php;
-
-	/**
-	 * Minimum version of WordPress
-	 *
-	 * @var string
-	 */
-	protected $min_version_wp;
-
-	/**
 	 * The Script handle the text domain will be attached to.
 	 *
 	 * @var string
@@ -178,19 +150,6 @@ abstract class Core {
 	}
 
 	/**
-	 * Define the general constants for the plugin
-	 *
-	 * @return void
-	 */
-	protected function define_general_constants() {
-		define( 'DISQ_VERSION', $this->version );
-		define( 'DISQ_MINIMUM_DIVI_VERSION', $this->min_version_divi );
-		define( 'DISQ_MINIMUM_DIVI_BUILDER_VERSION', $this->min_version_divi );
-		define( 'DISQ_MINIMUM_PHP_VERSION', $this->min_version_php );
-		define( 'DISQ_MINIMUM_WP_VERSION', $this->min_version_wp );
-	}
-
-	/**
 	 * Get the instance of modules.
 	 *
 	 * @return \DiviSquad\Manager\Modules
@@ -241,6 +200,7 @@ abstract class Core {
 	 * @return void
 	 */
 	public function hook_deactivation() {
+		$this->get_memory()->set( 'version', $this->get_version() );
 		$this->get_memory()->set( 'deactivation_time', time() );
 	}
 

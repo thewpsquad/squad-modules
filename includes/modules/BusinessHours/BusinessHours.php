@@ -15,6 +15,12 @@ namespace DiviSquad\Modules\BusinessHours;
 
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Helper;
+use function esc_html__;
+use function et_builder_i18n;
+use function et_core_esc_previously;
+use function et_pb_background_options;
+use function et_pb_multi_view_options;
+use function et_builder_get_text_orientation_options;
 
 /**
  * Business Hours Module Class.
@@ -23,7 +29,6 @@ use DiviSquad\Utils\Helper;
  * @package         squad-modules-for-divi
  */
 class BusinessHours extends DISQ_Builder_Module {
-
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -34,7 +39,7 @@ class BusinessHours extends DISQ_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Business Hours', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Business Hours', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/business-hours.svg' );
 
 		$this->slug       = 'disq_business_hours';
 		$this->child_slug = 'disq_business_day';

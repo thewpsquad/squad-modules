@@ -16,6 +16,11 @@ namespace DiviSquad\Modules\TypingText;
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
+use function esc_html__;
+use function wp_enqueue_script;
+use function et_core_esc_previously;
+use function et_pb_multi_view_options;
+use function et_pb_background_options;
 
 /**
  * Typing Text Module Class.
@@ -24,7 +29,6 @@ use DiviSquad\Utils\Helper;
  * @package         squad-modules-for-divi
  */
 class TypingText extends DISQ_Builder_Module {
-
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -35,7 +39,7 @@ class TypingText extends DISQ_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Typing Text', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Typing Texts', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/typing-text.svg' );
 
 		$this->slug       = 'disq_typing_text';
 		$this->vb_support = 'on';

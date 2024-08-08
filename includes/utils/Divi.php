@@ -15,6 +15,7 @@ namespace DiviSquad\Utils;
 use function et_get_dynamic_assets_path;
 use function et_pb_maybe_fa_font_icon;
 use function et_use_dynamic_icons;
+use function add_filter;
 
 /**
  * Divi class.

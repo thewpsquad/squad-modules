@@ -12,7 +12,11 @@
 
 namespace DiviSquad\Utils;
 
+use DiviSquad\Utils\Polyfills\Str;
 use function DiviSquad\divi_squad;
+use function wp_parse_args;
+use function wp_enqueue_script;
+use function wp_enqueue_style;
 
 /**
  * Utils class.
@@ -58,11 +62,11 @@ class Asset {
 	 * @return string
 	 */
 	public static function validate_relative_path( $relative_path ) {
-		if ( str_starts_with( $relative_path, './' ) ) {
+		if ( Str::starts_with( $relative_path, './' ) ) {
 			$relative_path = str_replace( './', '/', $relative_path );
 		}
 
-		if ( ! str_starts_with( $relative_path, '/' ) ) {
+		if ( ! Str::starts_with( $relative_path, '/' ) ) {
 			$relative_path = sprintf( '/%1$s', $relative_path );
 		}
 
@@ -94,49 +98,79 @@ class Asset {
 	/**
 	 * Process asset path and version data.
 	 *
-	 * @param string $path The asset relative path.
+	 * @param array $path The asset relative path with options.
 	 *
 	 * @return array
 	 */
 	public static function process_asset_path_data( $path ) {
-		$full_path     = '';
-		$validate_path = static::validate_relative_path( $path );
+		$full_path   = '';
+		$pattern     = ! empty( $path['pattern'] ) ? $path['pattern'] : 'build/[path_prefix]/[file].[ext]';
+		$path_prefix = ! empty( $path['path'] ) ? $path['path'] : 'divi4/scripts/modules';
+		$extension   = ! empty( $path['ext'] ) ? $path['ext'] : 'js';
+
+		if ( empty( $path['file'] ) ) {
+			return array(
+				'path'         => '',
+				'version'      => '',
+				'dependencies' => '',
+			);
+		}
+
+		// Default file for development and production.
+		$the_file = $path['file'];
+
+		// Load alternative production file when found.
+		if ( ! empty( $path['prod_file'] ) ) {
+			$the_file = $path['prod_file'];
+		}
+
+		// Load alternative development file when found.
+		if ( ! empty( $path['dev_file'] ) ) {
+			$the_file = $path['dev_file'];
+		}
+
+		// The validated path of default file.
+		$path_clean    = str_replace( array( '[path_prefix]', '[file]', '[ext]' ), array( $path_prefix, $the_file, $extension ), $pattern );
+		$path_validate = static::validate_relative_path( $path_clean );
 
 		$version      = static::get_the_version();
 		$dependencies = array();
 
-		// search minified file when it is existed.
-		foreach ( array( 'js', 'css' ) as $file_ext ) {
+		if ( in_array( $extension, array( 'js', 'css' ), true ) ) {
 			// Check for the minified version in the server on production mode.
-			$minified_asset_file = str_replace( array( ".$file_ext" ), array( ".min.$file_ext" ), $validate_path );
-			if ( str_ends_with( $validate_path, ".$file_ext" ) && ! str_ends_with( $validate_path, ".min.$file_ext" ) && file_exists( static::resolve_file_path( $minified_asset_file ) ) ) {
-				$validate_path = $minified_asset_file;
+			$minified_asset_file = str_replace( array( ".$extension" ), array( ".min.$extension" ), $path_validate );
+			$minified_asset_path = static::resolve_file_path( $minified_asset_file );
+			if ( Str::ends_with( $path_validate, ".$extension" ) && ! Str::ends_with( $path_validate, ".min.$extension" ) && file_exists( $minified_asset_path ) ) {
+				$path_validate = $minified_asset_file;
 			}
 
-			// Verify that the current file is a minified and located in the current physical device.
-			if ( str_ends_with( $validate_path, ".min.$file_ext" ) && file_exists( static::resolve_file_path( $validate_path ) ) ) {
-				$minified_version_file = str_replace( array( ".min.$file_ext" ), array( '.min.asset.php' ), $validate_path );
-				if ( file_exists( static::resolve_file_path( $minified_version_file ) ) ) {
-					$minified_asset_data = include static::resolve_file_path( $minified_version_file );
-					$version             = ! empty( $minified_asset_data['version'] ) ? $minified_asset_data['version'] : $version;
-					$dependencies        = ! empty( $minified_asset_data['dependencies'] ) ? $minified_asset_data['dependencies'] : $dependencies;
+			// Load the version and dependencies data for javascript file
+			if ( 'js' === $extension ) {
+				// Verify that the current file is a minified and located in the current physical device.
+				if ( Str::ends_with( $path_validate, ".min.$extension" ) && file_exists( static::resolve_file_path( $path_validate ) ) ) {
+					$minified_version_file = str_replace( array( ".min.$extension" ), array( '.min.asset.php' ), $path_validate );
+					if ( file_exists( static::resolve_file_path( $minified_version_file ) ) ) {
+						$minified_asset_data = include static::resolve_file_path( $minified_version_file );
+						$version             = ! empty( $minified_asset_data['version'] ) ? $minified_asset_data['version'] : $version;
+						$dependencies        = ! empty( $minified_asset_data['dependencies'] ) ? $minified_asset_data['dependencies'] : $dependencies;
+					}
 				}
-			}
 
-			// Verify that the current file is non-minified and located in the current physical device.
-			if ( str_ends_with( $validate_path, ".$file_ext" ) && file_exists( static::resolve_file_path( $validate_path ) ) ) {
-				$main_version_file = str_replace( array( ".$file_ext" ), array( '.asset.php' ), $validate_path );
-				if ( str_ends_with( $main_version_file, '.asset.php' ) && file_exists( static::resolve_file_path( $main_version_file ) ) ) {
-					$main_asset_data = include static::resolve_file_path( $main_version_file );
-					$version         = ! empty( $main_asset_data['version'] ) ? $main_asset_data['version'] : $version;
-					$dependencies    = ! empty( $main_asset_data['dependencies'] ) ? $main_asset_data['dependencies'] : $dependencies;
+				// Verify that the current file is non-minified and located in the current physical device.
+				if ( Str::ends_with( $path_validate, ".$extension" ) && file_exists( static::resolve_file_path( $path_validate ) ) ) {
+					$main_version_file = str_replace( array( ".$extension" ), array( '.asset.php' ), $path_validate );
+					if ( Str::ends_with( $main_version_file, '.asset.php' ) && file_exists( static::resolve_file_path( $main_version_file ) ) ) {
+						$main_asset_data = include static::resolve_file_path( $main_version_file );
+						$version         = ! empty( $main_asset_data['version'] ) ? $main_asset_data['version'] : $version;
+						$dependencies    = ! empty( $main_asset_data['dependencies'] ) ? $main_asset_data['dependencies'] : $dependencies;
+					}
 				}
 			}
 		}
 
 		// Collect actual path for the current asset file.
 		$plugin_url_root = untrailingslashit( static::root_path_uri() );
-		$full_path       = "{$plugin_url_root}{$validate_path}";
+		$full_path       = "{$plugin_url_root}{$path_validate}";
 
 		return array(
 			'path'         => $full_path,
@@ -146,18 +180,40 @@ class Asset {
 	}
 
 	/**
+	 * Set the asset path.
+	 *
+	 * @param string $file         The file name.
+	 * @param array  $file_options The options for current asset file.
+	 *
+	 * @return array
+	 */
+	public static function asset_path( $file, $file_options = array() ) {
+		$default_options = array(
+			'pattern'   => 'build/[path_prefix]/[file].[ext]',
+			'file'      => $file,
+			'dev_file'  => '',
+			'prod_file' => '',
+			'ext'       => 'js',
+			'path'      => '',
+		);
+
+		return wp_parse_args( $file_options, $default_options );
+	}
+
+	/**
 	 * Enqueue javascript.
 	 *
-	 * @param string $keyword Name of the javascript. Should be unique.
-	 * @param string $path    Relative path of the javascript, or path of the stylesheet relative to the WordPress root directory. Default empty.
-	 * @param array  $deps    Optional. An array of registered javascript handles this stylesheet depends on. Default empty array.
+	 * @param string $keyword   Name of the javascript. Should be unique.
+	 * @param array  $path      Relative path of the javascript with options for the WordPress root directory.
+	 * @param array  $deps      Optional. An array of registered javascript handles this stylesheet depends on. Default empty array.
+	 * @param bool   $no_prefix Optional. Set the plugin prefix with asset handle name is or not.
 	 *
 	 * @return void
 	 * @since 1.0.0
 	 */
-	public static function asset_enqueue( $keyword, $path, array $deps = array() ) {
+	public static function asset_enqueue( $keyword, $path, array $deps = array(), $no_prefix = false ) {
 		$asset_data   = self::process_asset_path_data( $path );
-		$handle       = sprintf( 'disq-%1$s', $keyword );
+		$handle       = $no_prefix ? $keyword : sprintf( 'disq-%1$s', $keyword );
 		$dependencies = array_merge( $asset_data['dependencies'], $deps );
 
 		// Load script file.
@@ -168,9 +224,9 @@ class Asset {
 	 * Enqueue styles.
 	 *
 	 * @param string $keyword Name of the stylesheet. Should be unique.
-	 * @param string $path    Relative path of the stylesheet, or path of the stylesheet relative to the WordPress root directory. Default empty.
+	 * @param array  $path    Relative path of the stylesheet with options for the WordPress root directory.
 	 * @param array  $deps    Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
-	 * @param string $media   Optional. The media for which this stylesheet has been defined. Default 'all'. Accepts media types like 'all', 'print' and 'screen', or media queries like '(orientation: portrait)' and '(max-width: 640px)'.
+	 * @param string $media   Optional. The media for which this stylesheet has been defined. Default 'all'.
 	 *
 	 * @return void
 	 * @since 1.0.0

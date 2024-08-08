@@ -16,6 +16,7 @@ namespace DiviSquad\Modules\FormStylerGravityForms;
 
 use DiviSquad\Base\BuilderModule\DISQ_Form_Styler_Module;
 use DiviSquad\Utils\Helper;
+use function esc_html__;
 
 /**
  * The Form Styler: Gravity Forms Module Class.
@@ -24,7 +25,6 @@ use DiviSquad\Utils\Helper;
  * @package     squad-modules-for-divi
  */
 class FormStylerGravityForms extends DISQ_Form_Styler_Module {
-
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -35,7 +35,7 @@ class FormStylerGravityForms extends DISQ_Form_Styler_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Gravity Forms', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Gravity Forms', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/gravity-forms.svg' );
 
 		$this->slug       = 'disq_form_styler_gravity_forms';
 		$this->vb_support = 'on';
@@ -753,7 +753,7 @@ class FormStylerGravityForms extends DISQ_Form_Styler_Module {
 		}
 
 		// Show a notice message in the frontend if the form is empty.
-		if ( class_exists( 'GFCommon' ) ) {
+		if ( class_exists( '\GFCommon' ) && class_exists( '\RGFormsModel' ) ) {
 			if ( ! count( \RGFormsModel::get_forms( null, 'title' ) ) ) {
 				return sprintf(
 					'<div class="disq_notice">%s</div>',
@@ -785,8 +785,8 @@ class FormStylerGravityForms extends DISQ_Form_Styler_Module {
 			'0' => esc_html__( 'Select one', 'squad-modules-for-divi' ),
 		);
 
-		if ( class_exists( 'GFCommon' ) ) {
-			// Collect available wp form from a database.
+		// Collect available wp form from a database.
+		if ( class_exists( '\GFCommon' ) && class_exists( '\RGFormsModel' ) ) {
 			$forms = \RGFormsModel::get_forms( null, 'title' );
 			if ( count( $forms ) ) {
 				foreach ( $forms as $form ) {
@@ -808,13 +808,13 @@ class FormStylerGravityForms extends DISQ_Form_Styler_Module {
 	 * @since 1.0.0
 	 */
 	public static function disq_form_styler__get_form_html( $attrs, $content = null ) {
-		if ( ! empty( $attrs['form_id'] ) ) {
+		if ( ! empty( $attrs['form_id'] ) && function_exists( 'gravity_form' ) ) {
 			$form_id          = $attrs['form_id'];
 			$form_title       = isset( $attrs['form_title__enable'] ) && 'on' === $attrs['form_title__enable'];
 			$form_description = isset( $attrs['form_description__enable'] ) && 'on' === $attrs['form_description__enable'];
 			$form_ajax        = isset( $attrs['form_with_ajax__enable'] ) && 'on' === $attrs['form_with_ajax__enable'];
 
-			return gravity_form( $form_id, $form_title, $form_description, false, null, $form_ajax, '', false );
+			return \gravity_form( $form_id, $form_title, $form_description, false, null, $form_ajax, '', false );
 		}
 
 		return null;

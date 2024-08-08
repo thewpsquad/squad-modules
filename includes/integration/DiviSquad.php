@@ -13,7 +13,6 @@
 namespace DiviSquad\Integration;
 
 use DiviSquad\Base\BuilderIntegrationAPI;
-use DiviSquad\Manager\Modules;
 use function DiviSquad\divi_squad;
 
 /**
@@ -39,6 +38,6 @@ class DiviSquad extends BuilderIntegrationAPI {
 	 * @since 1.0.0
 	 */
 	public function hook_et_builder_ready() {
-		divi_squad()->get_modules()->load_modules( dirname( __DIR__ ) );
+		divi_squad()->get_modules()->load_divi4_modules( dirname( __DIR__ ) );
 	}
 }

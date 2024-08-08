@@ -14,6 +14,10 @@ namespace DiviSquad\Modules\ImageMask;
 
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Helper;
+use function esc_html__;
+use function esc_attr__;
+use function et_builder_i18n;
+use function apply_filters;
 
 /**
  * Image Mask Module Class.
@@ -32,7 +36,7 @@ class ImageMask extends DISQ_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Image Mask', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Image Masks', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/image-mask.svg' );
 
 		$this->slug       = 'disq_image_mask';
 		$this->vb_support = 'on';
@@ -394,7 +398,7 @@ class ImageMask extends DISQ_Builder_Module {
 							<g style="transform: %4$s; transform-origin: center center;">%5$s</g>
 						</mask>
 					</defs>
-					<g style="mask: url(\'#%3$s\')">
+					<g style="mask: url(\'#%3$s\')"> 
 					<image href="%6$s" width="%7$s" height="%8$s" transform="%9$s" preserveAspectRatio="none" style="%1$s"/>
 					</g>
 				</svg>

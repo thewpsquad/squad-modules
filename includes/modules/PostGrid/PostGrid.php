@@ -17,8 +17,30 @@ namespace DiviSquad\Modules\PostGrid;
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\Polyfills\Str;
 use ET_Builder_Module_Helper_MultiViewOptions;
 use WP_Query;
+use function esc_html__;
+use function wp_enqueue_script;
+use function et_core_esc_previously;
+use function et_pb_multi_view_options;
+use function et_pb_background_options;
+use function is_singular;
+use function is_archive;
+use function get_the_ID;
+use function wp_get_post_categories;
+use function wp_get_post_tags;
+use function get_the_author_meta;
+use function get_post_class;
+use function get_userdata;
+use function wp_strip_all_tags;
+use function get_the_post_thumbnail;
+use function get_permalink;
+use function wp_json_encode;
+use function et_pb_media_options;
+use function paginate_links;
+use function get_query_var;
+use function et_pb_get_extended_font_icon_value;
 
 /**
  * The Post-Grid Module Class.
@@ -38,7 +60,7 @@ class PostGrid extends DISQ_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Post Grid', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Post Grids', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/post-grid.svg' );
 
 		$this->slug       = 'disq_post_grid';
 		$this->child_slug = 'disq_post_grid_child';
@@ -2097,10 +2119,8 @@ class PostGrid extends DISQ_Builder_Module {
 							'last-name'    => $author_last_name,
 						),
 						'formatted'  => array(
-							'publish'  => date( $date_replacement, strtotime( $post->post_date ) ),
-							// phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
-							'modified' => date( $date_replacement, strtotime( $post->post_modified ) ),
-							// phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+							'publish'  => date( $date_replacement, strtotime( $post->post_date ) ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+							'modified' => date( $date_replacement, strtotime( $post->post_modified ) ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 						),
 					);
 
@@ -2196,6 +2216,8 @@ class PostGrid extends DISQ_Builder_Module {
 							et_core_esc_previously( $icon_element ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						);
 					}
+
+					wp_enqueue_script( 'disq-module-post-grid' );
 
 					print sprintf(
 						'<div class="disq-load-more-button-wrapper"><div class="%3$s">%1$s%2$s</div></div>',
@@ -2495,8 +2517,8 @@ class PostGrid extends DISQ_Builder_Module {
 
 			if ( 'on' === $post_content_length__enable ) {
 				$biography_length = ! empty( $attrs['element_bio_length'] ) ? $attrs['element_bio_length'] : 20;
-				if ( str_word_count( $post_content ) > $post_content_length ) {
-					$words   = str_word_count( $post_content, 2 );
+				if ( Str::word_count( $post_content ) > $post_content_length ) {
+					$words   = Str::word_count( $post_content, 2 );
 					$content = implode( ' ', array_slice( $words, 0, $biography_length ) );
 
 					return sprintf(
@@ -2801,6 +2823,7 @@ class PostGrid extends DISQ_Builder_Module {
 	}
 }
 
+// Load the Post Grid Module.
 $disq_post_grid = new PostGrid();
 
 // Registers all hook for processing post elements.

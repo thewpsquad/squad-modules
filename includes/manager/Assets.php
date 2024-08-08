@@ -4,6 +4,7 @@ namespace DiviSquad\Manager;
 
 use DiviSquad\Utils\Asset;
 use function DiviSquad\divi_squad;
+use function wp_parse_args;
 
 /**
  * Assets Class
@@ -17,23 +18,10 @@ use function DiviSquad\divi_squad;
 class Assets {
 
 	/**
-	 * Set the asset path.
-	 *
-	 * @param string $file        The file name.
-	 * @param string $ext         The file extension.
-	 * @param string $path_prefix The asset file path prefix.
-	 *
-	 * @return string
-	 */
-	protected function asset_path( $file, $ext = 'js', $path_prefix = 'divi4/scripts/modules' ) {
-		return sprintf( 'build/%1$s/%2$s.%3$s', $path_prefix, $file, $ext );
-	}
-
-	/**
 	 * Register scripts for frontend and builder.
 	 *
 	 * @param string $handle The handle name.
-	 * @param string $path   The script path url.
+	 * @param array  $path   The script path url with options.
 	 * @param array  $deps   The script dependencies.
 	 *
 	 * @return void
@@ -52,30 +40,33 @@ class Assets {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		$core_asset_deps  = array( 'jquery' );
-		$lottie_js        = $this->asset_path( 'lottie', 'js', 'vendor' );
-		$typed_js         = $this->asset_path( 'typed.umd', 'js', 'vendor' );
-		$light_gallery_js = $this->asset_path( 'lightgallery.umd', 'js', 'vendor' );
-		$imagesloaded_js  = $this->asset_path( 'imagesloaded.pkgd', 'js', 'vendor' );
-		$isotope_js       = $this->asset_path( 'isotope.pkgd', 'js', 'vendor' );
+		$core_asset_deps      = array( 'jquery' );
+		$vendor_asset_options = array( 'path' => 'vendor' );
+		$module_asset_options = array( 'path' => 'divi4/scripts/modules' );
+
+		$lottie_js        = Asset::asset_path( 'lottie', $vendor_asset_options );
+		$typed_js         = Asset::asset_path( 'typed.umd', $vendor_asset_options );
+		$images_loaded_js = Asset::asset_path( 'imagesloaded.pkgd', $vendor_asset_options );
+		$isotope_js       = Asset::asset_path( 'isotope.pkgd', $vendor_asset_options );
+		$light_gallery_js = Asset::asset_path( 'lightgallery.umd', array_merge( $vendor_asset_options, array( 'prod_file' => 'lightgallery' )) ); // phpcs:ignore
 
 		// All vendor scripts.
 		$this->register_scripts( 'vendor-lottie', $lottie_js );
 		$this->register_scripts( 'vendor-typed', $typed_js );
 		$this->register_scripts( 'vendor-lightgallery', $light_gallery_js, $core_asset_deps );
-		$this->register_scripts( 'vendor-imagesloaded', $imagesloaded_js, $core_asset_deps );
+		$this->register_scripts( 'vendor-imagesloaded', $images_loaded_js, $core_asset_deps );
 		$this->register_scripts( 'vendor-isotope', $isotope_js, $core_asset_deps );
 
 		$lottie_asset_deps       = array_merge( $core_asset_deps, array( 'disq-vendor-lottie' ) );
 		$typing_text_module_deps = array_merge( $core_asset_deps, array( 'disq-vendor-typed' ) );
 
 		// All module js.
-		$this->register_scripts( 'module-divider', $this->asset_path( 'divider-bundle' ), $core_asset_deps );
-		$this->register_scripts( 'module-lottie', $this->asset_path( 'lottie-bundle' ), $lottie_asset_deps );
-		$this->register_scripts( 'module-typing-text', $this->asset_path( 'typing-text-bundle' ), $typing_text_module_deps );
-		$this->register_scripts( 'module-bais', $this->asset_path( 'bai-slider-bundle' ), $core_asset_deps );
-		$this->register_scripts( 'module-accordion', $this->asset_path( 'accordion-bundle' ), $core_asset_deps );
-		$this->register_scripts( 'module-gallery', $this->asset_path( 'gallery-bundle' ), $core_asset_deps );
+		$this->register_scripts( 'module-divider', Asset::asset_path( 'divider-bundle', $module_asset_options ), $core_asset_deps );
+		$this->register_scripts( 'module-lottie', Asset::asset_path( 'lottie-bundle', $module_asset_options ), $lottie_asset_deps );
+		$this->register_scripts( 'module-typing-text', Asset::asset_path( 'typing-text-bundle', $module_asset_options ), $typing_text_module_deps );
+		$this->register_scripts( 'module-bais', Asset::asset_path( 'bai-slider-bundle', $module_asset_options ), $core_asset_deps );
+		$this->register_scripts( 'module-accordion', Asset::asset_path( 'accordion-bundle', $module_asset_options ), $core_asset_deps );
+		$this->register_scripts( 'module-gallery', Asset::asset_path( 'gallery-bundle', $module_asset_options ), $core_asset_deps );
 	}
 
 	/**
@@ -89,7 +80,7 @@ class Assets {
 		wp_enqueue_script( 'disq-vendor-isotope' );
 		wp_enqueue_script( 'disq-vendor-lightgallery' );
 
-		// Load third party resources
+		// Load third party resources.
 		if ( class_exists( 'WPCF7' ) ) {
 			wp_enqueue_style( 'contact-form-7' );
 		}
@@ -98,14 +89,20 @@ class Assets {
 			$min         = \wpforms_get_min_suffix();
 			$wp_forms_re = \wpforms_get_render_engine();
 			$disable_css = (int) \wpforms_setting( 'disable-css', '1' );
-			$style_name  = 1 === $disable_css ? 'full' : 'base';
 
-			if ( ! wp_script_is( "wpforms-$wp_forms_re-$style_name", 'registered' ) ) {
-				wp_enqueue_style( "wpforms-$wp_forms_re-$style_name", \WPFORMS_PLUGIN_URL . "assets/css/frontend/$wp_forms_re/wpforms-$style_name$min.css", array(), \WPFORMS_VERSION );
-			}
+			// Required variables.
+			$style_name     = 1 === $disable_css ? 'full' : 'base';
+			$plugin_dir_url = defined( '\WPFORMS_PLUGIN_URL' ) ? \WPFORMS_PLUGIN_URL : '';
+			$plugin_version = defined( '\WPFORMS_VERSION' ) ? \WPFORMS_VERSION : '';
 
-			if ( ! wp_script_is( "wpforms-$wp_forms_re-$style_name" ) ) {
-				wp_enqueue_style( "wpforms-$wp_forms_re-$style_name" );
+			if ( ! empty( $plugin_dir_url ) && $plugin_version ) {
+				if ( ! wp_script_is( "wpforms-$wp_forms_re-$style_name", 'registered' ) ) {
+					wp_enqueue_style( "wpforms-$wp_forms_re-$style_name", $plugin_dir_url . "assets/css/frontend/$wp_forms_re/wpforms-$style_name$min.css", array(), $plugin_version );
+				}
+
+				if ( ! wp_script_is( "wpforms-$wp_forms_re-$style_name" ) ) {
+					wp_enqueue_style( "wpforms-$wp_forms_re-$style_name" );
+				}
 			}
 		}
 

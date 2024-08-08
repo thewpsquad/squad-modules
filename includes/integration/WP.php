@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
  * The WordPress integration helper
  *
@@ -20,49 +21,59 @@ use function version_compare;
  * @package     squad-modules-for-divi
  */
 class WP {
-
-	/**
-	 * The instance of the current class.
-	 *
-	 * @var self
-	 */
-	private static $instance;
-
 	/**
 	 * The minimum version for PHP.
 	 *
 	 * @var string
 	 */
-	private static $php_min_version = '';
+	protected $php_min_version = '';
 
 	/**
-	 *  Get the instance of the current class.
+	 * The minimum version for WordPress.
 	 *
-	 * @param string|numeric|float $php The minimum version number of php.
-	 *
-	 * @return self
+	 * @var string
 	 */
-	public static function get_instance( $php ) {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof self ) ) {
-			self::$instance = new self();
+	protected $wp_min_version = '';
 
-			// version check.
-			self::$php_min_version = $php;
-		}
+	/**
+	 * The minimum version for Divi Theme.
+	 *
+	 * @var string
+	 */
+	protected $divi_min_version = '';
 
-		return self::$instance;
+	/**
+	 * The minimum version for Divi Builder.
+	 *
+	 * @var string
+	 */
+	protected $builder_min_version = '';
+
+	/**
+	 * Set versions.
+	 *
+	 * @since 1.2.3
+	 *
+	 */
+	public function assign_all_versions() {
+		$this->php_min_version     = DISQ_MINIMUM_PHP_VERSION;
+		$this->wp_min_version      = DISQ_MINIMUM_WP_VERSION;
+		$this->divi_min_version    = DISQ_MINIMUM_DIVI_VERSION;
+		$this->builder_min_version = DISQ_MINIMUM_DIVI_VERSION;
 	}
 
 	/**
-	 * Checks compatibility with the current PHP version.
+	 * Checks compatibility with the current version.
 	 *
+	 * @param string $required       Minimum required version.
+	 * @param string $target_version The current version.
+	 *
+	 * @return bool True if a required version is compatible or empty, false if not.
 	 * @since 1.2.0
 	 *
-	 * @param string $required Minimum required PHP version.
-	 * @return bool True if a required version is compatible or empty, false if not.
 	 */
-	public static function is_php_version_compatible( $required ) {
-		return empty( $required ) || version_compare( PHP_VERSION, $required, '>=' );
+	public static function is_version_compatible( $required, $target_version ) {
+		return empty( $required ) || version_compare( $target_version, $required, '>=' );
 	}
 
 	/**
@@ -74,8 +85,13 @@ class WP {
 	 */
 	public function let_the_journey_start( callable $callback ) {
 		// Check for the required PHP version.
-		if ( ! self::is_php_version_compatible( self::$php_min_version ) ) {
-			return add_action( 'admin_notices', array( self::$instance, 'required_php_version_missing_notice' ) );
+		if ( ! $this->is_version_compatible( $this->php_min_version, PHP_VERSION ) ) {
+			return add_action( 'admin_notices', array( $this, 'required_php_version_missing_notice' ) );
+		}
+
+		// Check for the required WordPress version.
+		if ( ! $this->is_version_compatible( $this->wp_min_version, get_bloginfo( 'version' ) ) ) {
+			return add_action( 'admin_notices', array( $this, 'required_wordpress_version_missing_notice' ) );
 		}
 
 		// Load all features.
@@ -89,15 +105,33 @@ class WP {
 	 *
 	 * @return void
 	 */
-	public static function required_php_version_missing_notice() {
+	public function required_php_version_missing_notice() {
 		printf(
 			'<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>',
 			sprintf(
-				/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-				esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'squad-modules-for-divi' ),
-				'<strong>' . esc_html__( 'Divi Squad', 'squad-modules-for-divi' ) . '</strong>',
+			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
+				esc_html__( '%1$s requires "%2$s" version %3$s or greater.', 'squad-modules-for-divi' ),
+				'<strong>' . esc_html__( 'Squad Modules for Divi Builder', 'squad-modules-for-divi' ) . '</strong>',
 				'<strong>' . esc_html__( 'PHP', 'squad-modules-for-divi' ) . '</strong>',
-				esc_html( self::$php_min_version )
+				esc_html( $this->php_min_version )
+			)
+		);
+	}
+
+	/**
+	 * Admin notice for the required WordPress version.
+	 *
+	 * @return void
+	 */
+	public function required_wordpress_version_missing_notice() {
+		printf(
+			'<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>',
+			sprintf(
+			/* translators: 1: Plugin name 2: PHP 3: Required WordPress version */
+				esc_html__( '%1$s requires "%2$s" version %3$s or greater.', 'squad-modules-for-divi' ),
+				'<strong>' . esc_html__( 'Squad Modules', 'squad-modules-for-divi' ) . '</strong>',
+				'<strong>' . esc_html__( 'WordPress', 'squad-modules-for-divi' ) . '</strong>',
+				esc_html( $this->wp_min_version )
 			)
 		);
 	}
