@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
-use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
+use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use function esc_html__;
 use function et_builder_i18n;
 use function et_core_esc_previously;
@@ -30,7 +30,7 @@ use function et_builder_get_text_orientation_options;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class BusinessHoursChild extends Squad_Builder_Module {
+class BusinessHoursChild extends Squad_Divi_Builder_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.

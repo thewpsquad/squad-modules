@@ -198,6 +198,7 @@ trait Field_Definition {
 	 *
 	 * @param string $label      The field label.
 	 * @param array  $properties The additional properties for the current field.
+	 * @param array  $background_fields The additional background fields for the current field.
 	 *
 	 * @return array
 	 */

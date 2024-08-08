@@ -83,7 +83,7 @@ abstract class Core extends \DiviSquad\Base\Core {
 		if ( is_admin() ) {
 			Admin::load( $options );
 
-			// Load plugin review
+			// Load plugin review.
 			new \DiviSquad\Admin\Plugin_Review();
 		}
 	}

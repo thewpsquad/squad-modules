@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-3.0-only.
 msgid ""
 msgstr ""
-"Project-Id-Version: Squad Modules Lite 1.4.5\n"
+"Project-Id-Version: Squad Modules Lite 1.4.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/temp\n"
-"POT-Creation-Date: 2023-11-11 15:50:54+00:00\n"
+"POT-Creation-Date: 2023-11-12 20:19:34+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -219,9 +219,8 @@ msgstr ""
 msgid "What's New"
 msgstr ""
 
-#: admin/Plugin_Action_Links.php:46
-#: includes/modules/VideoPopup/VideoPopup.php:64
-msgid "Settings"
+#: admin/Plugin_Action_Links.php:47
+msgid "Manage"
 msgstr ""
 
 #: admin/Plugin_Admin_Footer_Text.php:51
@@ -430,26 +429,27 @@ msgid "Here you can define a custom padding size."
 msgstr ""
 
 #: includes/base/BuilderModule/Squad_Form_Styler_Module.php:517
-#: includes/base/BuilderModule/Traits/Field_Definition.php:320
+#: includes/base/BuilderModule/Traits/Field_Definition.php:321
 #: includes/modules/FormStylerContactForm7/FormStylerContactForm7.php:512
 #: includes/modules/FormStylerGravityForms/FormStylerGravityForms.php:789
 #: includes/modules/FormStylerWPForms/FormStylerWPForms.php:494
 msgid "Select one"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:162
+#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:170
 msgid "Author archive for "
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:209
+#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:213
 msgid "Search query for: "
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:214
+#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:218
 msgid "Error 404"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:220
+#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:225
+#. translators: 1. Page Title
 msgid " ( Page %s )"
 msgstr ""
 
@@ -536,22 +536,22 @@ msgstr ""
 msgid "Here you can define a custom padding size for the field."
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:212
+#: includes/base/BuilderModule/Traits/Field_Definition.php:213
 msgid ""
 "Adjust the background style of the current field by customizing the "
 "background color, gradient, and image."
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:267
+#: includes/base/BuilderModule/Traits/Field_Definition.php:268
 msgid "No"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:268
+#: includes/base/BuilderModule/Traits/Field_Definition.php:269
 msgid "Yes"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:316
-#: includes/base/BuilderModule/Traits/Field_Definition.php:353
+#: includes/base/BuilderModule/Traits/Field_Definition.php:317
+#: includes/base/BuilderModule/Traits/Field_Definition.php:354
 #: includes/base/BuilderModule/Traits/Fields.php:638
 #: includes/modules/FlipBox/FlipBox.php:3057
 #: includes/modules/FlipBox/FlipBox.php:3090
@@ -560,7 +560,7 @@ msgstr ""
 msgid "Here you can choose where to place the icon."
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:378
+#: includes/base/BuilderModule/Traits/Field_Definition.php:379
 #: includes/base/BuilderModule/Traits/Fields.php:707
 #: includes/modules/DualButton/DualButton.php:543
 #: includes/modules/DualButton/DualButton.php:603
@@ -578,27 +578,27 @@ msgstr ""
 msgid "Align icon to the left, right or center."
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:435
+#: includes/base/BuilderModule/Traits/Field_Definition.php:436
 msgid "Transition Duration"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:436
+#: includes/base/BuilderModule/Traits/Field_Definition.php:437
 msgid "This controls the transition duration of the animation."
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:457
+#: includes/base/BuilderModule/Traits/Field_Definition.php:458
 msgid "Transition Delay"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:458
+#: includes/base/BuilderModule/Traits/Field_Definition.php:459
 msgid "This controls the transition delay of the animation."
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:479
+#: includes/base/BuilderModule/Traits/Field_Definition.php:480
 msgid "Transition Speed Curve"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:480
+#: includes/base/BuilderModule/Traits/Field_Definition.php:481
 msgid "This controls the transition speed curve of the animation."
 msgstr ""
 
@@ -1536,12 +1536,12 @@ msgid "Text"
 msgstr ""
 
 #: includes/modules/Breadcrumbs/Breadcrumbs.php:135
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:153
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:159
 msgid "Home Text"
 msgstr ""
 
 #: includes/modules/Breadcrumbs/Breadcrumbs.php:139
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:163
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:169
 #: includes/modules/PostGridChild/PostGridChild.php:479
 #: includes/modules/TypingText/TypingText.php:68
 #: includes/modules/TypingText/TypingText.php:307
@@ -1552,57 +1552,57 @@ msgstr ""
 msgid "Current"
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:154
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:160
 msgid "The default Home text in the Breadcrumbs"
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:155
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:161
 msgid "Home"
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:164
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:170
 msgid "The text before the Breadcrumbs"
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:176
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:198
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:182
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:204
 msgid "Separator Icon"
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:177
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:199
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:183
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:205
 msgid "Choose the icon for the separator."
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:186
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:192
 msgid "Add Before Icon"
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:188
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:194
 msgid "Here you can choose whether or not add the icon for before text."
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:213
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:219
 msgid "Link Color"
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:215
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:221
 msgid "Here you can define a custom color for the links in the breadcrumbs."
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:221
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:227
 msgid "Separator Color"
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:223
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:229
 msgid "Here you can define a custom color for the separator in the breadcrumbs."
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:229
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:235
 msgid "Current Text Color"
 msgstr ""
 
-#: includes/modules/Breadcrumbs/Breadcrumbs.php:231
+#: includes/modules/Breadcrumbs/Breadcrumbs.php:237
 msgid "Here you can define a custom color for the current text in the breadcrumbs."
 msgstr ""
 
@@ -2488,19 +2488,19 @@ msgstr ""
 msgid "Body"
 msgstr ""
 
-#: includes/modules/DropCap/DropCap.php:163
+#: includes/modules/DropCap/DropCap.php:167
 msgid "Drop cap letter"
 msgstr ""
 
-#: includes/modules/DropCap/DropCap.php:166
+#: includes/modules/DropCap/DropCap.php:170
 msgid "Your Title Goes Here"
 msgstr ""
 
-#: includes/modules/DropCap/DropCap.php:171
+#: includes/modules/DropCap/DropCap.php:175
 msgid "Input the main text content for your module here."
 msgstr ""
 
-#: includes/modules/DropCap/DropCap.php:181
+#: includes/modules/DropCap/DropCap.php:185
 #: includes/modules/DualButton/DualButton.php:436
 #: includes/modules/PostGridChild/PostGridChild.php:906
 #: includes/modules/PostGridChild/PostGridChild.php:948
@@ -2508,23 +2508,23 @@ msgstr ""
 msgid "Background"
 msgstr ""
 
-#: includes/modules/DropCap/DropCap.php:191
+#: includes/modules/DropCap/DropCap.php:195
 #: includes/modules/PostGridChild/PostGridChild.php:927
 #: includes/modules/PostGridChild/PostGridChild.php:961
 msgid "Margin"
 msgstr ""
 
-#: includes/modules/DropCap/DropCap.php:193
+#: includes/modules/DropCap/DropCap.php:197
 msgid "Here you can define a custom margin size for the drop cap letter."
 msgstr ""
 
-#: includes/modules/DropCap/DropCap.php:205
+#: includes/modules/DropCap/DropCap.php:209
 #: includes/modules/PostGridChild/PostGridChild.php:936
 #: includes/modules/PostGridChild/PostGridChild.php:976
 msgid "Padding"
 msgstr ""
 
-#: includes/modules/DropCap/DropCap.php:207
+#: includes/modules/DropCap/DropCap.php:211
 msgid "Here you can define a custom padding size for the drop cap letter."
 msgstr ""
 
@@ -4924,6 +4924,10 @@ msgstr ""
 
 #: includes/modules/VideoPopup/VideoPopup.php:48
 msgid "Video Popups"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:64
+msgid "Settings"
 msgstr ""
 
 #: includes/modules/VideoPopup/VideoPopup.php:72

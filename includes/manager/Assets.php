@@ -51,7 +51,7 @@ class Assets {
 		Asset::register_scripts( 'vendor-isotope', $isotope_js, $core_asset_deps );
 		Asset::register_scripts( 'vendor-scrolling-text', $scrolling_text_js, $core_asset_deps );
 
-		// Re-queue third party scripts
+		// Re-queue third party scripts.
 		$magnific_popup_script_path = '/includes/builder/feature/dynamic-assets/assets/js/magnific-popup.js';
 		if ( ! wp_script_is( 'magnific-popup', 'registered' ) && file_exists( get_template_directory() . $magnific_popup_script_path ) ) {
 			wp_register_script( 'magnific-popup', get_template_directory_uri() . $magnific_popup_script_path, $core_asset_deps, divi_squad()->get_version(), true );
@@ -90,7 +90,7 @@ class Assets {
 				wp_enqueue_style( 'contact-form-7' );
 			}
 
-			// WP Form default style
+			// WP Form default style.
 			if ( function_exists( '\wpforms' ) && function_exists( '\wpforms_get_render_engine' ) && function_exists( '\wpforms_setting' ) && function_exists( '\wpforms_get_min_suffix' ) ) {
 				$min         = \wpforms_get_min_suffix();
 				$wp_forms_re = \wpforms_get_render_engine();

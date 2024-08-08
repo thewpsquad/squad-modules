@@ -100,7 +100,7 @@ class Str {
 	 * Performs a case-sensitive check indicating if a needle is contained in a haystack.
 	 *
 	 * @param string  $string_content The string.
-	 * @param int     $format Specify the return value of this function. The current supported values are:
+	 * @param int     $format Specify the return value of this function. The current supported values are:.
 	 *                        <ul>
 	 *                            <li>0: returns the number of words found</li>
 	 *                            <li>1: returns an array containing all the words found inside the string</li>

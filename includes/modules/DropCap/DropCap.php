@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
-use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
+use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Helper;
 
 /**
@@ -26,7 +26,7 @@ use DiviSquad\Utils\Helper;
  * @since       1.4.0
  * @package     squad-modules-for-divi
  */
-class DropCapText extends Squad_Builder_Module {
+class DropCapText extends Squad_Divi_Builder_Module {
 
 	/**
 	 * Initiate Module.
@@ -154,9 +154,13 @@ class DropCapText extends Squad_Builder_Module {
 			),
 		);
 	}
-
+	/**
+	 * Declare general fields for the module
+	 *
+	 * @return array[]
+	 * @since 1.4.0
+	 */
 	public function get_fields() {
-
 		// Text fields definitions.
 		$text_fields = array(
 			'drop_cap_letter' => array(
@@ -292,7 +296,7 @@ class DropCapText extends Squad_Builder_Module {
 				'use_background_mask'    => false,
 				'prop_name_aliases'      => array(
 					'use_drop_cap_letter_background_color_gradient' => 'drop_cap_letter_background_use_color_gradient',
-					'drop_cap_letter_background'                    => 'drop_cap_letter_background_color',
+					'drop_cap_letter_background' => 'drop_cap_letter_background_color',
 				),
 			)
 		);

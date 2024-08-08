@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
-use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
+use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
 
@@ -27,7 +27,7 @@ use DiviSquad\Utils\Helper;
  * @since           1.4.0
  * @package         squad-modules-for-divi
  */
-class Breadcrumbs extends Squad_Builder_Module {
+class Breadcrumbs extends Squad_Divi_Builder_Module {
 
 	/**
 	 * Initiate Module.
@@ -146,6 +146,12 @@ class Breadcrumbs extends Squad_Builder_Module {
 		);
 	}
 
+	/**
+	 * Declare general fields for the module
+	 *
+	 * @return array[]
+	 * @since 1.4.0
+	 */
 	public function get_fields() {
 		// Text fields definitions.
 		$text_fields = array(
@@ -275,7 +281,7 @@ class Breadcrumbs extends Squad_Builder_Module {
 			$before_html = sprintf( '<span class="before-icon et-pb-icon">%1$s</span>', $before_icon );
 		}
 
-		//Generating the Breadcrumbs.
+		// Generating the Breadcrumbs.
 		$breadcrumbs = $this->disq_get_hansel_and_gretel_breadcrumbs(
 			esc_html( $this->props['home_text'] ),
 			esc_html( $this->props['before_text'] ),

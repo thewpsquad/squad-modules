@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
-use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
+use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
 use DiviSquad\Utils\Module;
@@ -53,7 +53,7 @@ use function et_pb_get_extended_font_icon_value;
  * @since       1.0.0
  * @package     squad-modules-for-divi
  */
-class PostGrid extends Squad_Builder_Module {
+class PostGrid extends Squad_Divi_Builder_Module {
 
 	/**
 	 * Initiate Module.
@@ -1451,7 +1451,7 @@ class PostGrid extends Squad_Builder_Module {
 				'use_background_mask'    => false,
 				'prop_name_aliases'      => array(
 					'use_post_wrapper_background_color_gradient' => 'post_wrapper_background_use_color_gradient',
-					'post_wrapper_background'                    => 'post_wrapper_background_color',
+					'post_wrapper_background' => 'post_wrapper_background_color',
 				),
 			)
 		);
@@ -1469,7 +1469,7 @@ class PostGrid extends Squad_Builder_Module {
 				'use_background_mask'    => false,
 				'prop_name_aliases'      => array(
 					'use_element_wrapper_background_color_gradient' => 'element_wrapper_background_use_color_gradient',
-					'element_wrapper_background'                    => 'element_wrapper_background_color',
+					'element_wrapper_background' => 'element_wrapper_background_color',
 				),
 			)
 		);
@@ -1486,7 +1486,7 @@ class PostGrid extends Squad_Builder_Module {
 				'use_background_mask'    => false,
 				'prop_name_aliases'      => array(
 					'use_element_background_color_gradient' => 'element_background_use_color_gradient',
-					'element_background'                    => 'element_background_color',
+					'element_background' => 'element_background_color',
 				),
 			)
 		);
@@ -1599,7 +1599,7 @@ class PostGrid extends Squad_Builder_Module {
 					'use_background_mask'    => false,
 					'prop_name_aliases'      => array(
 						'use_button_background_color_gradient' => 'button_background_use_color_gradient',
-						'button_background'                    => 'button_background_color',
+						'button_background' => 'button_background_color',
 					),
 				)
 			);
@@ -1812,7 +1812,7 @@ class PostGrid extends Squad_Builder_Module {
 					'use_background_mask'    => false,
 					'prop_name_aliases'      => array(
 						'use_pagination_wrapper_background_color_gradient' => 'pagination_wrapper_background_use_color_gradient',
-						'pagination_wrapper_background'                    => 'pagination_wrapper_background_color',
+						'pagination_wrapper_background' => 'pagination_wrapper_background_color',
 					),
 				)
 			);
@@ -1830,7 +1830,7 @@ class PostGrid extends Squad_Builder_Module {
 					'use_background_mask'    => false,
 					'prop_name_aliases'      => array(
 						'use_pagination_background_color_gradient' => 'pagination_background_use_color_gradient',
-						'pagination_background'                    => 'pagination_background_color',
+						'pagination_background' => 'pagination_background_color',
 					),
 				)
 			);
@@ -1848,7 +1848,7 @@ class PostGrid extends Squad_Builder_Module {
 					'use_background_mask'    => false,
 					'prop_name_aliases'      => array(
 						'use_active_pagination_background_color_gradient' => 'active_pagination_background_use_color_gradient',
-						'active_pagination_background'                    => 'active_pagination_background_color',
+						'active_pagination_background' => 'active_pagination_background_color',
 					),
 				)
 			);

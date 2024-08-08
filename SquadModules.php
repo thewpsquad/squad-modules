@@ -117,6 +117,8 @@ final class SquadModules extends Integration\Core {
 	/**
 	 *  The instance of current class.
 	 *
+	 * @param array $options The plugin options.
+	 *
 	 * @return self
 	 */
 	public static function get_instance( $options ) {

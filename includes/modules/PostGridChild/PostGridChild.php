@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
-use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
+use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Divi;
 use function esc_html__;
 use function esc_attr__;
@@ -32,7 +32,7 @@ use function wp_json_encode;
  * @since       1.0.0
  * @package     squad-modules-for-divi
  */
-class PostGridChild extends Squad_Builder_Module {
+class PostGridChild extends Squad_Divi_Builder_Module {
 	/**
 	 * The list of element types
 	 *
