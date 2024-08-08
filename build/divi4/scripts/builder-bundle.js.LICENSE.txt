@@ -9,6 +9,20 @@
  */
 
 /*!
+ * Masonry layout mode
+ * sub-classes Masonry
+ * https://masonry.desandro.com
+ */
+
+/*!
+ * Masonry v4.2.2
+ * Cascading grid layout library
+ * https://masonry.desandro.com
+ * MIT License
+ * by David DeSandro
+ */
+
+/*!
  * Outlayer v2.1.1
  * the brains and guts of a layout library
  * MIT license

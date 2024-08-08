@@ -29,8 +29,9 @@ abstract class DISQ_Builder_Module extends ET_Builder_Module {
 	use Traits\Field_Definition;
 	use Traits\Field_Processor;
 	use Traits\Fields;
-	use Traits\Elements\Mask_Shape;
+	use Traits\Elements\Breadcrumbs;
 	use Traits\Elements\Divider;
+	use Traits\Elements\Mask_Shape;
 
 	/**
 	 * Module credits.

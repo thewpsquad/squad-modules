@@ -4,6 +4,7 @@ namespace DiviSquad\Manager;
 
 use DiviSquad\Utils\Helper;
 use DiviSquad\Utils\Polyfills\Str;
+use DiviSquad\Utils\WP;
 use function DiviSquad\divi_squad;
 
 /**
@@ -204,6 +205,33 @@ class Modules {
 				'label'              => esc_html__( 'Scrolling Text', 'squad-modules-for-divi' ),
 				'release_version'    => '1.3.0',
 				'is_default_active'  => false,
+				'is_premium_feature' => false,
+				'type'               => 'D4',
+				'category'           => 'creative-modules',
+			),
+			array(
+				'name'               => 'StarRating',
+				'label'              => esc_html__( 'Star Rating', 'squad-modules-for-divi' ),
+				'release_version'    => '1.4.0',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'type'               => 'D4',
+				'category'           => 'creative-modules',
+			),
+			array(
+				'name'               => 'Breadcrumbs',
+				'label'              => esc_html__( 'Breadcrumbs', 'squad-modules-for-divi' ),
+				'release_version'    => '1.4.0',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'type'               => 'D4',
+				'category'           => 'creative-modules',
+			),
+			array(
+				'name'               => 'DropCap',
+				'label'              => esc_html__( 'Drop Cap', 'squad-modules-for-divi' ),
+				'release_version'    => '1.4.0',
+				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
 				'category'           => 'creative-modules',

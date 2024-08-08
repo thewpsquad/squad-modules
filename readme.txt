@@ -1,11 +1,11 @@
 === Divi Squad Lite - Advanced Divi Modules for Divi Theme, Extra Theme and Divi Builder ===
 Contributors: wpsquad, mralaminahamed
-Donate link: https://squadmodules.com/
+Donate link: https://www.buymeacoffee.com/mralaminahamed
 Tags: divi, divi module, divi theme, divi builder, divi page builder, divi plugin, divi addons, divi extensions
 Requires at least: 5.0.0
 Tested up to: 6.4
 Requires PHP: 5.6
-Stable tag: 1.3.2
+Stable tag: 1.4.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -35,10 +35,10 @@ Try [Divi Squad Lite](https://squadmodules.com/) today and see the difference it
 - **Responsive and Mobile-Friendly**: All advanced custom modules are optimized for responsiveness, so your website will look great on any device, from desktop computers to smartphones and tablets.
 - **Regular Updates**: Divi Squad Lite is constantly being updated with new features and improvements. You can expect regular updates that add new modules, features, and bug fixes.
 
-== 17+ Free Divi Custom Modules and Counting ==
-Divi Squad Lite includes over 17+ free modules that you can use to create stunning layouts, add interactive elements, and engage your website visitors.
+== 20+ Free Divi Custom Modules and Counting ==
+Divi Squad Lite includes over 20+ free modules that you can use to create stunning layouts, add interactive elements, and engage your website visitors.
 
-== 14 General Modules ==
+== 17 General Modules ==
 1. **Divi Advanced Divider Module**: Create visually appealing dividers with various styles, shapes, and customization options with Advanced Divi Divider Module.
 2. **Divi Before After Image Slider Module**: Engage your visitors with interactive image comparisons using the Advanced Divi Before After Image Slider module.
 3. **Divi Business Hours Module**: Display your business hours in a clear and organized manner with Advanced Divi Business Hours Module.
@@ -47,17 +47,20 @@ Divi Squad Lite includes over 17+ free modules that you can use to create stunni
 6. **Divi Image Mask Module**: Transform your images into captivating focal points with the Advanced Divi Image Mask module. Apply stunning masks to your images, adding creativity and visual appeal to your website.
 7. **Divi Lottie Animation Module**: Bring your website to life with captivating Lottie animations. The Advanced Divi Lottie Animation module allows you to easily integrate animated elements into your web pages, making your website more engaging and dynamic.
 8. **Divi Post Grid Module**: Display your blog posts in a stylish and organized grid layout. The Advanced Divi Post Grid module provides flexibility and customization options to showcase your content in an appealing manner.
-9. **Divi Typing Text Module**: Create eye-catching animated text that simulates a typing effect with the Advanced Divi Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
+9. **Divi Typing Text Module**: Create eye-catching animated title or heading text that simulates a typing effect with the Advanced Divi Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 10. **Divi Image Gallery Module**: Showcase your visuals with elegance using the Advanced Divi Image Gallery module from Divi Squad Lite. Effortlessly create stunning galleries to engage and captivate your audience.
 11. **Divi Post Reading Time Module**: It allows you to display an estimated reading time for your blog posts. This can be helpful for users who want to know how long it will take them to read a particular post.
 12. **Divi Glitch Text Module**: Create eye-catching headlines and captions with a mesmerizing glitch effect.
 13. **Divi Gradient Text Module**: Enhance your typography with stunning color transitions. Create eye-catching headlines, captions, and more with this versatile and dynamic module.
 14. **Divi Scrolling Text Module**: Engage your audience with the Advanced Divi Scrolling Text module. Add dynamic, attention-grabbing text animations to your Divi-powered website.
+15. **Divi Star Rating Module**: Add stylish star ratings to your content for user feedback and ratings.
+16. **Divi Breadcrumbs Module**: Enhance navigation with a clear path for users to trace their steps through your website.
+17. **Divi Drop Cap Module**: Create visually appealing drop caps to add emphasis and style to your text content.
 
 == 3 Form Styler Modules ==
-1. **Divi Form Styler: Contact Form 7 Module**: Enhance the design of your Contact Form 7 form with the Advanced Divi Form Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
-2. **Divi Form Styler: WP Forms Module**: Enhance the design of your WP Forms form with the Advanced Divi Form Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
-3. **Divi Form Styler: Gravity Forms Module**: Enhance the design of your Gravity Forms form with the Advanced Divi Form Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
+1. **Divi Form Styler: Contact Form 7 Module**: Enhance the design of your Contact Form 7 form with the Divi Contact Form 7 Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
+2. **Divi Form Styler: WP Forms Module**: Enhance the design of your WP Forms form with the Divi WP Forms Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
+3. **Divi Form Styler: Gravity Forms Module**: Enhance the design of your Gravity Forms form with the Divi Gravity Forms Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
 
 == 4 Divi Squad Lite Extensions ==
 Divi Squad Lite also includes four extensions that can help you take your website to the next level:
@@ -159,6 +162,13 @@ If you would like to contribute to the translation efforts for Divi Squad Lite, 
 13. Typing Text Module - This is a module that allows you to create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 
 == Upgrade Notice ==
+= 1.4.0 =
+* Introduced the Divi Star Rating Module
+* Introduced the Divi Breadcrumbs Module
+* Introduced the Divi Drop Cap Text Module
+* Improved: Dual Button, Post Grid, WPForms Styler, Gravity Form Styler, Contact Form 7 Styler, Flip Box, Before After Image Slider modules
+* Improved: Divi Squad Lite Admin UI (More flexible, more user-friendly)
+
 = 1.3.0 =
 * Introduced: Divi Scrolling Text Module
 * Improved: Divi Image Gallery Module, Divi Glitch Text Module
@@ -201,6 +211,13 @@ If you would like to contribute to the translation efforts for Divi Squad Lite, 
 * Enjoy the new collection of elegant Divi modules and enhance your website.
 
 == Changelog ==
+= 1.4.0 (14-10-2023) =
+* Introduced the Divi Star Rating Module
+* Introduced the Divi Breadcrumbs Module
+* Introduced the Divi Drop Cap Text Module
+* Improved: Dual Button, Post Grid, WPForms Styler, Gravity Form Styler, Contact Form 7 Styler, Flip Box, Before After Image Slider modules
+* Improved: Divi Squad Lite Admin UI (More flexible, more user-friendly)
+
 = 1.3.2 (05-10-2023) =
 * Added: Admin footer text at Divi Squad Lite Dashboard area
 * Fixed: Compatibility with Multi-site and WordPress Playground
