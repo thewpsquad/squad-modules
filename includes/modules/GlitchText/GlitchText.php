@@ -156,7 +156,7 @@ class GlitchText extends DISQ_Builder_Module {
 			),
 		);
 
-		// Time general settings.
+		// General settings.
 		$general_settings = array(
 			'glitch_text_effect'           => $this->disq_add_select_box_field(
 				esc_html__( 'Glitch Effect', 'squad-modules-for-divi' ),

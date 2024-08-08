@@ -183,6 +183,22 @@ class Backend extends BuilderBackendPlaceholder {
 			)
 		);
 
+		// Default texts for option list field.
+		$typing_text_default_text   = array(
+			array(
+				'value'   => _x( 'Typing Text', 'Modules dummy content', 'squad-modules-for-divi' ),
+				'checked' => 0,
+				'dragID'  => - 1,
+			),
+		);
+		$gradient_text_default_text = array(
+			array(
+				'value'   => _x( 'Your Gradient Text Here', 'Modules dummy content', 'squad-modules-for-divi' ),
+				'checked' => 0,
+				'dragID'  => - 1,
+			),
+		);
+
 		$definitions = array(
 			'defaults' => array(
 				'disq_accordion'                 => array(
@@ -207,15 +223,7 @@ class Backend extends BuilderBackendPlaceholder {
 				),
 				'disq_typing_text'               => array(
 					'prefix_text' => _x( 'Your', 'Modules dummy content', 'squad-modules-for-divi' ),
-					'typing_text' => wp_json_encode(
-						array(
-							array(
-								'value'   => _x( 'Typing Text', 'Modules dummy content', 'squad-modules-for-divi' ),
-								'checked' => 0,
-								'dragID'  => - 1,
-							),
-						)
-					),
+					'typing_text' => wp_json_encode( $typing_text_default_text ),
 					'suffix_text' => _x( 'Goes Here', 'Modules dummy content', 'squad-modules-for-divi' ),
 				),
 				'disq_image_mask'                => array(
@@ -278,6 +286,11 @@ class Backend extends BuilderBackendPlaceholder {
 				),
 				'disq_glitch_text'               => array(
 					'glitch_text' => _x( 'Your Glitch Text Here', 'Modules dummy content', 'squad-modules-for-divi' ),
+				),
+				'disq_gradient_text'             => array(
+					'gradient_text'                      => wp_json_encode( $gradient_text_default_text ),
+					'text_gradient_use_color_gradient'   => 'on',
+					'text_gradient_color_gradient_stops' => '#1f7016 0%|#29c4a9 100%',
 				),
 			),
 		);

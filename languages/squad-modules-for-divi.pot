@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-3.0-only.
 msgid ""
 msgstr ""
-"Project-Id-Version: Squad Modules for Divi Builder 1.2.5\n"
+"Project-Id-Version: Squad Modules for Divi Builder 1.2.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/temp\n"
-"POT-Creation-Date: 2023-09-22 02:03:00+00:00\n"
+"POT-Creation-Date: 2023-09-23 14:33:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -147,6 +147,16 @@ msgstr ""
 
 #: admin/Assets.php:156
 msgid "Updated"
+msgstr ""
+
+#: admin/Assets.php:158
+msgid ""
+"We are here to assist you with any queries you may have. Feel free to ask "
+"us anything!"
+msgstr ""
+
+#: admin/Assets.php:159
+msgid "Hi, how can I help?"
 msgstr ""
 
 #: admin/Menu.php:104
@@ -366,7 +376,7 @@ msgid "Here you can define a custom padding size."
 msgstr ""
 
 #: includes/base/BuilderModule/DISQ_Form_Styler_Module.php:513
-#: includes/base/BuilderModule/Traits/Field_Definition.php:265
+#: includes/base/BuilderModule/Traits/Field_Definition.php:316
 #: includes/modules/FormStylerContactForm7/FormStylerContactForm7.php:508
 #: includes/modules/FormStylerGravityForms/FormStylerGravityForms.php:785
 #: includes/modules/FormStylerWPForms/FormStylerWPForms.php:490
@@ -456,22 +466,22 @@ msgstr ""
 msgid "Here you can define a custom padding size for the field."
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:159
+#: includes/base/BuilderModule/Traits/Field_Definition.php:208
 msgid ""
 "Adjust the background style of the current field by customizing the "
 "background color, gradient, and image."
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:212
+#: includes/base/BuilderModule/Traits/Field_Definition.php:263
 msgid "No"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:213
+#: includes/base/BuilderModule/Traits/Field_Definition.php:264
 msgid "Yes"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:261
-#: includes/base/BuilderModule/Traits/Field_Definition.php:298
+#: includes/base/BuilderModule/Traits/Field_Definition.php:312
+#: includes/base/BuilderModule/Traits/Field_Definition.php:349
 #: includes/base/BuilderModule/Traits/Fields.php:656
 #: includes/modules/FlipBox/FlipBox.php:3053
 #: includes/modules/FlipBox/FlipBox.php:3086
@@ -480,7 +490,7 @@ msgstr ""
 msgid "Here you can choose where to place the icon."
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:323
+#: includes/base/BuilderModule/Traits/Field_Definition.php:374
 #: includes/base/BuilderModule/Traits/Fields.php:725
 #: includes/modules/DualButton/DualButton.php:539
 #: includes/modules/DualButton/DualButton.php:599
@@ -498,27 +508,27 @@ msgstr ""
 msgid "Align icon to the left, right or center."
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:380
+#: includes/base/BuilderModule/Traits/Field_Definition.php:431
 msgid "Transition Duration"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:381
+#: includes/base/BuilderModule/Traits/Field_Definition.php:432
 msgid "This controls the transition duration of the animation."
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:402
+#: includes/base/BuilderModule/Traits/Field_Definition.php:453
 msgid "Transition Delay"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:403
+#: includes/base/BuilderModule/Traits/Field_Definition.php:454
 msgid "This controls the transition delay of the animation."
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:424
+#: includes/base/BuilderModule/Traits/Field_Definition.php:475
 msgid "Transition Speed Curve"
 msgstr ""
 
-#: includes/base/BuilderModule/Traits/Field_Definition.php:425
+#: includes/base/BuilderModule/Traits/Field_Definition.php:476
 msgid "This controls the transition speed curve of the animation."
 msgstr ""
 
@@ -956,98 +966,106 @@ msgid ""
 "feature."
 msgstr ""
 
-#: includes/manager/Modules.php:37 includes/modules/Divider/Divider.php:47
+#: includes/manager/Modules.php:38 includes/modules/Divider/Divider.php:47
 msgid "Advanced Divider"
 msgstr ""
 
-#: includes/manager/Modules.php:46
+#: includes/manager/Modules.php:47
 #: includes/modules/DualButton/DualButton.php:44
 msgid "Dual Button"
 msgstr ""
 
-#: includes/manager/Modules.php:55 includes/modules/Divider/Divider.php:76
+#: includes/manager/Modules.php:56 includes/modules/Divider/Divider.php:76
 #: includes/modules/Divider/Divider.php:564
 #: includes/modules/Lottie/Lottie.php:57 includes/modules/Lottie/Lottie.php:63
 msgid "Lottie"
 msgstr ""
 
-#: includes/manager/Modules.php:64 includes/modules/PostGrid/PostGrid.php:61
+#: includes/manager/Modules.php:65 includes/modules/PostGrid/PostGrid.php:61
 msgid "Post Grid"
 msgstr ""
 
-#: includes/manager/Modules.php:66
+#: includes/manager/Modules.php:67
 #: includes/modules/PostGridChild/PostGridChild.php:54
 msgid "Post Element"
 msgstr ""
 
-#: includes/manager/Modules.php:75
+#: includes/manager/Modules.php:76
 #: includes/modules/TypingText/TypingText.php:40
 #: includes/modules/TypingText/TypingText.php:314
 msgid "Typing Text"
 msgstr ""
 
-#: includes/manager/Modules.php:84 includes/modules/ImageMask/ImageMask.php:37
+#: includes/manager/Modules.php:85 includes/modules/ImageMask/ImageMask.php:37
 msgid "Image Mask"
 msgstr ""
 
-#: includes/manager/Modules.php:93 includes/modules/FlipBox/FlipBox.php:45
+#: includes/manager/Modules.php:94 includes/modules/FlipBox/FlipBox.php:45
 msgid "Flip Box"
 msgstr ""
 
-#: includes/manager/Modules.php:102
+#: includes/manager/Modules.php:103
 #: includes/modules/BusinessHours/BusinessHours.php:40
 #: includes/modules/BusinessHours/BusinessHours.php:41
 msgid "Business Hours"
 msgstr ""
 
-#: includes/manager/Modules.php:104
+#: includes/manager/Modules.php:105
 #: includes/modules/BusinessHoursChild/BusinessHoursChild.php:38
 msgid "Business Day"
 msgstr ""
 
-#: includes/manager/Modules.php:113
+#: includes/manager/Modules.php:114
 #: includes/modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:43
 msgid "Before After Image Slider"
 msgstr ""
 
-#: includes/manager/Modules.php:122
+#: includes/manager/Modules.php:123
 #: includes/modules/ImageGallery/ImageGallery.php:51
 msgid "Image Gallery"
 msgstr ""
 
-#: includes/manager/Modules.php:131 includes/manager/Modules.php:133
+#: includes/manager/Modules.php:132 includes/manager/Modules.php:134
 msgid "Advanced Accordion"
 msgstr ""
 
-#: includes/manager/Modules.php:142
+#: includes/manager/Modules.php:143
 #: includes/modules/FormStylerContactForm7/FormStylerContactForm7.php:39
 #: includes/modules/FormStylerContactForm7/FormStylerContactForm7.php:40
 msgid "Contact Form 7"
 msgstr ""
 
-#: includes/manager/Modules.php:152
+#: includes/manager/Modules.php:153
 #: includes/modules/FormStylerWPForms/FormStylerWPForms.php:38
 #: includes/modules/FormStylerWPForms/FormStylerWPForms.php:39
 msgid "WP Forms"
 msgstr ""
 
-#: includes/manager/Modules.php:162
+#: includes/manager/Modules.php:163
 #: includes/modules/FormStylerGravityForms/FormStylerGravityForms.php:36
 #: includes/modules/FormStylerGravityForms/FormStylerGravityForms.php:37
 msgid "Gravity Forms"
 msgstr ""
 
-#: includes/manager/Modules.php:172
+#: includes/manager/Modules.php:173
 #: includes/modules/PostReadingTime/PostReadingTime.php:44
 msgid "Post Reading Time"
 msgstr ""
 
-#: includes/manager/Modules.php:181
+#: includes/manager/Modules.php:182
 #: includes/modules/GlitchText/GlitchText.php:37
 #: includes/modules/GlitchText/GlitchText.php:63
 #: includes/modules/GlitchText/GlitchText.php:122
 #: includes/modules/GlitchText/GlitchText.php:138
 msgid "Glitch Text"
+msgstr ""
+
+#: includes/manager/Modules.php:190
+#: includes/modules/GradientText/GradientText.php:38
+#: includes/modules/GradientText/GradientText.php:63
+#: includes/modules/GradientText/GradientText.php:133
+#: includes/modules/GradientText/GradientText.php:149
+msgid "Gradient Text"
 msgstr ""
 
 #: includes/modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:44
@@ -2964,6 +2982,7 @@ msgid "Glitch Texts"
 msgstr ""
 
 #: includes/modules/GlitchText/GlitchText.php:56
+#: includes/modules/GradientText/GradientText.php:57
 msgid "Main Content"
 msgstr ""
 
@@ -3042,6 +3061,30 @@ msgstr ""
 #: includes/modules/GlitchText/GlitchText.php:254
 #: includes/modules/GlitchText/GlitchText.php:272
 msgid "Secondary Color"
+msgstr ""
+
+#: includes/modules/GradientText/GradientText.php:39
+msgid "Gradient Texts"
+msgstr ""
+
+#: includes/modules/GradientText/GradientText.php:62
+msgid "Gradient"
+msgstr ""
+
+#: includes/modules/GradientText/GradientText.php:150
+msgid "The text will appear in with your gradient texts."
+msgstr ""
+
+#: includes/modules/GradientText/GradientText.php:157
+msgid "Gradient Text Tag"
+msgstr ""
+
+#: includes/modules/GradientText/GradientText.php:159
+msgid "Choose a tag to display with your gradient text."
+msgstr ""
+
+#: includes/modules/GradientText/GradientText.php:171
+msgid "Gradient Colors"
 msgstr ""
 
 #: includes/modules/ImageGallery/ImageGallery.php:52
@@ -4383,7 +4426,7 @@ msgid "Comments: "
 msgstr ""
 
 #: includes/integration/Divi/Backend.php:42
-#: includes/integration/Divi/Backend.php:254
+#: includes/integration/Divi/Backend.php:262
 msgctxt "Modules dummy content"
 msgid "Sun Day"
 msgstr ""
@@ -4393,7 +4436,7 @@ msgstr ""
 #: includes/integration/Divi/Backend.php:53
 #: includes/integration/Divi/Backend.php:58
 #: includes/integration/Divi/Backend.php:63
-#: includes/integration/Divi/Backend.php:255
+#: includes/integration/Divi/Backend.php:263
 msgctxt "Modules dummy content"
 msgid "10AM - 5PM"
 msgstr ""
@@ -4434,77 +4477,82 @@ msgctxt "Modules dummy content"
 msgid "Sat Day"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:209
-msgctxt "Modules dummy content"
-msgid "Your"
-msgstr ""
-
-#: includes/integration/Divi/Backend.php:213
+#: includes/integration/Divi/Backend.php:189
 msgctxt "Modules dummy content"
 msgid "Typing Text"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:219
+#: includes/integration/Divi/Backend.php:196
+msgctxt "Modules dummy content"
+msgid "Your Gradient Text Here"
+msgstr ""
+
+#: includes/integration/Divi/Backend.php:225
+msgctxt "Modules dummy content"
+msgid "Your"
+msgstr ""
+
+#: includes/integration/Divi/Backend.php:227
 msgctxt "Modules dummy content"
 msgid "Goes Here"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:233
+#: includes/integration/Divi/Backend.php:241
 msgctxt "Modules dummy content"
 msgid "Older"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:234
+#: includes/integration/Divi/Backend.php:242
 msgctxt "Modules dummy content"
 msgid "Next"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:235
+#: includes/integration/Divi/Backend.php:243
 msgctxt "Modules dummy content"
 msgid "Load More"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:239
+#: includes/integration/Divi/Backend.php:247
 msgctxt "Modules dummy content"
 msgid "Flip Right"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:242
+#: includes/integration/Divi/Backend.php:250
 msgctxt "Modules dummy content"
 msgid "View More"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:250
+#: includes/integration/Divi/Backend.php:258
 msgctxt "Modules dummy content"
 msgid "Business Hours"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:262
+#: includes/integration/Divi/Backend.php:270
 msgctxt "Modules dummy content"
 msgid "Before"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:263
+#: includes/integration/Divi/Backend.php:271
 msgctxt "Modules dummy content"
 msgid "After"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:275
+#: includes/integration/Divi/Backend.php:283
 msgctxt "Modules dummy content"
 msgid "Reading Time"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:276
+#: includes/integration/Divi/Backend.php:284
 msgctxt "Modules dummy content"
 msgid "minutes"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:277
+#: includes/integration/Divi/Backend.php:285
 msgctxt "Modules dummy content"
 msgid "minute"
 msgstr ""
 
-#: includes/integration/Divi/Backend.php:280
+#: includes/integration/Divi/Backend.php:288
 msgctxt "Modules dummy content"
 msgid "Your Glitch Text Here"
 msgstr ""

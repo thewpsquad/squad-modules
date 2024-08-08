@@ -154,6 +154,10 @@ class Assets {
 				'extensions_manage_title'     => esc_html__( 'Manage Extensions', 'squad-modules-for-divi' ),
 				'badge_text_new'              => esc_html__( 'NEW', 'squad-modules-for-divi' ),
 				'badge_text_updated'          => esc_html__( 'Updated', 'squad-modules-for-divi' ),
+				'support'                     => array(
+					'popup_title'     => esc_html__( "We are here to assist you with any queries you may have. Feel free to ask us anything!", 'squad-modules-for-divi' ),
+					'message_default' => esc_html__( 'Hi, how can I help?', 'squad-modules-for-divi' ),
+				),
 			),
 			'plugins'      => WP::get_active_plugins(),
 		);

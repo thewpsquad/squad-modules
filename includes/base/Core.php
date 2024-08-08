@@ -253,8 +253,7 @@ abstract class Core {
 	 *
 	 * @return void
 	 */
-	public function wp_hook_enqueue_scripts() {
-	}
+	public function wp_hook_enqueue_scripts() {}
 
 	/**
 	 * Set the localize data.
@@ -290,6 +289,7 @@ abstract class Core {
 			'var DiviSquadExtra = %1$s',
 			wp_json_encode(
 				array(
+					'site_type' => is_multisite() ? 'multi' : 'default',
 					'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
 					'assetsUrl' => DISQ_ASSET_URL . 'assets/',
 				)
