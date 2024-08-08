@@ -150,14 +150,14 @@ abstract class BuilderIntegrationAPI {
 	public function wp_hook_enqueue_scripts() {
 		// Enqueues non-minified, hot reloaded javascript bundles. (Builder).
 		if ( et_core_is_fb_enabled() ) {
-			$builder_styles_url = "{$this->plugin_dir_url}{$this->build_path}styles/style.css";
+			$builder_styles_url = "{$this->plugin_dir_url}{$this->build_path}styles/builder-style.css";
 			wp_enqueue_style( "{$this->name}-builder", $builder_styles_url, array(), $this->get_version() );
 
 			$bundle_url = "{$this->plugin_dir_url}{$this->build_path}scripts/builder-bundle.js";
 			wp_enqueue_script( "{$this->name}-builder", $bundle_url, $this->bundle_dependencies['builder'], $this->get_version(), true );
 		} else {
 			// Enqueues minified, production javascript bundles. (Frontend).
-			$styles             = et_is_builder_plugin_active() ? 'style-dbp' : 'style';
+			$styles             = et_is_builder_plugin_active() ? 'builder-style-dbp' : 'builder-style';
 			$builder_styles_url = "{$this->plugin_dir_url}{$this->build_path}styles/{$styles}.css";
 			wp_enqueue_style( $this->name, $builder_styles_url, array(), $this->get_version() );
 		}

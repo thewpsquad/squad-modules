@@ -5,7 +5,7 @@
  *
  * This class provides the gravity form customization functionalities in the visual builder.
  *
- * @since       1.0.0
+ * @since       1.2.0
  * @package     squad-modules-for-divi
  * @author      WP Squad <wp@thewpsquad.com>
  * @copyright   2023 WP Squad
@@ -20,7 +20,7 @@ use DiviSquad\Utils\Helper;
 /**
  * The Form Styler: Gravity Forms Module Class.
  *
- * @since       1.0.0
+ * @since       1.2.0
  * @package     squad-modules-for-divi
  */
 class FormStylerGravityForms extends DISQ_Form_Styler_Module {
@@ -30,7 +30,7 @@ class FormStylerGravityForms extends DISQ_Form_Styler_Module {
 	 * Set the module name on init.
 	 *
 	 * @return void
-	 * @since 1.0.0
+	 * @since 1.2.0
 	 */
 	public function init() {
 		$this->name      = esc_html__( 'Gravity Forms', 'squad-modules-for-divi' );
@@ -157,6 +157,15 @@ class FormStylerGravityForms extends DISQ_Form_Styler_Module {
 					'computed_affects' => array(
 						'__forms',
 					),
+					'tab_slug'         => 'general',
+					'toggle_slug'      => 'forms',
+				)
+			),
+			'form_messages__enable'    => $this->disq_add_yes_no_field(
+				esc_html__( 'Show Error & Success Message', 'squad-modules-for-divi' ),
+				array(
+					'description'      => esc_html__( 'Here you can choose whether or not show the error and success messages in the visual  builder.', 'squad-modules-for-divi' ),
+					'default_on_front' => 'off',
 					'tab_slug'         => 'general',
 					'toggle_slug'      => 'forms',
 				)

@@ -31,17 +31,20 @@ class Divi_Library_Shortcode extends Extensions {
 	public function __construct() {
 		parent::__construct();
 
-		// Allow extra mime type file upload in the current installation.
+		// Allow divi layout shortcode in the current installation.
 		if ( ! in_array( 'Divi_Library_Shortcode', $this->name_lists, true ) ) {
 			// Create New Column in the Divi Library.
 			add_filter( 'manage_et_pb_layout_posts_columns', array( $this, 'create_shortcode_column' ), 5 );
 			add_action( 'manage_et_pb_layout_posts_custom_column', array( $this, 'shortcode_column_content' ), 5, 2 );
 
 			// Register New Divi Shortcodes.
+			if ( ! shortcode_exists( 'disq_divi_library_layout' ) ) {
+				add_shortcode( 'disq_divi_library_layout', array( $this, 'shortcode_callback' ) );
+			}
+
+			// Add another shortcode if they are not exists.
 			if ( ! shortcode_exists( 'divi_library_layout' ) ) {
 				add_shortcode( 'divi_library_layout', array( $this, 'shortcode_callback' ) );
-			} else {
-				add_shortcode( 'disq_divi_library_layout', array( $this, 'shortcode_callback' ) );
 			}
 		}
 	}
@@ -69,11 +72,7 @@ class Divi_Library_Shortcode extends Extensions {
 	 */
 	public function shortcode_column_content( $column, $id ) {
 		if ( 'disq_shortcode_column' === $column ) {
-			if ( shortcode_exists( 'disq_divi_library_layout' ) ) {
-				printf( '<p>[disq_divi_library_layout id="%s"]</p>', esc_attr( $id ) );
-			} else {
-				printf( '<p>[divi_library_layout id="%s"]</p>', esc_attr( $id ) );
-			}
+			printf( '<p>[disq_divi_library_layout id="%s"]</p>', esc_attr( $id ) );
 		}
 	}
 

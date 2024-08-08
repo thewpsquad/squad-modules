@@ -2,7 +2,7 @@
 
 namespace DiviSquad\Manager;
 
-use DiviSquad\Admin\Assets\Utils;
+use DiviSquad\Utils\Asset;
 use function DiviSquad\divi_squad;
 
 /**
@@ -25,7 +25,7 @@ class Assets {
 	 *
 	 * @return string
 	 */
-	protected function asset_path( $file, $ext = 'js', $path_prefix = 'shortcode/scripts/modules' ) {
+	protected function asset_path( $file, $ext = 'js', $path_prefix = 'divi4/scripts/modules' ) {
 		return sprintf( 'build/%1$s/%2$s.%3$s', $path_prefix, $file, $ext );
 	}
 
@@ -40,7 +40,7 @@ class Assets {
 	 */
 	protected function register_scripts( $handle, $path, $deps = array() ) {
 		$handle       = sprintf( 'disq-%1$s', $handle );
-		$asset_data   = Utils::process_asset_path_data( $path );
+		$asset_data   = Asset::process_asset_path_data( $path );
 		$dependencies = array_merge( $asset_data['dependencies'], $deps );
 
 		wp_register_script( $handle, $asset_data['path'], $dependencies, divi_squad()->get_version(), true );
