@@ -5,7 +5,7 @@ Tags: divi, divi module, divi theme, divi page builder, divi builder, extra them
 Requires at least: 5.0.0
 Tested up to: 6.4
 Requires PHP: 5.6
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -195,6 +195,9 @@ If you would like to contribute to the translation efforts for Squad Modules for
 
 
 == Changelog ==
+= 1.2.5 (22-09-2023) =
+* Fixed: Feedback banner does not close properly.
+
 = 1.2.4 (16-09-2023) =
 * Improved: WordPress and PHP compatibility check
 

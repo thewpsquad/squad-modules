@@ -30,7 +30,6 @@ class WP {
 	 *
 	 * @return bool True if a required version is compatible or empty, false if not.
 	 * @since 1.2.0
-	 *
 	 */
 	public static function is_version_compatible( $required, $target_version ) {
 		return empty( $required ) || version_compare( $target_version, $required, '>=' );
@@ -67,13 +66,17 @@ class WP {
 	 */
 	public static function required_php_version_missing_notice() {
 		printf(
-			'<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>',
+			'<div class="notice notice-error"><p>%1$s</p><p>%2$s</p></div>',
 			sprintf(
-			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-				esc_html__( '%1$s requires "%2$s" version %3$s or greater.', 'squad-modules-for-divi' ),
-				'<strong>' . esc_html__( 'Squad Modules for Divi Builder', 'squad-modules-for-divi' ) . '</strong>',
-				'<strong>' . esc_html__( 'PHP', 'squad-modules-for-divi' ) . '</strong>',
-				esc_html( DISQ_MINIMUM_PHP_VERSION )
+			/* translators: 1: PHP version symbolic text */
+				esc_html__( 'Your site is running an %1$s of PHP that is no longer supported. Please contact your web hosting provider to update your PHP version.', 'squad-modules-for-divi' ),
+				'<strong>' . esc_html__( 'insecure version', 'squad-modules-for-divi' ) . '</strong>'
+			),
+			sprintf(
+			/* translators: 1: Plugin name 2: Required WordPress version */
+				esc_html__( '%1$s The %2$s plugin is disabled on your site until you fix the issue.', 'squad-modules-for-divi' ),
+				'<strong>' . esc_html__( 'Note', 'squad-modules-for-divi' ) . ':</strong>',
+				'<strong>' . esc_html__( 'Squad Modules for Divi Builder', 'squad-modules-for-divi' ) . ':</strong>'
 			)
 		);
 	}
@@ -85,12 +88,11 @@ class WP {
 	 */
 	public static function required_wordpress_version_missing_notice() {
 		printf(
-			'<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>',
+			'<div class="notice notice-error is-dismissible"><p>%1$s</p></div>',
 			sprintf(
-			/* translators: 1: Plugin name 2: PHP 3: Required WordPress version */
-				esc_html__( '%1$s requires "%2$s" version %3$s or greater.', 'squad-modules-for-divi' ),
-				'<strong>' . esc_html__( 'Squad Modules', 'squad-modules-for-divi' ) . '</strong>',
-				'<strong>' . esc_html__( 'WordPress', 'squad-modules-for-divi' ) . '</strong>',
+			/* translators: 1: Plugin name 2: Required WordPress version */
+				esc_html__( 'The %1$s plugin is disabled because it requires WordPress "%2$s" or later.', 'squad-modules-for-divi' ),
+				'<strong>' . esc_html__( 'Squad Modules for Divi Builder', 'squad-modules-for-divi' ) . '</strong>',
 				esc_html( DISQ_MINIMUM_WP_VERSION )
 			)
 		);

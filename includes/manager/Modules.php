@@ -266,9 +266,9 @@ class Modules {
 	/**
 	 * Load the module class.
 	 *
-	 * @param string $path   The module class path.
-	 * @param string $module The module name.
-	 * @param string $type   The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
+	 * @param string      $path   The module class path.
+	 * @param string      $module The module name.
+	 * @param string      $type   The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
 	 * @param object|null $dependency_tree `DependencyTree` class is used as a utility to manage loading classes in a meaningful manner.
 	 *
 	 * @return void
@@ -291,9 +291,9 @@ class Modules {
 	/**
 	 * Load the module class.
 	 *
-	 * @param string $path            The module class path.
-	 * @param mixed  $modules         The available modules list.
-	 * @param string $type            The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
+	 * @param string      $path            The module class path.
+	 * @param mixed       $modules         The available modules list.
+	 * @param string      $type            The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
 	 * @param object|null $dependency_tree `DependencyTree` class is used as a utility to manage loading classes in a meaningful manner.
 	 *
 	 * @return void
