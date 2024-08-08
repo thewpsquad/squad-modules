@@ -783,22 +783,6 @@ class BeforeAfterImageSlider extends DISQ_Builder_Module {
 				'type'           => 'padding',
 			)
 		);
-
-//		// Add height and width support for images.
-//		$additional_props = array( 'width', 'max_width', 'height', 'min_height', 'max_height' );
-//		foreach ( $additional_props as $additional_prop ) {
-//			$css_property = str_replace( '_', '-', $additional_prop );
-//			$this->generate_styles(
-//				array(
-//					'attrs'          => $this->props,
-//					'base_attr_name' => $additional_prop,
-//					'selector'       => "$this->main_css_element div .compare-images, $this->main_css_element div .compare-images img",
-//					'css_property'   => $css_property,
-//					'render_slug'    => $this->slug,
-//					'type'           => 'range',
-//				)
-//			);
-//		}
 	}
 
 }

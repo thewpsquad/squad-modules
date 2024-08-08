@@ -38,7 +38,7 @@ abstract class DISQ_Builder_Module extends ET_Builder_Module {
 	protected $module_credits = array(
 		'module_uri' => '',
 		'author'     => 'Divi Squad',
-		'author_uri' => 'https://squadmodules.com/?utm_campaign=wporg&utm_source=module_modal&utm_medium=textlink',
+		'author_uri' => 'https://squadmodules.com/?utm_campaign=wporg&utm_source=module_modal&utm_medium=module_author_link',
 	);
 
 	/**

@@ -48,24 +48,12 @@ class PostGrid extends DISQ_Builder_Module {
 		$default_css_selectors  = $this->disq_get_module_default_selectors();
 
 		// Registers all hook for processing post elements.
-		add_action(
-			'disq_post_query_current_outside_post_element',
-			array(
-				$this,
-				'wp_hook_disq_outside_post_element',
-			),
-			10,
-			3
-		);
-		add_action(
-			'disq_post_query_current_main_post_element',
-			array(
-				$this,
-				'wp_hook_disq_current_main_post_element',
-			),
-			10,
-			3
-		);
+		$post_element_outside_hook     = 'disq_post_query_current_outside_post_element';
+		$post_element_inner_hook       = 'disq_post_query_current_main_post_element';
+		$post_element_outside_callback = array( $this, 'wp_hook_disq_outside_post_element' );
+		$post_element_inner_callback   = array( $this, 'wp_hook_disq_current_main_post_element' );
+		add_action( $post_element_outside_hook, $post_element_outside_callback, 10, 3 );
+		add_action( $post_element_inner_hook, $post_element_inner_callback, 10, 3 );
 
 		// Declare settings modal toggles for the module.
 		$this->settings_modal_toggles = array(
@@ -2032,8 +2020,8 @@ class PostGrid extends DISQ_Builder_Module {
 	/**
 	 * Collect all posts from the database.
 	 *
-	 * @param array                                     $attrs   List of unprocessed attributes.
-	 * @param string                                    $content Content being processed.
+	 * @param array                                     $attrs      List of unprocessed attributes.
+	 * @param string                                    $content    Content being processed.
 	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view Multiview object instance.
 	 *
 	 * @return string the html output for the post-grid.
@@ -2131,8 +2119,10 @@ class PostGrid extends DISQ_Builder_Module {
 							'last-name'    => $author_last_name,
 						),
 						'formatted'  => array(
-							'publish'  => date( $date_replacement, strtotime( $post->post_date ) ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
-							'modified' => date( $date_replacement, strtotime( $post->post_modified ) ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+							'publish'  => date( $date_replacement, strtotime( $post->post_date ) ),
+							// phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+							'modified' => date( $date_replacement, strtotime( $post->post_modified ) ),
+							// phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 						),
 					);
 
@@ -2178,7 +2168,6 @@ class PostGrid extends DISQ_Builder_Module {
 					$animation__enable  = isset( $attrs['load_more_button_hover_animation__enable'] ) ? $attrs['load_more_button_hover_animation__enable'] : 'off';
 					$animation_type     = isset( $attrs['load_more_button_hover_animation_type'] ) ? $attrs['load_more_button_hover_animation_type'] : 'fill';
 					$button_icon_type   = isset( $attrs['load_more_button_icon_type'] ) ? $attrs['load_more_button_icon_type'] : 'icon';
-					$button_icon        = isset( $attrs['load_more_button_icon'] ) ? $attrs['load_more_button_icon'] : '&#x4e;||divi||400';
 
 					if ( 'on' === $animation__enable ) {
 						$button_classes .= " $animation_type";
@@ -2440,31 +2429,32 @@ class PostGrid extends DISQ_Builder_Module {
 	 * @return void
 	 */
 	public function disq_generate_props_content( $post, $parent_prop, $content, $callback ) {
-		$child_raw_props      = $this->disq_collect_raw_props( $content );
-		$child_props_explodes = array_filter( explode( ',||', trim( $child_raw_props ) ) );
+		// Collect all child modules from Html content.
+		$pattern = '/<div\s+class="[^"]*disq_post_grid_child[^"]*"[^>]*>.*?<\/div>/is';
+		if ( is_string( $content ) && preg_match_all( $pattern, $content, $matches ) && isset( $matches[0] ) && count( $matches[0] ) ) {
+			// Catch module with the main wrapper.
+			$child_modules = $matches[0];
 
-		// clean array.
-		$clean_props = str_replace( '},||', '},', $child_raw_props );
-		$child_props = $this->disq_collect_child_json_props( $clean_props );
+			// Output the split tags.
+			foreach ( $child_modules as $child_module_content ) {
+				$child_raw_props = $this->disq_collect_raw_props( $child_module_content );
+				$clean_props     = str_replace( '},||', '},', $child_raw_props );
+				$child_props     = $this->disq_collect_child_json_props( $clean_props );
 
-		$child_props_array = array();
-		$props_values      = array();
+				if ( count( $child_props ) && isset( $child_props[0] ) ) {
+					$child_prop_markup = sprintf( '%s,||', wp_json_encode( $child_props[0] ) );
+					$html_output       = $callback( $post, $child_props[0], $parent_prop );
 
-		foreach ( $child_props_explodes as $explode ) {
-			$child_props_array[] = sprintf( '%s,||', trim( $explode ) );
-		}
-
-		foreach ( $child_props as $child_prop ) {
-			$callback_value = $callback( $post, $child_prop, $parent_prop );
-			if ( $callback_value ) {
-				$props_values[] = $callback_value;
+					// check available content.
+					if ( is_string( $html_output ) ) {
+						// Merge with raw content.
+						print str_replace( $child_prop_markup, $html_output, $child_module_content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						print '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					}
+				}
 			}
 		}
 
-		if ( count( $props_values ) ) {
-			// Merge with raw content.
-			print str_replace( $child_props_array, $props_values, $content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		}
 		print null;
 	}
 
