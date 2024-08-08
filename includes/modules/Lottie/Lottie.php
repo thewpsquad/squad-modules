@@ -267,8 +267,8 @@ class Lottie extends DISQ_Builder_Module {
 					'range_settings'   => array(
 						'min_limit' => '0',
 						'min'       => '0',
-						'max_limit' => '10',
-						'max'       => '10',
+						'max_limit' => '100',
+						'max'       => '100',
 						'step'      => '1',
 					),
 					'validate_unit'    => false,
