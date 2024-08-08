@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
  * Typing Text Module Class which extend the Divi Builder Module Class.
  *
@@ -900,67 +901,39 @@ class TypingText extends DISQ_Builder_Module {
 		$fields = parent::get_transition_fields_css_props();
 
 		// wrapper styles.
-		$fields['wrapper_background_color'] = array(
-			'background' => "$this->main_css_element div .text-elements",
-		);
-		$fields['wrapper_margin']           = array(
-			'margin' => "$this->main_css_element div .text-elements",
-		);
-		$fields['wrapper_padding']          = array(
-			'padding' => "$this->main_css_element div .text-elements",
-		);
+		$fields['wrapper_background_color'] = array( 'background' => "$this->main_css_element div .text-elements" );
+		$fields['wrapper_margin']           = array( 'margin' => "$this->main_css_element div .text-elements" );
+		$fields['wrapper_padding']          = array( 'padding' => "$this->main_css_element div .text-elements" );
 		$this->disq_fix_border_transition( $fields, 'wrapper', "$this->main_css_element div .text-elements" );
 		$this->disq_fix_box_shadow_transition( $fields, 'wrapper', "$this->main_css_element div .text-elements" );
 
 		// prefix styles.
-		$fields['prefix_background_color'] = array(
-			'background' => "$this->main_css_element div .text-elements .text-item.prefix-element",
-		);
-		$fields['prefix_margin']           = array(
-			'margin' => "$this->main_css_element div .text-elements .text-item.prefix-element",
-		);
-		$fields['prefix_padding']          = array(
-			'padding' => "$this->main_css_element div .text-elements .text-item.prefix-element",
-		);
+		$fields['prefix_background_color'] = array( 'background' => "$this->main_css_element div .text-elements .text-item.prefix-element" );
+		$fields['prefix_margin']           = array( 'margin' => "$this->main_css_element div .text-elements .text-item.prefix-element" );
+		$fields['prefix_padding']          = array( 'padding' => "$this->main_css_element div .text-elements .text-item.prefix-element" );
 		$this->disq_fix_fonts_transition( $fields, 'prefix_text', "$this->main_css_element div .text-elements .text-item.prefix-element" );
 		$this->disq_fix_border_transition( $fields, 'prefix_element', "$this->main_css_element div .text-elements .text-item.prefix-element" );
 		$this->disq_fix_box_shadow_transition( $fields, 'prefix_element', "$this->main_css_element div .text-elements .text-item.prefix-element" );
 
 		// typed styles.
-		$fields['typed_background_color']   = array(
-			'background' => "$this->main_css_element div .text-elements .text-item.typing-element",
-		);
-		$fields['custom_cursor_icon_color'] = array(
-			'color' => "$this->main_css_element div .text-elements .typing-element .typed-cursor",
-		);
-		$fields['typed_margin']             = array(
-			'margin' => "$this->main_css_element div .text-elements .text-item.typing-element",
-		);
-		$fields['typed_padding']            = array(
-			'padding' => "$this->main_css_element div .text-elements .text-item.typing-element",
-		);
+		$fields['typed_background_color']   = array( 'background' => "$this->main_css_element div .text-elements .text-item.typing-element" );
+		$fields['custom_cursor_icon_color'] = array( 'color' => "$this->main_css_element div .text-elements .typing-element .typed-cursor" );
+		$fields['typed_margin']             = array( 'margin' => "$this->main_css_element div .text-elements .text-item.typing-element" );
+		$fields['typed_padding']            = array( 'padding' => "$this->main_css_element div .text-elements .text-item.typing-element" );
 		$this->disq_fix_fonts_transition( $fields, 'typed_text', "$this->main_css_element div .text-elements .text-item.typing-element" );
 		$this->disq_fix_border_transition( $fields, 'typed_element', "$this->main_css_element div .text-elements .text-item.typing-element" );
 		$this->disq_fix_box_shadow_transition( $fields, 'typed_element', "$this->main_css_element div .text-elements .text-item.typing-element" );
 
 		// suffix styles.
-		$fields['suffix_background_color'] = array(
-			'background' => "$this->main_css_element div .text-elements .text-item.suffix-element",
-		);
-		$fields['suffix_margin']           = array(
-			'margin' => "$this->main_css_element div .text-elements .text-item.suffix-element",
-		);
-		$fields['suffix_padding']          = array(
-			'padding' => "$this->main_css_element div .text-elements .text-item.suffix-element",
-		);
+		$fields['suffix_background_color'] = array( 'background' => "$this->main_css_element div .text-elements .text-item.suffix-element" );
+		$fields['suffix_margin']           = array( 'margin' => "$this->main_css_element div .text-elements .text-item.suffix-element" );
+		$fields['suffix_padding']          = array( 'padding' => "$this->main_css_element div .text-elements .text-item.suffix-element" );
 		$this->disq_fix_fonts_transition( $fields, 'suffix_text', "$this->main_css_element div .text-elements .text-item.suffix-element" );
 		$this->disq_fix_border_transition( $fields, 'suffix_element', "$this->main_css_element div .text-elements .text-item.suffix-element" );
 		$this->disq_fix_box_shadow_transition( $fields, 'suffix_element', "$this->main_css_element div .text-elements .text-item.suffix-element" );
 
 		// Default styles.
-		$fields['background_layout'] = array(
-			'color' => "$this->main_css_element div .text-elements .text-item",
-		);
+		$fields['background_layout'] = array( 'color' => "$this->main_css_element div .text-elements .text-item" );
 
 		return $fields;
 	}
@@ -1035,20 +1008,20 @@ class TypingText extends DISQ_Builder_Module {
 			// prefix margin and padding with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'prefix_margin',
-					'selector'     => "$this->main_css_element div .text-elements .text-item.prefix-element",
-					'hover'        => "$this->main_css_element div .text-elements:hover .text-item.prefix-element",
-					'css_property' => 'margin',
-					'type'         => 'margin',
+					'field'          => 'prefix_margin',
+					'selector'       => "$this->main_css_element div .text-elements .text-item.prefix-element",
+					'hover_selector' => "$this->main_css_element div .text-elements:hover .text-item.prefix-element",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'prefix_padding',
-					'selector'     => "$this->main_css_element div .text-elements .text-item.prefix-element",
-					'hover'        => "$this->main_css_element div .text-elements:hover .text-item.prefix-element",
-					'css_property' => 'padding',
-					'type'         => 'padding',
+					'field'          => 'prefix_padding',
+					'selector'       => "$this->main_css_element div .text-elements .text-item.prefix-element",
+					'hover_selector' => "$this->main_css_element div .text-elements:hover .text-item.prefix-element",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
 				)
 			);
 
@@ -1121,20 +1094,20 @@ class TypingText extends DISQ_Builder_Module {
 			// the typed text margin and padding with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'typed_margin',
-					'selector'     => "$this->main_css_element div .text-elements .text-item.typing-element",
-					'hover'        => "$this->main_css_element div .text-elements:hover .text-item.typing-element",
-					'css_property' => 'margin',
-					'type'         => 'margin',
+					'field'          => 'typed_margin',
+					'selector'       => "$this->main_css_element div .text-elements .text-item.typing-element",
+					'hover_selector' => "$this->main_css_element div .text-elements:hover .text-item.typing-element",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'typed_padding',
-					'selector'     => "$this->main_css_element div .text-elements .text-item.typing-element",
-					'hover'        => "$this->main_css_element div .text-elements:hover .text-item.typing-element",
-					'css_property' => 'padding',
-					'type'         => 'padding',
+					'field'          => 'typed_padding',
+					'selector'       => "$this->main_css_element div .text-elements .text-item.typing-element",
+					'hover_selector' => "$this->main_css_element div .text-elements:hover .text-item.typing-element",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
 				)
 			);
 
@@ -1209,7 +1182,8 @@ class TypingText extends DISQ_Builder_Module {
 								'process_extended_icon',
 							),
 						)
-					);}
+					);
+				}
 			}
 
 			$typed_options = wp_json_encode(
@@ -1291,20 +1265,20 @@ class TypingText extends DISQ_Builder_Module {
 			// the suffix margin and padding with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'suffix_margin',
-					'selector'     => "$this->main_css_element div .text-elements .text-item.suffix-element",
-					'hover'        => "$this->main_css_element div .text-elements:hover .text-item.suffix-element",
-					'css_property' => 'margin',
-					'type'         => 'margin',
+					'field'          => 'suffix_margin',
+					'selector'       => "$this->main_css_element div .text-elements .text-item.suffix-element",
+					'hover_selector' => "$this->main_css_element div .text-elements:hover .text-item.suffix-element",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'suffix_padding',
-					'selector'     => "$this->main_css_element div .text-elements .text-item.suffix-element",
-					'hover'        => "$this->main_css_element div .text-elements:hover .text-item.suffix-element",
-					'css_property' => 'padding',
-					'type'         => 'padding',
+					'field'          => 'suffix_padding',
+					'selector'       => "$this->main_css_element div .text-elements .text-item.suffix-element",
+					'hover_selector' => "$this->main_css_element div .text-elements:hover .text-item.suffix-element",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
 				)
 			);
 
@@ -1346,6 +1320,8 @@ class TypingText extends DISQ_Builder_Module {
 	 * Renders additional styles for the module output.
 	 *
 	 * @param array $attrs List of attributes.
+	 *
+	 * @return void
 	 */
 	private function generate_additional_styles( $attrs ) {
 		// Fixed: the custom background doesn't work at frontend.
@@ -1373,21 +1349,21 @@ class TypingText extends DISQ_Builder_Module {
 		// wrapper margin with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => 'wrapper_margin',
-				'selector'     => "$this->main_css_element div .text-elements",
-				'hover'        => "$this->main_css_element div .text-elements:hover",
-				'css_property' => 'margin',
-				'type'         => 'margin',
+				'field'          => 'wrapper_margin',
+				'selector'       => "$this->main_css_element div .text-elements",
+				'hover_selector' => "$this->main_css_element div .text-elements:hover",
+				'css_property'   => 'margin',
+				'type'           => 'margin',
 			)
 		);
 		// wrapper padding with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => 'wrapper_padding',
-				'selector'     => "$this->main_css_element div .text-elements",
-				'hover'        => "$this->main_css_element div .text-elements:hover",
-				'css_property' => 'padding',
-				'type'         => 'padding',
+				'field'          => 'wrapper_padding',
+				'selector'       => "$this->main_css_element div .text-elements",
+				'hover_selector' => "$this->main_css_element div .text-elements:hover",
+				'css_property'   => 'padding',
+				'type'           => 'padding',
 			)
 		);
 
@@ -1403,7 +1379,7 @@ class TypingText extends DISQ_Builder_Module {
 		$this->generate_styles(
 			array(
 				'base_attr_name' => 'text_gap',
-				'selector'       => "$this->main_css_element div .text-elements .text-container .text-item:first-child::after, $this->main_css_element div .text-elements .text-elements .text-container .text-item:last-child::before",
+				'selector'       => "$this->main_css_element div .text-elements .text-container .text-item:first-child:after, $this->main_css_element div .text-elements .text-container .text-item:last-child:before",
 				'css_property'   => 'width',
 				'render_slug'    => $this->slug,
 				'type'           => 'range',

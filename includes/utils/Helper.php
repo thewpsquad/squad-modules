@@ -109,19 +109,19 @@ class Helper {
 	/**
 	 * Implode array like html attributes.
 	 *
-	 * @param array $array The associate array data.
+	 * @param array $array_data The associate array data.
 	 *
 	 * @return string
 	 */
-	public static function implode_assoc_array( $array ) {
+	public static function implode_assoc_array( $array_data ) {
 		array_walk(
-			$array,
+			$array_data,
 			static function ( &$item, $key ) {
 				$item = sprintf( '%s="%s"', $key, $item );
 			}
 		);
 
-		return implode( '  ', $array );
+		return implode( '  ', $array_data );
 	}
 
 	/**
@@ -157,13 +157,13 @@ class Helper {
 	 * print_r(array_sort($people, 'surname', SORT_ASC)); // Sort by surname
 	 * </code>
 	 *
-	 * @param array  $array The input array.
+	 * @param array  $array_data The input array.
 	 * @param string $on    The column number.
 	 * @param int    $order The optional second parameter flags may be used to modify the sorting behavior using these values.
 	 *
 	 * @return array
 	 */
-	public static function array_sort( $array, $on, $order = SORT_ASC ) {
+	public static function array_sort( $array_data, $on, $order = SORT_ASC ) {
 		$new_array      = array();
 		$sortable_array = array();
 
@@ -182,8 +182,8 @@ class Helper {
 		 * </ol>
 		 */
 
-		if ( count( $array ) > 0 ) {
-			foreach ( $array as $k => $v ) {
+		if ( count( $array_data ) > 0 ) {
+			foreach ( $array_data as $k => $v ) {
 				if ( is_array( $v ) ) {
 					foreach ( $v as $k2 => $v2 ) {
 						if ( $k2 === $on ) {
@@ -205,7 +205,7 @@ class Helper {
 			}
 
 			foreach ( $sortable_array as $k => $v ) {
-				$new_array[ $k ] = $array[ $k ];
+				$new_array[ $k ] = $array_data[ $k ];
 			}
 		}
 
@@ -224,7 +224,7 @@ class Helper {
 	 * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
 	 * Conditional Tags} article in the Theme Developer Handbook.
 	 *
-	 * @param string $plugin Path to the plugin file relative to the plugins directory.
+	 * @param string $plugin Path to the plugin file relative to the plugins' directory.
 	 *
 	 * @return bool True if active for the network, otherwise false.
 	 * @since 3.0.0
@@ -254,7 +254,7 @@ class Helper {
 	 * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
 	 * Conditional Tags} article in the Theme Developer Handbook.
 	 *
-	 * @param string $plugin Path to the plugin file relative to the plugins directory.
+	 * @param string $plugin Path to the plugin file relative to the plugins' directory.
 	 *
 	 * @return bool True, if in the active plugins list. False, not in the list.
 	 * @since 2.5.0

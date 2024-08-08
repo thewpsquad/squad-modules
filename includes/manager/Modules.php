@@ -2,7 +2,6 @@
 
 namespace DiviSquad\Manager;
 
-use DiviSquad\Base\Memory;
 use DiviSquad\Utils\Helper;
 use function DiviSquad\divi_squad;
 
@@ -17,34 +16,13 @@ use function DiviSquad\divi_squad;
  */
 class Modules {
 
-	/** The instance of the current class.
-	 *
-	 * @var self
-	 */
-	private static $instance;
-
-	/** The instance of the memory class.
-	 *
-	 * @var Memory
-	 */
-	private static $memory;
-
 	/**
-	 * Get the instance of the current class.
-	 *
-	 * @return self
+	 * Activate all modules.
 	 */
-	public static function get_instance() {
-		if ( null === self::$instance ) {
-			self::$instance = new self();
-			self::$memory   = divi_squad()->get_memory();
-
-			// update database.
-			self::$memory->set( 'modules', self::$instance->get_available_modules() );
-			self::$memory->set( 'default_active_modules', self::$instance->get_default_active_modules() );
-		}
-
-		return self::$instance;
+	public function active_modules() {
+		$memory = divi_squad()->get_memory();
+		$memory->set( 'modules', $this->get_available_modules() );
+		$memory->set( 'default_active_modules', $this->get_default_active_modules() );
 	}
 
 	/**
@@ -84,6 +62,7 @@ class Modules {
 				'child_name'         => 'PostGridChild',
 				'child_label'        => esc_html__( 'Post Element', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
+				'last_modified'      => '1.2.0',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => '4',
@@ -118,6 +97,7 @@ class Modules {
 				'child_name'         => 'BusinessHoursChild',
 				'child_label'        => esc_html__( 'Business Day', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
+				'last_modified'      => '1.2.0',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => '4',
@@ -130,9 +110,75 @@ class Modules {
 				'is_premium_feature' => false,
 				'type'               => '4',
 			),
+			array(
+				'name'               => 'ImageGallery',
+				'label'              => esc_html__( 'Image Gallery', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.0',
+				'is_default_active'  => false,
+				'is_premium_feature' => false,
+				'type'               => '4',
+			),
+			array(
+				'name'               => 'FormStylerContactForm7',
+				'label'              => esc_html__( 'Contact Form 7', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.0',
+				'is_default_active'  => false,
+				'is_premium_feature' => false,
+				'type'               => '4',
+			),
+			array(
+				'name'               => 'FormStylerWPForms',
+				'label'              => esc_html__( 'WP Forms', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.0',
+				'is_default_active'  => false,
+				'is_premium_feature' => false,
+				'type'               => '4',
+			),
+			array(
+				'name'               => 'FormStylerGravityForms',
+				'label'              => esc_html__( 'Gravity Forms', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.0',
+				'is_default_active'  => false,
+				'is_premium_feature' => false,
+				'type'               => '4',
+			)
 		);
 
 		return array_values( Helper::array_sort( $available_modules, 'name' ) );
+	}
+
+	/**
+	 * Check the current module is an inactive module.
+	 *
+	 * @param array $module The array of current module.
+	 *
+	 * @return array|null
+	 */
+	protected function is_inactive_module( $module ) {
+		return ! $module['is_default_active'] ? $module : null;
+	}
+
+	/**
+	 *  Check the current module is an active module.
+	 *
+	 * @param array $module The array of current module.
+	 *
+	 * @return array|null
+	 */
+	protected function is_active_module( $module ) {
+		return $module['is_default_active'] ? $module : null;
+	}
+
+	/**
+	 * Get filtered modules.
+	 *
+	 * @param callable $callback The callback function for filter the current module.
+	 * @param array    $modules  The available modules.
+	 *
+	 * @return array
+	 */
+	protected function get_filtered_modules( $callback, $modules ) {
+		return array_values( array_filter( array_map( $callback, $modules ) ) );
 	}
 
 	/**
@@ -140,19 +186,8 @@ class Modules {
 	 *
 	 * @return array
 	 */
-	public function get_inactive_modules() {
-		$inactive_modules_fn = static function ( $module ) {
-			return ! $module['is_default_active'] ? $module : null;
-		};
-
-		return array_values(
-			array_filter(
-				array_map(
-					$inactive_modules_fn,
-					self::$instance->get_available_modules()
-				)
-			)
-		);
+	protected function get_inactive_modules() {
+		return $this->get_filtered_modules( array( $this, 'is_inactive_module' ), $this->get_available_modules() );
 	}
 
 	/**
@@ -160,19 +195,8 @@ class Modules {
 	 *
 	 * @return array
 	 */
-	public function get_default_active_modules() {
-		$active_modules_fn = static function ( $module ) {
-			return $module['is_default_active'] ? $module : null;
-		};
-
-		return array_values(
-			array_filter(
-				array_map(
-					$active_modules_fn,
-					self::$instance->get_available_modules()
-				)
-			)
-		);
+	protected function get_default_active_modules() {
+		return $this->get_filtered_modules( array( $this, 'is_active_module' ), $this->get_available_modules() );
 	}
 
 	/**
@@ -202,7 +226,7 @@ class Modules {
 		// Collect all active modules.
 		$active_modules = $this->get_default_active_modules();
 
-		if ( is_array( $modules ) && count( $modules ) ) {
+		if ( is_array( $modules ) ) {
 			$active_modules = $modules;
 		}
 
@@ -238,6 +262,7 @@ class Modules {
 		}
 
 		// Load enabled modules.
-		$this->load_module_files( $path, self::$memory->get( 'active_modules' ) );
+		$memory = divi_squad()->get_memory();
+		$this->load_module_files( $path, $memory->get( 'active_modules' ) );
 	}
 }

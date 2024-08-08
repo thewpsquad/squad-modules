@@ -26,7 +26,7 @@ abstract class BuilderIntegrationAPI {
 	 *
 	 * @var string
 	 */
-	public $name;
+	public $name = '';
 
 	/**
 	 * Absolute path to the plugin's directory.
@@ -35,7 +35,7 @@ abstract class BuilderIntegrationAPI {
 	 *
 	 * @var string
 	 */
-	public $plugin_dir;
+	public $plugin_dir = '';
 
 	/**
 	 * The plugin's directory URL.
@@ -44,7 +44,7 @@ abstract class BuilderIntegrationAPI {
 	 *
 	 * @var string
 	 */
-	public $plugin_dir_url;
+	public $plugin_dir_url = '';
 
 	/**
 	 * The plugin's version
@@ -53,7 +53,7 @@ abstract class BuilderIntegrationAPI {
 	 *
 	 * @var string The plugin's version
 	 */
-	public $version = DISQ_VERSION;
+	public $version = '';
 
 	/**
 	 * The asset build for the plugin
@@ -62,7 +62,7 @@ abstract class BuilderIntegrationAPI {
 	 *
 	 * @var string The plugin's version
 	 */
-	public $build_path;
+	public $build_path = '';
 
 	/**
 	 * Dependencies for the plugin's JavaScript bundles.
@@ -87,7 +87,7 @@ abstract class BuilderIntegrationAPI {
 	 */
 	public function __construct( $name, $plugin_dir, $plugin_dir_url ) {
 		// Set required variables as per definition.
-		$this->build_path = 'build/shortcode/';
+		$this->build_path = 'build/divi4/';
 
 		$this->name           = $name;
 		$this->plugin_dir     = $plugin_dir;
@@ -95,6 +95,18 @@ abstract class BuilderIntegrationAPI {
 
 		$this->initialize();
 	}
+
+	/**
+	 * Get the plugin version number
+	 *
+	 * @return string
+	 */
+	abstract public function get_version();
+
+	/**
+	 * Loads custom modules when the builder is ready.
+	 */
+	abstract public function hook_et_builder_ready();
 
 	/**
 	 * Performs initialization tasks.
@@ -123,12 +135,12 @@ abstract class BuilderIntegrationAPI {
 	 * Enqueues minified (production) or non-minified (hot reloaded) backend styles.
 	 */
 	public function enqueue_backend_styles() {
-		$file_handle = "{$this->name}-backend-styles";
+		$file_handle = "{$this->name}-backend";
 		$file_path   = "{$this->build_path}styles/backend-style.css";
 
 		// Ensure backend style CSS file exists.
 		if ( file_exists( "{$this->plugin_dir}/{$file_path}" ) ) {
-			wp_enqueue_style( $file_handle, "{$this->plugin_dir_url}{$file_path}", array(), $this->version );
+			wp_enqueue_style( $file_handle, "{$this->plugin_dir_url}{$file_path}", array(), $this->get_version() );
 		}
 	}
 
@@ -139,24 +151,19 @@ abstract class BuilderIntegrationAPI {
 		// Enqueues non-minified, hot reloaded javascript bundles. (Builder).
 		if ( et_core_is_fb_enabled() ) {
 			$builder_styles_url = "{$this->plugin_dir_url}{$this->build_path}styles/style.css";
-			wp_enqueue_style( "{$this->name}-builder-styles", $builder_styles_url, array(), $this->version );
+			wp_enqueue_style( "{$this->name}-builder", $builder_styles_url, array(), $this->get_version() );
 
 			$bundle_url = "{$this->plugin_dir_url}{$this->build_path}scripts/builder-bundle.js";
-			wp_enqueue_script( "{$this->name}-builder-bundle", $bundle_url, $this->bundle_dependencies['builder'], $this->version, true );
+			wp_enqueue_script( "{$this->name}-builder", $bundle_url, $this->bundle_dependencies['builder'], $this->get_version(), true );
 		} else {
 			// Enqueues minified, production javascript bundles. (Frontend).
 			$styles             = et_is_builder_plugin_active() ? 'style-dbp' : 'style';
 			$builder_styles_url = "{$this->plugin_dir_url}{$this->build_path}styles/{$styles}.css";
-			wp_enqueue_style( "{$this->name}-styles", $builder_styles_url, array(), $this->version );
+			wp_enqueue_style( $this->name, $builder_styles_url, array(), $this->get_version() );
 		}
 
 		if ( et_core_is_fb_enabled() && ! et_builder_bfb_enabled() ) {
 			$this->enqueue_backend_styles();
 		}
 	}
-
-	/**
-	 * Loads custom modules when the builder is ready.
-	 */
-	abstract public function hook_et_builder_ready();
 }

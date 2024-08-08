@@ -184,5 +184,4 @@ abstract class DISQ_Builder_Module extends ET_Builder_Module {
 			}
 		);
 	}
-
 }

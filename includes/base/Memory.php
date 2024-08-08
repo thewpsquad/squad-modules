@@ -14,46 +14,32 @@ namespace DiviSquad\Base;
 class Memory {
 
 	/**
-	 * The instance of the current class.
-	 *
-	 * @var self
-	 */
-	private static $instance;
-
-	/**
 	 * The store of data (Option data).
 	 *
 	 * @var array
 	 */
-	private static $data = array();
+	private $data;
 
 	/**
 	 * The database option prefix.
 	 *
 	 * @var string
 	 */
-	private $option_prefix = '';
+	private $option_prefix;
 
 	/**
-	 * Get the instance of the current class.
+	 * The constructor
 	 *
 	 * @param string $prefix The prefix name for the plugin settings option.
 	 *
-	 * @return self
+	 * @since 1.2.0
 	 */
-	public static function get_instance( $prefix ) {
-		if ( null === self::$instance ) {
-			self::$instance = new self();
-			self::$instance->set_prefix( $prefix );
+	public function __construct( $prefix = 'disq' ) {
+		$this->option_prefix = $prefix;
 
-			// Load current data.
-			$new_option_name = sprintf( '%1$s-settings', $prefix );
-			if ( array() === self::$data && ! empty( get_option( $new_option_name ) ) ) {
-				self::$data = get_option( $new_option_name );
-			}
-		}
-
-		return self::$instance;
+		// Load current data.
+		$data_option = sprintf( '%1$s-settings', $prefix );
+		$this->data  = get_option( $data_option, array() );
 	}
 
 	/**
@@ -61,8 +47,8 @@ class Memory {
 	 *
 	 * @return array
 	 */
-	public static function get_data() {
-		return self::$data;
+	public function get_data() {
+		return $this->data;
 	}
 
 	/**
@@ -89,12 +75,12 @@ class Memory {
 	 * Get the field value.
 	 *
 	 * @param string                          $field   The field key.
-	 * @param array|string|numeric|null|false $default The default value for field.
+	 * @param array|string|numeric|null|false $defaults The default value for field.
 	 *
 	 * @return array|string|numeric|null|false
 	 */
-	public function get( $field, $default = null ) {
-		return isset( self::$data[ $field ] ) ? self::$data[ $field ] : $default;
+	public function get( $field, $defaults = null ) {
+		return isset( $this->data[ $field ] ) ? $this->data[ $field ] : $defaults;
 	}
 
 	/**
@@ -106,7 +92,7 @@ class Memory {
 	 * @return array|string|numeric|null|false
 	 */
 	public function set( $field, $value ) {
-		self::$data[ $field ] = $value;
+		$this->data[ $field ] = $value;
 		$this->update_database();
 
 		return $value;
@@ -121,8 +107,8 @@ class Memory {
 	 * @return array|string|numeric|null|false
 	 */
 	public function update( $field, $value ) {
-		if ( isset( self::$data[ $field ] ) ) {
-			self::$data[ $field ] = $value;
+		if ( isset( $this->data[ $field ] ) ) {
+			$this->data[ $field ] = $value;
 			$this->update_database();
 
 			return $value;
@@ -139,8 +125,9 @@ class Memory {
 	 * @return void
 	 */
 	public function delete( $field ) {
-		if ( isset( self::$data[ $field ] ) ) {
-			unset( self::$data[ $field ] );
+		if ( isset( $this->data[ $field ] ) ) {
+			unset( $this->data[ $field ] );
+
 			$this->update_database();
 		}
 	}
@@ -167,7 +154,7 @@ class Memory {
 	 */
 	private function save_options( $option_name ) {
 		if ( function_exists( 'update_option' ) ) {
-			update_option( $option_name, self::$data );
+			update_option( $option_name, $this->data );
 		}
 	}
 }

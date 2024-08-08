@@ -19,26 +19,13 @@ namespace DiviSquad\Admin;
  */
 class Plugin_Action_Links {
 
-	/** The instance
-	 *
-	 * @var self
-	 */
-	private static $instance;
-
 	/**
 	 * Get the instance of self-class
 	 *
-	 * @return self
+	 * @return string
 	 */
-	public static function get_instance() {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof self ) ) {
-			self::$instance = new self();
-
-			add_filter( 'network_admin_plugin_action_links_' . DISQ_PLUGIN_BASE, array( self::$instance, 'add_plugin_action_links' ) );
-			add_filter( 'plugin_action_links_' . DISQ_PLUGIN_BASE, array( self::$instance, 'add_plugin_action_links' ) );
-		}
-
-		return self::$instance;
+	public function get_plugin_base() {
+		return DISQ_PLUGIN_BASE;
 	}
 
 	/**
@@ -50,10 +37,17 @@ class Plugin_Action_Links {
 	 */
 	public function add_plugin_action_links( $links ) {
 		$dashboard_url   = admin_url( 'admin.php?page=divi_squad_dashboard' );
+		$premium_ads_url = admin_url( 'admin.php?page=divi_squad_go_premium' );
 
 		$action_links = array(
 			sprintf( '<a href="%1$s" aria-label="%2$s">%2$s</a>', $dashboard_url, esc_html__( 'Settings', 'squad-modules-for-divi' ) ),
 		);
+
+		// phpcs:disable
+		// if ( ! is_the_pro_plugin_active() ) {
+		// $action_links[] = sprintf( '<a href="%1$s" aria-label="%2$s">%2$s</a>', $premium_ads_url, esc_html__( 'Go Premium', 'squad-modules-for-divi' ) );
+		// }
+		// phpcs:enable
 
 		return array_merge( $action_links, $links );
 	}

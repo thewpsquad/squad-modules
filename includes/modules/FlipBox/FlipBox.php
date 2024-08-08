@@ -1769,42 +1769,42 @@ class FlipBox extends DISQ_Builder_Module {
 			// Icon wrapper margin with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => "{$slide_type}_icon_wrapper_margin",
-					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-					'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-					'css_property' => 'margin',
-					'type'         => 'margin',
-					'important'    => true,
+					'field'          => "{$slide_type}_icon_wrapper_margin",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
+					'important'      => true,
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => "{$slide_type}_icon_wrapper_padding",
-					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-					'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-					'css_property' => 'padding',
-					'type'         => 'padding',
-					'important'    => true,
+					'field'          => "{$slide_type}_icon_wrapper_padding",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
+					'important'      => true,
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => "{$slide_type}_icon_margin",
-					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-					'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-					'css_property' => 'margin',
-					'type'         => 'margin',
-					'important'    => true,
+					'field'          => "{$slide_type}_icon_margin",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
+					'important'      => true,
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => "{$slide_type}_icon_padding",
-					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-					'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-					'css_property' => 'padding',
-					'type'         => 'padding',
-					'important'    => true,
+					'field'          => "{$slide_type}_icon_padding",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
+					'important'      => true,
 				)
 			);
 
@@ -2210,11 +2210,11 @@ class FlipBox extends DISQ_Builder_Module {
 			// button margin with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => "{$slide_type}_button_icon_margin",
-					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .icon-element",
-					'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .icon-element:hover",
-					'css_property' => 'margin',
-					'type'         => 'margin',
+					'field'          => "{$slide_type}_button_icon_margin",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .icon-element",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .icon-element:hover",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
@@ -2565,21 +2565,21 @@ class FlipBox extends DISQ_Builder_Module {
 		// wrapper margin with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => "{$slide_type}_wrapper_margin",
-				'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-				'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
-				'css_property' => 'margin',
-				'type'         => 'margin',
+				'field'          => "{$slide_type}_wrapper_margin",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
+				'css_property'   => 'margin',
+				'type'           => 'margin',
 			)
 		);
 		// wrapper padding with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => "{$slide_type}_wrapper_padding",
-				'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-				'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
-				'css_property' => 'padding',
-				'type'         => 'padding',
+				'field'          => "{$slide_type}_wrapper_padding",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
+				'css_property'   => 'padding',
+				'type'           => 'padding',
 			)
 		);
 
@@ -2939,20 +2939,6 @@ class FlipBox extends DISQ_Builder_Module {
 						'max'       => '200',
 						'step'      => '1',
 					),
-					'allowed_units'   => array(
-						'%',
-						'em',
-						'rem',
-						'px',
-						'cm',
-						'mm',
-						'in',
-						'pt',
-						'pc',
-						'ex',
-						'vh',
-						'vw',
-					),
 					'allow_empty'     => true,
 					'default_unit'    => 'px',
 					'depends_show_if' => 'off',
@@ -2971,20 +2957,6 @@ class FlipBox extends DISQ_Builder_Module {
 						'max_limit' => '200',
 						'max'       => '200',
 						'step'      => '1',
-					),
-					'allowed_units'   => array(
-						'%',
-						'em',
-						'rem',
-						'px',
-						'cm',
-						'mm',
-						'in',
-						'pt',
-						'pc',
-						'ex',
-						'vh',
-						'vw',
 					),
 					'allow_empty'     => true,
 					'default_unit'    => 'px',
@@ -3054,20 +3026,6 @@ class FlipBox extends DISQ_Builder_Module {
 						'max_limit' => '100',
 						'max'       => '100',
 						'step'      => '1',
-					),
-					'allowed_units'       => array(
-						'%',
-						'em',
-						'rem',
-						'px',
-						'cm',
-						'mm',
-						'in',
-						'pt',
-						'pc',
-						'ex',
-						'vh',
-						'vw',
 					),
 					'allow_empty'         => true,
 					'default'             => '200px',

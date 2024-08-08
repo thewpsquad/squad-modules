@@ -410,7 +410,6 @@ class ImageMask extends DISQ_Builder_Module {
 			$image_transform
 		);
 	}
-
 }
 
 new ImageMask();

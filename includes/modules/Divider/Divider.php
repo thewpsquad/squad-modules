@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
  * Divider Module Class which extend the Divi Builder Module Class.
  *
@@ -1177,31 +1178,21 @@ class Divider extends DISQ_Builder_Module {
 		$fields = parent::get_transition_fields_css_props();
 
 		// wrapper styles.
-		$fields['wrapper_background_color'] = array(
-			'background' => "$this->main_css_element div .divider-elements",
-		);
-		$fields['wrapper_margin']           = array(
-			'margin' => "$this->main_css_element div .divider-elements",
-		);
-		$fields['wrapper_padding']          = array(
-			'padding' => "$this->main_css_element div .divider-elements",
-		);
+		$fields['wrapper_background_color'] = array( 'background' => "$this->main_css_element div .divider-elements" );
+		$fields['wrapper_margin']           = array( 'margin' => "$this->main_css_element div .divider-elements" );
+		$fields['wrapper_padding']          = array( 'padding' => "$this->main_css_element div .divider-elements" );
 		$this->disq_fix_border_transition( $fields, 'wrapper', "$this->main_css_element div .divider-elements" );
 		$this->disq_fix_box_shadow_transition( $fields, 'wrapper', "$this->main_css_element div .divider-elements" );
 
 		// divider styles.
-		$fields['divider_color']  = array(
-			'border-top-color' => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
-		);
+		$fields['divider_color']  = array( 'border-top-color' => "$this->main_css_element div .divider-elements .divider-item.divider-element hr" );
 		$fields['divider_weight'] = array(
 			'border-top-width' => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
 			'height'           => "$this->main_css_element div .divider-elements .divider-item.divider-element hr",
 		);
 
 		// Default styles.
-		$fields['background_layout'] = array(
-			'color' => "$this->main_css_element div .divider-elements .divider-item",
-		);
+		$fields['background_layout'] = array( 'color' => "$this->main_css_element div .divider-elements .divider-item" );
 
 		return $fields;
 	}
@@ -1314,20 +1305,20 @@ class Divider extends DISQ_Builder_Module {
 		// wrapper margin and padding with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => 'wrapper_margin',
-				'selector'     => "$this->main_css_element div .divider-elements",
-				'hover'        => "$this->main_css_element div .divider-elements:hover",
-				'css_property' => 'margin',
-				'type'         => 'margin',
+				'field'          => 'wrapper_margin',
+				'selector'       => "$this->main_css_element div .divider-elements",
+				'hover_selector' => "$this->main_css_element div .divider-elements:hover",
+				'css_property'   => 'margin',
+				'type'           => 'margin',
 			)
 		);
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => 'wrapper_padding',
-				'selector'     => "$this->main_css_element div .divider-elements",
-				'hover'        => "$this->main_css_element div .divider-elements:hover",
-				'css_property' => 'padding',
-				'type'         => 'padding',
+				'field'          => 'wrapper_padding',
+				'selector'       => "$this->main_css_element div .divider-elements",
+				'hover_selector' => "$this->main_css_element div .divider-elements:hover",
+				'css_property'   => 'padding',
+				'type'           => 'padding',
 			)
 		);
 	}
@@ -1551,42 +1542,42 @@ class Divider extends DISQ_Builder_Module {
 			// Icon wrapper margin with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'divider_icon_wrapper_margin',
-					'selector'     => "$this->main_css_element div .divider-elements .divider-icon-wrapper",
-					'hover'        => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper",
-					'css_property' => 'margin',
-					'type'         => 'margin',
-					'important'    => true,
+					'field'          => 'divider_icon_wrapper_margin',
+					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper",
+					'hover_selector' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
+					'important'      => true,
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'divider_icon_wrapper_padding',
-					'selector'     => "$this->main_css_element div .divider-elements .divider-icon-wrapper",
-					'hover'        => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper",
-					'css_property' => 'padding',
-					'type'         => 'padding',
-					'important'    => true,
+					'field'          => 'divider_icon_wrapper_padding',
+					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper",
+					'hover_selector' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
+					'important'      => true,
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'divider_icon_margin',
-					'selector'     => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element",
-					'hover'        => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper .icon-element",
-					'css_property' => 'margin',
-					'type'         => 'margin',
-					'important'    => true,
+					'field'          => 'divider_icon_margin',
+					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element",
+					'hover_selector' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper .icon-element",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
+					'important'      => true,
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'divider_icon_padding',
-					'selector'     => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element",
-					'hover'        => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper .icon-element",
-					'css_property' => 'padding',
-					'type'         => 'padding',
-					'important'    => true,
+					'field'          => 'divider_icon_padding',
+					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element",
+					'hover_selector' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper .icon-element",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
+					'important'      => true,
 				)
 			);
 
@@ -1880,7 +1871,6 @@ class Divider extends DISQ_Builder_Module {
 
 		return null;
 	}
-
 }
 
-	new Divider();
+new Divider();

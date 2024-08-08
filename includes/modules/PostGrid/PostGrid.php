@@ -47,14 +47,6 @@ class PostGrid extends DISQ_Builder_Module {
 		$this->main_css_element = "%%order_class%%.$this->slug";
 		$default_css_selectors  = $this->disq_get_module_default_selectors();
 
-		// Registers all hook for processing post elements.
-		$post_element_outside_hook     = 'disq_post_query_current_outside_post_element';
-		$post_element_inner_hook       = 'disq_post_query_current_main_post_element';
-		$post_element_outside_callback = array( $this, 'wp_hook_disq_outside_post_element' );
-		$post_element_inner_callback   = array( $this, 'wp_hook_disq_current_main_post_element' );
-		add_action( $post_element_outside_hook, $post_element_outside_callback, 10, 3 );
-		add_action( $post_element_inner_hook, $post_element_inner_callback, 10, 3 );
-
 		// Declare settings modal toggles for the module.
 		$this->settings_modal_toggles = array(
 			'general'  => array(
@@ -651,6 +643,18 @@ class PostGrid extends DISQ_Builder_Module {
 					'tab_slug'         => 'general',
 					'toggle_slug'      => 'wrapper',
 				)
+			),
+			'thumbnail_size'                => array(
+				'label'            => esc_html__( 'Feature Image Size', 'squad-modules-for-divi' ),
+				'description'      => esc_html__( 'If you would like to adjust the date format, input the appropriate PHP date format here.', 'squad-modules-for-divi' ),
+				'type'             => 'text',
+				'option_category'  => 'configuration',
+				'default'          => 'M j, Y',
+				'computed_affects' => array(
+					'__posts',
+				),
+				'tab_slug'         => 'general',
+				'toggle_slug'      => 'wrapper',
 			),
 			'date_format'                   => array(
 				'label'            => esc_html__( 'Date Format', 'squad-modules-for-divi' ),
@@ -1296,68 +1300,38 @@ class PostGrid extends DISQ_Builder_Module {
 		$fields = parent::get_transition_fields_css_props();
 
 		// wrapper styles.
-		$fields['post_wrapper_background_color'] = array(
-			'background' => "$this->main_css_element .disq-post-container .post",
-		);
-		$fields['post_wrapper_margin']           = array(
-			'margin' => "$this->main_css_element .disq-post-container .post",
-		);
-		$fields['post_wrapper_padding']          = array(
-			'padding' => "$this->main_css_element .disq-post-container .post",
-		);
+		$fields['post_wrapper_background_color'] = array( 'background' => "$this->main_css_element .disq-post-container .post" );
+		$fields['post_wrapper_margin']           = array( 'margin' => "$this->main_css_element .disq-post-container .post" );
+		$fields['post_wrapper_padding']          = array( 'padding' => "$this->main_css_element .disq-post-container .post" );
 		$this->disq_fix_border_transition( $fields, 'wrapper', "$this->main_css_element .disq-post-container .post" );
 		$this->disq_fix_box_shadow_transition( $fields, 'wrapper', "$this->main_css_element .disq-post-container .post" );
 
 		// element wrapper styles.
-		$fields['element_wrapper_background_color'] = array(
-			'background' => "$this->main_css_element .disq-post-container .post .post-elements",
-		);
-		$fields['element_wrapper_margin']           = array(
-			'margin' => "$this->main_css_element .disq-post-container .post .post-elements",
-		);
-		$fields['element_wrapper_padding']          = array(
-			'padding' => "$this->main_css_element .disq-post-container .post .post-elements",
-		);
+		$fields['element_wrapper_background_color'] = array( 'background' => "$this->main_css_element .disq-post-container .post .post-elements" );
+		$fields['element_wrapper_margin']           = array( 'margin' => "$this->main_css_element .disq-post-container .post .post-elements" );
+		$fields['element_wrapper_padding']          = array( 'padding' => "$this->main_css_element .disq-post-container .post .post-elements" );
 		$this->disq_fix_border_transition( $fields, 'elements', "$this->main_css_element .disq-post-container .post .post-elements" );
 		$this->disq_fix_box_shadow_transition( $fields, 'elements', "$this->main_css_element .disq-post-container .post .post-elements" );
 
 		// element styles.
-		$fields['element_background_color'] = array(
-			'background' => "$this->main_css_element .disq-post-container .post .disq-post-element",
-		);
-		$fields['element_margin']           = array(
-			'margin' => "$this->main_css_element .disq-post-container .post .disq-post-element",
-		);
-		$fields['element_padding']          = array(
-			'padding' => "$this->main_css_element .disq-post-container .post .disq-post-element",
-		);
+		$fields['element_background_color'] = array( 'background' => "$this->main_css_element .disq-post-container .post .disq-post-element" );
+		$fields['element_margin']           = array( 'margin' => "$this->main_css_element .disq-post-container .post .disq-post-element" );
+		$fields['element_padding']          = array( 'padding' => "$this->main_css_element .disq-post-container .post .disq-post-element" );
 		$this->disq_fix_border_transition( $fields, 'element_element', "$this->main_css_element .disq-post-container .post .disq-post-element" );
 		$this->disq_fix_box_shadow_transition( $fields, 'element_element', "$this->main_css_element .disq-post-container .post .disq-post-element" );
 
 		// button styles.
-		$fields['load_more_button_background_color'] = array(
-			'background' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button",
-		);
-		$fields['load_more_button_width']            = array(
-			'width' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button",
-		);
-		$fields['load_more_button_icon_margin']      = array(
-			'margin' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button .icon-element",
-		);
-		$fields['load_more_button_margin']           = array(
-			'margin' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button",
-		);
-		$fields['load_more_button_padding']          = array(
-			'padding' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button",
-		);
+		$fields['load_more_button_background_color'] = array( 'background' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button" );
+		$fields['load_more_button_width']            = array( 'width' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button" );
+		$fields['load_more_button_icon_margin']      = array( 'margin' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button .icon-element" );
+		$fields['load_more_button_margin']           = array( 'margin' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button" );
+		$fields['load_more_button_padding']          = array( 'padding' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button" );
 		$this->disq_fix_fonts_transition( $fields, 'load_more_button_text', "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button" );
 		$this->disq_fix_border_transition( $fields, 'load_more_button', "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button" );
 		$this->disq_fix_box_shadow_transition( $fields, 'load_more_button', "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button" );
 
 		// Default styles.
-		$fields['background_layout'] = array(
-			'color' => "$this->main_css_element .disq-post-container .post",
-		);
+		$fields['background_layout'] = array( 'color' => "$this->main_css_element .disq-post-container .post" );
 
 		return $fields;
 	}
@@ -1439,6 +1413,7 @@ class PostGrid extends DISQ_Builder_Module {
 		et_pb_background_options()->get_background_style(
 			array(
 				'base_prop_name'         => 'post_wrapper_background',
+				'props'                  => $this->props,
 				'selector'               => "$this->main_css_element .disq-post-container .post",
 				'selector_hover'         => "$this->main_css_element .disq-post-container .post:hover",
 				'selector_sticky'        => "$this->main_css_element .disq-post-container .post",
@@ -1456,6 +1431,7 @@ class PostGrid extends DISQ_Builder_Module {
 		et_pb_background_options()->get_background_style(
 			array(
 				'base_prop_name'         => 'element_wrapper_background',
+				'props'                  => $this->props,
 				'selector'               => "$this->main_css_element .disq-post-container .post .post-elements",
 				'selector_hover'         => "$this->main_css_element .disq-post-container .post:hover .post-elements",
 				'selector_sticky'        => "$this->main_css_element .disq-post-container .post .post-elements",
@@ -1473,6 +1449,7 @@ class PostGrid extends DISQ_Builder_Module {
 		et_pb_background_options()->get_background_style(
 			array(
 				'base_prop_name'         => 'element_background',
+				'props'                  => $this->props,
 				'selector'               => "$this->main_css_element .disq-post-container .post .disq-post-element",
 				'selector_hover'         => "$this->main_css_element .disq-post-container .post:hover .disq-post-element",
 				'selector_sticky'        => "$this->main_css_element .disq-post-container .post .disq-post-element",
@@ -1512,58 +1489,58 @@ class PostGrid extends DISQ_Builder_Module {
 		// margin, padding with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => 'post_wrapper_margin',
-				'selector'     => "$this->main_css_element .disq-post-container .post",
-				'hover'        => "$this->main_css_element .disq-post-container .post:hover",
-				'css_property' => 'margin',
-				'type'         => 'margin',
+				'field'          => 'post_wrapper_margin',
+				'selector'       => "$this->main_css_element .disq-post-container .post",
+				'hover_selector' => "$this->main_css_element .disq-post-container .post:hover",
+				'css_property'   => 'margin',
+				'type'           => 'margin',
 			)
 		);
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => 'post_wrapper_padding',
-				'selector'     => "$this->main_css_element .disq-post-container .post",
-				'hover'        => "$this->main_css_element .disq-post-container .post:hover",
-				'css_property' => 'padding',
-				'type'         => 'padding',
+				'field'          => 'post_wrapper_padding',
+				'selector'       => "$this->main_css_element .disq-post-container .post",
+				'hover_selector' => "$this->main_css_element .disq-post-container .post:hover",
+				'css_property'   => 'padding',
+				'type'           => 'padding',
 			)
 		);
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => 'element_wrapper_margin',
-				'selector'     => "$this->main_css_element .disq-post-container .post .post-elements",
-				'hover'        => "$this->main_css_element .disq-post-container .post .post-elements",
-				'css_property' => 'margin',
-				'type'         => 'margin',
+				'field'          => 'element_wrapper_margin',
+				'selector'       => "$this->main_css_element .disq-post-container .post .post-elements",
+				'hover_selector' => "$this->main_css_element .disq-post-container .post .post-elements",
+				'css_property'   => 'margin',
+				'type'           => 'margin',
 			)
 		);
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => 'element_wrapper_padding',
-				'selector'     => "$this->main_css_element .disq-post-container .post .post-elements",
-				'hover'        => "$this->main_css_element .disq-post-container .post .post-elements",
-				'css_property' => 'padding',
-				'type'         => 'padding',
+				'field'          => 'element_wrapper_padding',
+				'selector'       => "$this->main_css_element .disq-post-container .post .post-elements",
+				'hover_selector' => "$this->main_css_element .disq-post-container .post .post-elements",
+				'css_property'   => 'padding',
+				'type'           => 'padding',
 			)
 		);
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => 'element_margin',
-				'selector'     => "$this->main_css_element .disq-post-container .post .disq-post-element",
-				'hover'        => "$this->main_css_element .disq-post-container .post:hover .disq-post-element",
-				'css_property' => 'margin',
-				'type'         => 'margin',
-				'important'    => false,
+				'field'          => 'element_margin',
+				'selector'       => "$this->main_css_element .disq-post-container .post .disq-post-element",
+				'hover_selector' => "$this->main_css_element .disq-post-container .post:hover .disq-post-element",
+				'css_property'   => 'margin',
+				'type'           => 'margin',
+				'important'      => false,
 			)
 		);
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => 'element_padding',
-				'selector'     => "$this->main_css_element .disq-post-container .post .disq-post-element",
-				'hover'        => "$this->main_css_element .disq-post-container .post:hover .disq-post-element",
-				'css_property' => 'padding',
-				'type'         => 'padding',
-				'important'    => false,
+				'field'          => 'element_padding',
+				'selector'       => "$this->main_css_element .disq-post-container .post .disq-post-element",
+				'hover_selector' => "$this->main_css_element .disq-post-container .post:hover .disq-post-element",
+				'css_property'   => 'padding',
+				'type'           => 'padding',
+				'important'      => false,
 			)
 		);
 	}
@@ -1660,29 +1637,29 @@ class PostGrid extends DISQ_Builder_Module {
 			// button margin with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'load_more_button_icon_margin',
-					'selector'     => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button .icon-element",
-					'hover'        => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button:hover .icon-element",
-					'css_property' => 'margin',
-					'type'         => 'margin',
+					'field'          => 'load_more_button_icon_margin',
+					'selector'       => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button .icon-element",
+					'hover_selector' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button:hover .icon-element",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'load_more_button_margin',
-					'selector'     => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button",
-					'hover'        => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button:hover",
-					'css_property' => 'margin',
-					'type'         => 'margin',
+					'field'          => 'load_more_button_margin',
+					'selector'       => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button",
+					'hover_selector' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button:hover",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'load_more_button_padding',
-					'selector'     => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button",
-					'hover'        => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button:hover",
-					'css_property' => 'padding',
-					'type'         => 'padding',
+					'field'          => 'load_more_button_padding',
+					'selector'       => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button",
+					'hover_selector' => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button:hover",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
 				)
 			);
 
@@ -1938,80 +1915,80 @@ class PostGrid extends DISQ_Builder_Module {
 			// wrapper margin with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'pagination_wrapper_margin',
-					'selector'     => "$this->main_css_element div .disq-pagination",
-					'hover'        => "$this->main_css_element div .disq-pagination:hover",
-					'css_property' => 'margin',
-					'type'         => 'margin',
+					'field'          => 'pagination_wrapper_margin',
+					'selector'       => "$this->main_css_element div .disq-pagination",
+					'hover_selector' => "$this->main_css_element div .disq-pagination:hover",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'pagination_wrapper_padding',
-					'selector'     => "$this->main_css_element div .disq-pagination",
-					'hover'        => "$this->main_css_element div .disq-pagination:hover",
-					'css_property' => 'padding',
-					'type'         => 'padding',
+					'field'          => 'pagination_wrapper_padding',
+					'selector'       => "$this->main_css_element div .disq-pagination",
+					'hover_selector' => "$this->main_css_element div .disq-pagination:hover",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
 				)
 			);
 
 			// pagination margin with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'pagination_margin',
-					'selector'     => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers, $this->main_css_element div .disq-pagination .pagination-entries",
-					'hover'        => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers:hover, $this->main_css_element div .disq-pagination .pagination-entries:hover",
-					'css_property' => 'margin',
-					'type'         => 'margin',
+					'field'          => 'pagination_margin',
+					'selector'       => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers, $this->main_css_element div .disq-pagination .pagination-entries",
+					'hover_selector' => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers:hover, $this->main_css_element div .disq-pagination .pagination-entries:hover",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'pagination_padding',
-					'selector'     => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers, $this->main_css_element div .disq-pagination .pagination-entries",
-					'hover'        => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers:hover, $this->main_css_element div .disq-pagination .pagination-entries:hover",
-					'css_property' => 'padding',
-					'type'         => 'padding',
+					'field'          => 'pagination_padding',
+					'selector'       => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers, $this->main_css_element div .disq-pagination .pagination-entries",
+					'hover_selector' => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers:hover, $this->main_css_element div .disq-pagination .pagination-entries:hover",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
 				)
 			);
 
 			// active pagination margin with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'active_pagination_margin',
-					'selector'     => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers.current",
-					'hover'        => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers.current:hover",
-					'css_property' => 'margin',
-					'type'         => 'margin',
+					'field'          => 'active_pagination_margin',
+					'selector'       => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers.current",
+					'hover_selector' => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers.current:hover",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'active_pagination_padding',
-					'selector'     => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers.current",
-					'hover'        => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers.current:hover",
-					'css_property' => 'padding',
-					'type'         => 'padding',
+					'field'          => 'active_pagination_padding',
+					'selector'       => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers.current",
+					'hover_selector' => "$this->main_css_element div .disq-pagination .pagination-numbers .page-numbers.current:hover",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
 				)
 			);
 
 			// icon margin with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'pagination_icon_margin',
-					'selector'     => "$this->main_css_element div .disq-pagination .pagination-entries span.et-pb-icon",
-					'hover'        => "$this->main_css_element div .disq-pagination .pagination-entries:hover span.et-pb-icon",
-					'css_property' => 'margin',
-					'type'         => 'margin',
+					'field'          => 'pagination_icon_margin',
+					'selector'       => "$this->main_css_element div .disq-pagination .pagination-entries span.et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .disq-pagination .pagination-entries:hover span.et-pb-icon",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'        => 'pagination_icon_padding',
-					'selector'     => "$this->main_css_element div .disq-pagination .pagination-entries span.et-pb-icon",
-					'hover'        => "$this->main_css_element div .disq-pagination .pagination-entries:hover span.et-pb-icon",
-					'css_property' => 'padding',
-					'type'         => 'padding',
+					'field'          => 'pagination_icon_padding',
+					'selector'       => "$this->main_css_element div .disq-pagination .pagination-entries span.et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .disq-pagination .pagination-entries:hover span.et-pb-icon",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
 				)
 			);
 		}
@@ -2350,7 +2327,7 @@ class PostGrid extends DISQ_Builder_Module {
 	 *
 	 * @return void
 	 */
-	public function wp_hook_disq_outside_post_element( $post, $attrs, $content ) {
+	public function wp_hook_disq_current_outside_post_element( $post, $attrs, $content ) {
 		$callback = function ( $post, $child_prop ) {
 			$outside_enable = isset( $child_prop['element_outside__enable'] ) ? $child_prop['element_outside__enable'] : 'off';
 
@@ -2824,4 +2801,10 @@ class PostGrid extends DISQ_Builder_Module {
 	}
 }
 
-new PostGrid();
+$disq_post_grid = new PostGrid();
+
+// Registers all hook for processing post elements.
+$disq_post_element_outside_callback = array( $disq_post_grid, 'wp_hook_disq_current_outside_post_element' );
+$disq_post_element_inner_callback   = array( $disq_post_grid, 'wp_hook_disq_current_main_post_element' );
+add_action( 'disq_post_query_current_outside_post_element', $disq_post_element_outside_callback, 10, 3 );
+add_action( 'disq_post_query_current_main_post_element', $disq_post_element_inner_callback, 10, 3 );

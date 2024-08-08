@@ -3,8 +3,8 @@
 namespace DiviSquad\Utils;
 
 use function et_get_dynamic_assets_path;
-use function et_use_dynamic_icons;
 use function et_pb_maybe_fa_font_icon;
+use function et_use_dynamic_icons;
 
 /**
  * Divi class.
@@ -22,7 +22,43 @@ class Divi {
 	 * @return string
 	 */
 	public static function get_icon_type( $icon_value ) {
-		return $icon_value && strpos( $icon_value, 'fa' ) !== - 1 ? 'fa' : 'divi';
+		return $icon_value && strpos( $icon_value, '||fa||' ) !== - 1 ? 'fa' : 'divi';
+	}
+
+	/**
+	 * Determine icon font weight
+	 *
+	 * @param string $icon_value Divi formatted value for Icon.
+	 *
+	 * @return string
+	 */
+	public static function get_icon_font_weight( $icon_value ) {
+		if ( ! empty( $icon_value ) ) {
+			$icon_data = explode( $icon_value, '|' );
+
+			return array_pop( $icon_data );
+		} else {
+			return 400;
+		}
+	}
+
+	/**
+	 * Get unicode icon data
+	 *
+	 * @param string $icon_value Icon font value.
+	 *
+	 * @return string Icon data
+	 */
+	public static function get_icon_data_to_unicode( $icon_value ) {
+		if ( ! empty( $icon_value ) ) {
+			$icon_all_data = explode( '||', $icon_value );
+			$icon_data     = array_shift( $icon_all_data );
+			$icon_data     = str_replace( ';', '', $icon_data );
+
+			return str_replace( '&#x', '\\', $icon_data );
+		} else {
+			return '';
+		}
 	}
 
 	/**
@@ -81,5 +117,4 @@ class Divi {
 			}
 		}
 	}
-
 }
