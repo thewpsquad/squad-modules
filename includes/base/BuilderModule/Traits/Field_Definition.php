@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Base\BuilderModule\Traits;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use ET_Global_Settings;
 
 /**

@@ -2,6 +2,10 @@
 
 namespace DiviSquad\Base\BuilderModule\Traits\Elements;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use DateTime;
 
 trait Breadcrumbs {

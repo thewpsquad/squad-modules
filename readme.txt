@@ -5,7 +5,7 @@ Tags: divi, divi module, divi theme, divi builder, divi page builder, divi plugi
 Requires at least: 5.0.0
 Tested up to: 6.4
 Requires PHP: 5.6
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -208,6 +208,10 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 * Enjoy the new collection of elegant Divi modules and enhance your website.
 
 == Changelog ==
+= 1.4.4 (04-11-2023) =
+* Improved: Performance and Optimization
+* Improved: Post Grid, Video Popup Modules
+
 = 1.4.3 (28-10-2023) =
 * Improved: Admin UI with new floating control buttons (More flexible, more user-friendly)
 

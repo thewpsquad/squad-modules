@@ -12,7 +12,11 @@
 
 namespace DiviSquad\Modules\ImageMask;
 
-use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
+use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
 use DiviSquad\Utils\Helper;
 use function esc_html__;
 use function esc_attr__;
@@ -25,7 +29,7 @@ use function apply_filters;
  * @since           1.0.0
  * @package         squad-modules
  */
-class ImageMask extends DISQ_Builder_Module {
+class ImageMask extends Squad_Builder_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.

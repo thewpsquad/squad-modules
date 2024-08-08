@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Base\BuilderModule\Traits;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use ET_Global_Settings;
 
 /**
@@ -43,28 +47,6 @@ trait Fields {
 			'span' => esc_html__( 'SPAN tag', 'squad-modules-for-divi' ),
 			'div'  => esc_html__( 'DIV tag', 'squad-modules-for-divi' ),
 		);
-	}
-
-	/**
-	 * Default fields for Heading toggles.
-	 *
-	 * @param string   $field_label The heading toggle label name.
-	 * @param int|bool $priority    The toggle priority, default is 55.
-	 *
-	 * @return array
-	 */
-	protected function disq_get_heading_toggles( $field_label, $priority = 55 ) {
-		$default_properties = array(
-			'title'             => $field_label,
-			'tabbed_subtoggles' => true,
-			'sub_toggles'       => $this->disq_get_heading_elements(),
-		);
-
-		if ( is_numeric( $priority ) ) {
-			$default_properties['priority'] = $priority;
-		}
-
-		return $default_properties;
 	}
 
 	/**

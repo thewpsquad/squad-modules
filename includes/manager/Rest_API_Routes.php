@@ -2,6 +2,10 @@
 
 namespace DiviSquad\Manager;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use DiviSquad\Manager\Rest_API_Routes\Plugin_Review;
 use DiviSquad\Manager\Rest_API_Routes\Whats_New;
 use DiviSquad\Utils\Helper;

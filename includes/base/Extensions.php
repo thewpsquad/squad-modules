@@ -11,6 +11,10 @@
 
 namespace DiviSquad\Base;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use function DiviSquad\divi_squad;
 
 /**
@@ -55,23 +59,5 @@ abstract class Extensions {
 	 */
 	public function get_version() {
 		return divi_squad()->get_version();
-	}
-
-	/**
-	 * Get the plugin asset build path
-	 *
-	 * @return string
-	 */
-	public function get_build_path() {
-		return DISQ_DIR_PATH;
-	}
-
-	/**
-	 * Get the plugin asset build url
-	 *
-	 * @return string
-	 */
-	public function get_build_url() {
-		return DISQ_DIR_URL;
 	}
 }

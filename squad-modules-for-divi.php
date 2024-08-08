@@ -10,8 +10,8 @@
  * @wordpress-plugin
  * Plugin Name:         Squad Modules Lite
  * Plugin URI:          https://squadmodules.com/
- * Description:         Unlock your potential Divi Builder experience with advanced Divi plugin with powerful Divi modules and extensions.
- * Version:             1.4.3
+ * Description:         The Advanced Divi plugin you install after Divi or Extra Theme!
+ * Version:             1.4.4
  * Requires at least:   5.0.0
  * Requires PHP:        5.6.40
  * Author:              WP Squad
@@ -26,83 +26,80 @@ namespace DiviSquad;
 
 defined( 'ABSPATH' ) || die();
 
-try {
-	/**
-	 * Autoload function.
-	 *
-	 * @param string $class_name Class name.
-	 *
-	 * @return void
-	 */
-	spl_autoload_register(
-		static function ( $class_name ) {
-			// Bail out if the class name doesn't start with our prefix.
-			if ( strpos( $class_name, 'DiviSquad\\' ) !== 0 ) {
-				return;
-			}
-			// Generate paths by namespace.
-			$regex = array(
-				'DiviSquad\\Admin\\'       => '/admin/',
-				'DiviSquad\\Base\\'        => '/includes/base/',
-				'DiviSquad\\Extensions\\'  => '/includes/extensions',
-				'DiviSquad\\Integration\\' => '/includes/integration/',
-				'DiviSquad\\Manager\\'     => '/includes/manager/',
-				'DiviSquad\\Modules\\'     => '/includes/modules/',
-				'DiviSquad\\Utils\\'       => '/includes/utils/',
-			);
 
-			// Replace the namespace separator with the path prefix.
-			$class_path_name = str_replace( array_keys( $regex ), array_values( $regex ), $class_name );
-
-			// Replace the namespace separator with the directory separator.
-			$valid_path_name = str_replace( array( '\\', '//' ), DIRECTORY_SEPARATOR, $class_path_name );
-
-			// Add the .php extension.
-			$file_path = __DIR__ . $valid_path_name . '.php';
-
-			if ( file_exists( $file_path ) ) {
-				require_once $file_path;
-			}
+/**
+ * Autoload function.
+ *
+ * @param string $class_name Class name.
+ *
+ * @return void
+ */
+spl_autoload_register(
+	static function ( $class_name ) {
+		// Bail out if the class name doesn't start with our prefix.
+		if ( strpos( $class_name, 'DiviSquad\\' ) !== 0 ) {
+			return;
 		}
-	);
+		// Generate paths by namespace.
+		$regex = array(
+			'DiviSquad\\Admin\\'       => '/admin/',
+			'DiviSquad\\Base\\'        => '/includes/base/',
+			'DiviSquad\\Extensions\\'  => '/includes/extensions',
+			'DiviSquad\\Integration\\' => '/includes/integration/',
+			'DiviSquad\\Manager\\'     => '/includes/manager/',
+			'DiviSquad\\Modules\\'     => '/includes/modules/',
+			'DiviSquad\\Utils\\'       => '/includes/utils/',
+		);
 
-	// Fixed the free plugin load issue in the live site.
-	if ( ! file_exists( __DIR__ . '/SquadModules.php' ) ) {
-		return;
+		// Replace the namespace separator with the path prefix.
+		$class_path_name = str_replace( array_keys( $regex ), array_values( $regex ), $class_name );
+
+		// Replace the namespace separator with the directory separator.
+		$valid_path_name = str_replace( array( '\\', '//' ), DIRECTORY_SEPARATOR, $class_path_name );
+
+		// Add the .php extension.
+		$file_path = __DIR__ . $valid_path_name . '.php';
+
+		if ( file_exists( $file_path ) ) {
+			require_once $file_path;
+		}
 	}
+);
 
-	// Define the core constants.
-	define( 'DISQ__FILE__', __FILE__ );
-	define( 'DISQ_PLUGIN_BASE', plugin_basename( DISQ__FILE__ ) );
-	define( 'DISQ_DIR_PATH', __DIR__ );
-	define( 'DISQ_MODULES_ICON_DIR_PATH', __DIR__ . '/build/admin/modules-icon' );
-	define( 'DISQ_DIR_URL', plugin_dir_url( DISQ__FILE__ ) );
-	define( 'DISQ_ASSET_URL', trailingslashit( DISQ_DIR_URL . 'build' ) );
+// Define the core constants.
+define( 'DISQ__FILE__', __FILE__ );
+define( 'DISQ_PLUGIN_BASE', plugin_basename( DISQ__FILE__ ) );
+define( 'DISQ_DIR_PATH', __DIR__ );
+define( 'DISQ_MODULES_ICON_DIR_PATH', __DIR__ . '/build/admin/modules-icon' );
+define( 'DISQ_DIR_URL', plugin_dir_url( DISQ__FILE__ ) );
+define( 'DISQ_ASSET_URL', trailingslashit( DISQ_DIR_URL . 'build' ) );
 
-	// Define the general constants for the plugin.
-	define( 'DISQ_VERSION', '1.4.3' );
-	define( 'DISQ_MINIMUM_DIVI_VERSION', '4.14.0' );
-	define( 'DISQ_MINIMUM_PHP_VERSION', '5.6.40' );
-	define( 'DISQ_MINIMUM_WP_VERSION', '5.0.0' );
+// Define the general constants for the plugin.
+define( 'DISQ_VERSION', '1.4.4' );
+define( 'DISQ_MINIMUM_DIVI_VERSION', '4.14.0' );
+define( 'DISQ_MINIMUM_PHP_VERSION', '5.6.40' );
+define( 'DISQ_MINIMUM_WP_VERSION', '5.0.0' );
 
-	/**
-	 * Load the Plugin (free version).
-	 *
-	 * @since 1.2.0
-	 */
-	require_once __DIR__ . '/SquadModules.php';
-
-	/**
-	 * The instance of Divi Squad Plugin (Free).
-	 *
-	 * @return SquadModules
-	 */
-	function divi_squad() {
-		return SquadModules::get_instance();
-	}
-
-	// Load the plugin.
-	divi_squad();
-} catch ( \Exception $exception ) {
-	error_log( 'DiviSquad: ' . $exception->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+// Fixed the free plugin load issue in the live site.
+if ( ! file_exists( __DIR__ . '/SquadModules.php' ) ) {
+	return;
 }
+
+/**
+ * Load the Plugin (free version).
+ *
+ * @since 1.2.0
+ */
+require_once __DIR__ . '/SquadModules.php';
+
+/**
+ * The instance of Divi Squad Plugin (Free).
+ *
+ * @return SquadModules
+ */
+function divi_squad() {
+	return SquadModules::get_instance();
+}
+
+// Load the plugin.
+divi_squad();

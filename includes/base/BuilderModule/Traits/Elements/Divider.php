@@ -2,6 +2,10 @@
 
 namespace DiviSquad\Base\BuilderModule\Traits\Elements;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use ET_Global_Settings;
 use function et_builder_accent_color;
 use function et_builder_get_border_styles;

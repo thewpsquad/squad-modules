@@ -13,7 +13,11 @@
 
 namespace DiviSquad\Modules\VideoPopup;
 
-use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
+use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
 use DiviSquad\Utils\Helper;
 use function esc_html__;
 use function esc_attr__;
@@ -30,7 +34,7 @@ use function str_replace;
  * @since       1.4.1
  * @package     squad-modules-for-divi
  */
-class VideoPopup extends DISQ_Builder_Module {
+class VideoPopup extends Squad_Builder_Module {
 
 	/**
 	 * Initiate Module.
@@ -690,7 +694,7 @@ class VideoPopup extends DISQ_Builder_Module {
 					'use_background_mask'    => false,
 					'prop_name_aliases'      => array(
 						'use_image_overlay_background_color_gradient' => 'image_overlay_background_use_color_gradient',
-						'image_overlay_background'                    => 'image_overlay_background_color',
+						'image_overlay_background' => 'image_overlay_background_color',
 					),
 				)
 			);

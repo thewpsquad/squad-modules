@@ -14,7 +14,11 @@
 
 namespace DiviSquad\Modules\FormStylerGravityForms;
 
-use DiviSquad\Base\BuilderModule\DISQ_Form_Styler_Module;
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
+use DiviSquad\Base\BuilderModule\Squad_Form_Styler_Module;
 use DiviSquad\Utils\Helper;
 use function esc_html__;
 
@@ -24,7 +28,7 @@ use function esc_html__;
  * @since       1.2.0
  * @package     squad-modules-for-divi
  */
-class FormStylerGravityForms extends DISQ_Form_Styler_Module {
+class FormStylerGravityForms extends Squad_Form_Styler_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.

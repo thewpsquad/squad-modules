@@ -11,6 +11,10 @@
 
 namespace DiviSquad\Base\BuilderModule\Traits;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 /**
  * Field Compatibility class
  *

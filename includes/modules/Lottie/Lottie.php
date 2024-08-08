@@ -13,7 +13,11 @@
 
 namespace DiviSquad\Modules\Lottie;
 
-use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
+use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
 use DiviSquad\Utils\Helper;
 use ET_Builder_Module_Helper_MultiViewOptions;
 use function esc_html__;
@@ -29,7 +33,7 @@ use function wp_json_encode;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class Lottie extends DISQ_Builder_Module {
+class Lottie extends Squad_Builder_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.

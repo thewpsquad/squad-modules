@@ -14,9 +14,14 @@
 
 namespace DiviSquad\Modules\PostGrid;
 
-use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
+use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\Module;
 use DiviSquad\Utils\Polyfills\Str;
 use ET_Builder_Module_Helper_MultiViewOptions;
 use WP_Query;
@@ -48,7 +53,7 @@ use function et_pb_get_extended_font_icon_value;
  * @since       1.0.0
  * @package     squad-modules-for-divi
  */
-class PostGrid extends DISQ_Builder_Module {
+class PostGrid extends Squad_Builder_Module {
 
 	/**
 	 * Initiate Module.
@@ -1446,7 +1451,7 @@ class PostGrid extends DISQ_Builder_Module {
 				'use_background_mask'    => false,
 				'prop_name_aliases'      => array(
 					'use_post_wrapper_background_color_gradient' => 'post_wrapper_background_use_color_gradient',
-					'post_wrapper_background' => 'post_wrapper_background_color',
+					'post_wrapper_background'                    => 'post_wrapper_background_color',
 				),
 			)
 		);
@@ -1464,7 +1469,7 @@ class PostGrid extends DISQ_Builder_Module {
 				'use_background_mask'    => false,
 				'prop_name_aliases'      => array(
 					'use_element_wrapper_background_color_gradient' => 'element_wrapper_background_use_color_gradient',
-					'element_wrapper_background' => 'element_wrapper_background_color',
+					'element_wrapper_background'                    => 'element_wrapper_background_color',
 				),
 			)
 		);
@@ -1481,7 +1486,7 @@ class PostGrid extends DISQ_Builder_Module {
 				'use_background_mask'    => false,
 				'prop_name_aliases'      => array(
 					'use_element_background_color_gradient' => 'element_background_use_color_gradient',
-					'element_background' => 'element_background_color',
+					'element_background'                    => 'element_background_color',
 				),
 			)
 		);
@@ -1594,7 +1599,7 @@ class PostGrid extends DISQ_Builder_Module {
 					'use_background_mask'    => false,
 					'prop_name_aliases'      => array(
 						'use_button_background_color_gradient' => 'button_background_use_color_gradient',
-						'button_background' => 'button_background_color',
+						'button_background'                    => 'button_background_color',
 					),
 				)
 			);
@@ -1807,7 +1812,7 @@ class PostGrid extends DISQ_Builder_Module {
 					'use_background_mask'    => false,
 					'prop_name_aliases'      => array(
 						'use_pagination_wrapper_background_color_gradient' => 'pagination_wrapper_background_use_color_gradient',
-						'pagination_wrapper_background' => 'pagination_wrapper_background_color',
+						'pagination_wrapper_background'                    => 'pagination_wrapper_background_color',
 					),
 				)
 			);
@@ -1825,7 +1830,7 @@ class PostGrid extends DISQ_Builder_Module {
 					'use_background_mask'    => false,
 					'prop_name_aliases'      => array(
 						'use_pagination_background_color_gradient' => 'pagination_background_use_color_gradient',
-						'pagination_background' => 'pagination_background_color',
+						'pagination_background'                    => 'pagination_background_color',
 					),
 				)
 			);
@@ -1843,7 +1848,7 @@ class PostGrid extends DISQ_Builder_Module {
 					'use_background_mask'    => false,
 					'prop_name_aliases'      => array(
 						'use_active_pagination_background_color_gradient' => 'active_pagination_background_use_color_gradient',
-						'active_pagination_background' => 'active_pagination_background_color',
+						'active_pagination_background'                    => 'active_pagination_background_color',
 					),
 				)
 			);
@@ -2032,7 +2037,7 @@ class PostGrid extends DISQ_Builder_Module {
 		$query_args  = array();
 		$date_format = ! empty( $attrs['date_format'] ) ? $attrs['date_format'] : 'M j, Y';
 
-		if ( isset( $attrs['inherit_current_loop'] ) && 'on' === $attrs['inherit_current_loop'] && ( is_singular() || is_archive() ) ) {
+		if ( ! empty( $attrs['inherit_current_loop'] ) && 'on' === $attrs['inherit_current_loop'] && ( is_singular() || is_archive() ) ) {
 			$post_id    = get_the_ID();
 			$categories = wp_get_post_categories( $post_id, array( 'fields' => 'ids' ) );
 			if ( is_array( $categories ) && array() !== $categories ) {
@@ -2058,12 +2063,12 @@ class PostGrid extends DISQ_Builder_Module {
 			}
 		}
 
-		if ( isset( $attrs['pagination__enable'] ) && 'on' === $attrs['pagination__enable'] ) {
+		if ( ! empty( $attrs['pagination__enable'] ) && 'on' === $attrs['pagination__enable'] ) {
 			$query_args['paged'] = $paged;
 		}
 
-		if ( isset( $attrs['list_post_offset'] ) ) {
-			if ( isset( $attrs['pagination__enable'] ) && 'on' === $attrs['pagination__enable'] && $paged > 1 ) {
+		if ( ! empty( $attrs['list_post_offset'] ) ) {
+			if ( ! empty( $attrs['pagination__enable'] ) && 'on' === $attrs['pagination__enable'] && $paged > 1 ) {
 				$query_args['offset'] = ( ( $paged - 1 ) * (int) $attrs['list_post_offset'] ) + (int) $attrs['list_post_offset'];
 			} else {
 				$query_args['offset'] = (int) $attrs['list_post_offset'];
@@ -2437,9 +2442,9 @@ class PostGrid extends DISQ_Builder_Module {
 
 			// Output the split tags.
 			foreach ( $child_modules as $child_module_content ) {
-				$child_raw_props = $this->disq_collect_raw_props( $child_module_content );
+				$child_raw_props = Module::collect_raw_props( $child_module_content );
 				$clean_props     = str_replace( '},||', '},', $child_raw_props );
-				$child_props     = $this->disq_collect_child_json_props( $clean_props );
+				$child_props     = Module::collect_child_json_props( $clean_props );
 
 				if ( count( $child_props ) && isset( $child_props[0] ) ) {
 					$child_prop_markup = sprintf( '%s,||', wp_json_encode( $child_props[0] ) );

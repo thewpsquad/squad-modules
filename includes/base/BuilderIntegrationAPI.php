@@ -12,6 +12,16 @@
 
 namespace DiviSquad\Base;
 
+use function et_builder_bfb_enabled;
+use function et_builder_is_tb_admin_screen;
+use function et_core_is_fb_enabled;
+use function et_get_combined_script_handle;
+use function et_is_builder_plugin_active;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 /**
  * Divi Squad Class.
  *

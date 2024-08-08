@@ -84,38 +84,25 @@ final class SquadModules extends Integration\Core {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof self ) ) {
 			self::$instance = new self();
 
-			try {
-				self::$instance->set_memory( self::$instance->option_prefix );
-				self::$instance->load_core_components();
+			self::$instance->set_memory( self::$instance->option_prefix );
+			self::$instance->load_core_components();
 
-				// Load the core.
-				$wp = new Integration\WP();
-				$wp->let_the_journey_start(
-					static function () {
-						self::$instance->load_global_assets();
-						self::$instance->localize_scripts_data();
-						self::$instance->load_admin_interface();
-						self::$instance->register_ajax_rest_api_routes();
-						self::$instance->init();
-						self::$instance->load_text_domain();
-						self::$instance->load_all_extensions();
-						self::$instance->load_divi_modules_for_builder();
-					}
-				);
-			} catch ( \Exception $exception ) {
-				error_log( 'DiviSquad: ' . $exception->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-			}
+			// Load the core.
+			$wp = new Integration\WP();
+			$wp->let_the_journey_start(
+				static function () {
+					self::$instance->load_global_assets();
+					self::$instance->localize_scripts_data();
+					self::$instance->load_admin_interface();
+					self::$instance->register_ajax_rest_api_routes();
+					self::$instance->init();
+					self::$instance->load_text_domain();
+					self::$instance->load_all_extensions();
+					self::$instance->load_divi_modules_for_builder();
+				}
+			);
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * Get the plugin name for the pro-version
-	 *
-	 * @return bool
-	 */
-	public static function is_the_pro_plugin_active() {
-		return defined( '\DISQ_PRO_PLUGIN_BASE' ) && Utils\WP::is_plugin_active( DISQ_PRO_PLUGIN_BASE );
 	}
 }

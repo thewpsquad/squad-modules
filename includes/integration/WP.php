@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Integration;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use function version_compare;
 
 /**

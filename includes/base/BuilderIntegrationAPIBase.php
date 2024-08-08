@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Base;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 /**
  * Divi Squad Class.
  *
@@ -63,7 +67,7 @@ abstract class BuilderIntegrationAPIBase {
 	 *
 	 * @var string The plugin's version
 	 */
-	protected $build_path = '';
+	protected $build_path = 'build/divi4/';
 
 	/**
 	 * Dependencies for the plugin's JavaScript bundles.
@@ -88,8 +92,6 @@ abstract class BuilderIntegrationAPIBase {
 	 */
 	public function __construct( $name, $plugin_dir, $plugin_dir_url ) {
 		// Set required variables as per definition.
-		$this->build_path = 'build/divi4/';
-
 		$this->name           = $name;
 		$this->plugin_dir     = $plugin_dir;
 		$this->plugin_dir_url = $plugin_dir_url;

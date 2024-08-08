@@ -13,7 +13,11 @@
 
 namespace DiviSquad\Modules\DualButton;
 
-use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
+use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
 use ET_Builder_Module_Helper_MultiViewOptions;
@@ -32,7 +36,7 @@ use function et_pb_get_extended_font_icon_value;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class DualButton extends DISQ_Builder_Module {
+class DualButton extends Squad_Builder_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.

@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Integration\Divi;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use DiviSquad\Base\BuilderBackendPlaceholder;
 use DiviSquad\Utils\Helper;
 use function et_fb_process_shortcode;

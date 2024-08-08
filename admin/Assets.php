@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use DiviSquad\Utils\Asset;
 use DiviSquad\Utils\WP;
 use function DiviSquad\divi_squad;
@@ -33,16 +37,6 @@ class Assets {
 	 */
 	protected static function get_plugin_asset_allowed_pages() {
 		return apply_filters( 'divi_squad_admin_asset_allowed_pages', array( 'toplevel_page_divi_squad_dashboard' ) );
-	}
-
-	/**
-	 * Get the lis of admin extra asset allowed page for the plugin.
-	 *
-	 * @return array
-	 * @since 1.2.0
-	 */
-	protected static function get_plugin_extra_asset_allowed_pages() {
-		return apply_filters( 'divi_squad_admin_extra_asset_allowed_pages', array() );
 	}
 
 	/**

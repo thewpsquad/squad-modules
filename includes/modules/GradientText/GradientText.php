@@ -13,7 +13,11 @@
 
 namespace DiviSquad\Modules\GradientText;
 
-use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
+use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
 use DiviSquad\Utils\Helper;
 use DiviSquad\Utils\Module;
 use function esc_html__;
@@ -25,7 +29,7 @@ use function et_core_esc_previously;
  * @since           1.2.6
  * @package         squad-modules-for-divi
  */
-class GradientText extends DISQ_Builder_Module {
+class GradientText extends Squad_Builder_Module {
 
 	/**
 	 * Initiate Module.

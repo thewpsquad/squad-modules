@@ -13,7 +13,11 @@
 
 namespace DiviSquad\Modules\Breadcrumbs;
 
-use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
+use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
 
@@ -23,7 +27,7 @@ use DiviSquad\Utils\Helper;
  * @since           1.4.0
  * @package         squad-modules-for-divi
  */
-class Breadcrumbs extends DISQ_Builder_Module {
+class Breadcrumbs extends Squad_Builder_Module {
 
 	/**
 	 * Initiate Module.

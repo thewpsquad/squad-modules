@@ -13,6 +13,10 @@
 
 namespace DiviSquad\Extensions;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use DiviSquad\Base\Extensions;
 
 /**
