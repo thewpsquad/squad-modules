@@ -11,8 +11,6 @@
 
 namespace DiviSquad\Admin;
 
-use function DiviSquad\is_the_pro_plugin_active;
-
 /**
  * Menu class
  *
@@ -37,6 +35,7 @@ class Menu {
 			self::$instance = new self();
 
 			add_action( 'admin_menu', array( self::$instance, 'admin_menu_create' ) );
+			add_filter( 'admin_body_class', array( self::$instance, 'admin_classes' ) );
 		}
 
 		return self::$instance;
@@ -139,6 +138,24 @@ class Menu {
 	 */
 	public static function get_template() {
 		printf( '<section id="squad-modules-app"></section>' );
+	}
+
+	/**
+	 * Filters the CSS classes for the body tag in the admin.
+	 *
+	 * @param string $classes Space-separated list of CSS classes.
+	 *
+	 * @return string
+	 * @since 1.0.4
+	 */
+	public function admin_classes( $classes ) {
+		global $current_screen;
+
+		if ( isset( $current_screen ) && str_contains( $current_screen->id, 'divi_squad' ) ) {
+			$classes .= ' divi_squad_plugin_page';
+		}
+
+		return $classes;
 	}
 
 }

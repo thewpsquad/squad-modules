@@ -30,10 +30,9 @@ class BeforeAfterImageSlider extends DISQ_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name   = esc_html__( 'Before After Image Slider', 'squad-modules-for-divi' );
-		$this->plural = esc_html__( 'Before After Image Sliders', 'squad-modules-for-divi' );
-
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/before-after-image-slider.svg' );
+		$this->name      = esc_html__( 'Before After Image Slider', 'squad-modules-for-divi' );
+		$this->plural    = esc_html__( 'Before After Image Sliders', 'squad-modules-for-divi' );
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
 
 		$this->slug             = 'disq_bai_slider';
 		$this->main_css_element = "%%order_class%%.$this->slug";
@@ -783,6 +782,27 @@ class BeforeAfterImageSlider extends DISQ_Builder_Module {
 				'type'           => 'padding',
 			)
 		);
+
+		// phpcs:disable
+
+		// Add height and width support for images.
+		// $additional_props = array( 'width', 'max_width', 'height', 'min_height', 'max_height' );
+		// foreach ( $additional_props as $additional_prop ) {
+		// $css_property = str_replace( '_', '-', $additional_prop );
+		// $this->generate_styles(
+		// array(
+		// 'attrs'          => $this->props,
+		// 'base_attr_name' => $additional_prop,
+		// 'selector'       => "$this->main_css_element div .compare-images, $this->main_css_element div .compare-images img",
+		// 'css_property'   => $css_property,
+		// 'render_slug'    => $this->slug,
+		// 'type'           => 'range',
+		// )
+		// );
+		// }
+
+		// phpcs:enable
+
 	}
 
 }

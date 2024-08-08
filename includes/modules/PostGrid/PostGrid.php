@@ -35,10 +35,9 @@ class PostGrid extends DISQ_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name   = esc_html__( 'Post Grid', 'squad-modules-for-divi' );
-		$this->plural = esc_html__( 'Post Grids', 'squad-modules-for-divi' );
-
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/post-grid.svg' );
+		$this->name      = esc_html__( 'Post Grid', 'squad-modules-for-divi' );
+		$this->plural    = esc_html__( 'Post Grids', 'squad-modules-for-divi' );
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
 
 		$this->slug       = 'disq_post_grid';
 		$this->child_slug = 'disq_post_grid_child';
@@ -188,10 +187,10 @@ class PostGrid extends DISQ_Builder_Module {
 					'label_prefix' => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
 					'css'          => array(
 						'main' => array(
-							'border_radii'        => "$this->main_css_element .disq-post-container .post .element-elements",
-							'border_radii_hover'  => "$this->main_css_element .disq-post-container .post:hover .element-elements",
-							'border_styles'       => "$this->main_css_element .disq-post-container .post .element-elements",
-							'border_styles_hover' => "$this->main_css_element .disq-post-container .post:hover .element-elements",
+							'border_radii'        => "$this->main_css_element .disq-post-container .post .post-elements",
+							'border_radii_hover'  => "$this->main_css_element .disq-post-container .post:hover .post-elements",
+							'border_styles'       => "$this->main_css_element .disq-post-container .post .post-elements",
+							'border_styles_hover' => "$this->main_css_element .disq-post-container .post:hover .post-elements",
 						),
 					),
 					'defaults'     => array(
@@ -329,8 +328,8 @@ class PostGrid extends DISQ_Builder_Module {
 					'label'             => esc_html__( 'Wrapper Box Shadow', 'squad-modules-for-divi' ),
 					'option_category'   => 'layout',
 					'css'               => array(
-						'main'  => "$this->main_css_element .disq-post-container .post .element-elements",
-						'hover' => "$this->main_css_element .disq-post-container .post:hover .element-elements",
+						'main'  => "$this->main_css_element .disq-post-container .post .post-elements",
+						'hover' => "$this->main_css_element .disq-post-container .post:hover .post-elements",
 					),
 					'default_on_fronts' => array(
 						'color'    => 'rgba(0,0,0,0.3)',
@@ -1310,16 +1309,16 @@ class PostGrid extends DISQ_Builder_Module {
 
 		// element wrapper styles.
 		$fields['element_wrapper_background_color'] = array(
-			'background' => "$this->main_css_element .disq-post-container .post .element-elements",
+			'background' => "$this->main_css_element .disq-post-container .post .post-elements",
 		);
 		$fields['element_wrapper_margin']           = array(
-			'margin' => "$this->main_css_element .disq-post-container .post .element-elements",
+			'margin' => "$this->main_css_element .disq-post-container .post .post-elements",
 		);
 		$fields['element_wrapper_padding']          = array(
-			'padding' => "$this->main_css_element .disq-post-container .post .element-elements",
+			'padding' => "$this->main_css_element .disq-post-container .post .post-elements",
 		);
-		$this->disq_fix_border_transition( $fields, 'elements', "$this->main_css_element .disq-post-container .post .element-elements" );
-		$this->disq_fix_box_shadow_transition( $fields, 'elements', "$this->main_css_element .disq-post-container .post .element-elements" );
+		$this->disq_fix_border_transition( $fields, 'elements', "$this->main_css_element .disq-post-container .post .post-elements" );
+		$this->disq_fix_box_shadow_transition( $fields, 'elements', "$this->main_css_element .disq-post-container .post .post-elements" );
 
 		// element styles.
 		$fields['element_background_color'] = array(
@@ -1420,7 +1419,7 @@ class PostGrid extends DISQ_Builder_Module {
 				'css_property'   => 'grid-template-columns',
 				'type'           => 'grid',
 				'mapping_values' => function ( $current_value ) {
-					return sprintf( 'repeat(%1$s, 1fr)', $current_value );
+					return sprintf( 'repeat( %1$s, 1fr )', $current_value );
 				},
 			)
 		);
@@ -1456,9 +1455,9 @@ class PostGrid extends DISQ_Builder_Module {
 		et_pb_background_options()->get_background_style(
 			array(
 				'base_prop_name'         => 'element_wrapper_background',
-				'selector'               => "$this->main_css_element .disq-post-container .post .element-elements",
-				'selector_hover'         => "$this->main_css_element .disq-post-container .post:hover .element-elements",
-				'selector_sticky'        => "$this->main_css_element .disq-post-container .post .element-elements",
+				'selector'               => "$this->main_css_element .disq-post-container .post .post-elements",
+				'selector_hover'         => "$this->main_css_element .disq-post-container .post:hover .post-elements",
+				'selector_sticky'        => "$this->main_css_element .disq-post-container .post .post-elements",
 				'function_name'          => $this->slug,
 				'important'              => ' !important',
 				'use_background_video'   => false,
@@ -1501,8 +1500,8 @@ class PostGrid extends DISQ_Builder_Module {
 		$this->generate_styles(
 			array(
 				'base_attr_name' => 'element_text_orientation',
-				'selector'       => "$this->main_css_element .disq-post-container .post .element-elements",
-				'selector_hover' => "$this->main_css_element .disq-post-container .post:hover .element-elements",
+				'selector'       => "$this->main_css_element .disq-post-container .post .post-elements",
+				'selector_hover' => "$this->main_css_element .disq-post-container .post:hover .post-elements",
 				'css_property'   => 'text-align',
 				'render_slug'    => $this->slug,
 				'type'           => 'align',
@@ -1531,8 +1530,8 @@ class PostGrid extends DISQ_Builder_Module {
 		$this->disq_process_margin_padding_styles(
 			array(
 				'field'        => 'element_wrapper_margin',
-				'selector'     => "$this->main_css_element .disq-post-container .post .element-elements",
-				'hover'        => "$this->main_css_element .disq-post-container .post .element-elements",
+				'selector'     => "$this->main_css_element .disq-post-container .post .post-elements",
+				'hover'        => "$this->main_css_element .disq-post-container .post .post-elements",
 				'css_property' => 'margin',
 				'type'         => 'margin',
 			)
@@ -1540,8 +1539,8 @@ class PostGrid extends DISQ_Builder_Module {
 		$this->disq_process_margin_padding_styles(
 			array(
 				'field'        => 'element_wrapper_padding',
-				'selector'     => "$this->main_css_element .disq-post-container .post .element-elements",
-				'hover'        => "$this->main_css_element .disq-post-container .post .element-elements",
+				'selector'     => "$this->main_css_element .disq-post-container .post .post-elements",
+				'hover'        => "$this->main_css_element .disq-post-container .post .post-elements",
 				'css_property' => 'padding',
 				'type'         => 'padding',
 			)
@@ -1777,8 +1776,8 @@ class PostGrid extends DISQ_Builder_Module {
 								'icon'  => 'load_more_button_icon_size',
 								'image' => 'load_more_button_image_width',
 							),
-							'selector'       => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button .disq-icon-wrapper.show_on_hover",
-							'hover'          => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button:hover .disq-icon-wrapper.show_on_hover",
+							'selector'       => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button .disq-icon-wrapper.show-on-hover",
+							'hover'          => "$this->main_css_element div .disq-load-more-button-wrapper .disq-load-more-button:hover .disq-icon-wrapper.show-on-hover",
 							'css_property'   => 'margin',
 							'type'           => 'margin',
 							'mapping_values' => $mapping_values,
@@ -2075,6 +2074,7 @@ class PostGrid extends DISQ_Builder_Module {
 		$query_args['orderby']        = ! empty( $attrs['list_post_order_by'] ) ? $attrs['list_post_order_by'] : 'date';
 		$query_args['order']          = ! empty( $attrs['list_post_order'] ) ? $attrs['list_post_order'] : 'ASC';
 		$query_args['posts_per_page'] = ! empty( $attrs['list_post_count'] ) ? (int) $attrs['list_post_count'] : 10;
+		$query_args['post_status']    = array( 'publish' );
 
 		// extra query parameters.
 		$query_args['ignore_sticky_posts'] = ! empty( $attrs['list_post_ignore_sticky_posts'] ) && 'on' === $attrs['list_post_ignore_sticky_posts'];
@@ -2209,7 +2209,7 @@ class PostGrid extends DISQ_Builder_Module {
 
 					if ( ( 'none' !== $button_icon_type ) && ! empty( $icon_element ) ) {
 						if ( 'on' === $button_icon_hover ) {
-							$icon_wrapper_class .= ' show_on_hover';
+							$icon_wrapper_class .= ' show-on-hover';
 						}
 
 						$icon_element_html = sprintf(
@@ -2368,7 +2368,7 @@ class PostGrid extends DISQ_Builder_Module {
 				$output .= et_core_esc_previously( $this->disq_render_post_element_body( $child_prop, $post ) );
 
 				return sprintf(
-					'<div class="element-elements et_pb_with_background">%1$s</div>',
+					'<div class="post-elements et_pb_with_background">%1$s</div>',
 					et_core_esc_previously( $output )
 				);
 			}
@@ -2407,7 +2407,7 @@ class PostGrid extends DISQ_Builder_Module {
 				$output .= et_core_esc_previously( $this->disq_render_post_element_body( $child_prop, $post ) );
 
 				return sprintf(
-					'<div class="element-elements et_pb_with_background">%1$s</div>',
+					'<div class="post-elements et_pb_with_background">%1$s</div>',
 					et_core_esc_previously( $output )
 				);
 			}
@@ -2669,7 +2669,7 @@ class PostGrid extends DISQ_Builder_Module {
 				'attrs'          => array(
 					'class' => implode( ' ', $icon_classes ),
 				),
-				'hover_selector' => "$this->main_css_element div .element-elements .disq-post-element.disq-element_{$element_type}",
+				'hover_selector' => "$this->main_css_element div .post-elements .disq-post-element.disq-element_{$element_type}",
 			)
 		);
 	}
@@ -2685,7 +2685,7 @@ class PostGrid extends DISQ_Builder_Module {
 		$wrapper_classes = array( 'disq-element-icon-wrapper' );
 
 		if ( isset( $attrs['element_icon_on_hover'] ) && 'on' === $attrs['element_icon_on_hover'] ) {
-			$wrapper_classes[] = 'show_on_hover';
+			$wrapper_classes[] = 'show-on-hover';
 		}
 
 		return sprintf(
@@ -2717,7 +2717,7 @@ class PostGrid extends DISQ_Builder_Module {
 					'attrs'          => array(
 						'class' => implode( ' ', $icon_classes ),
 					),
-					'hover_selector' => "$this->main_css_element div .element-elements .disq-post-element.disq-element_{$element_type}",
+					'hover_selector' => "$this->main_css_element div .post-elements .disq-post-element.disq-element_{$element_type}",
 				)
 			);
 		}
@@ -2757,7 +2757,7 @@ class PostGrid extends DISQ_Builder_Module {
 						'title' => $title_text,
 					),
 					'required'       => 'element_image',
-					'hover_selector' => "$this->main_css_element div .element-elements .disq-post-element.disq-element_{$element_type}",
+					'hover_selector' => "$this->main_css_element div .post-elements .disq-post-element.disq-element_{$element_type}",
 				)
 			);
 		}
@@ -2776,7 +2776,7 @@ class PostGrid extends DISQ_Builder_Module {
 		if ( 'text' === $attrs['element_icon_type'] ) {
 			$multi_view        = et_pb_multi_view_options( $this );
 			$element_type      = isset( $attrs['element'] ) ? $attrs['element'] : 'none';
-			$icon_text_classes = array( 'disq_list_icon_text' );
+			$icon_text_classes = array( 'disq-list-icon-text' );
 
 			return $multi_view->render_element(
 				array(
@@ -2785,7 +2785,7 @@ class PostGrid extends DISQ_Builder_Module {
 					'attrs'          => array(
 						'class' => implode( ' ', $icon_text_classes ),
 					),
-					'hover_selector' => "$this->main_css_element div .element-elements .disq-post-element.disq-element_{$element_type}",
+					'hover_selector' => "$this->main_css_element div .post-elements .disq-post-element.disq-element_{$element_type}",
 				)
 			);
 		}

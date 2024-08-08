@@ -32,10 +32,9 @@ class BusinessHours extends DISQ_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name   = esc_html__( 'Business Hours', 'squad-modules-for-divi' );
-		$this->plural = esc_html__( 'Business Hours', 'squad-modules-for-divi' );
-
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/clock-history.svg' );
+		$this->name      = esc_html__( 'Business Hours', 'squad-modules-for-divi' );
+		$this->plural    = esc_html__( 'Business Hours', 'squad-modules-for-divi' );
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
 
 		$this->slug       = 'disq_business_hours';
 		$this->child_slug = 'disq_business_day';

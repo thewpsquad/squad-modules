@@ -10,6 +10,8 @@
 
 namespace DiviSquad\Integration;
 
+use function is_php_version_compatible;
+
 /**
  * Define integration helper functionalities for this plugin.
  *
@@ -59,7 +61,7 @@ class WP {
 	 */
 	public function let_the_journey_start( callable $callback ) {
 		// Check for the required PHP version.
-		if ( version_compare( PHP_VERSION, self::$php_min_version, '<' ) ) {
+		if ( ! is_php_version_compatible( self::$php_min_version ) ) {
 			return add_action( 'admin_notices', array( self::$instance, 'required_php_version_missing_notice' ) );
 		}
 

@@ -35,7 +35,7 @@ class FlipBox extends DISQ_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Flip Box', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Flip Boxes', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/flip-box.svg' );
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
 
 		$this->slug       = 'disq_flip_box';
 		$this->vb_support = 'on';
@@ -787,7 +787,7 @@ class FlipBox extends DISQ_Builder_Module {
 						'hide_text_align' => true,
 						'css'             => array(
 							'main'  => "$this->main_css_element div .flip-box-slides .front-slide .disq-slide-button",
-							'hover' => "$this->main_css_element div .flip-box-slides .front-slide:hover .disq-slide-button",
+							'hover' => "$this->main_css_element div .flip-box-slides .front-slide .disq-slide-button:hover",
 						),
 						'tab_slug'        => 'advanced',
 						'toggle_slug'     => 'button_text',
@@ -811,7 +811,7 @@ class FlipBox extends DISQ_Builder_Module {
 						'hide_text_align' => true,
 						'css'             => array(
 							'main'  => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button",
-							'hover' => "$this->main_css_element div .flip-box-slides .back-slide:hover .disq-slide-button",
+							'hover' => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button:hover",
 						),
 						'tab_slug'        => 'advanced',
 						'toggle_slug'     => 'button_text',
@@ -886,9 +886,9 @@ class FlipBox extends DISQ_Builder_Module {
 					'css'             => array(
 						'main' => array(
 							'border_radii'        => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button",
-							'border_radii_hover'  => "$this->main_css_element div .flip-box-slides .back-slide:hover .disq-slide-button",
+							'border_radii_hover'  => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button:hover",
 							'border_styles'       => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button",
-							'border_styles_hover' => "$this->main_css_element div .flip-box-slides .back-slide:hover .disq-slide-button",
+							'border_styles_hover' => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button:hover",
 						),
 					),
 					'defaults'        => array(
@@ -910,9 +910,9 @@ class FlipBox extends DISQ_Builder_Module {
 					'css'             => array(
 						'main' => array(
 							'border_radii'        => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button",
-							'border_radii_hover'  => "$this->main_css_element div .flip-box-slides .back-slide:hover .disq-slide-button",
+							'border_radii_hover'  => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button:hover",
 							'border_styles'       => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button",
-							'border_styles_hover' => "$this->main_css_element div .flip-box-slides .back-slide:hover .disq-slide-button",
+							'border_styles_hover' => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button:hover",
 						),
 					),
 					'defaults'        => array(
@@ -966,7 +966,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'option_category'   => 'layout',
 					'css'               => array(
 						'main'  => "$this->main_css_element div .flip-box-slides .front-slide .disq-slide-button",
-						'hover' => "$this->main_css_element div .flip-box-slides .front-slide:hover .disq-slide-button",
+						'hover' => "$this->main_css_element div .flip-box-slides .front-slide .disq-slide-button:hover",
 					),
 					'default_on_fronts' => array(
 						'color'    => 'rgba(0,0,0,0.3)',
@@ -983,7 +983,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'option_category'   => 'layout',
 					'css'               => array(
 						'main'  => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button",
-						'hover' => "$this->main_css_element div .flip-box-slides .back-slide:hover .disq-slide-button",
+						'hover' => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button:hover",
 					),
 					'default_on_fronts' => array(
 						'color'    => 'rgba(0,0,0,0.3)',
@@ -2137,7 +2137,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'base_prop_name'         => "{$slide_type}_button_background",
 					'props'                  => $this->props,
 					'selector'               => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'selector_hover'         => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
+					'selector_hover'         => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
 					'selector_sticky'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
 					'function_name'          => $this->slug,
 					'important'              => ' !important',
@@ -2165,7 +2165,7 @@ class FlipBox extends DISQ_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_elements_alignment",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
 					'css_property'   => 'justify-content',
 					'render_slug'    => $this->slug,
 					'type'           => 'align',
@@ -2176,7 +2176,7 @@ class FlipBox extends DISQ_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_width",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
 					'css_property'   => 'width',
 					'render_slug'    => $this->slug,
 					'type'           => 'input',
@@ -2188,7 +2188,7 @@ class FlipBox extends DISQ_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_icon_placement",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
 					'css_property'   => 'flex-direction',
 					'render_slug'    => $this->slug,
 					'type'           => 'align',
@@ -2199,7 +2199,7 @@ class FlipBox extends DISQ_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_icon_gap",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
 					'css_property'   => 'gap',
 					'render_slug'    => $this->slug,
 					'type'           => 'input',
@@ -2212,7 +2212,7 @@ class FlipBox extends DISQ_Builder_Module {
 				array(
 					'field'        => "{$slide_type}_button_icon_margin",
 					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .icon-element",
-					'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button .icon-element",
+					'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .icon-element:hover",
 					'css_property' => 'margin',
 					'type'         => 'margin',
 				)
@@ -2221,7 +2221,7 @@ class FlipBox extends DISQ_Builder_Module {
 				array(
 					'field'          => "{$slide_type}_button_margin",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
 					'css_property'   => 'margin',
 					'type'           => 'margin',
 				)
@@ -2230,7 +2230,7 @@ class FlipBox extends DISQ_Builder_Module {
 				array(
 					'field'          => "{$slide_type}_button_padding",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
 					'css_property'   => 'padding',
 					'type'           => 'padding',
 				)
@@ -2241,7 +2241,7 @@ class FlipBox extends DISQ_Builder_Module {
 
 			if ( ( 'none' !== $this->props[ "{$slide_type}_button_icon_type" ] ) && ( ! empty( $font_icon_element ) || ! empty( $image_element ) ) ) {
 				if ( ( 'on' === $this->prop( "{$slide_type}_button_icon_on_hover", 'off' ) ) ) {
-					$icon_wrapper_class[] = 'show_on_hover';
+					$icon_wrapper_class[] = 'show-on-hover';
 
 					$mapping_values = array(
 						'inherit'     => '0 0 0 0',
@@ -2259,7 +2259,7 @@ class FlipBox extends DISQ_Builder_Module {
 						);
 					}
 
-					// set icon placement for button image with default, hover and responsive.
+					// set icon placement for button image with default, hover, and responsive.
 					$this->process_show_icon_on_hover_styles(
 						array(
 							'field'          => "{$slide_type}_button_icon_placement",
@@ -2268,8 +2268,8 @@ class FlipBox extends DISQ_Builder_Module {
 								'icon'  => "{$slide_type}_button_icon_size",
 								'image' => "{$slide_type}_button_image_width",
 							),
-							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .disq-icon-wrapper.show_on_hover",
-							'hover'          => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button .disq-icon-wrapper.show_on_hover",
+							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .disq-icon-wrapper.show-on-hover",
+							'hover'          => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover .disq-icon-wrapper.show-on-hover",
 							'css_property'   => 'margin',
 							'type'           => 'margin',
 							'mapping_values' => $mapping_values,
@@ -2334,7 +2334,7 @@ class FlipBox extends DISQ_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_icon_color",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .et-pb-icon",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button .et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover .et-pb-icon",
 					'css_property'   => 'color',
 					'render_slug'    => $this->slug,
 					'type'           => 'color',
@@ -2345,7 +2345,7 @@ class FlipBox extends DISQ_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_icon_size",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .et-pb-icon",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button .et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover .et-pb-icon",
 					'css_property'   => 'font-size',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',
@@ -2359,7 +2359,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'attrs'          => array(
 						'class' => implode( ' ', $icon_classes ),
 					),
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
 				)
 			);
 		}
@@ -2389,7 +2389,7 @@ class FlipBox extends DISQ_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_image_width",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .disq-icon-wrapper img",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button .disq-icon-wrapper img",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover .disq-icon-wrapper img",
 					'css_property'   => 'width',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',
@@ -2401,7 +2401,7 @@ class FlipBox extends DISQ_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_image_height",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .disq-icon-wrapper img",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button .disq-icon-wrapper img",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover .disq-icon-wrapper img",
 					'css_property'   => 'height',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',
@@ -2418,7 +2418,7 @@ class FlipBox extends DISQ_Builder_Module {
 						'alt'   => '',
 					),
 					'required'       => "{$slide_type}_button_image",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
 				)
 			);
 		}
@@ -2689,7 +2689,7 @@ class FlipBox extends DISQ_Builder_Module {
 		return array(
 			"{$side}_title"          => array(
 				'label'           => esc_html__( 'Title', 'squad-modules-for-divi' ),
-				'description'     => esc_html__( 'The title of your title will appear in with your current side of flip box.', 'squad-modules-for-divi' ),
+				'description'     => esc_html__( 'The text of your title will appear in with your current side of flip box.', 'squad-modules-for-divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'tab_slug'        => 'general',
@@ -2700,7 +2700,7 @@ class FlipBox extends DISQ_Builder_Module {
 			),
 			"{$side}_sub_title"      => array(
 				'label'           => esc_html__( 'Sub Title', 'squad-modules-for-divi' ),
-				'description'     => esc_html__( 'The title of your sub title will appear in with your current side of flip box.', 'squad-modules-for-divi' ),
+				'description'     => esc_html__( 'The text of your sub title will appear in with your current side of flip box.', 'squad-modules-for-divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'tab_slug'        => 'general',
