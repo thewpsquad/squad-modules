@@ -1,6 +1,6 @@
 <wpml-config>
     <built-with-page-builder>/\[(et_pb_section|et_pb_row|et_pb_column)/</built-with-page-builder>
-    <shortcode-list>disq_accordion,disq_accordion_child,disq_bai_slider,disq_business_hours,disq_business_day,disq_divider,disq_dual_button,disq_flip_box,disq_image_mask,disq_lottie,disq_post_grid,disq_post_grid_child,disq_typing_text,disq_post_reading_time, disq_glitch_text</shortcode-list>
+    <shortcode-list>disq_accordion,disq_accordion_child,disq_bai_slider,disq_business_hours,disq_business_day,disq_divider,disq_dual_button,disq_flip_box,disq_image_mask,disq_lottie,disq_post_grid,disq_post_grid_child,disq_typing_text,disq_post_reading_time, disq_glitch_text,disq_scrolling_text</shortcode-list>
     <shortcodes>
         <shortcode>
             <tag>disq_accordion</tag>
@@ -249,6 +249,15 @@
             <tag>disq_glitch_text</tag>
             <attributes>
                 <attribute>glitch_text</attribute>
+                <attribute type="media-url">background_image</attribute>
+                <attribute type="link">link_option_url</attribute>
+                <attribute type="link">url</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>disq_scrolling_text</tag>
+            <attributes>
+                <attribute>scrolling_text</attribute>
                 <attribute type="media-url">background_image</attribute>
                 <attribute type="link">link_option_url</attribute>
                 <attribute type="link">url</attribute>

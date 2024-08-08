@@ -59,7 +59,6 @@ class GlitchText extends DISQ_Builder_Module {
 			),
 			'advanced' => array(
 				'toggles' => array(
-					'text'        => esc_html__( 'Text', 'squad-modules-for-divi' ),
 					'glitch_text' => esc_html__( 'Glitch Text', 'squad-modules-for-divi' ),
 				),
 			),
@@ -112,6 +111,7 @@ class GlitchText extends DISQ_Builder_Module {
 			),
 			'height'         => $default_module_css_selectors,
 			'image_icon'     => false,
+			'text'           => false,
 			'button'         => false,
 			'filters'        => false,
 		);

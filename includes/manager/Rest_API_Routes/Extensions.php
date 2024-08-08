@@ -10,7 +10,7 @@ use WP_REST_Server;
 use function DiviSquad\divi_squad;
 
 /**
- * Rest_API_Routes
+ * Rest API Routes for Extensions
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
@@ -69,21 +69,18 @@ class Extensions {
 		return array(
 			'/extensions'        => array(
 				array(
-					'methods'             => WP_REST_Server::READABLE,
-					'callback'            => array( $extensions, 'get_available_extensions' ),
-					'permission_callback' => '__return_true',
+					'methods'  => WP_REST_Server::READABLE,
+					'callback' => array( $extensions, 'get_available_extensions' ),
 				),
 			),
 			'/active_extensions' => array(
 				array(
-					'methods'             => WP_REST_Server::READABLE,
-					'callback'            => array( $this, 'get_active_extensions' ),
-					'permission_callback' => '__return_true',
+					'methods'  => WP_REST_Server::READABLE,
+					'callback' => array( $this, 'get_active_extensions' ),
 				),
 				array(
-					'methods'             => WP_REST_Server::CREATABLE,
-					'callback'            => array( $this, 'update_active_extensions' ),
-					'permission_callback' => '__return_true',
+					'methods'  => WP_REST_Server::CREATABLE,
+					'callback' => array( $this, 'update_active_extensions' ),
 				),
 			),
 		);

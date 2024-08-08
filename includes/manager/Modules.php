@@ -3,7 +3,7 @@
 namespace DiviSquad\Manager;
 
 use DiviSquad\Utils\Helper;
-use DiviSquad\Utils\WP;
+use DiviSquad\Utils\Polyfills\Str;
 use function DiviSquad\divi_squad;
 
 /**
@@ -41,6 +41,7 @@ class Modules {
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'creative-modules',
 			),
 			array(
 				'name'               => 'DualButton',
@@ -50,6 +51,7 @@ class Modules {
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'creative-modules',
 			),
 			array(
 				'name'               => 'Lottie',
@@ -59,6 +61,7 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'image-&-media-modules',
 			),
 			array(
 				'name'               => 'PostGrid',
@@ -70,6 +73,7 @@ class Modules {
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'dynamic-content-modules',
 			),
 			array(
 				'name'               => 'TypingText',
@@ -79,6 +83,7 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'creative-modules',
 			),
 			array(
 				'name'               => 'ImageMask',
@@ -88,6 +93,7 @@ class Modules {
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'image-&-media-modules',
 			),
 			array(
 				'name'               => 'FlipBox',
@@ -97,6 +103,7 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'creative-modules',
 			),
 			array(
 				'name'               => 'BusinessHours',
@@ -108,6 +115,7 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'content-elements',
 			),
 			array(
 				'name'               => 'BeforeAfterImageSlider',
@@ -117,15 +125,17 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'creative-modules',
 			),
 			array(
 				'name'               => 'ImageGallery',
 				'label'              => esc_html__( 'Image Gallery', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
-				'last_modified'      => array( '1.2.2', '1.2.3' ),
+				'last_modified'      => array( '1.2.2', '1.2.3', '1.3.0' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'image-&-media-modules',
 			),
 			array(
 				'name'               => 'FormStylerContactForm7',
@@ -136,6 +146,7 @@ class Modules {
 				'is_premium_feature' => false,
 				'type'               => 'D4',
 				'required'           => array( 'plugin' => 'contact-form-7/wp-contact-form-7.php' ),
+				'category'           => 'form-styler-modules',
 			),
 			array(
 				'name'               => 'FormStylerWPForms',
@@ -146,6 +157,7 @@ class Modules {
 				'is_premium_feature' => false,
 				'type'               => 'D4',
 				'required'           => array( 'plugin' => 'wpforms-lite/wpforms.php|wpforms/wpforms.php' ),
+				'category'           => 'form-styler-modules',
 			),
 			array(
 				'name'               => 'FormStylerGravityForms',
@@ -156,6 +168,7 @@ class Modules {
 				'is_premium_feature' => false,
 				'type'               => 'D4',
 				'required'           => array( 'plugin' => 'gravityforms/gravityforms.php' ),
+				'category'           => 'form-styler-modules',
 			),
 			array(
 				'name'               => 'PostReadingTime',
@@ -165,14 +178,17 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'dynamic-content-modules',
 			),
 			array(
 				'name'               => 'GlitchText',
 				'label'              => esc_html__( 'Glitch Text', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.3',
+				'last_modified'      => array( '1.3.0' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'creative-modules',
 			),
 			array(
 				'name'               => 'GradientText',
@@ -181,6 +197,16 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
+				'category'           => 'creative-modules',
+			),
+			array(
+				'name'               => 'ScrollingText',
+				'label'              => esc_html__( 'Scrolling Text', 'squad-modules-for-divi' ),
+				'release_version'    => '1.3.0',
+				'is_default_active'  => false,
+				'is_premium_feature' => false,
+				'type'               => 'D4',
+				'category'           => 'creative-modules',
 			),
 		);
 
@@ -264,9 +290,9 @@ class Modules {
 	/**
 	 * Load the module class.
 	 *
-	 * @param string      $path   The module class path.
-	 * @param string      $module The module name.
-	 * @param string      $type   The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
+	 * @param string      $path            The module class path.
+	 * @param string      $module          The module name.
+	 * @param string      $type            The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
 	 * @param object|null $dependency_tree `DependencyTree` class is used as a utility to manage loading classes in a meaningful manner.
 	 *
 	 * @return void

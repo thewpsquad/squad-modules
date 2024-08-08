@@ -11,7 +11,7 @@ use WP_REST_Server;
 use function DiviSquad\divi_squad;
 
 /**
- * Rest_API_Routes
+ * Rest API Routes for Modules
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
@@ -84,21 +84,18 @@ class Modules {
 		return array(
 			'/modules'        => array(
 				array(
-					'methods'             => WP_REST_Server::READABLE,
-					'callback'            => array( $modules, 'get_available_modules' ),
-					'permission_callback' => '__return_true',
+					'methods'  => WP_REST_Server::READABLE,
+					'callback' => array( $modules, 'get_available_modules' ),
 				),
 			),
 			'/active_modules' => array(
 				array(
-					'methods'             => WP_REST_Server::READABLE,
-					'callback'            => array( $this, 'get_active_modules' ),
-					'permission_callback' => '__return_true',
+					'methods'  => WP_REST_Server::READABLE,
+					'callback' => array( $this, 'get_active_modules' ),
 				),
 				array(
-					'methods'             => WP_REST_Server::CREATABLE,
-					'callback'            => array( $this, 'update_active_modules' ),
-					'permission_callback' => '__return_true',
+					'methods'  => WP_REST_Server::CREATABLE,
+					'callback' => array( $this, 'update_active_modules' ),
 				),
 			),
 		);
