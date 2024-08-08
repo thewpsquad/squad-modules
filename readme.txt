@@ -1,11 +1,11 @@
 === Squad Modules for Divi ===
 Contributors: wpsquad, mralaminahamed
-Donate link: https://thewpsquad.com/
-Tags: divi, modules, builder, divi page buider, extra theme, divi theme, wordpress
+Donate link: https://squadmodules.com/
+Tags: divi, divi module, divi theme, divi page builder, divi builder, extra theme, divi extensions, divi addons, divi plugin, divi modules
 Requires at least: 5.8
 Tested up to: 6.2
 Requires PHP: 5.6
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -70,11 +70,17 @@ Yes, we offer support for Squad Modules for Divi. If you encounter any issues or
 
 == Screenshots ==
 
-1. Plugin Dashboard
-   *The Squad Modules for Divi dashboard for convenient module management and settings.*
-
-2. Module Dashboard
-   *The dashboard where you can manage and configure Squad Modules for Divi modules.*
+1. Plugin Dashboard - The Squad Modules for Divi dashboard for convenient module management and settings.
+2. Module Dashboard - The dashboard where you can manage and configure Squad Modules for Divi modules.
+3. Module Selection in the Divi Builder - All modules are stored in a folder, so you can easily add a new module.
+4. Advanced Divider Module - A preview of the Advanced Divider module, showcasing its features and customization options.
+5. Before After Image Slider Module - A preview of the Before After Image Slider module, showcasing its features and customization options.
+6. Business Hours Module - A preview of the Business Hours module, showcasing its features and customization options.
+7. Dual Button Module - A preview of the Dual Button module, showcasing its features and customization options.
+8. Flip Box Module - A preview of the Flip Box module, showcasing its features and customization options.
+9. Image Mask Module - A preview of the Image Mask module, showcasing its features and customization options.
+10. Lottie Module - A preview of the Lottie module, showcasing its features and customization options.
+11. Typing Text Module - A preview of the Typing Text module, showcasing its features and customization options.
 
 
 == Upgrade Notice ==
@@ -85,7 +91,11 @@ Yes, we offer support for Squad Modules for Divi. If you encounter any issues or
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.1 =
+* Added Assets for wp plugin directory
+* Improved: Typing Text, Before After Image Slider, Lottie, Advanced Divider Modules
+
+= 1.0.1 =
 * Initial release of Squad Modules for Divi
 * Added 9 elegant Divi modules
 * Basic customization options
@@ -94,3 +104,4 @@ Yes, we offer support for Squad Modules for Divi. If you encounter any issues or
 == License ==
 
 Squad Modules for Divi is licensed under the GPLv3. You can find more information on the license [here](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
