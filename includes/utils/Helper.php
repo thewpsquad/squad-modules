@@ -1,5 +1,15 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * Generic helper.
+ *
+ * @since       1.0.0
+ * @package     squad-modules-for-divi
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
+ * @license     GPL-3.0-only
+ */
+
 namespace DiviSquad\Utils;
 
 /**
@@ -139,7 +149,7 @@ class Helper {
 			if ( ! empty( $key_value_pairs ) ) {
 				foreach ( $key_value_pairs as $key_value_pair ) {
 					list( $key, $value ) = explode( '=', $key_value_pair );
-					$result[ $key ]      = $value;
+					$result[ $key ] = $value;
 				}
 
 				return array_filter( $result );
@@ -158,8 +168,8 @@ class Helper {
 	 * </code>
 	 *
 	 * @param array  $array_data The input array.
-	 * @param string $on    The column number.
-	 * @param int    $order The optional second parameter flags may be used to modify the sorting behavior using these values.
+	 * @param string $on         The column number.
+	 * @param int    $order      The optional second parameter flags may be used to modify the sorting behavior using these values.
 	 *
 	 * @return array
 	 */

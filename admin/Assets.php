@@ -12,7 +12,8 @@
 
 namespace DiviSquad\Admin;
 
-use DiviSquad\Admin\Assets\Utils;
+use DiviSquad\Utils\Asset;
+use DiviSquad\Utils\WP;
 use function DiviSquad\divi_squad;
 use function get_rest_url;
 
@@ -56,13 +57,13 @@ class Assets {
 	 */
 	public function wp_hook_enqueue_plugin_admin_asset( $hook_suffix ) {
 		// Load plugin asset in the all admin pages.
-		Assets\Utils::asset_enqueue( 'admin-common-free', 'build/admin/scripts/admin-common.js' );
-		Assets\Utils::style_enqueue( 'admin-common-free', 'build/admin/styles/admin-common.css' );
+		Asset::asset_enqueue( 'admin-common-free', 'build/admin/scripts/admin-common.js' );
+		Asset::style_enqueue( 'admin-common-free', 'build/admin/styles/admin-common.css' );
 
 		// Load plugin asset in the allowed admin pages only.
 		if ( in_array( $hook_suffix, self::get_plugin_asset_allowed_pages(), true ) ) {
-			Utils::asset_enqueue( 'admin-free', 'build/admin/scripts/admin-script.js' );
-			Utils::style_enqueue( 'admin-free', 'build/admin/styles/admin-style.css' );
+			Asset::asset_enqueue( 'admin-free', 'build/admin/scripts/admin-script.js' );
+			Asset::style_enqueue( 'admin-free', 'build/admin/styles/admin-style.css' );
 
 			// Load localize scripts
 			$admin_localize_scripts = $this->wp_localize_script_data();
@@ -150,8 +151,9 @@ class Assets {
 				'save_changes'                => esc_html__( 'Save Changes', 'squad-modules-for-divi' ),
 				'extensions_manage_title'     => esc_html__( 'Manage Extensions', 'squad-modules-for-divi' ),
 				'badge_text_new'              => esc_html__( 'NEW', 'squad-modules-for-divi' ),
-				'badge_text_updated'         => esc_html__( 'Updated', 'squad-modules-for-divi' ),
+				'badge_text_updated'          => esc_html__( 'Updated', 'squad-modules-for-divi' ),
 			),
+			'plugins'  => WP::get_active_plugins(),
 		);
 	}
 }

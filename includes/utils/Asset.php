@@ -1,7 +1,7 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
 /**
- * Define asset loading helper class.
+ * Asset loading helper.
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
@@ -10,7 +10,7 @@
  * @license     GPL-3.0-only
  */
 
-namespace DiviSquad\Admin\Assets;
+namespace DiviSquad\Utils;
 
 use function DiviSquad\divi_squad;
 
@@ -20,7 +20,7 @@ use function DiviSquad\divi_squad;
  * @since       1.0.0
  * @package     squad-modules-for-divi
  */
-class Utils {
+class Asset {
 
 	/**
 	 * Get the version

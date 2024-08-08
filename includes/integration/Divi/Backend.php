@@ -185,27 +185,27 @@ class Backend extends BuilderBackendPlaceholder {
 
 		$definitions = array(
 			'defaults' => array(
-				'disq_accordion'       => array(
+				'disq_accordion'                 => array(
 					'accordion_open_icon'  => '&#x4c;||divi||400',
 					'accordion_close_icon' => '&#x4b;||divi||400',
 					'content'              => et_fb_process_shortcode( $accordion_child_shortcodes ),
 				),
-				'disq_accordion_child' => array_merge(
+				'disq_accordion_child'           => array_merge(
 					$accordion_child_defaults,
 					array(
 						'content' => $defaults['body'],
 					)
 				),
-				'disq_divider'         => array(
+				'disq_divider'                   => array(
 					'divider_icon' => $defaults['icon']['check'],
 				),
-				'disq_dual_button'     => array(
+				'disq_dual_button'               => array(
 					'left_button_text'  => $defaults['button'],
 					'left_button_icon'  => $defaults['icon']['check'],
 					'right_button_text' => $defaults['button_two'],
 					'right_button_icon' => $defaults['icon']['arrow'],
 				),
-				'disq_typing_text'     => array(
+				'disq_typing_text'               => array(
 					'prefix_text' => _x( 'Your', 'Modules dummy content', 'squad-modules-for-divi' ),
 					'typing_text' => wp_json_encode(
 						array(
@@ -218,10 +218,10 @@ class Backend extends BuilderBackendPlaceholder {
 					),
 					'suffix_text' => _x( 'Goes Here', 'Modules dummy content', 'squad-modules-for-divi' ),
 				),
-				'disq_image_mask'      => array(
+				'disq_image_mask'                => array(
 					'image' => $defaults['image']['landscape'],
 				),
-				'disq_post_grid'       => array(
+				'disq_post_grid'                 => array(
 					'content'                            => et_fb_process_shortcode( $post_grid_child_shortcodes ),
 					'list_number_of_columns_last_edited' => 'on|desktop',
 					'list_number_of_columns'             => '3',
@@ -234,8 +234,8 @@ class Backend extends BuilderBackendPlaceholder {
 					'pagination_next_entries_text'       => _x( 'Next', 'Modules dummy content', 'squad-modules-for-divi' ),
 					'load_more_button_text'              => _x( 'Load More', 'Modules dummy content', 'squad-modules-for-divi' ),
 				),
-				'disq_post_grid_child' => $post_grid_child_defaults,
-				'disq_flip_box'        => array(
+				'disq_post_grid_child'           => $post_grid_child_defaults,
+				'disq_flip_box'                  => array(
 					'front_title'                => _x( 'Flip Right', 'Modules dummy content', 'squad-modules-for-divi' ),
 					'front_content'              => $defaults['body'],
 					'back_button__enable'        => 'on',
@@ -245,16 +245,16 @@ class Backend extends BuilderBackendPlaceholder {
 					'back_button_url'            => esc_url( 'https://squadmodules.com/module/flip-box' ),
 					'back_button_url_new_window' => 'on',
 				),
-				'disq_business_hours'  => array(
+				'disq_business_hours'            => array(
 					'content'          => et_fb_process_shortcode( $business_day_child_shortcodes ),
 					'title'            => _x( 'Business Hours', 'Modules dummy content', 'squad-modules-for-divi' ),
 					'day_elements_gap' => '20px',
 				),
-				'disq_business_day'    => array(
+				'disq_business_day'              => array(
 					'day'  => _x( 'Sun Day', 'Modules dummy content', 'squad-modules-for-divi' ),
 					'time' => _x( '10AM - 5PM', 'Modules dummy content', 'squad-modules-for-divi' ),
 				),
-				'disq_bai_slider'      => array(
+				'disq_bai_slider'                => array(
 					'before_image'                      => $defaults['image']['landscape'],
 					'after_image'                       => $defaults['image']['landscape'],
 					'before_label__enable'              => 'on',
@@ -268,7 +268,14 @@ class Backend extends BuilderBackendPlaceholder {
 					'slide_control_smoothing__enable'   => 'on',
 					'slide_control_smoothing_amount'    => 100,
 				),
-				'disq_form_styler_cf7' => array(),
+				'disq_form_styler_cf7'           => array(),
+				'disq_form_styler_wpforms'       => array(),
+				'disq_form_styler_gravity_forms' => array(),
+				'disq_post_reading_time'         => array(
+					'time_prefix_text'          => _x( 'Reading Time', 'Modules dummy content', 'squad-modules-for-divi' ),
+					'time_suffix_text'          => _x( 'minutes', 'Modules dummy content', 'squad-modules-for-divi' ),
+					'time_suffix_text_singular' => _x( 'minute', 'Modules dummy content', 'squad-modules-for-divi' ),
+				),
 			),
 		);
 
