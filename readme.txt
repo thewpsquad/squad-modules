@@ -3,19 +3,19 @@ Contributors: wpsquad, mralaminahamed
 Donate link: https://www.buymeacoffee.com/mralaminahamed
 Tags: divi, divi module, divi theme, divi builder, divi page builder
 Requires at least: 5.0.0
-Tested up to: 6.5
+Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-The Essential Divi plugin, offering 25+ stunning free modules like Advanced Divider, Flip box, and more.
+The Essential Divi plugin, offering 20+ stunning free modules like Advanced Divider, Flip box, and more.
 
 == Description ==
 
 = A All-in-One advanced Divi plugin for the Divi Page Builder =
 
-Enhance your Divi page building experience with 30+ creative modules and extensions. Add powers to your page builder using our easy-to-use modules those were designed to make your next WordPress page and posts design easier and prettier than ever before.
+Enhance your Divi page building experience with 20+ powerful free modules and extensions. Add powers to your page builder using our easy-to-use modules that were designed to make your next WordPress page and posts design easier and prettier than ever before.
 
 ### Explore these helpful resources:
 <ul>
@@ -37,7 +37,7 @@ Enable and disable individual modules to make your page loading faster and smoot
 ### Regular Updates
 Constantly being updated with new features and improvements. You can expect regular updates that add new modules, features, and bug fixes.
 
-== Over 24 Free Divi Modules ==
+== Over 20+ Powerful Free Divi Modules ==
 Squad Modules Lite includes over 20+ free modules that you can use to create stunning layouts, add interactive elements, and engage your website visitors.
 1. **Divi Advanced Divider Module**: Create visually appealing dividers with various styles, shapes, and customization options.
 2. **Divi Before After Image Slider Module**: Engage your visitors with interactive image comparisons.
@@ -64,8 +64,8 @@ Squad Modules Lite includes over 20+ free modules that you can use to create stu
 23. **Divi Form Styler: Ninja Forms Module**: Effortlessly customize Ninja Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
 24. **Divi Form Styler: Fluent Forms Module**: Effortlessly customize Fluent Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
 
-== Free Extensions ==
-Squad Modules Lite also includes 5 extensions that can help you take your website to the next level:
+== Powerful Free Extensions ==
+Squad Modules Lite also includes 5 free extensions that can help you take your website to the next level:
 
 1. **Copy Post or Page (Multisite Supported)**: The best extension to easily make duplicates of your posts & pages them in one go.
 2. **Divi Library Shortcode**: This extension adds a shortcode column to the Divi Library, so you can easily insert any layout into a Divi module or PHP file by using ```[disq_divi_library_layout id="123"]```.
@@ -78,7 +78,7 @@ Many more advanced Divi Modules and Extensions coming soon...
 
 ### [Squad Modules Pro](https://squadmodules.com/pricing?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink)
 
-[Squad Modules Pro](https://squadmodules.com/pricing?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink) elevates your Divi experience by providing over 30 creative modules and extensions. These easy-to-use building blocks empower you to design stunning and functional WordPress pages and posts faster than ever before.
+[Squad Modules Pro](https://squadmodules.com/pricing?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink) elevates your Divi experience by providing over 30+ powerful modules and extensions. These easy-to-use building blocks empower you to design stunning and functional WordPress pages and posts faster than ever before.
 
 ### Here's why [Squad Modules Pro](https://squadmodules.com/pricing?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink) is a game-changer:
 1. **Effortless Design**: Drag-and-drop pre-built modules to instantly add functionality and style to your pages.
@@ -178,23 +178,32 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 13. Typing Text Module - This is a module that allows you to create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 
 == Upgrade Notice ==
-= 2.0.0 =
-* Introduce Squad Modules Pro
-* Added: Loco translate support
-* Added: Support for performant translation files in PHP format
+= 2.1.0 =
+* Some bug fixes and improvements.
 
 == Changelog ==
-= 2.0.0 (01-02-2024) =
+= 2.1.0 (03-04-2024) =
 
 **New Features:**
 
-* Introduce Squad Modules Pro
-* Introduce the Author Avatar element for Post Grid
-* Loco translate support
+* Introduced loading preview for modules and extensions at the dashboard
+* Introduced available professional modules in the lite version for preview
+* Introduced upgrade to professional plan feature for the lite version
+* Introduced Plugin localization support with JSON format.
+
+**Bug Fixes:**
+
+* Fixed the plugin name in the plugin dashboard at affiliate page.
+* Fixed all dependent modules (Contact Form 7, Fluent Forms, Ninja Forms, WP Forms, Gravity Forms) is not loaded in the divi builder event when the module is active.
+* Fixed the issue with the Fluent Form Styler module where the form is not styled properly.
+* Fixed the issue with the Contact Form 7 Styler module where the form button is not styled properly.
+* Fixed the issue with the WP Form Styler module where the module will be crashed when user selects a form.
+* Fixed the issue with Third-party plugin break the ui of the Divi Squad Dashboard.
+
 
 **✨ Improvements:**
 
-* WordPress 6.5.0 compatible
-* Support for performant translation files in PHP format
+* Tested for compatibility with Divi Theme 4.24.3
+* Tested for compatibility with WordPress 6.2.
 
 [Read more](https://squadmodules.com/changelog)

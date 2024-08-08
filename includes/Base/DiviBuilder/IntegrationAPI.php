@@ -13,6 +13,7 @@ namespace DiviSquad\Base\DiviBuilder;
 
 use DiviSquad\Utils\Asset;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\WP;
 use function add_action;
 use function et_builder_bfb_enabled;
 use function et_builder_enabled_for_post;
@@ -78,13 +79,16 @@ abstract class IntegrationAPI extends IntegrationAPIBase {
 			$script_asset_deps = array( 'jquery', 'react', 'react-dom' );
 			$script_asset_path = Asset::module_asset_path( 'builder-bundle' );
 			Asset::asset_enqueue( "{$this->name}-builder", $script_asset_path, $script_asset_deps, true );
+
+			// Load script translations.
+			WP::set_script_translations( "{$this->name}-builder", divi_squad()->get_name(), divi_squad()->get_localize_path() );
 		}
 
 		// Enqueues styles for divi builder including theme and plugin.
 		if ( ( is_singular() && et_builder_enabled_for_post( get_the_ID() ) ) || et_fb_is_theme_builder_used_on_page() ) {
+			$style_handle_name = et_core_is_fb_enabled() ? "{$this->name}-builder" : $this->name;
 			$style_asset_name  = et_is_builder_plugin_active() && ! et_core_is_fb_enabled() ? 'builder-style-dbp' : 'builder-style';
 			$style_asset_path  = Asset::module_asset_path( $style_asset_name, array( 'ext' => 'css' ) );
-			$style_handle_name = et_core_is_fb_enabled() ? "{$this->name}-builder" : $this->name;
 			Asset::style_enqueue( $style_handle_name, $style_asset_path, array(), 'all', true );
 		}
 

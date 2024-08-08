@@ -89,14 +89,59 @@ trait Forms {
 		);
 
 		// Collect all forms from contact form 7.
-		if ( 'cf7' === $form_type && 0 === count( self::$form_collections[ $form_type ][ $collection ] ) && class_exists( 'WPCF7' ) ) {
+		if ( 'cf7' === $form_type ) {
+			self::get_cf7_forms( $collection );
+		}
+
+		// Collect all forms from fluent forms.
+		if ( 'fluent_forms' === $form_type ) {
+			self::get_fluent_forms( $collection );
+		}
+
+		// Collect all forms from gravity forms.
+		if ( 'gravity_forms' === $form_type ) {
+			self::get_gravity_forms( $collection );
+		}
+
+		// Collect all forms from ninja forms.
+		if ( 'ninja_forms' === $form_type ) {
+			self::get_ninja_forms( $collection );
+		}
+
+		// Collect all forms from wp forms.
+		if ( 'wpforms' === $form_type ) {
+			self::get_wp_forms( $collection );
+		}
+
+		return array_merge( $forms, self::$form_collections[ $form_type ][ $collection ] );
+	}
+
+	/**
+	 * Get all contact form 7 forms.
+	 *
+	 * @param string $collection The collection type of form data.
+	 *
+	 * @return array
+	 */
+	private static function get_cf7_forms( $collection = 'title' ) {
+		// Check if the collection is already set.
+		if ( ! empty( self::$form_collections['cf7'][ $collection ] ) ) {
+			return self::$form_collections['cf7'][ $collection ];
+		}
+
+		// Set the default value for the collection.
+		self::$form_collections['cf7'][ $collection ] = array();
+
+		// Collect all forms from contact form 7.
+		if ( class_exists( 'WPCF7' ) ) {
 			$args = array(
 				'post_type'      => 'wpcf7_contact_form',
-				'posts_per_page' => - 1,
+				'posts_per_page' => -1,
 			);
 
 			// Collect available contact form from the database.
 			$forms = get_posts( $args );
+
 			if ( count( $forms ) ) {
 				/**
 				 * Collect form iad and title based on conditions.
@@ -105,13 +150,36 @@ trait Forms {
 				 * @var WP_Post   $form
 				 */
 				foreach ( $forms as $form ) {
-					self::$form_collections[ $form_type ][ $collection ][ md5( $form->ID ) ] = 'title' === $collection ? $form->post_title : $form->ID;
+					$hash_id   = md5( $form->ID );
+					$form_data = 'title' === $collection ? $form->post_title : $form->ID;
+
+					// Store the form data in the collection.
+					self::$form_collections['cf7'][ $collection ][ $hash_id ] = $form_data;
 				}
 			}
 		}
 
-		// Collect all forms from fluet forms.
-		if ( 'fluetforms' === $form_type && count( self::$form_collections[ $form_type ][ $collection ] ) === 0 && function_exists( 'wpFluentForm' ) ) {
+		return self::$form_collections['cf7'][ $collection ];
+	}
+
+	/**
+	 * Get all fluent forms.
+	 *
+	 * @param string $collection The collection type of form data.
+	 *
+	 * @return array
+	 */
+	private static function get_fluent_forms( $collection = 'title' ) {
+		// Check if the collection is already set.
+		if ( ! empty( self::$form_collections['fluent_forms'][ $collection ] ) ) {
+			return self::$form_collections['fluent_forms'][ $collection ];
+		}
+
+		// Set the default value for the collection.
+		self::$form_collections['fluent_forms'][ $collection ] = array();
+
+		// Collect all forms from fluent forms.
+		if ( function_exists( 'wpFluentForm' ) ) {
 			// Collect available contact form from the database.
 			$forms_table = \wpFluent()->table( 'fluentform_forms' );
 			$collections = $forms_table->select( array( 'id', 'title' ) )->orderBy( 'id', 'DESC' )->get();
@@ -119,27 +187,73 @@ trait Forms {
 			/**
 			 * Collect form iad and title based on conditions.
 			 *
-			 * @var array  $collections
-			 * @var object $form
+			 * @var \FluentForm\Framework\Database\Query\Builder[]|array  $collections
+			 * @var \FluentForm\Framework\Database\Query\Builder|object $form
 			 */
 			foreach ( $collections as $form ) {
-				self::$form_collections[ $form_type ][ $collection ][ md5( $form->id ) ] = 'title' === $collection ? $form->title : $form->id;
+				$hash_id   = md5( $form->id );
+				$form_data = 'title' === $collection ? $form->title : $form->id;
+
+				// Store the form data in the collection.
+				self::$form_collections['fluent_forms'][ $collection ][ $hash_id ] = $form_data;
 			}
 		}
 
+		return self::$form_collections['fluent_forms'][ $collection ];
+	}
+
+	/**
+	 * Get all gravity forms.
+	 *
+	 * @param string $collection The collection type of form data.
+	 *
+	 * @return array
+	 */
+	private static function get_gravity_forms( $collection = 'title' ) {
+		// Check if the collection is already set.
+		if ( ! empty( self::$form_collections['gravity_forms'][ $collection ] ) ) {
+			return self::$form_collections['gravity_forms'][ $collection ];
+		}
+
+		// Set the default value for the collection.
+		self::$form_collections['gravity_forms'][ $collection ] = array();
+
 		// Collect all forms from gravity forms.
-		if ( 'gravityforms' === $form_type && count( self::$form_collections[ $form_type ][ $collection ] ) === 0 && class_exists( '\GFCommon' ) && class_exists( '\RGFormsModel' ) ) {
+		if ( class_exists( '\GFCommon' ) && class_exists( '\RGFormsModel' ) ) {
 			// Collect available contact form from the database.
 			$forms = \RGFormsModel::get_forms( null, 'title' );
 			if ( count( $forms ) ) {
 				foreach ( $forms as $form ) {
-					self::$form_collections[ $form_type ][ $collection ][ md5( $form->id ) ] = 'title' === $collection ? $form->title : $form->id;
+					$hash_id   = md5( $form->id );
+					$form_data = 'title' === $collection ? $form->title : $form->id;
+
+					// Store the form data in the collection.
+					self::$form_collections['gravity_forms'][ $collection ][ $hash_id ] = $form_data;
 				}
 			}
 		}
 
+		return self::$form_collections['gravity_forms'][ $collection ];
+	}
+
+	/**
+	 * Get all wp forms.
+	 *
+	 * @param string $collection The collection type of form data.
+	 *
+	 * @return array
+	 */
+	private static function get_ninja_forms( $collection = 'title' ) {
+		// Check if the collection is already set.
+		if ( ! empty( self::$form_collections['ninja_forms'][ $collection ] ) ) {
+			return self::$form_collections['ninja_forms'][ $collection ];
+		}
+
+		// Set the default value for the collection.
+		self::$form_collections['ninja_forms'][ $collection ] = array();
+
 		// Collect all forms from ninja forms.
-		if ( 'ninjaforms' === $form_type && count( self::$form_collections[ $form_type ][ $collection ] ) === 0 && function_exists( '\Ninja_Forms' ) ) {
+		if ( function_exists( '\Ninja_Forms' ) ) {
 			// Collect available wp form from a database.
 			$ninja_forms = \Ninja_Forms()->form()->get_forms();
 			if ( is_array( $ninja_forms ) && count( $ninja_forms ) ) {
@@ -150,12 +264,36 @@ trait Forms {
 				 * @var \NF_Abstracts_Model   $form
 				 */
 				foreach ( $ninja_forms as $form ) {
-					self::$form_collections[ $form_type ][ $collection ][ md5( $form->get_id() ) ] = 'title' === $collection ? $form->get_setting( 'title' ) : $form->get_id();
+					$hash_id   = md5( $form->get_id() );
+					$form_data = 'title' === $collection ? $form->get_setting( 'title' ) : $form->get_id();
+
+					// Store the form data in the collection.
+					self::$form_collections['gravity_forms'][ $collection ][ $hash_id ] = $form_data;
 				}
 			}
 		}
+
+		return self::$form_collections['ninja_forms'][ $collection ];
+	}
+
+	/**
+	 * Get all wp forms.
+	 *
+	 * @param string $collection The collection type of form data.
+	 *
+	 * @return array
+	 */
+	private static function get_wp_forms( $collection = 'title' ) {
+		// Check if the collection is already set.
+		if ( ! empty( self::$form_collections['wpforms'][ $collection ] ) ) {
+			return self::$form_collections['wpforms'][ $collection ];
+		}
+
+		// Set the default value for the collection.
+		self::$form_collections['wpforms'][ $collection ] = array();
+
 		// Collect all forms from wp forms.
-		if ( 'wpforms' === $form_type && count( self::$form_collections[ $form_type ][ $collection ] ) === 0 && function_exists( 'wpforms' ) ) {
+		if ( function_exists( 'wpforms' ) ) {
 			// Collect available wp form from a database.
 			$args = array(
 				'post_type'      => 'wpforms',
@@ -172,11 +310,15 @@ trait Forms {
 				 * @var WP_Post   $form
 				 */
 				foreach ( $forms as $form ) {
-					self::$form_collections[ $form_type ][ $collection ][ md5( $form->ID ) ] = 'title' === $collection ? $form->post_title : $form->ID;
+					$hash_id   = md5( $form->ID );
+					$form_data = 'title' === $collection ? $form->post_title : $form->ID;
+
+					// Store the form data in the collection.
+					self::$form_collections['wpforms'][ $collection ][ $hash_id ] = $form_data;
 				}
 			}
 		}
 
-		return array_merge( $forms, self::$form_collections[ $form_type ][ $collection ] );
+		return self::$form_collections['wpforms'][ $collection ];
 	}
 }

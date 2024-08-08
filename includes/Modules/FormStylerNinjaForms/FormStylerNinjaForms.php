@@ -60,7 +60,7 @@ class FormStylerNinjaForms extends Squad_Form_Styler {
 				esc_html__( 'Form', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose the ninja form.', 'squad-modules-for-divi' ),
-					'options'          => Utils::form_get_all_items( 'ninjaforms' ),
+					'options'          => Utils::form_get_all_items( 'ninja_forms' ),
 					'computed_affects' => array(
 						'__forms',
 					),
@@ -712,7 +712,7 @@ class FormStylerNinjaForms extends Squad_Form_Styler {
 		// Show a notice message in the frontend if the form is not selected.
 		return sprintf(
 			'<div class="divi_squad_notice">%s</div>',
-			esc_html__( 'Please select a ninja form.', 'squad-modules-for-divi' )
+			esc_html__( 'Please select a form.', 'squad-modules-for-divi' )
 		);
 	}
 
@@ -727,7 +727,7 @@ class FormStylerNinjaForms extends Squad_Form_Styler {
 	 */
 	public static function disq_form_styler__get_form_html( $attrs, $content = null ) {
 		// Collect all posts from the database.
-		$collection = Utils::form_get_all_items( 'ninjaforms', 'id' );
+		$collection = Utils::form_get_all_items( 'ninja_forms', 'id' );
 		if ( ! empty( $attrs['form_id'] ) && Utils::$default_form_id !== $attrs['form_id'] && isset( $collection[ $attrs['form_id'] ] ) ) {
 			// Collect html output from shortcode.
 			ob_start();

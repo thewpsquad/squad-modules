@@ -98,50 +98,13 @@ final class Freemius {
 			self::$fs->add_filter( 'deactivate_on_activation', '__return_false' );
 			self::$fs->add_filter( 'show_deactivation_subscription_cancellation', '__return_false' );
 			self::$fs->add_filter( 'is_submenu_visible', array( $this, 'fs_hook_is_submenu_visible' ), 10, 2 );
-
-			// Notice
-			// Ref: (another step) vendor/freemius/wordpress-sdk/includes/class-freemius.php:7223
-			// Ref: (download pro plugin) vendor/freemius/wordpress-sdk/includes/class-freemius.php:24788
-			// Ref: vendor/freemius/wordpress-sdk/includes/managers/class-fs-admin-notice-manager.php:269
 			self::$fs->add_filter( 'show_admin_notice', array( $this, 'fs_hook_show_admin_notice' ), 10, 2 );
-
-			// Ref: vendor/freemius/wordpress-sdk/includes/class-freemius.php:25632
-			// Ref: vendor/freemius/wordpress-sdk/templates/plugin-icon.php:21
-			// Ref: vendor/freemius/wordpress-sdk/templates/connect.php:162
 			self::$fs->add_filter( 'plugin_icon', array( $this, 'fs_hook_plugin_icon' ) );
-
-			// Plugin title
-			// Ref: vendor/freemius/wordpress-sdk/templates/account.php:404
-			// Ref: vendor/freemius/wordpress-sdk/includes/class-freemius.php:10514
 			self::$fs->add_filter( 'plugin_title', array( $this, 'fs_hook_plugin_title' ) );
-
-			// Plugin Version
-			// Ref: vendor/freemius/wordpress-sdk/templates/account.php:448
-			// Ref: vendor/freemius/wordpress-sdk/includes/class-freemius.php:10500
 			self::$fs->add_filter( 'plugin_version', array( $this, 'fs_hook_plugin_version' ) );
-
-			// Ref: vendor/freemius/wordpress-sdk/includes/class-freemius.php:23479
-			// Ref: vendor/freemius/wordpress-sdk/includes/class-freemius.php:23548
-			// Ref: vendor/freemius/wordpress-sdk/includes/class-freemius.php:23525
 			self::$fs->add_filter( 'templates/connect.php', array( $this, 'fs_hook_get_overrides_template' ) );
 			self::$fs->add_filter( 'templates/account.php', array( $this, 'fs_hook_get_overrides_account_template' ) );
 			self::$fs->add_filter( '/forms/affiliation.php', array( $this, 'fs_hook_get_overrides_account_template' ) );
-
-			// Ref: vendor/freemius/wordpress-sdk/start.php:416
-			// Ref: vendor/freemius/wordpress-sdk/includes/class-freemius.php:10145
-			// $divi_squad_fs->add_action( 'after_uninstall', array( $self, 'fs_hook_uninstall_cleanup' ) );
-
-			// Download Button
-			// Ref: vendor/freemius/wordpress-sdk/templates/account.php:616
-
-			// Active Pro plugin
-			// Updated with new template.
-			// Ref: vendor/freemius/wordpress-sdk/includes/class-freemius.php:5739
-			// Ref: vendor/freemius/wordpress-sdk/includes/class-freemius.php:24766
-
-			// Connect mesage on premium
-			// Ref: vendor/freemius/wordpress-sdk/templates/connect.php:215
-			// self::$fs->add_filter( 'connect-message_on-premium', array( $this, 'fs_hook_connect-message_on_premium' ) );
 		}
 
 		// Add hooks at the admin area.
@@ -169,18 +132,12 @@ final class Freemius {
 	}
 
 	/**
-	 * Get the Freemius' menu list.
+	 * Verify the current screen is a squad page or not.
 	 *
-	 * @return array
+	 * @return bool
 	 */
-	public static function get_menu_lists() {
-		return array(
-			'plugins.php',
-			'toplevel_page_divi_squad_dashboard',
-			'divi-squad_page_divi_squad_dashboard-account',
-			'divi-squad_page_divi_squad_dashboard-affiliation',
-			'divi-squad_page_divi_squad_dashboard-contact',
-		);
+	public static function is_squad_page( $page_id ) {
+		return strpos( $page_id, 'divi_squad_dashboard' ) !== false;
 	}
 
 	/**
@@ -321,7 +278,7 @@ final class Freemius {
 	public function wp_hook_clean_admin_content_section() {
 		$screen = get_current_screen();
 
-		if ( $screen && in_array( $screen->id, self::get_menu_lists(), true ) ) {
+		if ( $screen && self::is_squad_page( $screen->id ) ) {
 			\Freemius::_clean_admin_content_section_hook();
 		}
 	}
@@ -338,13 +295,9 @@ final class Freemius {
 		Asset::style_enqueue( 'admin-freemius', Asset::admin_asset_path( 'admin-freemius', array( 'ext' => 'css' ) ) );
 
 		// Load special styles for freemius pages.
-		if ( in_array( $hook_suffix, self::get_menu_lists(), true ) ) {
+		if ( 'plugins.php' === $hook_suffix || self::is_squad_page( $hook_suffix ) ) {
 			Asset::style_enqueue( 'admin-components', Asset::admin_asset_path( 'admin-components', array( 'ext' => 'css' ) ) );
 			Asset::style_enqueue( 'admin', Asset::admin_asset_path( 'admin', array( 'ext' => 'css' ) ) );
 		}
-
-		// Page lists.
-		// vendor/freemius-wordpress-sdk/templates/forms/affiliation.php:96
-		// vendor/freemius-wordpress-sdk/templates/account.php:274
 	}
 }

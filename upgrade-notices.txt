@@ -1,4 +1,7 @@
 == Upgrade Notice ==
+= 2.1.0 =
+* Some bug fixes and improvements.
+
 = 2.0.0 =
 * Introduce Squad Modules Pro
 * Added: Loco translate support

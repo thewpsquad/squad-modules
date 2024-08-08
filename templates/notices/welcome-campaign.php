@@ -27,8 +27,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php
 
 			printf(
-				/* translators: 1. Welcome Message, 2. Coupon Code */
-				esc_html__( '%1$s Get a special discount and start building stunning websites today. Use code "%2$s" at checkout.' ),
+				/* Translators: %1$s is the welcome message, %2$s is the coupon code. */
+				esc_html__( '%1$s Get a special discount and start building stunning websites today. Use code "%2$s" at checkout.', 'squad-modules-for-divi' ),
 				sprintf( '<strong>%s</strong>', esc_html__( 'Unleash Your Divi Creativity with Squad Modules Pro!', 'squad-modules-for-divi' ) ),
 				'<code>WELCOME60</code>'
 			);

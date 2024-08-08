@@ -13,84 +13,91 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<style id="squad-modules-app-loader-css">
-	#squad-modules-app {
-		z-index: -1;
-	}
-
-	/**===== Squad Modules App (Preloader) =====*/
-	#squad-modules-app-loader.square {
-		display: block;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		height: 50px;
-		width: 50px;
-		margin: -25px 0 0 -25px;
-	}
-
-	#squad-modules-app-loader.square span {
-		width: 16px;
-		height: 16px;
-		background-color: #5E2EFF;
-		display: inline-block;
-		-webkit-animation: app-loader-square 1.7s infinite ease-in-out both;
-		animation: app-loader-square 1.7s infinite ease-in-out both;
-	}
-
-	#squad-modules-app-loader.square span:nth-child(1) {
-		left: 0;
-		-webkit-animation-delay: 0.1s;
-		animation-delay: 0.1s;
-	}
-
-	#squad-modules-app-loader.square span:nth-child(2) {
-		left: 15px;
-		-webkit-animation-delay: 0.6s;
-		animation-delay: 0.6s;
-	}
-
-	#squad-modules-app-loader.square span:nth-child(3) {
-		left: 30px;
-		-webkit-animation-delay: 1.1s;
-		animation-delay: 1.1s;
-	}
-
-	#squad-modules-app-loader.square span:nth-child(4) {
-		left: 45px;
-		-webkit-animation-delay: 1.5s;
-		animation-delay: 1.5s;
-	}
-
-	@keyframes app-loader-square {
-		0% {
-			transform: scale(0);
-			opacity: 0;
+<main id="squad-modules-app" class="squad-components">
+	<style id='squad-modules-app-loader-css'>
+		/* Resting admin styles*/
+		body #wpwrap #wpcontent {
+			padding-left: 0;
 		}
-		50% {
-			transform: scale(1);
-			opacity: 1;
-		}
-		100% {
-			transform: rotate(60deg);
-			opacity: .5;
-		}
-	}
 
-	@-webkit-keyframes app-loader-square {
-		0% {
-			transform: scale(0);
-			opacity: 0;
+		body #wpwrap #wpbody-content {
+			padding-bottom: 0;
 		}
-		50% {
-			transform: scale(1);
-			opacity: 1;
+
+		#squad-modules-app.squad-components {
+			position: relative;
+			display: block;
+			background-color: #fff;
+			width: initial;
+			max-width: 2560px;
+			min-height: 85vmin;
+			font-size: 16px;
+			color: #000;
 		}
-		100% {
-			transform: rotate(60deg);
-			opacity: .5;
+
+		/**===== Squad Modules App (Preloader) =====*/
+		.squad-modules-app-loader {
+			position: absolute;
+			top: calc(50% - 120px);
+			left: calc(50% - 40px);
+			z-index: 200000;
+			width: 40px;
+			height: 40px;
+			margin: 0 auto;
+			border-top: 6px solid rgba(94, 46, 255, 1);
+			border-right: 6px solid rgba(94, 46, 255, 0.48);
+			border-bottom: 6px solid rgba(94, 46, 255, 1);
+			border-left: 6px solid rgba(94, 46, 255, 0.48);
+			border-radius: 100%;
+			-webkit-animation: ext-copy-spinner-rotation .9s infinite linear;
+			-moz-animation: ext-copy-spinner-rotation .9s infinite linear;
+			-o-animation: ext-copy-spinner-rotation .9s infinite linear;
+			animation: ext-copy-spinner-rotation .9s infinite linear;
 		}
-	}
-</style>
-<div id="squad-modules-app-loader" class="square"><span></span> <span></span> <span></span> <span></span></div>
-<section id="squad-modules-app" class="squad-components"></section>
+
+		@-webkit-keyframes ext-copy-spinner-rotation {
+
+			from {
+				-webkit-transform: rotate(0deg);
+			}
+
+			to {
+				-webkit-transform: rotate(359deg);
+			}
+		}
+
+		@-moz-keyframes ext-copy-spinner-rotation {
+
+			from {
+				-moz-transform: rotate(0deg);
+			}
+
+			to {
+				-moz-transform: rotate(359deg);
+			}
+		}
+
+		@-o-keyframes ext-copy-spinner-rotation {
+
+			from {
+				-o-transform: rotate(0deg);
+			}
+
+			to {
+				-o-transform: rotate(359deg);
+			}
+		}
+
+		@keyframes ext-copy-spinner-rotation {
+
+			from {
+				transform: rotate(0deg);
+			}
+
+			to {
+				transform: rotate(359deg);
+			}
+		}
+	</style>
+	<div class='squad-modules-app-loader'></div>
+</main>

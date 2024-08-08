@@ -16,13 +16,23 @@ if ( ! ( defined( 'ABSPATH' ) && ! wp_doing_ajax() && isset( $args ) ) ) {
 	die( 'Direct access forbidden.' );
 }
 
+// Check if the professional plugin is activated.
+$divi_squad_is_pro_licensed = divi_squad_is_pro_activated() && divi_squad_fs()->can_use_premium_code();
+
+// Verify current plugin version.
+if ( $divi_squad_is_pro_licensed && function_exists( 'divi_squad_pro' ) ) {
+	$divi_squad_version = divi_squad_pro()->get_version();
+} else {
+	$divi_squad_version = divi_squad()->get_version();
+}
+
 ?>
 
-<section id="squad-modules-app" class="squad-modules-app squad-components">
+<main id="squad-modules-app" class="squad-modules-app squad-components">
 	<div class="app-wrapper">
 		<div class="app-header">
 			<div class="app-title">
-				<div class="title-wrapper" data-badge-text="Nightly">
+				<div class="title-wrapper" data-badge-text="v<?php echo esc_attr( $divi_squad_version ); ?>">
 					<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<circle cx="200" cy="200" r="200" fill="white"></circle>
 						<path
@@ -30,10 +40,10 @@ if ( ! ( defined( 'ABSPATH' ) && ! wp_doing_ajax() && isset( $args ) ) ) {
 							fill="#5E2EFF"></path>
 					</svg>
 					<h1 class="title">
-						<?php if ( divi_squad_fs()->is_free_plan() ) : ?>
-							<?php esc_html_e( 'Squad Modules', 'squad-modules-for-divi' ); ?>
+						<?php if ( $divi_squad_is_pro_licensed ) : ?>
+							<?php esc_html_e( 'Divi Squad Pro', 'squad-modules-for-divi' ); ?>
 						<?php else : ?>
-							<?php esc_html_e( 'Squad Modules Pro', 'squad-modules-for-divi' ); ?>
+							<?php esc_html_e( 'Divi Squad', 'squad-modules-for-divi' ); ?>
 						<?php endif; ?>
 					</h1>
 				</div>
@@ -87,4 +97,4 @@ if ( ! ( defined( 'ABSPATH' ) && ! wp_doing_ajax() && isset( $args ) ) ) {
 			</div>
 		</div>
 	</div>
-</section>
+</main>
