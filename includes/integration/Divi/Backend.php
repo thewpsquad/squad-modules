@@ -1,0 +1,242 @@
+<?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+/**
+ * The Backend integration helper for Divi Builder
+ *
+ * @since       1.0.0
+ * @package     squad-modules-for-divi
+ * @author      WP Squad <support@thewpsquad.com>
+ * @license     GPL-3.0-only
+ */
+
+namespace DiviSquad\Integration\Divi;
+
+use DiviSquad\Base\BuilderBackendPlaceholder;
+use DiviSquad\Utils\Helper;
+use function et_fb_process_shortcode;
+
+/**
+ * Define integration helper functionalities for this plugin.
+ *
+ * @since      1.0.0
+ * @package    squad-modules-for-divi
+ */
+class Backend extends BuilderBackendPlaceholder {
+	/**
+	 * Filters backend data passed to the Visual Builder.
+	 * This function is used to add static helpers whose content rarely changes.
+	 * eg: google fonts, module defaults, and so on.
+	 *
+	 * @param array $exists The existed definitions.
+	 *
+	 * @return array
+	 */
+	public function static_asset_definitions( $exists = array() ) {
+		// Defaults data for modules.
+		$defaults = $this->get_modules_defaults();
+
+		// child module default data.
+		$post_grid_child_defaults = array(
+			'element_image_fullwidth__enable' => 'off',
+			'element_excerpt__enable'         => 'on',
+			'element_ex_con_length__enable'   => 'on',
+			'element_ex_con_length'           => '20',
+			'element_author_name_type'        => 'nickname',
+			'element_read_more_text'          => $defaults['read_more'],
+			'element_comments_before'         => $defaults['comments_before'],
+			'element_categories_sepa'         => ',',
+			'element_tags_sepa'               => ',',
+			'element_custom_text'             => $defaults['custom_text'],
+		);
+
+		// generate shortcode for post-grid child module.
+		$post_grid_child1 = sprintf(
+			'[disq_post_grid_child %s][/disq_post_grid_child]',
+			Helper::implode_assoc_array(
+				array_merge(
+					array( 'element' => 'image' ),
+					$post_grid_child_defaults
+				)
+			)
+		);
+		$post_grid_child2 = sprintf(
+			'[disq_post_grid_child %s][/disq_post_grid_child]',
+			Helper::implode_assoc_array(
+				array_merge(
+					array(
+						'element'           => 'title',
+						'element_title_tag' => 'h2',
+					),
+					$post_grid_child_defaults
+				)
+			)
+		);
+		$post_grid_child3 = sprintf(
+			'[disq_post_grid_child %s][/disq_post_grid_child]',
+			Helper::implode_assoc_array(
+				array_merge(
+					array( 'element' => 'content' ),
+					$post_grid_child_defaults
+				)
+			)
+		);
+		$post_grid_child4 = sprintf(
+			'[disq_post_grid_child %s][/disq_post_grid_child]',
+			Helper::implode_assoc_array(
+				array_merge(
+					array(
+						'element'           => 'date',
+						'element_date_type' => 'modified',
+					),
+					$post_grid_child_defaults
+				)
+			)
+		);
+		$post_grid_child5 = sprintf(
+			'[disq_post_grid_child %s][/disq_post_grid_child]',
+			Helper::implode_assoc_array(
+				array_merge(
+					array( 'element' => 'read_more' ),
+					$post_grid_child_defaults
+				)
+			)
+		);
+
+		// generate shortcode for business day child module.
+		$business_day_1 = sprintf(
+			'[disq_business_day day="%1$s" time="%2$s"][/disq_business_day]',
+			_x( 'Sun Day', 'Modules dummy content', 'squad-modules-for-divi' ),
+			_x( '10AM - 5PM', 'Modules dummy content', 'squad-modules-for-divi' )
+		);
+		$business_day_2 = sprintf(
+			'[disq_business_day day="%1$s" time="%2$s"][/disq_business_day]',
+			_x( 'Mon Day', 'Modules dummy content', 'squad-modules-for-divi' ),
+			_x( '10AM - 5PM', 'Modules dummy content', 'squad-modules-for-divi' )
+		);
+		$business_day_3 = sprintf(
+			'[disq_business_day day="%1$s" time="%2$s"][/disq_business_day]',
+			_x( 'Tue Day', 'Modules dummy content', 'squad-modules-for-divi' ),
+			_x( '10AM - 5PM', 'Modules dummy content', 'squad-modules-for-divi' )
+		);
+		$business_day_4 = sprintf(
+			'[disq_business_day day="%1$s" time="%2$s"][/disq_business_day]',
+			_x( 'Wed Day', 'Modules dummy content', 'squad-modules-for-divi' ),
+			_x( '10AM - 5PM', 'Modules dummy content', 'squad-modules-for-divi' )
+		);
+		$business_day_5 = sprintf(
+			'[disq_business_day day="%1$s" time="%2$s"][/disq_business_day]',
+			_x( 'Thu Day', 'Modules dummy content', 'squad-modules-for-divi' ),
+			_x( '10AM - 5PM', 'Modules dummy content', 'squad-modules-for-divi' )
+		);
+		$business_day_6 = sprintf(
+			'[disq_business_day day="%1$s" time="%2$s"][/disq_business_day]',
+			_x( 'Fri Day', 'Modules dummy content', 'squad-modules-for-divi' ),
+			_x( 'Closed', 'Modules dummy content', 'squad-modules-for-divi' )
+		);
+		$business_day_7 = sprintf(
+			'[disq_business_day day="%1$s" time="%2$s"][/disq_business_day]',
+			_x( 'Sat Day', 'Modules dummy content', 'squad-modules-for-divi' ),
+			_x( 'Closed', 'Modules dummy content', 'squad-modules-for-divi' )
+		);
+
+		$post_grid_child_shortcodes    = implode( '', array( $post_grid_child1, $post_grid_child2, $post_grid_child3, $post_grid_child4, $post_grid_child5 ) );
+		$business_day_child_shortcodes = implode( '', array( $business_day_1, $business_day_2, $business_day_3, $business_day_4, $business_day_5, $business_day_6, $business_day_7 ) );
+
+		// Single or parent module default data.
+		$post_grid_defaults      = array(
+			'content'                            => et_fb_process_shortcode( $post_grid_child_shortcodes ),
+			'list_number_of_columns_last_edited' => 'on|desktop',
+			'list_number_of_columns'             => '3',
+			'list_number_of_columns_tablet'      => '2',
+			'list_number_of_columns_phone'       => '1',
+			'list_item_gap'                      => '20px',
+			'pagination__enable'                 => 'on',
+			'pagination_numbers__enable'         => 'on',
+			'pagination_old_entries_text'        => _x( 'Older', 'Modules dummy content', 'squad-modules-for-divi' ),
+			'pagination_next_entries_text'       => _x( 'Next', 'Modules dummy content', 'squad-modules-for-divi' ),
+			'load_more_button_text'              => _x( 'Load More', 'Modules dummy content', 'squad-modules-for-divi' ),
+		);
+		$flip_box_defaults       = array(
+			'front_title'                => _x( 'Flip Right', 'Modules dummy content', 'squad-modules-for-divi' ),
+			'front_content'              => $defaults['body'],
+			'back_button__enable'        => 'on',
+			'back_button_text'           => _x( 'View More', 'Modules dummy content', 'squad-modules-for-divi' ),
+			'back_button_icon_type'      => 'icon',
+			'back_button_icon'           => '&#x35;||divi||400',
+			'back_button_url'            => esc_url( 'https://squadmodules.com/module/flip-box' ),
+			'back_button_url_new_window' => 'on',
+		);
+		$business_hours_defaults = array(
+			'content'          => et_fb_process_shortcode( $business_day_child_shortcodes ),
+			'title'            => _x( 'Business Hours', 'Modules dummy content', 'squad-modules-for-divi' ),
+			'day_elements_gap' => '20px',
+		);
+
+		$definitions = array(
+			'defaults' => array(
+				'disq_divider'         => array(
+					'divider_icon' => $defaults['icon']['check'],
+				),
+				'disq_dual_button'     => array(
+					'left_button_text'  => $defaults['button'],
+					'left_button_icon'  => $defaults['icon']['check'],
+					'right_button_text' => $defaults['button_two'],
+					'right_button_icon' => $defaults['icon']['arrow'],
+				),
+				'disq_typing_text'     => array(
+					'prefix_text' => _x( 'Your', 'Modules dummy content', 'squad-modules-for-divi' ),
+					'typing_text' => wp_json_encode(
+						array(
+							array(
+								'value'   => _x( 'Typing Text', 'Modules dummy content', 'squad-modules-for-divi' ),
+								'checked' => 0,
+								'dragID'  => - 1,
+							),
+						)
+					),
+					'suffix_text' => _x( 'Goes Here', 'Modules dummy content', 'squad-modules-for-divi' ),
+				),
+				'disq_image_mask'      => array(
+					'image' => $defaults['image']['landscape'],
+				),
+				'disq_post_grid'       => $post_grid_defaults,
+				'disq_post_grid_child' => $post_grid_child_defaults,
+				'disq_flip_box'        => $flip_box_defaults,
+				'disq_business_hours'  => $business_hours_defaults,
+				'disq_business_day'    => array(
+					'day'  => _x( 'Sun Day', 'Modules dummy content', 'squad-modules-for-divi' ),
+					'time' => _x( '10AM - 5PM', 'Modules dummy content', 'squad-modules-for-divi' ),
+				),
+				'disq_bai_slider'      => array(
+					'before_image'                      => $defaults['image']['landscape'],
+					'after_image'                       => $defaults['image']['landscape'],
+					'before_label__enable'              => 'on',
+					'after_label__enable'               => 'on',
+					'before_label'                      => _x( 'Before', 'Modules dummy content', 'squad-modules-for-divi' ),
+					'after_label'                       => _x( 'After', 'Modules dummy content', 'squad-modules-for-divi' ),
+					'slide_control_start_point'         => 25,
+					'slide_control_shadow__enable'      => 'on',
+					'slide_control_circle__enable'      => 'on',
+					'slide_control_circle_blur__enable' => 'on',
+					'slide_control_smoothing__enable'   => 'on',
+					'slide_control_smoothing_amount'    => 100,
+				),
+			),
+		);
+
+		return array_merge_recursive( $exists, $definitions );
+	}
+
+	/**
+	 * Used to update the content of the cached definitions js file.
+	 *
+	 * @param string $content content.
+	 *
+	 * @return string
+	 */
+	public function asset_definitions( $content ) {
+		return $content . sprintf(
+			';window.DISQBuilderBackend=%1$s; jQuery.extend(true, window.ETBuilderBackend, %1$s);',
+			et_fb_remove_site_url_protocol( wp_json_encode( $this->static_asset_definitions() ) )
+		);
+	}
+}
