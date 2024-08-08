@@ -21,8 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Module;
-use function esc_html__;
 use function esc_attr__;
+use function esc_html__;
 use function et_builder_get_element_style_css;
 use function et_pb_background_options;
 use function wp_json_encode;
@@ -367,9 +367,6 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 					'description'      => esc_html__( 'Here you can choose whether or not show post excerpt.', 'squad-modules-for-divi' ),
 					'default_on_front' => 'off',
 					'depends_show_if'  => 'content',
-					'affects'          => array(
-						'element_bio_length',
-					),
 					'tab_slug'         => 'general',
 					'toggle_slug'      => 'elements',
 				)
@@ -390,7 +387,7 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 			'element_ex_con_length'           => $this->disq_add_range_field(
 				esc_html__( 'Text Limit', 'squad-modules-for-divi' ),
 				array(
-					'description'       => esc_html__( 'Here you can choose how much text you would like to display for biography.', 'squad-modules-for-divi' ),
+					'description'       => esc_html__( 'Here you can choose how much text you would like to display for post content or excerpt.', 'squad-modules-for-divi' ),
 					'type'              => 'range',
 					'range_settings'    => array(
 						'min'       => '1',
@@ -1262,10 +1259,11 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 	 */
 	private function disq_generate_all_icon_styles( $attrs ) {
 		// render icon element for eligible element.
-		$icon_type    = ! empty( $attrs['element_icon_type'] ) ? $attrs['element_icon_type'] : 'icon';
-		$element_type = ! empty( $attrs['element'] ) ? $attrs['element'] : 'none';
+		$icon_type         = ! empty( $attrs['element_icon_type'] ) ? $attrs['element_icon_type'] : 'icon';
+		$element_type      = ! empty( $attrs['element'] ) ? $attrs['element'] : 'none';
+		$eligible_elements = $this->icon_not_eligible_elements;
 
-		if ( 'none' !== $icon_type && ! in_array( $element_type, $this->icon_not_eligible_elements, true ) ) {
+		if ( 'none' !== $icon_type && ! in_array( $element_type, $eligible_elements, true ) ) {
 			$this->props = array_merge( $attrs, $this->props );
 
 			$this->generate_styles(
@@ -1380,12 +1378,12 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 
 			// working with icon styles.
 			$placement         = 'element_icon_placement';
-			$vert_en_placement = array( 'row', 'row-reverse' );
+			$placement_desktop = ! empty( $attrs[ $placement ] ) ? $attrs[ $placement ] : 'row';
+			$placement_tablet  = ! empty( $attrs[ "{$placement}_tablet" ] ) ? $attrs[ "{$placement}_tablet" ] : $placement_desktop;
+			$placement_mobile  = ! empty( $attrs[ "{$placement}_phone" ] ) ? $attrs[ "{$placement}_phone" ] : $placement_tablet;
 
 			// Icon placement with default, responsive, hover.
-			if ( ( isset( $attrs[ $placement ] ) && 'column' === $attrs[ $placement ] ) ||
-				( isset( $attrs[ "{$placement}_tablet" ] ) && 'column' === $attrs[ "{$placement}_tablet" ] ) ||
-				( isset( $attrs[ "{$placement}_phone" ] ) && 'column' === $attrs[ "{$placement}_phone" ] ) ) {
+			if ( ( 'column' === $placement_desktop ) || ( 'column' === $placement_tablet ) || ( 'column' === $placement_mobile ) ) {
 				$this->generate_styles(
 					array(
 						'base_attr_name' => 'element_icon_horizontal_alignment',
@@ -1398,9 +1396,7 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 				);
 			}
 
-			if ( ( isset( $attrs[ $placement ] ) && in_array( $attrs[ $placement ], $vert_en_placement, true ) ) ||
-				( isset( $attrs[ "{$placement}_tablet" ] ) && in_array( $attrs[ "{$placement}_tablet" ], $vert_en_placement, true ) ) ||
-				( isset( $attrs[ "{$placement}_phone" ] ) && in_array( $attrs[ "{$placement}_phone" ], $vert_en_placement, true ) ) ) {
+			if ( ( 'column' !== $placement_desktop ) || ( 'column' !== $placement_tablet ) || ( 'column' !== $placement_mobile ) ) {
 				$this->generate_styles(
 					array(
 						'base_attr_name' => 'element_icon_vertical_alignment',

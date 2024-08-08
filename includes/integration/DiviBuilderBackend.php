@@ -90,11 +90,6 @@ class DiviBuilderBackend extends BuilderBackendPlaceholder {
 			'element_tags_sepa'               => ',',
 			'element_custom_text'             => $defaults['custom_text'],
 		);
-		$accordion_child_defaults = array(
-			'title'                  => $defaults['title'],
-			'content_button__enable' => 'on',
-			'button_text'            => _x( 'Learn More', 'Modules dummy content', 'squad-modules-for-divi' ),
-		);
 
 		// generate shortcode for post-grid child module.
 		$post_grid_child1 = sprintf(
@@ -127,14 +122,24 @@ class DiviBuilderBackend extends BuilderBackendPlaceholder {
 				)
 			)
 		);
+
+		$post_icons_common = array(
+			'element_icon_text_gap'             => '10px',
+			'element_icon_placement'            => 'row',
+			'element_icon_horizontal_alignment' => 'left',
+			'element_icon_vertical_alignment'   => 'center',
+		);
+
 		$post_grid_child4 = sprintf(
 			'[disq_post_grid_child %s][/disq_post_grid_child]',
 			Helper::implode_assoc_array(
 				array_merge(
 					array(
 						'element'           => 'date',
+						'element_icon'      => '&#xe023;||divi||400',
 						'element_date_type' => 'modified',
 					),
+					$post_icons_common,
 					$post_grid_child_defaults
 				)
 			)
@@ -143,17 +148,14 @@ class DiviBuilderBackend extends BuilderBackendPlaceholder {
 			'[disq_post_grid_child %s][/disq_post_grid_child]',
 			Helper::implode_assoc_array(
 				array_merge(
-					array( 'element' => 'read_more' ),
+					array(
+						'element'      => 'read_more',
+						'element_icon' => '&#x35;||divi||400',
+					),
+					$post_icons_common,
 					$post_grid_child_defaults
 				)
 			)
-		);
-
-		// generate shortcode for accordion-grid child module.
-		$accordion_child = sprintf(
-			'[disq_accordion_child %1$s]%2$s[/disq_accordion_child]',
-			Helper::implode_assoc_array( $accordion_child_defaults ),
-			$defaults['body']
 		);
 
 		$business_day_child_shortcodes = implode(
@@ -178,14 +180,6 @@ class DiviBuilderBackend extends BuilderBackendPlaceholder {
 				$post_grid_child5,
 			)
 		);
-		$accordion_child_shortcodes    = implode(
-			'',
-			array(
-				$accordion_child,
-				$accordion_child,
-				$accordion_child,
-			)
-		);
 
 		// Default texts for option list field.
 		$typing_text_default_text   = array(
@@ -205,17 +199,6 @@ class DiviBuilderBackend extends BuilderBackendPlaceholder {
 
 		$definitions = array(
 			'defaults' => array(
-				'disq_accordion'                 => array(
-					'accordion_open_icon'  => '&#x4c;||divi||400',
-					'accordion_close_icon' => '&#x4b;||divi||400',
-					'content'              => et_fb_process_shortcode( $accordion_child_shortcodes ),
-				),
-				'disq_accordion_child'           => array_merge(
-					$accordion_child_defaults,
-					array(
-						'content' => $defaults['body'],
-					)
-				),
 				'disq_divider'                   => array(
 					'divider_icon_type' => 'icon',
 					'divider_icon'      => $defaults['icon']['check'],

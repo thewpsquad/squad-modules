@@ -2495,20 +2495,17 @@ class PostGrid extends Squad_Divi_Builder_Module {
 
 		if ( 'content' === $element && ! empty( $post_content ) ) {
 			$post_content_length__enable = ! empty( $attrs['element_ex_con_length__enable'] ) ? $attrs['element_ex_con_length__enable'] : 'off';
-			$post_content_length         = ! empty( $attrs['element_ex_con_length'] ) ? $attrs['element_ex_con_length'] : '20';
+			$post_content_length         = ! empty( $attrs['element_ex_con_length'] ) ? (int) $attrs['element_ex_con_length'] : 20;
+			$post_content_words          = Str::word_count( $post_content, 2, 'áéíóúüñ' );
 
-			if ( 'on' === $post_content_length__enable ) {
-				$biography_length = ! empty( $attrs['element_bio_length'] ) ? $attrs['element_bio_length'] : 20;
-				if ( Str::word_count( $post_content ) > $post_content_length ) {
-					$words   = Str::word_count( $post_content, 2 );
-					$content = implode( ' ', array_slice( $words, 0, $biography_length ) );
+			if ( 'on' === $post_content_length__enable && count( $post_content_words ) > $post_content_length ) {
+				$content = implode( ' ', array_slice( $post_content_words, 0, $post_content_length ) );
 
-					return sprintf(
-						'<div class="%1$s"><span>%2$s</span></div>',
-						$class_name,
-						$content
-					);
-				}
+				return sprintf(
+					'<div class="%1$s"><span>%2$s</span></div>',
+					$class_name,
+					$content
+				);
 			}
 
 			return sprintf(
