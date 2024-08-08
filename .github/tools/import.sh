@@ -12,7 +12,6 @@ cd $WORK_DIR
 
 # Clone the GitHub repository
 git clone $GITHUB_REPO_URL ./
-cd $(basename $GITHUB_REPO_URL .git)
 
 # Function to copy a specific version from SVN to Git
 copy_version() {
