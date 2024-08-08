@@ -444,7 +444,7 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 			'day_wrapper_padding'          => $this->disq_add_margin_padding_field(
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'      => esc_html__( 'Here you can define a custom padding size for the wrapper.', 'squad-modules-for-divi' ),
+					'description'      => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'             => 'custom_padding',
 					'default'          => '10px|15px|10px|15px',
 					'default_on_front' => '10px|15px|10px|15px',
@@ -473,7 +473,7 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 			'title_padding' => $this->disq_add_margin_padding_field(
 				esc_html__( 'Title Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'      => esc_html__( 'Here you can define a custom padding size for the title.', 'squad-modules-for-divi' ),
+					'description'      => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'             => 'custom_padding',
 					'range_settings'   => array(
 						'min_limit' => '1',

@@ -75,7 +75,7 @@ class FormStylerContactForm7 extends Squad_Form_Styler_Module {
 				)
 			),
 			'form_messages__enable' => $this->disq_add_yes_no_field(
-				esc_html__( 'Show Error & Success Message', 'squad-modules-for-divi' ),
+				esc_html__( 'Show Error & Success Messages', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose whether or not show the error and success messages in the visual  builder.', 'squad-modules-for-divi' ),
 					'default_on_front' => 'off',
@@ -98,12 +98,17 @@ class FormStylerContactForm7 extends Squad_Form_Styler_Module {
 		$parent_fields['form_button_image']['toggle_slug']     = 'field_icons';
 
 		// Remove unneeded fields.
-		unset( $parent_fields['form_button_text'] );
-		unset( $parent_fields['form_button_icon_size'] );
-		unset( $parent_fields['form_button_icon_gap'] );
-		unset( $parent_fields['form_button_icon_hover_move_icon'] );
-		unset( $parent_fields['form_button_hover_animation__enable'] );
-		unset( $parent_fields['form_button_hover_animation_type'] );
+		$parent_fields = $this->disq_remove_pre_assigned_fields(
+			$parent_fields,
+			array(
+				'form_button_text',
+				'form_button_icon_size',
+				'form_button_icon_gap',
+				'form_button_icon_hover_move_icon',
+				'form_button_hover_animation__enable',
+				'form_button_hover_animation_type',
+			)
+		);
 
 		return array_merge_recursive( $parent_fields, $general_settings );
 	}
@@ -444,11 +449,28 @@ class FormStylerContactForm7 extends Squad_Form_Styler_Module {
 	 *
 	 * Add form field options group and background image on the field list.
 	 *
-	 * @since 1.0.0
+	 * @since 1.4.7
 	 */
 	public function get_transition_fields_css_props() {
+		$fields = parent::get_transition_fields_css_props();
+
+		// Get form selector.
 		$form_selector = $this->get_form_selector_default();
-		$fields        = parent::get_transition_fields_css_props();
+
+		// Generic styles.
+		$this->disq_fix_fonts_transition( $fields, 'field_label_text', "$form_selector label, $form_selector legend" );
+		$this->disq_fix_fonts_transition( $fields, 'placeholder_text', "$form_selector input::placeholder, $form_selector select::placeholder, $form_selector textarea::placeholder" );
+		$this->disq_fix_fonts_transition( $fields, 'form_button_text', "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button" );
+		$this->disq_fix_fonts_transition( $fields, 'message_error_text', "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors" );
+		$this->disq_fix_fonts_transition( $fields, 'message_success_text', "$this->main_css_element div .wpcf7 form.sent .wpcf7-response-output, $form_selector .wpcf7-response-output.wpcf7-mail-sent-ok" );
+		$this->disq_fix_border_transition( $fields, 'wrapper', $form_selector );
+		$this->disq_fix_border_transition( $fields, 'form_button', "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button" );
+		$this->disq_fix_border_transition( $fields, 'message_error', "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors" );
+		$this->disq_fix_border_transition( $fields, 'message_success', "$this->main_css_element div .wpcf7 form.sent .wpcf7-response-output, $form_selector .wpcf7-response-output.wpcf7-mail-sent-ok" );
+		$this->disq_fix_box_shadow_transition( $fields, 'wrapper', $form_selector );
+		$this->disq_fix_box_shadow_transition( $fields, 'form_button', "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button" );
+		$this->disq_fix_box_shadow_transition( $fields, 'message_error', "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors" );
+		$this->disq_fix_box_shadow_transition( $fields, 'message_success', "$this->main_css_element div .wpcf7 form.sent .wpcf7-response-output, $form_selector .wpcf7-response-output.wpcf7-mail-sent-ok" );
 
 		// button styles.
 		$fields['form_button_icon_color']  = array( 'color' => "$form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button::before, $form_selector .wpcf7-form-control.wpcf7-submit.et_pb_button::after" );
@@ -476,19 +498,6 @@ class FormStylerContactForm7 extends Squad_Form_Styler_Module {
 			);
 		}
 
-		// Show a notice message in the frontend if the form is empty.
-		$query_arguments   = array(
-			'post_type'      => 'wpcf7_contact_form',
-			'posts_per_page' => - 1,
-		);
-		$contact_forms_all = get_posts( $query_arguments );
-		if ( ! count( $contact_forms_all ) ) {
-			return sprintf(
-				'<div class="disq_notice">%s</div>',
-				esc_html__( 'Contact Forms are not available.', 'squad-modules-for-divi' )
-			);
-		}
-
 		if ( ! empty( self::disq_form_styler__get_form_html( $attrs ) ) ) {
 			$this->disq_generate_all_styles( $attrs );
 
@@ -503,16 +512,15 @@ class FormStylerContactForm7 extends Squad_Form_Styler_Module {
 	}
 
 	/**
-	 * Collect all contact form from the database.
+	 * Collect all from the database.
 	 *
-	 * @return array
+	 * @param string $type The value type.
+	 *
+	 * @return array the html output.
+	 * @since 1.4.7
 	 */
-	public function disq_form_styler__get_all_forms() {
-		$contact_forms = array(
-			'0' => esc_html__( 'Select one', 'squad-modules-for-divi' ),
-		);
-
-		if ( class_exists( 'WPCF7' ) ) {
+	public static function get_form_styler_forms_collection( $type = 'id' ) {
+		if ( count( self::$forms_collection[ $type ] ) === 0 && class_exists( 'WPCF7' ) ) {
 			$args = array(
 				'post_type'      => 'wpcf7_contact_form',
 				'posts_per_page' => - 1,
@@ -521,13 +529,30 @@ class FormStylerContactForm7 extends Squad_Form_Styler_Module {
 			// Collect available contact form from the database.
 			$forms = get_posts( $args );
 			if ( count( $forms ) ) {
+				/**
+				 * @var \WP_Post[] $forms
+				 * @var \WP_Post   $form
+				 */
 				foreach ( $forms as $form ) {
-					$contact_forms[ $form->ID ] = $form->post_title;
+					self::$forms_collection[ $type ][ md5( $form->ID ) ] = 'title' === $type ? $form->post_title : $form->ID;
 				}
 			}
 		}
 
-		return $contact_forms;
+		return self::$forms_collection[ $type ];
+	}
+
+	/**
+	 * Collect all contact form from the database.
+	 *
+	 * @return array
+	 */
+	public function disq_form_styler__get_all_forms() {
+		$forms = array(
+			md5( 0 ) => esc_html__( 'Select one', 'squad-modules-for-divi' ),
+		);
+
+		return array_merge( $forms, $this->get_form_styler_forms_collection( 'title' ) );
 	}
 
 	/**
@@ -540,8 +565,10 @@ class FormStylerContactForm7 extends Squad_Form_Styler_Module {
 	 * @since 1.0.0
 	 */
 	public static function disq_form_styler__get_form_html( $attrs, $content = null ) {
-		if ( ! empty( $attrs['form_id'] ) ) {
-			return do_shortcode( sprintf( '[contact-form-7 id="%s"]', esc_attr( $attrs['form_id'] ) ) );
+		// Collect all from the database.
+		$data = self::get_form_styler_forms_collection();
+		if ( ! empty( $attrs['form_id'] ) && self::$default_form_id !== $attrs['form_id'] && isset( $data[ $attrs['form_id'] ] ) ) {
+			return do_shortcode( sprintf( '[contact-form-7 id="%s"]', esc_attr( $data[ $attrs['form_id'] ] ) ) );
 		}
 
 		return null;
@@ -676,11 +703,43 @@ class FormStylerContactForm7 extends Squad_Form_Styler_Module {
 	}
 
 	/**
+	 * Get the stylesheet selector for form fields.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_default() {
+		$form_selector = $this->get_form_selector_default();
+
+		$selectors = array();
+		foreach ( $this->disq_get_allowed_form_fields() as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_hover() {
+		$form_selector = $this->get_form_selector_default();
+
+		$selectors = array();
+		foreach ( $this->disq_get_allowed_form_fields() as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field:hover";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
 	 * Get the stylesheet selector for form tag.
 	 *
 	 * @return string
 	 */
-	public function get_form_selector_default() {
+	protected function get_form_selector_default() {
 		return "$this->main_css_element div .wpcf7 form.wpcf7-form";
 	}
 
@@ -689,7 +748,7 @@ class FormStylerContactForm7 extends Squad_Form_Styler_Module {
 	 *
 	 * @return string
 	 */
-	public function get_form_selector_hover() {
+	protected function get_form_selector_hover() {
 		return "$this->main_css_element div .wpcf7 form.wpcf7-form:hover";
 	}
 
@@ -746,44 +805,7 @@ class FormStylerContactForm7 extends Squad_Form_Styler_Module {
 	protected function get_submit_button_selector_hover() {
 		return "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit.et_pb_button:hover";
 	}
-
-	/**
-	 * Get the stylesheet selector for form fields.
-	 *
-	 * @return string
-	 */
-	public function get_field_selector_default() {
-		$form_selector = $this->get_form_selector_default();
-
-		return implode(
-			', ',
-			array_map(
-				function ( $allowed_field ) use ( $form_selector ) {
-					return "$form_selector $allowed_field";
-				},
-				$this->disq_get_allowed_form_fields()
-			)
-		);
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields to use in hover.
-	 *
-	 * @return string
-	 */
-	public function get_field_selector_hover() {
-		$form_selector = $this->get_form_selector_default();
-
-		return implode(
-			', ',
-			array_map(
-				function ( $allowed_field ) use ( $form_selector ) {
-					return "$form_selector $allowed_field:hover";
-				},
-				$this->disq_get_allowed_form_fields()
-			)
-		);
-	}
 }
 
+// Load the form styler (Contact Form 7) Module.
 new FormStylerContactForm7();

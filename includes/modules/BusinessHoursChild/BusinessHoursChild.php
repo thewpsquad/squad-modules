@@ -370,7 +370,7 @@ class BusinessHoursChild extends Squad_Divi_Builder_Module {
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
 					'description' => esc_html__(
-						'Here you can define a custom padding size for the wrapper.',
+						'Here you can define a custom padding size.',
 						'squad-modules-for-divi'
 					),
 					'type'        => 'custom_padding',

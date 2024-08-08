@@ -74,7 +74,7 @@ class FormStylerWPForms extends Squad_Form_Styler_Module {
 				)
 			),
 			'form_messages__enable' => $this->disq_add_yes_no_field(
-				esc_html__( 'Show Error & Success Message', 'squad-modules-for-divi' ),
+				esc_html__( 'Show Error & Success Messages', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose whether or not show the error and success messages in the visual  builder.', 'squad-modules-for-divi' ),
 					'default_on_front' => 'off',
@@ -92,21 +92,26 @@ class FormStylerWPForms extends Squad_Form_Styler_Module {
 		);
 
 		// Remove unneeded fields.
-		unset( $parent_fields['form_button_text'] );
-		unset( $parent_fields['form_button_icon_type'] );
-		unset( $parent_fields['form_button_icon'] );
-		unset( $parent_fields['form_button_icon_color'] );
-		unset( $parent_fields['form_button_image'] );
-		unset( $parent_fields['form_button_icon_size'] );
-		unset( $parent_fields['form_button_image_width'] );
-		unset( $parent_fields['form_button_image_height'] );
-		unset( $parent_fields['form_button_icon_gap'] );
-		unset( $parent_fields['form_button_icon_placement'] );
-		unset( $parent_fields['form_button_icon_margin'] );
-		unset( $parent_fields['form_button_icon_on_hover'] );
-		unset( $parent_fields['form_button_icon_hover_move_icon'] );
-		unset( $parent_fields['form_button_hover_animation__enable'] );
-		unset( $parent_fields['form_button_hover_animation_type'] );
+		$parent_fields = $this->disq_remove_pre_assigned_fields(
+			$parent_fields,
+			array(
+				'form_button_text',
+				'form_button_icon_type',
+				'form_button_icon',
+				'form_button_icon_color',
+				'form_button_image',
+				'form_button_icon_size',
+				'form_button_image_width',
+				'form_button_image_height',
+				'form_button_icon_gap',
+				'form_button_icon_placement',
+				'form_button_icon_margin',
+				'form_button_icon_on_hover',
+				'form_button_icon_hover_move_icon',
+				'form_button_hover_animation__enable',
+				'form_button_hover_animation_type',
+			)
+		);
 
 		return array_merge_recursive( $parent_fields, $general_settings );
 	}
@@ -404,42 +409,6 @@ class FormStylerWPForms extends Squad_Form_Styler_Module {
 	}
 
 	/**
-	 * Declare custom css fields for the module
-	 *
-	 * @return array[]
-	 */
-	public function get_custom_css_fields_config() {
-		$form_selector = $this->get_form_selector_default();
-
-		return array(
-			'wrapper'         => array(
-				'label'    => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
-				'selector' => "$form_selector",
-			),
-			'field'           => array(
-				'label'    => esc_html__( 'Field', 'squad-modules-for-divi' ),
-				'selector' => $this->get_field_selector_default(),
-			),
-			'radio_checkbox'  => array(
-				'label'    => esc_html__( 'Radio Checkbox', 'squad-modules-for-divi' ),
-				'selector' => "$form_selector input[type=checkbox], $form_selector input[type=radio]",
-			),
-			'form_button'     => array(
-				'label'    => esc_html__( 'Button', 'squad-modules-for-divi' ),
-				'selector' => $this->get_submit_button_selector_default(),
-			),
-			'message_error'   => array(
-				'label'    => esc_html__( 'Error Message', 'squad-modules-for-divi' ),
-				'selector' => $this->get_error_message_selector_default(),
-			),
-			'message_success' => array(
-				'label'    => esc_html__( 'Success Message', 'squad-modules-for-divi' ),
-				'selector' => $this->get_success_message_selector_default(),
-			),
-		);
-	}
-
-	/**
 	 * Render module output.
 	 *
 	 * @param array  $attrs       List of unprocessed attributes.
@@ -458,19 +427,6 @@ class FormStylerWPForms extends Squad_Form_Styler_Module {
 			);
 		}
 
-		// Show a notice message in the frontend if the form is empty.
-		$query_arguments = array(
-			'post_type'      => 'wpforms',
-			'posts_per_page' => - 1,
-		);
-		$wp_forms_all    = get_posts( $query_arguments );
-		if ( ! count( $wp_forms_all ) ) {
-			return sprintf(
-				'<div class="disq_notice">%s</div>',
-				esc_html__( 'WPForms are not available.', 'squad-modules-for-divi' )
-			);
-		}
-
 		if ( ! empty( self::disq_form_styler__get_form_html( $attrs ) ) ) {
 			$this->disq_generate_all_styles( $attrs );
 
@@ -485,16 +441,15 @@ class FormStylerWPForms extends Squad_Form_Styler_Module {
 	}
 
 	/**
-	 * Collect all wp form from the database.
+	 * Collect all from the database.
 	 *
-	 * @return array
+	 * @param string $type The value type.
+	 *
+	 * @return array the html output.
+	 * @since 1.4.7
 	 */
-	public function disq_form_styler__get_all_forms() {
-		$wp_forms = array(
-			'0' => esc_html__( 'Select one', 'squad-modules-for-divi' ),
-		);
-
-		if ( function_exists( 'wpforms' ) ) {
+	public static function get_form_styler_forms_collection( $type = 'id' ) {
+		if ( count( self::$forms_collection[ $type ] ) === 0 && function_exists( 'wpforms' ) ) {
 			$args = array(
 				'post_type'      => 'wpforms',
 				'posts_per_page' => - 1,
@@ -504,12 +459,25 @@ class FormStylerWPForms extends Squad_Form_Styler_Module {
 			$forms = get_posts( $args );
 			if ( count( $forms ) ) {
 				foreach ( $forms as $form ) {
-					$wp_forms[ $form->ID ] = $form->post_title;
+					self::$forms_collection[ $type ][ md5( $form->ID ) ] = 'title' === $type ? $form->post_title : $form->ID;
 				}
 			}
 		}
 
-		return $wp_forms;
+		return self::$forms_collection[ $type ];
+	}
+
+	/**
+	 * Collect all wp form from the database.
+	 *
+	 * @return array
+	 */
+	public function disq_form_styler__get_all_forms() {
+		$forms = array(
+			md5( 0 ) => esc_html__( 'Select one', 'squad-modules-for-divi' ),
+		);
+
+		return array_merge( $forms, $this->get_form_styler_forms_collection( 'title' ) );
 	}
 
 	/**
@@ -522,8 +490,10 @@ class FormStylerWPForms extends Squad_Form_Styler_Module {
 	 * @since 1.0.0
 	 */
 	public static function disq_form_styler__get_form_html( $attrs, $content = null ) {
-		if ( ! empty( $attrs['form_id'] ) ) {
-			return do_shortcode( sprintf( '[wpforms id="%s"]', esc_attr( $attrs['form_id'] ) ) );
+		// Collect all from the database.
+		$collection = self::get_form_styler_forms_collection();
+		if ( ! empty( $attrs['form_id'] ) && self::$default_form_id !== $attrs['form_id'] && isset( $collection[ $attrs['form_id'] ] ) ) {
+			return do_shortcode( sprintf( '[wpforms id="%s"]', esc_attr( $collection[ $attrs['form_id'] ] ) ) );
 		}
 
 		return null;
@@ -534,7 +504,7 @@ class FormStylerWPForms extends Squad_Form_Styler_Module {
 	 *
 	 * @return string
 	 */
-	public function get_form_selector_default() {
+	protected function get_form_selector_default() {
 		return "$this->main_css_element div .wpforms-container.wpforms-container-full form.wpforms-form";
 	}
 
@@ -543,7 +513,7 @@ class FormStylerWPForms extends Squad_Form_Styler_Module {
 	 *
 	 * @return string
 	 */
-	public function get_form_selector_hover() {
+	protected function get_form_selector_hover() {
 		return "$this->main_css_element div .wpforms-container.wpforms-container-full form.wpforms-form:hover";
 	}
 
@@ -552,18 +522,15 @@ class FormStylerWPForms extends Squad_Form_Styler_Module {
 	 *
 	 * @return string
 	 */
-	public function get_field_selector_default() {
+	protected function get_field_selector_default() {
 		$form_selector = $this->get_form_selector_default();
 
-		return implode(
-			', ',
-			array_map(
-				function ( $allowed_field ) use ( $form_selector ) {
-					return "$form_selector $allowed_field";
-				},
-				$this->disq_get_allowed_form_fields()
-			)
-		);
+		$selectors = array();
+		foreach ( $this->disq_get_allowed_form_fields() as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field";
+		}
+
+		return implode( ', ', $selectors );
 	}
 
 	/**
@@ -571,18 +538,15 @@ class FormStylerWPForms extends Squad_Form_Styler_Module {
 	 *
 	 * @return string
 	 */
-	public function get_field_selector_hover() {
+	protected function get_field_selector_hover() {
 		$form_selector = $this->get_form_selector_default();
 
-		return implode(
-			', ',
-			array_map(
-				function ( $allowed_field ) use ( $form_selector ) {
-					return "$form_selector $allowed_field:hover";
-				},
-				$this->disq_get_allowed_form_fields()
-			)
-		);
+		$selectors = array();
+		foreach ( $this->disq_get_allowed_form_fields() as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field:hover";
+		}
+
+		return implode( ', ', $selectors );
 	}
 
 	/**
@@ -640,4 +604,5 @@ class FormStylerWPForms extends Squad_Form_Styler_Module {
 	}
 }
 
+// Load the form styler (WP Forms) Module.
 new FormStylerWPForms();

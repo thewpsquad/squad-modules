@@ -166,7 +166,7 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 				)
 			),
 			'form_messages__enable'    => $this->disq_add_yes_no_field(
-				esc_html__( 'Show Error & Success Message', 'squad-modules-for-divi' ),
+				esc_html__( 'Show Error & Success Messages', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose whether or not show the error and success messages in the visual  builder.', 'squad-modules-for-divi' ),
 					'default_on_front' => 'off',
@@ -208,7 +208,7 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 			'form_title_margin'        => $this->disq_add_margin_padding_field(
 				esc_html__( 'Title Margin', 'squad-modules-for-divi' ),
 				array(
-					'description'     => esc_html__( 'Here you can define a custom margin size for the form title.', 'squad-modules-for-divi' ),
+					'description'     => esc_html__( 'Here you can define a custom margin size.', 'squad-modules-for-divi' ),
 					'type'            => 'custom_margin',
 					'range_settings'  => array(
 						'min_limit' => '1',
@@ -225,7 +225,7 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 			'form_title_padding'       => $this->disq_add_margin_padding_field(
 				esc_html__( 'Title Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'     => esc_html__( 'Here you can define a custom padding size for the form title.', 'squad-modules-for-divi' ),
+					'description'     => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'            => 'custom_padding',
 					'range_settings'  => array(
 						'min_limit' => '1',
@@ -242,7 +242,7 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 			'form_description_margin'  => $this->disq_add_margin_padding_field(
 				esc_html__( 'Description Margin', 'squad-modules-for-divi' ),
 				array(
-					'description'     => esc_html__( 'Here you can define a custom margin size for the form description.', 'squad-modules-for-divi' ),
+					'description'     => esc_html__( 'Here you can define a custom margin size.', 'squad-modules-for-divi' ),
 					'type'            => 'custom_margin',
 					'range_settings'  => array(
 						'min_limit' => '1',
@@ -259,7 +259,7 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 			'form_description_padding' => $this->disq_add_margin_padding_field(
 				esc_html__( 'Description Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'     => esc_html__( 'Here you can define a custom padding size for the form description.', 'squad-modules-for-divi' ),
+					'description'     => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'            => 'custom_padding',
 					'range_settings'  => array(
 						'min_limit' => '1',
@@ -276,21 +276,26 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 		);
 
 		// Remove unneeded fields.
-		unset( $parent_fields['form_button_text'] );
-		unset( $parent_fields['form_button_icon_type'] );
-		unset( $parent_fields['form_button_icon'] );
-		unset( $parent_fields['form_button_icon_color'] );
-		unset( $parent_fields['form_button_image'] );
-		unset( $parent_fields['form_button_icon_size'] );
-		unset( $parent_fields['form_button_image_width'] );
-		unset( $parent_fields['form_button_image_height'] );
-		unset( $parent_fields['form_button_icon_gap'] );
-		unset( $parent_fields['form_button_icon_placement'] );
-		unset( $parent_fields['form_button_icon_margin'] );
-		unset( $parent_fields['form_button_icon_on_hover'] );
-		unset( $parent_fields['form_button_icon_hover_move_icon'] );
-		unset( $parent_fields['form_button_hover_animation__enable'] );
-		unset( $parent_fields['form_button_hover_animation_type'] );
+		$parent_fields = $this->disq_remove_pre_assigned_fields(
+			$parent_fields,
+			array(
+				'form_button_text',
+				'form_button_icon_type',
+				'form_button_icon',
+				'form_button_icon_color',
+				'form_button_image',
+				'form_button_icon_size',
+				'form_button_image_width',
+				'form_button_image_height',
+				'form_button_icon_gap',
+				'form_button_icon_placement',
+				'form_button_icon_margin',
+				'form_button_icon_on_hover',
+				'form_button_icon_hover_move_icon',
+				'form_button_hover_animation__enable',
+				'form_button_hover_animation_type',
+			)
+		);
 
 		return array_merge_recursive(
 			$parent_fields,
@@ -702,39 +707,35 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 	}
 
 	/**
-	 * Declare custom css fields for the module
+	 * Get CSS fields transition.
 	 *
-	 * @return array[]
+	 * Add form field options group and background image on the field list.
+	 *
+	 * @since 1.4.7
 	 */
-	public function get_custom_css_fields_config() {
+	public function get_transition_fields_css_props() {
+		$fields = parent::get_transition_fields_css_props();
+
+		// Get form selector.
 		$form_selector = $this->get_form_selector_default();
 
-		return array(
-			'wrapper'         => array(
-				'label'    => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
-				'selector' => "$form_selector",
-			),
-			'field'           => array(
-				'label'    => esc_html__( 'Field', 'squad-modules-for-divi' ),
-				'selector' => $this->get_field_selector_default(),
-			),
-			'radio_checkbox'  => array(
-				'label'    => esc_html__( 'Radio Checkbox', 'squad-modules-for-divi' ),
-				'selector' => "$form_selector input[type=checkbox], $form_selector input[type=radio]",
-			),
-			'form_button'     => array(
-				'label'    => esc_html__( 'Button', 'squad-modules-for-divi' ),
-				'selector' => $this->get_submit_button_selector_default(),
-			),
-			'message_error'   => array(
-				'label'    => esc_html__( 'Error Message', 'squad-modules-for-divi' ),
-				'selector' => $this->get_error_message_selector_default(),
-			),
-			'message_success' => array(
-				'label'    => esc_html__( 'Success Message', 'squad-modules-for-divi' ),
-				'selector' => $this->get_success_message_selector_default(),
-			),
-		);
+		// title style.
+		$fields['form_title_background_color'] = array( 'background' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
+		$fields['form_title_margin']           = array( 'margin' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
+		$fields['form_title_padding']          = array( 'padding' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
+		$this->disq_fix_fonts_transition( $fields, 'form_title_text', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
+		$this->disq_fix_border_transition( $fields, 'form_title', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
+		$this->disq_fix_box_shadow_transition( $fields, 'form_title', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
+
+		// description style.
+		$fields['form_description_background_color'] = array( 'background' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
+		$fields['form_description_margin']           = array( 'margin' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
+		$fields['form_description_padding']          = array( 'padding' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
+		$this->disq_fix_fonts_transition( $fields, 'form_description_text', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
+		$this->disq_fix_border_transition( $fields, 'form_description', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
+		$this->disq_fix_box_shadow_transition( $fields, 'form_description', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
+
+		return $fields;
 	}
 
 	/**
@@ -756,16 +757,6 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 			);
 		}
 
-		// Show a notice message in the frontend if the form is empty.
-		if ( class_exists( '\GFCommon' ) && class_exists( '\RGFormsModel' ) ) {
-			if ( ! count( \RGFormsModel::get_forms( null, 'title' ) ) ) {
-				return sprintf(
-					'<div class="disq_notice">%s</div>',
-					esc_html__( 'Gravity Forms are not available.', 'squad-modules-for-divi' )
-				);
-			}
-		}
-
 		if ( ! empty( self::disq_form_styler__get_form_html( $attrs ) ) ) {
 			$this->disq_generate_all_styles( $attrs );
 
@@ -780,26 +771,37 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 	}
 
 	/**
+	 * Collect all from the database.
+	 *
+	 * @param string $type The value type.
+	 *
+	 * @return array the html output.
+	 * @since 1.4.7
+	 */
+	public static function get_form_styler_forms_collection( $type = 'id' ) {
+		if ( count( self::$forms_collection[ $type ] ) === 0 && class_exists( '\GFCommon' ) && class_exists( '\RGFormsModel' ) ) {
+			$forms = \RGFormsModel::get_forms( null, 'title' );
+			if ( count( $forms ) ) {
+				foreach ( $forms as $form ) {
+					self::$forms_collection[ $type ][ md5( $form->id ) ] = 'title' === $type ? $form->title : $form->id;
+				}
+			}
+		}
+
+		return self::$forms_collection[ $type ];
+	}
+
+	/**
 	 * Collect all wp form from the database.
 	 *
 	 * @return array
 	 */
 	public function disq_form_styler__get_all_forms() {
-		$gravity_forms = array(
-			'0' => esc_html__( 'Select one', 'squad-modules-for-divi' ),
+		$forms = array(
+			md5( 0 ) => esc_html__( 'Select one', 'squad-modules-for-divi' ),
 		);
 
-		// Collect available wp form from a database.
-		if ( class_exists( '\GFCommon' ) && class_exists( '\RGFormsModel' ) ) {
-			$forms = \RGFormsModel::get_forms( null, 'title' );
-			if ( count( $forms ) ) {
-				foreach ( $forms as $form ) {
-					$gravity_forms[ $form->id ] = $form->title;
-				}
-			}
-		}
-
-		return $gravity_forms;
+		return array_merge( $forms, $this->get_form_styler_forms_collection( 'title' ) );
 	}
 
 	/**
@@ -812,8 +814,10 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 	 * @since 1.0.0
 	 */
 	public static function disq_form_styler__get_form_html( $attrs, $content = null ) {
-		if ( ! empty( $attrs['form_id'] ) && function_exists( 'gravity_form' ) ) {
-			$form_id          = $attrs['form_id'];
+		if ( ! empty( $attrs['form_id'] ) && self::$default_form_id !== $attrs['form_id'] && function_exists( 'gravity_form' ) ) {
+			// Collect all posts from the database.
+			$collection       = self::get_form_styler_forms_collection();
+			$form_id          = $collection[ $attrs['form_id'] ];
 			$form_title       = isset( $attrs['form_title__enable'] ) && 'on' === $attrs['form_title__enable'];
 			$form_description = isset( $attrs['form_description__enable'] ) && 'on' === $attrs['form_description__enable'];
 			$form_ajax        = isset( $attrs['form_with_ajax__enable'] ) && 'on' === $attrs['form_with_ajax__enable'];
@@ -825,11 +829,43 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 	}
 
 	/**
+	 * Get the stylesheet selector for form fields.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_default() {
+		$form_selector = $this->get_form_selector_default();
+
+		$selectors = array();
+		foreach ( $this->disq_get_allowed_form_fields() as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_hover() {
+		$form_selector = $this->get_form_selector_default();
+
+		$selectors = array();
+		foreach ( $this->disq_get_allowed_form_fields() as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field:hover";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
 	 * Get the stylesheet selector for form tag.
 	 *
 	 * @return string
 	 */
-	public function get_form_selector_default() {
+	protected function get_form_selector_default() {
 		return "$this->main_css_element div .gform_wrapper.gravity-theme form";
 	}
 
@@ -838,46 +874,8 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 	 *
 	 * @return string
 	 */
-	public function get_form_selector_hover() {
+	protected function get_form_selector_hover() {
 		return "$this->main_css_element div .gform_wrapper.gravity-theme form:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields.
-	 *
-	 * @return string
-	 */
-	public function get_field_selector_default() {
-		$form_selector = $this->get_form_selector_default();
-
-		return implode(
-			', ',
-			array_map(
-				function ( $allowed_field ) use ( $form_selector ) {
-					return "$form_selector $allowed_field";
-				},
-				$this->disq_get_allowed_form_fields()
-			)
-		);
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields to use in hover.
-	 *
-	 * @return string
-	 */
-	public function get_field_selector_hover() {
-		$form_selector = $this->get_form_selector_default();
-
-		return implode(
-			', ',
-			array_map(
-				function ( $allowed_field ) use ( $form_selector ) {
-					return "$form_selector $allowed_field:hover";
-				},
-				$this->disq_get_allowed_form_fields()
-			)
-		);
 	}
 
 	/**
@@ -935,4 +933,5 @@ class FormStylerGravityForms extends Squad_Form_Styler_Module {
 	}
 }
 
+// Load the form styler (Gravity Forms) Module.
 new FormStylerGravityForms();

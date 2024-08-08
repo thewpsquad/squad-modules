@@ -21,15 +21,15 @@ defined( 'ABSPATH' ) || die();
 		</svg>
 	</div>
 	<div class="divi-squad-banner-content">
-		<h2><?php esc_html_e( 'Enjoy Using Squad Modules Lite?', 'squad-modules-for-divi' ); ?></h2>
-		<p><?php esc_html_e( "Hello! It's been a while since you've been using the Squad Modules Lite plugin. We trust that our plugin has been beneficial in your website development journey. If you could take a moment, we'd greatly appreciate your feedback by leaving a rating. Your input means a lot to us—thank you!", 'squad-modules-for-divi' ); ?></p>
+		<h2><?php esc_html_e( 'Ready to take Squad Modules Lite to the next level?', 'squad-modules-for-divi' ); ?></h2>
+		<p><?php esc_html_e( "Hey there! Long time no Squad Modules Lite, eh? We hope it's been making your website development journey a breeze! If you have a spare minute, your feedback would be like gold dust to us. Leave a rating and let us know what you think! ✨", 'squad-modules-for-divi' ); ?></p>
 		<div class="divi-squad-notice-action">
 			<div class="divi-squad-notice-action-left">
 				<a href="https://wordpress.org/support/plugin/squad-modules-for-divi/reviews/?rate=5#new-post" target="_blank" class="divi-squad-notice-action-button">
-					<?php esc_html_e( 'Yes, You deserve ★★★★★', 'squad-modules-for-divi' ); ?>
+					<?php esc_html_e( 'Shine Bright ★★★★★', 'squad-modules-for-divi' ); ?>
 				</a>
-				<a href="#" class="divi-squad-notice-close"><?php esc_html_e( 'Remind me again next week', 'squad-modules-for-divi' ); ?></a>
-				<a href="#" class="divi-squad-notice-already"><?php esc_html_e( 'I already review the plugin.', 'squad-modules-for-divi' ); ?></a>
+				<a href="#" class="divi-squad-notice-close"><?php esc_html_e( '5-Star Reminder!', 'squad-modules-for-divi' ); ?></a>
+				<a href="#" class="divi-squad-notice-already"><?php esc_html_e( 'No, Thanks', 'squad-modules-for-divi' ); ?></a>
 			</div>
 			<div class="divi-squad-notice-action-right">
 				<a href='https://wordpress.org/support/plugin/squad-modules-for-divi/' target="_blank" class="support">
@@ -38,7 +38,7 @@ defined( 'ABSPATH' ) || die();
 						<path
 							d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
 					</svg>
-					<?php esc_html_e( 'Got something to say? Need help?', 'squad-modules-for-divi' ); ?>
+					<?php esc_html_e( 'Stuck here - any advice?', 'squad-modules-for-divi' ); ?>
 				</a>
 			</div>
 		</div>

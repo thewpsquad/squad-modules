@@ -298,18 +298,37 @@ abstract class Core {
 		// Start script tag.
 		printf( '<script id="%1$s" type="application/javascript">', esc_attr( $admin_page_id ) );
 
-		printf(
-			'var DiviSquadExtra = %1$s',
-			wp_json_encode(
-				array(
-					'site_type' => is_multisite() ? 'multi' : 'default',
-					'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
-					'assetsUrl' => DISQ_ASSET_URL . 'assets/',
+		print wp_kses_data(
+			apply_filters(
+				$admin_page_id,
+				sprintf(
+					'window.DiviSquadExtra = %1$s;',
+					wp_json_encode(
+						array(
+							'site_type' => is_multisite() ? 'multi' : 'default',
+							'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
+							'assetsUrl' => DISQ_ASSET_URL . 'assets/',
+						)
+					)
 				)
 			)
 		);
 
 		// End script tag.
 		print '</script>';
+	}
+
+	/**
+	 * Localizes a script.
+	 *
+	 * Works only if the script has already been registered.
+	 *
+	 * @param string $object_name Name for the JavaScript object. Passed directly, so it should be qualified JS variable.
+	 * @param array  $l10n        The data itself. The data can be either a single or multi-dimensional array.
+	 *
+	 * @return string Localizes a script.
+	 */
+	public function localize_script( $object_name, $l10n ) {
+		return sprintf( 'window.%1$s = %2$s;', $object_name, wp_json_encode( $l10n ) );
 	}
 }

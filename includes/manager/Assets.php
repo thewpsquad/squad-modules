@@ -8,7 +8,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use DiviSquad\Utils\Asset;
 use function DiviSquad\divi_squad;
-use function et_core_is_fb_enabled;
 use function get_template_directory;
 use function get_template_directory_uri;
 use function wp_enqueue_script;
@@ -77,7 +76,7 @@ class Assets {
 	 * @return void
 	 */
 	public function enqueue_scripts_vb() {
-		if ( function_exists( 'et_core_is_fb_enabled' ) && et_core_is_fb_enabled() ) {
+		if ( function_exists( 'et_core_is_fb_enabled' ) && \et_core_is_fb_enabled() ) {
 			wp_enqueue_script( 'disq-vendor-typed' );
 			wp_enqueue_script( 'disq-vendor-isotope' );
 			wp_enqueue_script( 'disq-vendor-imagesloaded' );
@@ -101,12 +100,12 @@ class Assets {
 				$plugin_dir_url = defined( '\WPFORMS_PLUGIN_URL' ) ? \WPFORMS_PLUGIN_URL : '';
 				$plugin_version = defined( '\WPFORMS_VERSION' ) ? \WPFORMS_VERSION : '';
 
-				if ( ! empty( $plugin_dir_url ) && $plugin_version ) {
+				if ( ! empty( $plugin_dir_url ) && ! empty( $plugin_version ) ) {
 					if ( ! wp_script_is( "wpforms-$wp_forms_re-$style_name", 'registered' ) ) {
-						wp_enqueue_style( "wpforms-$wp_forms_re-$style_name", $plugin_dir_url . "assets/css/frontend/$wp_forms_re/wpforms-$style_name$min.css", array(), $plugin_version );
+						wp_register_style( "wpforms-$wp_forms_re-$style_name", $plugin_dir_url . "assets/css/frontend/$wp_forms_re/wpforms-$style_name$min.css", array(), $plugin_version );
 					}
 
-					if ( ! wp_script_is( "wpforms-$wp_forms_re-$style_name" ) ) {
+					if ( ! wp_script_is( "wpforms-$wp_forms_re-$style_name", 'enqueued' ) ) {
 						wp_enqueue_style( "wpforms-$wp_forms_re-$style_name" );
 					}
 				}
@@ -118,6 +117,53 @@ class Assets {
 				wp_enqueue_style( 'gform_theme' );
 			}
 
+			// Ninja Forms default style.
+			if ( function_exists( '\Ninja_Forms' ) ) {
+				$ver       = \Ninja_Forms::VERSION;
+				$js_dir    = \Ninja_Forms::$url . 'assets/js/min/';
+				$css_dir   = \Ninja_Forms::$url . 'assets/css/';
+				$is_footer = array( 'in_footer' => true );
+
+				switch ( \Ninja_Forms()->get_setting( 'opinionated_styles' ) ) {
+					case 'light':
+						wp_enqueue_style( 'nf-display', $css_dir . 'display-opinions-light.css', array( 'dashicons' ), $ver );
+						wp_enqueue_style( 'nf-font-awesome', $css_dir . 'font-awesome.min.css', array(), $ver );
+						break;
+					case 'dark':
+						wp_enqueue_style( 'nf-display', $css_dir . 'display-opinions-dark.css', array( 'dashicons' ), $ver );
+						wp_enqueue_style( 'nf-font-awesome', $css_dir . 'font-awesome.min.css', array(), $ver );
+						break;
+					default:
+						wp_enqueue_style( 'nf-display', $css_dir . 'display-structure.css', array( 'dashicons' ), $ver );
+				}
+
+				// Date Picker.
+				wp_enqueue_style( 'jBox', $css_dir . 'jBox.css', array(), $ver );
+				wp_enqueue_style( 'rating', $css_dir . 'rating.css', array(), $ver );
+				wp_enqueue_style( 'nf-flatpickr', $css_dir . 'flatpickr.css', array(), $ver );
+				wp_enqueue_script( 'nf-front-end-deps', $js_dir . 'front-end-deps.js', array( 'jquery', 'backbone' ), $ver, $is_footer );
+
+				// Media.
+				wp_enqueue_media();
+				wp_enqueue_style( 'summernote', $css_dir . 'summernote.css', array(), $ver );
+				wp_enqueue_style( 'codemirror', $css_dir . 'codemirror.css', array(), $ver );
+				wp_enqueue_style( 'codemirror-monokai', $css_dir . 'monokai-theme.css', $ver, $is_footer );
+			}
+
+			// Fluent Forms default style.
+			if ( function_exists( '\wpFluentForm' ) && function_exists( '\fluentFormMix' ) ) {
+				$fluent_form_public_css         = \fluentFormMix( 'css/fluent-forms-public.css' );
+				$fluent_form_public_default_css = \fluentFormMix( 'css/fluentform-public-default.css' );
+
+				if ( \is_rtl() ) {
+					$fluent_form_public_css         = \fluentFormMix( 'css/fluent-forms-public-rtl.css' );
+					$fluent_form_public_default_css = \fluentFormMix( 'css/fluentform-public-default-rtl.css' );
+				}
+				wp_enqueue_style( 'fluent-form-styles', $fluent_form_public_css, array(), \FLUENTFORM_VERSION );
+				wp_enqueue_style( 'fluentform-public-default', $fluent_form_public_default_css, array(), \FLUENTFORM_VERSION );
+			}
+
+			// Magnific Popup.
 			$magnific_popup_script_path = '/includes/builder/feature/dynamic-assets/assets/js/magnific-popup.js';
 			if ( ! wp_script_is( 'magnific-popup', 'registered' ) && file_exists( get_template_directory() . $magnific_popup_script_path ) ) {
 				wp_enqueue_script( 'magnific-popup', get_template_directory_uri() . $magnific_popup_script_path, array( 'jquery' ), divi_squad()->get_version(), true );

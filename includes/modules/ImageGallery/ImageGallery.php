@@ -106,9 +106,39 @@ class ImageGallery extends Squad_Divi_Builder_Module {
 			),
 			'borders'        => array(
 				'default' => $default_css_selectors,
+				'image'   => array(
+					'css'             => array(
+						'main' => array(
+							'border_radii'  => "{$this->main_css_element} div .gallery-elements .disq-image",
+							'border_styles' => "{$this->main_css_element} div .gallery-elements .disq-image",
+						),
+					),
+					'label_prefix'    => et_builder_i18n( 'Image' ),
+					'tab_slug'        => 'advanced',
+					'toggle_slug'     => 'image',
+					'depends_on'      => array( 'fullwidth' ),
+					'depends_show_if' => 'off',
+				),
 			),
 			'box_shadow'     => array(
 				'default' => $default_css_selectors,
+				'image'   => array(
+					'label'             => esc_html__( 'Image Box Shadow', 'squad-modules-for-divi' ),
+					'option_category'   => 'layout',
+					'tab_slug'          => 'advanced',
+					'toggle_slug'       => 'image',
+					'show_if'           => array(
+						'fullwidth' => 'off',
+					),
+					'css'               => array(
+						'main'    => "{$this->main_css_element} div .gallery-elements .disq-image",
+						'overlay' => 'inset',
+					),
+					'default_on_fronts' => array(
+						'color'    => '',
+						'position' => '',
+					),
+				),
 			),
 			'margin_padding' => array(
 				'use_padding' => true,
@@ -131,11 +161,16 @@ class ImageGallery extends Squad_Divi_Builder_Module {
 			'scroll_effects' => array(
 				'grid_support' => 'yes',
 			),
+			'filters'        => array(
+				'default'              => array(),
+				'child_filters_target' => array(
+					'tab_slug'    => 'advanced',
+					'toggle_slug' => 'image',
+				),
+			),
 			'fonts'          => false,
-			'image_icon'     => false,
 			'text'           => false,
 			'button'         => false,
-			'filters'        => false,
 		);
 
 		// Declare custom css fields for the module.
@@ -156,7 +191,7 @@ class ImageGallery extends Squad_Divi_Builder_Module {
 	public function get_fields() {
 		// Image fields definitions.
 		$image_fields = array(
-			'gallery_ids'    => array(
+			'gallery_ids' => array(
 				'label'            => esc_html__( 'Images', 'squad-modules-for-divi' ),
 				'description'      => esc_html__( 'Choose the images that you would like to appear in the image gallery.', 'squad-modules-for-divi' ),
 				'type'             => 'upload-gallery',
@@ -166,21 +201,7 @@ class ImageGallery extends Squad_Divi_Builder_Module {
 				'option_category'  => 'basic_option',
 				'toggle_slug'      => 'main_content',
 			),
-			'thumbnail_size' => array(
-				'label'            => esc_html__( 'Image Size', 'squad-modules-for-divi' ),
-				'type'             => 'select',
-				'option_category'  => 'layout',
-				'options'          => $this->get_available_image_sizes(),
-				'default'          => 'thumbnail',
-				'default_on_front' => 'thumbnail',
-				'description'      => esc_html__( 'Choose image size.', 'squad-modules-for-divi' ),
-				'computed_affects' => array(
-					'__gallery',
-				),
-				'tab_slug'         => 'general',
-				'toggle_slug'      => 'main_content',
-			),
-			'__gallery'      => array(
+			'__gallery'   => array(
 				'type'                => 'computed',
 				'computed_callback'   => array( __CLASS__, 'get_gallery' ),
 				'computed_depends_on' => array(
@@ -193,6 +214,77 @@ class ImageGallery extends Squad_Divi_Builder_Module {
 
 		// Gallery settings fields definitions.
 		$gallery_settings_fields = array(
+			'fullwidth'          => array(
+				'label'            => et_builder_i18n( 'Layout' ),
+				'description'      => esc_html__( 'Toggle between the various gallery layout types.', 'squad-modules-for-divi' ),
+				'type'             => 'select',
+				'option_category'  => 'layout',
+				'options'          => array(
+					'off' => esc_html__( 'Grid', 'squad-modules-for-divi' ),
+					'on'  => esc_html__( 'Slider', 'squad-modules-for-divi' ),
+				),
+				'default_on_front' => 'off',
+				'affects'          => array(
+					'zoom_icon_color',
+					'caption_font',
+					'caption_text_color',
+					'caption_line_height',
+					'caption_font_size',
+					'caption_all_caps',
+					'caption_letter_spacing',
+					'hover_icon',
+					'hover_overlay_color',
+					'auto',
+					'posts_number',
+					'show_title_and_caption',
+					'show_pagination',
+					'orientation',
+					'border_radii_image',
+					'border_styles_image',
+				),
+				'computed_affects' => array(
+					'__gallery',
+				),
+				'tab_slug'         => 'general',
+				'toggle_slug'      => 'gallery_settings',
+			),
+			'orientation'        => array(
+				'label'            => esc_html__( 'Thumbnail Orientation', 'squad-modules-for-divi' ),
+				'description'      => sprintf(
+					'%1$s<br><small><em><strong>%2$s:</strong> %3$s <a href="//wordpress.org/plugins/force-regenerate-thumbnails" target="_blank">%4$s</a>.</em></small>',
+					esc_html__( 'Choose the orientation of the gallery thumbnails.', 'squad-modules-for-divi' ),
+					esc_html__( 'Note', 'squad-modules-for-divi' ),
+					esc_html__( 'If this option appears to have no effect, you might need to', 'squad-modules-for-divi' ),
+					esc_html__( 'regenerate your thumbnails', 'squad-modules-for-divi' )
+				),
+				'type'             => 'select',
+				'options_category' => 'configuration',
+				'options'          => array(
+					'landscape' => esc_html__( 'Landscape', 'squad-modules-for-divi' ),
+					'portrait'  => esc_html__( 'Portrait', 'squad-modules-for-divi' ),
+				),
+				'default_on_front' => 'landscape',
+				'depends_show_if'  => 'off',
+				'computed_affects' => array(
+					'__gallery',
+				),
+				'tab_slug'         => 'general',
+				'toggle_slug'      => 'gallery_settings',
+			),
+			'thumbnail_size'     => array(
+				'label'            => esc_html__( 'Image Size', 'squad-modules-for-divi' ),
+				'type'             => 'select',
+				'option_category'  => 'layout',
+				'options'          => $this->get_available_image_sizes(),
+				'default'          => 'thumbnail',
+				'default_on_front' => 'thumbnail',
+				'description'      => esc_html__( 'Choose image size.', 'squad-modules-for-divi' ),
+				'computed_affects' => array(
+					'__gallery',
+				),
+				'tab_slug'         => 'general',
+				'toggle_slug'      => 'gallery_settings',
+			),
 			'gallery_images_gap' => $this->disq_add_range_field(
 				esc_html__( 'Images Gap', 'squad-modules-for-divi' ),
 				array(
@@ -215,10 +307,10 @@ class ImageGallery extends Squad_Divi_Builder_Module {
 				'description'      => esc_html__( 'Select an ordering method for the gallery. This controls which gallery items appear first in the list.', 'squad-modules-for-divi' ),
 				'type'             => et_builder_is_loading_data() ? 'hidden' : 'select',
 				'options'          => array(
-					''     => et_builder_i18n( 'Default' ),
-					'rand' => esc_html__( 'Random', 'squad-modules-for-divi' ),
+					'default' => et_builder_i18n( 'Default' ),
+					'rand'    => esc_html__( 'Random', 'squad-modules-for-divi' ),
 				),
-				'default'          => 'off',
+				'default'          => 'default',
 				'class'            => array( 'et-pb-gallery-ids-field' ),
 				'computed_affects' => array(
 					'__gallery',

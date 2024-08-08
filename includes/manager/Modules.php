@@ -115,7 +115,7 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
-				'category'           => 'creative-modules',
+				'category'           => 'content-modules',
 			),
 			array(
 				'name'               => 'BusinessHours',
@@ -139,7 +139,7 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
-				'category'           => 'creative-modules',
+				'category'           => 'image-&-media-modules',
 			),
 			array(
 				'name'               => 'ImageGallery',
@@ -157,7 +157,7 @@ class Modules {
 				'label'              => esc_html__( 'Contact Form 7', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Effortlessly customize Contact Form 7 design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
-				'last_modified'      => '1.2.3',
+				'last_modified'      => array( '1.2.3', '1.4.7' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -169,7 +169,7 @@ class Modules {
 				'label'              => esc_html__( 'WP Forms', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
-				'last_modified'      => '1.2.3',
+				'last_modified'      => array( '1.2.3', '1.4.7' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -181,7 +181,7 @@ class Modules {
 				'label'              => esc_html__( 'Gravity Forms', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Effortlessly customize Gravity Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
-				'last_modified'      => '1.2.3',
+				'last_modified'      => array( '1.2.3', '1.4.7' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -271,7 +271,39 @@ class Modules {
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
-				'category'           => 'creative-modules',
+				'category'           => 'image-&-media-modules',
+			),
+			array(
+				'name'               => 'GoogleMap',
+				'label'              => esc_html__( 'Google Embed Map', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Google Embed Map right into your Divi\'s site easily without having to worry about anything else.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.4.7',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'type'               => 'D4',
+				'category'           => 'content-modules',
+			),
+			array(
+				'name'               => 'FormStylerNinjaForms',
+				'label'              => esc_html__( 'Ninja Forms', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Effortlessly customize Ninja Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.4.7',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'type'               => 'D4',
+				'required'           => array( 'plugin' => 'ninja-forms/ninja-forms.php' ),
+				'category'           => 'form-styler-modules',
+			),
+			array(
+				'name'               => 'FormStylerFluentForms',
+				'label'              => esc_html__( 'Fluent Forms', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Effortlessly customize Fluent Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.4.7',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'type'               => 'D4',
+				'required'           => array( 'plugin' => 'fluentform/fluentform.php' ),
+				'category'           => 'form-styler-modules',
 			),
 		);
 
@@ -287,8 +319,8 @@ class Modules {
 	 * @return array|null
 	 */
 	protected function is_active_module( $module, $type = 'D4' ) {
-		$single        = ! empty( is_string( $module['type'] ) ) && is_string( $module['type'] ) && $type === $module['type'];
-		$compatibility = ! empty( is_string( $module['type'] ) ) && is_array( $module['type'] ) && in_array( $type, $module['type'], true );
+		$single        = isset( $module['type'] ) && is_string( $module['type'] ) && $type === $module['type'];
+		$compatibility = isset( $module['type'] ) && is_array( $module['type'] ) && in_array( $type, $module['type'], true );
 
 		return ( $single || $compatibility ) && $module['is_default_active'] ? $module : null;
 	}
@@ -303,16 +335,12 @@ class Modules {
 	 * @return array
 	 */
 	protected function get_filtered_modules( $callback, $modules, $type = 'D4' ) {
-		return array_values(
-			array_filter(
-				array_map(
-					function ( $module ) use ( $callback, $type ) {
-						return call_user_func_array( $callback, array( $module, $type ) );
-					},
-					$modules
-				)
-			)
-		);
+		$filtered_modules = array();
+		foreach ( $modules as $module ) {
+			$filtered_modules[] = call_user_func_array( $callback, array( $module, $type ) );
+		}
+
+		return $filtered_modules;
 	}
 
 	/**

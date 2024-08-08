@@ -96,11 +96,20 @@ class Plugin_Review {
 	}
 
 	/**
+	 * Get the template path.
+	 *
+	 * @return string
+	 */
+	public function get_template() {
+		return sprintf( '%1$s/templates/plugin-review.php', DISQ_DIR_PATH );
+	}
+
+	/**
 	 * Show Notice.
 	 */
 	public function notice() {
-		if ( $this->can_render_notice() && file_exists( sprintf( '%1$s/templates/plugin-review.php', DISQ_DIR_PATH ) ) ) {
-			load_template( sprintf( '%1$s/templates/plugin-review.php', DISQ_DIR_PATH ) );
+		if ( $this->can_render_notice() && file_exists( $this->get_template() ) ) {
+			load_template( $this->get_template() );
 		}
 	}
 }

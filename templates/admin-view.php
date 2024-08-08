@@ -11,7 +11,9 @@
 defined( 'ABSPATH' ) || die();
 ?>
 
-<style>
+<div id="squad-modules-app-loader" class="square"> <span></span> <span></span> <span></span> <span></span> </div>
+<section id="squad-modules-app"></section>
+<style id="squad-modules-app-loader-css">
 	#squad-modules-app {
 		z-index: -1;
 	}
@@ -61,34 +63,28 @@ defined( 'ABSPATH' ) || die();
 
 	@keyframes app-loader-square {
 		0% {
-			-webkit-transform: scale(0);
 			transform: scale(0);
 			opacity: 0;
 		}
 		50% {
-			-webkit-transform: scale(1);
 			transform: scale(1);
 			opacity: 1;
 		}
 		100% {
-			-webkit-transform: rotate(60deg);
 			transform: rotate(60deg);
 			opacity: .5;
 		}
 	}
 	@-webkit-keyframes app-loader-square {
 		0% {
-			-webkit-transform: scale(0);
 			transform: scale(0);
 			opacity: 0;
 		}
 		50% {
-			-webkit-transform: scale(1);
 			transform: scale(1);
 			opacity: 1;
 		}
 		100% {
-			-webkit-transform: rotate(60deg);
 			transform: rotate(60deg);
 			opacity: .5;
 		}
@@ -96,5 +92,3 @@ defined( 'ABSPATH' ) || die();
 	/** END of square */
 </style>
 
-<div id="squad-modules-app-loader" class="square"> <span></span> <span></span> <span></span> <span></span> </div>
-<section id="squad-modules-app"></section>

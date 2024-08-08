@@ -871,7 +871,7 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 			'element_icon_padding'              => $this->disq_add_margin_padding_field(
 				esc_html__( 'Icon Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__( 'Here you can define a custom padding size for the icon.', 'squad-modules-for-divi' ),
+					'description'         => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'                => 'custom_padding',
 					'depends_show_if_not' => array( 'none' ),
 					'tab_slug'            => 'advanced',
@@ -892,7 +892,7 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 			'element_title_icon_padding'        => $this->disq_add_margin_padding_field(
 				esc_html__( 'Title Icon Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'     => esc_html__( 'Here you can define a custom padding size for the icon.', 'squad-modules-for-divi' ),
+					'description'     => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'            => 'custom_padding',
 					'depends_show_if' => 'on',
 					'tab_slug'        => 'advanced',
@@ -935,7 +935,7 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 			'element_wrapper_padding'  => $this->disq_add_margin_padding_field(
 				esc_html__( 'Padding', 'squad-modules-for-divi' ),
 				array(
-					'description' => esc_html__( 'Here you can define a custom padding size for the wrapper.', 'squad-modules-for-divi' ),
+					'description' => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'        => 'custom_padding',
 					'tab_slug'    => 'advanced',
 					'toggle_slug' => 'element_wrapper',
@@ -960,7 +960,7 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 			'element_margin'  => $this->disq_add_margin_padding_field(
 				esc_html__( 'Margin', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__( 'Here you can define a custom margin size for the element.', 'squad-modules-for-divi' ),
+					'description'         => esc_html__( 'Here you can define a custom margin size.', 'squad-modules-for-divi' ),
 					'type'                => 'custom_margin',
 					'range_settings'      => array(
 						'min'  => '1',
@@ -975,7 +975,7 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 			'element_padding' => $this->disq_add_margin_padding_field(
 				esc_html__( 'Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__( 'Here you can define a custom padding size for the element.', 'squad-modules-for-divi' ),
+					'description'         => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'                => 'custom_padding',
 					'range_settings'      => array(
 						'min'  => '1',

@@ -115,7 +115,7 @@ trait Field_Definition {
 		// Default properties for Background field.
 		$defaults = array(
 			'label'           => $label,
-			'description'     => esc_html__( 'Here you can define a custom padding size for the field.', 'squad-modules-for-divi' ),
+			'description'     => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 			'type'            => 'custom_margin',
 			'option_category' => 'layout',
 			'default_unit'    => 'px',

@@ -355,7 +355,7 @@ class PostReadingTime extends Squad_Divi_Builder_Module {
 			'time_padding'              => $this->disq_add_margin_padding_field(
 				esc_html__( 'Time Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size for the time.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min'  => '1',

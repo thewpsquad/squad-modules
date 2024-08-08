@@ -151,17 +151,6 @@ abstract class Core extends \DiviSquad\Base\Core {
 			$helpers = new Divi\Backend();
 			add_filter( 'et_fb_backend_helpers', array( $helpers, 'static_asset_definitions' ), 11 );
 			add_filter( 'et_fb_get_asset_helpers', array( $helpers, 'asset_definitions' ), 11 );
-
-			$load_backend_data = static function () {
-				$helpers      = new Divi\Backend();
-				$helpers_data = $helpers->static_asset_definitions();
-
-				// Pass helpers data via localization.
-				wp_localize_script( 'et-frontend-builder', 'DISQBuilderBackend', $helpers_data );
-			};
-
-			add_action( 'wp_enqueue_scripts', $load_backend_data );
-			add_action( 'admin_enqueue_scripts', $load_backend_data );
 		}
 	}
 }

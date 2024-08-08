@@ -208,7 +208,7 @@ class DropCapText extends Squad_Divi_Builder_Module {
 			'drop_cap_letter_padding' => $this->disq_add_margin_padding_field(
 				esc_html__( 'Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size for the drop cap letter.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min'  => '1',
