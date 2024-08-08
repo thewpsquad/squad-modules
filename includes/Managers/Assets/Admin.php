@@ -73,8 +73,8 @@ class Admin extends PluginAsset {
 	 */
 	public function enqueue_admin_scripts( $hook_suffix ) {
 		// Load plugin asset in the all admin pages.
-		Asset::asset_enqueue( 'admin-common', Asset::admin_asset_path( 'admin-common' ), array( 'jquery', 'wp-api-fetch' ) );
-		Asset::style_enqueue( 'admin-common', Asset::admin_asset_path( 'admin-common', array( 'ext' => 'css' ) ) );
+		Asset::enqueue_script( 'admin-common', Asset::admin_asset_path( 'admin-common' ), array( 'jquery', 'wp-api-fetch' ) );
+		Asset::enqueue_style( 'admin-common', Asset::admin_asset_path( 'admin-common', array( 'ext' => 'css' ) ) );
 
 		// Load plugin asset in the allowed admin pages only.
 		if ( Helper::is_squad_page( $hook_suffix ) ) {
@@ -82,9 +82,9 @@ class Admin extends PluginAsset {
 			$admin_deps = array( 'lodash', 'react', 'react-dom', 'react-jsx-runtime', 'wp-api-fetch', 'wp-components', 'wp-dom-ready', 'wp-element', 'wp-i18n' );
 
 			// Load all assets including scripts and stylesheets.
-			Asset::style_enqueue( 'admin-components', Asset::admin_asset_path( 'admin-components', array( 'ext' => 'css' ) ) );
-			Asset::asset_enqueue( 'admin', Asset::admin_asset_path( 'admin' ), $admin_deps );
-			Asset::style_enqueue( 'admin', Asset::admin_asset_path( 'admin', array( 'ext' => 'css' ) ) );
+			Asset::enqueue_style( 'admin-components', Asset::admin_asset_path( 'admin-components', array( 'ext' => 'css' ) ) );
+			Asset::enqueue_script( 'admin', Asset::admin_asset_path( 'admin' ), $admin_deps );
+			Asset::enqueue_style( 'admin', Asset::admin_asset_path( 'admin', array( 'ext' => 'css' ) ) );
 
 			// Load script translations.
 			WpUtils::set_script_translations( 'squad-admin', divi_squad()->get_name() );

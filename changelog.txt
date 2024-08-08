@@ -1,4 +1,11 @@
 == Changelog ==
+= 3.0.1 (16-07-2024) =
+
+**Bug Fixes:**
+
+- Fix: Fatal error when activating the pro plugin.
+
+
 = 3.0.0 (23-06-2024) =
 
 **New Features:**

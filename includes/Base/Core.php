@@ -49,27 +49,31 @@ abstract class Core {
 	/**
 	 * The Plugin name.
 	 *
-	 * @since 1.0.0
-	 *
 	 * @var string
+	 * @since 1.0.0
 	 */
 	protected $name;
 
 	/**
-	 * The Plugin Version.
-	 *
-	 * @since 1.4.5
+	 * The Plugin Text Domain.
 	 *
 	 * @var string
+	 */
+	protected $textdomain;
+
+	/**
+	 * The Plugin Version.
+	 *
+	 * @var string
+	 * @since 1.4.5
 	 */
 	protected $version;
 
 	/**
 	 * The plugin option prefix
 	 *
-	 * @since 1.0.0
-	 *
 	 * @var string
+	 * @since 1.0.0
 	 */
 	protected $opt_prefix;
 
@@ -163,6 +167,15 @@ abstract class Core {
 	}
 
 	/**
+	 * Get the plugin text domain.
+	 *
+	 * @return string
+	 */
+	public function get_textdomain() {
+		return $this->textdomain;
+	}
+
+	/**
 	 * The full file path to the directory containing translation files.
 	 *
 	 * @return string
@@ -202,7 +215,7 @@ abstract class Core {
 	 * @return void
 	 */
 	public function load_text_domain() {
-		load_plugin_textdomain( $this->name, false, "{$this->name}/languages" );
+		load_plugin_textdomain( $this->textdomain, false, "{$this->name}/languages" );
 	}
 
 	/**

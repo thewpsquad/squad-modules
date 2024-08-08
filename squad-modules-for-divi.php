@@ -11,7 +11,7 @@
  * Plugin Name:         Squad Modules Lite
  * Plugin URI:          https://squadmodules.com/
  * Description:         The Advanced Divi plugin you install after Divi or Extra Theme!
- * Version:             3.0.0
+ * Version:             3.0.1
  * Requires at least:   5.0.0
  * Requires PHP:        5.6.40
  * Author:              WP Squad
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Autoload function.
+ * Autoload function for non-deprecated classes.
  *
  * @param string $class_name Class name.
  *
@@ -46,25 +46,8 @@ spl_autoload_register(
 		$class_path = str_replace( 'DiviSquad\\', '', $class_name );
 		$valid_path = str_replace( array( '\\', '//' ), DIRECTORY_SEPARATOR, $class_path );
 
-		// List of deprecated classes.
-		$deprecated_classes = array(
-			'Admin/Assets',
-			'Admin/Plugin/AdminFooterText',
-			'Admin/Plugin/ActionLinks',
-			'Admin/Plugin/RowMeta',
-			'Base/Factories/AdminMenu/MenuCore',
-			'Integrations/Admin',
-			'Managers/Assets',
-		);
-
-		// Load deprecated classes.
-		if ( in_array( $valid_path, $deprecated_classes, true ) ) {
-			$valid_path = 'deprecated/' . $valid_path;
-		} else {
-			$valid_path = 'includes/' . $valid_path;
-		}
-
-		// Add the .php extension.
+		// Add the includes directory and the .php extension.
+		$valid_path = 'includes/' . $valid_path;
 		$class_file = realpath( __DIR__ . "/$valid_path.php" );
 		if ( file_exists( $class_file ) ) {
 			require_once $class_file;

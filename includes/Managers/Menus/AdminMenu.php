@@ -35,13 +35,19 @@ class AdminMenu extends Menu {
 		// Load the image class.
 		$image = new Image( divi_squad()->get_path( '/build/admin/images/logos' ) );
 
+		// Get the menu icon.
+		$menu_icon = $image->get_image( 'divi-squad-d-white.svg', 'svg' );
+		if ( is_wp_error( $menu_icon ) ) {
+			$menu_icon = 'dashicons-warning';
+		}
+
 		return array(
 			'name'       => esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
 			'title'      => esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
 			'capability' => $this->get_permission(),
 			'slug'       => $this->get_main_menu_slug(),
 			'view'       => array( $this, 'get_template' ),
-			'icon'       => $image->get_image( 'divi-squad-d-white.svg', 'svg' ),
+			'icon'       => $menu_icon,
 			'position'   => 101,
 		);
 	}

@@ -60,7 +60,7 @@ abstract class IntegrationAPI extends IntegrationAPIBase {
 		// Ensure backend style CSS file exists.
 		if ( file_exists( "$this->plugin_dir/$file_path" ) ) {
 			$style_asset_path = Asset::module_asset_path( 'backend-style', array( 'ext' => 'css' ) );
-			Asset::style_enqueue( "$this->name-backend", $style_asset_path, array(), 'all', true );
+			Asset::enqueue_style( "$this->name-backend", $style_asset_path, array(), 'all', true );
 		}
 	}
 
@@ -77,7 +77,7 @@ abstract class IntegrationAPI extends IntegrationAPIBase {
 		if ( Divi::is_fb_enabled() ) {
 			$script_asset_deps = array( 'jquery', 'react', 'react-dom', 'react-jsx-runtime', 'wp-i18n' );
 			$script_asset_path = Asset::module_asset_path( 'builder-bundle' );
-			Asset::asset_enqueue( "$this->name-builder", $script_asset_path, $script_asset_deps, true );
+			Asset::enqueue_script( "$this->name-builder", $script_asset_path, $script_asset_deps, true );
 
 			// Load script translations.
 			WP::set_script_translations( "$this->name-builder", divi_squad()->get_name() );
@@ -88,7 +88,7 @@ abstract class IntegrationAPI extends IntegrationAPIBase {
 			$style_handle_name = Divi::is_fb_enabled() ? "$this->name-builder" : $this->name;
 			$style_asset_name  = defined( 'ET_BUILDER_PLUGIN_ACTIVE' ) && ! Divi::is_fb_enabled() ? 'builder-style-dbp' : 'builder-style';
 			$style_asset_path  = Asset::module_asset_path( $style_asset_name, array( 'ext' => 'css' ) );
-			Asset::style_enqueue( $style_handle_name, $style_asset_path, array(), 'all', true );
+			Asset::enqueue_style( $style_handle_name, $style_asset_path, array(), 'all', true );
 		}
 
 		if ( Divi::is_fb_enabled() && ! Divi::is_bfb_enabled() ) {

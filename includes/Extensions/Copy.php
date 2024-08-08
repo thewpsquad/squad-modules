@@ -136,10 +136,10 @@ class Copy extends Extension {
 			Asset::register_script( 'vendor-toast', Asset::vendor_asset_path( 'jquery.toast' ), array( 'jquery' ) );
 			Asset::register_style( 'vendor-toast', Asset::vendor_asset_path( 'jquery.toast', array( 'ext' => 'css' ) ) );
 
-			Asset::asset_enqueue( 'ext-copy', Asset::extension_asset_path( 'copy' ), array( 'lodash', 'jquery', 'wp-api-fetch', 'squad-vendor-tooltipster', 'squad-vendor-toast' ) );
-			Asset::style_enqueue( 'ext-copy', Asset::extension_asset_path( 'copy', array( 'ext' => 'css' ) ), array( 'squad-vendor-tooltipster', 'squad-vendor-toast' ) );
-			Asset::asset_enqueue( 'ext-copy-bulk', Asset::extension_asset_path( 'copy-bulk' ), array( 'lodash', 'jquery', 'wp-api-fetch', 'squad-vendor-toast' ) );
-			Asset::style_enqueue( 'ext-copy-bulk', Asset::extension_asset_path( 'copy-bulk', array( 'ext' => 'css' ) ), array( 'squad-vendor-toast' ) );
+			Asset::enqueue_script( 'ext-copy', Asset::extension_asset_path( 'copy' ), array( 'lodash', 'jquery', 'wp-api-fetch', 'squad-vendor-tooltipster', 'squad-vendor-toast' ) );
+			Asset::enqueue_style( 'ext-copy', Asset::extension_asset_path( 'copy', array( 'ext' => 'css' ) ), array( 'squad-vendor-tooltipster', 'squad-vendor-toast' ) );
+			Asset::enqueue_script( 'ext-copy-bulk', Asset::extension_asset_path( 'copy-bulk' ), array( 'lodash', 'jquery', 'wp-api-fetch', 'squad-vendor-toast' ) );
+			Asset::enqueue_style( 'ext-copy-bulk', Asset::extension_asset_path( 'copy-bulk', array( 'ext' => 'css' ) ), array( 'squad-vendor-toast' ) );
 
 			// Load localize data.
 			add_filter( 'divi_squad_assets_backend_extra_data', array( $this, 'wp_localize_script_data' ) );
