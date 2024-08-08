@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
  * Post-Grid Child Module Class which extend the Divi Builder Module Class.
  *
@@ -6,7 +7,8 @@
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
 
@@ -1111,13 +1113,22 @@ class PostGridChild extends DISQ_Builder_Module {
 	/**
 	 * Generate styles.
 	 *
-	 * @param array $attrs  List of unprocessed attributes.
+	 * @param array $attrs List of unprocessed attributes.
 	 *
 	 * @return void
 	 */
 	private function disq_generate_all_styles( $attrs ) {
 		// Fixed: the custom background doesn't work at frontend.
-		$this->props = array_merge( $attrs, $this->props );
+		$this->props  = array_merge( $attrs, $this->props );
+		$element_type = ! empty( $attrs['element'] ) ? $attrs['element'] : 'none';
+
+		if ( 'image' === $element_type && 'on' === $this->prop( 'element_image_fullwidth__enable', ' off' ) ) {
+			self::set_style( $this->slug, array(
+					'selector'    => "$this->main_css_element div .post-elements .disq-post-element__image, $this->main_css_element div .post-elements .disq-post-element__image img",
+					'declaration' => et_builder_get_element_style_css( '100%', 'width', true ),
+				)
+			);
+		}
 
 		// background with default, responsive, hover.
 		et_pb_background_options()->get_background_style(
@@ -1134,7 +1145,7 @@ class PostGridChild extends DISQ_Builder_Module {
 				'use_background_mask'    => false,
 				'prop_name_aliases'      => array(
 					'use_element_wrapper_background_color_gradient' => 'element_wrapper_background_use_color_gradient',
-					'element_wrapper_background' => 'element_wrapper_background_color',
+					'element_wrapper_background'                    => 'element_wrapper_background_color',
 				),
 			)
 		);
@@ -1152,7 +1163,7 @@ class PostGridChild extends DISQ_Builder_Module {
 				'use_background_mask'    => false,
 				'prop_name_aliases'      => array(
 					'use_element_background_color_gradient' => 'element_background_use_color_gradient',
-					'element_background' => 'element_background_color',
+					'element_background'                    => 'element_background_color',
 				),
 			)
 		);
@@ -1221,7 +1232,7 @@ class PostGridChild extends DISQ_Builder_Module {
 	/**
 	 * Render post name icon.
 	 *
-	 * @param array $attrs  List of attributes.
+	 * @param array $attrs List of attributes.
 	 *
 	 * @return void
 	 */
@@ -1293,7 +1304,7 @@ class PostGridChild extends DISQ_Builder_Module {
 	/**
 	 * Render all styles for icon.
 	 *
-	 * @param array $attrs  List of attributes.
+	 * @param array $attrs List of attributes.
 	 *
 	 * @return void
 	 */
@@ -1421,8 +1432,8 @@ class PostGridChild extends DISQ_Builder_Module {
 
 			// Icon placement with default, responsive, hover.
 			if ( ( isset( $attrs[ $placement ] ) && 'column' === $attrs[ $placement ] ) ||
-					( isset( $attrs[ "{$placement}_tablet" ] ) && 'column' === $attrs[ "{$placement}_tablet" ] ) ||
-					( isset( $attrs[ "{$placement}_phone" ] ) && 'column' === $attrs[ "{$placement}_phone" ] ) ) {
+			     ( isset( $attrs["{$placement}_tablet"] ) && 'column' === $attrs["{$placement}_tablet"] ) ||
+			     ( isset( $attrs["{$placement}_phone"] ) && 'column' === $attrs["{$placement}_phone"] ) ) {
 				$this->generate_styles(
 					array(
 						'base_attr_name' => 'element_icon_horizontal_alignment',
@@ -1436,8 +1447,8 @@ class PostGridChild extends DISQ_Builder_Module {
 			}
 
 			if ( ( isset( $attrs[ $placement ] ) && in_array( $attrs[ $placement ], $vert_en_placement, true ) ) ||
-					( isset( $attrs[ "{$placement}_tablet" ] ) && in_array( $attrs[ "{$placement}_tablet" ], $vert_en_placement, true ) ) ||
-					( isset( $attrs[ "{$placement}_phone" ] ) && in_array( $attrs[ "{$placement}_phone" ], $vert_en_placement, true ) ) ) {
+			     ( isset( $attrs["{$placement}_tablet"] ) && in_array( $attrs["{$placement}_tablet"], $vert_en_placement, true ) ) ||
+			     ( isset( $attrs["{$placement}_phone"] ) && in_array( $attrs["{$placement}_phone"], $vert_en_placement, true ) ) ) {
 				$this->generate_styles(
 					array(
 						'base_attr_name' => 'element_icon_vertical_alignment',

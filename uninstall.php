@@ -5,7 +5,8 @@
  *
  * @since       1.0.0
  * @package     squad-modules-pro-for-divi
- * @author      WP Squad <support@thewpsquad.com>
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
 

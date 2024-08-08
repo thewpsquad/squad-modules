@@ -4,12 +4,14 @@
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
 
 namespace DiviSquad\Base\BuilderModule\Traits;
 
+use DiviSquad\Utils\Helper;
 use ET_Builder_Element;
 use stdClass;
 
@@ -18,7 +20,8 @@ use stdClass;
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
 trait Field_Processor {
@@ -410,6 +413,7 @@ trait Field_Processor {
 			'type'         => '',
 			'css_property' => '',
 			'hover'        => '',
+			'hover_selector'        => '',
 			'important'    => true,
 		);
 		$options = wp_parse_args( $options, $default );
@@ -425,7 +429,7 @@ trait Field_Processor {
 		$value_responsive_values = et_pb_responsive_options()->get_property_values( $this->props, $qualified_name );
 
 		// Collect additional values.
-		// Get an instance of "ET_Builder_Module_Hover_Options".
+		// Get an instance of "ET_Builder_Module_Hover_Options."
 		$hover                = et_pb_hover_options();
 		$margin_padding_hover = $hover->get_value( $qualified_name, $this->props, '' );
 		$css_prop             = $this->field_to_css_prop( $options['css_property'] );
@@ -465,16 +469,16 @@ trait Field_Processor {
 		}
 
 		// Hover style.
-		if ( isset( $options['hover'] ) && '' !== $margin_padding_hover ) {
+		$hover_selector = isset($options['hover_selector']) ? $options['hover_selector'] : $options['hover'];
+		if ( isset( $hover_selector ) && '' !== $margin_padding_hover ) {
 			$hover_style = array(
-				'selector'    => $options['hover'],
+				'selector'    => $hover_selector,
 				'declaration' => et_builder_get_element_style_css(
 					esc_html( $this->disq_collect_prop_mapping_value( $options, $margin_padding_hover ) ),
 					$css_prop,
 					$options['important']
 				),
 			);
-
 			self::set_style( $this->slug, $hover_style );
 		}
 	}
@@ -632,7 +636,7 @@ trait Field_Processor {
 		if ( 'a' === $options['text_tag'] ) {
 			$raw_text     = $options['multi_view']->render_element( array( 'content' => "{{{$text_attribute}}}" ) );
 			$striped_text = wp_strip_all_tags( $raw_text );
-			$url_target   = 'on' === $options['target'] ? '_blank' : '_self';
+			$url_target   = isset( $options['target'] ) && 'on' === $options['target'] ? '_blank' : '_self';
 
 			return sprintf(
 				'<%1$s href="%3$s" target="%4$s">%2$s</%1$s>',
