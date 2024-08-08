@@ -5,7 +5,7 @@ Tags: divi, divi module, divi theme, divi builder, divi page builder, divi plugi
 Requires at least: 5.0.0
 Tested up to: 6.4
 Requires PHP: 5.6
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -110,6 +110,8 @@ You can install the [Squad Modules Lite](https://squadmodules.com/) plugin using
    - After the installation is complete, click on the "Activate" button to activate the Squad Modules Lite plugin.
    - Once activated, you can start utilizing the wide range of Divi modules within the Divi Builder to enhance your website.
 
+The WordPress codex contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
+
 Start using the elegant Divi modules in your Divi Builder and enjoy the enhanced capabilities.
 
 == Frequently Asked Questions ==
@@ -206,7 +208,10 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 * Enjoy the new collection of elegant Divi modules and enhance your website.
 
 == Changelog ==
-= 1.4.2 (27-10-2023) =
+= 1.4.3 (28-10-2023) =
+* Improved: Admin UI with new floating control buttons (More flexible, more user-friendly)
+
+= 1.4.2 (26-10-2023) =
 * Improved: Squad Modules Lite Admin UI (More flexible, more user-friendly)
 * Compatibility: Tested up to WordPress 6.4
 
