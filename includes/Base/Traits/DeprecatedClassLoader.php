@@ -44,7 +44,7 @@ trait DeprecatedClassLoader {
 				continue;
 			}
 
-			if ( version_compare( $plugin['version'], '1.1.0', '>=' ) ) {
+			if ( version_compare( $plugin['version'], '1.1.0', '<=' ) ) {
 				$this->load_deprecated_classes();
 				break;
 			}

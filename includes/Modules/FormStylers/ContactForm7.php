@@ -209,6 +209,7 @@ class ContactForm7 extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
@@ -229,6 +230,7 @@ class ContactForm7 extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '1px|1px|1px|1px',
 							'color' => '#bbb',
@@ -249,7 +251,9 @@ class ContactForm7 extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
 							'style' => 'solid',
 						),
@@ -268,7 +272,9 @@ class ContactForm7 extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#dc3232',
 							'style' => 'solid',
 						),
@@ -287,7 +293,9 @@ class ContactForm7 extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#46b450',
 							'style' => 'solid',
 						),
@@ -378,116 +386,6 @@ class ContactForm7 extends FormStyler {
 			'text'           => false,
 			'button'         => false,
 		);
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_default() {
-		return "$this->main_css_element div .wpcf7 form.wpcf7-form";
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_default() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_hover() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field:hover";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Declare custom css fields for the module
-	 *
-	 * @return array[]
-	 */
-	public function get_custom_css_fields_config() {
-		$form_selector = $this->get_form_selector_default();
-
-		return array(
-			'wrapper'         => array(
-				'label'    => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
-				'selector' => $form_selector,
-			),
-			'field'           => array(
-				'label'    => esc_html__( 'Field', 'squad-modules-for-divi' ),
-				'selector' => $this->get_field_selector_default(),
-			),
-			'radio_checkbox'  => array(
-				'label'    => esc_html__( 'Radio Checkbox', 'squad-modules-for-divi' ),
-				'selector' => "$form_selector input[type=checkbox], $form_selector input[type=radio]",
-			),
-			'file_upload'     => array(
-				'label'    => esc_html__( 'File Upload', 'squad-modules-for-divi' ),
-				'selector' => "$form_selector .wpcf7-form-control.wpcf7-file",
-			),
-			'form_button'     => array(
-				'label'    => esc_html__( 'Button', 'squad-modules-for-divi' ),
-				'selector' => $this->get_submit_button_selector_default(),
-			),
-			'message_error'   => array(
-				'label'    => esc_html__( 'Error Message', 'squad-modules-for-divi' ),
-				'selector' => $this->get_error_message_selector_default(),
-			),
-			'message_success' => array(
-				'label'    => esc_html__( 'Success Message', 'squad-modules-for-divi' ),
-				'selector' => $this->get_success_message_selector_default(),
-			),
-		);
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_default() {
-		return "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit";
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_default() {
-		return "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_default() {
-		return "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors";
 	}
 
 	/**
@@ -613,5 +511,115 @@ class ContactForm7 extends FormStyler {
 	 */
 	protected function get_submit_button_selector_hover() {
 		return "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for form tag.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_default() {
+		return "$this->main_css_element div .wpcf7 form.wpcf7-form";
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_default() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_hover() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field:hover";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Declare custom css fields for the module
+	 *
+	 * @return array[]
+	 */
+	public function get_custom_css_fields_config() {
+		$form_selector = $this->get_form_selector_default();
+
+		return array(
+			'wrapper'         => array(
+				'label'    => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
+				'selector' => $form_selector,
+			),
+			'field'           => array(
+				'label'    => esc_html__( 'Field', 'squad-modules-for-divi' ),
+				'selector' => $this->get_field_selector_default(),
+			),
+			'radio_checkbox'  => array(
+				'label'    => esc_html__( 'Radio Checkbox', 'squad-modules-for-divi' ),
+				'selector' => "$form_selector input[type=checkbox], $form_selector input[type=radio]",
+			),
+			'file_upload'     => array(
+				'label'    => esc_html__( 'File Upload', 'squad-modules-for-divi' ),
+				'selector' => "$form_selector .wpcf7-form-control.wpcf7-file",
+			),
+			'form_button'     => array(
+				'label'    => esc_html__( 'Button', 'squad-modules-for-divi' ),
+				'selector' => $this->get_submit_button_selector_default(),
+			),
+			'message_error'   => array(
+				'label'    => esc_html__( 'Error Message', 'squad-modules-for-divi' ),
+				'selector' => $this->get_error_message_selector_default(),
+			),
+			'message_success' => array(
+				'label'    => esc_html__( 'Success Message', 'squad-modules-for-divi' ),
+				'selector' => $this->get_success_message_selector_default(),
+			),
+		);
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_default() {
+		return "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_default() {
+		return "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_default() {
+		return "$this->main_css_element div .wpcf7 form.invalid .wpcf7-response-output, $this->main_css_element div .wpcf7 form.unaccepted .wpcf7-response-output, $this->main_css_element div .wpcf7 form.payment-required .wpcf7-response-output, $this->main_css_element div .wpcf7 form.init .wpcf7-response-output.wpcf7-validation-errors";
 	}
 }

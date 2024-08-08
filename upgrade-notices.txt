@@ -1,4 +1,7 @@
 == Upgrade Notice ==
+= 3.1.3 =
+- Bug fixing with advanced fields and others
+
 = 3.1.2 =
 - Bug fixing and compatibility with latest pro plugin
 
@@ -6,7 +9,7 @@
 - Bug fixing and compatibility with latest pro plugin
 
 = 3.1.0 =
-- New languages, bugfixing and compatibility with WordPress, Divi Theme, and other thirdparty plugins.
+- New languages, bug-fixing and compatibility with WordPress, Divi Theme, and other thirdparty plugins.
 
 = 3.0.1 =
 - Fatal error when activating the pro plugin

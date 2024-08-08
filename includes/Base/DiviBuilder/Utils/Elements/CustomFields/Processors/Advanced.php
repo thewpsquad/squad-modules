@@ -246,6 +246,7 @@ class Advanced extends Processor {
 			return $this->custom_fields[ $post_id ];
 		}
 
+		// Initialize custom fields array.
 		$this->custom_fields[ $post_id ] = array();
 
 		$custom_field_values = $this->get_available_field_values( $post_id );
