@@ -21,7 +21,7 @@ copy_version() {
     find . -mindepth 1 -maxdepth 1 \
         ! -name '.git' \
         ! -name '.github' \
-        ! -name 'readme.md' \
+        ! -name 'README.md' \
         ! -name 'LICENSE' \
         ! -name 'CODE_OF_CONDUCT.md' \
         -exec rm -rf {} +
