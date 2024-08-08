@@ -5,7 +5,7 @@ Tags: divi, divi module, divi theme, divi page builder, divi builder, extra them
 Requires at least: 5.8
 Tested up to: 6.2
 Requires PHP: 5.6
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -18,7 +18,7 @@ With Squad Modules for Divi, you can effortlessly create stunning layouts, add i
 
 == Features ==
 - **Easy-to-Use**: Seamlessly integrated into the Divi Builder, Squad Modules for Divi offers a user-friendly interface that allows you to add, customize, and arrange modules with ease.
-- **Beautifully Designed**: Each module in Squad Modules for Divi is meticulously designed by our team of experts to ensure the highest quality and visual appeal. Choose from a range of stunning modules to make your website stand out.
+- **Beautifully Designed**: Our team of experts meticulously designs each module in Squad Modules for Divi to ensure the highest quality and visual appeal. Choose from a range of stunning modules to make your website stand out.
 - **Customizable**: Squad Modules for Divi provides extensive customization options, allowing you to personalize every aspect of the modules to match your website's branding and design. Adjust colors, typography, spacing, and more to create a unique look.
 - **Translation Ready**: Squad Modules for Divi supports translation into multiple languages, including Bangla, English, and German. Reach a global audience by providing a localized experience for your users. WPML compatibility ensures smooth multilingual functionality.
 - **Responsive and Mobile-Friendly**: All modules are optimized for responsiveness, ensuring that your website looks great on any device. Mobile-specific settings enable you to fine-tune the module appearance on smaller screens.
@@ -46,10 +46,10 @@ We are thankful to you that you have chosen our plugin. If our plugin brings a s
 [I Happy to Give You](https://wordpress.org/support/plugin/squad-modules-for-divi/reviews/?filter=5#new-post)
 
 == Before Installation ==
-Before installing the Divi Squad Plugin, make sure you have the following requiremen
-    - WordPress version 5.8 or later.
-    - Divi theme, Extra Theme or Divi Builder Plugin installed and activated.
-    - PHP version 5.6 or later.
+Before installing the Divi Squad Plugin, make sure you have the following requirement
+  - WordPress version 5.8 or later.
+  - Divi theme, Extra Theme or Divi Builder Plugin installed and activated.
+  - PHP version 5.6 or later.
 
 == Installation ==
 You can install the Squad Modules for Divi plugin using one of the following methods:
@@ -115,11 +115,15 @@ Squad Modules for Divi is translation-ready and supports localization. If you wo
 * Enjoy the new collection of elegant Divi modules and enhance your website.
 
 == Changelog ==
+= 1.0.5 (12-07-2023) =
+* Improved: Icon feature for all modules
+* Improved: Lottie and Typing text module
+
 = 1.0.4 (11-07-2023) =
 * Added: Multi Language support for all modules.
 * Added: Translation ready for Bangla (Bangladesh), English (US).
-* Improved: Post Grid Module
-* Improved: Plugin readme file
+* Improved: Post Grid Module.
+* Improved: Plugin readme file.
 
 = 1.0.3 (24-06-2023) =
 * Locked: Premium features inclusion and Pro with ads.
