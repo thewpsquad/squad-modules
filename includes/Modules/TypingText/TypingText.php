@@ -1352,5 +1352,3 @@ class TypingText extends Squad_Module {
 		);
 	}
 }
-
-new TypingText();

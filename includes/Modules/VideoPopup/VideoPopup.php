@@ -16,6 +16,7 @@ namespace DiviSquad\Modules\VideoPopup;
 use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\Polyfills\Str;
 use function esc_attr__;
 use function esc_html__;
 use function et_builder_accent_color;
@@ -623,7 +624,7 @@ class VideoPopup extends Squad_Module {
 			$img_overlay = sprintf( '<div class="video-popup-figure"><img src="%1$s" alt="%2$s"/></div>', $image, $image_alt );
 		}
 
-		if ( str_contains( $video_link, 'youtu.be' ) ) {
+		if ( Str::contains( $video_link, 'youtu.be' ) ) {
 			$video_link = str_replace( 'youtu.be/', 'youtube.com/watch?v=', $video_link );
 		}
 
@@ -925,5 +926,3 @@ class VideoPopup extends Squad_Module {
 		return $svg_icon . $text;
 	}
 }
-
-new VideoPopup();

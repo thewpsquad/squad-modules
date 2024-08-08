@@ -19,7 +19,7 @@ msgstr ""
 msgid " ( Page %s )"
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:655
+#: includes/Modules/PostGrid/PostGrid.php:671
 msgid " Ignore sticky  posts for the current page."
 msgstr "বর্তমান পৃষ্ঠার জন্য স্টিকি পোস্ট উপেক্ষা করুন."
 
@@ -125,7 +125,7 @@ msgstr "বোঝার জন্য আগে এবং পরে ছবি য
 msgid "Add Before Icon"
 msgstr ""
 
-#: includes/Managers/Modules.php:213
+#: includes/Managers/Modules.php:236
 msgid "Add dynamic, attention-grabbing text animations to your Divi-powered website."
 msgstr ""
 
@@ -133,7 +133,7 @@ msgstr ""
 msgid "Add New Business Day"
 msgstr "নতুন ব্যবসা দিবস যোগ করুন"
 
-#: includes/Modules/PostGrid/PostGrid.php:486
+#: includes/Modules/PostGrid/PostGrid.php:502
 msgid "Add New Element"
 msgstr "নতুন উপাদান যোগ করুন"
 
@@ -145,7 +145,7 @@ msgstr ""
 msgid "Add one or more business day."
 msgstr "Add one or more business day."
 
-#: includes/Modules/PostGrid/PostGrid.php:1423
+#: includes/Modules/PostGrid/PostGrid.php:1439
 msgid "Add one or more element(s)."
 msgstr "এক বা একাধিক উপাদান যোগ করুন।"
 
@@ -161,7 +161,7 @@ msgstr ""
 msgid "Add Start And Time"
 msgstr "শুরু এবং সময় যোগ করুন"
 
-#: includes/Managers/Modules.php:224
+#: includes/Managers/Modules.php:248
 msgid "Add stylish star ratings to your content for user feedback and ratings."
 msgstr ""
 
@@ -209,7 +209,7 @@ msgstr "সেপারেটরের প্রস্থ সংশোধন ক
 msgid "Adjust the width of the time text."
 msgstr "সময়ের পাঠ্যের প্রস্থ সামঞ্জস্য করুন।"
 
-#: includes/Managers/Modules.php:30
+#: includes/Managers/Modules.php:31
 #: includes/Modules/Divider/Divider.php:48
 msgid "Advanced Divider"
 msgstr "উন্নত ডিভাইডার"
@@ -261,7 +261,7 @@ msgstr "প্যাডিং পরে"
 msgid "After Text"
 msgstr "আফটার টেক্স"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:287
+#: includes/Modules/VideoPopup/VideoPopup.php:288
 msgid "Align content to the left, right or center."
 msgstr ""
 
@@ -275,8 +275,8 @@ msgstr ""
 #: includes/Modules/FlipBox/FlipBox.php:1163
 #: includes/Modules/FlipBox/FlipBox.php:2960
 #: includes/Modules/FlipBox/FlipBox.php:3054
-#: includes/Modules/PostGrid/PostGrid.php:1013
-#: includes/Modules/PostGrid/PostGrid.php:1213
+#: includes/Modules/PostGrid/PostGrid.php:1029
+#: includes/Modules/PostGrid/PostGrid.php:1229
 #: includes/Modules/PostGridChild/PostGridChild.php:799
 #: includes/Modules/PostReadingTime/PostReadingTime.php:290
 #: includes/Modules/TypingText/TypingText.php:601
@@ -297,7 +297,7 @@ msgstr ""
 msgid "Alignment"
 msgstr "এ্যালাইনমেন্ট"
 
-#: includes/Modules/PostGrid/PostGrid.php:541
+#: includes/Modules/PostGrid/PostGrid.php:557
 msgid "All Categories"
 msgstr "সব বিভাগগুলি"
 
@@ -310,7 +310,7 @@ msgstr "লাইনের পরিমাণ"
 msgid "Amount Of Loops"
 msgstr "লুপের পরিমাণ"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:275
+#: includes/Modules/VideoPopup/VideoPopup.php:276
 msgid "Animated Wave Color"
 msgstr ""
 
@@ -341,7 +341,7 @@ msgstr "অ্যানিমেশন স্পীড"
 msgid "Animation Type"
 msgstr "অ্যানিমেশন টাইপ"
 
-#: includes/Managers/Modules.php:88
+#: includes/Managers/Modules.php:97
 msgid "Apply stunning masks to your images, adding creativity and visual appeal to your website."
 msgstr ""
 
@@ -349,7 +349,7 @@ msgstr ""
 msgid "Approaching closer to unlocking the benefits of the Pro plugin."
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:590
+#: includes/Modules/PostGrid/PostGrid.php:606
 msgid "Ascending"
 msgstr "ছোট থেকে বড়"
 
@@ -361,7 +361,7 @@ msgstr "উপাদানটিতে একটি অনন্য CSS আই�
 msgid "Assign any number of CSS Classes to the element, separated by spaces, which can be used to assign custom CSS styles from within your child theme or from within Divi's custom CSS inputs."
 msgstr "এলিমেন্টে স্পেস দ্বারা পৃথক করে বিভিন্ন CSS ক্লাস নির্ধারণ করুন যা আপনি চাইলে চাইলে চাইলে আপনার চাইল্ড থিম থেকে বা ডিভির কাস্টম CSS ইনপুট থেকে কাস্টম CSS স্টাইল নির্ধারণ করতে ব্যবহার করা যাবে।"
 
-#: includes/Modules/PostGrid/PostGrid.php:574
+#: includes/Modules/PostGrid/PostGrid.php:590
 #: includes/Modules/PostGridChild/PostGridChild.php:64
 #: includes/Modules/StarRating/StarRating.php:409
 msgid "Author"
@@ -409,11 +409,11 @@ msgstr "ব্যাক বাটন"
 msgid "Back Wrapper"
 msgstr "পিছনে মোড়ানো"
 
-#: includes/Modules/DropCap/DropCap.php:159
+#: includes/Modules/DropCapText/DropCapText.php:159
 #: includes/Modules/DualButton/DualButton.php:412
 #: includes/Modules/PostGridChild/PostGridChild.php:891
 #: includes/Modules/PostGridChild/PostGridChild.php:933
-#: includes/Modules/VideoPopup/VideoPopup.php:342
+#: includes/Modules/VideoPopup/VideoPopup.php:343
 msgid "Background"
 msgstr "ব্যাকগ্রাউন্ড"
 
@@ -422,11 +422,11 @@ msgstr "ব্যাকগ্রাউন্ড"
 #: includes/Modules/TypingText/TypingText.php:81
 #: includes/Modules/TypingText/TypingText.php:140
 #: includes/Modules/TypingText/TypingText.php:250
-#: includes/Modules/VideoPopup/VideoPopup.php:79
+#: includes/Modules/VideoPopup/VideoPopup.php:80
 msgid "Before"
 msgstr "পূর্বে"
 
-#: includes/Managers/Modules.php:122
+#: includes/Managers/Modules.php:137
 #: includes/Modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:44
 msgid "Before After Image Slider"
 msgstr "বিফোর আফটার ইমেজ স্লাইডার"
@@ -478,7 +478,7 @@ msgstr "আগের পাঠ্য"
 msgid "Block"
 msgstr "ব্লক"
 
-#: includes/Modules/DropCap/DropCap.php:91
+#: includes/Modules/DropCapText/DropCapText.php:91
 #: includes/Modules/FlipBox/FlipBox.php:342
 #: includes/Modules/FlipBox/FlipBox.php:391
 #: includes/Modules/FlipBox/FlipBox.php:2701
@@ -498,7 +498,7 @@ msgstr "বডি অর্ডার"
 msgid "Body Padding"
 msgstr "বডি প্যাডিং"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:421
+#: includes/Modules/VideoPopup/VideoPopup.php:422
 msgid "Border Radius"
 msgstr ""
 
@@ -509,14 +509,14 @@ msgstr ""
 msgid "Bottom"
 msgstr "নীচে"
 
-#: includes/Managers/Modules.php:234
+#: includes/Managers/Modules.php:259
 #: includes/Modules/Breadcrumbs/Breadcrumbs.php:41
 #: includes/Modules/Breadcrumbs/Breadcrumbs.php:42
 #: includes/Modules/Breadcrumbs/Breadcrumbs.php:59
 msgid "Breadcrumbs"
 msgstr ""
 
-#: includes/Managers/Modules.php:112
+#: includes/Managers/Modules.php:126
 #: includes/Modules/BusinessHoursChild/BusinessHoursChild.php:40
 msgid "Business Day"
 msgstr "ব্যবসা দিন"
@@ -525,7 +525,7 @@ msgstr "ব্যবসা দিন"
 msgid "Business Days"
 msgstr "ব্যবসা দিনসমূহ"
 
-#: includes/Managers/Modules.php:109
+#: includes/Managers/Modules.php:123
 #: includes/Modules/BusinessHours/BusinessHours.php:41
 #: includes/Modules/BusinessHours/BusinessHours.php:42
 msgid "Business Hours"
@@ -541,19 +541,19 @@ msgstr "ব্যবসা সময়সমূহ"
 #: includes/Modules/FlipBox/FlipBox.php:895
 #: includes/Modules/FlipBox/FlipBox.php:919
 #: includes/Modules/FlipBox/FlipBox.php:3508
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:165
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:245
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:412
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:282
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:361
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:528
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:395
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:515
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:324
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:424
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:614
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:176
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:256
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:165
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:245
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:412
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:282
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:361
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:528
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:395
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:515
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:324
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:424
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:614
+#: includes/Modules/FormStylerWPForms/WPForms.php:203
+#: includes/Modules/FormStylerWPForms/WPForms.php:283
 #: includes/Modules/PostGrid/PostGrid.php:119
 #: includes/Modules/PostGrid/PostGrid.php:250
 msgid "Button"
@@ -561,7 +561,7 @@ msgstr "বাটন"
 
 #: includes/Modules/FlipBox/FlipBox.php:1061
 #: includes/Modules/FlipBox/FlipBox.php:1081
-#: includes/Modules/PostGrid/PostGrid.php:1211
+#: includes/Modules/PostGrid/PostGrid.php:1227
 msgid "Button Alignment"
 msgstr "বাটন এলাইনমেন্ট"
 
@@ -569,16 +569,16 @@ msgstr "বাটন এলাইনমেন্ট"
 #: includes/Modules/DualButton/DualButton.php:231
 #: includes/Modules/FlipBox/FlipBox.php:975
 #: includes/Modules/FlipBox/FlipBox.php:992
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:333
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:449
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:632
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:527
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:345
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:333
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:449
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:632
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:527
+#: includes/Modules/FormStylerWPForms/WPForms.php:372
 #: includes/Modules/PostGrid/PostGrid.php:381
 msgid "Button Box Shadow"
 msgstr "বাটন বক্স শাডো"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:172
+#: includes/Modules/VideoPopup/VideoPopup.php:173
 msgid "Button Element"
 msgstr ""
 
@@ -586,7 +586,7 @@ msgstr ""
 msgid "Button Elements Alignment"
 msgstr "বোতাম উপাদান প্রান্তিককরণ"
 
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:211
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:211
 msgid "Button Height"
 msgstr "বাটনের উচ্চতা"
 
@@ -685,7 +685,7 @@ msgstr "বিভাগসমূহ"
 msgid "Categories Separator"
 msgstr "বিভাগ বিভাজক"
 
-#: includes/Modules/PostGrid/PostGrid.php:518
+#: includes/Modules/PostGrid/PostGrid.php:534
 msgid "Category"
 msgstr "ক্যাটাগরি"
 
@@ -704,11 +704,11 @@ msgstr "API কী পরিবর্তন করুন"
 msgid "Changelog"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:244
+#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:255
 msgid "Checkbox & Radio Active Color"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:252
+#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:263
 msgid "Checkbox & Radio Field Size"
 msgstr ""
 
@@ -793,7 +793,7 @@ msgstr "আপনার টাইটেল প্রদর্শন করার
 msgid "Choose a type"
 msgstr "একটি টাইপ নির্বাচন করুন"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:257
+#: includes/Modules/VideoPopup/VideoPopup.php:258
 msgid "Choose a Video MP4 File"
 msgstr ""
 
@@ -831,11 +831,11 @@ msgstr "ফ্লিপ বক্সের আপনার বর্তমান
 msgid "Choose an icon to display with your divider."
 msgstr "আপনার ভিভাজকের সাথে প্রদর্শন করার জন্য একটি আইকন চয়ন করুন৷"
 
-#: includes/Modules/PostGrid/PostGrid.php:899
+#: includes/Modules/PostGrid/PostGrid.php:915
 msgid "Choose an icon to display with your next entries."
 msgstr "আপনার পরবর্তী এন্ট্রিগুলির সাথে প্রদর্শন করার জন্য একটি আইকন চয়ন করুন৷"
 
-#: includes/Modules/PostGrid/PostGrid.php:876
+#: includes/Modules/PostGrid/PostGrid.php:892
 msgid "Choose an icon to display with your old entries."
 msgstr "আপনার পুরানো এন্ট্রিগুলির সাথে প্রদর্শন করার জন্য একটি আইকন চয়ন করুন৷"
 
@@ -879,7 +879,7 @@ msgstr "আপনার সেপারেটরের সাথে প্রদ
 #: includes/Modules/FlipBox/FlipBox.php:2830
 #: includes/Modules/ImageMask/ImageMask.php:104
 #: includes/Modules/PostGridChild/PostGridChild.php:599
-#: includes/Modules/VideoPopup/VideoPopup.php:157
+#: includes/Modules/VideoPopup/VideoPopup.php:158
 msgid "Choose an Image"
 msgstr "একটি ছবি পছন্দ করুন"
 
@@ -916,23 +916,23 @@ msgstr ""
 msgid "close"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:448
+#: includes/Modules/VideoPopup/VideoPopup.php:449
 msgid "Close Icon Color"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:331
+#: includes/Modules/VideoPopup/VideoPopup.php:332
 msgid "Color"
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:707
+#: includes/Modules/PostGrid/PostGrid.php:723
 msgid "Column Numbers"
 msgstr "কলাম সংখ্যা"
 
-#: includes/Modules/PostGrid/PostGrid.php:729
+#: includes/Modules/PostGrid/PostGrid.php:745
 msgid "Columns Gap"
 msgstr "কলাম ফাঁক"
 
-#: includes/Modules/PostGrid/PostGrid.php:575
+#: includes/Modules/PostGrid/PostGrid.php:591
 msgid "Comments"
 msgstr "মন্তব্যসমূহ"
 
@@ -940,13 +940,13 @@ msgstr "মন্তব্যসমূহ"
 msgid "Comments Count"
 msgstr "মন্তব্য গণনা"
 
-#: includes/Managers/Modules.php:144
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:39
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:40
+#: includes/Managers/Modules.php:161
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:39
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:40
 msgid "Contact Form 7"
 msgstr ""
 
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:472
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:472
 msgid "Contact Form 7 is not installed"
 msgstr "Contact Form 7 ইনস্টল করা নেই"
 
@@ -958,13 +958,13 @@ msgstr ""
 msgid "Container Tag"
 msgstr "ধারক ট্যাগ"
 
-#: includes/Modules/DropCap/DropCap.php:60
+#: includes/Modules/DropCapText/DropCapText.php:60
 #: includes/Modules/FlipBox/FlipBox.php:74
 #: includes/Modules/PostGridChild/PostGridChild.php:63
 #: includes/Modules/PostReadingTime/PostReadingTime.php:65
 #: includes/Modules/ScrollingText/ScrollingText.php:54
 #: includes/Modules/TypingText/TypingText.php:59
-#: includes/Modules/VideoPopup/VideoPopup.php:61
+#: includes/Modules/VideoPopup/VideoPopup.php:62
 msgid "Content"
 msgstr "কন্টেন্ট"
 
@@ -976,7 +976,7 @@ msgstr ""
 msgid "Content Modules"
 msgstr ""
 
-#: includes/Modules/DropCap/DropCap.php:67
+#: includes/Modules/DropCapText/DropCapText.php:67
 msgid "Content Text"
 msgstr ""
 
@@ -1017,23 +1017,23 @@ msgstr ""
 msgid "Copy this"
 msgstr ""
 
-#: includes/Managers/Modules.php:77
+#: includes/Managers/Modules.php:85
 msgid "Create eye-catching animated title or heading text that simulates a typing effect."
 msgstr ""
 
-#: includes/Managers/Modules.php:192
+#: includes/Managers/Modules.php:213
 msgid "Create eye-catching headlines and captions with a mesmerizing glitch effect."
 msgstr ""
 
-#: includes/Managers/Modules.php:203
+#: includes/Managers/Modules.php:225
 msgid "Create eye-catching headlines, captions, and more with this versatile and dynamic module."
 msgstr ""
 
-#: includes/Managers/Modules.php:31
+#: includes/Managers/Modules.php:32
 msgid "Create visually appealing dividers with various styles, shapes, and customization options."
 msgstr ""
 
-#: includes/Managers/Modules.php:246
+#: includes/Managers/Modules.php:272
 msgid "Create visually appealing drop caps to add emphasis and style to your text content."
 msgstr ""
 
@@ -1053,7 +1053,7 @@ msgstr "সিএসএস আইডি"
 msgid "Current"
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:542
+#: includes/Modules/PostGrid/PostGrid.php:558
 msgid "Current Category"
 msgstr "বর্তমান বিভাগ"
 
@@ -1083,24 +1083,24 @@ msgid "Custom Height"
 msgstr "কাস্টম উচ্চতা"
 
 #: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:122
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:270
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:342
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:270
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:342
 msgid "Custom HTML"
 msgstr ""
 
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:102
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:102
 msgid "Custom HTML Background"
 msgstr "কাস্টম HTML ব্যাকগ্রাউন্ড"
 
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:435
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:435
 msgid "Custom HTML Box Shadow"
 msgstr "কাস্টম HTML বক্স শ্যাডো"
 
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:111
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:111
 msgid "Custom HTML Margin"
 msgstr "কাস্টম HTML মার্জিন"
 
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:127
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:127
 msgid "Custom HTML Padding"
 msgstr "কাস্টম HTML প্যাডিং"
 
@@ -1117,7 +1117,7 @@ msgstr "কাস্টম ব্যবধান"
 msgid "Custom Text"
 msgstr "কাস্টম টেক্সট"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:232
+#: includes/Modules/VideoPopup/VideoPopup.php:233
 msgid "Custom Upload"
 msgstr ""
 
@@ -1138,7 +1138,7 @@ msgstr "ড্যাশবোর্ড"
 msgid "Date"
 msgstr "তারিখ"
 
-#: includes/Modules/PostGrid/PostGrid.php:677
+#: includes/Modules/PostGrid/PostGrid.php:693
 msgid "Date Format"
 msgstr "তারিখ বিন্যাস"
 
@@ -1204,15 +1204,15 @@ msgstr ""
 msgid "Define the number of images that should be displayed per page."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:372
+#: includes/Modules/VideoPopup/VideoPopup.php:373
 msgid "Define the opacity for the icon. Set the value from 0 - 1. The lower value, the more transparent."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:218
+#: includes/Modules/VideoPopup/VideoPopup.php:219
 msgid "Define the trigger text for your popup."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:228
+#: includes/Modules/VideoPopup/VideoPopup.php:229
 msgid "Define video type for the popup."
 msgstr ""
 
@@ -1234,39 +1234,39 @@ msgstr "বিলম্ব ( এমএস ) মুছুন"
 msgid "Delete Speed (ms)"
 msgstr "গতি মুছুন ( এমএস )"
 
-#: includes/Modules/PostGrid/PostGrid.php:591
+#: includes/Modules/PostGrid/PostGrid.php:607
 msgid "Descending"
 msgstr "বড় থেকে ছোট"
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:67
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:339
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:475
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:297
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:67
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:339
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:475
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:297
 #: build/admin/scripts/admin.js:181
 msgid "Description"
 msgstr "ডেস্ক্রিপশন"
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:199
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:199
 msgid "Description Background"
 msgstr ""
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:242
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:242
 msgid "Description Margin"
 msgstr ""
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:259
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:259
 msgid "Description Padding"
 msgstr ""
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:68
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:68
 msgid "Description Text"
 msgstr "ডেস্ক্রিপশন টেক্সট"
 
-#: includes/Modules/PostGrid/PostGrid.php:588
+#: includes/Modules/PostGrid/PostGrid.php:604
 msgid "Designates the ascending or descending order of the ‘orderby‘ parameter. Defaults to ‘Ascending’.."
 msgstr "'অর্ডারবাই' প্যারামিটারের আরোহী বা অবরোহ ক্রম নির্ধারণ করে। ডিফল্ট 'অ্যাসেন্ডিং' .."
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:604
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:604
 msgid "Desription Box Shadow"
 msgstr ""
 
@@ -1276,11 +1276,11 @@ msgstr ""
 msgid "Direction"
 msgstr "নির্দেশনা"
 
-#: includes/Modules/PostGrid/PostGrid.php:513
+#: includes/Modules/PostGrid/PostGrid.php:529
 msgid "Display By"
 msgstr "দেখানো"
 
-#: includes/Managers/Modules.php:99
+#: includes/Managers/Modules.php:109
 msgid "Display content on one side, then on hover, flip to reveal more info or a different design."
 msgstr ""
 
@@ -1288,7 +1288,7 @@ msgstr ""
 msgid "Display Name"
 msgstr "প্রদর্শনের জন্য নাম"
 
-#: includes/Modules/PostGrid/PostGrid.php:500
+#: includes/Modules/PostGrid/PostGrid.php:516
 msgid "Display posts for the current page. Useful on all author pages."
 msgstr "বর্তমান পৃষ্ঠার জন্য পোস্ট প্রদর্শন করুন. সমস্ত লেখক পাতায় দরকারী."
 
@@ -1298,11 +1298,11 @@ msgstr "বর্তমান পৃষ্ঠার জন্য পোস্ট
 msgid "Display Type"
 msgstr "প্রদর্শনের ধরন"
 
-#: includes/Managers/Modules.php:64
+#: includes/Managers/Modules.php:71
 msgid "Display your blog posts in a stylish and organized grid layout."
 msgstr ""
 
-#: includes/Managers/Modules.php:110
+#: includes/Managers/Modules.php:124
 msgid "Display your business hours in a clear and organized manner."
 msgstr ""
 
@@ -1380,29 +1380,29 @@ msgstr "নিচে"
 msgid "Drag"
 msgstr "টানুন"
 
-#: includes/Modules/DropCap/DropCap.php:65
-#: includes/Modules/DropCap/DropCap.php:124
+#: includes/Modules/DropCapText/DropCapText.php:65
+#: includes/Modules/DropCapText/DropCapText.php:124
 msgid "Drop Cap Letter"
 msgstr ""
 
-#: includes/Modules/DropCap/DropCap.php:140
+#: includes/Modules/DropCapText/DropCapText.php:140
 msgid "Drop cap letter"
 msgstr ""
 
-#: includes/Modules/DropCap/DropCap.php:66
+#: includes/Modules/DropCapText/DropCapText.php:66
 msgid "Drop Cap Letter Text"
 msgstr ""
 
-#: includes/Managers/Modules.php:245
-#: includes/Modules/DropCap/DropCap.php:42
+#: includes/Managers/Modules.php:271
+#: includes/Modules/DropCapText/DropCapText.php:42
 msgid "Drop Cap Text"
 msgstr ""
 
-#: includes/Modules/DropCap/DropCap.php:43
+#: includes/Modules/DropCapText/DropCapText.php:43
 msgid "Drop Cap Texts"
 msgstr ""
 
-#: includes/Managers/Modules.php:41
+#: includes/Managers/Modules.php:43
 #: includes/Modules/DualButton/DualButton.php:45
 msgid "Dual Button"
 msgstr "ডুয়াল বাটন"
@@ -1435,31 +1435,31 @@ msgstr ""
 msgid "Effect 05"
 msgstr ""
 
-#: includes/Managers/Modules.php:53
+#: includes/Managers/Modules.php:56
 msgid "Effortlessly add animated elements for a more engaging website experience"
 msgstr ""
 
-#: includes/Managers/Modules.php:134
+#: includes/Managers/Modules.php:150
 msgid "Effortlessly create stunning galleries to engage and captivate your audience."
 msgstr ""
 
-#: includes/Managers/Modules.php:145
+#: includes/Managers/Modules.php:162
 msgid "Effortlessly customize Contact Form 7 design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr ""
 
-#: includes/Managers/Modules.php:290
+#: includes/Managers/Modules.php:320
 msgid "Effortlessly customize Fluent Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "অনায়াসে ফ্লুয়েন্ট ফর্ম ডিজাইন কাস্টমাইজ করুন। রঙ, ফন্ট, ব্যবধান সামঞ্জস্য করুন এবং আপনার পছন্দসই চেহারার জন্য CSS যোগ করুন।"
 
-#: includes/Managers/Modules.php:169
+#: includes/Managers/Modules.php:188
 msgid "Effortlessly customize Gravity Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr ""
 
-#: includes/Managers/Modules.php:278
+#: includes/Managers/Modules.php:307
 msgid "Effortlessly customize Ninja Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "অনায়াসে নিনজা ফর্ম ডিজাইন কাস্টমাইজ করুন। রঙ, ফন্ট, ব্যবধান সামঞ্জস্য করুন এবং আপনার পছন্দসই চেহারার জন্য CSS যোগ করুন।"
 
-#: includes/Managers/Modules.php:157
+#: includes/Managers/Modules.php:175
 msgid "Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr ""
 
@@ -1473,7 +1473,7 @@ msgstr ""
 msgid "Element"
 msgstr "উপাদান"
 
-#: includes/Modules/PostGrid/PostGrid.php:1244
+#: includes/Modules/PostGrid/PostGrid.php:1260
 msgid "Element Background"
 msgstr "উপাদান ব্যাকগ্রাউন্ড"
 
@@ -1483,12 +1483,12 @@ msgid "Element Box Shadow"
 msgstr "উপাদান বক্স শ্যাডো"
 
 #: includes/Modules/Divider/Divider.php:701
-#: includes/Modules/PostGrid/PostGrid.php:1310
+#: includes/Modules/PostGrid/PostGrid.php:1326
 msgid "Element Margin"
 msgstr "এলিমেন্ট মার্জিন"
 
 #: includes/Modules/Divider/Divider.php:711
-#: includes/Modules/PostGrid/PostGrid.php:1326
+#: includes/Modules/PostGrid/PostGrid.php:1342
 msgid "Element Padding"
 msgstr "উপাদান প্যাডিং"
 
@@ -1604,15 +1604,15 @@ msgstr ""
 msgid "End Time"
 msgstr "শেষ সময়"
 
-#: includes/Managers/Modules.php:256
+#: includes/Managers/Modules.php:283
 msgid "Engage visitors with customizable video popups for YouTube and Vimeo."
 msgstr ""
 
-#: includes/Managers/Modules.php:123
+#: includes/Managers/Modules.php:138
 msgid "Engage your visitors with interactive image comparisons."
 msgstr ""
 
-#: includes/Managers/Modules.php:235
+#: includes/Managers/Modules.php:260
 msgid "Enhance navigation with a clear path for users to trace their steps through your website."
 msgstr ""
 
@@ -1637,19 +1637,19 @@ msgstr "এম্বেড Google মানচিত্রের জন্য �
 msgid "Entire page"
 msgstr "সম্পূর্ণ পৃষ্ঠায়"
 
-#: includes/Modules/PostGrid/PostGrid.php:944
+#: includes/Modules/PostGrid/PostGrid.php:960
 msgid "Entries Icon Color"
 msgstr "এন্ট্রি আইকন রঙ"
 
-#: includes/Modules/PostGrid/PostGrid.php:1023
+#: includes/Modules/PostGrid/PostGrid.php:1039
 msgid "Entries Icon Margin"
 msgstr "এন্ট্রি আইকন মার্জিন"
 
-#: includes/Modules/PostGrid/PostGrid.php:1040
+#: includes/Modules/PostGrid/PostGrid.php:1056
 msgid "Entries Icon Padding"
 msgstr "এন্ট্রি আইকন প্যাডিং"
 
-#: includes/Modules/PostGrid/PostGrid.php:953
+#: includes/Modules/PostGrid/PostGrid.php:969
 msgid "Entries Icon Size"
 msgstr "এন্ট্রি আইকন আকার"
 
@@ -1659,9 +1659,9 @@ msgstr ""
 
 #: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:126
 #: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:338
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:416
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:532
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:622
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:416
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:532
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:622
 msgid "Error Message"
 msgstr "ত্রুটি বার্তা"
 
@@ -1712,27 +1712,27 @@ msgstr "ফিচার ছবি"
 msgid "Featured Image"
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:665
+#: includes/Modules/PostGrid/PostGrid.php:681
 msgid "Featured Image Size"
 msgstr ""
 
 #: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:117
 #: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:326
 #: includes/Base/DiviBuilder/Utils/Elements/Forms.php:72
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:129
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:225
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:400
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:234
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:322
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:516
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:359
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:495
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:267
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:404
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:598
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:602
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:140
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:236
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:129
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:225
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:400
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:234
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:322
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:516
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:359
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:495
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:267
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:404
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:598
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:602
+#: includes/Modules/FormStylerWPForms/WPForms.php:167
+#: includes/Modules/FormStylerWPForms/WPForms.php:263
 msgid "Field"
 msgstr ""
 
@@ -1740,11 +1740,11 @@ msgstr ""
 msgid "Field Background"
 msgstr "ফিল্ড ব্যাকগ্রাউন্ড"
 
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:319
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:421
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:618
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:513
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:331
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:319
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:421
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:618
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:513
+#: includes/Modules/FormStylerWPForms/WPForms.php:358
 msgid "Field Box Shadow"
 msgstr ""
 
@@ -1768,12 +1768,12 @@ msgstr ""
 msgid "Field Text"
 msgstr ""
 
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:618
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:618
 msgid "Fieldset Remove Button"
 msgstr "ফিল্ডসেট রিমুভ বোতাম"
 
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:408
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:524
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:408
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:524
 msgid "File Upload"
 msgstr "ফাইল আপলোড"
 
@@ -1793,7 +1793,7 @@ msgstr "নামের প্রথম অংশ"
 msgid "Flip Animation"
 msgstr "ফ্লিপ অ্যানিমেশন"
 
-#: includes/Managers/Modules.php:98
+#: includes/Managers/Modules.php:108
 #: includes/Modules/FlipBox/FlipBox.php:46
 msgid "Flip Box"
 msgstr "ফ্লিপ বাক্স"
@@ -1814,13 +1814,13 @@ msgstr "ফ্লিপ সেটিংস"
 msgid "Flip the mask horizontally or vertically to change the shape and its direction."
 msgstr "আকৃতি এবং এর দিক পরিবর্তন করতে মাস্কটি অনুভূমিকভাবে বা উল্লম্বভাবে ফ্লিপ করুন।"
 
-#: includes/Managers/Modules.php:289
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:40
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:41
+#: includes/Managers/Modules.php:319
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:40
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:41
 msgid "Fluent Forms"
 msgstr "ফ্লুয়েন্ট ফর্ম"
 
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:587
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:587
 msgid "Fluent Forms is not installed"
 msgstr "ফ্লুয়েন্ট ফর্ম ইনস্টল করা নেই"
 
@@ -1828,15 +1828,15 @@ msgstr "ফ্লুয়েন্ট ফর্ম ইনস্টল করা �
 msgid "Force Fullwidth"
 msgstr "জোর করে সম্পূর্ণ প্রস্থ করুন"
 
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:64
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:62
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:96
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:60
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:75
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:64
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:62
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:96
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:60
+#: includes/Modules/FormStylerWPForms/WPForms.php:71
 msgid "Form"
 msgstr ""
 
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:255
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:255
 msgid "Form Before"
 msgstr "ফর্মের আগে"
 
@@ -1857,7 +1857,7 @@ msgid "Form Title Text"
 msgstr ""
 
 #: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:113
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:64
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:64
 msgid "Form Wrapper"
 msgstr ""
 
@@ -1866,7 +1866,7 @@ msgid "Forms are not available."
 msgstr "ফর্মগুলো উপলব্ধ নেই।"
 
 #: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:107
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:74
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:74
 msgid "Forms Settings"
 msgstr ""
 
@@ -1926,7 +1926,7 @@ msgstr "এলিমেন্ট এবং ডিভাইডারের মধ
 msgid "Gap Between Elements"
 msgstr "উপাদানগুলির মধ্যবর্তী অংকনের মধ্যবর্তী অংশ"
 
-#: includes/Modules/PostGrid/PostGrid.php:971
+#: includes/Modules/PostGrid/PostGrid.php:987
 msgid "Gap Between Entries Icon and Text"
 msgstr "এন্ট্রি আইকন এবং পাঠ্যের মধ্যে ফাঁক"
 
@@ -1943,7 +1943,7 @@ msgstr "আইকন/ইমেজ এবং টেক্সটের মধ্�
 msgid "Gap Between Multiple Line"
 msgstr "একাধিক লাইনের মধ্যে ফাঁক"
 
-#: includes/Modules/PostGrid/PostGrid.php:991
+#: includes/Modules/PostGrid/PostGrid.php:1007
 msgid "Gap Between Pagination Elements"
 msgstr "পেজিনেশন এলিমেন্টের মধ্যে গ্যাপ"
 
@@ -1960,7 +1960,7 @@ msgstr "শিরোনাম এবং দিনের মোড়কের �
 msgid "Gap Between Title and Stars"
 msgstr ""
 
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:174
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:174
 msgid "General Field Height"
 msgstr "সাধারণ ক্ষেত্রের উচ্চতা"
 
@@ -1981,7 +1981,7 @@ msgstr ""
 msgid "Glitch Settings"
 msgstr ""
 
-#: includes/Managers/Modules.php:191
+#: includes/Managers/Modules.php:212
 #: includes/Modules/GlitchText/GlitchText.php:39
 #: includes/Modules/GlitchText/GlitchText.php:60
 #: includes/Modules/GlitchText/GlitchText.php:96
@@ -2005,7 +2005,7 @@ msgstr "ফিরে যান"
 msgid "Google API Key"
 msgstr "গুগল ম্যাপ এপিআই কী"
 
-#: includes/Managers/Modules.php:266
+#: includes/Managers/Modules.php:294
 #: includes/Modules/GoogleMap/GoogleMap.php:43
 msgid "Google Embed Map"
 msgstr "Google এম্বেড মানচিত্র"
@@ -2026,7 +2026,7 @@ msgstr ""
 msgid "Gradient Colors"
 msgstr ""
 
-#: includes/Managers/Modules.php:202
+#: includes/Managers/Modules.php:224
 #: includes/Modules/GradientText/GradientText.php:39
 #: includes/Modules/GradientText/GradientText.php:63
 #: includes/Modules/GradientText/GradientText.php:109
@@ -2042,13 +2042,13 @@ msgstr ""
 msgid "Gradient Texts"
 msgstr ""
 
-#: includes/Managers/Modules.php:168
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:37
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:38
+#: includes/Managers/Modules.php:187
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:37
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:38
 msgid "Gravity Forms"
 msgstr ""
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:729
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:729
 msgid "Gravity Forms is not installed"
 msgstr ""
 
@@ -2112,7 +2112,7 @@ msgstr "শিরোনাম ৫"
 msgid "Heading 6"
 msgstr "শিরোনাম ৬"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:387
+#: includes/Modules/VideoPopup/VideoPopup.php:388
 msgid "Height"
 msgstr ""
 
@@ -2185,7 +2185,7 @@ msgstr ""
 msgid "Here you can choose gap between element and divider."
 msgstr "এখানে আপনি এলিমেন্ট এবং ডিভাইডারের মধ্যে ফাঁক চয়ন করতে পারেন।"
 
-#: includes/Modules/PostGrid/PostGrid.php:973
+#: includes/Modules/PostGrid/PostGrid.php:989
 msgid "Here you can choose gap between entries icon and text."
 msgstr "এখানে আপনি এন্ট্রি আইকন এবং পাঠ্যের মধ্যে ফাঁক চয়ন করতে পারেন।"
 
@@ -2205,10 +2205,10 @@ msgstr "এখানে আপনি ছবির মধ্যে ফাঁক �
 msgid "Here you can choose gap between multiple line."
 msgstr "এখানে আপনি একাধিক লাইনের মধ্যে ফাঁক চয়ন করতে পারেন।"
 
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:176
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:194
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:213
-#: includes/Modules/PostGrid/PostGrid.php:993
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:176
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:194
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:213
+#: includes/Modules/PostGrid/PostGrid.php:1009
 msgid "Here you can choose gap between pagination elements."
 msgstr "এখানে আপনি পেজিনেশন উপাদানগুলির মধ্যে ফাঁক চয়ন করতে পারেন৷"
 
@@ -2221,11 +2221,11 @@ msgstr "এখানে আপনি পাঠ্যের মধ্যে ফ�
 msgid "Here you can choose how much images you would like to count in a minute."
 msgstr "এখানে আপনি প্রতি পৃষ্ঠায় কতটি পোস্ট প্রদর্শন করতে চান তা নির্ধারণ করতে পারেন৷"
 
-#: includes/Modules/PostGrid/PostGrid.php:630
+#: includes/Modules/PostGrid/PostGrid.php:646
 msgid "Here you can choose how much post show in the current page."
 msgstr "এখানে আপনি বর্তমান পৃষ্ঠায় কত পোস্ট দেখান তা চয়ন করতে পারেন।"
 
-#: includes/Modules/PostGrid/PostGrid.php:604
+#: includes/Modules/PostGrid/PostGrid.php:620
 msgid "Here you can choose how much posts you would like to display per page."
 msgstr "এখানে আপনি প্রতি পৃষ্ঠায় কতটি পোস্ট প্রদর্শন করতে চান তা চয়ন করতে পারেন৷"
 
@@ -2252,7 +2252,7 @@ msgstr "এখানে আপনি এক মিনিটে কত্টি �
 #: includes/Base/DiviBuilder/Utils/Fields.php:644
 #: includes/Modules/Divider/Divider.php:746
 #: includes/Modules/FlipBox/FlipBox.php:2888
-#: includes/Modules/PostGrid/PostGrid.php:955
+#: includes/Modules/PostGrid/PostGrid.php:971
 #: includes/Modules/PostGridChild/PostGridChild.php:702
 #: includes/Modules/PostGridChild/PostGridChild.php:748
 msgid "Here you can choose icon size."
@@ -2293,11 +2293,11 @@ msgstr "এখানে আপনি ইমেজ প্রস্থ নির�
 msgid "Here you can choose interactivity with your Lottie animation."
 msgstr "এখানে আপনি আপনার লটি অ্যানিমেশনের সাথে ইন্টারেক্টিভিটি চয়ন করতে পারেন।"
 
-#: includes/Modules/PostGrid/PostGrid.php:709
+#: includes/Modules/PostGrid/PostGrid.php:725
 msgid "Here you can choose list column for grid layout."
 msgstr "এখানে আপনি গ্রিড লেআউটের জন্য তালিকা কলাম চয়ন করতে পারেন।"
 
-#: includes/Modules/PostGrid/PostGrid.php:731
+#: includes/Modules/PostGrid/PostGrid.php:747
 msgid "Here you can choose list item gap."
 msgstr "এখানে আপনি তালিকা আইটেম ফাঁক চয়ন করতে পারেন."
 
@@ -2346,7 +2346,7 @@ msgstr "এখানে আপনি আপনার লটি অ্যান�
 msgid "Here you can choose separator icon size."
 msgstr "এখানে আপনি সেপারেটর আইকনের আকার নির্ধারণ করতে পারেন।"
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:254
+#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:265
 msgid "Here you can choose size for checkbox and radio fields."
 msgstr "এখানে আপনি চেকবক্স এবং রেডিও ক্ষেত্রগুলির জন্য আকার চয়ন করতে পারেন৷"
 
@@ -2358,7 +2358,7 @@ msgstr ""
 msgid "Here you can choose stroke width."
 msgstr "এখানে আপনি স্ট্রোক প্রস্থ চয়ন করতে পারেন."
 
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:66
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:66
 msgid "Here you can choose the contact form 7."
 msgstr ""
 
@@ -2366,7 +2366,7 @@ msgstr ""
 msgid "Here you can choose the custom height for flip box."
 msgstr "এখানে আপনি ফ্লিপ বক্সের জন্য কাস্টম উচ্চতা চয়ন করতে পারেন।"
 
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:64
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:64
 msgid "Here you can choose the fluent form."
 msgstr "এখানে আপনি ফ্লুয়েন্ট ফর্ম বেছে নিতে পারেন."
 
@@ -2374,19 +2374,19 @@ msgstr "এখানে আপনি ফ্লুয়েন্ট ফর্ম �
 msgid "Here you can choose the gap between days."
 msgstr "এখানে আপনি দিনের মধ্যে ফাঁক চয়ন করতে পারেন।"
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:98
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:98
 msgid "Here you can choose the gravity form."
 msgstr "এখানে আপনি gravity form বেছে নিতে পারেন."
 
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:62
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:62
 msgid "Here you can choose the ninja form."
 msgstr "এখানে আপনি নিনজা ফর্ম বেছে নিতে পারেন."
 
-#: includes/Modules/PostGrid/PostGrid.php:1192
+#: includes/Modules/PostGrid/PostGrid.php:1208
 msgid "Here you can choose the size of load more spinner."
 msgstr ""
 
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:77
+#: includes/Modules/FormStylerWPForms/WPForms.php:73
 msgid "Here you can choose the wp form."
 msgstr ""
 
@@ -2444,11 +2444,11 @@ msgstr "স্ট্রিং এফেক্টটি বদল করতে �
 msgid "Here you can choose whether or not include comments in reading time."
 msgstr "এখানে আপনি পড়ার সময়ে কমেন্ট অন্তর্ভুক্ত করবেন কি না তা নির্ধারণ করতে পারেন।"
 
-#: includes/Modules/PostGrid/PostGrid.php:797
+#: includes/Modules/PostGrid/PostGrid.php:813
 msgid "Here you can choose whether or not load more button."
 msgstr "এখানে আপনি আরও বোতাম লোড করবেন কি না তা চয়ন করতে পারেন৷"
 
-#: includes/Modules/PostGrid/PostGrid.php:826
+#: includes/Modules/PostGrid/PostGrid.php:842
 msgid "Here you can choose whether or not load more spinner at the visual builder."
 msgstr ""
 
@@ -2480,7 +2480,7 @@ msgstr "এখানে আপনি স্লাইড নিয়ন্ত্
 msgid "Here you can choose whether or not show the button."
 msgstr "এখানে আপনি বোতামটি প্রদর্শন করবেন কি না তা চয়ন করতে পারেন।"
 
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:85
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:85
 msgid "Here you can choose whether or not show the conditional hidden fields in the visual  builder."
 msgstr "এখানে আপনি ভিজ্যুয়াল বিল্ডারে শর্তসাপেক্ষ লুকানো ক্ষেত্রগুলি দেখাবেন কি না তা চয়ন করতে পারেন৷"
 
@@ -2488,19 +2488,19 @@ msgstr "এখানে আপনি ভিজ্যুয়াল বিল্
 msgid "Here you can choose whether or not show the cursor for the typing effect."
 msgstr "টাইপ প্রভাবের জন্য কার্সারটি দেখান কিনা তা এখানে আপনি চয়ন করতে পারেন."
 
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:78
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:76
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:170
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:74
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:89
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:78
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:76
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:170
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:74
+#: includes/Modules/FormStylerWPForms/WPForms.php:85
 msgid "Here you can choose whether or not show the error and success messages in the visual  builder."
 msgstr ""
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:134
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:134
 msgid "Here you can choose whether or not show the form description."
 msgstr "এখানে আপনি ফর্মের বিবরণ দেখাবেন কি না তা নির্ধারণ করতে পারেন৷"
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:110
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:110
 #: includes/Modules/PostReadingTime/PostReadingTime.php:242
 msgid "Here you can choose whether or not show the form title."
 msgstr "এখানে আপনি ফর্ম শিরোনাম দেখাবেন কিনা তা চয়ন করতে পারেন৷"
@@ -2513,9 +2513,9 @@ msgstr "টাইপ প্রভাবের জন্য কার্সার
 msgid "Here you can choose whether or not show the label on hover effect."
 msgstr "এখানে আপনি হোভার প্রভাবে লেবেল দেখান কি না তা চয়ন করতে পারেন৷"
 
-#: includes/Modules/PostGrid/PostGrid.php:750
-#: includes/Modules/PostGrid/PostGrid.php:839
-#: includes/Modules/PostGrid/PostGrid.php:850
+#: includes/Modules/PostGrid/PostGrid.php:766
+#: includes/Modules/PostGrid/PostGrid.php:855
+#: includes/Modules/PostGrid/PostGrid.php:866
 msgid "Here you can choose whether or not show the pagination."
 msgstr "এখানে আপনি পেজিনেশন দেখাবেন কি না তা বেছে নিতে পারেন।"
 
@@ -2575,7 +2575,7 @@ msgstr "এখানে আপনি আইকনটি ব্যবহার �
 msgid "Here you can choose whether or not use label for image."
 msgstr "এখানে আপনি ছবির জন্য লেবেল ব্যবহার করবেন কি না তা চয়ন করতে পারেন৷"
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:158
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:158
 msgid "Here you can choose whether or not use the ajax on form submission."
 msgstr ""
 
@@ -2603,8 +2603,8 @@ msgstr "এখানে আপনি নির্ধারণ করতে প�
 msgid "Here you can choose whether or not your Lottie will animate on hover."
 msgstr "এখানে, আপনি নির্বাচন করতে পারেন আপনার লটি কিনা হবে হভারে এনিমেট করবে।"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:140
-#: includes/Modules/VideoPopup/VideoPopup.php:462
+#: includes/Modules/VideoPopup/VideoPopup.php:141
+#: includes/Modules/VideoPopup/VideoPopup.php:463
 msgid "Here you can choose whether overlay image should be used."
 msgstr ""
 
@@ -2622,12 +2622,12 @@ msgstr "এখানে আপনি লটি ইমেজের জন্য �
 msgid "Here you can define a custom background color."
 msgstr "এখানে আপনি কাস্টম ব্যাকগ্রাউন্ড রঙ নির্ধারণ করতে পারেন।"
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:246
+#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:257
 msgid "Here you can define a custom color for checkbox and radio fields."
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:1172
-#: includes/Modules/PostGrid/PostGrid.php:1182
+#: includes/Modules/PostGrid/PostGrid.php:1188
+#: includes/Modules/PostGrid/PostGrid.php:1198
 msgid "Here you can define a custom color for load more spinner."
 msgstr ""
 
@@ -2683,7 +2683,7 @@ msgstr ""
 
 #: includes/Modules/Divider/Divider.php:727
 #: includes/Modules/FlipBox/FlipBox.php:2868
-#: includes/Modules/PostGrid/PostGrid.php:946
+#: includes/Modules/PostGrid/PostGrid.php:962
 #: includes/Modules/PostGridChild/PostGridChild.php:675
 #: includes/Modules/PostGridChild/PostGridChild.php:693
 msgid "Here you can define a custom color for your icon."
@@ -2721,7 +2721,7 @@ msgstr "এখানে আপনি বাটনের জন্য কাস�
 msgid "Here you can define a custom margin size for the content."
 msgstr "এখানে আপনি বিষয়বস্তুর জন্য একটি কাস্টম মার্জিন আকার নির্ধারণ করতে পারেন।"
 
-#: includes/Modules/DropCap/DropCap.php:170
+#: includes/Modules/DropCapText/DropCapText.php:170
 msgid "Here you can define a custom margin size for the drop cap letter."
 msgstr ""
 
@@ -2762,8 +2762,8 @@ msgstr "এখানে আপনি টাইপ করা পাঠ্যে�
 #: includes/Modules/Divider/Divider.php:1112
 #: includes/Modules/DualButton/DualButton.php:633
 #: includes/Modules/FlipBox/FlipBox.php:3176
-#: includes/Modules/PostGrid/PostGrid.php:1270
-#: includes/Modules/PostGrid/PostGrid.php:1292
+#: includes/Modules/PostGrid/PostGrid.php:1286
+#: includes/Modules/PostGrid/PostGrid.php:1308
 #: includes/Modules/PostGridChild/PostGridChild.php:913
 #: includes/Modules/TypingText/TypingText.php:631
 msgid "Here you can define a custom margin size for the wrapper."
@@ -2771,16 +2771,16 @@ msgstr "এখানে আপনি মোড়কের জন্য এক�
 
 #: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:210
 #: includes/Modules/Divider/Divider.php:703
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:113
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:187
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:210
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:244
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:103
-#: includes/Modules/PostGrid/PostGrid.php:1025
-#: includes/Modules/PostGrid/PostGrid.php:1059
-#: includes/Modules/PostGrid/PostGrid.php:1095
-#: includes/Modules/PostGrid/PostGrid.php:1129
-#: includes/Modules/PostGrid/PostGrid.php:1312
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:113
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:187
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:210
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:244
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:103
+#: includes/Modules/PostGrid/PostGrid.php:1041
+#: includes/Modules/PostGrid/PostGrid.php:1075
+#: includes/Modules/PostGrid/PostGrid.php:1111
+#: includes/Modules/PostGrid/PostGrid.php:1145
+#: includes/Modules/PostGrid/PostGrid.php:1328
 #: includes/Modules/PostGridChild/PostGridChild.php:947
 msgid "Here you can define a custom margin size."
 msgstr "এখানে আপনি কাস্টম মার্জিন সাইজ নির্ধারণ করতে পারেন।"
@@ -2796,7 +2796,7 @@ msgstr "এখানে আপনি কাস্টম মার্জিন �
 #: includes/Modules/Divider/Divider.php:713
 #: includes/Modules/Divider/Divider.php:810
 #: includes/Modules/Divider/Divider.php:1121
-#: includes/Modules/DropCap/DropCap.php:184
+#: includes/Modules/DropCapText/DropCapText.php:184
 #: includes/Modules/DualButton/DualButton.php:528
 #: includes/Modules/DualButton/DualButton.php:553
 #: includes/Modules/DualButton/DualButton.php:645
@@ -2806,18 +2806,18 @@ msgstr "এখানে আপনি কাস্টম মার্জিন �
 #: includes/Modules/FlipBox/FlipBox.php:3220
 #: includes/Modules/FlipBox/FlipBox.php:3256
 #: includes/Modules/FlipBox/FlipBox.php:3292
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:129
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:206
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:227
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:261
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:121
-#: includes/Modules/PostGrid/PostGrid.php:1042
-#: includes/Modules/PostGrid/PostGrid.php:1078
-#: includes/Modules/PostGrid/PostGrid.php:1112
-#: includes/Modules/PostGrid/PostGrid.php:1146
-#: includes/Modules/PostGrid/PostGrid.php:1279
-#: includes/Modules/PostGrid/PostGrid.php:1301
-#: includes/Modules/PostGrid/PostGrid.php:1328
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:129
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:206
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:227
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:261
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:121
+#: includes/Modules/PostGrid/PostGrid.php:1058
+#: includes/Modules/PostGrid/PostGrid.php:1094
+#: includes/Modules/PostGrid/PostGrid.php:1128
+#: includes/Modules/PostGrid/PostGrid.php:1162
+#: includes/Modules/PostGrid/PostGrid.php:1295
+#: includes/Modules/PostGrid/PostGrid.php:1317
+#: includes/Modules/PostGrid/PostGrid.php:1344
 #: includes/Modules/PostGridChild/PostGridChild.php:858
 #: includes/Modules/PostGridChild/PostGridChild.php:879
 #: includes/Modules/PostGridChild/PostGridChild.php:922
@@ -2834,79 +2834,79 @@ msgstr "এখানে আপনি কাস্টম প্যাডিং �
 msgid "Here you can define a gap between the title and the star rating."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:441
+#: includes/Modules/VideoPopup/VideoPopup.php:442
 msgid "Here you can define custom background color for your popup."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:344
+#: includes/Modules/VideoPopup/VideoPopup.php:345
 msgid "Here you can define custom background for your icon."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:511
+#: includes/Modules/VideoPopup/VideoPopup.php:512
 msgid "Here you can define custom background for your text box."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:277
+#: includes/Modules/VideoPopup/VideoPopup.php:278
 msgid "Here you can define custom color for the animated wave of your icon."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:333
+#: includes/Modules/VideoPopup/VideoPopup.php:334
 msgid "Here you can define custom color for your icon."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:450
+#: includes/Modules/VideoPopup/VideoPopup.php:451
 msgid "Here you can define custom color for your popup close icon."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:354
+#: includes/Modules/VideoPopup/VideoPopup.php:355
 msgid "Here you can define custom size for your icon."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:153
+#: includes/Modules/VideoPopup/VideoPopup.php:154
 msgid "Here you can define placeholder image for the video."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:300
+#: includes/Modules/VideoPopup/VideoPopup.php:301
 msgid "Here you can define spacing between icon and text."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:389
+#: includes/Modules/VideoPopup/VideoPopup.php:390
 msgid "Here you can define static height for your icon."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:317
+#: includes/Modules/VideoPopup/VideoPopup.php:318
 msgid "Here you can define static height for your image."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:477
+#: includes/Modules/VideoPopup/VideoPopup.php:478
 msgid "Here you can define static height for your text box."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:406
+#: includes/Modules/VideoPopup/VideoPopup.php:407
 msgid "Here you can define static width for your icon."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:494
+#: includes/Modules/VideoPopup/VideoPopup.php:495
 msgid "Here you can define static width for your text box."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:165
+#: includes/Modules/VideoPopup/VideoPopup.php:166
 msgid "Here you can define the HTML ALT text for your overlay image."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:423
+#: includes/Modules/VideoPopup/VideoPopup.php:424
 msgid "Here you can define the radius value for your icon border."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:522
+#: includes/Modules/VideoPopup/VideoPopup.php:523
 msgid "Here you can define the radius value for your text box border."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:174
+#: includes/Modules/VideoPopup/VideoPopup.php:175
 msgid "Here you can select button element for the video popup."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:201
+#: includes/Modules/VideoPopup/VideoPopup.php:202
 msgid "Here you can select different type of play icon from the video."
 msgstr ""
 
@@ -2958,9 +2958,9 @@ msgstr "https://squadmodules.com/"
 #: includes/Modules/PostGridChild/PostGridChild.php:94
 #: includes/Modules/PostGridChild/PostGridChild.php:107
 #: includes/Modules/PostGridChild/PostGridChild.php:542
-#: includes/Modules/VideoPopup/VideoPopup.php:68
-#: includes/Modules/VideoPopup/VideoPopup.php:119
-#: includes/Modules/VideoPopup/VideoPopup.php:176
+#: includes/Modules/VideoPopup/VideoPopup.php:69
+#: includes/Modules/VideoPopup/VideoPopup.php:120
+#: includes/Modules/VideoPopup/VideoPopup.php:177
 msgid "Icon"
 msgstr "আইকন"
 
@@ -2969,31 +2969,31 @@ msgstr "আইকন"
 msgid "Icon & Image"
 msgstr "আইকন এবং চিত্র"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:178
+#: includes/Modules/VideoPopup/VideoPopup.php:179
 msgid "Icon & Text"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:203
+#: includes/Modules/VideoPopup/VideoPopup.php:204
 msgid "Icon 1"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:204
+#: includes/Modules/VideoPopup/VideoPopup.php:205
 msgid "Icon 2"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:205
+#: includes/Modules/VideoPopup/VideoPopup.php:206
 msgid "Icon 3"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:206
+#: includes/Modules/VideoPopup/VideoPopup.php:207
 msgid "Icon 4"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:207
+#: includes/Modules/VideoPopup/VideoPopup.php:208
 msgid "Icon 5"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:208
+#: includes/Modules/VideoPopup/VideoPopup.php:209
 msgid "Icon 6"
 msgstr ""
 
@@ -3075,7 +3075,7 @@ msgstr "আইকন টাইপ"
 msgid "Icon Vertical Placement"
 msgstr "আইকন উল্লম্ব বসানো"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:115
+#: includes/Modules/VideoPopup/VideoPopup.php:116
 msgid "Icon Wrapper"
 msgstr ""
 
@@ -3100,7 +3100,7 @@ msgstr "আইকন/ইমেজ"
 msgid "Icon/Image Margin"
 msgstr "আইকন/ইমেজের মার্জিন"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:285
+#: includes/Modules/VideoPopup/VideoPopup.php:286
 msgid "Icon/Text Alignment"
 msgstr ""
 
@@ -3108,8 +3108,8 @@ msgstr ""
 msgid "If this option appears to have no effect, you might need to"
 msgstr "এই বিকল্পের কোন প্রভাব নেই বলে মনে হলে, আপনার প্রয়োজন হতে পারে"
 
-#: includes/Modules/PostGrid/PostGrid.php:666
-#: includes/Modules/PostGrid/PostGrid.php:678
+#: includes/Modules/PostGrid/PostGrid.php:682
+#: includes/Modules/PostGrid/PostGrid.php:694
 msgid "If you would like to adjust the date format, input the appropriate PHP date format here."
 msgstr "আপনি যদি তারিখ বিন্যাস সামঞ্জস্য করতে চান, এখানে উপযুক্ত PHP তারিখ বিন্যাস ইনপুট করুন।"
 
@@ -3132,9 +3132,9 @@ msgstr "iFrame"
 #: includes/Modules/ImageMask/ImageMask.php:60
 #: includes/Modules/ImageMask/ImageMask.php:83
 #: includes/Modules/ImageMask/ImageMask.php:99
-#: includes/Modules/VideoPopup/VideoPopup.php:67
-#: includes/Modules/VideoPopup/VideoPopup.php:111
-#: includes/Modules/VideoPopup/VideoPopup.php:152
+#: includes/Modules/VideoPopup/VideoPopup.php:68
+#: includes/Modules/VideoPopup/VideoPopup.php:112
+#: includes/Modules/VideoPopup/VideoPopup.php:153
 msgid "Image"
 msgstr "ইমেজ"
 
@@ -3152,7 +3152,7 @@ msgstr ""
 #: includes/Modules/FlipBox/FlipBox.php:2840
 #: includes/Modules/ImageMask/ImageMask.php:111
 #: includes/Modules/PostGridChild/PostGridChild.php:609
-#: includes/Modules/VideoPopup/VideoPopup.php:164
+#: includes/Modules/VideoPopup/VideoPopup.php:165
 msgid "Image Alt Text"
 msgstr "চিত্র Alt পাঠ্য"
 
@@ -3176,7 +3176,7 @@ msgstr "ইমেজ ফোর্স পূর্ণ-প্রস্থ"
 msgid "Image Galleries"
 msgstr "ইমেজ গ্যালারি"
 
-#: includes/Managers/Modules.php:133
+#: includes/Managers/Modules.php:149
 #: includes/Modules/ImageGallery/ImageGallery.php:52
 msgid "Image Gallery"
 msgstr ""
@@ -3187,7 +3187,7 @@ msgstr ""
 #: includes/Modules/FlipBox/FlipBox.php:2939
 #: includes/Modules/ImageMask/ImageMask.php:266
 #: includes/Modules/PostGridChild/PostGridChild.php:731
-#: includes/Modules/VideoPopup/VideoPopup.php:315
+#: includes/Modules/VideoPopup/VideoPopup.php:316
 msgid "Image Height"
 msgstr "ছবির উচ্চতা"
 
@@ -3199,7 +3199,7 @@ msgstr "ছবির অনুভূমিক অবস্থান"
 msgid "Image Label Text"
 msgstr "চিত্র লেবেল পাঠ্য"
 
-#: includes/Managers/Modules.php:87
+#: includes/Managers/Modules.php:96
 #: includes/Modules/ImageMask/ImageMask.php:39
 msgid "Image Mask"
 msgstr "ইমেজ মাস্ক"
@@ -3212,7 +3212,7 @@ msgstr "ইমেজ মাস্কসমূহ"
 msgid "Image Order"
 msgstr "ছবির ক্রম"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:539
+#: includes/Modules/VideoPopup/VideoPopup.php:540
 msgid "Image Overlay"
 msgstr ""
 
@@ -3264,7 +3264,7 @@ msgstr "নতুন ট্যাবে"
 msgid "In The Same Window"
 msgstr "একই উইন্ডোতে"
 
-#: includes/Modules/PostGrid/PostGrid.php:538
+#: includes/Modules/PostGrid/PostGrid.php:554
 msgid "Include Categories"
 msgstr "ক্যাটাগরিসমূহ অন্তর্ভুক্ত করুন"
 
@@ -3276,7 +3276,7 @@ msgstr "কমেন্ট অন্তর্ভুক্ত করুন"
 msgid "Include Images"
 msgstr "ছবি অন্তর্ভুক্ত করুন"
 
-#: includes/Modules/PostGrid/PostGrid.php:554
+#: includes/Modules/PostGrid/PostGrid.php:570
 msgid "Include Tags"
 msgstr "ট্যাগ অন্তর্ভুক্ত"
 
@@ -3309,7 +3309,7 @@ msgstr "ইনলাইন"
 msgid "Input the main text content for your current side of flip box here."
 msgstr "এখানে ফ্লিপ বক্সের আপনার বর্তমান দিকের জন্য মূল পাঠ্য বিষয়বস্তু ইনপুট করুন।"
 
-#: includes/Modules/DropCap/DropCap.php:148
+#: includes/Modules/DropCapText/DropCapText.php:148
 msgid "Input the main text content for your module here."
 msgstr ""
 
@@ -3317,7 +3317,7 @@ msgstr ""
 msgid "insecure version"
 msgstr ""
 
-#: includes/Managers/Modules.php:42
+#: includes/Managers/Modules.php:44
 msgid "It allows you to display two buttons side by side with customizable styles and text."
 msgstr ""
 
@@ -3353,11 +3353,11 @@ msgstr ""
 #: includes/Modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:106
 #: includes/Modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:144
 #: includes/Modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:159
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:141
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:246
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:371
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:282
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:152
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:141
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:246
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:371
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:282
+#: includes/Modules/FormStylerWPForms/WPForms.php:179
 msgid "Label"
 msgstr "লেবেল"
 
@@ -3371,12 +3371,12 @@ msgid "Label Box Shadow"
 msgstr "লেবেল বক্স শ্যাডো"
 
 #: includes/Modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:634
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:185
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:185
 msgid "Label Margin"
 msgstr "লেবেল মার্জিন"
 
 #: includes/Modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:651
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:204
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:204
 msgid "Label Padding"
 msgstr "লেবেল প্যাডিং"
 
@@ -3421,7 +3421,7 @@ msgstr "বাম বাটন লিঙ্ক URL"
 msgid "Left Button Text"
 msgstr "বাম বাটন টেক্সট"
 
-#: includes/Modules/DropCap/DropCap.php:76
+#: includes/Modules/DropCapText/DropCapText.php:76
 msgid "Letter"
 msgstr ""
 
@@ -3504,7 +3504,7 @@ msgstr "লটি কন্টেইনার"
 msgid "Lottie Height"
 msgstr "লটি উচ্চতা"
 
-#: includes/Managers/Modules.php:52
+#: includes/Managers/Modules.php:55
 #: includes/Modules/Lottie/Lottie.php:42
 msgid "Lottie Image"
 msgstr "লটি ছবি"
@@ -3539,7 +3539,7 @@ msgstr "ম্যানেজ"
 msgid "Map Configuration"
 msgstr "ম্যাপ কনফিগারেশন"
 
-#: includes/Modules/DropCap/DropCap.php:168
+#: includes/Modules/DropCapText/DropCapText.php:168
 #: includes/Modules/PostGridChild/PostGridChild.php:911
 #: includes/Modules/PostGridChild/PostGridChild.php:945
 msgid "Margin"
@@ -3655,26 +3655,26 @@ msgstr ""
 
 #: includes/Base/DiviBuilder/Utils/Elements/Forms.php:73
 #: includes/Base/DiviBuilder/Utils/Elements/Forms.php:74
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:177
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:189
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:264
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:283
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:294
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:306
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:380
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:399
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:407
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:419
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:535
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:554
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:336
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:348
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:444
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:463
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:188
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:200
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:276
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:295
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:177
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:189
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:264
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:283
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:294
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:306
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:380
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:399
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:407
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:419
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:535
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:554
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:336
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:348
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:444
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:463
+#: includes/Modules/FormStylerWPForms/WPForms.php:215
+#: includes/Modules/FormStylerWPForms/WPForms.php:227
+#: includes/Modules/FormStylerWPForms/WPForms.php:303
+#: includes/Modules/FormStylerWPForms/WPForms.php:322
 msgid "Message"
 msgstr ""
 
@@ -3683,16 +3683,16 @@ msgstr ""
 msgid "Message Background"
 msgstr "ম্যাসেজ ব্যাকগ্রাউন্ড"
 
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:347
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:361
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:463
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:477
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:646
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:660
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:541
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:555
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:359
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:373
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:347
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:361
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:463
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:477
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:646
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:660
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:541
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:555
+#: includes/Modules/FormStylerWPForms/WPForms.php:386
+#: includes/Modules/FormStylerWPForms/WPForms.php:400
 msgid "Message Box Shadow"
 msgstr ""
 
@@ -3700,7 +3700,7 @@ msgstr ""
 msgid "Modified"
 msgstr "পরিবর্তিত"
 
-#: includes/Modules/PostGrid/PostGrid.php:571
+#: includes/Modules/PostGrid/PostGrid.php:587
 msgid "Modified Date"
 msgstr "পরিবর্তিত তারিখ"
 
@@ -3913,7 +3913,7 @@ msgstr "হোভার বা ক্লিক করে স্লাইড ই�
 msgid "Movement Trigger"
 msgstr "চলন ট্রিগার"
 
-#: includes/Modules/PostGrid/PostGrid.php:572
+#: includes/Modules/PostGrid/PostGrid.php:588
 #: build/admin/scripts/admin.js:178
 msgid "Name"
 msgstr "নাম"
@@ -3930,16 +3930,16 @@ msgstr "আর কখনও দেখাবেন না"
 msgid "NEW"
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:2375
+#: includes/Modules/PostGrid/PostGrid.php:2391
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Next Entries"
 msgstr "পরবর্তী ভুক্তিসমুহ"
 
-#: includes/Modules/PostGrid/PostGrid.php:898
+#: includes/Modules/PostGrid/PostGrid.php:914
 msgid "Next Entries Icon"
 msgstr "পরবর্তী এন্ট্রি আইকন"
 
-#: includes/Modules/PostGrid/PostGrid.php:889
+#: includes/Modules/PostGrid/PostGrid.php:905
 msgid "Next Entries Text"
 msgstr "পরবর্তী এন্ট্রি টেক্সট"
 
@@ -3947,13 +3947,13 @@ msgstr "পরবর্তী এন্ট্রি টেক্সট"
 msgid "Nickname"
 msgstr "ডাকনাম"
 
-#: includes/Managers/Modules.php:277
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:38
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:39
+#: includes/Managers/Modules.php:306
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:38
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:39
 msgid "Ninja Forms"
 msgstr "নিনজা ফর্মস"
 
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:702
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:702
 msgid "Ninja Forms is not installed"
 msgstr "নিনজা ফর্ম ইনস্টল করা নেই"
 
@@ -4008,16 +4008,16 @@ msgstr ""
 msgid "Ok, you deserve it!"
 msgstr "ঠিক আছে, আপনি এটির প্রাপ্য!"
 
-#: includes/Modules/PostGrid/PostGrid.php:2374
+#: includes/Modules/PostGrid/PostGrid.php:2390
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Old Entries"
 msgstr "পুরাতন ভুক্তিসমুহ"
 
-#: includes/Modules/PostGrid/PostGrid.php:875
+#: includes/Modules/PostGrid/PostGrid.php:891
 msgid "Old Entries Icon"
 msgstr "পুরানো এন্ট্রি আইকন"
 
-#: includes/Modules/PostGrid/PostGrid.php:866
+#: includes/Modules/PostGrid/PostGrid.php:882
 msgid "Old Entries Text"
 msgstr "পুরাতন এন্ট্রি টেক্সট"
 
@@ -4043,7 +4043,7 @@ msgstr "শুধু লাইন"
 msgid "Oops, Page not found!"
 msgstr "ওহো, পৃষ্ঠাটি খুঁজে পাওয়া যায়নি."
 
-#: includes/Modules/VideoPopup/VideoPopup.php:370
+#: includes/Modules/VideoPopup/VideoPopup.php:371
 msgid "Opacity"
 msgstr ""
 
@@ -4051,11 +4051,11 @@ msgstr ""
 msgid "Open in Lightbox"
 msgstr "লাইটবক্সে খুলুন"
 
-#: includes/Modules/PostGrid/PostGrid.php:586
+#: includes/Modules/PostGrid/PostGrid.php:602
 msgid "Order"
 msgstr "অর্ডার"
 
-#: includes/Modules/PostGrid/PostGrid.php:566
+#: includes/Modules/PostGrid/PostGrid.php:582
 msgid "Order By"
 msgstr "সাজানোর ধরন"
 
@@ -4080,7 +4080,7 @@ msgstr "ওভারলের আইকন রঙ"
 msgid "P tag"
 msgstr "P ট্যাগ"
 
-#: includes/Modules/DropCap/DropCap.php:182
+#: includes/Modules/DropCapText/DropCapText.php:182
 #: includes/Modules/PostGridChild/PostGridChild.php:920
 #: includes/Modules/PostGridChild/PostGridChild.php:960
 msgid "Padding"
@@ -4095,12 +4095,12 @@ msgstr "প্যাডিং"
 msgid "Pagination"
 msgstr "পেজিনেশন"
 
-#: includes/Modules/PostGrid/PostGrid.php:1011
+#: includes/Modules/PostGrid/PostGrid.php:1027
 msgid "Pagination Alignment"
 msgstr "পেজিনেশন প্রান্তিককরণ"
 
-#: includes/Modules/PostGrid/PostGrid.php:924
-#: includes/Modules/PostGrid/PostGrid.php:934
+#: includes/Modules/PostGrid/PostGrid.php:940
+#: includes/Modules/PostGrid/PostGrid.php:950
 msgid "Pagination Background"
 msgstr "পেজিনেশন ব্যাকগ্রাউন্ড"
 
@@ -4109,13 +4109,13 @@ msgstr "পেজিনেশন ব্যাকগ্রাউন্ড"
 msgid "Pagination Box Shadow"
 msgstr "পেজিনেশন বক্স শ্যাডো"
 
-#: includes/Modules/PostGrid/PostGrid.php:1093
-#: includes/Modules/PostGrid/PostGrid.php:1127
+#: includes/Modules/PostGrid/PostGrid.php:1109
+#: includes/Modules/PostGrid/PostGrid.php:1143
 msgid "Pagination Margin"
 msgstr "পেজিনেশন মার্জিন"
 
-#: includes/Modules/PostGrid/PostGrid.php:1110
-#: includes/Modules/PostGrid/PostGrid.php:1144
+#: includes/Modules/PostGrid/PostGrid.php:1126
+#: includes/Modules/PostGrid/PostGrid.php:1160
 msgid "Pagination Padding"
 msgstr "পেজিনেশন প্যাডিং"
 
@@ -4158,11 +4158,11 @@ msgstr "চারটি ভিন্ন অ্যানিমেশন দিক
 msgid "Pick from up to two different animation directions, each of which will adjust the starting and ending position of your animated slide."
 msgstr "দুটি ভিন্ন অ্যানিমেশন দিকনির্দেশ থেকে বেছে নিন, যার প্রত্যেকটি আপনার অ্যানিমেটেড স্লাইডের শুরু এবং শেষের অবস্থান সামঞ্জস্য করবে।"
 
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:153
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:258
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:383
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:312
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:164
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:153
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:258
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:383
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:312
+#: includes/Modules/FormStylerWPForms/WPForms.php:191
 msgid "Placeholder"
 msgstr ""
 
@@ -4196,11 +4196,11 @@ msgstr "স্ক্রল করার সময় চালানো হব�
 msgid "Play when container is visible"
 msgstr "কন্টেন্টেনার দেখা যালে চালানো হবে"
 
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:485
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:600
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:742
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:715
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:426
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:485
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:600
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:742
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:715
+#: includes/Modules/FormStylerWPForms/WPForms.php:453
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Please select a form."
 msgstr ""
@@ -4209,11 +4209,11 @@ msgstr ""
 msgid "Please wait, copying in progress..."
 msgstr "অনুগ্রহ করে অপেক্ষা করুন, অনুলিপি চলছে..."
 
-#: includes/Modules/VideoPopup/VideoPopup.php:70
+#: includes/Modules/VideoPopup/VideoPopup.php:71
 msgid "Popup"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:439
+#: includes/Modules/VideoPopup/VideoPopup.php:440
 msgid "Popup Background"
 msgstr ""
 
@@ -4221,11 +4221,11 @@ msgstr ""
 msgid "Portrait"
 msgstr "পোর্ট্রেট"
 
-#: includes/Modules/PostGrid/PostGrid.php:602
+#: includes/Modules/PostGrid/PostGrid.php:618
 msgid "Post Count"
 msgstr "পোস্ট গননা"
 
-#: includes/Managers/Modules.php:66
+#: includes/Managers/Modules.php:73
 #: includes/Modules/PostGridChild/PostGridChild.php:48
 msgid "Post Element"
 msgstr "পোস্টের উপাদান"
@@ -4234,7 +4234,7 @@ msgstr "পোস্টের উপাদান"
 msgid "Post Elements"
 msgstr "পোস্টের উপাদানসমূহ"
 
-#: includes/Managers/Modules.php:63
+#: includes/Managers/Modules.php:70
 #: includes/Modules/PostGrid/PostGrid.php:74
 msgid "Post Grid"
 msgstr "পোস্ট গ্রিড"
@@ -4243,11 +4243,11 @@ msgstr "পোস্ট গ্রিড"
 msgid "Post Grids"
 msgstr "পোস্ট গ্রিডসমূহ"
 
-#: includes/Modules/PostGrid/PostGrid.php:628
+#: includes/Modules/PostGrid/PostGrid.php:644
 msgid "Post Offset"
 msgstr "পোস্ট অফসেট"
 
-#: includes/Managers/Modules.php:180
+#: includes/Managers/Modules.php:200
 #: includes/Modules/PostReadingTime/PostReadingTime.php:46
 msgid "Post Reading Time"
 msgstr ""
@@ -4265,11 +4265,11 @@ msgstr "পোস্ট সেটিংস"
 msgid "Post Wrapper"
 msgstr "পোস্ট মোড়ক"
 
-#: includes/Modules/PostGrid/PostGrid.php:498
+#: includes/Modules/PostGrid/PostGrid.php:514
 msgid "Posts For Current Page"
 msgstr "বর্তমান পৃষ্ঠার জন্য পোস্ট"
 
-#: includes/Modules/PostGrid/PostGrid.php:1444
+#: includes/Modules/PostGrid/PostGrid.php:1460
 msgid "Posts not available according to your criteria"
 msgstr "আপনার মানদণ্ড অনুযায়ী পোস্ট উপলব্ধ নয়"
 
@@ -4302,7 +4302,7 @@ msgstr ""
 msgid "Publish"
 msgstr "পাবলিশ করুন"
 
-#: includes/Modules/PostGrid/PostGrid.php:570
+#: includes/Modules/PostGrid/PostGrid.php:586
 msgid "Publish Date"
 msgstr "প্রকাশের তারিখ"
 
@@ -4311,9 +4311,9 @@ msgid "pulse"
 msgstr ""
 
 #: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:330
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:404
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:520
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:606
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:404
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:520
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:606
 msgid "Radio Checkbox"
 msgstr "রেডিও চেকবক্স"
 
@@ -4322,7 +4322,7 @@ msgid "raise"
 msgstr ""
 
 #: includes/Modules/ImageGallery/ImageGallery.php:223
-#: includes/Modules/PostGrid/PostGrid.php:576
+#: includes/Modules/PostGrid/PostGrid.php:592
 msgid "Random"
 msgstr "এলোমেলো"
 
@@ -4345,7 +4345,7 @@ msgstr ""
 msgid "Rating Scale"
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:2793
+#: includes/Modules/PostGrid/PostGrid.php:2809
 #: includes/Modules/PostGridChild/PostGridChild.php:67
 msgid "Read More"
 msgstr "আরো পড়ুন"
@@ -4354,7 +4354,7 @@ msgstr "আরো পড়ুন"
 msgid "Read More Text"
 msgstr "আরো পড়ুন টেক্সট"
 
-#: includes/Modules/PostGrid/PostGrid.php:2792
+#: includes/Modules/PostGrid/PostGrid.php:2808
 msgid "Read the post"
 msgstr ""
 
@@ -4362,7 +4362,7 @@ msgstr ""
 msgid "Reading Settings"
 msgstr "পড়ার সেটিংস"
 
-#: includes/Modules/PostGrid/PostGrid.php:517
+#: includes/Modules/PostGrid/PostGrid.php:533
 msgid "Recent"
 msgstr "সাম্প্রতিক"
 
@@ -4437,7 +4437,7 @@ msgstr "রাইট বাটন লিঙ্ক URL"
 msgid "Right Button Text"
 msgstr "ডান বাটন টেক্সট"
 
-#: includes/Managers/Modules.php:267
+#: includes/Managers/Modules.php:295
 #, fuzzy
 msgid "Right into your Divi's site easily without having to worry about anything else."
 msgstr "Google এম্বেড ম্যাপ সরাসরি আপনার Divi এর সাইটে অন্য কিছু নিয়ে চিন্তা না করে সহজেই।"
@@ -4479,7 +4479,7 @@ msgstr ""
 msgid "Scrolling Settings"
 msgstr ""
 
-#: includes/Managers/Modules.php:212
+#: includes/Managers/Modules.php:235
 #: includes/Modules/ScrollingText/ScrollingText.php:39
 #: includes/Modules/ScrollingText/ScrollingText.php:60
 #: includes/Modules/ScrollingText/ScrollingText.php:102
@@ -4524,7 +4524,7 @@ msgstr "মডিউল নির্বাচন করুন"
 msgid "Select one"
 msgstr "একটা নির্বাচন করুন"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:199
+#: includes/Modules/VideoPopup/VideoPopup.php:200
 msgid "Select Play Icon"
 msgstr ""
 
@@ -4589,11 +4589,11 @@ msgstr "এটিকে একটি লটি JSON হিসাবে নির
 #: includes/Modules/FlipBox/FlipBox.php:2831
 #: includes/Modules/ImageMask/ImageMask.php:105
 #: includes/Modules/PostGridChild/PostGridChild.php:600
-#: includes/Modules/VideoPopup/VideoPopup.php:158
+#: includes/Modules/VideoPopup/VideoPopup.php:159
 msgid "Set As Image"
 msgstr "ছবি সেট করুন"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:258
+#: includes/Modules/VideoPopup/VideoPopup.php:259
 msgid "Set As Video"
 msgstr ""
 
@@ -4601,7 +4601,7 @@ msgstr ""
 msgid "Set Custom Height"
 msgstr "কাস্টম উচ্চতা সেট করুন"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:62
+#: includes/Modules/VideoPopup/VideoPopup.php:63
 msgid "Settings"
 msgstr "সেটিংসমূহ"
 
@@ -4613,7 +4613,7 @@ msgstr "শর্টকোড"
 msgid "Show Button"
 msgstr "বাটন দেখান"
 
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:83
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:83
 msgid "Show Conditional Fields"
 msgstr "শর্তসাপেক্ষ ক্ষেত্র দেখান"
 
@@ -4629,23 +4629,23 @@ msgstr "কার্সার দেখান"
 msgid "Show Divider"
 msgstr "বিভাজক দেখানো হবে"
 
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:76
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:74
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:168
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:72
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:87
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:76
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:74
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:168
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:72
+#: includes/Modules/FormStylerWPForms/WPForms.php:83
 msgid "Show Error & Success Messages"
 msgstr ""
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:132
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:132
 msgid "Show Form Description"
 msgstr "লিংকের বিবরণ প্রদর্শন করুন"
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:108
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:108
 msgid "Show Form Title"
 msgstr "ফর্মের শিরোনাম দেখান"
 
-#: includes/Managers/Modules.php:181
+#: includes/Managers/Modules.php:201
 msgid "Show how long it takes to read your blog posts. Useful for readers planning their time."
 msgstr ""
 
@@ -4654,7 +4654,7 @@ msgstr ""
 msgid "Show Icon On Hover"
 msgstr "হোভারে আইকন দেখান"
 
-#: includes/Modules/PostGrid/PostGrid.php:848
+#: includes/Modules/PostGrid/PostGrid.php:864
 msgid "Show Icon Only for Older and Next Entries "
 msgstr "শুধুমাত্র পুরানো এবং পরবর্তী এন্ট্রির জন্য আইকন দেখান"
 
@@ -4670,15 +4670,15 @@ msgstr "লেবেল দেখান"
 msgid "Show Label On Hover"
 msgstr "হোভারে লেবেল দেখান"
 
-#: includes/Modules/PostGrid/PostGrid.php:795
+#: includes/Modules/PostGrid/PostGrid.php:811
 msgid "Show Load More Button"
 msgstr "লোড মোর বোতাম দেখান"
 
-#: includes/Modules/PostGrid/PostGrid.php:824
+#: includes/Modules/PostGrid/PostGrid.php:840
 msgid "Show Load More Spinner"
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:837
+#: includes/Modules/PostGrid/PostGrid.php:853
 msgid "Show Numbers"
 msgstr "সংখ্যা দেখান"
 
@@ -4686,7 +4686,7 @@ msgstr "সংখ্যা দেখান"
 msgid "Show Outside the Container"
 msgstr "কন্টেইনারের বাইরে দেখান"
 
-#: includes/Modules/PostGrid/PostGrid.php:748
+#: includes/Modules/PostGrid/PostGrid.php:764
 msgid "Show Pagination"
 msgstr "পেজিনেশন দেখান"
 
@@ -4720,11 +4720,11 @@ msgid "Show Your Love"
 msgstr "আপনার ভালোবাসা প্রকাশ করুন"
 
 #: includes/Modules/StarRating/StarRating.php:321
-#: includes/Modules/VideoPopup/VideoPopup.php:352
+#: includes/Modules/VideoPopup/VideoPopup.php:353
 msgid "Size"
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:653
+#: includes/Modules/PostGrid/PostGrid.php:669
 msgid "Skip Sticky Posts"
 msgstr "স্টিকি পোস্ট এড়িয়ে যান"
 
@@ -4740,11 +4740,11 @@ msgstr "উল্লম্ব বা অনুভূমিক চিত্র �
 msgid "Something went wrong!"
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:568
+#: includes/Modules/PostGrid/PostGrid.php:584
 msgid "Sort retrieved posts by parameter. Defaults to ‘date’."
 msgstr "পরামিতি দ্বারা পুনরুদ্ধার পোস্ট বাছাই. 'তারিখ' পর্যন্ত ডিফল্ট।"
 
-#: includes/Modules/PostGrid/PostGrid.php:515
+#: includes/Modules/PostGrid/PostGrid.php:531
 msgid "Sort retrieved posts by parameter. Defaults to ‘recent’."
 msgstr "পরামিতি দ্বারা পুনরুদ্ধার পোস্ট বাছাই. ডিফল্ট 'সাম্প্রতিক'।"
 
@@ -4753,7 +4753,7 @@ msgstr "পরামিতি দ্বারা পুনরুদ্ধার 
 msgid "Source Type"
 msgstr "উৎস প্রকার"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:298
+#: includes/Modules/VideoPopup/VideoPopup.php:299
 msgid "Spacing Between Icon and Text"
 msgstr ""
 
@@ -4762,15 +4762,15 @@ msgstr ""
 msgid "SPAN tag"
 msgstr "SPAN ট্যাগ"
 
-#: includes/Modules/PostGrid/PostGrid.php:1170
+#: includes/Modules/PostGrid/PostGrid.php:1186
 msgid "Spinner Primary Color"
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:1180
+#: includes/Modules/PostGrid/PostGrid.php:1196
 msgid "Spinner Secondary Color"
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:1190
+#: includes/Modules/PostGrid/PostGrid.php:1206
 msgid "Spinner Size"
 msgstr ""
 
@@ -4802,12 +4802,12 @@ msgstr ""
 msgid "Star"
 msgstr ""
 
-#: includes/Managers/Modules.php:223
+#: includes/Managers/Modules.php:247
 #: includes/Modules/StarRating/StarRating.php:39
 msgid "Star Rating"
 msgstr ""
 
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:610
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:610
 #: includes/Modules/StarRating/StarRating.php:40
 msgid "Star Ratings"
 msgstr ""
@@ -4881,9 +4881,9 @@ msgstr "সাবটাইটেল টেক্সট"
 
 #: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:128
 #: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:342
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:420
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:536
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:626
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:420
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:536
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:626
 msgid "Success Message"
 msgstr "সাফল্য বার্তা"
 
@@ -4908,7 +4908,7 @@ msgstr "SVG"
 msgid "SVG Image Upload Support"
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:519
+#: includes/Modules/PostGrid/PostGrid.php:535
 msgid "Tag"
 msgstr "ট্যাগ"
 
@@ -4929,32 +4929,32 @@ msgid "Take your 2 minutes to review the plugin and spread the love to encourage
 msgstr "প্লাগইন পর্যালোচনা করতে আপনার 2 মিনিট সময় নিন এবং এটি চালিয়ে যেতে আমাদের উত্সাহিত করতে ভালবাসা ছড়িয়ে দিন।"
 
 #: includes/Modules/Breadcrumbs/Breadcrumbs.php:66
-#: includes/Modules/VideoPopup/VideoPopup.php:69
-#: includes/Modules/VideoPopup/VideoPopup.php:123
-#: includes/Modules/VideoPopup/VideoPopup.php:177
+#: includes/Modules/VideoPopup/VideoPopup.php:70
+#: includes/Modules/VideoPopup/VideoPopup.php:124
+#: includes/Modules/VideoPopup/VideoPopup.php:178
 msgid "Text"
 msgstr ""
 
 #: includes/Modules/BusinessHours/BusinessHours.php:392
 #: includes/Modules/BusinessHoursChild/BusinessHoursChild.php:318
 #: includes/Modules/FlipBox/FlipBox.php:3139
-#: includes/Modules/PostGrid/PostGrid.php:1254
+#: includes/Modules/PostGrid/PostGrid.php:1270
 msgid "Text Alignment"
 msgstr "টেক্সট এলাইনমেন্ট"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:509
+#: includes/Modules/VideoPopup/VideoPopup.php:510
 msgid "Text Box Background"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:520
+#: includes/Modules/VideoPopup/VideoPopup.php:521
 msgid "Text Box Border Radius"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:475
+#: includes/Modules/VideoPopup/VideoPopup.php:476
 msgid "Text Box Height"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:492
+#: includes/Modules/VideoPopup/VideoPopup.php:493
 msgid "Text Box Width"
 msgstr ""
 
@@ -4970,7 +4970,7 @@ msgstr "পাঠ্য সীমা"
 msgid "Text Tag"
 msgstr ""
 
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:192
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:192
 msgid "Textarea Field Height"
 msgstr "Textarea ক্ষেত্রের উচ্চতা"
 
@@ -5136,11 +5136,11 @@ msgstr ""
 msgid "The text will appear in with your gradient texts."
 msgstr ""
 
-#: includes/Modules/PostGrid/PostGrid.php:890
+#: includes/Modules/PostGrid/PostGrid.php:906
 msgid "The text will appear in with your next entries."
 msgstr "পাঠ্যটি আপনার পরবর্তী এন্ট্রিগুলির সাথে উপস্থিত হবে।"
 
-#: includes/Modules/PostGrid/PostGrid.php:867
+#: includes/Modules/PostGrid/PostGrid.php:883
 msgid "The text will appear in with your old entries."
 msgstr "টেক্সট আপনার পুরানো এন্ট্রি সঙ্গে প্রদর্শিত হবে."
 
@@ -5188,7 +5188,7 @@ msgstr "আপনার পাঠ্য টাইপিং পাঠ্যের
 #: includes/Modules/BusinessHours/BusinessHours.php:394
 #: includes/Modules/BusinessHoursChild/BusinessHoursChild.php:320
 #: includes/Modules/FlipBox/FlipBox.php:3141
-#: includes/Modules/PostGrid/PostGrid.php:1256
+#: includes/Modules/PostGrid/PostGrid.php:1272
 #: includes/Modules/PostGridChild/PostGridChild.php:902
 msgid "This controls how your text is aligned within the module."
 msgstr "এটি নিয়ন্ত্রণ করে কিভাবে আপনার পাঠ্য মডিউলের মধ্যে সারিবদ্ধ করা হয়।"
@@ -5319,13 +5319,13 @@ msgstr "সময়(গুলি)"
 #: includes/Modules/FlipBox/FlipBox.php:258
 #: includes/Modules/FlipBox/FlipBox.php:2679
 #: includes/Modules/FlipBox/FlipBox.php:3484
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:65
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:319
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:455
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:243
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:384
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:594
-#: includes/Modules/PostGrid/PostGrid.php:573
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:65
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:319
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:455
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:243
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:384
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:594
+#: includes/Modules/PostGrid/PostGrid.php:589
 #: includes/Modules/PostGridChild/PostGridChild.php:61
 #: includes/Modules/StarRating/StarRating.php:68
 #: includes/Modules/StarRating/StarRating.php:126
@@ -5333,14 +5333,15 @@ msgstr "সময়(গুলি)"
 msgid "Title"
 msgstr "শিরোনাম"
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:190
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:92
+#: includes/Modules/BusinessHours/BusinessHours.php:347
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:190
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:92
 msgid "Title Background"
 msgstr "শিরোনাম ব্যাকগ্রাউন্ড"
 
 #: includes/Modules/BusinessHours/BusinessHours.php:188
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:590
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:499
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:590
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:499
 msgid "Title Box Shadow"
 msgstr "টাইটেল বক্স শ্যাডো"
 
@@ -5370,8 +5371,8 @@ msgstr ""
 
 #: includes/Modules/BusinessHours/BusinessHours.php:429
 #: includes/Modules/FlipBox/FlipBox.php:3200
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:208
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:101
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:208
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:101
 msgid "Title Margin"
 msgstr "টাইটেল মার্জিন"
 
@@ -5381,8 +5382,8 @@ msgstr "টাইটেল অর্ডার"
 
 #: includes/Modules/BusinessHours/BusinessHours.php:445
 #: includes/Modules/FlipBox/FlipBox.php:3218
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:225
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:119
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:225
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:119
 msgid "Title Padding"
 msgstr "টাইটেল প্যাডিং"
 
@@ -5399,7 +5400,7 @@ msgstr "টাইটেল এর ট্যাগ"
 
 #: includes/Modules/BusinessHours/BusinessHours.php:66
 #: includes/Modules/FlipBox/FlipBox.php:114
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:66
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:66
 msgid "Title Text"
 msgstr "শিরোনাম টেক্সট"
 
@@ -5434,11 +5435,11 @@ msgstr ""
 msgid "Translate Z"
 msgstr "ট্রান্সিলেট Z"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:217
+#: includes/Modules/VideoPopup/VideoPopup.php:218
 msgid "Trigger Text"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:245
+#: includes/Modules/VideoPopup/VideoPopup.php:246
 msgid "Type youtube or vimeo video url which you would like to display in the popup."
 msgstr ""
 
@@ -5481,7 +5482,7 @@ msgstr "টাইপিং সেটিংস"
 msgid "Typing Speed (ms)"
 msgstr "টাইপিং গতি ( এমএস )"
 
-#: includes/Managers/Modules.php:76
+#: includes/Managers/Modules.php:84
 #: includes/Modules/TypingText/TypingText.php:41
 #: includes/Modules/TypingText/TypingText.php:293
 msgid "Typing Text"
@@ -5530,11 +5531,11 @@ msgstr "একটি Lottie JSON আপলোড করুন।"
 msgid "Upload a lottie json file"
 msgstr "একটি Lottie JSON ফাইল আপলোড করুন।"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:256
+#: includes/Modules/VideoPopup/VideoPopup.php:257
 msgid "Upload a video"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:156
+#: includes/Modules/VideoPopup/VideoPopup.php:157
 msgid "Upload an image"
 msgstr ""
 
@@ -5566,7 +5567,7 @@ msgstr "শীর্ষে প্রদর্শনের জন্য একট
 msgid "Upload an image to display."
 msgstr "প্রদর্শনের জন্য একটি ছবি আপলোড করুন।"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:253
+#: includes/Modules/VideoPopup/VideoPopup.php:254
 msgid "Upload your desired video in .MP4 format, or type in the URL to the video you would like to display"
 msgstr ""
 
@@ -5574,15 +5575,15 @@ msgstr ""
 msgid "Use 3D Content Effect"
 msgstr "3D কন্টেন্ট ইফেক্ট ব্যবহার করুন"
 
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:156
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:156
 msgid "Use AJAX On Submit"
 msgstr "জমা দেওয়ার সময় AJAX ব্যবহার করুন"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:264
+#: includes/Modules/VideoPopup/VideoPopup.php:265
 msgid "Use Animated Icon"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:266
+#: includes/Modules/VideoPopup/VideoPopup.php:267
 msgid "Use animated wave for your icon. For better experience please set icon background color from icon design toggle."
 msgstr ""
 
@@ -5594,7 +5595,7 @@ msgstr "শিরোনামের জন্য বাম আইকন ব্�
 msgid "Use Multiple Line"
 msgstr "একাধিক লাইন ব্যবহার করুন"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:138
+#: includes/Modules/VideoPopup/VideoPopup.php:139
 msgid "Use Overlay Image"
 msgstr ""
 
@@ -5602,7 +5603,7 @@ msgstr ""
 msgid "Use Separator Icon"
 msgstr "সেপারেটর আইকন ব্যবহার করুন"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:460
+#: includes/Modules/VideoPopup/VideoPopup.php:461
 msgid "Use Text Box"
 msgstr ""
 
@@ -5621,24 +5622,24 @@ msgstr "লম্বালম্বি ভাবে"
 msgid "Vertically Centered"
 msgstr "উল্লম্বভাবে কেন্দ্রীভূত"
 
-#: includes/Modules/VideoPopup/VideoPopup.php:252
+#: includes/Modules/VideoPopup/VideoPopup.php:253
 msgid "Video MP4 File"
 msgstr ""
 
-#: includes/Managers/Modules.php:255
-#: includes/Modules/VideoPopup/VideoPopup.php:43
+#: includes/Managers/Modules.php:282
+#: includes/Modules/VideoPopup/VideoPopup.php:44
 msgid "Video Popup"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:44
+#: includes/Modules/VideoPopup/VideoPopup.php:45
 msgid "Video Popups"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:226
+#: includes/Modules/VideoPopup/VideoPopup.php:227
 msgid "Video Type"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:244
+#: includes/Modules/VideoPopup/VideoPopup.php:245
 msgid "Video URL"
 msgstr ""
 
@@ -5658,7 +5659,7 @@ msgstr "নির্দেশিকা দেখুন"
 msgid "View what changed in this version"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:231
+#: includes/Modules/VideoPopup/VideoPopup.php:232
 msgid "Vimeo"
 msgstr ""
 
@@ -5679,7 +5680,7 @@ msgstr "উফফফ! সক্রিয় এক্সটেনশানগু
 msgid "Whoops! Enabled modules not saved. Try again later."
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:404
+#: includes/Modules/VideoPopup/VideoPopup.php:405
 msgid "Width"
 msgstr ""
 
@@ -5692,9 +5693,9 @@ msgstr "এই সেকশন/সারিতে"
 msgid "Words Per Minute"
 msgstr "প্রতি মিনিটে শব্দ"
 
-#: includes/Managers/Modules.php:156
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:47
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:48
+#: includes/Managers/Modules.php:174
+#: includes/Modules/FormStylerWPForms/WPForms.php:46
+#: includes/Modules/FormStylerWPForms/WPForms.php:47
 msgid "WP Forms"
 msgstr ""
 
@@ -5703,7 +5704,7 @@ msgstr ""
 msgid "WP Squad"
 msgstr "WP স্কোয়াড"
 
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:413
+#: includes/Modules/FormStylerWPForms/WPForms.php:440
 msgid "WPForms is not installed"
 msgstr ""
 
@@ -5719,13 +5720,13 @@ msgstr ""
 #: includes/Modules/FlipBox/FlipBox.php:835
 #: includes/Modules/FlipBox/FlipBox.php:848
 #: includes/Modules/FlipBox/FlipBox.php:1030
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:205
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:396
-#: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:512
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:435
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:364
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:590
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:216
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:205
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:396
+#: includes/Modules/FormStylerFluentForms/FluentForms.php:512
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:435
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:364
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:590
+#: includes/Modules/FormStylerWPForms/WPForms.php:243
 #: includes/Modules/PostGrid/PostGrid.php:192
 #: includes/Modules/PostGrid/PostGrid.php:212
 #: includes/Modules/PostGrid/PostGrid.php:294
@@ -5742,12 +5743,15 @@ msgid "Wrapper Alignment"
 msgstr "ওয়্রাপার সারিবদ্ধতা"
 
 #: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:143
+#: includes/Modules/BusinessHours/BusinessHours.php:338
+#: includes/Modules/BusinessHoursChild/BusinessHoursChild.php:309
+#: includes/Modules/Divider/Divider.php:1101
 #: includes/Modules/DualButton/DualButton.php:564
 #: includes/Modules/FlipBox/FlipBox.php:1381
 #: includes/Modules/FlipBox/FlipBox.php:1390
-#: includes/Modules/PostGrid/PostGrid.php:914
-#: includes/Modules/PostGrid/PostGrid.php:1226
-#: includes/Modules/PostGrid/PostGrid.php:1235
+#: includes/Modules/PostGrid/PostGrid.php:930
+#: includes/Modules/PostGrid/PostGrid.php:1242
+#: includes/Modules/PostGrid/PostGrid.php:1251
 #: includes/Modules/TypingText/TypingText.php:590
 msgid "Wrapper Background"
 msgstr "র‍্যাপারের ব্যাকগ্রাউন্ড"
@@ -5758,10 +5762,10 @@ msgstr "র‍্যাপারের ব্যাকগ্রাউন্ড"
 #: includes/Modules/DualButton/DualButton.php:203
 #: includes/Modules/FlipBox/FlipBox.php:945
 #: includes/Modules/FlipBox/FlipBox.php:960
-#: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:305
-#: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:576
-#: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:485
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:317
+#: includes/Modules/FormStylerContactForm7/ContactForm7.php:305
+#: includes/Modules/FormStylerGravityForms/GravityForms.php:576
+#: includes/Modules/FormStylerNinjaForms/NinjaForms.php:485
+#: includes/Modules/FormStylerWPForms/WPForms.php:344
 #: includes/Modules/PostGrid/PostGrid.php:339
 #: includes/Modules/PostGrid/PostGrid.php:353
 #: includes/Modules/PostGrid/PostGrid.php:397
@@ -5775,9 +5779,9 @@ msgstr "র‍্যাপার বক্স শ্যাডো"
 #: includes/Modules/Divider/Divider.php:1110
 #: includes/Modules/DualButton/DualButton.php:631
 #: includes/Modules/FlipBox/FlipBox.php:3174
-#: includes/Modules/PostGrid/PostGrid.php:1057
-#: includes/Modules/PostGrid/PostGrid.php:1268
-#: includes/Modules/PostGrid/PostGrid.php:1290
+#: includes/Modules/PostGrid/PostGrid.php:1073
+#: includes/Modules/PostGrid/PostGrid.php:1284
+#: includes/Modules/PostGrid/PostGrid.php:1306
 #: includes/Modules/TypingText/TypingText.php:629
 msgid "Wrapper Margin"
 msgstr "র‍্যাপার এর মার্জিন"
@@ -5787,9 +5791,9 @@ msgstr "র‍্যাপার এর মার্জিন"
 #: includes/Modules/Divider/Divider.php:1119
 #: includes/Modules/DualButton/DualButton.php:643
 #: includes/Modules/FlipBox/FlipBox.php:3184
-#: includes/Modules/PostGrid/PostGrid.php:1076
-#: includes/Modules/PostGrid/PostGrid.php:1277
-#: includes/Modules/PostGrid/PostGrid.php:1299
+#: includes/Modules/PostGrid/PostGrid.php:1092
+#: includes/Modules/PostGrid/PostGrid.php:1293
+#: includes/Modules/PostGrid/PostGrid.php:1315
 #: includes/Modules/TypingText/TypingText.php:638
 msgid "Wrapper Padding"
 msgstr "র‍্যাপার এর প্যাডিং"
@@ -5823,11 +5827,11 @@ msgstr ""
 msgid "Your site is running an %1$s of PHP that is no longer supported. Please contact your web hosting provider to update your PHP version."
 msgstr ""
 
-#: includes/Modules/DropCap/DropCap.php:143
+#: includes/Modules/DropCapText/DropCapText.php:143
 msgid "Your Title Goes Here"
 msgstr ""
 
-#: includes/Modules/VideoPopup/VideoPopup.php:230
+#: includes/Modules/VideoPopup/VideoPopup.php:231
 msgid "Youtube"
 msgstr ""
 
@@ -6125,6 +6129,70 @@ msgstr ""
 
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Form config data not available."
+msgstr ""
+
+#: includes/Managers/Modules.php:345
+msgid "Advanced List"
+msgstr ""
+
+#: includes/Managers/Modules.php:346
+msgid "Elevate your content presentation providing versatile and stylish list formats for a captivating user experience."
+msgstr ""
+
+#: includes/Managers/Modules.php:353
+msgid "Advanced Blurb"
+msgstr ""
+
+#: includes/Managers/Modules.php:354
+msgid "Craft engaging and informative content with advanced styling and layout options for a standout user experience."
+msgstr ""
+
+#: includes/Managers/Modules.php:361
+msgid "User List"
+msgstr ""
+
+#: includes/Managers/Modules.php:362
+msgid "Showcase your users allowing you to display user profiles in a sleek and customizable list format."
+msgstr ""
+
+#: includes/Managers/Modules.php:369
+msgid "Advanced Heading"
+msgstr ""
+
+#: includes/Managers/Modules.php:370
+msgid "Make a bold statement offering enhanced customization and design options for impactful and visually stunning headings."
+msgstr ""
+
+#: includes/Managers/Modules.php:377
+msgid "Taxonomy List"
+msgstr ""
+
+#: includes/Managers/Modules.php:378
+msgid "Easily organize and display your taxonomy enhancing user experience."
+msgstr ""
+
+#: includes/Managers/Modules.php:385
+msgid "CPT Grid"
+msgstr ""
+
+#: includes/Managers/Modules.php:386
+msgid "Showcase your Custom Post Types creating a visually appealing grid layout."
+msgstr ""
+
+#: includes/Modules/Divider/Divider.php:360
+msgid "Left Side"
+msgstr ""
+
+#: includes/Modules/Divider/Divider.php:369
+msgid "Right Side"
+msgstr ""
+
+#: includes/Modules/FormStylerWPForms/WPForms.php:137
+msgid "Field Width"
+msgstr ""
+
+#: includes/Modules/FormStylerWPForms/WPForms.php:139
+msgid "Set the width of the form fields."
 msgstr ""
 
 #: build/admin/scripts/admin.js:178

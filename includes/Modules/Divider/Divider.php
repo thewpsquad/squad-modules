@@ -357,7 +357,7 @@ class Divider extends Squad_Module {
 		);
 		$divider_custom_color_left  = $this->squad_utils->add_background_field(
 			array(
-				'label'       => esc_html__( 'Left Side', 'squad-modules-pro-for-divi' ),
+				'label'       => esc_html__( 'Left Side', 'squad-modules-for-divi' ),
 				'base_name'   => 'divider_left',
 				'context'     => 'divider_left_color',
 				'tab_slug'    => 'advanced',
@@ -366,7 +366,7 @@ class Divider extends Squad_Module {
 		);
 		$divider_custom_color_right = $this->squad_utils->add_background_field(
 			array(
-				'label'       => esc_html__( 'Right Side', 'squad-modules-pro-for-divi' ),
+				'label'       => esc_html__( 'Right Side', 'squad-modules-for-divi' ),
 				'base_name'   => 'divider_right',
 				'context'     => 'divider_right_color',
 				'tab_slug'    => 'advanced',
@@ -1098,7 +1098,7 @@ class Divider extends Squad_Module {
 		// wrapper fields definitions.
 		$wrapper_background_fields = $this->squad_utils->add_background_field(
 			array(
-				'label'       => esc_html__( 'Wrapper Background', 'squad-modules-pro-for-divi' ),
+				'label'       => esc_html__( 'Wrapper Background', 'squad-modules-for-divi' ),
 				'base_name'   => 'wrapper_background',
 				'context'     => 'wrapper_background_color',
 				'tab_slug'    => 'advanced',
@@ -1828,5 +1828,3 @@ class Divider extends Squad_Module {
 		return null;
 	}
 }
-
-new Divider();

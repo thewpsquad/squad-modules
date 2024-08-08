@@ -27,7 +27,7 @@ use function esc_html__;
  * @since       1.2.0
  * @package     squad-modules-for-divi
  */
-class FormStylerContactForm7 extends Squad_Form_Styler {
+class ContactForm7 extends Squad_Form_Styler {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -83,7 +83,7 @@ class FormStylerContactForm7 extends Squad_Form_Styler {
 			),
 			'__forms'               => array(
 				'type'                => 'computed',
-				'computed_callback'   => array( __CLASS__, 'disq_form_styler__get_form_html' ),
+				'computed_callback'   => array( self::class, 'disq_form_styler__get_form_html' ),
 				'computed_depends_on' => array(
 					'form_id',
 				),
@@ -611,6 +611,3 @@ class FormStylerContactForm7 extends Squad_Form_Styler {
 		return "$this->main_css_element div .wpcf7 form.wpcf7-form .wpcf7-form-control.wpcf7-submit:hover";
 	}
 }
-
-// Load the form styler (Contact Form 7) Utils.
-new FormStylerContactForm7();

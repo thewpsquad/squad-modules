@@ -1423,5 +1423,3 @@ class DualButton extends Squad_Module {
 		return null;
 	}
 }
-
-new DualButton();

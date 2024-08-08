@@ -26,7 +26,7 @@ use function wp_json_encode;
  * @since       1.4.7
  * @package     squad-modules-for-divi
  */
-class FormStylerNinjaForms extends Squad_Form_Styler {
+class NinjaForms extends Squad_Form_Styler {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -79,7 +79,7 @@ class FormStylerNinjaForms extends Squad_Form_Styler {
 			),
 			'__forms'               => array(
 				'type'                => 'computed',
-				'computed_callback'   => array( __CLASS__, 'disq_form_styler__get_form_html' ),
+				'computed_callback'   => array( self::class, 'disq_form_styler__get_form_html' ),
 				'computed_depends_on' => array(
 					'form_id',
 				),
@@ -206,7 +206,7 @@ class FormStylerNinjaForms extends Squad_Form_Styler {
 					'toggle_slug'     => 'field',
 				)
 			),
-			'fields_before_margin' => array(
+			'button_fields_before_margin' => array(
 				'form_button_height' => Utils::add_range_field(
 					esc_html__( 'Button Height', 'squad-modules-for-divi' ),
 					array(
@@ -990,6 +990,3 @@ class FormStylerNinjaForms extends Squad_Form_Styler {
 		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form input[type=submit]:hover, $this->main_css_element div .nf-form-wrap .nf-form-layout form button:not(.nf-remove-fieldset):hover";
 	}
 }
-
-// Load the form styler (Ninja Forms) Utils.
-new FormStylerNinjaForms();

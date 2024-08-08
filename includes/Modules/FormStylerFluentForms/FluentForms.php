@@ -27,7 +27,7 @@ use function esc_html__;
  * @since       1.4.7
  * @package     squad-modules-for-divi
  */
-class FormStylerFluentForms extends Squad_Form_Styler {
+class FluentForms extends Squad_Form_Styler {
 
 	/**
 	 * Initiate Module.
@@ -90,7 +90,7 @@ class FormStylerFluentForms extends Squad_Form_Styler {
 			),
 			'__forms'                  => array(
 				'type'                => 'computed',
-				'computed_callback'   => array( __CLASS__, 'disq_form_styler__get_form_html' ),
+				'computed_callback'   => array( self::class, 'disq_form_styler__get_form_html' ),
 				'computed_depends_on' => array(
 					'form_id',
 				),
@@ -797,6 +797,3 @@ class FormStylerFluentForms extends Squad_Form_Styler {
 		return "$this->main_css_element div .fluentform form .ff-btn-submit:not(.ff_btn_no_style):hover";
 	}
 }
-
-// Load the form styler (Fluent Forms) Utils.
-new FormStylerFluentForms();

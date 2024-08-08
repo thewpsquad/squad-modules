@@ -346,5 +346,3 @@ class Breadcrumbs extends Squad_Module {
 		);
 	}
 }
-
-new Breadcrumbs();

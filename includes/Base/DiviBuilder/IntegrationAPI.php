@@ -39,7 +39,7 @@ abstract class IntegrationAPI extends IntegrationAPIBase {
 	/**
 	 * Performs initialization tasks.
 	 */
-	protected function initialize() {
+	public function initialize() {
 		// Loads custom modules when the builder is ready.
 		add_action( 'et_builder_ready', array( $this, 'hook_et_builder_ready' ), 9 );
 

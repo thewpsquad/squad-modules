@@ -267,5 +267,3 @@ class ScrollingText extends Squad_Module {
 		return null;
 	}
 }
-
-new ScrollingText();

@@ -178,7 +178,7 @@ class ImageGallery extends Squad_Module {
 			),
 			'__gallery'   => array(
 				'type'                => 'computed',
-				'computed_callback'   => array( __CLASS__, 'get_gallery' ),
+				'computed_callback'   => array( self::class, 'get_gallery' ),
 				'computed_depends_on' => array(
 					'gallery_ids',
 					'orientation',
@@ -644,5 +644,3 @@ class ImageGallery extends Squad_Module {
 		return $attachments;
 	}
 }
-
-new ImageGallery();

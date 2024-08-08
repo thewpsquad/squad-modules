@@ -3514,5 +3514,3 @@ class FlipBox extends Squad_Module {
 		);
 	}
 }
-
-new FlipBox();

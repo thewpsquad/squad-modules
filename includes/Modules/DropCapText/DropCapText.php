@@ -11,7 +11,7 @@
  * @license         GPL-3.0-only
  */
 
-namespace DiviSquad\Modules\DropCap;
+namespace DiviSquad\Modules\DropCapText;
 
 use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
@@ -302,5 +302,3 @@ class DropCapText extends Squad_Module {
 		);
 	}
 }
-
-new DropCapText();

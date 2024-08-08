@@ -478,6 +478,22 @@ class PostGrid extends Squad_Module {
 	}
 
 	/**
+	 * Add custom hooks
+	 *
+	 * @return void
+	 */
+	public function squad_init_custom_hooks() {
+		// Registers all hook for processing post-elements.
+		$divi_squad_post_element_query_action     = 'divi_squad_post_query_current_post_element';
+		$divi_squad_post_element_outside_callback = array( $this, 'wp_hook_squad_current_outside_post_element' );
+		$divi_squad_post_element_inner_callback   = array( $this, 'wp_hook_squad_current_main_post_element' );
+		$divi_squad_post_backend_extra_callback   = array( $this, 'wp_hook_squad_post_backend_extra' );
+		add_action( "{$divi_squad_post_element_query_action}_outside", $divi_squad_post_element_outside_callback, 10, 3 );
+		add_action( "{$divi_squad_post_element_query_action}_main", $divi_squad_post_element_inner_callback, 10, 3 );
+		add_action( 'divi_squad_assets_backend_extra_data', $divi_squad_post_backend_extra_callback );
+	}
+
+	/**
 	 * Return an added new item(module) text.
 	 *
 	 * @return string
@@ -687,7 +703,7 @@ class PostGrid extends Squad_Module {
 			),
 			'__posts'                       => array(
 				'type'                => 'computed',
-				'computed_callback'   => array( __CLASS__, 'get_posts_html' ),
+				'computed_callback'   => array( self::class, 'get_posts_html' ),
 				'computed_depends_on' => array(
 					'inherit_current_loop',
 					'list_post_display_by',
@@ -2145,7 +2161,7 @@ class PostGrid extends Squad_Module {
 			$query_args['author']       = get_the_author_meta( 'ID' );
 		}
 
-		if ( 'off' === $inherit_loop && ! is_singular() ) {
+		if ( 'off' === $inherit_loop ) {
 			$display_by = ! empty( $attrs['list_post_display_by'] ) ? $attrs['list_post_display_by'] : 'recent';
 			if ( 'recent' !== $display_by ) {
 				if ( 'category' === $display_by && ! empty( $attrs['list_post_include_categories'] ) ) {
@@ -3032,18 +3048,4 @@ class PostGrid extends Squad_Module {
 		// process others.
 		return $raw_value;
 	}
-}
-
-// Load the Post Grid.
-if ( class_exists( \ET_Builder_Element::class ) ) {
-	$divi_squad_post_grid = new PostGrid();
-
-	// Registers all hook for processing post elements.
-	$divi_squad_post_element_query_action     = 'divi_squad_post_query_current_post_element';
-	$divi_squad_post_element_outside_callback = array( $divi_squad_post_grid, 'wp_hook_squad_current_outside_post_element' );
-	$divi_squad_post_element_inner_callback   = array( $divi_squad_post_grid, 'wp_hook_squad_current_main_post_element' );
-	$divi_squad_post_backend_extra_callback   = array( $divi_squad_post_grid, 'wp_hook_squad_post_backend_extra' );
-	add_action( "{$divi_squad_post_element_query_action}_outside", $divi_squad_post_element_outside_callback, 10, 3 );
-	add_action( "{$divi_squad_post_element_query_action}_main", $divi_squad_post_element_inner_callback, 10, 3 );
-	add_action( 'divi_squad_assets_backend_extra_data', $divi_squad_post_backend_extra_callback );
 }

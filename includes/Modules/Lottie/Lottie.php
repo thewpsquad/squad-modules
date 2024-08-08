@@ -527,5 +527,3 @@ class Lottie extends Squad_Module {
 		return null;
 	}
 }
-
-new Lottie();

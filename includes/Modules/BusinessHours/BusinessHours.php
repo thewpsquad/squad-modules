@@ -335,7 +335,7 @@ class BusinessHours extends Squad_Module {
 
 		$wrapper_background_fields = $this->squad_utils->add_background_field(
 			array(
-				'label'       => esc_html__( 'Wrapper Background', 'squad-modules-pro-for-divi' ),
+				'label'       => esc_html__( 'Wrapper Background', 'squad-modules-for-divi' ),
 				'base_name'   => 'day_wrapper_background',
 				'context'     => 'day_wrapper_background_color',
 				'tab_slug'    => 'advanced',
@@ -344,7 +344,7 @@ class BusinessHours extends Squad_Module {
 		);
 		$title_background_fields   = $this->squad_utils->add_background_field(
 			array(
-				'label'       => esc_html__( 'Title Background', 'squad-modules-pro-for-divi' ),
+				'label'       => esc_html__( 'Title Background', 'squad-modules-for-divi' ),
 				'base_name'   => 'title_background',
 				'context'     => 'title_background_color',
 				'tab_slug'    => 'advanced',
@@ -736,5 +736,3 @@ class BusinessHours extends Squad_Module {
 		}
 	}
 }
-
-new BusinessHours();

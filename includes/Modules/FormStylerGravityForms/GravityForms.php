@@ -25,7 +25,7 @@ use function esc_html__;
  * @since       1.2.0
  * @package     squad-modules-for-divi
  */
-class FormStylerGravityForms extends Squad_Form_Styler {
+class GravityForms extends Squad_Form_Styler {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -175,7 +175,7 @@ class FormStylerGravityForms extends Squad_Form_Styler {
 			),
 			'__forms'                  => array(
 				'type'                => 'computed',
-				'computed_callback'   => array( __CLASS__, 'disq_form_styler__get_form_html' ),
+				'computed_callback'   => array( self::class, 'disq_form_styler__get_form_html' ),
 				'computed_depends_on' => array(
 					'form_id',
 					'form_title__enable',
@@ -873,6 +873,3 @@ class FormStylerGravityForms extends Squad_Form_Styler {
 		return "$this->main_css_element div .gform_wrapper form input[type=submit]:hover, $this->main_css_element div .gform_wrapper form button[type=submit]:hover, $this->main_css_element div .gform_wrapper form .gform-button:hover";
 	}
 }
-
-// Load the form styler (Gravity Forms) Utils.
-new FormStylerGravityForms();

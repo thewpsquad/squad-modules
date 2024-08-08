@@ -3,6 +3,7 @@
 namespace DiviSquad\Managers;
 
 use DiviSquad\Utils\Asset;
+use DiviSquad\Utils\Divi;
 use function get_template_directory;
 use function get_template_directory_uri;
 use function wp_enqueue_script;
@@ -67,9 +68,9 @@ class Assets {
 	 * @return string
 	 */
 	public function wp_localize_script_data( $output ) {
-		if ( function_exists( 'et_core_is_fb_enabled' ) && et_core_is_fb_enabled() ) {
+		if ( Divi::is_fb_enabled() ) {
 			// Set all localized data here.
-			$localize = array();
+			$localize = apply_filters( 'divi_squad_assets_backend_extra_data', array() );
 			$output  .= sprintf( 'window.DISQBuilderLocalize = %1$s;', wp_json_encode( $localize ) );
 		}
 
@@ -82,7 +83,7 @@ class Assets {
 	 * @return void
 	 */
 	public function enqueue_scripts_vb() {
-		if ( function_exists( 'et_core_is_fb_enabled' ) && \et_core_is_fb_enabled() ) {
+		if ( Divi::is_fb_enabled() ) {
 			wp_enqueue_script( 'squad-vendor-typed' );
 			wp_enqueue_script( 'squad-vendor-imagesloaded' );
 			wp_enqueue_script( 'squad-vendor-lightgallery' );
