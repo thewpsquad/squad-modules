@@ -2,10 +2,6 @@
 
 namespace DiviSquad\Base\BuilderModule\Traits\Elements;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
 trait Mask_Shape {
 
 	/**
@@ -555,4 +551,5 @@ trait Mask_Shape {
 				);
 		}
 	}
+
 }

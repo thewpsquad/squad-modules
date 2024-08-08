@@ -7,7 +7,7 @@ WORK_DIR="./../../"
 LATEST_VERSION=$(svn ls $SVN_REPO_URL/tags | sort -V | tail -n 1 | sed 's/\///g')
 
 # Create working directory
-mkdir $WORK_DIR
+mkdir -p $WORK_DIR
 cd $WORK_DIR
 
 # Clone the GitHub repository
@@ -16,9 +16,19 @@ git clone $GITHUB_REPO_URL ./
 # Function to copy a specific version from SVN to Git
 copy_version() {
     VERSION=$1
-    svn export $SVN_REPO_URL/tags/$VERSION $VERSION
-    rsync -av --exclude='.svn' $VERSION/ ./
-    rm -rf $VERSION
+
+    # Delete all files and folders except specified ones
+    find . -mindepth 1 -maxdepth 1 \
+        ! -name '.git' \
+        ! -name '.github' \
+        ! -name 'readme.md' \
+        ! -name 'LICENSE' \
+        ! -name 'CODE_OF_CONDUCT.md' \
+        -exec rm -rf {} +
+
+    svn export $SVN_REPO_URL/tags/$VERSION tags/$VERSION
+    rsync -av --exclude='.svn' tags/$VERSION/ ./
+    rm -rf tags/$VERSION
     git add .
     git commit -m "Import version $VERSION from SVN"
     git tag $VERSION

@@ -7,25 +7,14 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@thewpsquad.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\BusinessHours;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
-use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
+use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Helper;
-use DiviSquad\Utils\Module;
-use function esc_html__;
-use function et_builder_i18n;
-use function et_core_esc_previously;
-use function et_pb_background_options;
-use function et_pb_multi_view_options;
-use function et_builder_get_text_orientation_options;
 
 /**
  * Business Hours Module Class.
@@ -33,7 +22,8 @@ use function et_builder_get_text_orientation_options;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class BusinessHours extends Squad_Divi_Builder_Module {
+class BusinessHours extends DISQ_Builder_Module {
+
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -42,9 +32,10 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name      = esc_html__( 'Business Hours', 'squad-modules-for-divi' );
-		$this->plural    = esc_html__( 'Business Hours', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/business-hours.svg' );
+		$this->name   = esc_html__( 'Business Hours', 'squad-modules-for-divi' );
+		$this->plural = esc_html__( 'Business Hours', 'squad-modules-for-divi' );
+
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/clock-history.svg' );
 
 		$this->slug       = 'disq_business_hours';
 		$this->child_slug = 'disq_business_day';
@@ -59,7 +50,7 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 		$this->settings_modal_toggles = array(
 			'general'  => array(
 				'toggles' => array(
-					'title_content'    => esc_html__( 'Title', 'squad-modules-for-divi' ),
+					'title_content'    => esc_html__( 'Title Content', 'squad-modules-for-divi' ),
 					'general_settings' => esc_html__( 'General Settings', 'squad-modules-for-divi' ),
 				),
 			),
@@ -84,6 +75,8 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 				),
 			),
 		);
+
+		$default_css_selectors = $this->disq_get_module_default_selectors();
 
 		// Declare advanced fields for the module.
 		$this->advanced_fields = array(
@@ -142,9 +135,16 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 					)
 				),
 			),
-			'background'     => Module::selectors_background( $this->main_css_element ),
+			'background'     => array_merge(
+				$default_css_selectors,
+				array(
+					'settings' => array(
+						'color' => 'alpha',
+					),
+				)
+			),
 			'borders'        => array(
-				'default'       => Module::selectors_default( $this->main_css_element ),
+				'default'       => $default_css_selectors,
 				'day_wrapper'   => array(
 					'label_prefix' => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
 					'css'          => array(
@@ -173,7 +173,7 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 				),
 			),
 			'box_shadow'     => array(
-				'default'       => Module::selectors_default( $this->main_css_element ),
+				'default'       => $default_css_selectors,
 				'day_wrapper'   => array(
 					'label'             => esc_html__( 'Wrapper Box Shadow', 'squad-modules-for-divi' ),
 					'option_category'   => 'layout',
@@ -203,9 +203,24 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 					'toggle_slug'       => 'title_element',
 				),
 			),
-			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
-			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
-			'height'         => Module::selectors_default( $this->main_css_element ),
+			'margin_padding' => array(
+				'use_padding' => true,
+				'use_margin'  => true,
+				'css'         => array(
+					'margin'    => $this->main_css_element,
+					'padding'   => $this->main_css_element,
+					'important' => 'all',
+				),
+			),
+			'max_width'      => array_merge(
+				$default_css_selectors,
+				array(
+					'css' => array(
+						'module_alignment' => "$this->main_css_element.et_pb_module",
+					),
+				)
+			),
+			'height'         => $default_css_selectors,
 			'image_icon'     => false,
 			'text'           => false,
 			'button'         => false,
@@ -287,7 +302,7 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 					'toggle_slug'      => 'general_settings',
 				)
 			),
-			'day_elements_gap' => $this->disq_add_range_field(
+			'day_elements_gap' => $this->disq_add_range_fields(
 				esc_html__( 'Gap Between Days', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose the gap between days.', 'squad-modules-for-divi' ),
@@ -307,7 +322,7 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 				),
 				array( 'use_hover' => false )
 			),
-			'wrapper_gap'      => $this->disq_add_range_field(
+			'wrapper_gap'      => $this->disq_add_range_fields(
 				esc_html__( 'Gap between Title and Day Wrapper', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Adjust the gap between the title and the day wrapper.', 'squad-modules-for-divi' ),
@@ -358,7 +373,7 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 			)
 		);
 		$wrapper_associated_fields = array(
-			'day_text_width'               => $this->disq_add_range_field(
+			'day_text_width'               => $this->disq_add_range_fields(
 				esc_html__( 'Day Text Width', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Adjust the width of the day text.', 'squad-modules-for-divi' ),
@@ -376,7 +391,7 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 					'toggle_slug'    => 'day_wrapper',
 				)
 			),
-			'time_text_width'              => $this->disq_add_range_field(
+			'time_text_width'              => $this->disq_add_range_fields(
 				esc_html__( 'Time Text Width', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Adjust the width of the time text.', 'squad-modules-for-divi' ),
@@ -421,7 +436,7 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 			'day_wrapper_padding'          => $this->disq_add_margin_padding_field(
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'      => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description'      => esc_html__( 'Here you can define a custom padding size for the wrapper.', 'squad-modules-for-divi' ),
 					'type'             => 'custom_padding',
 					'default'          => '10px|15px|10px|15px',
 					'default_on_front' => '10px|15px|10px|15px',
@@ -450,7 +465,7 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 			'title_padding' => $this->disq_add_margin_padding_field(
 				esc_html__( 'Title Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'      => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description'      => esc_html__( 'Here you can define a custom padding size for the title.', 'squad-modules-for-divi' ),
 					'type'             => 'custom_padding',
 					'range_settings'   => array(
 						'min_limit' => '1',
@@ -492,29 +507,45 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 		$fields = parent::get_transition_fields_css_props();
 
 		// wrapper styles.
-		$fields['day_wrapper_background_color'] = array( 'background' => "$this->main_css_element .day-elements" );
-		$fields['day_wrapper_margin']           = array( 'margin' => "$this->main_css_element .day-elements" );
-		$fields['day_wrapper_padding']          = array( 'padding' => "$this->main_css_element .day-elements" );
+		$fields['day_wrapper_background_color'] = array(
+			'background' => "$this->main_css_element .day-elements",
+		);
+		$fields['day_wrapper_margin']           = array(
+			'margin' => "$this->main_css_element .day-elements",
+		);
+		$fields['day_wrapper_padding']          = array(
+			'padding' => "$this->main_css_element .day-elements",
+		);
 		$this->disq_fix_border_transition( $fields, 'item_wrapper', "$this->main_css_element .day-elements" );
 		$this->disq_fix_box_shadow_transition( $fields, 'item_wrapper', "$this->main_css_element .day-elements" );
 
 		// title styles.
-		$fields['title_background_color'] = array( 'background' => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper" );
-		$fields['title_margin']           = array( 'margin' => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper" );
-		$fields['title_padding']          = array( 'padding' => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper" );
+		$fields['title_background_color'] = array(
+			'background' => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
+		);
+		$fields['title_margin']           = array(
+			'margin' => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
+		);
+		$fields['title_padding']          = array(
+			'padding' => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
+		);
 		$this->disq_fix_fonts_transition( $fields, 'title_text', "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper .bh-title-text" );
 		$this->disq_fix_border_transition( $fields, 'title_element', "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper" );
 		$this->disq_fix_box_shadow_transition( $fields, 'title_element', "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper" );
 
 		// divider styles.
-		$fields['divider_color']  = array( 'border-top-color' => "$this->main_css_element .day-element.day-element-divider:before" );
+		$fields['divider_color']  = array(
+			'border-top-color' => "$this->main_css_element .day-element.day-element-divider:before",
+		);
 		$fields['divider_weight'] = array(
 			'border-top-width' => "$this->main_css_element .day-element.day-element-divider:before",
 			'height'           => "$this->main_css_element .day-element.day-element-divider:before",
 		);
 
 		// Default styles.
-		$fields['background_layout'] = array( 'color' => $this->main_css_element );
+		$fields['background_layout'] = array(
+			'color' => $this->main_css_element,
+		);
 
 		return $fields;
 	}
@@ -672,21 +703,21 @@ class BusinessHours extends Squad_Divi_Builder_Module {
 		// title margin with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'          => 'title_margin',
-				'selector'       => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
-				'hover_selector' => "$this->main_css_element .disq-bh-elements:hover .bh-element.bh-title-wrapper",
-				'css_property'   => 'margin',
-				'type'           => 'margin',
+				'field'        => 'title_margin',
+				'selector'     => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
+				'hover'        => "$this->main_css_element .disq-bh-elements:hover .bh-element.bh-title-wrapper",
+				'css_property' => 'margin',
+				'type'         => 'margin',
 			)
 		);
 		// title padding with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'          => 'title_padding',
-				'selector'       => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
-				'hover_selector' => "$this->main_css_element .disq-bh-elements:hover .bh-element.bh-title-wrapper",
-				'css_property'   => 'padding',
-				'type'           => 'padding',
+				'field'        => 'title_padding',
+				'selector'     => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
+				'hover'        => "$this->main_css_element .disq-bh-elements:hover .bh-element.bh-title-wrapper",
+				'css_property' => 'padding',
+				'type'         => 'padding',
 			)
 		);
 	}

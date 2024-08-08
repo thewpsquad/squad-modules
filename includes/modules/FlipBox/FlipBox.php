@@ -7,30 +7,16 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@thewpsquad.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\FlipBox;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
-use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
+use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
-use DiviSquad\Utils\Module;
 use ET_Builder_Module_Helper_MultiViewOptions;
-use function esc_html__;
-use function esc_attr__;
-use function apply_filters;
-use function et_core_esc_previously;
-use function et_pb_multi_view_options;
-use function et_pb_background_options;
-use function et_pb_media_options;
-use function et_pb_get_extended_font_icon_value;
-use function et_builder_get_text_orientation_options;
 
 /**
  * Flip Box Module Class.
@@ -38,7 +24,7 @@ use function et_builder_get_text_orientation_options;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class FlipBox extends Squad_Divi_Builder_Module {
+class FlipBox extends DISQ_Builder_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -49,7 +35,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Flip Box', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Flip Boxes', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/flip-box.svg' );
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/flip-box.svg' );
 
 		$this->slug       = 'disq_flip_box';
 		$this->vb_support = 'on';
@@ -158,6 +144,8 @@ class FlipBox extends Squad_Divi_Builder_Module {
 				),
 			),
 		);
+
+		$default_css_selectors = $this->disq_get_module_default_selectors();
 
 		// Declare advanced fields for the module.
 		$this->advanced_fields = array(
@@ -799,7 +787,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 						'hide_text_align' => true,
 						'css'             => array(
 							'main'  => "$this->main_css_element div .flip-box-slides .front-slide .disq-slide-button",
-							'hover' => "$this->main_css_element div .flip-box-slides .front-slide .disq-slide-button:hover",
+							'hover' => "$this->main_css_element div .flip-box-slides .front-slide:hover .disq-slide-button",
 						),
 						'tab_slug'        => 'advanced',
 						'toggle_slug'     => 'button_text',
@@ -823,7 +811,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 						'hide_text_align' => true,
 						'css'             => array(
 							'main'  => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button",
-							'hover' => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button:hover",
+							'hover' => "$this->main_css_element div .flip-box-slides .back-slide:hover .disq-slide-button",
 						),
 						'tab_slug'        => 'advanced',
 						'toggle_slug'     => 'button_text',
@@ -832,7 +820,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 				),
 			),
 			'borders'        => array(
-				'default'              => Module::selectors_default( $this->main_css_element ),
+				'default'              => $default_css_selectors,
 				'front_wrapper'        => array(
 					'label_prefix' => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
 					'css'          => array(
@@ -898,9 +886,9 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'css'             => array(
 						'main' => array(
 							'border_radii'        => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button",
-							'border_radii_hover'  => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button:hover",
+							'border_radii_hover'  => "$this->main_css_element div .flip-box-slides .back-slide:hover .disq-slide-button",
 							'border_styles'       => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button",
-							'border_styles_hover' => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button:hover",
+							'border_styles_hover' => "$this->main_css_element div .flip-box-slides .back-slide:hover .disq-slide-button",
 						),
 					),
 					'defaults'        => array(
@@ -922,9 +910,9 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'css'             => array(
 						'main' => array(
 							'border_radii'        => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button",
-							'border_radii_hover'  => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button:hover",
+							'border_radii_hover'  => "$this->main_css_element div .flip-box-slides .back-slide:hover .disq-slide-button",
 							'border_styles'       => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button",
-							'border_styles_hover' => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button:hover",
+							'border_styles_hover' => "$this->main_css_element div .flip-box-slides .back-slide:hover .disq-slide-button",
 						),
 					),
 					'defaults'        => array(
@@ -942,7 +930,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 				),
 			),
 			'box_shadow'     => array(
-				'default'              => Module::selectors_default( $this->main_css_element ),
+				'default'              => $default_css_selectors,
 				'front_wrapper'        => array(
 					'label'             => esc_html__( 'Wrapper Box Shadow', 'squad-modules-for-divi' ),
 					'option_category'   => 'layout',
@@ -978,7 +966,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'option_category'   => 'layout',
 					'css'               => array(
 						'main'  => "$this->main_css_element div .flip-box-slides .front-slide .disq-slide-button",
-						'hover' => "$this->main_css_element div .flip-box-slides .front-slide .disq-slide-button:hover",
+						'hover' => "$this->main_css_element div .flip-box-slides .front-slide:hover .disq-slide-button",
 					),
 					'default_on_fronts' => array(
 						'color'    => 'rgba(0,0,0,0.3)',
@@ -995,7 +983,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'option_category'   => 'layout',
 					'css'               => array(
 						'main'  => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button",
-						'hover' => "$this->main_css_element div .flip-box-slides .back-slide .disq-slide-button:hover",
+						'hover' => "$this->main_css_element div .flip-box-slides .back-slide:hover .disq-slide-button",
 					),
 					'default_on_fronts' => array(
 						'color'    => 'rgba(0,0,0,0.3)',
@@ -1007,9 +995,24 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'toggle_slug'       => 'back_button_element',
 				),
 			),
-			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
-			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
-			'height'         => Module::selectors_default( $this->main_css_element ),
+			'margin_padding' => array(
+				'use_padding' => true,
+				'use_margin'  => true,
+				'css'         => array(
+					'margin'    => $this->main_css_element,
+					'padding'   => $this->main_css_element,
+					'important' => 'all',
+				),
+			),
+			'max_width'      => array_merge(
+				$default_css_selectors,
+				array(
+					'css' => array(
+						'module_alignment' => "$this->main_css_element.et_pb_module",
+					),
+				)
+			),
+			'height'         => $default_css_selectors,
 			'link_options'   => false,
 			'background'     => false,
 			'image_icon'     => false,
@@ -1140,7 +1143,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'toggle_slug'      => 'flip_settings',
 				)
 			),
-			'flip_custom_height'         => $this->disq_add_range_field(
+			'flip_custom_height'         => $this->disq_add_range_fields(
 				esc_html__( 'Custom Height', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose the custom height for flip box.', 'squad-modules-for-divi' ),
@@ -1326,7 +1329,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'toggle_slug'      => 'fip_animations',
 				)
 			),
-			'flip_translate_z'             => $this->disq_add_range_field(
+			'flip_translate_z'             => $this->disq_add_range_fields(
 				esc_html__( 'Translate Z', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose how much the translate z on 3d effect.', 'squad-modules-for-divi' ),
@@ -1345,7 +1348,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'toggle_slug'      => 'fip_animations',
 				)
 			),
-			'flip_scale'                   => $this->disq_add_range_field(
+			'flip_scale'                   => $this->disq_add_range_fields(
 				esc_html__( 'Scale', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you can choose how much the scale on 3d effect.', 'squad-modules-for-divi' ),
@@ -1766,42 +1769,42 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			// Icon wrapper margin with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => "{$slide_type}_icon_wrapper_margin",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
-					'important'      => true,
+					'field'        => "{$slide_type}_icon_wrapper_margin",
+					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+					'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+					'css_property' => 'margin',
+					'type'         => 'margin',
+					'important'    => true,
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => "{$slide_type}_icon_wrapper_padding",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-					'css_property'   => 'padding',
-					'type'           => 'padding',
-					'important'      => true,
+					'field'        => "{$slide_type}_icon_wrapper_padding",
+					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+					'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+					'css_property' => 'padding',
+					'type'         => 'padding',
+					'important'    => true,
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => "{$slide_type}_icon_margin",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
-					'important'      => true,
+					'field'        => "{$slide_type}_icon_margin",
+					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+					'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+					'css_property' => 'margin',
+					'type'         => 'margin',
+					'important'    => true,
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => "{$slide_type}_icon_padding",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-					'css_property'   => 'padding',
-					'type'           => 'padding',
-					'important'      => true,
+					'field'        => "{$slide_type}_icon_padding",
+					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+					'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+					'css_property' => 'padding',
+					'type'         => 'padding',
+					'important'    => true,
 				)
 			);
 
@@ -1998,7 +2001,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 		}
 
 		if ( '' !== $sub_title_text ) {
-			// The subtitle margin with default, responsive, hover.
+			// The sub-title margin with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
 					'field'        => "{$slide_type}_sub_title_margin",
@@ -2134,7 +2137,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'base_prop_name'         => "{$slide_type}_button_background",
 					'props'                  => $this->props,
 					'selector'               => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'selector_hover'         => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
+					'selector_hover'         => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
 					'selector_sticky'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
 					'function_name'          => $this->slug,
 					'important'              => ' !important',
@@ -2162,7 +2165,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_elements_alignment",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
 					'css_property'   => 'justify-content',
 					'render_slug'    => $this->slug,
 					'type'           => 'align',
@@ -2173,7 +2176,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_width",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
 					'css_property'   => 'width',
 					'render_slug'    => $this->slug,
 					'type'           => 'input',
@@ -2185,7 +2188,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_icon_placement",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
 					'css_property'   => 'flex-direction',
 					'render_slug'    => $this->slug,
 					'type'           => 'align',
@@ -2196,7 +2199,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_icon_gap",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
 					'css_property'   => 'gap',
 					'render_slug'    => $this->slug,
 					'type'           => 'input',
@@ -2207,18 +2210,18 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			// button margin with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => "{$slide_type}_button_icon_margin",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .icon-element",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .icon-element:hover",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
+					'field'        => "{$slide_type}_button_icon_margin",
+					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .icon-element",
+					'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button .icon-element",
+					'css_property' => 'margin',
+					'type'         => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
 					'field'          => "{$slide_type}_button_margin",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
 					'css_property'   => 'margin',
 					'type'           => 'margin',
 				)
@@ -2227,7 +2230,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 				array(
 					'field'          => "{$slide_type}_button_padding",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button",
 					'css_property'   => 'padding',
 					'type'           => 'padding',
 				)
@@ -2238,7 +2241,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 
 			if ( ( 'none' !== $this->props[ "{$slide_type}_button_icon_type" ] ) && ( ! empty( $font_icon_element ) || ! empty( $image_element ) ) ) {
 				if ( ( 'on' === $this->prop( "{$slide_type}_button_icon_on_hover", 'off' ) ) ) {
-					$icon_wrapper_class[] = 'show-on-hover';
+					$icon_wrapper_class[] = 'show_on_hover';
 
 					$mapping_values = array(
 						'inherit'     => '0 0 0 0',
@@ -2256,7 +2259,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 						);
 					}
 
-					// set icon placement for button image with default, hover, and responsive.
+					// set icon placement for button image with default, hover and responsive.
 					$this->process_show_icon_on_hover_styles(
 						array(
 							'field'          => "{$slide_type}_button_icon_placement",
@@ -2265,8 +2268,8 @@ class FlipBox extends Squad_Divi_Builder_Module {
 								'icon'  => "{$slide_type}_button_icon_size",
 								'image' => "{$slide_type}_button_image_width",
 							),
-							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .disq-icon-wrapper.show-on-hover",
-							'hover'          => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover .disq-icon-wrapper.show-on-hover",
+							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .disq-icon-wrapper.show_on_hover",
+							'hover'          => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button .disq-icon-wrapper.show_on_hover",
 							'css_property'   => 'margin',
 							'type'           => 'margin',
 							'mapping_values' => $mapping_values,
@@ -2331,7 +2334,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_icon_color",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .et-pb-icon",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover .et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button .et-pb-icon",
 					'css_property'   => 'color',
 					'render_slug'    => $this->slug,
 					'type'           => 'color',
@@ -2342,7 +2345,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_icon_size",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .et-pb-icon",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover .et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button .et-pb-icon",
 					'css_property'   => 'font-size',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',
@@ -2356,7 +2359,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'attrs'          => array(
 						'class' => implode( ' ', $icon_classes ),
 					),
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
 				)
 			);
 		}
@@ -2386,7 +2389,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_image_width",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .disq-icon-wrapper img",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover .disq-icon-wrapper img",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button .disq-icon-wrapper img",
 					'css_property'   => 'width',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',
@@ -2398,7 +2401,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 				array(
 					'base_attr_name' => "{$slide_type}_button_image_height",
 					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button .disq-icon-wrapper img",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button:hover .disq-icon-wrapper img",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .disq-slide-button .disq-icon-wrapper img",
 					'css_property'   => 'height',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',
@@ -2415,7 +2418,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 						'alt'   => '',
 					),
 					'required'       => "{$slide_type}_button_image",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .disq-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
 				)
 			);
 		}
@@ -2562,21 +2565,21 @@ class FlipBox extends Squad_Divi_Builder_Module {
 		// wrapper margin with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'          => "{$slide_type}_wrapper_margin",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
-				'css_property'   => 'margin',
-				'type'           => 'margin',
+				'field'        => "{$slide_type}_wrapper_margin",
+				'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+				'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
+				'css_property' => 'margin',
+				'type'         => 'margin',
 			)
 		);
 		// wrapper padding with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'          => "{$slide_type}_wrapper_padding",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
-				'css_property'   => 'padding',
-				'type'           => 'padding',
+				'field'        => "{$slide_type}_wrapper_padding",
+				'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+				'hover'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
+				'css_property' => 'padding',
+				'type'         => 'padding',
 			)
 		);
 
@@ -2686,7 +2689,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 		return array(
 			"{$side}_title"          => array(
 				'label'           => esc_html__( 'Title', 'squad-modules-for-divi' ),
-				'description'     => esc_html__( 'The text of your title will appear in with your current side of flip box.', 'squad-modules-for-divi' ),
+				'description'     => esc_html__( 'The title of your title will appear in with your current side of flip box.', 'squad-modules-for-divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'tab_slug'        => 'general',
@@ -2697,7 +2700,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			),
 			"{$side}_sub_title"      => array(
 				'label'           => esc_html__( 'Sub Title', 'squad-modules-for-divi' ),
-				'description'     => esc_html__( 'The text of your sub title will appear in with your current side of flip box.', 'squad-modules-for-divi' ),
+				'description'     => esc_html__( 'The title of your sub title will appear in with your current side of flip box.', 'squad-modules-for-divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'tab_slug'        => 'general',
@@ -2891,7 +2894,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'sub_toggle'          => "{$side}_side",
 				)
 			),
-			"{$side}_icon_size"                   => $this->disq_add_range_field(
+			"{$side}_icon_size"                   => $this->disq_add_range_fields(
 				esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose icon size.', 'squad-modules-for-divi' ),
@@ -2925,7 +2928,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'sub_toggle'       => "{$side}_side",
 				)
 			),
-			"{$side}_image_width"                 => $this->disq_add_range_field(
+			"{$side}_image_width"                 => $this->disq_add_range_fields(
 				esc_html__( 'Image Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose image width.', 'squad-modules-for-divi' ),
@@ -2936,6 +2939,20 @@ class FlipBox extends Squad_Divi_Builder_Module {
 						'max'       => '200',
 						'step'      => '1',
 					),
+					'allowed_units'   => array(
+						'%',
+						'em',
+						'rem',
+						'px',
+						'cm',
+						'mm',
+						'in',
+						'pt',
+						'pc',
+						'ex',
+						'vh',
+						'vw',
+					),
 					'allow_empty'     => true,
 					'default_unit'    => 'px',
 					'depends_show_if' => 'off',
@@ -2944,7 +2961,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'sub_toggle'      => "{$side}_side",
 				)
 			),
-			"{$side}_image_height"                => $this->disq_add_range_field(
+			"{$side}_image_height"                => $this->disq_add_range_fields(
 				esc_html__( 'Image Height', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose image height.', 'squad-modules-for-divi' ),
@@ -2954,6 +2971,20 @@ class FlipBox extends Squad_Divi_Builder_Module {
 						'max_limit' => '200',
 						'max'       => '200',
 						'step'      => '1',
+					),
+					'allowed_units'   => array(
+						'%',
+						'em',
+						'rem',
+						'px',
+						'cm',
+						'mm',
+						'in',
+						'pt',
+						'pc',
+						'ex',
+						'vh',
+						'vw',
 					),
 					'allow_empty'     => true,
 					'default_unit'    => 'px',
@@ -2991,7 +3022,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'sub_toggle'          => "{$side}_side",
 				)
 			),
-			"{$side}_icon_text_gap"               => $this->disq_add_range_field(
+			"{$side}_icon_text_gap"               => $this->disq_add_range_fields(
 				esc_html__( 'Gap Between Icon/Image and Text', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose gap between icon and text.', 'squad-modules-for-divi' ),
@@ -3013,7 +3044,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'hover'            => false,
 				)
 			),
-			"{$side}_icon_wrapper_width"          => $this->disq_add_range_field(
+			"{$side}_icon_wrapper_width"          => $this->disq_add_range_fields(
 				esc_html__( 'Icon Wrapper Width', 'squad-modules-for-divi' ),
 				array(
 					'description'         => esc_html__( 'Here you can choose icon wrapper width.', 'squad-modules-for-divi' ),
@@ -3023,6 +3054,20 @@ class FlipBox extends Squad_Divi_Builder_Module {
 						'max_limit' => '100',
 						'max'       => '100',
 						'step'      => '1',
+					),
+					'allowed_units'       => array(
+						'%',
+						'em',
+						'rem',
+						'px',
+						'cm',
+						'mm',
+						'in',
+						'pt',
+						'pc',
+						'ex',
+						'vh',
+						'vw',
 					),
 					'allow_empty'         => true,
 					'default'             => '200px',
@@ -3100,7 +3145,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			"{$side}_icon_wrapper_padding"        => $this->disq_add_margin_padding_field(
 				esc_html__( 'Icon Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description'         => esc_html__( 'Here you can define a custom padding size for the icon wrapper.', 'squad-modules-for-divi' ),
 					'type'                => 'custom_padding',
 					'depends_show_if_not' => array( 'none' ),
 					'tab_slug'            => 'advanced',
@@ -3122,7 +3167,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			"{$side}_icon_padding"                => $this->disq_add_margin_padding_field(
 				esc_html__( 'Icon Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description'         => esc_html__( 'Here you can define a custom padding size for the icon.', 'squad-modules-for-divi' ),
 					'type'                => 'custom_padding',
 					'depends_show_if_not' => array( 'none' ),
 					'tab_slug'            => 'advanced',
@@ -3158,7 +3203,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'toggle_slug' => "{$side}_wrapper",
 				)
 			),
-			"{$side}_icon_item_inner_gap" => $this->disq_add_range_field(
+			"{$side}_icon_item_inner_gap" => $this->disq_add_range_fields(
 				esc_html__( 'Gap Between Elements', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose gap between icon and text.', 'squad-modules-for-divi' ),
@@ -3192,7 +3237,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			"{$side}_wrapper_padding"     => $this->disq_add_margin_padding_field(
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'      => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description'      => esc_html__( 'Here you can define a custom padding size for the wrapper.', 'squad-modules-for-divi' ),
 					'type'             => 'custom_padding',
 					'default'          => '10px|15px|10px|15px|false|false',
 					'default_on_front' => '10px|15px|10px|15px|false|false',
@@ -3226,7 +3271,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			"{$side}_title_padding"     => $this->disq_add_margin_padding_field(
 				esc_html__( 'Title Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__( 'Here you can define a custom padding size for the title.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min_limit' => '1',
@@ -3262,7 +3307,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			"{$side}_sub_title_padding" => $this->disq_add_margin_padding_field(
 				esc_html__( 'Sub Title Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__( 'Here you can define a custom padding size for the sub title.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min_limit' => '1',
@@ -3298,7 +3343,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			"{$side}_content_padding"   => $this->disq_add_margin_padding_field(
 				esc_html__( 'Body Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__( 'Here you can define a custom padding size for the content.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min_limit' => '1',
@@ -3355,7 +3400,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 	 */
 	private function disq_get_side_order_fields( $side ) {
 		return array(
-			"{$side}_icon_order"      => $this->disq_add_range_field(
+			"{$side}_icon_order"      => $this->disq_add_range_fields(
 				esc_html__( 'Image/Icon Order', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the order number to position the item lower.', 'squad-modules-for-divi' ),
@@ -3377,7 +3422,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'sub_toggle'        => "{$side}_side",
 				)
 			),
-			"{$side}_title_order"     => $this->disq_add_range_field(
+			"{$side}_title_order"     => $this->disq_add_range_fields(
 				esc_html__( 'Title Order', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the order number to position the item lower.', 'squad-modules-for-divi' ),
@@ -3399,7 +3444,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'sub_toggle'        => "{$side}_side",
 				)
 			),
-			"{$side}_sub_title_order" => $this->disq_add_range_field(
+			"{$side}_sub_title_order" => $this->disq_add_range_fields(
 				esc_html__( 'Sub Title Order', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the order number to position the item lower.', 'squad-modules-for-divi' ),
@@ -3422,7 +3467,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'sub_toggle'        => "{$side}_side",
 				)
 			),
-			"{$side}_body_order"      => $this->disq_add_range_field(
+			"{$side}_body_order"      => $this->disq_add_range_fields(
 				esc_html__( 'Body Order', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the order number to position the item lower.', 'squad-modules-for-divi' ),
@@ -3445,7 +3490,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 					'sub_toggle'        => "{$side}_side",
 				)
 			),
-			"{$side}_button_order"    => $this->disq_add_range_field(
+			"{$side}_button_order"    => $this->disq_add_range_fields(
 				esc_html__( 'Button Order', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the order number to position the item lower.', 'squad-modules-for-divi' ),

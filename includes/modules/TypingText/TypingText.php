@@ -1,5 +1,4 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
-
 /**
  * Typing Text Module Class which extend the Divi Builder Module Class.
  *
@@ -7,25 +6,15 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@thewpsquad.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\TypingText;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
-use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
+use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
-use DiviSquad\Utils\Module;
-use function esc_html__;
-use function wp_enqueue_script;
-use function et_core_esc_previously;
-use function et_pb_multi_view_options;
-use function et_pb_background_options;
 
 /**
  * Typing Text Module Class.
@@ -33,7 +22,8 @@ use function et_pb_background_options;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class TypingText extends Squad_Divi_Builder_Module {
+class TypingText extends DISQ_Builder_Module {
+
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -42,9 +32,10 @@ class TypingText extends Squad_Divi_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name      = esc_html__( 'Typing Text', 'squad-modules-for-divi' );
-		$this->plural    = esc_html__( 'Typing Texts', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/typing-text.svg' );
+		$this->name   = esc_html__( 'Typing Text', 'squad-modules-for-divi' );
+		$this->plural = esc_html__( 'Typing Texts', 'squad-modules-for-divi' );
+
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/typing.svg' );
 
 		$this->slug       = 'disq_typing_text';
 		$this->vb_support = 'on';
@@ -75,6 +66,8 @@ class TypingText extends Squad_Divi_Builder_Module {
 				),
 			),
 		);
+
+		$default_css_selectors = $this->disq_get_module_default_selectors();
 
 		// Declare advanced fields for the module.
 		$this->advanced_fields = array(
@@ -122,9 +115,16 @@ class TypingText extends Squad_Divi_Builder_Module {
 					)
 				),
 			),
-			'background'     => Module::selectors_background( $this->main_css_element ),
+			'background'     => array_merge(
+				$default_css_selectors,
+				array(
+					'settings' => array(
+						'color' => 'alpha',
+					),
+				)
+			),
 			'borders'        => array(
-				'default'        => Module::selectors_default( $this->main_css_element ),
+				'default'        => $default_css_selectors,
 				'wrapper'        => array(
 					'label_prefix' => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
 					'css'          => array(
@@ -179,7 +179,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 				),
 			),
 			'box_shadow'     => array(
-				'default'        => Module::selectors_default( $this->main_css_element ),
+				'default'        => $default_css_selectors,
 				'wrapper'        => array(
 					'label'             => esc_html__( 'Wrapper Box Shadow', 'squad-modules-for-divi' ),
 					'option_category'   => 'layout',
@@ -237,9 +237,24 @@ class TypingText extends Squad_Divi_Builder_Module {
 					'toggle_slug'       => 'suffix_element',
 				),
 			),
-			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
-			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
-			'height'         => Module::selectors_default( $this->main_css_element ),
+			'margin_padding' => array(
+				'use_padding' => true,
+				'use_margin'  => true,
+				'css'         => array(
+					'margin'    => $this->main_css_element,
+					'padding'   => $this->main_css_element,
+					'important' => 'all',
+				),
+			),
+			'max_width'      => array_merge(
+				$default_css_selectors,
+				array(
+					'css' => array(
+						'module_alignment' => "$this->main_css_element.et_pb_module",
+					),
+				)
+			),
+			'height'         => $default_css_selectors,
 			'image_icon'     => false,
 			'text'           => false,
 			'button'         => false,
@@ -325,7 +340,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 
 		// The settings definitions for typing effect texts.
 		$typing_effects = array(
-			'typing_speed'                 => $this->disq_add_range_field(
+			'typing_speed'                 => $this->disq_add_range_fields(
 				esc_html__( 'Typing Speed (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you can choose how much speed in the typing text.', 'squad-modules-for-divi' ),
@@ -348,7 +363,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 					'toggle_slug'       => 'typing_settings',
 				)
 			),
-			'typing_start_delay'           => $this->disq_add_range_field(
+			'typing_start_delay'           => $this->disq_add_range_fields(
 				esc_html__( 'Start Delay (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you  can choose how much delay to start the typing text.', 'squad-modules-for-divi' ),
@@ -369,7 +384,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 					'toggle_slug'       => 'typing_settings',
 				)
 			),
-			'typing_back_speed'            => $this->disq_add_range_field(
+			'typing_back_speed'            => $this->disq_add_range_fields(
 				esc_html__( 'Delete Speed (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you  can choose how much speed to delete the typing text.', 'squad-modules-for-divi' ),
@@ -393,7 +408,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 					'toggle_slug'       => 'typing_settings',
 				)
 			),
-			'typing_back_delay'            => $this->disq_add_range_field(
+			'typing_back_delay'            => $this->disq_add_range_fields(
 				esc_html__( 'Delete Delay (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you  can choose how much delay to delete the typing text.', 'squad-modules-for-divi' ),
@@ -449,7 +464,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 					'toggle_slug' => 'typing_settings',
 				)
 			),
-			'typing_fade_out_delay'        => $this->disq_add_range_field(
+			'typing_fade_out_delay'        => $this->disq_add_range_fields(
 				esc_html__( 'Fade Out Delay (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you  can choose how much delay to fade out the typing text.', 'squad-modules-for-divi' ),
@@ -551,7 +566,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 					'toggle_slug'     => 'typed_cursor_element',
 				)
 			),
-			'custom_cursor_icon_size'     => $this->disq_add_range_field(
+			'custom_cursor_icon_size'     => $this->disq_add_range_fields(
 				esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose cursor icon size.', 'squad-modules-for-divi' ),
@@ -567,7 +582,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 					'hover'           => false,
 				)
 			),
-			'custom_cursor_icon_text_gap' => $this->disq_add_range_field(
+			'custom_cursor_icon_text_gap' => $this->disq_add_range_fields(
 				esc_html__( 'Gap Between Cursor Icon and Text', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose gap between icon and text.', 'squad-modules-for-divi' ),
@@ -606,7 +621,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 					'toggle_slug'      => 'wrapper',
 				)
 			),
-			'text_gap'             => $this->disq_add_range_field(
+			'text_gap'             => $this->disq_add_range_fields(
 				esc_html__( 'Gap Between Texts', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can choose gap between texts.', 'squad-modules-for-divi' ),
@@ -630,7 +645,10 @@ class TypingText extends Squad_Divi_Builder_Module {
 			'wrapper_margin'  => $this->disq_add_margin_padding_field(
 				esc_html__( 'Wrapper Margin', 'squad-modules-for-divi' ),
 				array(
-					'description' => esc_html__( 'Here you can define a custom margin size for the wrapper.', 'squad-modules-for-divi' ),
+					'description' => esc_html__(
+						'Here you can define a custom margin size for the wrapper.',
+						'squad-modules-for-divi'
+					),
 					'type'        => 'custom_margin',
 					'tab_slug'    => 'advanced',
 					'toggle_slug' => 'wrapper',
@@ -640,7 +658,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
 					'description' => esc_html__(
-						'Here you can define a custom padding size.',
+						'Here you can define a custom padding size for the wrapper.',
 						'squad-modules-for-divi'
 					),
 					'type'        => 'custom_padding',
@@ -753,7 +771,10 @@ class TypingText extends Squad_Divi_Builder_Module {
 			'prefix_margin'  => $this->disq_add_margin_padding_field(
 				esc_html__( 'Before Margin', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom margin size for the before text.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__(
+						'Here you can define a custom margin size for the before text.',
+						'squad-modules-for-divi'
+					),
 					'type'           => 'custom_margin',
 					'range_settings' => array(
 						'min'  => '1',
@@ -767,7 +788,10 @@ class TypingText extends Squad_Divi_Builder_Module {
 			'prefix_padding' => $this->disq_add_margin_padding_field(
 				esc_html__( 'Before Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__(
+						'Here you can define a custom padding size for the before text.',
+						'squad-modules-for-divi'
+					),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min'  => '1',
@@ -781,7 +805,10 @@ class TypingText extends Squad_Divi_Builder_Module {
 			'typed_margin'   => $this->disq_add_margin_padding_field(
 				esc_html__( 'Typed Margin', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom margin size for the typed text.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__(
+						'Here you can define a custom margin size for the typed text.',
+						'squad-modules-for-divi'
+					),
 					'type'           => 'custom_margin',
 					'range_settings' => array(
 						'min'  => '1',
@@ -795,7 +822,10 @@ class TypingText extends Squad_Divi_Builder_Module {
 			'typed_padding'  => $this->disq_add_margin_padding_field(
 				esc_html__( 'Typed Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__(
+						'Here you can define a custom padding size for the typed text.',
+						'squad-modules-for-divi'
+					),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min'  => '1',
@@ -826,7 +856,10 @@ class TypingText extends Squad_Divi_Builder_Module {
 			'suffix_padding' => $this->disq_add_margin_padding_field(
 				esc_html__( 'After Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__(
+						'Here you can define a custom padding size for the after text.',
+						'squad-modules-for-divi'
+					),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min'  => '1',
@@ -868,39 +901,67 @@ class TypingText extends Squad_Divi_Builder_Module {
 		$fields = parent::get_transition_fields_css_props();
 
 		// wrapper styles.
-		$fields['wrapper_background_color'] = array( 'background' => "$this->main_css_element div .text-elements" );
-		$fields['wrapper_margin']           = array( 'margin' => "$this->main_css_element div .text-elements" );
-		$fields['wrapper_padding']          = array( 'padding' => "$this->main_css_element div .text-elements" );
+		$fields['wrapper_background_color'] = array(
+			'background' => "$this->main_css_element div .text-elements",
+		);
+		$fields['wrapper_margin']           = array(
+			'margin' => "$this->main_css_element div .text-elements",
+		);
+		$fields['wrapper_padding']          = array(
+			'padding' => "$this->main_css_element div .text-elements",
+		);
 		$this->disq_fix_border_transition( $fields, 'wrapper', "$this->main_css_element div .text-elements" );
 		$this->disq_fix_box_shadow_transition( $fields, 'wrapper', "$this->main_css_element div .text-elements" );
 
 		// prefix styles.
-		$fields['prefix_background_color'] = array( 'background' => "$this->main_css_element div .text-elements .text-item.prefix-element" );
-		$fields['prefix_margin']           = array( 'margin' => "$this->main_css_element div .text-elements .text-item.prefix-element" );
-		$fields['prefix_padding']          = array( 'padding' => "$this->main_css_element div .text-elements .text-item.prefix-element" );
+		$fields['prefix_background_color'] = array(
+			'background' => "$this->main_css_element div .text-elements .text-item.prefix-element",
+		);
+		$fields['prefix_margin']           = array(
+			'margin' => "$this->main_css_element div .text-elements .text-item.prefix-element",
+		);
+		$fields['prefix_padding']          = array(
+			'padding' => "$this->main_css_element div .text-elements .text-item.prefix-element",
+		);
 		$this->disq_fix_fonts_transition( $fields, 'prefix_text', "$this->main_css_element div .text-elements .text-item.prefix-element" );
 		$this->disq_fix_border_transition( $fields, 'prefix_element', "$this->main_css_element div .text-elements .text-item.prefix-element" );
 		$this->disq_fix_box_shadow_transition( $fields, 'prefix_element', "$this->main_css_element div .text-elements .text-item.prefix-element" );
 
 		// typed styles.
-		$fields['typed_background_color']   = array( 'background' => "$this->main_css_element div .text-elements .text-item.typing-element" );
-		$fields['custom_cursor_icon_color'] = array( 'color' => "$this->main_css_element div .text-elements .typing-element .typed-cursor" );
-		$fields['typed_margin']             = array( 'margin' => "$this->main_css_element div .text-elements .text-item.typing-element" );
-		$fields['typed_padding']            = array( 'padding' => "$this->main_css_element div .text-elements .text-item.typing-element" );
+		$fields['typed_background_color']   = array(
+			'background' => "$this->main_css_element div .text-elements .text-item.typing-element",
+		);
+		$fields['custom_cursor_icon_color'] = array(
+			'color' => "$this->main_css_element div .text-elements .typing-element .typed-cursor",
+		);
+		$fields['typed_margin']             = array(
+			'margin' => "$this->main_css_element div .text-elements .text-item.typing-element",
+		);
+		$fields['typed_padding']            = array(
+			'padding' => "$this->main_css_element div .text-elements .text-item.typing-element",
+		);
 		$this->disq_fix_fonts_transition( $fields, 'typed_text', "$this->main_css_element div .text-elements .text-item.typing-element" );
 		$this->disq_fix_border_transition( $fields, 'typed_element', "$this->main_css_element div .text-elements .text-item.typing-element" );
 		$this->disq_fix_box_shadow_transition( $fields, 'typed_element', "$this->main_css_element div .text-elements .text-item.typing-element" );
 
 		// suffix styles.
-		$fields['suffix_background_color'] = array( 'background' => "$this->main_css_element div .text-elements .text-item.suffix-element" );
-		$fields['suffix_margin']           = array( 'margin' => "$this->main_css_element div .text-elements .text-item.suffix-element" );
-		$fields['suffix_padding']          = array( 'padding' => "$this->main_css_element div .text-elements .text-item.suffix-element" );
+		$fields['suffix_background_color'] = array(
+			'background' => "$this->main_css_element div .text-elements .text-item.suffix-element",
+		);
+		$fields['suffix_margin']           = array(
+			'margin' => "$this->main_css_element div .text-elements .text-item.suffix-element",
+		);
+		$fields['suffix_padding']          = array(
+			'padding' => "$this->main_css_element div .text-elements .text-item.suffix-element",
+		);
 		$this->disq_fix_fonts_transition( $fields, 'suffix_text', "$this->main_css_element div .text-elements .text-item.suffix-element" );
 		$this->disq_fix_border_transition( $fields, 'suffix_element', "$this->main_css_element div .text-elements .text-item.suffix-element" );
 		$this->disq_fix_box_shadow_transition( $fields, 'suffix_element', "$this->main_css_element div .text-elements .text-item.suffix-element" );
 
 		// Default styles.
-		$fields['background_layout'] = array( 'color' => "$this->main_css_element div .text-elements .text-item" );
+		$fields['background_layout'] = array(
+			'color' => "$this->main_css_element div .text-elements .text-item",
+		);
 
 		return $fields;
 	}
@@ -975,20 +1036,20 @@ class TypingText extends Squad_Divi_Builder_Module {
 			// prefix margin and padding with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => 'prefix_margin',
-					'selector'       => "$this->main_css_element div .text-elements .text-item.prefix-element",
-					'hover_selector' => "$this->main_css_element div .text-elements:hover .text-item.prefix-element",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
+					'field'        => 'prefix_margin',
+					'selector'     => "$this->main_css_element div .text-elements .text-item.prefix-element",
+					'hover'        => "$this->main_css_element div .text-elements:hover .text-item.prefix-element",
+					'css_property' => 'margin',
+					'type'         => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => 'prefix_padding',
-					'selector'       => "$this->main_css_element div .text-elements .text-item.prefix-element",
-					'hover_selector' => "$this->main_css_element div .text-elements:hover .text-item.prefix-element",
-					'css_property'   => 'padding',
-					'type'           => 'padding',
+					'field'        => 'prefix_padding',
+					'selector'     => "$this->main_css_element div .text-elements .text-item.prefix-element",
+					'hover'        => "$this->main_css_element div .text-elements:hover .text-item.prefix-element",
+					'css_property' => 'padding',
+					'type'         => 'padding',
 				)
 			);
 
@@ -1061,20 +1122,20 @@ class TypingText extends Squad_Divi_Builder_Module {
 			// the typed text margin and padding with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => 'typed_margin',
-					'selector'       => "$this->main_css_element div .text-elements .text-item.typing-element",
-					'hover_selector' => "$this->main_css_element div .text-elements:hover .text-item.typing-element",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
+					'field'        => 'typed_margin',
+					'selector'     => "$this->main_css_element div .text-elements .text-item.typing-element",
+					'hover'        => "$this->main_css_element div .text-elements:hover .text-item.typing-element",
+					'css_property' => 'margin',
+					'type'         => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => 'typed_padding',
-					'selector'       => "$this->main_css_element div .text-elements .text-item.typing-element",
-					'hover_selector' => "$this->main_css_element div .text-elements:hover .text-item.typing-element",
-					'css_property'   => 'padding',
-					'type'           => 'padding',
+					'field'        => 'typed_padding',
+					'selector'     => "$this->main_css_element div .text-elements .text-item.typing-element",
+					'hover'        => "$this->main_css_element div .text-elements:hover .text-item.typing-element",
+					'css_property' => 'padding',
+					'type'         => 'padding',
 				)
 			);
 
@@ -1149,8 +1210,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 								'process_extended_icon',
 							),
 						)
-					);
-				}
+					);}
 			}
 
 			$typed_options = wp_json_encode(
@@ -1232,20 +1292,20 @@ class TypingText extends Squad_Divi_Builder_Module {
 			// the suffix margin and padding with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => 'suffix_margin',
-					'selector'       => "$this->main_css_element div .text-elements .text-item.suffix-element",
-					'hover_selector' => "$this->main_css_element div .text-elements:hover .text-item.suffix-element",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
+					'field'        => 'suffix_margin',
+					'selector'     => "$this->main_css_element div .text-elements .text-item.suffix-element",
+					'hover'        => "$this->main_css_element div .text-elements:hover .text-item.suffix-element",
+					'css_property' => 'margin',
+					'type'         => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => 'suffix_padding',
-					'selector'       => "$this->main_css_element div .text-elements .text-item.suffix-element",
-					'hover_selector' => "$this->main_css_element div .text-elements:hover .text-item.suffix-element",
-					'css_property'   => 'padding',
-					'type'           => 'padding',
+					'field'        => 'suffix_padding',
+					'selector'     => "$this->main_css_element div .text-elements .text-item.suffix-element",
+					'hover'        => "$this->main_css_element div .text-elements:hover .text-item.suffix-element",
+					'css_property' => 'padding',
+					'type'         => 'padding',
 				)
 			);
 
@@ -1287,8 +1347,6 @@ class TypingText extends Squad_Divi_Builder_Module {
 	 * Renders additional styles for the module output.
 	 *
 	 * @param array $attrs List of attributes.
-	 *
-	 * @return void
 	 */
 	private function generate_additional_styles( $attrs ) {
 		// Fixed: the custom background doesn't work at frontend.
@@ -1316,21 +1374,21 @@ class TypingText extends Squad_Divi_Builder_Module {
 		// wrapper margin with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'          => 'wrapper_margin',
-				'selector'       => "$this->main_css_element div .text-elements",
-				'hover_selector' => "$this->main_css_element div .text-elements:hover",
-				'css_property'   => 'margin',
-				'type'           => 'margin',
+				'field'        => 'wrapper_margin',
+				'selector'     => "$this->main_css_element div .text-elements",
+				'hover'        => "$this->main_css_element div .text-elements:hover",
+				'css_property' => 'margin',
+				'type'         => 'margin',
 			)
 		);
 		// wrapper padding with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'          => 'wrapper_padding',
-				'selector'       => "$this->main_css_element div .text-elements",
-				'hover_selector' => "$this->main_css_element div .text-elements:hover",
-				'css_property'   => 'padding',
-				'type'           => 'padding',
+				'field'        => 'wrapper_padding',
+				'selector'     => "$this->main_css_element div .text-elements",
+				'hover'        => "$this->main_css_element div .text-elements:hover",
+				'css_property' => 'padding',
+				'type'         => 'padding',
 			)
 		);
 
@@ -1346,7 +1404,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 		$this->generate_styles(
 			array(
 				'base_attr_name' => 'text_gap',
-				'selector'       => "$this->main_css_element div .text-elements .text-container .text-item:first-child:after, $this->main_css_element div .text-elements .text-container .text-item:last-child:before",
+				'selector'       => "$this->main_css_element div .text-elements .text-container .text-item:first-child::after, $this->main_css_element div .text-elements .text-elements .text-container .text-item:last-child::before",
 				'css_property'   => 'width',
 				'render_slug'    => $this->slug,
 				'type'           => 'range',

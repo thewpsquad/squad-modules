@@ -5,16 +5,11 @@
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 
 namespace DiviSquad\Base\BuilderModule\Traits;
-
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
 
 use ET_Global_Settings;
 
@@ -23,8 +18,7 @@ use ET_Global_Settings;
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 trait Field_Definition {
@@ -38,7 +32,7 @@ trait Field_Definition {
 	 *
 	 * @return array[]
 	 */
-	protected function disq_add_range_field( $label, $properties = array(), $conditions = array() ) {
+	protected function disq_add_range_fields( $label, $properties = array(), $conditions = array() ) {
 		// Add icon width feature for button, By default is 16px.
 		$field_options = array(
 			'label'           => $label,
@@ -115,7 +109,7 @@ trait Field_Definition {
 		// Default properties for Background field.
 		$defaults = array(
 			'label'           => $label,
-			'description'     => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+			'description'     => esc_html__( 'Here you can define a custom padding size for the field.', 'squad-modules-for-divi' ),
 			'type'            => 'custom_margin',
 			'option_category' => 'layout',
 			'default_unit'    => 'px',
@@ -146,68 +140,18 @@ trait Field_Definition {
 	 */
 	protected function disq_add_background_field( $label, $properties = array() ) {
 		// General variables.
-		list( $base_name, $context, $tab_slug, $toggle_slug ) = $this->disq_get_background_field_options( $properties );
-
-		// Definitions.
-		$background_fields = array_merge_recursive(
-			$this->generate_background_options( $base_name, 'color', $tab_slug, $toggle_slug, $context ),
-			$this->generate_background_options( $base_name, 'gradient', $tab_slug, $toggle_slug, $context ),
-			$this->generate_background_options( $base_name, 'image', $tab_slug, $toggle_slug, $context )
-		);
-
-		return $this->disq_add_background_fields( $label, $properties, $background_fields );
-	}
-
-	/**
-	 * Add background: gradient field for module.
-	 *
-	 * @param string $label      The field label.
-	 * @param array  $properties The additional properties for the current field.
-	 *
-	 * @return array
-	 */
-	protected function disq_add_background_gradient_field( $label, $properties = array() ) {
-		// General variables.
-		list( $base_name, $context, $tab_slug, $toggle_slug ) = $this->disq_get_background_field_options( $properties );
-
-		// Definitions.
-		$background_fields = $this->generate_background_options( $base_name, 'gradient', $tab_slug, $toggle_slug, $context );
-
-		return $this->disq_add_background_fields( $label, $properties, $background_fields );
-	}
-
-	/**
-	 * Add background field options for module.
-	 *
-	 * @param array $properties The additional properties for the current field.
-	 *
-	 * @return array
-	 */
-	protected function disq_get_background_field_options( $properties = array() ) {
-		// General variables.
 		$base_name   = isset( $properties['base_name'] ) ? $properties['base_name'] : '_background';
 		$context     = isset( $properties['context'] ) ? $properties['context'] : '_background_color';
 		$tab_slug    = isset( $properties['tab_slug'] ) ? $properties['tab_slug'] : 'advanced';
 		$toggle_slug = isset( $properties['toggle_slug'] ) ? $properties['toggle_slug'] : 'wrapper';
 
-		return array( $base_name, $context, $tab_slug, $toggle_slug );
-	}
-
-	/**
-	 * Add all background fields for module.
-	 *
-	 * @param string $label      The field label.
-	 * @param array  $properties The additional properties for the current field.
-	 * @param array  $background_fields The additional background fields for the current field.
-	 *
-	 * @return array
-	 */
-	protected function disq_add_background_fields( $label, $properties = array(), $background_fields = array() ) {
-		// General variables.
-		list( $base_name, $context, $tab_slug, $toggle_slug ) = $this->disq_get_background_field_options( $properties );
-
 		// Definitions.
 		$default_bg_colors = ET_Global_Settings::get_value( 'all_buttons_bg_color' );
+		$background_fields = array_merge_recursive(
+			$this->generate_background_options( $base_name, 'color', $tab_slug, $toggle_slug, $context ),
+			$this->generate_background_options( $base_name, 'gradient', $tab_slug, $toggle_slug, $context ),
+			$this->generate_background_options( $base_name, 'image', $tab_slug, $toggle_slug, $context )
+		);
 		$defaults          = array(
 			'label'             => $label,
 			'description'       => esc_html__( 'Adjust the background style of the current field by customizing the background color, gradient, and image.', 'squad-modules-for-divi' ),
@@ -240,8 +184,6 @@ trait Field_Definition {
 		// Properties for Background field.
 		$background_options             = array();
 		$background_options[ $context ] = array_merge_recursive( $conditions, $defaults );
-
-		// Set default colors.
 		$background_options[ $context ]['background_fields'][ $context ]['default'] = $default_bg_colors;
 
 		return array_merge(

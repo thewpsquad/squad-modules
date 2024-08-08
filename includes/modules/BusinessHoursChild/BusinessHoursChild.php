@@ -6,24 +6,13 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@thewpsquad.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\BusinessHoursChild;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
-use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
-use DiviSquad\Utils\Module;
-use function esc_html__;
-use function et_builder_i18n;
-use function et_core_esc_previously;
-use function et_pb_background_options;
-use function et_pb_multi_view_options;
-use function et_builder_get_text_orientation_options;
+use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 
 /**
  * Business Hours Day Module Class.
@@ -31,7 +20,9 @@ use function et_builder_get_text_orientation_options;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class BusinessHoursChild extends Squad_Divi_Builder_Module {
+class BusinessHoursChild extends DISQ_Builder_Module {
+
+
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -82,6 +73,8 @@ class BusinessHoursChild extends Squad_Divi_Builder_Module {
 			),
 		);
 
+		$default_css_selectors = $this->disq_get_module_default_selectors();
+
 		// Declare advanced fields for the module.
 		$this->advanced_fields = array(
 			'fonts'          => array(
@@ -122,9 +115,16 @@ class BusinessHoursChild extends Squad_Divi_Builder_Module {
 					)
 				),
 			),
-			'background'     => Module::selectors_background( $this->main_css_element ),
+			'background'     => array_merge(
+				$default_css_selectors,
+				array(
+					'settings' => array(
+						'color' => 'alpha',
+					),
+				)
+			),
 			'borders'        => array(
-				'default' => Module::selectors_default( $this->main_css_element ),
+				'default' => $default_css_selectors,
 				'wrapper' => array(
 					'label_prefix' => et_builder_i18n( 'Wrapper' ),
 					'css'          => array(
@@ -140,7 +140,7 @@ class BusinessHoursChild extends Squad_Divi_Builder_Module {
 				),
 			),
 			'box_shadow'     => array(
-				'default' => Module::selectors_default( $this->main_css_element ),
+				'default' => $default_css_selectors,
 				'wrapper' => array(
 					'label'             => esc_html__( 'Wrapper Box Shadow', 'squad-modules-for-divi' ),
 					'option_category'   => 'layout',
@@ -156,9 +156,24 @@ class BusinessHoursChild extends Squad_Divi_Builder_Module {
 					'toggle_slug'       => 'wrapper',
 				),
 			),
-			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
-			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
-			'height'         => Module::selectors_default( $this->main_css_element ),
+			'margin_padding' => array(
+				'use_padding' => true,
+				'use_margin'  => true,
+				'css'         => array(
+					'margin'    => $this->main_css_element,
+					'padding'   => $this->main_css_element,
+					'important' => 'all',
+				),
+			),
+			'max_width'      => array_merge(
+				$default_css_selectors,
+				array(
+					'css' => array(
+						'module_alignment' => "$this->main_css_element.et_pb_module",
+					),
+				)
+			),
+			'height'         => $default_css_selectors,
 			'image_icon'     => false,
 			'text'           => false,
 			'button'         => false,
@@ -274,7 +289,7 @@ class BusinessHoursChild extends Squad_Divi_Builder_Module {
 					'default_on_front' => 'off',
 					'affects'          => array(
 						'off_day_label',
-						'dual_time__enable',
+						'dual_time_enable',
 					),
 					'tab_slug'         => 'general',
 					'toggle_slug'      => 'day_n_time_content',
@@ -347,7 +362,7 @@ class BusinessHoursChild extends Squad_Divi_Builder_Module {
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
 					'description' => esc_html__(
-						'Here you can define a custom padding size.',
+						'Here you can define a custom padding size for the wrapper.',
 						'squad-modules-for-divi'
 					),
 					'type'        => 'custom_padding',
@@ -388,21 +403,31 @@ class BusinessHoursChild extends Squad_Divi_Builder_Module {
 		$fields = parent::get_transition_fields_css_props();
 
 		// Item wrapper styles.
-		$fields['wrapper_background_color'] = array( 'background' => "$this->main_css_element div .day-elements" );
-		$fields['wrapper_margin']           = array( 'margin' => "$this->main_css_element div .day-elements" );
-		$fields['wrapper_padding']          = array( 'padding' => "$this->main_css_element div .day-elements" );
+		$fields['wrapper_background_color'] = array(
+			'background' => "$this->main_css_element div .day-elements",
+		);
+		$fields['wrapper_margin']           = array(
+			'margin' => "$this->main_css_element div .day-elements",
+		);
+		$fields['wrapper_padding']          = array(
+			'padding' => "$this->main_css_element div .day-elements",
+		);
 		$this->disq_fix_border_transition( $fields, 'wrapper', "$this->main_css_element div .day-elements" );
 		$this->disq_fix_box_shadow_transition( $fields, 'wrapper', "$this->main_css_element div .day-elements" );
 
 		// divider styles.
-		$fields['divider_color']  = array( 'border-top-color' => "$this->main_css_element div .day-elements .day-element.day-element-divider:before" );
+		$fields['divider_color']  = array(
+			'border-top-color' => "$this->main_css_element div .day-elements .day-element.day-element-divider:before",
+		);
 		$fields['divider_weight'] = array(
 			'border-top-width' => "$this->main_css_element div .day-elements .day-element.day-element-divider:before",
 			'height'           => "$this->main_css_element div .day-elements .day-element.day-element-divider:before",
 		);
 
 		// Default styles.
-		$fields['background_layout'] = array( 'color' => $this->main_css_element );
+		$fields['background_layout'] = array(
+			'color' => $this->main_css_element,
+		);
 
 		return $fields;
 	}
@@ -452,8 +477,6 @@ class BusinessHoursChild extends Squad_Divi_Builder_Module {
 	 */
 	private function disq_render_day_time_text() {
 		$multi_view = et_pb_multi_view_options( $this );
-
-		// Show start time and end time when enabled it.
 		if ( 'on' === $this->prop( 'dual_time__enable', 'off' ) ) {
 			$start_time     = $multi_view->render_element( array( 'content' => '{{start_time}}' ) );
 			$end_time       = $multi_view->render_element( array( 'content' => '{{end_time}}' ) );
@@ -464,16 +487,6 @@ class BusinessHoursChild extends Squad_Divi_Builder_Module {
 				et_core_esc_previously( $start_time ),
 				et_core_esc_previously( $time_separator ),
 				et_core_esc_previously( $end_time )
-			);
-		}
-
-		// Show off day label when enabled it.
-		if ( 'on' === $this->prop( 'off_day__enable', 'off' ) ) {
-			$off_day_label = $multi_view->render_element( array( 'content' => '{{off_day_label}}' ) );
-
-			return sprintf(
-				'<span class="day-element day-element-time">%1$s</span>',
-				et_core_esc_previously( $off_day_label )
 			);
 		}
 
@@ -562,6 +575,7 @@ class BusinessHoursChild extends Squad_Divi_Builder_Module {
 			)
 		);
 	}
+
 }
 
 new BusinessHoursChild();

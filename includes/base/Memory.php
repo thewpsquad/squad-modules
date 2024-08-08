@@ -2,48 +2,57 @@
 
 namespace DiviSquad\Base;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
 /**
  * Memory class
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 class Memory {
+
+	/**
+	 * The instance of the current class.
+	 *
+	 * @var self
+	 */
+	private static $instance;
 
 	/**
 	 * The store of data (Option data).
 	 *
 	 * @var array
 	 */
-	private $data;
+	private static $data = array();
 
 	/**
 	 * The database option prefix.
 	 *
 	 * @var string
 	 */
-	private $option_prefix;
+	private $option_prefix = '';
 
 	/**
-	 * The constructor
+	 * Get the instance of the current class.
 	 *
 	 * @param string $prefix The prefix name for the plugin settings option.
 	 *
-	 * @since 1.2.0
+	 * @return self
 	 */
-	public function __construct( $prefix = 'disq' ) {
-		$this->option_prefix = $prefix;
+	public static function get_instance( $prefix ) {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+			self::$instance->set_prefix( $prefix );
 
-		// Load current data.
-		$data_option = sprintf( '%1$s-settings', $prefix );
-		$this->data  = \get_option( $data_option, array() );
+			// Load current data.
+			$new_option_name = sprintf( '%1$s-settings', $prefix );
+			if ( array() === self::$data && ! empty( get_option( $new_option_name ) ) ) {
+				self::$data = get_option( $new_option_name );
+			}
+		}
+
+		return self::$instance;
 	}
 
 	/**
@@ -51,8 +60,8 @@ class Memory {
 	 *
 	 * @return array
 	 */
-	public function get_data() {
-		return $this->data;
+	public static function get_data() {
+		return self::$data;
 	}
 
 	/**
@@ -79,12 +88,12 @@ class Memory {
 	 * Get the field value.
 	 *
 	 * @param string                          $field   The field key.
-	 * @param array|string|numeric|null|false $defaults The default value for field.
+	 * @param array|string|numeric|null|false $default The default value for field.
 	 *
 	 * @return array|string|numeric|null|false
 	 */
-	public function get( $field, $defaults = null ) {
-		return isset( $this->data[ $field ] ) ? $this->data[ $field ] : $defaults;
+	public function get( $field, $default = null ) {
+		return isset( self::$data[ $field ] ) ? self::$data[ $field ] : $default;
 	}
 
 	/**
@@ -96,7 +105,7 @@ class Memory {
 	 * @return array|string|numeric|null|false
 	 */
 	public function set( $field, $value ) {
-		$this->data[ $field ] = $value;
+		self::$data[ $field ] = $value;
 		$this->update_database();
 
 		return $value;
@@ -111,8 +120,8 @@ class Memory {
 	 * @return array|string|numeric|null|false
 	 */
 	public function update( $field, $value ) {
-		if ( isset( $this->data[ $field ] ) ) {
-			$this->data[ $field ] = $value;
+		if ( isset( self::$data[ $field ] ) ) {
+			self::$data[ $field ] = $value;
 			$this->update_database();
 
 			return $value;
@@ -129,9 +138,8 @@ class Memory {
 	 * @return void
 	 */
 	public function delete( $field ) {
-		if ( isset( $this->data[ $field ] ) ) {
-			unset( $this->data[ $field ] );
-
+		if ( isset( self::$data[ $field ] ) ) {
+			unset( self::$data[ $field ] );
 			$this->update_database();
 		}
 	}
@@ -158,7 +166,7 @@ class Memory {
 	 */
 	private function save_options( $option_name ) {
 		if ( function_exists( 'update_option' ) ) {
-			\update_option( $option_name, $this->data );
+			update_option( $option_name, self::$data );
 		}
 	}
 }

@@ -2,13 +2,8 @@
 
 namespace DiviSquad\Manager;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
+use DiviSquad\Base\Memory;
 use DiviSquad\Utils\Helper;
-use DiviSquad\Utils\Polyfills\Str;
-use DiviSquad\Utils\WP;
 use function DiviSquad\divi_squad;
 
 /**
@@ -16,19 +11,39 @@ use function DiviSquad\divi_squad;
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 class Modules {
 
-	/**
-	 * Activate all modules.
+	/** The instance of the current class.
+	 *
+	 * @var self
 	 */
-	public function active_modules() {
-		$memory = divi_squad()->get_memory();
-		$memory->set( 'modules', $this->get_available_modules() );
-		$memory->set( 'default_active_modules', $this->get_default_active_modules() );
+	private static $instance;
+
+	/** The instance of the memory class.
+	 *
+	 * @var Memory
+	 */
+	private static $memory;
+
+	/**
+	 * Get the instance of the current class.
+	 *
+	 * @return self
+	 */
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+			self::$memory   = divi_squad()->get_memory();
+
+			// update database.
+			self::$memory->set( 'modules', self::$instance->get_available_modules() );
+			self::$memory->set( 'default_active_modules', self::$instance->get_default_active_modules() );
+		}
+
+		return self::$instance;
 	}
 
 	/**
@@ -40,349 +55,124 @@ class Modules {
 		$available_modules = array(
 			array(
 				'name'               => 'Divider',
-				'label'              => esc_html__( 'Advanced Divider', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Create visually appealing dividers with various styles, shapes, and customization options.', 'squad-modules-for-divi' ),
+				'label'              => 'Advanced Divider',
 				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.2.2', '1.2.3', '1.2.6', '1.4.1' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'creative-modules',
+				'type'               => '4',
 			),
 			array(
 				'name'               => 'DualButton',
-				'label'              => esc_html__( 'Dual Button', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'It allows you to display two buttons side by side with customizable styles and text.', 'squad-modules-for-divi' ),
+				'label'              => 'Dual Button',
 				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.1.0', '1.2.3' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'creative-modules',
+				'type'               => '4',
 			),
 			array(
 				'name'               => 'Lottie',
-				'label'              => esc_html__( 'Lottie', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Effortlessly add animated elements for a more engaging website experience', 'squad-modules-for-divi' ),
+				'label'              => 'Lottie',
 				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.0.1', '1.0.5', '1.2.3', '1.4.5' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'image-&-media-modules',
+				'type'               => '4',
 			),
 			array(
 				'name'               => 'PostGrid',
-				'label'              => esc_html__( 'Post Grid', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Display your blog posts in a stylish and organized grid layout.', 'squad-modules-for-divi' ),
+				'label'              => 'Post Grid',
 				'child_name'         => 'PostGridChild',
-				'child_label'        => esc_html__( 'Post Element', 'squad-modules-for-divi' ),
+				'child_label'        => 'Post Element',
 				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.0.2', '1.0.4', '1.1.0', '1.2.0', '1.2.2', '1.2.3', '1.4.4', '1.4.8', '1.4.10', '1.4.11' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'dynamic-content-modules',
+				'type'               => '4',
 			),
 			array(
 				'name'               => 'TypingText',
-				'label'              => esc_html__( 'Typing Text', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Create eye-catching animated title or heading text that simulates a typing effect.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.0.1', '1.0.5', '1.2.3', '1.4.6' ),
+				'label'              => 'Typing Text',
+				'release_version'    => '1.0.1',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'creative-modules',
+				'type'               => '4',
 			),
 			array(
 				'name'               => 'ImageMask',
-				'label'              => esc_html__( 'Image Mask', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Apply stunning masks to your images, adding creativity and visual appeal to your website.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.0.0',
-				'last_modified'      => '1.2.3',
+				'label'              => 'Image Mask',
+				'release_version'    => '1.0.2',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'image-&-media-modules',
+				'type'               => '4',
 			),
 			array(
 				'name'               => 'FlipBox',
-				'label'              => esc_html__( 'Flip Box', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Display content on one side, then on hover, flip to reveal more info or a different design.', 'squad-modules-for-divi' ),
+				'label'              => 'Flip Box',
 				'release_version'    => '1.0.0',
-				'last_modified'      => '1.2.3',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'content-modules',
+				'type'               => '4',
 			),
 			array(
 				'name'               => 'BusinessHours',
-				'label'              => esc_html__( 'Business Hours', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Display your business hours in a clear and organized manner.', 'squad-modules-for-divi' ),
+				'label'              => 'Business Hours',
 				'child_name'         => 'BusinessHoursChild',
-				'child_label'        => esc_html__( 'Business Day', 'squad-modules-for-divi' ),
+				'child_label'        => 'Business Day',
 				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.2.0', '1.2.3', '1.4.8' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'content-modules',
+				'type'               => '4',
 			),
 			array(
 				'name'               => 'BeforeAfterImageSlider',
-				'label'              => esc_html__( 'Before After Image Slider', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Engage your visitors with interactive image comparisons.', 'squad-modules-for-divi' ),
+				'label'              => 'Before After Image Slider',
 				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.2.3', '1.4.8' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'image-&-media-modules',
-			),
-			array(
-				'name'               => 'ImageGallery',
-				'label'              => esc_html__( 'Image Gallery', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Effortlessly create stunning galleries to engage and captivate your audience.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.0',
-				'last_modified'      => array( '1.2.2', '1.2.3', '1.3.0', '1.4.5', '1.4.8', '1.4.9' ),
-				'is_default_active'  => false,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'image-&-media-modules',
-			),
-			array(
-				'name'               => 'FormStylerContactForm7',
-				'label'              => esc_html__( 'Contact Form 7', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Effortlessly customize Contact Form 7 design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.0',
-				'last_modified'      => array( '1.2.3', '1.4.7', '1.4.8' ),
-				'is_default_active'  => false,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'required'           => array( 'plugin' => 'contact-form-7/wp-contact-form-7.php' ),
-				'category'           => 'form-styler-modules',
-			),
-			array(
-				'name'               => 'FormStylerWPForms',
-				'label'              => esc_html__( 'WP Forms', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.0',
-				'last_modified'      => array( '1.2.3', '1.4.7', '1.4.8' ),
-				'is_default_active'  => false,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'required'           => array( 'plugin' => 'wpforms-lite/wpforms.php|wpforms/wpforms.php' ),
-				'category'           => 'form-styler-modules',
-			),
-			array(
-				'name'               => 'FormStylerGravityForms',
-				'label'              => esc_html__( 'Gravity Forms', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Effortlessly customize Gravity Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.0',
-				'last_modified'      => array( '1.2.3', '1.4.7', '1.4.8' ),
-				'is_default_active'  => false,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'required'           => array( 'plugin' => 'gravityforms/gravityforms.php' ),
-				'category'           => 'form-styler-modules',
-			),
-			array(
-				'name'               => 'PostReadingTime',
-				'label'              => esc_html__( 'Post Reading Time', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Show how long it takes to read your blog posts. Useful for readers planning their time.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.2',
-				'last_modified'      => array( '1.2.3', '1.4.8' ),
-				'is_default_active'  => false,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'dynamic-content-modules',
-			),
-			array(
-				'name'               => 'GlitchText',
-				'label'              => esc_html__( 'Glitch Text', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Create eye-catching headlines and captions with a mesmerizing glitch effect.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.3',
-				'last_modified'      => array( '1.3.0' ),
-				'is_default_active'  => false,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'creative-modules',
-			),
-			array(
-				'name'               => 'GradientText',
-				'label'              => esc_html__( 'Gradient Text', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Create eye-catching headlines, captions, and more with this versatile and dynamic module.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.6',
-				'is_default_active'  => false,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'creative-modules',
-			),
-			array(
-				'name'               => 'ScrollingText',
-				'label'              => esc_html__( 'Scrolling Text', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Add dynamic, attention-grabbing text animations to your Divi-powered website.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.3.0',
-				'last_modified'      => array( '1.4.8' ),
-				'is_default_active'  => false,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'creative-modules',
-			),
-			array(
-				'name'               => 'StarRating',
-				'label'              => esc_html__( 'Star Rating', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Add stylish star ratings to your content for user feedback and ratings.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.4.0',
-				'last_modified'      => array( '1.4.5', '1.4.6' ),
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'creative-modules',
-			),
-			array(
-				'name'               => 'Breadcrumbs',
-				'label'              => esc_html__( 'Breadcrumbs', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Enhance navigation with a clear path for users to trace their steps through your website.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.4.0',
-				'last_modified'      => array( '1.4.1', '1.4.2', '1.4.6', '1.4.8' ),
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'creative-modules',
-			),
-			array(
-				'name'               => 'DropCap',
-				'label'              => esc_html__( 'Drop Cap Text', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Create visually appealing drop caps to add emphasis and style to your text content.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.4.0',
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'creative-modules',
-			),
-			array(
-				'name'               => 'VideoPopup',
-				'label'              => esc_html__( 'Video Popup', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Engage visitors with customizable video popups for YouTube and Vimeo.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.4.1',
-				'last_modified'      => array( '1.4.4' ),
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'image-&-media-modules',
-			),
-			array(
-				'name'               => 'GoogleMap',
-				'label'              => esc_html__( 'Google Embed Map', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Google Embed Map right into your Divi\'s site easily without having to worry about anything else.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.4.7',
-				'last_modified'      => array( '1.4.8' ),
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'category'           => 'content-modules',
-			),
-			array(
-				'name'               => 'FormStylerNinjaForms',
-				'label'              => esc_html__( 'Ninja Forms', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Effortlessly customize Ninja Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.4.7',
-				'last_modified'      => array( '1.4.8' ),
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'required'           => array( 'plugin' => 'ninja-forms/ninja-forms.php' ),
-				'category'           => 'form-styler-modules',
-			),
-			array(
-				'name'               => 'FormStylerFluentForms',
-				'label'              => esc_html__( 'Fluent Forms', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Effortlessly customize Fluent Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.4.7',
-				'last_modified'      => array( '1.4.8' ),
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-				'required'           => array( 'plugin' => 'fluentform/fluentform.php' ),
-				'category'           => 'form-styler-modules',
-			),
+				'type'               => '4',
+			)
 		);
 
-		return array_values( Helper::array_sort( $available_modules, 'name' ) );
+		$sorts = Helper::array_sort( $available_modules, 'name' );
+		return array_values( $sorts );
 	}
 
 	/**
-	 * Check the current module type.
-	 *
-	 * @param array  $module The array of current module.
-	 * @param string $type   The type of Divi Builder module, default is: D4. Available opinions are: D4, D5.
-	 *
-	 * @return bool
-	 */
-	protected function check_module_type( $module, $type = 'D4' ) {
-		$single        = isset( $module['type'] ) && is_string( $module['type'] ) && $type === $module['type'];
-		$compatibility = isset( $module['type'] ) && is_array( $module['type'] ) && in_array( $type, $module['type'], true );
-
-		return ( $single || $compatibility );
-	}
-
-	/**
-	 * Check the current module is an inactive module.
-	 *
-	 * @param array  $module The array of current module.
-	 * @param string $type   The type of Divi Builder module, default is: D4. Available opinions are: D4, D5.
-	 *
-	 * @return array|null
-	 */
-	protected function is_inactive_module( $module, $type = 'D4' ) {
-		return $this->check_module_type( $module, $type ) && ! $module['is_default_active'] ? $module : null;
-	}
-
-	/**
-	 *  Check the current module is an active module.
-	 *
-	 * @param array  $module The array of current module.
-	 * @param string $type   The type of Divi Builder module, default is: D4. Available opinions are: D4, D5.
-	 *
-	 * @return array|null
-	 */
-	protected function is_active_module( $module, $type = 'D4' ) {
-		return $this->check_module_type( $module, $type ) && $module['is_default_active'] ? $module : null;
-	}
-
-	/**
-	 * Get filtered modules.
-	 *
-	 * @param callable $callback The callback function for filter the current module.
-	 * @param array    $modules  The available modules.
-	 * @param string   $type     The type of Divi Builder module, default is: D4. Available opinions are: D4, D5.
+	 *  Get inactive modules.
 	 *
 	 * @return array
 	 */
-	protected function get_filtered_modules( $callback, $modules, $type = 'D4' ) {
-		$filtered_modules = array();
-		foreach ( $modules as $module ) {
-			$filtered_module = call_user_func_array( $callback, array( $module, $type ) );
-			if ( is_array( $filtered_module ) ) {
-				$filtered_modules[] = $filtered_module;
-			}
-		}
+	private function get_inactive_modules() {
+		$inactive_modules_fn = static function ( $module ) {
+			return ! $module['is_default_active'] ? $module : null;
+		};
 
-		return $filtered_modules;
+		return array_values(
+			array_filter(
+				array_map(
+					$inactive_modules_fn,
+					self::$instance->get_available_modules()
+				)
+			)
+		);
 	}
 
 	/**
 	 *  Get default active modules.
 	 *
-	 * @param string $type The type of Divi Builder module, default is: D4. Available opinions are: D4, D5.
-	 *
 	 * @return array
 	 */
-	protected function get_default_active_modules( $type = 'D4' ) {
-		return $this->get_filtered_modules( array( $this, 'is_active_module' ), $this->get_available_modules(), $type );
+	private function get_default_active_modules() {
+		$active_modules_fn = static function ( $module ) {
+			return $module['is_default_active'] ? $module : null;
+		};
+
+		return array_values(
+			array_filter(
+				array_map(
+					$active_modules_fn,
+					self::$instance->get_available_modules()
+				)
+			)
+		);
 	}
 
 	/**
@@ -393,7 +183,7 @@ class Modules {
 	 *
 	 * @return void
 	 */
-	protected function require_module_path( $path, $module ) {
+	private function require_module_path( $path, $module ) {
 		$module_path = sprintf( '%1$s/modules/%2$s/%2$s.php', $path, $module );
 		if ( file_exists( $module_path ) ) {
 			require_once $module_path;
@@ -401,42 +191,25 @@ class Modules {
 	}
 
 	/**
-	 * Load the module class.
+	 * Load enabled modules for Divi Builder from defined directory
 	 *
-	 * @param string      $path            The module class path.
-	 * @param mixed       $my_modules      The available modules list.
-	 * @param string      $type            The type of Divi Builder module, default is: D4. Available opinions are: D4, D5.
+	 * @param string $path The defined directory.
 	 *
 	 * @return void
 	 */
-	protected function load_module_files( $path, $my_modules, $type = 'D4' ) {
-		// Collect all active modules.
-		$available_modules = $this->get_available_modules();
-		$default_modules   = $this->get_default_active_modules( $type );
-		$activated_modules = array();
-
-		if ( is_array( $my_modules ) && count( $my_modules ) !== 0 ) {
-			// Get activated modules names that user activates.
-			$my_module_names = array();
-			foreach ( $my_modules as $my_module ) {
-				if ( $this->check_module_type( $my_module, $type ) && ! empty( $my_module['name'] ) ) {
-					$my_module_names[] = $my_module['name'];
-				}
-			}
-
-			// Get modules details that user activates.
-			foreach ( $available_modules as $module ) {
-				if ( in_array( $module['name'], $my_module_names, true ) ) {
-					$activated_modules[] = $module;
-				}
-			}
+	public function load_modules( $path ) {
+		if ( ! class_exists( \ET_Builder_Element::class ) ) {
+			return;
 		}
 
-		// Collect all activate modules.
-		$activated_modules = array_merge( $default_modules, $activated_modules );
-		$activated_modules = array_unique( $activated_modules, SORT_REGULAR );
+		$current_activates = self::$memory->get( 'active_modules', null );
+		$active_modules    = $this->get_default_active_modules();
 
-		foreach ( $activated_modules as $active_module ) {
+		if ( is_array( $current_activates ) ) {
+			$active_modules = $current_activates;
+		}
+
+		foreach ( $active_modules as $active_module ) {
 			if ( file_exists( sprintf( '%1$s/modules/%2$s/%2$s.php', $path, $active_module['name'] ) ) ) {
 				$this->require_module_path( $path, $active_module['name'] );
 
@@ -453,22 +226,5 @@ class Modules {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Load enabled modules for Divi Builder from defined directory.
-	 *
-	 * @param string $path The defined directory.
-	 *
-	 * @return void
-	 */
-	public function load_divi_builder_4_modules( $path ) {
-		if ( ! class_exists( \ET_Builder_Element::class ) ) {
-			return;
-		}
-
-		// Load enabled modules.
-		$memory = divi_squad()->get_memory();
-		$this->load_module_files( $path, $memory->get( 'active_modules' ) );
 	}
 }

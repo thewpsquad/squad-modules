@@ -4,19 +4,11 @@
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 
 namespace DiviSquad\Admin;
-
-use function esc_html__;
-use function esc_url;
-
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
 
 /**
  * Plugin Row Meta class.
@@ -26,15 +18,26 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Plugin_Row_Meta {
 
-	/**
-	 * Get the plugin base name.
+	/** The instance
 	 *
-	 * @return string
+	 * @var self
 	 */
-	public static function get_plugin_base() {
-		return DISQ_PLUGIN_BASE;
-	}
+	private static $instance;
 
+	/**
+	 * Get the instance of self-class
+	 *
+	 * @return self
+	 */
+	public static function get_instance() {
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof self ) ) {
+			self::$instance = new self();
+
+			add_filter( 'plugin_row_meta', array( self::$instance, 'add_plugin_row_meta' ), 10, 2 );
+		}
+
+		return self::$instance;
+	}
 	/**
 	 * Filters the array of row meta for each/specific plugin in the Plugins list table.
 	 * Appends additional links below each/specific plugin on the plugin page.
@@ -47,14 +50,17 @@ class Plugin_Row_Meta {
 	 * @return  array
 	 */
 	public function add_plugin_row_meta( $links, $plugin_file_name ) {
-		if ( static::get_plugin_base() === $plugin_file_name ) {
-			$links[] = sprintf( '<a href="%1$s" target="_blank" aria-label="%2$s">%2$s</a>', esc_url( 'https://wordpress.org/support/plugin/squad-modules-for-divi/reviews/#new-post' ), esc_html__( 'Rate The Plugin', 'squad-modules-for-divi' ) );
+		if ( DISQ_PLUGIN_BASE === $plugin_file_name ) {
+			$links[] = sprintf( '<a href="%1$s" target="_blank" aria-label="%2$s">%2$s</a>', esc_url( 'https://wordpress.org/support/plugin/squad-modules-for-divi/reviews/#new-post' ), esc_html__( 'Rate It', 'squad-modules-for-divi' ) );
 			$links[] = sprintf( '<a href="%1$s" target="_blank" aria-label="%2$s">%2$s</a>', esc_url( 'https://wordpress.org/support/plugin/squad-modules-for-divi/#new-post' ), esc_html__( 'Support', 'squad-modules-for-divi' ) );
-			$links[] = sprintf( '<a href="%1$s" target="_blank" aria-label="%2$s">%2$s</a>', esc_url( 'https://wordpress.org/plugins/squad-modules-for-divi/?utm_campaign=wporg&utm_source=wp_plugin_dashboard&utm_medium=rowmeta' ), esc_html__( 'FAQ', 'squad-modules-for-divi' ) );
+			$links[] = sprintf( '<a href="%1$s" target="_blank" aria-label="%2$s">%2$s</a>', esc_url( 'https://divi-squad.com/docs' ), esc_html__( 'Documentation', 'squad-modules-for-divi' ) );
+			$links[] = sprintf( '<a href="%1$s" target="_blank" aria-label="%2$s">%2$s</a>', esc_url( 'https://divi-squad.com/faq' ), esc_html__( 'FAQ', 'squad-modules-for-divi' ) );
 
 			return $links;
 		}
 
 		return $links;
 	}
+
+
 }

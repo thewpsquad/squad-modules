@@ -6,29 +6,14 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@thewpsquad.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\BeforeAfterImageSlider;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
-use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
+use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Helper;
-use DiviSquad\Utils\Module;
-use function esc_html__;
-use function esc_attr__;
-use function et_builder_i18n;
-use function et_core_esc_previously;
-use function et_pb_media_options;
-use function et_pb_multi_view_options;
-use function et_pb_background_options;
-use function wp_strip_all_tags;
-use function wp_enqueue_script;
-use function wp_json_encode;
 
 /**
  * Before After Image Slider Module Class.
@@ -36,7 +21,7 @@ use function wp_json_encode;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
+class BeforeAfterImageSlider extends DISQ_Builder_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -45,9 +30,10 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name      = esc_html__( 'Before After Image Slider', 'squad-modules-for-divi' );
-		$this->plural    = esc_html__( 'Before After Image Sliders', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/before-after-image-slider.svg' );
+		$this->name   = esc_html__( 'Before After Image Slider', 'squad-modules-for-divi' );
+		$this->plural = esc_html__( 'Before After Image Sliders', 'squad-modules-for-divi' );
+
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/before-after-image-slider.svg' );
 
 		$this->slug             = 'disq_bai_slider';
 		$this->main_css_element = "%%order_class%%.$this->slug";
@@ -82,6 +68,8 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 				),
 			),
 		);
+
+		$default_css_selectors = $this->disq_get_module_default_selectors();
 
 		// Declare advanced fields for the module.
 		$this->advanced_fields = array(
@@ -121,7 +109,14 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 					)
 				),
 			),
-			'background'     => Module::selectors_background( $this->main_css_element ),
+			'background'     => array_merge(
+				$default_css_selectors,
+				array(
+					'settings' => array(
+						'color' => 'alpha',
+					),
+				)
+			),
 			'filters'        => array(
 				'child_filters_target' => array(
 					'label'       => '',
@@ -140,7 +135,7 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 				'toggle_slug'          => 'after_image_filter',
 			),
 			'borders'        => array(
-				'default'              => Module::selectors_default( $this->main_css_element ),
+				'default'              => $default_css_selectors,
 				'before_label_element' => array(
 					'label_prefix'    => esc_html__( 'Label', 'squad-modules-for-divi' ),
 					'css'             => array(
@@ -173,7 +168,7 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 				),
 			),
 			'box_shadow'     => array(
-				'default'              => Module::selectors_default( $this->main_css_element ),
+				'default'              => $default_css_selectors,
 				'before_label_element' => array(
 					'label'             => esc_html__( 'Label Box Shadow', 'squad-modules-for-divi' ),
 					'option_category'   => 'layout',
@@ -207,10 +202,25 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 					'toggle_slug'       => 'after_label_element',
 				),
 			),
-			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
-			'width'          => Module::selectors_default( $this->main_css_element ),
-			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
-			'height'         => Module::selectors_default( $this->main_css_element ),
+			'margin_padding' => array(
+				'use_padding' => true,
+				'use_margin'  => true,
+				'css'         => array(
+					'margin'    => $this->main_css_element,
+					'padding'   => $this->main_css_element,
+					'important' => 'all',
+				),
+			),
+			'width'          => $default_css_selectors,
+			'max_width'      => array_merge(
+				$default_css_selectors,
+				array(
+					'css' => array(
+						'module_alignment' => "$this->main_css_element.et_pb_module",
+					),
+				)
+			),
+			'height'         => $default_css_selectors,
 			'image_icon'     => false,
 			'text'           => false,
 			'button'         => false,
@@ -328,7 +338,7 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 					'toggle_slug'      => 'comparable_settings',
 				)
 			),
-			'slide_control_start_point'         => $this->disq_add_range_field(
+			'slide_control_start_point'         => $this->disq_add_range_fields(
 				esc_html__( 'Control Starting Point', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the order number to position the item lower.', 'squad-modules-for-divi' ),
@@ -398,7 +408,7 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 					'toggle_slug'      => 'comparable_settings',
 				)
 			),
-			'slide_control_smoothing_amount'    => $this->disq_add_range_field(
+			'slide_control_smoothing_amount'    => $this->disq_add_range_fields(
 				esc_html__( 'Control Smoothing Amount', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the slide control smoothing.', 'squad-modules-for-divi' ),
@@ -440,23 +450,37 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 		$fields = parent::get_transition_fields_css_props();
 
 		// before label styles.
-		$fields['before_label_background_color'] = array( 'background' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
-		$fields['before_label_margin']           = array( 'margin' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
-		$fields['before_label_padding']          = array( 'padding' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
+		$fields['before_label_background_color'] = array(
+			'background' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before",
+		);
+		$fields['before_label_margin']           = array(
+			'margin' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before",
+		);
+		$fields['before_label_padding']          = array(
+			'padding' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before",
+		);
 		$this->disq_fix_fonts_transition( $fields, 'before_label_text', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
 		$this->disq_fix_border_transition( $fields, 'before_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
 		$this->disq_fix_box_shadow_transition( $fields, 'before_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
 
 		// after label styles.
-		$fields['after_label_background_color'] = array( 'background' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
-		$fields['after_label_margin']           = array( 'margin' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
-		$fields['after_label_padding']          = array( 'padding' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
+		$fields['after_label_background_color'] = array(
+			'background' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after",
+		);
+		$fields['after_label_margin']           = array(
+			'margin' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after",
+		);
+		$fields['after_label_padding']          = array(
+			'padding' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after",
+		);
 		$this->disq_fix_fonts_transition( $fields, 'after_label_text', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
 		$this->disq_fix_border_transition( $fields, 'after_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
 		$this->disq_fix_box_shadow_transition( $fields, 'after_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
 
 		// Default styles.
-		$fields['background_layout'] = array( 'color' => $this->main_css_element );
+		$fields['background_layout'] = array(
+			'color' => $this->main_css_element,
+		);
 
 		return $fields;
 	}
@@ -492,8 +516,8 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 			'addCircleBlur'   => 'on' === $this->prop( 'slide_control_circle_blur__enable', 'off' ),
 			'showLabels'      => 'on' === $this->prop( 'image_label__enable', 'off' ),
 			'labelOptions'    => array(
-				'before'  => sanitize_text_field( $before_label ),
-				'after'   => sanitize_text_field( $after_label ),
+				'before'  => wp_strip_all_tags( $before_label ),
+				'after'   => wp_strip_all_tags( $after_label ),
 				'onHover' => 'on' === $this->prop( 'image_label_hover__enable', 'off' ),
 			),
 			'smoothing'       => 'on' === $this->prop( 'slide_control_smoothing__enable', 'off' ),
@@ -527,7 +551,7 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 
 		// Images: Add CSS Filters and Mix Blend Mode rules.
 		$this->generate_css_filters( $this->slug, '', "$this->main_css_element div .compare-images.icv .icv__img.icv__img-a" );
-		$this->generate_css_filters( $this->slug, 'child_', "$this->main_css_element div .compare-images.icv .icv__wrapper" );
+		$this->generate_css_filters( $this->slug, 'child_', "$this->main_css_element div .compare-images.icv .icv__img.icv__img-b" );
 
 		wp_enqueue_script( 'disq-module-bais' );
 
@@ -651,7 +675,7 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 			"{$image_type}_label_padding" => $this->disq_add_margin_padding_field(
 				esc_html__( 'Label Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__( 'Here you can define a custom padding size for the before label.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min_limit' => '1',
@@ -760,26 +784,23 @@ class BeforeAfterImageSlider extends Squad_Divi_Builder_Module {
 			)
 		);
 
-		// phpcs:disable
-
-		// Add height and width support for images.
-		// $additional_props = array( 'width', 'max_width', 'height', 'min_height', 'max_height' );
-		// foreach ( $additional_props as $additional_prop ) {
-		// $css_property = str_replace( '_', '-', $additional_prop );
-		// $this->generate_styles(
-		// array(
-		// 'attrs'          => $this->props,
-		// 'base_attr_name' => $additional_prop,
-		// 'selector'       => "$this->main_css_element div .compare-images, $this->main_css_element div .compare-images img",
-		// 'css_property'   => $css_property,
-		// 'render_slug'    => $this->slug,
-		// 'type'           => 'range',
-		// )
-		// );
-		// }
-
-		// phpcs:enable
+//		// Add height and width support for images.
+//		$additional_props = array( 'width', 'max_width', 'height', 'min_height', 'max_height' );
+//		foreach ( $additional_props as $additional_prop ) {
+//			$css_property = str_replace( '_', '-', $additional_prop );
+//			$this->generate_styles(
+//				array(
+//					'attrs'          => $this->props,
+//					'base_attr_name' => $additional_prop,
+//					'selector'       => "$this->main_css_element div .compare-images, $this->main_css_element div .compare-images img",
+//					'css_property'   => $css_property,
+//					'render_slug'    => $this->slug,
+//					'type'           => 'range',
+//				)
+//			);
+//		}
 	}
+
 }
 
 new BeforeAfterImageSlider();

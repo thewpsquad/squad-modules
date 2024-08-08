@@ -4,8 +4,7 @@
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 
@@ -18,20 +17,17 @@ use ET_Builder_Module;
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
-#[\AllowDynamicProperties]
 abstract class DISQ_Builder_Module extends ET_Builder_Module {
 
 	use Traits\Field_Compatibility;
 	use Traits\Field_Definition;
 	use Traits\Field_Processor;
 	use Traits\Fields;
-	use Traits\Elements\Breadcrumbs;
-	use Traits\Elements\Divider;
 	use Traits\Elements\Mask_Shape;
+	use Traits\Elements\Divider;
 
 	/**
 	 * Module credits.
@@ -42,16 +38,8 @@ abstract class DISQ_Builder_Module extends ET_Builder_Module {
 	protected $module_credits = array(
 		'module_uri' => '',
 		'author'     => 'Divi Squad',
-		'author_uri' => 'https://squadmodules.com/?utm_campaign=wporg&utm_source=module_modal&utm_medium=module_author_link',
+		'author_uri' => 'https://squadmodules.com/',
 	);
-
-	/**
-	 * The icon for module.
-	 *
-	 * @var string
-	 * @since 1.0.0
-	 */
-	protected $icon = '';
 
 	/**
 	 * The icon path for module.
@@ -87,7 +75,7 @@ abstract class DISQ_Builder_Module extends ET_Builder_Module {
 	protected function disq_get_all_modules( $allowed_prefix = array() ) {
 		// Initiate default data.
 		$all_modules            = self::get_modules_array();
-		$default_allowed_prefix = array( 'disq' );
+		$default_allowed_prefix = array( 'difl', 'df', 'dfadh' );
 		$clean_modules          = array(
 			'none'   => esc_html__( 'Select Module', 'squad-modules-for-divi' ),
 			'custom' => esc_html__( 'Custom', 'squad-modules-for-divi' ),
@@ -185,4 +173,5 @@ abstract class DISQ_Builder_Module extends ET_Builder_Module {
 			}
 		);
 	}
+
 }

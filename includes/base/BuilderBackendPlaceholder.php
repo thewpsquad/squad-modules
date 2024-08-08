@@ -1,24 +1,17 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 /**
- * The DiviBuilderBackend integration helper for Divi Builder
+ * The Backend integration helper for Divi Builder
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 
 namespace DiviSquad\Base;
 
-use function _x;
-
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
 /**
- * Builder DiviBuilderBackend Placeholder class.
+ * Builder Backend Placeholder class.
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
@@ -30,6 +23,13 @@ abstract class BuilderBackendPlaceholder {
 	 * @var self
 	 */
 	protected static $instance;
+
+	/**
+	 * The default data for module.
+	 *
+	 * @var array
+	 */
+	protected $modules_defaults;
 
 	/**
 	 *  Get The defaults data for module.
@@ -49,7 +49,6 @@ abstract class BuilderBackendPlaceholder {
 			'button'          => _x( 'Click Here', 'Modules dummy content', 'squad-modules-for-divi' ),
 			'button_two'      => _x( 'Learn More', 'Modules dummy content', 'squad-modules-for-divi' ),
 			'custom_text'     => _x( 'Custom Text Here', 'Modules dummy content', 'squad-modules-for-divi' ),
-			// SEO ISSUE: https://developer.chrome.com/docs/lighthouse/seo/link-text/.
 			'read_more'       => _x( 'Read More', 'Modules dummy content', 'squad-modules-for-divi' ),
 			'comments_before' => _x( 'Comments: ', 'Modules dummy content', 'squad-modules-for-divi' ),
 			'icon'            => array(

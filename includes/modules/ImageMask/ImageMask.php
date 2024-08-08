@@ -5,24 +5,15 @@
  * This class provides mask adding functionalities for image in the visual builder.
  *
  * @since           1.0.0
- * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @package         squad-modules
+ * @author          WP Squad <support@thewpsquad.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\ImageMask;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
-use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
+use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Helper;
-use DiviSquad\Utils\Module;
-use function esc_html__;
-use function esc_attr__;
-use function et_builder_i18n;
-use function apply_filters;
 
 /**
  * Image Mask Module Class.
@@ -30,7 +21,7 @@ use function apply_filters;
  * @since           1.0.0
  * @package         squad-modules
  */
-class ImageMask extends Squad_Divi_Builder_Module {
+class ImageMask extends DISQ_Builder_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -39,9 +30,10 @@ class ImageMask extends Squad_Divi_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name      = esc_html__( 'Image Mask', 'squad-modules-for-divi' );
-		$this->plural    = esc_html__( 'Image Masks', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/image-mask.svg' );
+		$this->name   = esc_html__( 'Image Mask', 'squad-modules-for-divi' );
+		$this->plural = esc_html__( 'Image Masks', 'squad-modules-for-divi' );
+
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/mask.svg' );
 
 		$this->slug       = 'disq_image_mask';
 		$this->vb_support = 'on';
@@ -66,14 +58,42 @@ class ImageMask extends Squad_Divi_Builder_Module {
 			),
 		);
 
+		$default_css_selectors = $this->disq_get_module_default_selectors();
+
 		// Declare advanced fields for the module.
 		$this->advanced_fields = array(
-			'background'     => Module::selectors_background( $this->main_css_element ),
-			'borders'        => array( 'default' => Module::selectors_default( $this->main_css_element ) ),
-			'box_shadow'     => array( 'default' => Module::selectors_default( $this->main_css_element ) ),
-			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
-			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
-			'height'         => Module::selectors_default( $this->main_css_element ),
+			'background'     => array_merge(
+				$default_css_selectors,
+				array(
+					'settings' => array(
+						'color' => 'alpha',
+					),
+				)
+			),
+			'borders'        => array(
+				'default' => $default_css_selectors,
+			),
+			'box_shadow'     => array(
+				'default' => $default_css_selectors,
+			),
+			'margin_padding' => array(
+				'use_padding' => true,
+				'use_margin'  => true,
+				'css'         => array(
+					'margin'    => $this->main_css_element,
+					'padding'   => $this->main_css_element,
+					'important' => 'all',
+				),
+			),
+			'max_width'      => array_merge(
+				$default_css_selectors,
+				array(
+					'css' => array(
+						'module_alignment' => "$this->main_css_element.et_pb_module",
+					),
+				)
+			),
+			'height'         => $default_css_selectors,
 			'fonts'          => false,
 			'image_icon'     => false,
 			'text'           => false,
@@ -100,7 +120,7 @@ class ImageMask extends Squad_Divi_Builder_Module {
 		// Image fields definitions.
 		$image_fields = array(
 			'image' => array(
-				'label'              => esc_html__( 'Image', 'squad-modules-for-divi' ),
+				'label'              => et_builder_i18n( 'Image' ),
 				'description'        => esc_html__( 'Upload an image to display at the top.', 'squad-modules-for-divi' ),
 				'type'               => 'upload',
 				'option_category'    => 'basic_option',
@@ -162,7 +182,7 @@ class ImageMask extends Squad_Divi_Builder_Module {
 					'toggle_slug'      => 'mask_settings',
 				)
 			),
-			'mask_shape_rotate'  => $this->disq_add_range_field(
+			'mask_shape_rotate'  => $this->disq_add_range_fields(
 				esc_html__( 'Rotate Mask Shape', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose mask shape rotation.', 'squad-modules-for-divi' ),
@@ -182,7 +202,7 @@ class ImageMask extends Squad_Divi_Builder_Module {
 					'toggle_slug'      => 'mask_settings',
 				)
 			),
-			'mask_shape_scale_x' => $this->disq_add_range_field(
+			'mask_shape_scale_x' => $this->disq_add_range_fields(
 				esc_html__( 'Mask Shape Width', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose mask shape width.', 'squad-modules-for-divi' ),
@@ -202,7 +222,7 @@ class ImageMask extends Squad_Divi_Builder_Module {
 					'toggle_slug'      => 'mask_settings',
 				)
 			),
-			'mask_shape_scale_y' => $this->disq_add_range_field(
+			'mask_shape_scale_y' => $this->disq_add_range_fields(
 				esc_html__( 'Mask Shape Height', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose mask shape height.', 'squad-modules-for-divi' ),
@@ -247,7 +267,7 @@ class ImageMask extends Squad_Divi_Builder_Module {
 		);
 
 		$image_associated_fields = array(
-			'image_width'               => $this->disq_add_range_field(
+			'image_width'               => $this->disq_add_range_fields(
 				esc_html__( 'Image Width', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose image width.', 'squad-modules-for-divi' ),
@@ -266,7 +286,7 @@ class ImageMask extends Squad_Divi_Builder_Module {
 					'toggle_slug'      => 'image',
 				)
 			),
-			'image_height'              => $this->disq_add_range_field(
+			'image_height'              => $this->disq_add_range_fields(
 				esc_html__( 'Image Height', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can choose image height.', 'squad-modules-for-divi' ),
@@ -283,7 +303,7 @@ class ImageMask extends Squad_Divi_Builder_Module {
 					'toggle_slug'    => 'image',
 				)
 			),
-			'image_horizontal_position' => $this->disq_add_range_field(
+			'image_horizontal_position' => $this->disq_add_range_fields(
 				esc_html__( 'Image Horizontal Position', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can choose image horizontal position.', 'squad-modules-for-divi' ),
@@ -299,7 +319,7 @@ class ImageMask extends Squad_Divi_Builder_Module {
 					'toggle_slug'    => 'image',
 				)
 			),
-			'image_vertical_position'   => $this->disq_add_range_field(
+			'image_vertical_position'   => $this->disq_add_range_fields(
 				esc_html__( 'Image Vertical Position', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can choose image vertical position.', 'squad-modules-for-divi' ),
@@ -375,7 +395,7 @@ class ImageMask extends Squad_Divi_Builder_Module {
 							<g style="transform: %4$s; transform-origin: center center;">%5$s</g>
 						</mask>
 					</defs>
-					<g style="mask: url(\'#%3$s\')"> 
+					<g style="mask: url(\'#%3$s\')">
 					<image href="%6$s" width="%7$s" height="%8$s" transform="%9$s" preserveAspectRatio="none" style="%1$s"/>
 					</g>
 				</svg>
@@ -391,6 +411,7 @@ class ImageMask extends Squad_Divi_Builder_Module {
 			$image_transform
 		);
 	}
+
 }
 
 new ImageMask();

@@ -5,19 +5,13 @@
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 
 namespace DiviSquad\Integration;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
 use DiviSquad\Manager;
-use function DiviSquad\divi_squad;
 use function et_pb_force_regenerate_templates;
 
 /**
@@ -29,31 +23,11 @@ use function et_pb_force_regenerate_templates;
 abstract class Core extends \DiviSquad\Base\Core {
 
 	/**
-	 * Load all core components.
-	 *
-	 * @return void
-	 */
-	protected function load_core_components() {
-		$this->modules    = new Manager\Modules();
-		$this->extensions = new Manager\Extensions();
-
-		// Activate all modules and extensions.
-		$this->modules->active_modules();
-		$this->extensions->activate_extensions();
-
-		// Load all rest api routes.
-		$this->modules_rest_api_routes    = new Manager\Rest_API_Routes\Modules();
-		$this->extensions_rest_api_routes = new Manager\Rest_API_Routes\Extensions();
-	}
-
-	/**
 	 * Initialize the plugin with required components.
 	 *
-	 * @param array $options Options data.
-	 *
 	 * @return void
 	 */
-	protected function init( $options = array() ) {
+	protected function init() {
 		// Register all hooks for plugin.
 		register_activation_hook( DISQ__FILE__, array( $this, 'hook_activation' ) );
 		register_deactivation_hook( DISQ__FILE__, array( $this, 'hook_deactivation' ) );
@@ -65,26 +39,25 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 * @return void
 	 */
 	public function hook_activation() {
-		$this->get_memory()->set( 'activation_time', time() );
-		if ( divi_squad()->get_version() !== $this->get_memory()->get( 'version' ) ) {
-			$this->get_memory()->set( 'previous_version', $this->get_memory()->get( 'version' ) );
+		$this->memory->set( 'activation_time', time() );
+		$this->memory->set( 'version', DISQ_VERSION );
+		$this->memory->set( 'activate_version', DISQ_VERSION );
+
+		// add previous plugin version.
+		$previous_activate_version = $this->memory->get( 'previous_activate_version', DISQ_VERSION );
+		if ( DISQ_VERSION !== $previous_activate_version ) {
+			$this->memory->set( 'previous_activate_version', $previous_activate_version );
 		}
-		$this->get_memory()->set( 'version', divi_squad()->get_version() );
 	}
 
 	/**
 	 * The admin interface asset and others.
 	 *
-	 * @param array $options The plugin options.
-	 *
 	 * @return void
 	 */
-	protected function load_admin_interface( $options ) {
+	protected function load_admin_interface() {
 		if ( is_admin() ) {
-			Admin::load( $options );
-
-			// Load plugin review.
-			new \DiviSquad\Admin\Plugin_Review();
+			Admin::get_instance();
 		}
 	}
 
@@ -95,17 +68,7 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 */
 	protected function register_ajax_rest_api_routes() {
 		// Register all rest api.
-		add_action( 'rest_api_init', array( new Manager\Rest_API_Routes(), 'register_all' ) );
-	}
-
-	/**
-	 * Load all extensions.
-	 *
-	 * @return void
-	 */
-	public function load_all_extensions() {
-		// Load all extensions.
-		$this->extensions->load_extensions( realpath( dirname( __DIR__ ) ) );
+		Manager\Rest_API::get_instance()->register_all();
 	}
 
 	/**
@@ -115,13 +78,10 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 */
 	protected function load_divi_modules_for_builder() {
 		// Register all assets.
-		$asset_manager = new Manager\Assets();
-		add_action( 'wp_enqueue_scripts', array( $asset_manager, 'enqueue_scripts' ) );
-		add_action( 'wp_enqueue_scripts', array( $asset_manager, 'enqueue_scripts_vb' ) );
-		add_filter( 'divi_squad_assets_backend_extra', array( $asset_manager, 'wp_localize_script_data' ) );
+		Manager\Assets::get_instance();
 
 		// Register all hooks for divi integration.
-		add_action( 'divi_extensions_init', array( $this, 'initialize_divi_extension' ) );
+		add_action( 'divi_extensions_init', array( $this, 'initialize_extension' ) );
 		add_action( 'wp_loaded', array( $this, 'initialize_divi_asset_definitions' ) );
 
 		// Force the legacy backend builder to reload its template cache.
@@ -136,9 +96,9 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 *
 	 * @return void
 	 */
-	public function initialize_divi_extension() {
-		if ( class_exists( DiviBuilder::class ) ) {
-			new DiviBuilder( $this->name, DISQ_DIR_PATH, DISQ_DIR_URL );
+	public function initialize_extension() {
+		if ( class_exists( DiviSquad::class ) ) {
+			new DiviSquad( $this->name, DISQ_DIR_PATH, DISQ_DIR_URL );
 		}
 	}
 
@@ -148,10 +108,21 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 * @return void
 	 */
 	public function initialize_divi_asset_definitions() {
-		if ( function_exists( 'et_fb_process_shortcode' ) && class_exists( DiviBuilderBackend::class ) ) {
-			$helpers = new DiviBuilderBackend();
-			add_filter( 'et_fb_backend_helpers', array( $helpers, 'static_asset_definitions' ), 11 );
-			add_filter( 'et_fb_get_asset_helpers', array( $helpers, 'asset_definitions' ), 11 );
+		if ( function_exists( 'et_fb_process_shortcode' ) && class_exists( Divi\Backend::class ) ) {
+			$helpers = new Divi\Backend();
+			add_filter( 'et_fb_backend_helpers', array( $helpers, 'static_asset_definitions' ), 11 ); // load on functions when et-dynamic-asset-helpers are registered.
+			add_filter( 'et_fb_get_asset_helpers', array( $helpers, 'asset_definitions' ), 11 ); // this data load after written the required file.
+
+			$load_backend_data = static function () {
+				$helpers      = new Divi\Backend();
+				$helpers_data = $helpers->static_asset_definitions();
+
+				// Pass helpers data via localization.
+				wp_localize_script( 'et-frontend-builder', 'DISQBuilderBackend', $helpers_data );
+			};
+
+			add_action( 'wp_enqueue_scripts', $load_backend_data );
+			add_action( 'admin_enqueue_scripts', $load_backend_data );
 		}
 	}
 }

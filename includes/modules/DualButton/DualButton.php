@@ -7,29 +7,16 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@thewpsquad.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\DualButton;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
-use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
+use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
-use DiviSquad\Utils\Module;
 use ET_Builder_Module_Helper_MultiViewOptions;
-use function esc_html__;
-use function esc_attr__;
-use function et_builder_i18n;
-use function et_core_esc_previously;
-use function et_pb_multi_view_options;
-use function et_pb_background_options;
-use function et_pb_media_options;
-use function et_pb_get_extended_font_icon_value;
 
 /**
  * Dual-Button Module Class.
@@ -37,7 +24,8 @@ use function et_pb_get_extended_font_icon_value;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class DualButton extends Squad_Divi_Builder_Module {
+class DualButton extends DISQ_Builder_Module {
+
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -46,9 +34,10 @@ class DualButton extends Squad_Divi_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name      = esc_html__( 'Dual Button', 'squad-modules-for-divi' );
-		$this->plural    = esc_html__( 'Dual Buttons', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/dual-button.svg' );
+		$this->name   = esc_html__( 'Dual Button', 'squad-modules-for-divi' );
+		$this->plural = esc_html__( 'Dual Buttons', 'squad-modules-for-divi' );
+
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/dual-button.svg' );
 
 		$this->slug       = 'disq_dual_button';
 		$this->vb_support = 'on';
@@ -79,6 +68,8 @@ class DualButton extends Squad_Divi_Builder_Module {
 				),
 			),
 		);
+
+		$default_css_selectors = $this->disq_get_module_default_selectors();
 
 		// Declare advanced fields for the module.
 		$this->advanced_fields = array(
@@ -127,9 +118,16 @@ class DualButton extends Squad_Divi_Builder_Module {
 					)
 				),
 			),
-			'background'     => Module::selectors_background( $this->main_css_element ),
+			'background'     => array_merge(
+				$default_css_selectors,
+				array(
+					'settings' => array(
+						'color' => 'alpha',
+					),
+				)
+			),
 			'borders'        => array(
-				'default'              => Module::selectors_default( $this->main_css_element ),
+				'default'              => $default_css_selectors,
 				'wrapper'              => array(
 					'label_prefix' => et_builder_i18n( 'Wrapper' ),
 					'css'          => array(
@@ -200,7 +198,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 				),
 			),
 			'box_shadow'     => array(
-				'default'              => Module::selectors_default( $this->main_css_element ),
+				'default'              => $default_css_selectors,
 				'wrapper'              => array(
 					'label'             => esc_html__( 'Wrapper Box Shadow', 'squad-modules-for-divi' ),
 					'option_category'   => 'layout',
@@ -258,9 +256,24 @@ class DualButton extends Squad_Divi_Builder_Module {
 					'toggle_slug'       => 'separator_element',
 				),
 			),
-			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
-			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
-			'height'         => Module::selectors_default( $this->main_css_element ),
+			'margin_padding' => array(
+				'use_padding' => true,
+				'use_margin'  => true,
+				'css'         => array(
+					'margin'    => $this->main_css_element,
+					'padding'   => $this->main_css_element,
+					'important' => 'all',
+				),
+			),
+			'max_width'      => array_merge(
+				$default_css_selectors,
+				array(
+					'css' => array(
+						'module_alignment' => "$this->main_css_element.et_pb_module",
+					),
+				)
+			),
+			'height'         => $default_css_selectors,
 			'image_icon'     => false,
 			'filters'        => false,
 			'text'           => false,
@@ -428,7 +441,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 					'toggle_slug'     => 'separator_element',
 				)
 			),
-			'separator_icon_size'      => $this->disq_add_range_field(
+			'separator_icon_size'      => $this->disq_add_range_fields(
 				esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose separator icon size.', 'squad-modules-for-divi' ),
@@ -446,7 +459,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 					'toggle_slug'     => 'separator_element',
 				)
 			),
-			'separator_image_width'    => $this->disq_add_range_field(
+			'separator_image_width'    => $this->disq_add_range_fields(
 				esc_html__( 'Image Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose image width.', 'squad-modules-for-divi' ),
@@ -464,7 +477,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 					'toggle_slug'     => 'separator_element',
 				)
 			),
-			'separator_image_height'   => $this->disq_add_range_field(
+			'separator_image_height'   => $this->disq_add_range_fields(
 				esc_html__( 'Image Height', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose image height.', 'squad-modules-for-divi' ),
@@ -495,7 +508,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 					'toggle_slug'      => 'separator_element',
 				)
 			),
-			'separator_width'          => $this->disq_add_range_field(
+			'separator_width'          => $this->disq_add_range_fields(
 				esc_html__( 'Separator Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Adjust the width of the separator.', 'squad-modules-for-divi' ),
@@ -528,7 +541,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 				esc_html__( 'Icon/Image Margin', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__(
-						'Here you can define a custom padding size.',
+						'Here you can define a custom padding size for the icon.',
 						'squad-modules-for-divi'
 					),
 					'type'            => 'custom_margin',
@@ -552,7 +565,10 @@ class DualButton extends Squad_Divi_Builder_Module {
 			'separator_padding'        => $this->disq_add_margin_padding_field(
 				esc_html__( 'Separator Padding', 'squad-modules-for-divi' ),
 				array(
-					'description' => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					'description' => esc_html__(
+						'Here you can define a custom padding size for the separator.',
+						'squad-modules-for-divi'
+					),
 					'type'        => 'custom_padding',
 					'tab_slug'    => 'advanced',
 					'toggle_slug' => 'separator_element',
@@ -607,7 +623,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 					'depends_show_if'  => 'column',
 				)
 			),
-			'wrapper_elements_gap'         => $this->disq_add_range_field(
+			'wrapper_elements_gap'         => $this->disq_add_range_fields(
 				esc_html__( 'Gap Between Elements', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__(
@@ -645,7 +661,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
 					'description' => esc_html__(
-						'Here you can define a custom padding size.',
+						'Here you can define a custom padding size for the wrapper.',
 						'squad-modules-for-divi'
 					),
 					'type'        => 'custom_padding',
@@ -723,59 +739,121 @@ class DualButton extends Squad_Divi_Builder_Module {
 		$fields = parent::get_transition_fields_css_props();
 
 		// wrapper styles.
-		$fields['wrapper_background_color'] = array( 'background' => "$this->main_css_element div .elements" );
-		$fields['wrapper_elements_gap']     = array( 'gap' => "$this->main_css_element div .elements" );
-		$fields['wrapper_margin']           = array( 'margin' => "$this->main_css_element div .elements" );
-		$fields['wrapper_padding']          = array( 'padding' => "$this->main_css_element div .elements" );
+		$fields['wrapper_background_color'] = array(
+			'background' => "$this->main_css_element div .elements",
+		);
+		$fields['wrapper_elements_gap']     = array(
+			'gap' => "$this->main_css_element div .elements",
+		);
+		$fields['wrapper_margin']           = array(
+			'margin' => "$this->main_css_element div .elements",
+		);
+		$fields['wrapper_padding']          = array(
+			'padding' => "$this->main_css_element div .elements",
+		);
 		$this->disq_fix_border_transition( $fields, 'wrapper', "$this->main_css_element div .elements" );
 		$this->disq_fix_box_shadow_transition( $fields, 'wrapper', "$this->main_css_element div .elements" );
 
 		// left button styles.
-		$fields['left_button_background_color'] = array( 'background' => "$this->main_css_element div .elements .disq-button.left_button" );
-		$fields['left_button_width']            = array( 'width' => "$this->main_css_element div .elements .disq-button.left_button" );
-		$fields['left_button_margin']           = array( 'margin' => "$this->main_css_element div .elements .disq-button.left_button" );
-		$fields['left_button_padding']          = array( 'padding' => "$this->main_css_element div .elements .disq-button.left_button" );
+		$fields['left_button_background_color'] = array(
+			'background' => "$this->main_css_element div .elements .disq-button.left_button",
+		);
+		$fields['left_button_width']            = array(
+			'width' => "$this->main_css_element div .elements .disq-button.left_button",
+		);
+		$fields['left_button_margin']           = array(
+			'margin' => "$this->main_css_element div .elements .disq-button.left_button",
+		);
+		$fields['left_button_padding']          = array(
+			'padding' => "$this->main_css_element div .elements .disq-button.left_button",
+		);
 		$this->disq_fix_fonts_transition( $fields, 'left_button_text', "$this->main_css_element div .elements .disq-button.left_button" );
 		$this->disq_fix_border_transition( $fields, 'left_button_element', "$this->main_css_element div .elements .disq-button.left_button" );
 		$this->disq_fix_box_shadow_transition( $fields, 'left_button_element', "$this->main_css_element div .elements .disq-button.left_button" );
 
 		// left button icon styles.
-		$fields['left_button_icon_color']   = array( 'color' => "$this->main_css_element div .elements .disq-button.left_button .disq-icon-wrapper .icon-element .et-pb-icon" );
-		$fields['left_button_icon_size']    = array( 'font-size' => "$this->main_css_element div .elements .disq-button.left_button .disq-icon-wrapper .icon-element.et-pb-icon" );
-		$fields['left_button_image_width']  = array( 'width' => "$this->main_css_element div .elements .disq-button.left_button .disq-icon-wrapper .icon-element img" );
-		$fields['left_button_image_height'] = array( 'height' => "$this->main_css_element div .elements .disq-button.left_button .disq-icon-wrapper .icon-element img" );
-		$fields['left_button_icon_margin']  = array( 'margin' => "$this->main_css_element div .elements .disq-button.left_button .disq-icon-wrapper .icon-element" );
+		$fields['left_button_icon_color']   = array(
+			'color' => "$this->main_css_element div .elements .disq-button.left_button .disq-icon-wrapper .icon-element .et-pb-icon",
+		);
+		$fields['left_button_icon_size']    = array(
+			'font-size' => "$this->main_css_element div .elements .disq-button.left_button .disq-icon-wrapper .icon-element.et-pb-icon",
+		);
+		$fields['left_button_image_width']  = array(
+			'width' => "$this->main_css_element div .elements .disq-button.left_button .disq-icon-wrapper .icon-element img",
+		);
+		$fields['left_button_image_height'] = array(
+			'height' => "$this->main_css_element div .elements .disq-button.left_button .disq-icon-wrapper .icon-element img",
+		);
+		$fields['left_button_icon_margin']  = array(
+			'margin' => "$this->main_css_element div .elements .disq-button.left_button .disq-icon-wrapper .icon-element",
+		);
 
 		// right button styles.
-		$fields['right_button_background_color'] = array( 'background' => "$this->main_css_element div .elements .disq-button.right_button" );
-		$fields['right_button_width']            = array( 'width' => "$this->main_css_element div .elements .disq-button.right_button" );
-		$fields['right_button_margin']           = array( 'margin' => "$this->main_css_element div .elements .disq-button.right_button" );
-		$fields['right_button_padding']          = array( 'padding' => "$this->main_css_element div .elements .disq-button.right_button" );
+		$fields['right_button_background_color'] = array(
+			'background' => "$this->main_css_element div .elements .disq-button.right_button",
+		);
+		$fields['right_button_width']            = array(
+			'width' => "$this->main_css_element div .elements .disq-button.right_button",
+		);
+		$fields['right_button_margin']           = array(
+			'margin' => "$this->main_css_element div .elements .disq-button.right_button",
+		);
+		$fields['right_button_padding']          = array(
+			'padding' => "$this->main_css_element div .elements .disq-button.right_button",
+		);
 		$this->disq_fix_fonts_transition( $fields, 'right_button_text', "$this->main_css_element div .elements .disq-button.right_button" );
 		$this->disq_fix_border_transition( $fields, 'right_button_element', "$this->main_css_element div .elements .disq-button.right_button" );
 		$this->disq_fix_box_shadow_transition( $fields, 'right_button_element', "$this->main_css_element div .elements .disq-button.right_button" );
 
 		// right button icon styles.
-		$fields['right_button_icon_color']   = array( 'color' => "$this->main_css_element div .elements .disq-button.right_button .disq-icon-wrapper .icon-element .et-pb-icon" );
-		$fields['right_button_icon_size']    = array( 'font-size' => "$this->main_css_element div .elements .disq-button.right_button .disq-icon-wrapper .icon-element .et-pb-icon" );
-		$fields['right_button_image_width']  = array( 'width' => "$this->main_css_element div .elements .disq-button.right_button .disq-icon-wrapper .icon-element img" );
-		$fields['right_button_image_height'] = array( 'height' => "$this->main_css_element div .elements .disq-button.right_button .disq-icon-wrapper .icon-element img" );
-		$fields['right_button_icon_margin']  = array( 'margin' => "$this->main_css_element div .elements .disq-button.right_button .disq-icon-wrapper .icon-element" );
+		$fields['right_button_icon_color']   = array(
+			'color' => "$this->main_css_element div .elements .disq-button.right_button .disq-icon-wrapper .icon-element .et-pb-icon",
+		);
+		$fields['right_button_icon_size']    = array(
+			'font-size' => "$this->main_css_element div .elements .disq-button.right_button .disq-icon-wrapper .icon-element .et-pb-icon",
+		);
+		$fields['right_button_image_width']  = array(
+			'width' => "$this->main_css_element div .elements .disq-button.right_button .disq-icon-wrapper .icon-element img",
+		);
+		$fields['right_button_image_height'] = array(
+			'height' => "$this->main_css_element div .elements .disq-button.right_button .disq-icon-wrapper .icon-element img",
+		);
+		$fields['right_button_icon_margin']  = array(
+			'margin' => "$this->main_css_element div .elements .disq-button.right_button .disq-icon-wrapper .icon-element",
+		);
 
 		// separator styles.
-		$fields['separator_background_color'] = array( 'background' => "$this->main_css_element div .elements .disq-separator" );
-		$fields['separator_width']            = array( 'width' => "$this->main_css_element div .elements .disq-separator" );
-		$fields['separator_margin']           = array( 'margin' => "$this->main_css_element div .elements .disq-separator" );
-		$fields['separator_padding']          = array( 'padding' => "$this->main_css_element div .elements .disq-separator" );
+		$fields['separator_background_color'] = array(
+			'background' => "$this->main_css_element div .elements .disq-separator",
+		);
+		$fields['separator_width']            = array(
+			'width' => "$this->main_css_element div .elements .disq-separator",
+		);
+		$fields['separator_margin']           = array(
+			'margin' => "$this->main_css_element div .elements .disq-separator",
+		);
+		$fields['separator_padding']          = array(
+			'padding' => "$this->main_css_element div .elements .disq-separator",
+		);
 		$this->disq_fix_border_transition( $fields, 'separator_element', "$this->main_css_element div .elements .disq-separator" );
 		$this->disq_fix_box_shadow_transition( $fields, 'separator_element', "$this->main_css_element div .elements .disq-separator" );
 
 		// separator icon styles.
-		$fields['separator_icon_color']   = array( 'color' => "$this->main_css_element div .elements .disq-separator .disq-icon-wrapper .icon-element .et-pb-icon" );
-		$fields['separator_icon_size']    = array( 'font-size' => "$this->main_css_element div .elements .disq-separator .disq-icon-wrapper .icon-element .et-pb-icon" );
-		$fields['separator_image_width']  = array( 'width' => "$this->main_css_element div .elements .disq-separator .disq-icon-wrapper .icon-element img" );
-		$fields['separator_image_height'] = array( 'height' => "$this->main_css_element div .elements .disq-separator .disq-icon-wrapper .icon-element img" );
-		$fields['separator_icon_margin']  = array( 'margin' => "$this->main_css_element div .elements .disq-separator .disq-icon-wrapper .icon-element" );
+		$fields['separator_icon_color']   = array(
+			'color' => "$this->main_css_element div .elements .disq-separator .disq-icon-wrapper .icon-element .et-pb-icon",
+		);
+		$fields['separator_icon_size']    = array(
+			'font-size' => "$this->main_css_element div .elements .disq-separator .disq-icon-wrapper .icon-element .et-pb-icon",
+		);
+		$fields['separator_image_width']  = array(
+			'width' => "$this->main_css_element div .elements .disq-separator .disq-icon-wrapper .icon-element img",
+		);
+		$fields['separator_image_height'] = array(
+			'height' => "$this->main_css_element div .elements .disq-separator .disq-icon-wrapper .icon-element img",
+		);
+		$fields['separator_icon_margin']  = array(
+			'margin' => "$this->main_css_element div .elements .disq-separator .disq-icon-wrapper .icon-element",
+		);
 
 		return $fields;
 	}
@@ -845,43 +923,54 @@ class DualButton extends Squad_Divi_Builder_Module {
 	 */
 	private function render_element_text( $attrs, $element ) {
 		$multi_view = et_pb_multi_view_options( $this );
-
-		// Fixed: the custom background doesn't work at frontend.
-		$this->props = array_merge( $attrs, $this->props );
-
-		// Initiate the button tag, button url, and url target with default value.
-		$element_url        = isset( $this->props[ "{$element}_url" ] ) ? $this->props[ "{$element}_url" ] : '';
+		// element url, by default is empty.
+		$element_url = isset( $this->props[ "{$element}_url" ] ) ? $this->props[ "{$element}_url" ] : '';
+		// element url target, by default is empty.
 		$element_url_target = isset( $this->props[ "{$element}_url_new_window" ] ) ? $this->props[ "{$element}_url_new_window" ] : '';
-		$url_target         = 'on' === $element_url_target ? '_blank' : '_self';
+
+		$element_tag  = '' !== $element_url ? 'a' : 'span';
+		$button_attrs = array();
+
+		if ( 'a' === $element_tag ) {
+			$button_attrs['href'] = $element_url;
+
+			if ( 'on' === $element_url_target ) {
+				$button_attrs['target'] = '_blank';
+			} else {
+				$button_attrs['target'] = '_self';
+			}
+		}
 
 		$element_text = $multi_view->render_element(
 			array(
+				'tag'            => $element_tag,
 				'content'        => "{{{$element}_text}}",
-				'attrs'          => array( 'class' => 'button-text' ),
+				'attrs'          => $button_attrs,
 				'hover_selector' => "$this->main_css_element div .elements .disq-button.$element",
 			)
 		);
 
-		// Assign variables for icon wrapper.
-		$icon_elements      = '';
-		$icon_wrapper_class = array( 'disq-icon-wrapper' );
-		$button_classes     = $this->disq_add_background_class(
-			array(
-				'background_field' => "{$element}_background_color",
-				'classes'          => array(
-					'disq-button',
-					'button-element',
-					$element,
-				),
-			)
-		);
+		if ( '' !== $element_text ) {
+			// Fixed: the custom background doesn't work at frontend.
+			$this->props = array_merge( $attrs, $this->props );
 
-		if ( 'on' === $this->prop( "{$element}_hover_animation__enable", 'off' ) ) {
-			$button_classes[] = $this->prop( "{$element}_hover_animation_type", 'fill' );
-		}
+			$icon_elements      = '';
+			$icon_wrapper_class = array( 'disq-icon-wrapper' );
+			$button_classes     = $this->disq_add_background_class(
+				array(
+					'background_field' => "{$element}_background_color",
+					'classes'          => array(
+						'disq-button',
+						'button-element',
+						$element,
+					),
+				)
+			);
 
-		// Render text output when it is not empty.
-		if ( ! empty( $element_text ) ) {
+			if ( 'on' === $this->prop( "{$element}_hover_animation__enable", 'off' ) ) {
+				$button_classes[] = $this->prop( "{$element}_hover_animation_type", 'fill' );
+			}
+
 			// button background with default, responsive, hover.
 			et_pb_background_options()->get_background_style(
 				array(
@@ -962,20 +1051,20 @@ class DualButton extends Squad_Divi_Builder_Module {
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => "{$element}_margin",
-					'selector'       => "$this->main_css_element div .elements .disq-button.$element",
-					'hover_selector' => "$this->main_css_element div .elements .disq-button.$element:hover",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
+					'field'        => "{$element}_margin",
+					'selector'     => "$this->main_css_element div .elements .disq-button.$element",
+					'hover'        => "$this->main_css_element div .elements .disq-button.$element:hover",
+					'css_property' => 'margin',
+					'type'         => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => "{$element}_padding",
-					'selector'       => "$this->main_css_element div .elements .disq-button.$element",
-					'hover_selector' => "$this->main_css_element div .elements .disq-button.$element:hover",
-					'css_property'   => 'padding',
-					'type'           => 'padding',
+					'field'        => "{$element}_padding",
+					'selector'     => "$this->main_css_element div .elements .disq-button.$element",
+					'hover'        => "$this->main_css_element div .elements .disq-button.$element:hover",
+					'css_property' => 'padding',
+					'type'         => 'padding',
 				)
 			);
 
@@ -984,7 +1073,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 
 			if ( ( 'none' !== $this->props[ "{$element}_icon_type" ] ) && ( ! empty( $font_icon_element ) || ! empty( $image_element ) ) ) {
 				if ( ( 'on' === $this->props[ "{$element}_icon_on_hover" ] ) ) {
-					$icon_wrapper_class[] = 'show-on-hover';
+					$icon_wrapper_class[] = 'show_on_hover';
 
 					$mapping_values = array(
 						'inherit'     => '0 0 0 0',
@@ -1011,8 +1100,8 @@ class DualButton extends Squad_Divi_Builder_Module {
 								'icon'  => "{$element}_icon_size",
 								'image' => "{$element}_image_width",
 							),
-							'selector'       => "$this->main_css_element div .elements .disq-button.$element .disq-icon-wrapper.show-on-hover",
-							'hover'          => "$this->main_css_element div .elements .disq-button.$element:hover .disq-icon-wrapper.show-on-hover",
+							'selector'       => "$this->main_css_element div .elements .disq-button.$element .disq-icon-wrapper.show_on_hover",
+							'hover'          => "$this->main_css_element div .elements .disq-button.$element:hover .disq-icon-wrapper.show_on_hover",
 							'css_property'   => 'margin',
 							'type'           => 'margin',
 							'mapping_values' => $mapping_values,
@@ -1034,11 +1123,9 @@ class DualButton extends Squad_Divi_Builder_Module {
 			}
 
 			return sprintf(
-				'<a class="%5$s" href="%3$s" target="%4$s">%1$s%2$s</a>',
+				'<div class="%3$s"><span class="button-text">%1$s</span>%2$s</div>',
 				et_core_esc_previously( $element_text ),
 				et_core_esc_previously( $icon_elements ),
-				esc_url_raw( $element_url ),
-				esc_attr( $url_target ),
 				et_core_esc_previously( implode( ' ', $button_classes ) )
 			);
 		}
@@ -1253,21 +1340,21 @@ class DualButton extends Squad_Divi_Builder_Module {
 		// wrapper margin with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'          => 'wrapper_margin',
-				'selector'       => "$this->main_css_element div .elements",
-				'hover_selector' => "$this->main_css_element div .elements:hover",
-				'css_property'   => 'margin',
-				'type'           => 'margin',
+				'field'        => 'wrapper_margin',
+				'selector'     => "$this->main_css_element div .elements",
+				'hover'        => "$this->main_css_element div .elements:hover",
+				'css_property' => 'margin',
+				'type'         => 'margin',
 			)
 		);
 		// wrapper padding with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'          => 'wrapper_padding',
-				'selector'       => "$this->main_css_element div .elements",
-				'hover_selector' => "$this->main_css_element div .elements:hover",
-				'css_property'   => 'padding',
-				'type'           => 'padding',
+				'field'        => 'wrapper_padding',
+				'selector'     => "$this->main_css_element div .elements",
+				'hover'        => "$this->main_css_element div .elements:hover",
+				'css_property' => 'padding',
+				'type'         => 'padding',
 			)
 		);
 	}
@@ -1403,20 +1490,20 @@ class DualButton extends Squad_Divi_Builder_Module {
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => 'separator_margin',
-					'selector'       => "$this->main_css_element div .elements .disq-separator",
-					'hover_selector' => "$this->main_css_element div .elements .disq-separator:hover",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
+					'field'        => 'separator_margin',
+					'selector'     => "$this->main_css_element div .elements .disq-separator",
+					'hover'        => "$this->main_css_element div .elements .disq-separator:hover",
+					'css_property' => 'margin',
+					'type'         => 'margin',
 				)
 			);
 			$this->disq_process_margin_padding_styles(
 				array(
-					'field'          => 'separator_padding',
-					'selector'       => "$this->main_css_element div .elements .disq-separator",
-					'hover_selector' => "$this->main_css_element div .elements .disq-separator:hover",
-					'css_property'   => 'padding',
-					'type'           => 'padding',
+					'field'        => 'separator_padding',
+					'selector'     => "$this->main_css_element div .elements .disq-separator",
+					'hover'        => "$this->main_css_element div .elements .disq-separator:hover",
+					'css_property' => 'padding',
+					'type'         => 'padding',
 				)
 			);
 
@@ -1430,6 +1517,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 
 		return null;
 	}
+
 }
 
 new DualButton();

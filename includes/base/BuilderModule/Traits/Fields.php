@@ -5,32 +5,20 @@
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 
 namespace DiviSquad\Base\BuilderModule\Traits;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
 use ET_Global_Settings;
-use function esc_attr__;
-use function esc_html__;
-use function et_builder_get_acceptable_css_string_values;
-use function et_builder_i18n;
-use function wp_array_slice_assoc;
-use function wp_parse_args;
 
 /**
  * Fields class.
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 trait Fields {
@@ -53,6 +41,28 @@ trait Fields {
 			'span' => esc_html__( 'SPAN tag', 'squad-modules-for-divi' ),
 			'div'  => esc_html__( 'DIV tag', 'squad-modules-for-divi' ),
 		);
+	}
+
+	/**
+	 * Default fields for Heading toggles.
+	 *
+	 * @param string   $field_label The heading toggle label name.
+	 * @param int|bool $priority    The toggle priority, default is 55.
+	 *
+	 * @return array
+	 */
+	protected function disq_get_heading_toggles( $field_label, $priority = 55 ) {
+		$default_properties = array(
+			'title'             => $field_label,
+			'tabbed_subtoggles' => true,
+			'sub_toggles'       => $this->disq_get_heading_elements(),
+		);
+
+		if ( is_numeric( $priority ) ) {
+			$default_properties['priority'] = $priority;
+		}
+
+		return $default_properties;
 	}
 
 	/**
@@ -188,7 +198,7 @@ trait Fields {
 				'hover'           => 'tabs',
 			)
 		);
-		$fields[ $config['base_attr_name'] . '_stroke_width' ]    = $this->disq_add_range_field(
+		$fields[ $config['base_attr_name'] . '_stroke_width' ]    = $this->disq_add_range_fields(
 			esc_html__( 'Stroke Width', 'squad-modules-for-divi' ),
 			array(
 				'description'    => esc_html__( 'Here you can choose stroke width.', 'squad-modules-for-divi' ),
@@ -571,7 +581,7 @@ trait Fields {
 			),
 			$config['fields_after_colors'],
 			array(
-				"{$base_name}_icon_size"    => $this->disq_add_range_field(
+				"{$base_name}_icon_size"    => $this->disq_add_range_fields(
 					esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 					array(
 						'description'     => esc_html__( 'Here you can choose icon size.', 'squad-modules-for-divi' ),
@@ -587,7 +597,7 @@ trait Fields {
 						'depends_show_if' => 'icon',
 					)
 				),
-				"{$base_name}_image_width"  => $this->disq_add_range_field(
+				"{$base_name}_image_width"  => $this->disq_add_range_fields(
 					esc_html__( 'Image Width', 'squad-modules-for-divi' ),
 					array(
 						'description'     => esc_html__( 'Here you can choose image width.', 'squad-modules-for-divi' ),
@@ -602,7 +612,7 @@ trait Fields {
 						'depends_show_if' => 'image',
 					)
 				),
-				"{$base_name}_image_height" => $this->disq_add_range_field(
+				"{$base_name}_image_height" => $this->disq_add_range_fields(
 					esc_html__( 'Image Height', 'squad-modules-for-divi' ),
 					array(
 						'description'     => esc_html__( 'Here you can choose image height.', 'squad-modules-for-divi' ),
@@ -617,7 +627,7 @@ trait Fields {
 						'toggle_slug'     => $config['toggle_slug'],
 					)
 				),
-				"{$base_name}_icon_gap"     => $this->disq_add_range_field(
+				"{$base_name}_icon_gap"     => $this->disq_add_range_fields(
 					esc_html__( 'Gap Between Icon/Image and Text', 'squad-modules-for-divi' ),
 					array(
 						'description'         => esc_html__( 'Here you can choose gap between icon and text.', 'squad-modules-for-divi' ),
@@ -690,7 +700,7 @@ trait Fields {
 						'toggle_slug'      => $config['toggle_slug'],
 					)
 				),
-				"{$base_name}_width"              => $this->disq_add_range_field(
+				"{$base_name}_width"              => $this->disq_add_range_fields(
 					esc_html__( 'Button Width', 'squad-modules-for-divi' ),
 					array(
 						'description'     => esc_html__( 'Adjust the width of the content within the button.', 'squad-modules-for-divi' ),
@@ -725,7 +735,7 @@ trait Fields {
 					esc_html__( 'Icon/Image Margin', 'squad-modules-for-divi' ),
 					array(
 						'description'         => esc_html__(
-							'Here you can define a custom padding size.',
+							'Here you can define a custom padding size for the icon.',
 							'squad-modules-for-divi'
 						),
 						'type'                => 'custom_margin',
@@ -749,7 +759,10 @@ trait Fields {
 				"{$base_name}_padding"     => $this->disq_add_margin_padding_field(
 					esc_html__( 'Button Padding', 'squad-modules-for-divi' ),
 					array(
-						'description' => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+						'description' => esc_html__(
+							'Here you can define a custom padding size for the button.',
+							'squad-modules-for-divi'
+						),
 						'type'        => 'custom_padding',
 						'tab_slug'    => 'advanced',
 						'toggle_slug' => $config['toggle_slug'],

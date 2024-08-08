@@ -2,49 +2,21 @@
 
 namespace DiviSquad\Base;
 
-use function add_action;
-use function esc_attr;
-use function esc_url_raw;
-use function load_plugin_textdomain;
-
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
 /**
  * The Base class for Core
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 abstract class Core {
-
-	/** The instance of the modules class.
+	/**
+	 * The instance of Memory class.
 	 *
-	 * @var \DiviSquad\Manager\Modules
+	 * @var Memory
 	 */
-	protected $modules;
-
-	/** The instance of the extensions class.
-	 *
-	 * @var \DiviSquad\Manager\Extensions
-	 */
-	protected $extensions;
-
-	/** The instance of the modules class for rest API Routes.
-	 *
-	 * @var \DiviSquad\Manager\Rest_API_Routes\Modules
-	 */
-	protected $modules_rest_api_routes;
-
-	/** The instance of the extensions class for rest API Routes.
-	 *
-	 * @var \DiviSquad\Manager\Rest_API_Routes\Extensions
-	 */
-	protected $extensions_rest_api_routes;
+	protected $memory;
 
 	/**
 	 * The Plugin name.
@@ -56,89 +28,42 @@ abstract class Core {
 	protected $name;
 
 	/**
-	 * The Plugin Version.
-	 *
-	 * @since 1.4.5
-	 *
-	 * @var string
-	 */
-	protected $version;
-
-	/**
 	 * The plugin option prefix
 	 *
 	 * @since 1.0.0
 	 *
 	 * @var string
 	 */
-	protected $opt_prefix;
+	protected $option_prefix;
 
 	/**
-	 * The Script handle the text domain will be attached to.
+	 * Plugin version
 	 *
 	 * @var string
 	 */
-	protected $localize_handle;
+	protected $version;
 
 	/**
-	 * The full file path to the directory containing translation files.
+	 * Minimum version of Divi Theme
 	 *
 	 * @var string
 	 */
-	protected $localize_path;
+	protected $min_version_divi;
 
 	/**
-	 * Initialize the plugin with required components.
+	 * Minimum version of PHP
 	 *
-	 * @param array $options Options.
-	 *
-	 * @return void
+	 * @var string
 	 */
-	abstract protected function init( $options = array() );
+	protected $min_version_php;
 
 	/**
-	 * Load all core components.
+	 * Minimum version of WordPress
 	 *
-	 * @return void
+	 * @var string
 	 */
-	abstract protected function load_core_components();
+	protected $min_version_wp;
 
-	/**
-	 * Register all rest api routes.
-	 *
-	 * @return void
-	 */
-	abstract protected function register_ajax_rest_api_routes();
-
-	/**
-	 * Load all extensions.
-	 *
-	 * @return void
-	 */
-	abstract protected function load_all_extensions();
-
-	/**
-	 * Load all divi modules.
-	 *
-	 * @return void
-	 */
-	abstract protected function load_divi_modules_for_builder();
-
-	/**
-	 * Get the instance of memory.
-	 *
-	 * @return \DiviSquad\Base\Memory
-	 */
-	abstract public function get_memory();
-
-	/**
-	 * Set the instance of memory.
-	 *
-	 * @param string $prefix The prefix name for the plugin settings option.
-	 *
-	 * @return \DiviSquad\Base\Memory
-	 */
-	abstract public function set_memory( $prefix );
 
 	/**
 	 * Get the plugin name.
@@ -150,57 +75,43 @@ abstract class Core {
 	}
 
 	/**
-	 * The full file path to the directory containing translation files.
-	 *
-	 * @return string
-	 */
-	public function get_localize_path() {
-		return $this->localize_path;
-	}
-
-	/**
 	 * Get the plugin option prefix.
 	 *
 	 * @return string
 	 */
 	public function get_option_prefix() {
-		return $this->opt_prefix;
+		return $this->option_prefix;
 	}
 
 	/**
-	 * Get the instance of modules.
+	 * Get the instance of memory.
 	 *
-	 * @return \DiviSquad\Manager\Modules
+	 * @return Memory
 	 */
-	public function get_modules() {
-		return $this->modules;
+	public function get_memory() {
+		return $this->memory;
 	}
 
 	/**
-	 * Get the instance of extensions.
+	 * Define the general constants for the plugin
 	 *
-	 * @return \DiviSquad\Manager\Extensions
+	 * @return void
 	 */
-	public function get_extensions() {
-		return $this->extensions;
+	protected function define_general_constants() {
+		define( 'DISQ_VERSION', $this->version );
+		define( 'DISQ_MINIMUM_DIVI_VERSION', $this->min_version_divi );
+		define( 'DISQ_MINIMUM_DIVI_BUILDER_VERSION', $this->min_version_divi );
+		define( 'DISQ_MINIMUM_PHP_VERSION', $this->min_version_php );
+		define( 'DISQ_MINIMUM_WP_VERSION', $this->min_version_wp );
 	}
 
 	/**
-	 * The instance of the modules class for rest API Routes.
+	 * Load the memory instance.
 	 *
-	 * @return \DiviSquad\Manager\Rest_API_Routes\Modules
+	 * @return void
 	 */
-	public function get_modules_rest_api_routes() {
-		return $this->modules_rest_api_routes;
-	}
-
-	/**
-	 * The instance of the extensions class for rest API Routes.
-	 *
-	 * @return \DiviSquad\Manager\Rest_API_Routes\Extensions
-	 */
-	public function get_extensions_rest_api_routes() {
-		return $this->extensions_rest_api_routes;
+	protected function load_memory() {
+		$this->memory = Memory::get_instance( $this->option_prefix );
 	}
 
 	/**
@@ -218,8 +129,7 @@ abstract class Core {
 	 * @return void
 	 */
 	public function hook_deactivation() {
-		$this->get_memory()->set( 'version', $this->get_version() );
-		$this->get_memory()->set( 'deactivation_time', time() );
+		$this->memory->set( 'deactivation_time', time() );
 	}
 
 	/**
@@ -228,28 +138,26 @@ abstract class Core {
 	 * @return void
 	 */
 	protected function load_global_assets() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'wp_hook_enqueue_admin_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'wp_hook_enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'wp_hook_enqueue_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_hook_enqueue_scripts' ) );
-
-		if ( isset( $_GET['et_fb'] ) && '1' === $_GET['et_fb'] ) { // phpcs:ignore
-			add_action( 'wp_enqueue_scripts', array( $this, 'wp_hook_enqueue_admin_scripts' ) );
-		}
 	}
 
 	/**
-	 * Load css variables in the admin panel.
+	 * Load css variables in the frontend and admin panel.
 	 *
 	 * @return void
 	 */
-	public function wp_hook_enqueue_admin_scripts() {
+	public function wp_hook_enqueue_scripts() {
 		// Set current required data into variables.
-		$logo_fill_colord  = DISQ_DIR_URL . 'build/admin/images/divi-squad-default.png';
-		$logo_fill_default = DISQ_DIR_URL . 'build/admin/images/divi-squad-menu-default.png';
-		$logo_fill_active  = DISQ_DIR_URL . 'build/admin/images/divi-squad-menu-active.png';
-		$logo_fill_focus   = DISQ_DIR_URL . 'build/admin/images/divi-squad-menu-focus.png';
+		$admin_page_id     = 'divi_squad_assets_backend';
+		$logo_fill_colord  = DISQ_DIR_URL . 'build/assets/logos/defaults/divi-squad-fill-colord.png';
+		$logo_fill_default = DISQ_DIR_URL . 'build/assets/logos/menu-icons/default.png';
+		$logo_fill_active  = DISQ_DIR_URL . 'build/assets/logos/menu-icons/active.png';
+		$logo_fill_focus   = DISQ_DIR_URL . 'build/assets/logos/menu-icons/focus.png';
 
 		// Start style tag.
-		printf( '<style id="divi_squad_admin_assets_backend-css" type="text/css">' );
+		printf( '<style id="%1$s">', esc_attr( $admin_page_id ) );
 		// Start class selector.
 		print '#toplevel_page_divi_squad_dashboard div.wp-menu-image:before,.et-fb-settings-options-tab.et-fb-modules-list ul li.et_fb_divi_squad_modules.et_pb_folder {';
 
@@ -266,60 +174,46 @@ abstract class Core {
 	}
 
 	/**
-	 * Load css variables in the frontend.
-	 *
-	 * @return void
-	 */
-	public function wp_hook_enqueue_scripts() {}
-
-	/**
 	 * Set the localize data.
 	 *
-	 * @return void
+	 * @return array
 	 */
 	public function localize_scripts_data() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'wp_hook_enqueue_localize_data' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_hook_enqueue_localize_data' ) );
+		return array(
+			'frontend' => array(
+				'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
+				'assetsUrl' => DISQ_ASSET_URL . 'assets/',
+			),
+			'builder'  => array(),
+		);
 	}
 
 	/**
-	 * Load the localized data in the frontend and admin panel.
+	 * Load the localize data in the frontend and admin panel.
 	 *
 	 * @return void
 	 */
 	public function wp_hook_enqueue_localize_data() {
-		global $wp_version;
+		// Set current required data into variables.
+		$admin_page_id = 'divi_squad_assets_backend_extra';
 
 		// Start script tag.
-		printf( '<script id="divi_squad_assets_backend_extra-js" type="application/javascript">' );
+		printf( '<script id="%1$s" type="application/javascript">', esc_attr( $admin_page_id ) );
 
-		$assets_backend_data_defaults = array(
-			'site_type'  => is_multisite() ? 'multi' : 'default',
-			'ajax_url'   => admin_url( 'admin-ajax.php' ),
-			'assets_url' => DISQ_ASSET_URL . 'assets/',
-			'wp_version' => $wp_version,
+		printf(
+			'var DiviSquadExtra = %1$s',
+			wp_json_encode(
+				array(
+					'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
+					'assetsUrl' => DISQ_ASSET_URL . 'assets/',
+				)
+			)
 		);
-
-		$assets_backend_data  = apply_filters( 'divi_squad_assets_backend_extra_data', $assets_backend_data_defaults );
-		$assets_backend_extra = apply_filters( 'divi_squad_assets_backend_extra', sprintf( 'window.DiviSquadExtra = %1$s;', wp_json_encode( $assets_backend_data ) ) );
-
-		print wp_kses_data( $assets_backend_extra );
 
 		// End script tag.
 		print '</script>';
 	}
 
-	/**
-	 * Localizes a script.
-	 *
-	 * Works only if the script has already been registered.
-	 *
-	 * @param string $object_name Name for the JavaScript object. Passed directly, so it should be qualified JS variable.
-	 * @param array  $l10n        The data itself. The data can be either a single or multidimensional array.
-	 *
-	 * @return string Localizes a script.
-	 */
-	public function localize_script( $object_name, $l10n ) {
-		return sprintf( 'window.%1$s = %2$s;', $object_name, wp_json_encode( $l10n ) );
-	}
 }

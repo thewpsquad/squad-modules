@@ -1,35 +1,23 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
-
 /**
  * Builder Module Helper Class which help to the all module class.
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 
 namespace DiviSquad\Base\BuilderModule\Traits;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
-use function esc_html;
-use function et_builder_get_element_style_css;
-use function et_pb_get_responsive_status;
-use function et_pb_hover_options;
-use function et_pb_responsive_options;
-use function wp_parse_args;
+use ET_Builder_Element;
 
 /**
  * Field Processor class.
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
+ * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
 trait Field_Processor {
@@ -291,7 +279,7 @@ trait Field_Processor {
 	/**
 	 * Collect icon prop width event if responsive mode.
 	 *
-	 * @param array $props   List of attributes.
+	 * @param array $props          List of attributes.
 	 * @param array $options Options of current width.
 	 *
 	 * @return array
@@ -350,7 +338,7 @@ trait Field_Processor {
 	/**
 	 * Collect the value of any props for Icon on hover effect.
 	 *
-	 * @param array $props   List of attributes.
+	 * @param array $props          List of attributes.
 	 * @param array $options Options of current width.
 	 *
 	 * @return string
@@ -377,7 +365,7 @@ trait Field_Processor {
 		}
 
 		// Generate actual value.
-		$field_value          = $this->disq_collect_prop_mapping_value( $options, $default_value );
+		$field_value          = $this->collect_prop_mapping_value( $options, $default_value );
 		$clean_default_value  = str_replace( $options['allowed_units'], '', $options['default_width'] );
 		$increased_value_data = (int) $clean_default_value + (int) $options['default_unit_value'];
 
@@ -388,12 +376,12 @@ trait Field_Processor {
 	/**
 	 * Collect any props value from mapping values.
 	 *
-	 * @param array  $options       The option array data.
+	 * @param array  $options The option array data.
 	 * @param string $current_value The current field value.
 	 *
 	 * @return mixed
 	 */
-	protected function disq_collect_prop_mapping_value( $options, $current_value ) {
+	protected function collect_prop_mapping_value( $options, $current_value ) {
 		if ( ! empty( $options['mapping_values'] ) && array() !== $options['mapping_values'] ) {
 			if ( is_callable( $options['mapping_values'] ) ) {
 				return $options['mapping_values']( $current_value );
@@ -416,13 +404,12 @@ trait Field_Processor {
 	protected function disq_process_margin_padding_styles( $options = array() ) {
 		// Initiate default values for current options.
 		$default = array(
-			'field'          => '',
-			'selector'       => '',
-			'type'           => '',
-			'css_property'   => '',
-			'hover'          => '',
-			'hover_selector' => '',
-			'important'      => true,
+			'field'        => '',
+			'selector'     => '',
+			'type'         => '',
+			'css_property' => '',
+			'hover'        => '',
+			'important'    => true,
 		);
 		$options = wp_parse_args( $options, $default );
 
@@ -444,15 +431,17 @@ trait Field_Processor {
 
 		// Set size for button icon or image with font-size and width style in responsive mode.
 		if ( et_pb_get_responsive_status( $value_last_edited ) && '' !== implode( '', $value_responsive_values ) ) {
-			$collected_responsive_values = array();
-			foreach ( $value_responsive_values as $key => $current_value ) {
-				$collected_responsive_values[ $key ] = $this->disq_collect_prop_mapping_value( $options, $current_value );
-			}
+			$value_responsive_values = array_map(
+				function ( $current_value ) use ( $options ) {
+					return $this->collect_prop_mapping_value( $options, $current_value );
+				},
+				$value_responsive_values
+			);
 
 			// set styles in responsive mode.
 			$this->disq_process_responsive_styles(
 				array(
-					'responsive_values' => $collected_responsive_values,
+					'responsive_values' => $value_responsive_values,
 					'selector'          => $options['selector'],
 					'type'              => $options['type'],
 					'css_property'      => $options['css_property'],
@@ -466,7 +455,7 @@ trait Field_Processor {
 				array(
 					'selector'    => $options['selector'],
 					'declaration' => et_builder_get_element_style_css(
-						esc_html( $this->disq_collect_prop_mapping_value( $options, $value_default ) ),
+						esc_html( $this->collect_prop_mapping_value( $options, $value_default ) ),
 						$css_prop,
 						$options['important']
 					),
@@ -475,16 +464,16 @@ trait Field_Processor {
 		}
 
 		// Hover style.
-		$hover_selector = isset( $options['hover_selector'] ) ? $options['hover_selector'] : $options['hover'];
-		if ( isset( $hover_selector ) && '' !== $margin_padding_hover ) {
+		if ( isset( $options['hover'] ) && '' !== $margin_padding_hover ) {
 			$hover_style = array(
-				'selector'    => $hover_selector,
+				'selector'    => $options['hover'],
 				'declaration' => et_builder_get_element_style_css(
-					esc_html( $this->disq_collect_prop_mapping_value( $options, $margin_padding_hover ) ),
+					esc_html( $this->collect_prop_mapping_value( $options, $margin_padding_hover ) ),
 					$css_prop,
 					$options['important']
 				),
 			);
+
 			self::set_style( $this->slug, $hover_style );
 		}
 	}
@@ -542,7 +531,7 @@ trait Field_Processor {
 			);
 
 			if ( 'on' === $this->props[ $options['base_attr_name'] . '_bg_clip__enable' ] ) {
-				self::set_style(
+				ET_Builder_Element::set_style(
 					$this->slug,
 					array(
 						'selector'    => $options['selector'],

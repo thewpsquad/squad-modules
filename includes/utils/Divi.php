@@ -1,29 +1,10 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
-/**
- * Divi helper.
- *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
- */
-
 namespace DiviSquad\Utils;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
 use function et_get_dynamic_assets_path;
-use function et_pb_maybe_fa_font_icon;
 use function et_use_dynamic_icons;
-use function add_filter;
-use function get_option;
-use function get_template;
-use function wp_get_theme;
-use function wp_get_themes;
+use function et_pb_maybe_fa_font_icon;
 
 /**
  * Divi class.
@@ -34,22 +15,14 @@ use function wp_get_themes;
 class Divi {
 
 	/**
-	 * Get unicode icon data
+	 * Collect icon type from Divi formatted value.
 	 *
-	 * @param string $icon_value Icon font value.
+	 * @param string $icon_value Divi formatted value for Icon.
 	 *
-	 * @return string Icon data
+	 * @return string
 	 */
-	public static function get_icon_data_to_unicode( $icon_value ) {
-		if ( ! empty( $icon_value ) ) {
-			$icon_all_data = explode( '||', $icon_value );
-			$icon_data     = array_shift( $icon_all_data );
-			$icon_data     = str_replace( ';', '', $icon_data );
-
-			return str_replace( '&#x', '\\', $icon_data );
-		} else {
-			return '';
-		}
+	public static function get_icon_type( $icon_value ) {
+		return $icon_value && strpos( $icon_value, 'fa' ) !== - 1 ? 'fa' : 'divi';
 	}
 
 	/**
@@ -108,4 +81,5 @@ class Divi {
 			}
 		}
 	}
+
 }

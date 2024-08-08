@@ -1,124 +1,137 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
-
 /**
- * Squad Modules Lite
+ * Squad Modules for Divi
  *
- * @package     DiviSquad
- * @author      WP Squad <support@squadmodules.com>
- * @copyright   2023-2024 WP Squad (https://thewpsquad.com/)
+ * @package     divi-squad
+ * @author      WP Squad <support@thewpsquad.com>
+ * @license     GPL-3.0-only
  *
  * @wordpress-plugin
- * Plugin Name:         Squad Modules Lite
+ * Plugin Name:         Squad Modules for Divi
  * Plugin URI:          https://squadmodules.com/
- * Description:         The Advanced Divi plugin you install after Divi or Extra Theme!
- * Version:             3.1.3
- * Requires at least:   5.0.0
- * Requires PHP:        5.6.40
+ * Description:         Enhance your Divi-powered websites with an elegant collection of Divi modules.
+ * Requires at least:   5.8
+ * Requires PHP:        5.6
+ * Version:             1.0.0
  * Author:              WP Squad
- * Author URI:          https://squadmodules.com/
- * License:             GPL-3.0-only
- * License URI:         https://www.gnu.org/licenses/gpl-3.0.en.html
+ * Author URI:          https://thewpsquad.com/
  * Text Domain:         squad-modules-for-divi
  * Domain Path:         /languages
- *
- * Copyright 2023-2024 WP Squad (https://thewpsquad.com/)
+ * License:             GPL-3.0-only
+ * License URI:         https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
+namespace DiviSquad;
 
-/**
- * Autoload function for non-deprecated classes.
- *
- * @param string $class_name Class name.
- *
- * @return void
- */
-spl_autoload_register(
-	static function ( $class_name ) {
-		// Bail out if the class name doesn't start with our prefix.
-		if ( 0 !== strpos( $class_name, 'DiviSquad\\' ) ) {
-			return;
-		}
+defined( 'ABSPATH' ) || die();
 
-		// Replace the namespace separator with the path prefix and the directory separator.
-		$class_path = str_replace( 'DiviSquad\\', '', $class_name );
-		$valid_path = str_replace( array( '\\', '//' ), DIRECTORY_SEPARATOR, $class_path );
-
-		// Add the includes directory and the .php extension.
-		$valid_path = 'includes/' . $valid_path;
-		$class_file = realpath( __DIR__ . "/$valid_path.php" );
-		if ( file_exists( $class_file ) ) {
-			require_once $class_file;
-		}
-	}
-);
-
-if ( ! class_exists( DiviSquad\SquadModules::class ) ) {
+// Verify the composer autoload file is existed or not.
+if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	return;
 }
 
-// Define the core constants.
-define( 'DIVI_SQUAD__FILE__', __FILE__ );
+// Load the composer autoload file.
+require __DIR__ . '/vendor/autoload.php';
 
-try {
+/**
+ * Free Plugin Load class.
+ *
+ * @since           1.0.0
+ * @package         squad-modules-for-divi
+ * @author          WP Squad <support@thewpsquad.com>
+ * @license         GPL-3.0-only
+ */
+final class SquadModules extends Integration\Core {
 
 	/**
-	 * Helper function to get the Divi Squad Plugin instance.
+	 * The instance of current class.
 	 *
-	 * @return DiviSquad\SquadModules
+	 * @var self
 	 */
-	function divi_squad() {
-		return DiviSquad\SquadModules::get_instance();
+	private static $instance;
+
+	/**
+	 * Constructor.
+	 */
+	public function __construct() {
+		$this->name             = 'squad-modules-for-divi';
+		$this->option_prefix    = 'disq';
+		$this->version          = '1.0.0';
+		$this->min_version_divi = '4.0.0';
+		$this->min_version_php  = '5.6';
+		$this->min_version_wp   = '5.8';
 	}
 
-	if ( is_admin() ) {
-		// Special logic for premium only plugin
-		if ( function_exists( 'divi_squad_fs' ) ) {
-			// Declare the plugin as premium only.
-			divi_squad_fs()->set_basename( false, __FILE__ );
-		} else {
-			/**
-			 * Initialize Freemius SDK.
-			 *
-			 * @return bool|\Freemius
-			 * @throws Exception If the SDK cannot be initialized.
-			 */
-			function divi_squad_fs() {
-				global $divi_squad_fs;
+	/**
+	 * Define the core constants.
+	 *
+	 * @return void
+	 */
+	private function define_core_constants() {
+		define( 'DISQ__FILE__', __FILE__ );
+		define( 'DISQ_PLUGIN_BASE', plugin_basename( DISQ__FILE__ ) );
+		define( 'DISQ_DIR_PATH', dirname( DISQ__FILE__ ) );
+		define( 'DISQ_DIR_URL', plugin_dir_url( DISQ__FILE__ ) );
+		define( 'DISQ_ASSET_URL', trailingslashit( DISQ_DIR_URL . 'build' ) );
+	}
 
-				if ( ! isset( $divi_squad_fs ) ) {
-					$squad_publisher = new DiviSquad\Integrations\Publisher();
-					$divi_squad_fs   = $squad_publisher->get_fs();
+	/**
+	 * Get the plugin name for the pro-version
+	 *
+	 * @return bool
+	 */
+	public static function is_the_pro_plugin_active() {
+		return defined( '\DISQ_PRO_PLUGIN_BASE' ) && Utils\Helper::is_plugin_active( DISQ_PRO_PLUGIN_BASE );
+	}
+
+	/**
+	 *  The instance of current class.
+	 *
+	 * @return self
+	 */
+	public static function get_instance() {
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof self ) ) {
+			self::$instance = new self();
+			self::$instance->define_general_constants();
+			self::$instance->define_core_constants();
+			self::$instance->load_memory();
+
+			// Load the core.
+			$wp = Integration\WP::get_instance( self::$instance->min_version_php );
+			$wp->let_the_journey_start(
+				static function () {
+						self::$instance->load_global_assets();
+						self::$instance->localize_scripts_data();
+						self::$instance->load_admin_interface();
+						self::$instance->register_ajax_rest_api_routes();
+						self::$instance->init();
+						self::$instance->load_text_domain();
+						self::$instance->load_divi_modules_for_builder();
 				}
-
-				return $divi_squad_fs;
-			}
-
-			// Init Freemius.
-			divi_squad_fs();
-
-			/**
-			 * Fires after the Freemius SDK is loaded.
-			 *
-			 * @since 3.0.0
-			 */
-			do_action( 'divi_squad_fs_loaded' );
+			);
 		}
+
+		return self::$instance;
 	}
-
-	/**
-	 * Fires before the plugin is loaded.
-	 *
-	 * @since 3.1.0
-	 */
-	do_action( 'divi_squad_before_loaded' );
-
-	// Load the plugin.
-	divi_squad();
-} catch ( Exception $e ) {
-	// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
-	error_log( 'SQUAD ERROR: ' . $e->getMessage() );
-	// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
 }
+
+/**
+ * Get the plugin name for the pro-version
+ *
+ * @return bool
+ */
+function is_the_pro_plugin_active() {
+	return defined( '\DISQ_PRO_PLUGIN_BASE' ) && Utils\Helper::is_plugin_active( DISQ_PRO_PLUGIN_BASE );
+}
+
+/**
+ * The instance of Divi Squad Plugin (Free).
+ *
+ * @return SquadModules
+ */
+function divi_squad() {
+	return SquadModules::get_instance();
+}
+
+// Load the plugin.
+divi_squad();

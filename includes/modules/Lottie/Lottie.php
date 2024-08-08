@@ -1,5 +1,4 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
-
 /**
  * Lottie Image Module Class which extend the Divi Builder Module Class.
  *
@@ -7,26 +6,15 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@thewpsquad.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\Lottie;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die( 'Direct access forbidden.' );
-}
-
-use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
+use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Helper;
-use DiviSquad\Utils\Module;
 use ET_Builder_Module_Helper_MultiViewOptions;
-use function esc_html__;
-use function esc_attr__;
-use function wp_enqueue_script;
-use function et_core_esc_previously;
-use function et_pb_multi_view_options;
-use function wp_json_encode;
 
 /**
  * Lottie Image Module Class.
@@ -34,7 +22,8 @@ use function wp_json_encode;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class Lottie extends Squad_Divi_Builder_Module {
+class Lottie extends DISQ_Builder_Module {
+
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -43,9 +32,10 @@ class Lottie extends Squad_Divi_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name      = esc_html__( 'Lottie Image', 'squad-modules-for-divi' );
-		$this->plural    = esc_html__( 'Lottie Images', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/lottie.svg' );
+		$this->name   = esc_html__( 'Lottie Image', 'squad-modules-for-divi' );
+		$this->plural = esc_html__( 'Lottie Images', 'squad-modules-for-divi' );
+
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/lottie.svg' );
 
 		$this->slug       = 'disq_lottie';
 		$this->vb_support = 'on';
@@ -70,14 +60,42 @@ class Lottie extends Squad_Divi_Builder_Module {
 			),
 		);
 
+		$default_css_selectors = $this->disq_get_module_default_selectors();
+
 		// Declare advanced fields for the module.
 		$this->advanced_fields = array(
-			'background'     => Module::selectors_background( $this->main_css_element ),
-			'borders'        => array( 'default' => Module::selectors_default( $this->main_css_element ) ),
-			'box_shadow'     => array( 'default' => Module::selectors_default( $this->main_css_element ) ),
-			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
-			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
-			'height'         => Module::selectors_default( $this->main_css_element ),
+			'background'     => array_merge(
+				$default_css_selectors,
+				array(
+					'settings' => array(
+						'color' => 'alpha',
+					),
+				)
+			),
+			'borders'        => array(
+				'default' => $default_css_selectors,
+			),
+			'box_shadow'     => array(
+				'default' => $default_css_selectors,
+			),
+			'margin_padding' => array(
+				'use_padding' => true,
+				'use_margin'  => true,
+				'css'         => array(
+					'margin'    => $this->main_css_element,
+					'padding'   => $this->main_css_element,
+					'important' => 'all',
+				),
+			),
+			'max_width'      => array_merge(
+				$default_css_selectors,
+				array(
+					'css' => array(
+						'module_alignment' => "$this->main_css_element.et_pb_module",
+					),
+				)
+			),
+			'height'         => $default_css_selectors,
 			'image_icon'     => false,
 			'filters'        => false,
 			'fonts'          => false,
@@ -242,15 +260,15 @@ class Lottie extends Squad_Divi_Builder_Module {
 					'toggle_slug'         => 'lottie_animation',
 				)
 			),
-			'lottie_loop_no_times'   => $this->disq_add_range_field(
+			'lottie_loop_no_times'   => $this->disq_add_range_fields(
 				esc_html__( 'Amount Of Loops', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'This option is only available if Yes is selected for Loop. Enter the number of times you wish to have the animation loop before stopping.', 'squad-modules-for-divi' ),
 					'range_settings'   => array(
 						'min_limit' => '0',
 						'min'       => '0',
-						'max_limit' => '100',
-						'max'       => '100',
+						'max_limit' => '10',
+						'max'       => '10',
 						'step'      => '1',
 					),
 					'validate_unit'    => false,
@@ -265,7 +283,7 @@ class Lottie extends Squad_Divi_Builder_Module {
 					'mobile_options' => false,
 				)
 			),
-			'lottie_delay'           => $this->disq_add_range_field(
+			'lottie_delay'           => $this->disq_add_range_fields(
 				esc_html__( 'Delay', 'squad-modules-for-divi' ),
 				array(
 					'description'         => esc_html__( 'Delay the lottie animation (in ms).', 'squad-modules-for-divi' ),
@@ -288,7 +306,7 @@ class Lottie extends Squad_Divi_Builder_Module {
 					'mobile_options' => false,
 				)
 			),
-			'lottie_speed'           => $this->disq_add_range_field(
+			'lottie_speed'           => $this->disq_add_range_fields(
 				esc_html__( 'Animation Speed', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'The speed of the animation.', 'squad-modules-for-divi' ),
@@ -361,13 +379,16 @@ class Lottie extends Squad_Divi_Builder_Module {
 			'lottie_color'  => $this->disq_add_color_field(
 				esc_html__( 'Lottie Color', 'squad-modules-for-divi' ),
 				array(
-					'description'     => esc_html__( 'Here you can define a custom color for lottie image.', 'squad-modules-for-divi' ),
+					'description'     => esc_html__(
+						'Here you can define a custom color for lottie image.',
+						'squad-modules-for-divi'
+					),
 					'depends_show_if' => 'lottie',
 					'tab_slug'        => 'advanced',
 					'toggle_slug'     => 'lottie_image',
 				)
 			),
-			'lottie_width'  => $this->disq_add_range_field(
+			'lottie_width'  => $this->disq_add_range_fields(
 				esc_html__( 'Lottie Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose lottie width.', 'squad-modules-for-divi' ),
@@ -378,14 +399,15 @@ class Lottie extends Squad_Divi_Builder_Module {
 						'max'       => '200',
 						'step'      => '1',
 					),
-					'default_unit'    => 'px',
-					'hover'           => false,
 					'depends_show_if' => 'lottie',
 					'tab_slug'        => 'advanced',
 					'toggle_slug'     => 'lottie_image',
+				),
+				array(
+					'use_hover' => false,
 				)
 			),
-			'lottie_height' => $this->disq_add_range_field(
+			'lottie_height' => $this->disq_add_range_fields(
 				esc_html__( 'Lottie Height', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose lottie height.', 'squad-modules-for-divi' ),
@@ -396,11 +418,12 @@ class Lottie extends Squad_Divi_Builder_Module {
 						'max'       => '200',
 						'step'      => '1',
 					),
-					'default_unit'    => 'px',
 					'depends_show_if' => 'lottie',
-					'hover'           => false,
 					'tab_slug'        => 'advanced',
 					'toggle_slug'     => 'lottie_image',
+				),
+				array(
+					'use_hover' => false,
 				)
 			),
 		);
@@ -417,13 +440,23 @@ class Lottie extends Squad_Divi_Builder_Module {
 	 *
 	 * Add form field options group and background image on the field list.
 	 *
+	 * @ref   wp-content/plugins/divi-builder/includes/builder/class-et-builder-element.php:8582
+	 *
 	 * @since 1.0.0
 	 */
 	public function get_transition_fields_css_props() {
-		$fields                  = parent::get_transition_fields_css_props();
-		$fields['lottie_color']  = array( 'fill' => "$this->main_css_element .disq-lottie-wrapper .lottie-image svg path" );
-		$fields['lottie_width']  = array( 'width' => "$this->main_css_element .disq-lottie-wrapper .lottie-image" );
-		$fields['lottie_height'] = array( 'height' => "$this->main_css_element .disq-lottie-wrapper .lottie-image" );
+		$fields                 = parent::get_transition_fields_css_props();
+		$fields['lottie_color'] = array(
+			'fill' => "$this->main_css_element .disq-lottie-wrapper .lottie-image svg path",
+		);
+
+		$fields['lottie_width'] = array(
+			'width' => "$this->main_css_element .disq-lottie-wrapper .lottie-image",
+		);
+
+		$fields['lottie_height'] = array(
+			'height' => "$this->main_css_element .disq-lottie-wrapper .lottie-image",
+		);
 
 		return $fields;
 	}
@@ -457,7 +490,7 @@ class Lottie extends Squad_Divi_Builder_Module {
 	 */
 	private function disq_render_lottie( $multi_view ) {
 		if ( '' !== $this->props['lottie_src_type'] && ( '' !== $this->props['lottie_src_upload'] || '' !== $this->props['lottie_src_remote'] ) ) {
-			$lottie_image_classes = array( 'disq-lottie-player', 'lottie-player-container' );
+			$lottie_image_classes = array( 'disq_lottie_player', 'lottie-player-container' );
 
 			$lottie_type     = isset( $this->props['lottie_src_type'] ) ? $this->props['lottie_src_type'] : '';
 			$lottie_src_prop = 'local' === $lottie_type ? '{{lottie_src_upload}}' : '{{lottie_src_remote}}';
@@ -466,7 +499,7 @@ class Lottie extends Squad_Divi_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'lottie_color',
-					'selector'       => "$this->main_css_element .disq-lottie-wrapper .disq-lottie-player svg path",
+					'selector'       => "$this->main_css_element .disq-lottie-wrapper .disq_lottie_player svg path",
 					'css_property'   => 'fill',
 					'render_slug'    => $this->slug,
 					'type'           => 'color',
@@ -477,7 +510,7 @@ class Lottie extends Squad_Divi_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'lottie_width',
-					'selector'       => "$this->main_css_element .disq-lottie-wrapper .disq-lottie-player",
+					'selector'       => "$this->main_css_element .disq-lottie-wrapper .disq_lottie_player",
 					'css_property'   => 'width',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',
@@ -488,7 +521,7 @@ class Lottie extends Squad_Divi_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'lottie_height',
-					'selector'       => "$this->main_css_element .disq-lottie-wrapper .disq-lottie-player",
+					'selector'       => "$this->main_css_element .disq-lottie-wrapper .disq_lottie_player",
 					'css_property'   => 'height',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',
@@ -531,6 +564,7 @@ class Lottie extends Squad_Divi_Builder_Module {
 
 		return null;
 	}
+
 }
 
 new Lottie();
