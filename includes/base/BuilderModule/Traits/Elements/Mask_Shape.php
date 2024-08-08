@@ -551,5 +551,4 @@ trait Mask_Shape {
 				);
 		}
 	}
-
 }

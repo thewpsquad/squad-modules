@@ -1,11 +1,11 @@
 === Squad Modules for Divi Builder ===
 Contributors: wpsquad, mralaminahamed
 Donate link: https://squadmodules.com/
-Tags: divi, divi module, divi theme, divi builder, divi extensions, divi plugin, divi page builder, extra theme, divi extensions, divi addons, divi modules
+Tags: divi, divi module, divi theme, divi page builder, divi builder, extra theme, divi extensions, divi addons, divi plugin, divi modules
 Requires at least: 5.8
-Tested up to: 6.3
+Tested up to: 6.4
 Requires PHP: 5.6
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -16,9 +16,10 @@ Enhance your Divi-powered websites with an elegant collection of Divi modules.
 == Description ==
 [Squad Modules for Divi Builder](https://squadmodules.com/) is a powerful and versatile Divi modules pack designed to enhance your Divi-powered websites. It offers a collection of elegant and professionally crafted modules that will elevate the visual appeal and functionality of your Divi Theme, Extra Theme, even Divi Builder Plugin.
 
+Check out the [Squad Modules for Divi Builder](https://squadmodules.com/).
+
 With [Squad Modules for Divi Builder](https://squadmodules.com/), you can effortlessly create stunning layouts, add interactive elements, and engage your website visitors like never before. Each module is meticulously designed to ensure seamless integration with the Divi Builder and provide a smooth editing experience.
 
-Check out the [Squad Modules for Divi Builder](https://squadmodules.com/).
 
 
 == Features ==
@@ -31,7 +32,7 @@ Check out the [Squad Modules for Divi Builder](https://squadmodules.com/).
 
 
 
-== 9+ free modules and counting ==
+== 13+ free modules and counting ==
 1. **Advanced Divider Module**: Create visually appealing dividers with various styles, shapes, and customization options. Add elegance and sophistication to your page layouts with beautifully designed dividers that separate content sections.
 2. **Before After Image Slider**: Engage your visitors with interactive image comparisons using the Before After Image Slider module. Showcasing before and after images is made easy with the ability to control the slide position and transition effects.
 3. **Business Hours**: Display your business hours in a clear and organized manner. This module allows you to showcase your opening and closing hours, days of the week, and any special holiday hours.
@@ -41,10 +42,20 @@ Check out the [Squad Modules for Divi Builder](https://squadmodules.com/).
 7. **Lottie Animation**: Bring your website to life with captivating Lottie animations. The Lottie Animation module allows you to easily integrate animated elements into your web pages, making your website more engaging and dynamic.
 8. **Post Grid**: Display your blog posts, portfolio items, or custom post types in a stylish and organized grid layout. The Post Grid module provides flexibility and customization options to showcase your content in an appealing manner.
 9. **Typing Text**: Create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
+10. **Image Gallery**: Showcase your visuals with elegance using the Image Gallery module from Squad Modules for Divi. Effortlessly create stunning galleries to engage and captivate your audience.
+11. Form Styler: Contact Form 7**: Elevate the design of your Contact Form 7 with the Form Styler module from Squad Modules for Divi. Craft sleek and eye-catching forms to enhance user engagement.
+12. Form Styler: WP Forms**: Transform your WP Forms into visual delights using the Form Styler module from Squad Modules for Divi. Create appealing forms that resonate with your brand's aesthetics.
+13. Form Styler: Gravity Forms**: Give your Gravity Forms a stylish makeover with the Form Styler module from Squad Modules for Divi. Design forms that seamlessly integrate with your website's look and feel.
 
-Many more Divi Modules coming soon…
+=== 4 Divi Squad Extensions ===
+1. **Divi Library Shortcode**: This will add a shortcode column in the Divi Library. Use that Divi shortcode to display your layout in any Divi module or even your PHP file by using [divi_library_layout id=””] or [disq_divi_library_layout id=”123”].
+2. **Font Upload**: Personalize your website typography by uploading custom fonts with the Font Upload extension from Squad Modules for Divi Builder. Achieve a unique and consistent visual identity.
+3. **JSON Upload**: Streamline your website building process with the JSON Upload extension from Squad Modules for Divi Builder. Effortlessly import and export layouts, settings, and more using JSON files.
+4. **SVG Upload**: Add a touch of creativity to your site with the SVG Upload extension from Squad Modules for Divi Builder. Seamlessly incorporate custom SVG graphics for a distinctive look and feel.
 
-Check out the [Squad Modules for Divi Builder](https://squadmodules.com/#modules) demos.
+Many more Divi Modules and Extensions coming soon…
+
+Check out the [Squad Modules for Divi Builder](https://squadmodules.com/) demos.
 
 
 
@@ -119,18 +130,27 @@ If you encounter any issues or have questions about [Squad Modules for Divi Buil
 == Screenshots ==
 1. Plugin Dashboard - The [Squad Modules for Divi Builder](https://squadmodules.com/) dashboard for convenient module management and settings.
 2. Module Dashboard - The dashboard where you can manage and configure [Squad Modules for Divi Builder](https://squadmodules.com/) modules.
-3. Module Selection in the Divi Builder - All modules are stored in a folder, so you can easily add a new module.
-4. Advanced Divider Module - A preview of the Advanced Divider module, showcasing its features and customization options.
-5. Before After Image Slider Module - A preview of the Before After Image Slider module, showcasing its features and customization options.
-6. Business Hours Module - A preview of the Business Hours module, showcasing its features and customization options.
-7. Dual Button Module - A preview of the Dual Button module, showcasing its features and customization options.
-8. Flip Box Module - A preview of the Flip Box module, showcasing its features and customization options.
-9. Image Mask Module - A preview of the Image Mask module, showcasing its features and customization options.
-10. Lottie Module - A preview of the Lottie module, showcasing its features and customization options.
-11. Typing Text Module - A preview of the Typing Text module, showcasing its features and customization options.
+3. Extensions Dashboard - The dashboard where you can manage and configure [Squad Modules for Divi Builder](https://squadmodules.com/) extensions.
+4. Module Selection in the Divi Builder - All modules are stored in a folder, so you can easily add a new module.
+5. Advanced Divider Module - A preview of the Advanced Divider module, showcasing its features and customization options.
+6. Before After Image Slider Module - A preview of the Before After Image Slider module, showcasing its features and customization options.
+7. Business Hours Module - A preview of the Business Hours module, showcasing its features and customization options.
+8. Dual Button Module - A preview of the Dual Button module, showcasing its features and customization options.
+9. Flip Box Module - A preview of the Flip Box module, showcasing its features and customization options.
+10. Image Mask Module - A preview of the Image Mask module, showcasing its features and customization options.
+11. Lottie Module - A preview of the Lottie module, showcasing its features and customization options.
+12. Typing Text Module - A preview of the Typing Text module, showcasing its features and customization options.
 
 
 == Upgrade Notice ==
+= 1.2.0 =
+* Introduced the Image Gallery Module
+* Introduced the Form Styler: Contact Form 7
+* Introduced the Form Styler: WPForms
+* Introduced the Form Styler: Gravity Forms
+* Introduced the Extensions: Divi Library Shortcode, Font Upload, JSON Upload and SVG Upload
+* Improved: Business Hours, Post Grid modules
+
 = 1.1.0 =
 * Compatibility: Tested up to WordPress 6.3
 * Improved: Business Hours, Post Grid, Dual Button modules
@@ -146,6 +166,15 @@ If you encounter any issues or have questions about [Squad Modules for Divi Buil
 
 
 == Changelog ==
+= 1.2.0 (01-09-2023) =
+* Compatibility: Tested up to WordPress 6.3
+* Introduced the Image Gallery Module
+* Introduced the Form Styler: Contact Form 7
+* Introduced the Form Styler: WPForms
+* Introduced the Form Styler: Gravity Forms
+* Introduced the Extensions: Divi Library Shortcode, Font Upload, JSON Upload and SVG Upload
+* Improved: Business Hours, Post Grid modules
+
 = 1.1.0 (22-07-2023) =
 * Compatibility: Tested up to WordPress 6.3
 * Improved: Business Hours, Post Grid, Dual Button modules

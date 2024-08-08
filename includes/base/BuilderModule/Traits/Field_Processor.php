@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
  * Builder Module Helper Class which help to the all module class.
  *
@@ -11,7 +12,6 @@
 
 namespace DiviSquad\Base\BuilderModule\Traits;
 
-use DiviSquad\Utils\Helper;
 use ET_Builder_Element;
 use stdClass;
 
@@ -283,7 +283,7 @@ trait Field_Processor {
 	/**
 	 * Collect icon prop width event if responsive mode.
 	 *
-	 * @param array $props          List of attributes.
+	 * @param array $props   List of attributes.
 	 * @param array $options Options of current width.
 	 *
 	 * @return array
@@ -342,7 +342,7 @@ trait Field_Processor {
 	/**
 	 * Collect the value of any props for Icon on hover effect.
 	 *
-	 * @param array $props          List of attributes.
+	 * @param array $props   List of attributes.
 	 * @param array $options Options of current width.
 	 *
 	 * @return string
@@ -380,7 +380,7 @@ trait Field_Processor {
 	/**
 	 * Collect any props value from mapping values.
 	 *
-	 * @param array  $options The option array data.
+	 * @param array  $options       The option array data.
 	 * @param string $current_value The current field value.
 	 *
 	 * @return mixed
@@ -408,13 +408,13 @@ trait Field_Processor {
 	protected function disq_process_margin_padding_styles( $options = array() ) {
 		// Initiate default values for current options.
 		$default = array(
-			'field'        => '',
-			'selector'     => '',
-			'type'         => '',
-			'css_property' => '',
-			'hover'        => '',
-			'hover_selector'        => '',
-			'important'    => true,
+			'field'          => '',
+			'selector'       => '',
+			'type'           => '',
+			'css_property'   => '',
+			'hover'          => '',
+			'hover_selector' => '',
+			'important'      => true,
 		);
 		$options = wp_parse_args( $options, $default );
 
@@ -429,7 +429,7 @@ trait Field_Processor {
 		$value_responsive_values = et_pb_responsive_options()->get_property_values( $this->props, $qualified_name );
 
 		// Collect additional values.
-		// Get an instance of "ET_Builder_Module_Hover_Options."
+		// Get an instance of "ET_Builder_Module_Hover_Options".
 		$hover                = et_pb_hover_options();
 		$margin_padding_hover = $hover->get_value( $qualified_name, $this->props, '' );
 		$css_prop             = $this->field_to_css_prop( $options['css_property'] );
@@ -469,7 +469,7 @@ trait Field_Processor {
 		}
 
 		// Hover style.
-		$hover_selector = isset($options['hover_selector']) ? $options['hover_selector'] : $options['hover'];
+		$hover_selector = isset( $options['hover_selector'] ) ? $options['hover_selector'] : $options['hover'];
 		if ( isset( $hover_selector ) && '' !== $margin_padding_hover ) {
 			$hover_style = array(
 				'selector'    => $hover_selector,
@@ -629,12 +629,18 @@ trait Field_Processor {
 			'text_url_new_window' => '',
 			'multi_view'          => new stdClass(),
 			'hover_selector'      => '',
+			'attrs'               => array(),
 		);
 		$options        = wp_parse_args( $options, $default );
 		$text_attribute = $options['text_attribute'];
 
 		if ( 'a' === $options['text_tag'] ) {
-			$raw_text     = $options['multi_view']->render_element( array( 'content' => "{{{$text_attribute}}}" ) );
+			$raw_text     = $options['multi_view']->render_element(
+				array(
+					'content' => "{{{$text_attribute}}}",
+					'attrs'   => $options['attrs'],
+				)
+			);
 			$striped_text = wp_strip_all_tags( $raw_text );
 			$url_target   = isset( $options['target'] ) && 'on' === $options['target'] ? '_blank' : '_self';
 
@@ -650,6 +656,7 @@ trait Field_Processor {
 		return $options['multi_view']->render_element(
 			array(
 				'tag'     => $options['text_tag'],
+				'attrs'   => $options['attrs'],
 				'content' => "{{{$text_attribute}}}",
 			)
 		);

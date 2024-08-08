@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
  * Lottie Image Module Class which extend the Divi Builder Module Class.
  *
@@ -398,12 +399,11 @@ class Lottie extends DISQ_Builder_Module {
 						'max'       => '200',
 						'step'      => '1',
 					),
+					'default_unit'    => 'px',
+					'hover'           => false,
 					'depends_show_if' => 'lottie',
 					'tab_slug'        => 'advanced',
 					'toggle_slug'     => 'lottie_image',
-				),
-				array(
-					'use_hover' => false,
 				)
 			),
 			'lottie_height' => $this->disq_add_range_fields(
@@ -417,12 +417,11 @@ class Lottie extends DISQ_Builder_Module {
 						'max'       => '200',
 						'step'      => '1',
 					),
+					'default_unit'    => 'px',
 					'depends_show_if' => 'lottie',
+					'hover'           => false,
 					'tab_slug'        => 'advanced',
 					'toggle_slug'     => 'lottie_image',
-				),
-				array(
-					'use_hover' => false,
 				)
 			),
 		);
@@ -442,18 +441,10 @@ class Lottie extends DISQ_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function get_transition_fields_css_props() {
-		$fields                 = parent::get_transition_fields_css_props();
-		$fields['lottie_color'] = array(
-			'fill' => "$this->main_css_element .disq-lottie-wrapper .lottie-image svg path",
-		);
-
-		$fields['lottie_width'] = array(
-			'width' => "$this->main_css_element .disq-lottie-wrapper .lottie-image",
-		);
-
-		$fields['lottie_height'] = array(
-			'height' => "$this->main_css_element .disq-lottie-wrapper .lottie-image",
-		);
+		$fields                  = parent::get_transition_fields_css_props();
+		$fields['lottie_color']  = array( 'fill' => "$this->main_css_element .disq-lottie-wrapper .lottie-image svg path" );
+		$fields['lottie_width']  = array( 'width' => "$this->main_css_element .disq-lottie-wrapper .lottie-image" );
+		$fields['lottie_height'] = array( 'height' => "$this->main_css_element .disq-lottie-wrapper .lottie-image" );
 
 		return $fields;
 	}
@@ -561,7 +552,6 @@ class Lottie extends DISQ_Builder_Module {
 
 		return null;
 	}
-
 }
 
 new Lottie();

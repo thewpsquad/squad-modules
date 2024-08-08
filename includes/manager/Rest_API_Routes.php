@@ -2,7 +2,6 @@
 
 namespace DiviSquad\Manager;
 
-use DiviSquad\Base\Memory;
 use function DiviSquad\divi_squad;
 
 /**
@@ -17,79 +16,41 @@ use function DiviSquad\divi_squad;
 class Rest_API_Routes {
 
 	/**
-	 * The instance of the current class.
-	 *
-	 * @var self
-	 */
-	private static $instance;
-
-	/**
-	 * The product slug.
-	 *
-	 * @var string
-	 */
-	private static $product_slug;
-
-	/**
-	 * The instance of the Memory class.
-	 *
-	 * @var Memory
-	 */
-	private static $memory;
-
-	/**
-	 * The list of routes.
-	 *
-	 * @var array
-	 */
-	private static $routes = array();
-
-	/**
-	 * Get the instance of the current class.
-	 *
-	 * @return self
-	 */
-	public static function get_instance() {
-		if ( null === self::$instance ) {
-			self::$instance     = new self();
-			self::$memory       = divi_squad()->get_memory();
-			self::$product_slug = divi_squad()->get_name();
-		}
-
-		return self::$instance;
-	}
-
-	/**
-	 * We register our routes for our endpoints.
-	 *
-	 * @return void
-	 */
-	public function register_routes() {
-		if ( array() !== self::$routes ) {
-			foreach ( self::$routes as $route => $args ) {
-				register_rest_route(
-					sprintf( '%1$s/v1', self::$product_slug ),
-					$route,
-					$args
-				);
-			}
-		}
-	}
-
-	/**
 	 * Load rest route on init time.
 	 *
 	 * @return void
 	 */
 	public function register_all() {
-		// Collect required class object.
-		$module = Modules::get_instance();
+		// Collect product slug and memory.
+		$product_slug = divi_squad()->get_name();
+		$modules      = divi_squad()->get_modules();
+		$extensions   = divi_squad()->get_extensions();
+
+		// Get all rest api loader object.
+		$modules_rest_routes    = divi_squad()->get_modules_rest_api_routes();
+		$extensions_rest_routes = divi_squad()->get_extensions_rest_api_routes();
 
 		// Get all routes.
-		self::$routes = Rest_API_Routes\Modules::get_instance( self::$memory, $module )->get_routes();
+		$routes_modules    = $modules_rest_routes->get_routes( $modules );
+		$routes_extensions = $extensions_rest_routes->get_routes( $extensions );
 
-		// Load on rest api init.
-		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
+		$this->register_routes( $product_slug, array_merge( $routes_modules, $routes_extensions ) );
+	}
+
+	/**
+	 * We register our routes for our endpoints.
+	 *
+	 * @param string $slug   The product slug.
+	 * @param array  $routes The list of routes.
+	 *
+	 * @return void
+	 */
+	public function register_routes( $slug, $routes ) {
+		if ( array() !== $routes ) {
+			foreach ( $routes as $route => $args ) {
+				$namespace = sprintf( '%1$s/v1', $slug );
+				register_rest_route( $namespace, $route, $args );
+			}
+		}
 	}
 }
-

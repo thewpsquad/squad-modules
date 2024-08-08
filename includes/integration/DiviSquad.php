@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
  * The main class for Divi Squad.
  *
@@ -13,6 +14,7 @@ namespace DiviSquad\Integration;
 
 use DiviSquad\Base\BuilderIntegrationAPI;
 use DiviSquad\Manager\Modules;
+use function DiviSquad\divi_squad;
 
 /**
  * Divi Squad Class.
@@ -23,11 +25,20 @@ use DiviSquad\Manager\Modules;
 class DiviSquad extends BuilderIntegrationAPI {
 
 	/**
+	 * Get the plugin version number
+	 *
+	 * @return string
+	 */
+	public function get_version() {
+		return divi_squad()->get_version();
+	}
+
+	/**
 	 * Loads custom modules when the builder is ready.
 	 *
 	 * @since 1.0.0
 	 */
 	public function hook_et_builder_ready() {
-		Modules::get_instance()->load_modules( dirname( __DIR__ ) );
+		divi_squad()->get_modules()->load_modules( dirname( __DIR__ ) );
 	}
 }

@@ -506,45 +506,29 @@ class BusinessHours extends DISQ_Builder_Module {
 		$fields = parent::get_transition_fields_css_props();
 
 		// wrapper styles.
-		$fields['day_wrapper_background_color'] = array(
-			'background' => "$this->main_css_element .day-elements",
-		);
-		$fields['day_wrapper_margin']           = array(
-			'margin' => "$this->main_css_element .day-elements",
-		);
-		$fields['day_wrapper_padding']          = array(
-			'padding' => "$this->main_css_element .day-elements",
-		);
+		$fields['day_wrapper_background_color'] = array( 'background' => "$this->main_css_element .day-elements" );
+		$fields['day_wrapper_margin']           = array( 'margin' => "$this->main_css_element .day-elements" );
+		$fields['day_wrapper_padding']          = array( 'padding' => "$this->main_css_element .day-elements" );
 		$this->disq_fix_border_transition( $fields, 'item_wrapper', "$this->main_css_element .day-elements" );
 		$this->disq_fix_box_shadow_transition( $fields, 'item_wrapper', "$this->main_css_element .day-elements" );
 
 		// title styles.
-		$fields['title_background_color'] = array(
-			'background' => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
-		);
-		$fields['title_margin']           = array(
-			'margin' => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
-		);
-		$fields['title_padding']          = array(
-			'padding' => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
-		);
+		$fields['title_background_color'] = array( 'background' => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper" );
+		$fields['title_margin']           = array( 'margin' => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper" );
+		$fields['title_padding']          = array( 'padding' => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper" );
 		$this->disq_fix_fonts_transition( $fields, 'title_text', "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper .bh-title-text" );
 		$this->disq_fix_border_transition( $fields, 'title_element', "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper" );
 		$this->disq_fix_box_shadow_transition( $fields, 'title_element', "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper" );
 
 		// divider styles.
-		$fields['divider_color']  = array(
-			'border-top-color' => "$this->main_css_element .day-element.day-element-divider:before",
-		);
+		$fields['divider_color']  = array( 'border-top-color' => "$this->main_css_element .day-element.day-element-divider:before" );
 		$fields['divider_weight'] = array(
 			'border-top-width' => "$this->main_css_element .day-element.day-element-divider:before",
 			'height'           => "$this->main_css_element .day-element.day-element-divider:before",
 		);
 
 		// Default styles.
-		$fields['background_layout'] = array(
-			'color' => $this->main_css_element,
-		);
+		$fields['background_layout'] = array( 'color' => $this->main_css_element );
 
 		return $fields;
 	}
@@ -702,21 +686,21 @@ class BusinessHours extends DISQ_Builder_Module {
 		// title margin with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => 'title_margin',
-				'selector'     => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
-				'hover'        => "$this->main_css_element .disq-bh-elements:hover .bh-element.bh-title-wrapper",
-				'css_property' => 'margin',
-				'type'         => 'margin',
+				'field'          => 'title_margin',
+				'selector'       => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
+				'hover_selector' => "$this->main_css_element .disq-bh-elements:hover .bh-element.bh-title-wrapper",
+				'css_property'   => 'margin',
+				'type'           => 'margin',
 			)
 		);
 		// title padding with default, responsive, hover.
 		$this->disq_process_margin_padding_styles(
 			array(
-				'field'        => 'title_padding',
-				'selector'     => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
-				'hover'        => "$this->main_css_element .disq-bh-elements:hover .bh-element.bh-title-wrapper",
-				'css_property' => 'padding',
-				'type'         => 'padding',
+				'field'          => 'title_padding',
+				'selector'       => "$this->main_css_element .disq-bh-elements .bh-element.bh-title-wrapper",
+				'hover_selector' => "$this->main_css_element .disq-bh-elements:hover .bh-element.bh-title-wrapper",
+				'css_property'   => 'padding',
+				'type'           => 'padding',
 			)
 		);
 	}

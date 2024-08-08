@@ -449,37 +449,23 @@ class BeforeAfterImageSlider extends DISQ_Builder_Module {
 		$fields = parent::get_transition_fields_css_props();
 
 		// before label styles.
-		$fields['before_label_background_color'] = array(
-			'background' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before",
-		);
-		$fields['before_label_margin']           = array(
-			'margin' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before",
-		);
-		$fields['before_label_padding']          = array(
-			'padding' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before",
-		);
+		$fields['before_label_background_color'] = array( 'background' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
+		$fields['before_label_margin']           = array( 'margin' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
+		$fields['before_label_padding']          = array( 'padding' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
 		$this->disq_fix_fonts_transition( $fields, 'before_label_text', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
 		$this->disq_fix_border_transition( $fields, 'before_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
 		$this->disq_fix_box_shadow_transition( $fields, 'before_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-before" );
 
 		// after label styles.
-		$fields['after_label_background_color'] = array(
-			'background' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after",
-		);
-		$fields['after_label_margin']           = array(
-			'margin' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after",
-		);
-		$fields['after_label_padding']          = array(
-			'padding' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after",
-		);
+		$fields['after_label_background_color'] = array( 'background' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
+		$fields['after_label_margin']           = array( 'margin' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
+		$fields['after_label_padding']          = array( 'padding' => "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
 		$this->disq_fix_fonts_transition( $fields, 'after_label_text', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
 		$this->disq_fix_border_transition( $fields, 'after_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
 		$this->disq_fix_box_shadow_transition( $fields, 'after_label_element', "$this->main_css_element div .compare-images.icv .icv__label.icv__label-after" );
 
 		// Default styles.
-		$fields['background_layout'] = array(
-			'color' => $this->main_css_element,
-		);
+		$fields['background_layout'] = array( 'color' => $this->main_css_element );
 
 		return $fields;
 	}
@@ -802,9 +788,7 @@ class BeforeAfterImageSlider extends DISQ_Builder_Module {
 		// }
 
 		// phpcs:enable
-
 	}
-
 }
 
 new BeforeAfterImageSlider();

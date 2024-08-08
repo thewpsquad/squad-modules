@@ -268,6 +268,7 @@ class Backend extends BuilderBackendPlaceholder {
 					'slide_control_smoothing__enable'   => 'on',
 					'slide_control_smoothing_amount'    => 100,
 				),
+				'disq_form_styler_cf7' => array(),
 			),
 		);
 
