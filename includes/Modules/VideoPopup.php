@@ -12,7 +12,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use DiviSquad\Utils\Media\Image;
@@ -32,7 +32,7 @@ use function wp_enqueue_script;
  * @package DiviSquad
  * @since   1.4.1
  */
-class VideoPopup extends DiviSquad_Module {
+class VideoPopup extends Module {
 
 	/**
 	 * Initiate Module.

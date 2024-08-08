@@ -12,7 +12,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
@@ -20,6 +20,9 @@ use DiviSquad\Utils\Polyfills\Str;
 use ET_Builder_Module_Helper_MultiViewOptions;
 use WP_Post;
 use WP_Query;
+use WP_Term;
+use WP_User;
+use function apply_filters;
 use function esc_attr;
 use function esc_html;
 use function esc_html__;
@@ -29,13 +32,21 @@ use function et_pb_get_extended_font_icon_value;
 use function et_pb_media_options;
 use function et_pb_multi_view_options;
 use function get_permalink;
+use function get_post;
 use function get_post_class;
+use function get_queried_object;
 use function get_query_var;
+use function get_search_query;
 use function get_the_post_thumbnail;
 use function get_userdata;
+use function is_archive;
+use function is_author;
+use function is_date;
+use function is_search;
 use function is_singular;
 use function paginate_links;
 use function sanitize_text_field;
+use function wp_array_slice_assoc;
 use function wp_enqueue_script;
 use function wp_get_post_categories;
 use function wp_get_post_tags;
@@ -51,14 +62,15 @@ use function wp_strip_all_tags;
  * @package DiviSquad
  * @since   1.0.0
  */
-class PostGrid extends DiviSquad_Module {
+class PostGrid extends Module {
 
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
 	 *
-	 * @return void
 	 * @since 1.0.0
+	 *
+	 * @return void
 	 */
 	public function init() {
 		$this->name      = esc_html__( 'Post Grid', 'squad-modules-for-divi' );
@@ -489,8 +501,9 @@ class PostGrid extends DiviSquad_Module {
 	/**
 	 * Declare general fields for the module.
 	 *
-	 * @return array[]
 	 * @since 1.0.0
+	 *
+	 * @return array[]
 	 */
 	public function get_fields() {
 		$general_settings = array(
@@ -569,9 +582,9 @@ class PostGrid extends DiviSquad_Module {
 					'options'          => array(
 						'date'          => esc_html__( 'Publish Date', 'squad-modules-for-divi' ),
 						'modified'      => esc_html__( 'Modified Date', 'squad-modules-for-divi' ),
-						'name'          => esc_html__( 'Name', 'squad-modules-for-divi' ),
-						'title'         => esc_html__( 'Title', 'squad-modules-for-divi' ),
-						'author'        => esc_html__( 'Author', 'squad-modules-for-divi' ),
+						'name'          => esc_html__( 'Post Name', 'squad-modules-for-divi' ),
+						'title'         => esc_html__( 'Post Title', 'squad-modules-for-divi' ),
+						'author'        => esc_html__( 'Post Author', 'squad-modules-for-divi' ),
 						'comment_count' => esc_html__( 'Comments', 'squad-modules-for-divi' ),
 						'rand'          => esc_html__( 'Random', 'squad-modules-for-divi' ),
 					),
@@ -1364,6 +1377,8 @@ class PostGrid extends DiviSquad_Module {
 	 * Add form field options group and background image on the field list.
 	 *
 	 * @since 1.0.0
+	 *
+	 * @return array
 	 */
 	public function get_transition_fields_css_props() {
 		$fields = parent::get_transition_fields_css_props();
@@ -1408,12 +1423,13 @@ class PostGrid extends DiviSquad_Module {
 	/**
 	 * Render module output.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param array  $attrs       List of unprocessed attributes.
 	 * @param string $content     Content being processed.
 	 * @param string $render_slug Slug of module that is used for rendering output.
 	 *
 	 * @return string module's rendered output.
-	 * @since 1.0.0
 	 */
 	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
 		// Show a notice message in the frontend if the list item is empty.
@@ -1446,13 +1462,1237 @@ class PostGrid extends DiviSquad_Module {
 	}
 
 	/**
+	 * Filter multi view value.
+	 *
+	 * @param mixed $raw_value Props raw value.
+	 * @param array $args      Props arguments.
+	 *
+	 * @return mixed
+	 *
+	 * @see   ET_Builder_Module_Helper_MultiViewOptions::filter_value
+	 */
+	public function multi_view_filter_value( $raw_value, $args ) {
+		$name = isset( $args['name'] ) ? $args['name'] : '';
+
+		// process font icon.
+		$icon_fields = array(
+			'element_icon',
+			'element_title_icon',
+			'load_more_button_icon',
+			'pagination_old_entries_icon',
+			'pagination_next_entries_icon',
+		);
+		if ( $raw_value && in_array( $name, $icon_fields, true ) ) {
+			return et_pb_get_extended_font_icon_value( $raw_value, true );
+		}
+
+		// process others.
+		return $raw_value;
+	}
+
+	/**
+	 * Render the post-elements in the outside wrapper.
+	 *
+	 * @param WP_Post      $post    The current post.
+	 * @param string|array $content The parent content.
+	 *
+	 * @return string
+	 */
+	public function wp_hook_squad_current_outside_post_element( $post, $content ) {
+		$callback = function ( $post, $child_prop ) {
+			return $this->squad_render_post_element( $post, $child_prop, 'on' );
+		};
+
+		return $this->squad_generate_props_content( $post, $content, $callback );
+	}
+
+	/**
+	 * Render the post-elements in the main wrapper.
+	 *
+	 * @param WP_Post      $post    The WP POST object.
+	 * @param string|array $content The parent content.
+	 *
+	 * @return string
+	 */
+	public function wp_hook_squad_current_main_post_element( $post, $content ) {
+		$callback = function ( $post, $child_prop ) {
+			return $this->squad_render_post_element( $post, $child_prop, 'off' );
+		};
+
+		return $this->squad_generate_props_content( $post, $content, $callback );
+	}
+
+	/**
+	 * Render a post element based on its properties.
+	 *
+	 * @param WP_Post $post           The current post.
+	 * @param array   $child_prop     The child properties.
+	 * @param string  $expected_state The expected state ('on' for outside, 'off' for main).
+	 *
+	 * @return string
+	 */
+	private function squad_render_post_element( $post, $child_prop, $expected_state ) {
+		$outside_enable = isset( $child_prop['element_outside__enable'] ) ? $child_prop['element_outside__enable'] : 'off';
+
+		if ( $outside_enable !== $expected_state ) {
+			return '';
+		}
+
+		$element_type  = isset( $child_prop['element'] ) ? $child_prop['element'] : 'none';
+		$icon_type     = isset( $child_prop['element_icon_type'] ) ? $child_prop['element_icon_type'] : 'icon';
+		$icon_excludes = $this->icon_not_eligible_elements;
+
+		$output = '';
+
+		// Render icon if applicable.
+		if ( 'none' !== $icon_type && ! in_array( $element_type, $icon_excludes, true ) ) {
+			$output .= $this->squad_render_element_icon( $child_prop );
+		}
+
+		// Render element content if applicable.
+		if ( 'custom_icon' !== $element_type ) {
+			$element_body = $this->squad_render_post_element_body( $child_prop, $post );
+			if ( ! empty( $element_body ) ) {
+				$output .= $element_body;
+			} else {
+				$output = '';
+			}
+		}
+
+		if ( empty( $output ) ) {
+			return '';
+		}
+
+		return sprintf(
+			'<div class="post-elements et_pb_with_background">%s</div>',
+			wp_kses_post( $output )
+		);
+	}
+
+	/**
+	 * Generate content by props with dynamic values.
+	 *
+	 * @param WP_Post      $post        The WP POST object.
+	 * @param string|array $content     The parent content.
+	 * @param callable     $callback    The render callback.
+	 *
+	 * @return string
+	 */
+	public function squad_generate_props_content( $post, $content, $callback ) {
+		ob_start();
+
+		// Collect all child modules from Html content.
+		$pattern = '/<div\s+class="[^"]*disq_post_grid_child[^"]*"[^>]*>.*?<\/div>\s+<\/div>/is';
+		if ( is_string( $content ) && preg_match_all( $pattern, $content, $matches ) && isset( $matches[0] ) && count( $matches[0] ) ) {
+			// Catch module with the main wrapper.
+			$child_modules = $matches[0];
+
+			// Output the split tags.
+			foreach ( $child_modules as $child_module_content ) {
+				$child_raw_props = Utils::collect_raw_props( $child_module_content );
+				$child_props     = Utils::collect_child_json_props( $child_raw_props );
+				$child_props     = isset( $child_props[0] ) && count( $child_props[0] ) ? $child_props[0] : array();
+
+				if ( count( $child_props ) ) {
+					$child_prop_markup = sprintf( '%s,||', wp_json_encode( $child_props ) );
+					$html_output       = $callback( $post, $child_props );
+
+					// check available content.
+					if ( is_string( $html_output ) && ! empty( $html_output ) ) {
+						// Merge with raw content.
+						$module_content = str_replace( $child_prop_markup, $html_output, $child_module_content );
+
+						// Show the generated child module content.
+						print wp_kses_post( $module_content );
+					}
+				}
+			}
+		}
+
+		return ob_get_clean();
+	}
+
+	/**
+	 * Collect all posts from the database.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array                                     $attrs      List of unprocessed attributes.
+	 * @param string|array|null                         $content    Content being processed.
+	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view Multiview object instance.
+	 *
+	 * @return string the html output for the post-grid.
+	 */
+	public static function squad_get_posts_html( $attrs, $content = null, $multi_view = null ) {
+		// Set the default values.
+		$is_rest_query = ! empty( $attrs['is_rest_query'] ) ? $attrs['is_rest_query'] : 'off';
+
+		$query_args = static::squad_build_post_query_args( $attrs, $content );
+		$post_query = new WP_Query( $query_args );
+
+		if ( ! $post_query->have_posts() ) {
+			return '';
+		}
+
+		ob_start();
+
+		if ( 'off' === $is_rest_query ) {
+			print '<ul class="squad-post-container" style="list-style-type: none;">';
+		}
+
+		while ( $post_query->have_posts() ) {
+			$post_query->the_post();
+			static::squad_render_current_post( get_post(), $attrs, $content );
+		}
+
+		if ( 'off' === $is_rest_query ) {
+			print '</ul>';
+		}
+
+		static::squad_maybe_render_pagination( $post_query, $attrs, $content, $multi_view );
+		static::squad_maybe_render_load_more_button( $post_query, $attrs, $content, $multi_view );
+
+		/* Restore original Post Data */
+		wp_reset_postdata();
+
+		return ob_get_clean();
+	}
+
+	/**
+	 * Build the post query arguments.
+	 *
+	 * @since 3.1.0
+	 *
+	 * @param array $attrs   List of unprocessed attributes.
+	 * @param mixed $content Content being processed.
+	 *
+	 * @return array
+	 */
+	protected static function squad_build_post_query_args( $attrs, $content = null ) {
+		global $paged;
+
+		$query_args = array(
+			'post_status'    => array( 'publish' ),
+			'perm'           => array( 'readable' ),
+			'posts_per_page' => ! empty( $attrs['list_post_count'] ) ? absint( $attrs['list_post_count'] ) : 10,
+			'orderby'        => ! empty( $attrs['list_post_order_by'] ) ? sanitize_key( $attrs['list_post_order_by'] ) : 'date',
+			'order'          => ! empty( $attrs['list_post_order'] ) ? sanitize_key( $attrs['list_post_order'] ) : 'ASC',
+		);
+
+		$inherit_loop = ! empty( $attrs['inherit_current_loop'] ) ? $attrs['inherit_current_loop'] : 'off';
+		if ( 'on' === $inherit_loop ) {
+			$query_args = self::squad_add_current_loop_args( $query_args );
+		} else {
+			$query_args = self::squad_add_custom_display_args( $query_args, $attrs );
+		}
+
+		$query_args = self::squad_add_offset_args( $query_args, $attrs, $paged );
+		$query_args = self::squad_add_pagination_args( $query_args, $attrs, $paged );
+
+		if ( ! empty( $attrs['list_post_ignore_sticky_posts'] ) && 'on' === $attrs['list_post_ignore_sticky_posts'] ) {
+			$query_args['ignore_sticky_posts'] = true;
+		}
+
+		/**
+		 * Filter the post query arguments.
+		 *
+		 * @param array $query_args The WP_Query arguments.
+		 * @param array $attrs      The module attributes.
+		 * @param mixed $content    The content being processed.
+		 */
+		return apply_filters( 'divi_squad_build_post_query_args', $query_args, $attrs, $content );
+	}
+
+	/**
+	 * Add query arguments for the current loop.
+	 *
+	 * @param array $query_args Existing query arguments.
+	 * @return array Updated query arguments.
+	 */
+	protected static function squad_add_current_loop_args( $query_args ) {
+		$queried_object = get_queried_object();
+
+		if ( $queried_object instanceof WP_Post && is_singular() ) {
+			$query_args = self::squad_add_related_post_args( $query_args, $queried_object );
+		} elseif ( $queried_object instanceof WP_User && is_author() ) {
+			$query_args['author'] = $queried_object->ID;
+		} elseif ( $queried_object instanceof WP_Term && is_archive() ) {
+			$query_args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+				array(
+					'taxonomy' => $queried_object->taxonomy,
+					'field'    => 'term_id',
+					'terms'    => $queried_object->term_id,
+				),
+			);
+		} elseif ( is_search() ) {
+			$query_args['s'] = get_search_query();
+		} elseif ( is_date() ) {
+			$query_args = self::squad_add_date_args( $query_args );
+		}
+
+		return $query_args;
+	}
+
+	/**
+	 * Add query arguments for related posts.
+	 *
+	 * @param array   $query_args Existing query arguments.
+	 * @param WP_Post $post       Current post object.
+	 * @return array Updated query arguments.
+	 */
+	protected static function squad_add_related_post_args( $query_args, $post ) {
+		$categories = wp_get_post_categories( $post->ID, array( 'fields' => 'ids' ) );
+		if ( ! empty( $categories ) ) {
+			$query_args['cat'] = implode( ',', $categories );
+		} else {
+			$tags = wp_get_post_tags( $post->ID, array( 'fields' => 'ids' ) );
+			if ( ! empty( $tags ) ) {
+				$query_args['tag__in'] = $tags;
+			}
+		}
+
+		$query_args['post__not_in'] = array( $post->ID ); // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
+		$query_args['author']       = $post->post_author;
+
+		return $query_args;
+	}
+
+	/**
+	 * Add query arguments for custom display options.
+	 *
+	 * @param array $query_args Existing query arguments.
+	 * @param array $attrs      Module attributes.
+	 * @return array Updated query arguments.
+	 */
+	protected static function squad_add_custom_display_args( $query_args, $attrs ) {
+		$display_by = ! empty( $attrs['list_post_display_by'] ) ? $attrs['list_post_display_by'] : 'recent';
+
+		if ( 'category' === $display_by && ! empty( $attrs['list_post_include_categories'] ) ) {
+			$query_args['cat'] = $attrs['list_post_include_categories'];
+		} elseif ( 'tag' === $display_by && ! empty( $attrs['list_post_include_tags'] ) ) {
+			$query_args['tag__in'] = $attrs['list_post_include_tags'];
+		}
+
+		return $query_args;
+	}
+
+	/**
+	 * Add query arguments for post offset.
+	 *
+	 * @param array $query_args Existing query arguments.
+	 * @param array $attrs      Module attributes.
+	 * @param int   $paged      Current page number.
+	 * @return array Updated query arguments.
+	 */
+	protected static function squad_add_offset_args( $query_args, $attrs, $paged ) {
+		$offset = ! empty( $attrs['list_post_offset'] ) ? absint( $attrs['list_post_offset'] ) : 0;
+		if ( $offset > 0 ) {
+			if ( ! empty( $attrs['pagination__enable'] ) && 'on' === $attrs['pagination__enable'] && $paged > 1 ) {
+				$query_args['offset'] = ( ( $paged - 1 ) * $offset ) + $offset;
+			} else {
+				$query_args['offset'] = $offset;
+			}
+		}
+		return $query_args;
+	}
+
+	/**
+	 * Add query arguments for pagination.
+	 *
+	 * @param array $query_args Existing query arguments.
+	 * @param array $attrs      Module attributes.
+	 * @param int   $paged      Current page number.
+	 * @return array Updated query arguments.
+	 */
+	protected static function squad_add_pagination_args( $query_args, $attrs, $paged ) {
+		if ( ! empty( $attrs['pagination__enable'] ) && 'on' === $attrs['pagination__enable'] ) {
+			$query_args['paged'] = $paged;
+		}
+		return $query_args;
+	}
+
+	/**
+	 * Add query arguments for date archives.
+	 *
+	 * @param array $query_args Existing query arguments.
+	 * @return array Updated query arguments.
+	 */
+	protected static function squad_add_date_args( $query_args ) {
+		$date_queries = array( 'year', 'monthnum', 'w', 'day', 'hour', 'minute', 'second' );
+		foreach ( $date_queries as $key ) {
+			$value = get_query_var( $key );
+			if ( $value ) {
+				$query_args[ $key ] = $value;
+			}
+		}
+		return $query_args;
+	}
+
+	/**
+	 * Get queried arguments for client side rendering.
+	 *
+	 * @param array $attrs List of module attributes.
+	 * @return array Filtered query arguments.
+	 */
+	protected static function squad_get_client_query_args( $attrs ) {
+		// Allowed properties.
+		$allowed_props = array(
+			'inherit_current_loop',
+			'date_format',
+			'list_post_display_by',
+			'list_post_count',
+			'list_post_include_categories',
+			'list_post_include_tags',
+			'list_post_offset',
+			'list_post_order',
+			'list_post_order_by',
+		);
+
+		// Filter allowed properties.
+		$query_arguments = wp_array_slice_assoc( $attrs, $allowed_props );
+
+		// Remove empty values.
+		$array_filter = array();
+		foreach ( $query_arguments as $key => $string ) {
+			if ( strlen( $string ) ) {
+				$array_filter[ $key ] = $string;
+			}
+		}
+
+		return $array_filter;
+	}
+
+	/**
+	 * Render the current post.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param WP_Post $post    The WP POST object.
+	 * @param array   $attrs   The module attributes.
+	 * @param mixed   $content The content being processed.
+	 *
+	 * @return void
+	 */
+	protected static function squad_render_current_post( $post, $attrs, $content = null ) {
+		// Identify the current page state.
+		$is_divi_builder = isset( $content ) && is_array( $content );
+
+		// Set the default values.
+		$date_format  = ! empty( $attrs['date_format'] ) ? $attrs['date_format'] : 'M j, Y';
+		$post_classes = get_post_class( 'post', $post );
+
+		printf( '<li class="%s">', esc_attr( implode( ' ', $post_classes ) ) );
+
+		if ( $is_divi_builder ) {
+			$date_replacement = str_replace( '\\\\', '\\', $date_format );
+			$author           = get_userdata( absint( $post->post_author ) );
+			$post_data        = self::squad_prepare_post_data( $post, $author, $date_replacement );
+
+			/**
+			 * Filters the post data for the frontend.
+			 *
+			 * This filter allows you to modify or extend the post data that will be
+			 * available in the frontend for each rendered post.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param array   $post_data The prepared post data.
+			 * @param WP_Post $post      The current post object.
+			 * @param mixed   $content   The content being processed.
+			 */
+			$post_data = apply_filters( 'divi_squad_post_query_current_post_data', $post_data, $post, $content );
+
+			printf(
+				'<script type="application/json" style="display: none">%s</script>',
+				wp_json_encode( $post_data )
+			);
+		}
+
+		/**
+		 * Filters the post elements in the outside wrapper.
+		 *
+		 * This filter allows you to add or modify content that will be rendered
+		 * in the outer wrapper of each post in the grid.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param WP_Post $post    The current post object.
+		 * @param mixed   $content The content being processed.
+		 */
+		$outside = apply_filters( 'divi_squad_post_query_current_post_element_outside', $post, $content );
+
+		/**
+		 * Filters the post elements in the main wrapper.
+		 *
+		 * This filter allows you to add or modify content that will be rendered
+		 * in the main wrapper of each post in the grid.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param WP_Post $post    The current post object.
+		 * @param mixed   $content The content being processed.
+		 */
+		$inside = apply_filters( 'divi_squad_post_query_current_post_element_main', $post, $content );
+
+		// Show outer elements in the frontend.
+		if ( ! empty( $outside ) && is_string( $outside ) ) {
+			printf( '<div class="squad-post-outer">%s</div>', wp_kses_post( $outside ) );
+		}
+
+		// Show inner elements in the frontend.
+		if ( ! empty( $inside ) && is_string( $inside ) ) {
+			printf( '<div class="squad-post-inner">%s</div>', wp_kses_post( $inside ) );
+		}
+
+		echo '</li>';
+	}
+
+	/**
+	 * Prepare post data for frontend rendering.
+	 *
+	 * @param WP_Post $post              The WP POST object.
+	 * @param WP_User $author            The post author object.
+	 * @param string  $date_replacement  The date format string.
+	 *
+	 * @return array
+	 */
+	protected static function squad_prepare_post_data( $post, $author, $date_replacement ) {
+		return array(
+			'id'             => $post->ID,
+			'title'          => $post->post_title,
+			'excerpt'        => $post->post_excerpt,
+			'comments'       => $post->comment_count,
+			'date'           => $post->post_date,
+			'modified'       => $post->post_modified,
+			'author'         => array(
+				'nickname'     => $author->user_nicename,
+				'display-name' => $author->display_name,
+				'full-name'    => sprintf( '%1$s %2$s', $author->first_name, $author->last_name ),
+				'first-name'   => $author->first_name,
+				'last-name'    => $author->last_name,
+			),
+			'content'        => wp_strip_all_tags( $post->post_content ),
+			'featured_image' => get_the_post_thumbnail( $post->ID, 'full' ),
+			'categories'     => wp_get_post_categories( $post->ID, array( 'fields' => 'names' ) ),
+			'tags'           => wp_get_post_tags( $post->ID, array( 'fields' => 'names' ) ),
+			'permalink'      => get_permalink( $post->ID ),
+			'gravatar'       => get_avatar( $post->post_author, 40 ),
+			'formatted'      => array(
+				'publish'  => wp_date( $date_replacement, strtotime( $post->post_date ) ),
+				'modified' => wp_date( $date_replacement, strtotime( $post->post_modified ) ),
+			),
+			'custom_fields'  => Utils\Elements\CustomFields::get_fields( 'custom_fields', $post->ID ),
+			'acf_fields'     => Utils\Elements\CustomFields::get_fields( 'acf_fields', $post->ID ),
+		);
+	}
+
+	/**
+	 * Render the pagination or load more button.
+	 *
+	 * @param WP_Query                                  $post_query The WP_Query object.
+	 * @param array                                     $attrs The module attributes.
+	 * @param string|array|null                         $content The content being processed.
+	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view The multiview object instance.
+	 *
+	 * @return void
+	 */
+	protected static function squad_maybe_render_pagination( $post_query, $attrs, $content = null, $multi_view = null ) {
+		// Identify the current page state.
+		$is_divi_builder = isset( $content ) && is_array( $content );
+
+		// Set the default values.
+		$is_rest_query  = ! empty( $attrs['is_rest_query'] ) ? $attrs['is_rest_query'] : 'off';
+		$load_more      = ! empty( $attrs['load_more__enable'] ) ? $attrs['load_more__enable'] : 'off';
+		$posts_per_page = ! empty( $attrs['list_post_count'] ) ? absint( $attrs['list_post_count'] ) : 10;
+
+		// Verify the ability of load more of pagination.
+		$is_posts_exists = $post_query->found_posts > $posts_per_page;
+
+		if ( ! $is_divi_builder && $is_posts_exists && 'off' === $is_rest_query && 'on' === $load_more ) {
+			$button_text = $multi_view->render_element(
+				array(
+					'tag'            => 'span',
+					'content'        => '{{load_more_button_text}}',
+					'attrs'          => array(
+						'class' => 'button-text',
+					),
+					'hover_selector' => '%%order_class%%.disq_post_grid div .squad-load-more-button-wrapper .squad-load-more-button',
+				)
+			);
+
+			if ( '' !== $button_text ) {
+				$icon_element_html  = '';
+				$icon_element       = '';
+				$icon_wrapper_class = 'squad-icon-wrapper';
+				$button_classes     = 'squad-load-more-button et_pb_with_background';
+				$button_icon_hover  = isset( $attrs['load_more_button_icon_on_hover'] ) ? $attrs['load_more_button_icon_on_hover'] : 'off';
+				$animation__enable  = isset( $attrs['load_more_button_hover_animation__enable'] ) ? $attrs['load_more_button_hover_animation__enable'] : 'off';
+				$animation_type     = isset( $attrs['load_more_button_hover_animation_type'] ) ? $attrs['load_more_button_hover_animation_type'] : 'fill';
+				$button_icon_type   = isset( $attrs['load_more_button_icon_type'] ) ? $attrs['load_more_button_icon_type'] : 'icon';
+
+				if ( 'on' === $animation__enable ) {
+					$button_classes .= " $animation_type";
+				}
+
+				if ( 'icon' === $button_icon_type ) {
+					$icon_element = $multi_view->render_element(
+						array(
+							'content'        => '{{load_more_button_icon}}',
+							'attrs'          => array(
+								'class' => 'et-pb-icon squad-button-icon',
+							),
+							'hover_selector' => '%%order_class%%.disq_post_grid div .squad-load-more-button-wrapper .squad-load-more-button',
+						)
+					);
+				}
+
+				if ( 'image' === $button_icon_type ) {
+					$image_classes          = 'squad-load-more-button-image et_pb_image_wrap';
+					$image_attachment_class = et_pb_media_options()->get_image_attachment_class( $attrs, 'load_more_button_image' );
+
+					if ( ! empty( $image_attachment_class ) ) {
+						$image_classes .= " $image_attachment_class";
+					}
+
+					$icon_element = $multi_view->render_element(
+						array(
+							'tag'            => 'img',
+							'attrs'          => array(
+								'src'   => '{{load_more_button_image}}',
+								'class' => $image_classes,
+								'alt'   => '',
+							),
+							'required'       => 'load_more_button_image',
+							'hover_selector' => '%%order_class%%.disq_post_grid div .squad-load-more-button-wrapper .squad-load-more-button',
+						)
+					);
+				}
+
+				if ( ( 'none' !== $button_icon_type ) && ! empty( $icon_element ) ) {
+					if ( 'on' === $button_icon_hover ) {
+						$icon_wrapper_class .= ' show-on-hover';
+					}
+
+					$icon_element_html = sprintf(
+						'<span class="%1$s"><span class="icon-element">%2$s</span></span>',
+						esc_attr( $icon_wrapper_class ),
+						wp_kses_post( $icon_element )
+					);
+				}
+
+				// Enqueue associated script.
+				wp_enqueue_script( 'squad-module-post-grid' );
+
+				// Load more options.
+				$button_options = array(
+					'endpoint_url'   => 'squad-modules-for-divi/v1/module/post-grid/load-more',
+					'posts_per_page' => $posts_per_page,
+					'total_posts'    => $post_query->found_posts,
+					'total_pages'    => $post_query->max_num_pages,
+				);
+				$query_options  = array(
+					'query_args' => self::squad_get_client_query_args( $attrs ),
+					'content'    => $content,
+				);
+
+				print sprintf(
+					'<div class="squad-load-more-button-wrapper" data-options=\'%4$s\'><script type="application/json" style="display: none">%5$s</script><div class="%3$s">%1$s%2$s</div></div>',
+					wp_kses_post( $button_text ),
+					wp_kses_post( $icon_element_html ),
+					esc_attr( $button_classes ),
+					wp_json_encode( $button_options ),
+					wp_json_encode( $query_options )
+				);
+			}
+		}
+	}
+
+	/**
+	 * Render the pagination or load more button.
+	 *
+	 * @param WP_Query                                  $post_query The WP_Query object.
+	 * @param array                                     $attrs The module attributes.
+	 * @param string|array|null                         $content The content being processed.
+	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view The multiview object instance.
+	 *
+	 * @return void
+	 */
+	protected static function squad_maybe_render_load_more_button( $post_query, $attrs, $content = null, $multi_view = null ) {
+		// Identify the current page state.
+		$is_divi_builder = isset( $content ) && is_array( $content );
+
+		// Set the default values.
+		$is_rest_query  = ! empty( $attrs['is_rest_query'] ) ? $attrs['is_rest_query'] : 'off';
+		$pagination     = ! empty( $attrs['pagination__enable'] ) ? $attrs['pagination__enable'] : 'off';
+		$posts_per_page = ! empty( $attrs['list_post_count'] ) ? absint( $attrs['list_post_count'] ) : 10;
+
+		// Verify the ability of load more of pagination.
+		$is_posts_exists = $post_query->found_posts > $posts_per_page;
+
+		if ( ! $is_divi_builder && $is_posts_exists && 'off' === $is_rest_query && 'on' === $pagination ) {
+			$prev_text         = ''; // &#x3c;
+			$next_text         = ''; // &#x3d;
+			$icon_only__enable = ! empty( $attrs['pagination_icon_only__enable'] ) ? $attrs['pagination_icon_only__enable'] : 'off';
+			$numbers__enable   = ! empty( $attrs['pagination_numbers__enable'] ) ? $attrs['pagination_numbers__enable'] : 'off';
+			$old_entries_text  = ! empty( $attrs['pagination_old_entries_text'] ) ? esc_html( $attrs['pagination_old_entries_text'] ) : __( 'Old Entries', 'squad-modules-for-divi' );
+			$next_entries_text = ! empty( $attrs['pagination_next_entries_text'] ) ? esc_html( $attrs['pagination_next_entries_text'] ) : __( 'Next Entries', 'squad-modules-for-divi' );
+
+			// Set icon for pagination prev element.
+			$prev_text .= $multi_view->render_element(
+				array(
+					'content'        => '{{pagination_old_entries_icon}}',
+					'attrs'          => array(
+						'class' => 'et-pb-icon squad-pagination_old_entries-icon',
+					),
+					'custom_props'   => $attrs,
+					'hover_selector' => '%%order_class%%.disq_post_grid div .squad-pagination .pagination-entries.prev',
+				)
+			);
+
+			// Set text for pagination prev and next element.
+			if ( 'on' !== $icon_only__enable ) {
+				$prev_text .= sprintf( '<span class="entries-text">%1$s</span>', esc_html( $old_entries_text ) );
+				$next_text .= sprintf( '<span class="entries-text">%1$s</span>', esc_html( $next_entries_text ) );
+			}
+
+			// Set icon for pagination next element.
+			$next_text .= $multi_view->render_element(
+				array(
+					'content'        => '{{pagination_next_entries_icon}}',
+					'attrs'          => array(
+						'class' => 'et-pb-icon squad-pagination_next_entries-icon',
+					),
+					'custom_props'   => $attrs,
+					'hover_selector' => '%%order_class%%.disq_post_grid div .squad-pagination .pagination-entries.next',
+				)
+			);
+
+			// Collect all links for pagination.
+			$paginate_links = paginate_links(
+				array(
+					'format'    => '?paged=%#%',
+					'current'   => max( 1, get_query_var( 'paged' ) ),
+					'total'     => $post_query->max_num_pages,
+					'prev_text' => $prev_text,
+					'next_text' => $next_text,
+					'type'      => 'array',
+				)
+			);
+
+			if ( isset( $paginate_links ) && count( $paginate_links ) ) {
+				print '<div class="squad-pagination clearfix">';
+				$is_prev_found  = false;
+				$is_next_found  = false;
+				$first_paginate = array_shift( $paginate_links );
+				$last_paginate  = array_pop( $paginate_links );
+
+				$paginate_prev_text = '';
+				$paginate_next_text = '';
+
+				// Update class name for the fist paginate link.
+				if ( false !== strpos( $first_paginate, 'prev' ) ) {
+					$is_prev_found      = true;
+					$paginate_prev_text = str_replace( 'page-numbers', 'pagination-entries', $first_paginate );
+				}
+
+				// Update class name for the last paginate link.
+				if ( false !== strpos( $last_paginate, 'next' ) ) {
+					$is_next_found      = true;
+					$paginate_next_text = str_replace( 'page-numbers', 'pagination-entries', $last_paginate );
+				}
+
+				// Show the fist paginate link.
+				if ( $is_prev_found ) {
+					print wp_kses_post( $paginate_prev_text );
+				}
+
+				// Show the last paginated numbers.
+				if ( ( 'on' === $numbers__enable ) && ( false === $is_prev_found || false === $is_next_found || count( $paginate_links ) ) ) {
+					print '<div class="pagination-numbers">';
+					if ( false === $is_prev_found ) {
+						print wp_kses_post( $first_paginate );
+					}
+					if ( count( $paginate_links ) ) {
+						foreach ( $paginate_links as $paginate_link ) {
+							print wp_kses_post( $paginate_link );
+						}
+					}
+					if ( false === $is_next_found ) {
+						print wp_kses_post( $last_paginate );
+					}
+					print '</div>';
+				}
+
+				// Show the last paginate link.
+				if ( $is_next_found ) {
+					print wp_kses_post( $paginate_next_text );
+				}
+
+				print '</div>';
+			}
+		}
+	}
+
+	/**
+	 * Render icon which on is active.
+	 *
+	 * @param array $attrs List of attributes.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_element_icon( $attrs ) {
+		$wrapper_classes = array( 'squad-element-icon-wrapper' );
+
+		if ( isset( $attrs['element_icon_on_hover'] ) && 'on' === $attrs['element_icon_on_hover'] ) {
+			$wrapper_classes[] = 'show-on-hover';
+		}
+
+		return sprintf(
+			'<span class="%1$s"><span class="icon-element">%2$s%3$s%4$s</span></span>',
+			implode( ' ', $wrapper_classes ),
+			wp_kses_post( $this->squad_render_element_font_icon( $attrs ) ),
+			wp_kses_post( $this->squad_render_element_icon_image( $attrs ) ),
+			wp_kses_post( $this->squad_render_element_icon_text( $attrs ) )
+		);
+	}
+
+	/**
+	 * Render icon.
+	 *
+	 * @param array $attrs List of unprocessed attributes.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_element_font_icon( $attrs ) {
+		if ( 'icon' === $attrs['element_icon_type'] ) {
+			$multi_view   = et_pb_multi_view_options( $this );
+			$element_type = isset( $attrs['element'] ) ? $attrs['element'] : 'none';
+			$icon_classes = array( 'et-pb-icon', 'squad-element-icon' );
+
+			return $multi_view->render_element(
+				array(
+					'custom_props'   => $attrs,
+					'content'        => '{{element_icon}}',
+					'attrs'          => array(
+						'class' => implode( ' ', $icon_classes ),
+					),
+					'hover_selector' => "$this->main_css_element div .post-elements .squad-post-element.squad-element_$element_type",
+				)
+			);
+		}
+
+		return '';
+	}
+
+	/**
+	 * Render image.
+	 *
+	 * @param array $attrs List of unprocessed attributes.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_element_icon_image( $attrs ) {
+		if ( 'image' === $attrs['element_icon_type'] ) {
+			$multi_view    = et_pb_multi_view_options( $this );
+			$alt_text      = $this->_esc_attr( 'alt' );
+			$title_text    = $this->_esc_attr( 'title_text' );
+			$element_type  = isset( $attrs['element'] ) ? $attrs['element'] : 'none';
+			$image_classes = array( 'disq_list_image', 'et_pb_image_wrap' );
+
+			$image_attachment_class = et_pb_media_options()->get_image_attachment_class( $this->props, 'element_image' );
+
+			if ( ! empty( $image_attachment_class ) ) {
+				$image_classes[] = esc_attr( $image_attachment_class );
+			}
+
+			return $multi_view->render_element(
+				array(
+					'custom_props'   => $attrs,
+					'tag'            => 'img',
+					'attrs'          => array(
+						'src'   => '{{element_image}}',
+						'class' => implode( ' ', $image_classes ),
+						'alt'   => $alt_text,
+						'title' => $title_text,
+					),
+					'required'       => 'element_image',
+					'hover_selector' => "$this->main_css_element div .post-elements .squad-post-element.squad-element_$element_type",
+				)
+			);
+		}
+
+		return '';
+	}
+
+	/**
+	 * Render image.
+	 *
+	 * @param array $attrs List of unprocessed attributes.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_element_icon_text( $attrs ) {
+		if ( 'text' === $attrs['element_icon_type'] ) {
+			$multi_view        = et_pb_multi_view_options( $this );
+			$element_type      = isset( $attrs['element'] ) ? $attrs['element'] : 'none';
+			$icon_text_classes = array( 'squad-element-icon-text' );
+
+			return $multi_view->render_element(
+				array(
+					'custom_props'   => $attrs,
+					'content'        => '{{element_icon_text}}',
+					'attrs'          => array(
+						'class' => implode( ' ', $icon_text_classes ),
+					),
+					'hover_selector' => "$this->main_css_element div .post-elements .squad-post-element.squad-element_$element_type",
+				)
+			);
+		}
+
+		return '';
+	}
+
+	/**
+	 * Render element body.
+	 *
+	 * @param array         $attrs List of attributes.
+	 * @param false|WP_POST $post  The current post-object.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_post_element_body( $attrs, $post ) {
+		$element    = ! empty( $attrs['element'] ) ? $attrs['element'] : 'none';
+		$class_name = sprintf( 'et_pb_with_background squad-post-element squad-post-element__%1$s', $element );
+		$post_title = $post->post_title;
+		$post_id    = $post->ID;
+
+		// Add new body class when user set advanced custom field image class.
+		$acf_field_type = 'text';
+		if ( 'advanced_custom_field' === $element ) {
+			$acf_field_type = ! empty( $attrs['element_advanced_custom_field_type'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_type'] ) : 'text';
+			$class_name    .= sprintf( ' advanced_custom_field__%1$s', $acf_field_type );
+		}
+
+		$post_excerpt__enable = ! empty( $attrs['element_excerpt__enable'] ) ? sanitize_text_field( $attrs['element_excerpt__enable'] ) : 'off';
+		$post_content         = ( 'on' === $post_excerpt__enable ) ? $post->post_excerpt : wp_strip_all_tags( $post->post_content );
+
+		$categories = wp_get_post_categories( $post_id, array( 'fields' => 'names' ) );
+		$tags       = wp_get_post_tags( $post_id, array( 'fields' => 'names' ) );
+
+		// Get the custom text and date format from the parent module.
+		$custom_text  = ! empty( $attrs['element_custom_text'] ) ? sanitize_text_field( $attrs['element_custom_text'] ) : '';
+		$parent_props = ! empty( $attrs['parent_prop_date_format'] ) ? json_decode( sanitize_text_field( $attrs['parent_prop_date_format'] ), false ) : new \stdClass();
+
+		$output = '';
+
+		if ( 'title' === $element && ! empty( $post_title ) ) {
+			$title_tag = ! empty( $attrs['element_title_tag'] ) ? sanitize_text_field( $attrs['element_title_tag'] ) : 'span';
+			$content   = sprintf( '<span class="element-text">%1$s</span>', ucfirst( $post_title ) );
+
+			if ( 'on' === $attrs['element_title_icon__enable'] && '' !== $attrs['element_title_icon'] ) {
+				$title_icon = $this->squad_render_post_title_font_icon( $attrs );
+			} else {
+				$title_icon = '';
+			}
+
+			$output = sprintf(
+				'<div class="%1$s"><%3$s class="element-text">%2$s</%3$s>%4$s</div>',
+				esc_attr( $class_name ),
+				wp_kses_post( $content ),
+				esc_attr( $title_tag ),
+				wp_kses_post( $title_icon )
+			);
+		}
+
+		if ( in_array( $element, array( 'image', 'featured_image' ), true ) ) {
+			$post_image = get_the_post_thumbnail( $post_id, 'full' );
+			if ( ! empty( $post_image ) ) {
+				$output = sprintf(
+					'<div class="%1$s">%2$s</div>',
+					esc_attr( $class_name ),
+					wp_kses_post( $post_image )
+				);
+			}
+		}
+
+		if ( 'content' === $element && ! empty( $post_content ) ) {
+			$post_content_length__enable = ! empty( $attrs['element_ex_con_length__enable'] ) ? sanitize_text_field( $attrs['element_ex_con_length__enable'] ) : 'off';
+			$post_content_length         = ! empty( $attrs['element_ex_con_length'] ) ? absint( sanitize_text_field( $attrs['element_ex_con_length'] ) ) : 20;
+
+			// Ref: https://en.wikipedia.org/wiki/Wikipedia:Language_recognition_chart .
+			$character_map  = 'äëïöüÄËÏÖÜáǽćéíĺńóŕśúźÁǼĆÉÍĹŃÓŔŚÚŹ';
+			$character_map .= 'àèìòùÀÈÌÒÙãẽĩõñũÃẼĨÕÑŨâêîôûÂÊÎÔÛăĕğĭŏœ̆ŭĂĔĞĬŎŒ̆Ŭ';
+			$character_map .= 'āēīōūĀĒĪŌŪőűŐŰąęįųĄĘĮŲåůÅŮæÆøØýÝÿŸþÞẞßđĐıIœŒ';
+			$character_map .= 'čďěľňřšťžČĎĚĽŇŘŠŤŽƒƑðÐłŁçģķļșțÇĢĶĻȘȚħĦċėġżĊĖĠŻʒƷǯǮŋŊŧŦ';
+			$character_map .= ':~^!?';
+
+			/**
+			 * Filter the character map for the post content.
+			 *
+			 * @param string $character_map The character map.
+			 *
+			 * @return string
+			 */
+			$character_map = apply_filters( 'divi_squad_post_query_content_character_map', $character_map );
+
+			$post_content_words = Str::word_count( $post_content, 2, $character_map );
+			if ( 'on' === $post_content_length__enable && count( $post_content_words ) > $post_content_length ) {
+				$content = implode( ' ', array_slice( $post_content_words, 0, $post_content_length ) );
+
+				return sprintf(
+					'<div class="%1$s"><span>%2$s</span></div>',
+					esc_attr( $class_name ),
+					wp_kses_post( $content )
+				);
+			}
+
+			$output = sprintf(
+				'<div class="%1$s"><span>%2$s</span></div>',
+				esc_attr( $class_name ),
+				wp_kses_post( $post_content )
+			);
+		}
+
+		if ( 'author' === $element ) {
+			$author            = get_userdata( absint( $post->post_author ) );
+			$default_name_type = 'nickname';
+			$author_name_type  = ! empty( $attrs['element_author_name_type'] ) ? sanitize_text_field( $attrs['element_author_name_type'] ) : $default_name_type;
+
+			switch ( $author_name_type ) {
+				case 'nickname':
+					$content = $author->nickname;
+					break;
+				case 'first-name':
+					$content = $author->first_name;
+					break;
+				case 'last-name':
+					$content = $author->last_name;
+					break;
+				case 'full-name':
+					$content = sprintf( '%1$s %2$s', $author->first_name, $author->last_name );
+					break;
+				default:
+					$content = $author->display_name;
+			}
+
+			$output = sprintf(
+				'<div class="%1$s"><span>%2$s</span></div>',
+				esc_attr( $class_name ),
+				esc_html( $content )
+			);
+		}
+
+		if ( 'gravatar' === $element ) {
+			$gravatar_size = ! empty( $attrs['element_gravatar_size'] ) ? absint( $attrs['element_gravatar_size'] ) : 40;
+			$gravatar      = get_avatar( $post->post_author, $gravatar_size );
+
+			$output = sprintf(
+				'<div class="%1$s">%2$s</div>',
+				esc_attr( $class_name ),
+				wp_kses_post( $gravatar )
+			);
+		}
+
+		if ( 'date' === $element ) {
+			$element_date_type = ! empty( $attrs['element_date_type'] ) ? sanitize_text_field( $attrs['element_date_type'] ) : 'publish';
+			$date_format       = ! empty( $parent_props->date_format ) ? $parent_props->date_format : 'M j, Y';
+			$date              = 'modified' === $element_date_type ? $post->post_modified : $post->post_date;
+			$date_modified     = str_replace( '\\\\', '\\', $date_format );
+
+			$output = sprintf(
+				'<div class="%1$s"><time datetime="%3$s">%2$s</time></div>',
+				esc_attr( $class_name ),
+				wp_date( $date_modified, strtotime( $date ) ),
+				esc_attr( $date )
+			);
+		}
+
+		if ( 'read_more' === $element ) {
+			$permalink_url   = get_permalink( $post_id );
+			$read_more_title = esc_html__( 'Read the post', 'squad-modules-for-divi' );
+			$default_text    = esc_html__( 'Read More', 'squad-modules-for-divi' );
+			$read_more_text  = ! empty( $attrs['element_read_more_text'] ) ? sanitize_text_field( $attrs['element_read_more_text'] ) : $default_text;
+
+			$output = sprintf(
+				'<div class="%1$s"><a href="%2$s" title="%4$s">%3$s</a></div>',
+				esc_attr( $class_name ),
+				esc_url( $permalink_url ),
+				esc_html( $read_more_text ),
+				esc_attr( $read_more_title )
+			);
+		}
+
+		if ( 'comments' === $element ) {
+			$comment_before_text = ! empty( $attrs['element_comment_before'] ) ? sanitize_text_field( $attrs['element_comment_before'] ) : '';
+			$comment_after_text  = ! empty( $attrs['element_comments_after'] ) ? sanitize_text_field( $attrs['element_comments_after'] ) : '';
+
+			$output = sprintf(
+				'<div class="%1$s"><span class="element-text">%3$s%2$s%4$s</span></div>',
+				esc_attr( $class_name ),
+				esc_html( $post->comment_count ),
+				esc_html( $comment_before_text ),
+				esc_html( $comment_after_text )
+			);
+		}
+
+		if ( 'categories' === $element && count( $categories ) ) {
+			$categories_separator = ! empty( $attrs['element_categories_sepa'] ) ? $attrs['element_categories_sepa'] : '';
+
+			$output = sprintf(
+				'<div class="%1$s"><span class="element-text">%2$s</span></div>',
+				esc_attr( $class_name ),
+				esc_attr( implode( $categories_separator, $categories ) )
+			);
+		}
+
+		if ( 'tags' === $element && count( $tags ) ) {
+			$tags_separator = ! empty( $attrs['element_tags_sepa'] ) ? $attrs['element_tags_sepa'] : '';
+
+			$output = sprintf(
+				'<div class="%1$s"><span class="element-text">%2$s</span></div>',
+				esc_attr( $class_name ),
+				esc_attr( implode( $tags_separator, $tags ) )
+			);
+		}
+
+		if ( 'divider' === $element && ( 'off' !== $attrs['show_divider'] ) ) {
+			$divider_position = ! empty( $attrs['divider_position'] ) ? sanitize_text_field( $attrs['divider_position'] ) : 'bottom';
+			$divider_classes  = implode( ' ', array( 'divider-element', $divider_position ) );
+
+			$output = sprintf(
+				'<div class="%1$s"><span class="%2$s">%2$s</span></div>',
+				esc_attr( $class_name ),
+				esc_attr( $divider_classes )
+			);
+		}
+
+		if ( 'custom_text' === $element && ! empty( $custom_text ) ) {
+			$output = sprintf(
+				'<div class="%1$s"><span class="element-text">%2$s</span></div>',
+				esc_attr( $class_name ),
+				esc_html( $custom_text )
+			);
+		}
+
+		if ( 'custom_field' === $element ) {
+			if ( empty( $attrs['element_custom_field_post'] ) ) {
+				return '';
+			}
+
+			$custom_field_key = $attrs['element_custom_field_post'];
+			$custom_field     = Utils\Elements\CustomFields::get( 'custom_fields' );
+			if ( ! $custom_field->has_field( $post_id, $custom_field_key ) ) {
+				return '';
+			}
+
+			$custom_field_value = $custom_field->get_field_value( $post_id, $custom_field_key );
+			if ( empty( $custom_field_value ) ) {
+				return '';
+			}
+
+			$comment_before_text = ! empty( $attrs['element_custom_field_before'] ) ? sanitize_text_field( $attrs['element_custom_field_before'] ) : '';
+			$comment_after_text  = ! empty( $attrs['element_custom_field_after'] ) ? sanitize_text_field( $attrs['element_custom_field_after'] ) : '';
+
+			$output = sprintf(
+				'<div class="%1$s"><span class="element-text">%3$s%2$s%4$s</span></div>',
+				esc_attr( $class_name ),
+				esc_html( $custom_field_value ),
+				esc_html( $comment_before_text ),
+				esc_html( $comment_after_text )
+			);
+		}
+
+		if ( 'advanced_custom_field' === $element ) {
+			if ( empty( $attrs['element_advanced_custom_field_post'] ) ) {
+				return '';
+			}
+
+			$acf_field_key = $attrs['element_advanced_custom_field_post'];
+			$acf_fields    = Utils\Elements\CustomFields::get( 'acf_fields' );
+			if ( ! $acf_fields->has_field( $post_id, $acf_field_key ) ) {
+				return '';
+			}
+
+			$acf_field_value = $acf_fields->get_field_value( $post_id, $acf_field_key );
+			if ( empty( $acf_field_value ) ) {
+				return '';
+			}
+
+			if ( 'email' === $acf_field_type ) {
+				$acf_email_text  = ! empty( $attrs['element_advanced_custom_field_email_text'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_email_text'] ) : $acf_field_value;
+				$acf_field_value = sprintf( '<a href="mailto:%1$s" target="_blank">%2$s</a>', esc_attr( $acf_field_value ), esc_html( $acf_email_text ) );
+			}
+			if ( 'url' === $acf_field_type ) {
+				$acf_url_text    = ! empty( $attrs['element_advanced_custom_field_url_text'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_url_text'] ) : esc_html__( 'Visit the link', 'squad-modules-for-divi' );
+				$acf_url_target  = ! empty( $attrs['element_advanced_custom_field_url_target'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_url_target'] ) : '_self';
+				$acf_field_value = sprintf( '<a href="%1$s" target="%3$s">%2$s</a>', esc_url( $acf_field_value ), esc_html( $acf_url_text ), esc_attr( $acf_url_target ) );
+			}
+			if ( 'image' === $acf_field_type ) {
+				$acf_image_width = ! empty( $attrs['element_advanced_custom_field_image_width'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_image_width'] ) : '100px';
+
+				$acf_image_sizes = array( absint( $acf_image_width ), 'full' );
+				$acf_image_attr  = array(
+					'width' => $acf_image_width,
+				);
+
+				$acf_field_value = wp_get_attachment_image( (int) $acf_field_value, $acf_image_sizes, false, $acf_image_attr ); // @phpstan-ignore-line
+			}
+
+			$acf_before_text = '';
+			$acf_after_text  = '';
+			if ( in_array( $acf_field_type, array( 'text' ), true ) ) {
+				$acf_before_text = ! empty( $attrs['element_advanced_custom_field_before'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_before'] ) : '';
+				$acf_after_text  = ! empty( $attrs['element_advanced_custom_field_after'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_after'] ) : '';
+			}
+
+			$output = sprintf(
+				'<div class="%1$s"><span class="element-text">%3$s%2$s%4$s</span></div>',
+				esc_attr( $class_name ),
+				wp_kses_post( $acf_field_value ),
+				esc_html( $acf_before_text ),
+				esc_html( $acf_after_text )
+			);
+		}
+
+		return $output;
+	}
+
+	/**
+	 * Render post name icon.
+	 *
+	 * @param array $attrs List of attributes.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_post_title_font_icon( $attrs ) {
+		$multi_view   = et_pb_multi_view_options( $this );
+		$element_type = isset( $attrs['element'] ) ? $attrs['element'] : 'none';
+		$icon_classes = array( 'et-pb-icon', 'squad-element_title-icon' );
+
+		if ( 'on' !== $attrs['element_title_icon_show_on_hover'] ) {
+			$icon_classes[] = 'always_show';
+		}
+
+		return $multi_view->render_element(
+			array(
+				'custom_props'   => $attrs,
+				'content'        => '{{element_title_icon}}',
+				'attrs'          => array(
+					'class' => implode( ' ', $icon_classes ),
+				),
+				'hover_selector' => "$this->main_css_element div .post-elements .squad-post-element.squad-element_$element_type",
+			)
+		);
+	}
+
+	/**
 	 * Generate styles.
 	 *
 	 * @param array $attrs List of unprocessed attributes.
 	 *
 	 * @return void
 	 */
-	private function squad_generate_all_styles( $attrs ) {
+	protected function squad_generate_all_styles( $attrs ) {
 		// Fixed: the custom background doesn't work at frontend.
 		$this->props = array_merge( $attrs, $this->props );
 
@@ -1622,7 +2862,7 @@ class PostGrid extends DiviSquad_Module {
 	 *
 	 * @return void
 	 */
-	private function squad_generate_layout_styles( $attrs ) {
+	protected function squad_generate_layout_styles( $attrs ) {
 		// Fixed: the custom background doesn't work at frontend.
 		$this->props = array_merge( $attrs, $this->props );
 
@@ -2105,968 +3345,5 @@ class PostGrid extends DiviSquad_Module {
 				)
 			);
 		}
-	}
-
-	/**
-	 * Collect all posts from the database.
-	 *
-	 * @param array                                     $attrs      List of unprocessed attributes.
-	 * @param string|array|null                         $content    Content being processed.
-	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view Multiview object instance.
-	 *
-	 * @return string the html output for the post-grid.
-	 * @since 1.0.0
-	 */
-	public static function squad_get_posts_html( $attrs, $content = null, $multi_view = null ) {
-		global $paged;
-
-		// Identify the current page state.
-		$is_divi_builder = isset( $content ) && is_array( $content );
-
-		$is_rest_query  = ! empty( $attrs['is_rest_query'] ) ? $attrs['is_rest_query'] : 'off';
-		$date_format    = ! empty( $attrs['date_format'] ) ? $attrs['date_format'] : 'M j, Y';
-		$inherit_loop   = ! empty( $attrs['inherit_current_loop'] ) ? $attrs['inherit_current_loop'] : 'off';
-		$posts_per_page = ! empty( $attrs['list_post_count'] ) ? absint( $attrs['list_post_count'] ) : 10;
-
-		// Verify extra feature ability.
-		$load_more  = ! empty( $attrs['load_more__enable'] ) ? $attrs['load_more__enable'] : 'off';
-		$pagination = ! empty( $attrs['pagination__enable'] ) ? $attrs['pagination__enable'] : 'off';
-
-		// Get the currently queried object.
-		$query = get_queried_object();
-
-		// Set query arguments.
-		$query_args = array();
-
-		// Set the current page.
-		if ( 'on' === $inherit_loop ) {
-			// Update custom query arguments for get related posts.
-			if ( $query instanceof \WP_Post && is_singular() ) {
-				$categories = wp_get_post_categories( $query->ID, array( 'fields' => 'ids' ) );
-				if ( is_array( $categories ) && count( $categories ) > 0 ) {
-					$query_args['cat'] = implode( ',', $categories );
-				} else {
-					$tags = wp_get_post_tags( $query->ID, array( 'fields' => 'ids' ) );
-					if ( is_array( $tags ) && count( $tags ) > 0 ) {
-						$query_args['tag__in'] = $tags;
-					}
-				}
-
-				$query_args['post__not_in'] = array( $query->ID ); // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
-				$query_args['author']       = $query->post_author;
-			}
-
-			// Update custom query arguments for get current author posts.
-			if ( $query instanceof \WP_User && is_author() ) {
-				$query_args['author'] = $query->ID;
-			}
-
-			// Update custom query arguments for get current taxonomy posts.
-			if ( $query instanceof \WP_Term && is_archive() ) {
-				$query_args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-					array(
-						'taxonomy' => $query->taxonomy,
-						'field'    => 'term_id',
-						'terms'    => $query->term_id,
-					),
-				);
-			}
-
-			// Update custom query arguments for get current search posts.
-			if ( is_search() ) {
-				$query_args['s'] = get_search_query();
-			}
-
-			// Update custom query arguments for get current date posts.
-			if ( is_date() ) {
-				$query_args['year']     = get_query_var( 'year' );
-				$query_args['monthnum'] = get_query_var( 'monthnum' );
-				$query_args['w']        = get_query_var( 'w' );
-				$query_args['day']      = get_query_var( 'day' );
-				$query_args['hour']     = get_query_var( 'hour' );
-				$query_args['minute']   = get_query_var( 'minute' );
-				$query_args['second']   = get_query_var( 'second' );
-			}
-		}
-
-		// Update custom query arguments for change the display by.
-		$display_by = ! empty( $attrs['list_post_display_by'] ) ? $attrs['list_post_display_by'] : 'recent';
-		if ( 'recent' !== $display_by ) {
-			if ( 'category' === $display_by && ! empty( $attrs['list_post_include_categories'] ) ) {
-				$query_args['cat'] = $attrs['list_post_include_categories'];
-			}
-			if ( 'tag' === $display_by && ! empty( $attrs['list_post_include_categories'] ) ) {
-				$query_args['tag__in'] = $attrs['list_post_include_tags'];
-			}
-		}
-
-		// Update custom query arguments for change the post offset.
-		if ( ! empty( $attrs['list_post_offset'] ) ) {
-			$post_offset = absint( $attrs['list_post_offset'] );
-			if ( ! empty( $attrs['pagination__enable'] ) && 'on' === $attrs['pagination__enable'] && $paged > 1 ) {
-				$query_args['offset'] = ( ( $paged - 1 ) * $post_offset ) + $post_offset;
-			} else {
-				$query_args['offset'] = $post_offset;
-			}
-		}
-
-		// Update custom query arguments for change the pagination.
-		if ( 'on' === $pagination ) {
-			$query_args['paged'] = $paged;
-		}
-
-		// WP post query arguments.
-		$query_args['orderby']        = ! empty( $attrs['list_post_order_by'] ) ? $attrs['list_post_order_by'] : 'date';
-		$query_args['order']          = ! empty( $attrs['list_post_order'] ) ? $attrs['list_post_order'] : 'ASC';
-		$query_args['perm']           = array( 'readable' );
-		$query_args['post_status']    = array( 'publish' );
-		$query_args['posts_per_page'] = $posts_per_page;
-
-		// extra query parameters.
-		$query_args['ignore_sticky_posts'] = ! empty( $attrs['list_post_ignore_sticky_posts'] ) && 'on' === $attrs['list_post_ignore_sticky_posts'];
-
-		$post_query = new WP_Query( $query_args );
-		if ( $post_query->have_posts() ) {
-			ob_start();
-
-			if ( 'off' === $is_rest_query ) {
-				print '<ul class="squad-post-container" style="list-style-type: none;">';
-			}
-
-			foreach ( $post_query->get_posts() as $post ) {
-				$post_classes = get_post_class( 'post', $post );
-				print sprintf( '<li class="%1$s">', esc_attr( implode( ' ', $post_classes ) ) );
-
-				if ( $is_divi_builder ) {
-					$date_replacement = str_replace( '\\\\', '\\', $date_format );
-
-					$author            = get_userdata( absint( $post->post_author ) );
-					$author_first_name = $author->first_name;
-					$author_last_name  = $author->last_name;
-
-					// Prepare the post data for the frontend.
-					$post_data = array(
-						'id'             => $post->ID,
-						'title'          => $post->post_title,
-						'excerpt'        => $post->post_excerpt,
-						'comments'       => $post->comment_count,
-						'date'           => $post->post_date,
-						'modified'       => $post->post_modified,
-						'content'        => wp_strip_all_tags( $post->post_content ),
-						'featured_image' => get_the_post_thumbnail( $post->ID, 'full' ),
-						'categories'     => wp_get_post_categories( $post->ID, array( 'fields' => 'names' ) ),
-						'tags'           => wp_get_post_tags( $post->ID, array( 'fields' => 'names' ) ),
-						'permalink'      => get_permalink( $post->ID ),
-						'author'         => array(
-							'nickname'     => $author->user_nicename,
-							'display-name' => $author->display_name,
-							'full-name'    => sprintf( '%1$s %2$s', $author_first_name, $author_last_name ),
-							'first-name'   => $author_first_name,
-							'last-name'    => $author_last_name,
-						),
-						'gravatar'       => get_avatar( $post->post_author, 40 ),
-						'formatted'      => array(
-							'publish'  => wp_date( $date_replacement, strtotime( $post->post_date ) ),
-							'modified' => wp_date( $date_replacement, strtotime( $post->post_modified ) ),
-						),
-					);
-
-					print sprintf(
-						'<script type="application/json" style="display: none">%s</script>',
-						wp_json_encode( $post_data )
-					);
-				}
-
-				/**
-				 * Filter the post elements in the outside wrapper.
-				 *
-				 * @param WP_Post $post The WP POST object.
-				 * @param string $content The content string.
-				 *
-				 * @return mixed
-				 */
-				$outside = apply_filters( 'divi_squad_post_query_current_post_element_outside', $post, $content );
-
-				/**
-				 * Filter the post elements in the main wrapper.
-				 *
-				 * @param WP_Post $post The WP POST object.
-				 * @param string $content The content string.
-				 *
-				 * @return mixed
-				 */
-				$inside = apply_filters( 'divi_squad_post_query_current_post_element_main', $post, $content );
-
-				// Show outer elements in the frontend.
-				if ( ! empty( $outside ) && is_string( $outside ) ) {
-					print wp_kses_post( sprintf( '<div class="squad-post-outer">%s</div>', $outside ) );
-				}
-
-				// Show inner elements in the frontend.
-				if ( ! empty( $inside ) && is_string( $inside ) ) {
-					print wp_kses_post( sprintf( '<div class="squad-post-inner">%s</div>', $inside ) );
-				}
-
-				print '</li>';
-			}
-
-			if ( 'off' === $is_rest_query ) {
-				print '</ul>';
-			}
-
-			// Verify the ability of load more of pagination.
-			$is_posts_exists = $post_query->found_posts > $posts_per_page;
-
-			if ( ! $is_divi_builder && $is_posts_exists && 'off' === $is_rest_query && 'on' === $load_more ) {
-				$button_text = $multi_view->render_element(
-					array(
-						'tag'            => 'span',
-						'content'        => '{{load_more_button_text}}',
-						'attrs'          => array(
-							'class' => 'button-text',
-						),
-						'hover_selector' => '%%order_class%%.disq_post_grid div .squad-load-more-button-wrapper .squad-load-more-button',
-					)
-				);
-
-				if ( '' !== $button_text ) {
-					$icon_element_html  = '';
-					$icon_element       = '';
-					$icon_wrapper_class = 'squad-icon-wrapper';
-					$button_classes     = 'squad-load-more-button et_pb_with_background';
-					$button_icon_hover  = isset( $attrs['load_more_button_icon_on_hover'] ) ? $attrs['load_more_button_icon_on_hover'] : 'off';
-					$animation__enable  = isset( $attrs['load_more_button_hover_animation__enable'] ) ? $attrs['load_more_button_hover_animation__enable'] : 'off';
-					$animation_type     = isset( $attrs['load_more_button_hover_animation_type'] ) ? $attrs['load_more_button_hover_animation_type'] : 'fill';
-					$button_icon_type   = isset( $attrs['load_more_button_icon_type'] ) ? $attrs['load_more_button_icon_type'] : 'icon';
-
-					if ( 'on' === $animation__enable ) {
-						$button_classes .= " $animation_type";
-					}
-
-					if ( 'icon' === $button_icon_type ) {
-						$icon_element = $multi_view->render_element(
-							array(
-								'content'        => '{{load_more_button_icon}}',
-								'attrs'          => array(
-									'class' => 'et-pb-icon squad-button-icon',
-								),
-								'hover_selector' => '%%order_class%%.disq_post_grid div .squad-load-more-button-wrapper .squad-load-more-button',
-							)
-						);
-					}
-
-					if ( 'image' === $button_icon_type ) {
-						$image_classes          = 'squad-load-more-button-image et_pb_image_wrap';
-						$image_attachment_class = et_pb_media_options()->get_image_attachment_class( $attrs, 'load_more_button_image' );
-
-						if ( ! empty( $image_attachment_class ) ) {
-							$image_classes .= " $image_attachment_class";
-						}
-
-						$icon_element = $multi_view->render_element(
-							array(
-								'tag'            => 'img',
-								'attrs'          => array(
-									'src'   => '{{load_more_button_image}}',
-									'class' => $image_classes,
-									'alt'   => '',
-								),
-								'required'       => 'load_more_button_image',
-								'hover_selector' => '%%order_class%%.disq_post_grid div .squad-load-more-button-wrapper .squad-load-more-button',
-							)
-						);
-					}
-
-					if ( ( 'none' !== $button_icon_type ) && ! empty( $icon_element ) ) {
-						if ( 'on' === $button_icon_hover ) {
-							$icon_wrapper_class .= ' show-on-hover';
-						}
-
-						$icon_element_html = sprintf(
-							'<span class="%1$s"><span class="icon-element">%2$s</span></span>',
-							esc_attr( $icon_wrapper_class ),
-							wp_kses_post( $icon_element )
-						);
-					}
-
-					// Enqueue associated script.
-					wp_enqueue_script( 'squad-module-post-grid' );
-
-					// Load more options.
-					$button_options = array(
-						'endpoint_url'   => 'squad-modules-for-divi/v1/module/post-grid/load-more',
-						'posts_per_page' => $posts_per_page,
-						'total_posts'    => $post_query->found_posts,
-						'total_pages'    => $post_query->max_num_pages,
-					);
-					$query_options  = array(
-						'query_args' => self::squad_get_client_query_args( $attrs ),
-						'content'    => $content,
-					);
-
-					print sprintf(
-						'<div class="squad-load-more-button-wrapper" data-options=\'%4$s\'><script type="application/json" style="display: none">%5$s</script><div class="%3$s">%1$s%2$s</div></div>',
-						wp_kses_post( $button_text ),
-						wp_kses_post( $icon_element_html ),
-						esc_attr( $button_classes ),
-						wp_json_encode( $button_options ),
-						wp_json_encode( $query_options )
-					);
-				}
-			}
-
-			if ( ! $is_divi_builder && $is_posts_exists && 'off' === $is_rest_query && 'on' === $pagination ) {
-				$prev_text         = ''; // &#x3c;
-				$next_text         = ''; // &#x3d;
-				$icon_only__enable = ! empty( $attrs['pagination_icon_only__enable'] ) ? $attrs['pagination_icon_only__enable'] : 'off';
-				$numbers__enable   = ! empty( $attrs['pagination_numbers__enable'] ) ? $attrs['pagination_numbers__enable'] : 'off';
-				$old_entries_text  = ! empty( $attrs['pagination_old_entries_text'] ) ? esc_html( $attrs['pagination_old_entries_text'] ) : __( 'Old Entries', 'squad-modules-for-divi' );
-				$next_entries_text = ! empty( $attrs['pagination_next_entries_text'] ) ? esc_html( $attrs['pagination_next_entries_text'] ) : __( 'Next Entries', 'squad-modules-for-divi' );
-
-				// Set icon for pagination prev element.
-				$prev_text .= $multi_view->render_element(
-					array(
-						'content'        => '{{pagination_old_entries_icon}}',
-						'attrs'          => array(
-							'class' => 'et-pb-icon squad-pagination_old_entries-icon',
-						),
-						'custom_props'   => $attrs,
-						'hover_selector' => '%%order_class%%.disq_post_grid div .squad-pagination .pagination-entries.prev',
-					)
-				);
-
-				// Set text for pagination prev and next element.
-				if ( 'on' !== $icon_only__enable ) {
-					$prev_text .= sprintf( '<span class="entries-text">%1$s</span>', esc_html( $old_entries_text ) );
-					$next_text .= sprintf( '<span class="entries-text">%1$s</span>', esc_html( $next_entries_text ) );
-				}
-
-				// Set icon for pagination next element.
-				$next_text .= $multi_view->render_element(
-					array(
-						'content'        => '{{pagination_next_entries_icon}}',
-						'attrs'          => array(
-							'class' => 'et-pb-icon squad-pagination_next_entries-icon',
-						),
-						'custom_props'   => $attrs,
-						'hover_selector' => '%%order_class%%.disq_post_grid div .squad-pagination .pagination-entries.next',
-					)
-				);
-
-				// Collect all links for pagination.
-				$paginate_links = paginate_links(
-					array(
-						'format'    => '?paged=%#%',
-						'current'   => max( 1, get_query_var( 'paged' ) ),
-						'total'     => $post_query->max_num_pages,
-						'prev_text' => $prev_text,
-						'next_text' => $next_text,
-						'type'      => 'array',
-					)
-				);
-
-				if ( isset( $paginate_links ) && count( $paginate_links ) ) {
-					print '<div class="squad-pagination clearfix">';
-					$is_prev_found  = false;
-					$is_next_found  = false;
-					$first_paginate = array_shift( $paginate_links );
-					$last_paginate  = array_pop( $paginate_links );
-
-					$paginate_prev_text = '';
-					$paginate_next_text = '';
-
-					// Update class name for the fist paginate link.
-					if ( false !== strpos( $first_paginate, 'prev' ) ) {
-						$is_prev_found      = true;
-						$paginate_prev_text = str_replace( 'page-numbers', 'pagination-entries', $first_paginate );
-					}
-
-					// Update class name for the last paginate link.
-					if ( false !== strpos( $last_paginate, 'next' ) ) {
-						$is_next_found      = true;
-						$paginate_next_text = str_replace( 'page-numbers', 'pagination-entries', $last_paginate );
-					}
-
-					// Show the fist paginate link.
-					if ( $is_prev_found ) {
-						print wp_kses_post( $paginate_prev_text );
-					}
-
-					// Show the last paginated numbers.
-					if ( ( 'on' === $numbers__enable ) && ( false === $is_prev_found || false === $is_next_found || count( $paginate_links ) ) ) {
-						print '<div class="pagination-numbers">';
-						if ( false === $is_prev_found ) {
-							print wp_kses_post( $first_paginate );
-						}
-						if ( count( $paginate_links ) ) {
-							foreach ( $paginate_links as $paginate_link ) {
-								print wp_kses_post( $paginate_link );
-							}
-						}
-						if ( false === $is_next_found ) {
-							print wp_kses_post( $last_paginate );
-						}
-						print '</div>';
-					}
-
-					// Show the last paginate link.
-					if ( $is_next_found ) {
-						print wp_kses_post( $paginate_next_text );
-					}
-
-					print '</div>';
-				}
-			}
-
-			return ob_get_clean();
-		}
-
-		/* Restore original Post Data */
-		wp_reset_postdata();
-
-		return '';
-	}
-
-	/**
-	 * Get queried arguments for client side rendering.
-	 *
-	 * @param array<string, mixed> $attrs List of module attributes.
-	 *
-	 * @return array<string, mixed>
-	 */
-	private static function squad_get_client_query_args( $attrs ) {
-		// Allowed properties.
-		$allowed_props = array(
-			'inherit_current_loop',
-			'date_format',
-			'list_post_display_by',
-			'list_post_count',
-			'list_post_include_categories',
-			'list_post_include_tags',
-			'list_post_offset',
-			'list_post_order',
-			'list_post_order_by',
-		);
-
-		// Filter allowed properties.
-		$query_arguments = \wp_array_slice_assoc( $attrs, $allowed_props );
-
-		// Remove empty values.
-		foreach ( $query_arguments as $key => $value ) {
-			if ( empty( $value ) ) {
-				unset( $query_arguments[ $key ] );
-			}
-		}
-
-		return $query_arguments;
-	}
-
-	/**
-	 * Render the post-elements in the outside wrapper.
-	 *
-	 * @param WP_Post      $post    The current post.
-	 * @param string|array $content The parent content.
-	 *
-	 * @return string
-	 */
-	public function wp_hook_squad_current_outside_post_element( $post, $content ) {
-		$callback = function ( $post, $child_prop ) {
-			$outside_enable = isset( $child_prop['element_outside__enable'] ) ? $child_prop['element_outside__enable'] : 'off';
-
-			if ( 'on' === $outside_enable ) {
-				$output        = '';
-				$element_type  = isset( $child_prop['element'] ) ? $child_prop['element'] : 'none';
-				$icon_type     = isset( $child_prop['element_icon_type'] ) ? $child_prop['element_icon_type'] : 'icon';
-				$icon_excludes = $this->icon_not_eligible_elements;
-
-				// Verify icon element.
-				if ( 'none' !== $icon_type && ! in_array( $element_type, $icon_excludes, true ) ) {
-					$output .= $this->squad_render_element_icon( $child_prop );
-				}
-
-				// Append the element content.
-				$output .= $this->squad_render_post_element_body( $child_prop, $post );
-				if ( empty( $output ) ) {
-					return '';
-				}
-
-				return sprintf(
-					'<div class="post-elements et_pb_with_background">%1$s</div>',
-					wp_kses_post( $output )
-				);
-			}
-
-			return '';
-		};
-
-		return $this->squad_generate_props_content( $post, $content, $callback );
-	}
-
-	/**
-	 * Render the post-elements in the main wrapper.
-	 *
-	 * @param WP_Post      $post    The WP POST object.
-	 * @param string|array $content The parent content.
-	 *
-	 * @return string
-	 */
-	public function wp_hook_squad_current_main_post_element( $post, $content ) {
-		$callback = function ( $post, $child_prop ) {
-			$outside_enable = ! empty( $child_prop['element_outside__enable'] ) ? $child_prop['element_outside__enable'] : 'off';
-
-			if ( 'off' === $outside_enable ) {
-				$output        = '';
-				$element_type  = ! empty( $child_prop['element'] ) ? $child_prop['element'] : 'none';
-				$icon_type     = ! empty( $child_prop['element_icon_type'] ) ? $child_prop['element_icon_type'] : 'icon';
-				$icon_excludes = $this->icon_not_eligible_elements;
-
-				// Verify icon element.
-				if ( 'none' !== $icon_type && ! in_array( $element_type, $icon_excludes, true ) ) {
-					$output .= $this->squad_render_element_icon( $child_prop );
-				}
-
-				// Append the element content.
-				$output .= $this->squad_render_post_element_body( $child_prop, $post );
-				if ( empty( $output ) ) {
-					return '';
-				}
-
-				return sprintf(
-					'<div class="post-elements et_pb_with_background">%1$s</div>',
-					wp_kses_post( $output )
-				);
-			}
-
-			return '';
-		};
-
-		return $this->squad_generate_props_content( $post, $content, $callback );
-	}
-
-	/**
-	 * Generate content by props with dynamic values.
-	 *
-	 * @param WP_Post      $post        The WP POST object.
-	 * @param string|array $content     The parent content.
-	 * @param callable     $callback    The render callback.
-	 *
-	 * @return string
-	 */
-	public function squad_generate_props_content( $post, $content, $callback ) {
-		ob_start();
-
-		// Collect all child modules from Html content.
-		$pattern = '/<div\s+class="[^"]*disq_post_grid_child[^"]*"[^>]*>.*?<\/div>\s+<\/div>/is';
-		if ( is_string( $content ) && preg_match_all( $pattern, $content, $matches ) && isset( $matches[0] ) && count( $matches[0] ) ) {
-			// Catch module with the main wrapper.
-			$child_modules = $matches[0];
-
-			// Output the split tags.
-			foreach ( $child_modules as $child_module_content ) {
-				$child_raw_props = Utils::collect_raw_props( $child_module_content );
-				$child_props     = Utils::collect_child_json_props( $child_raw_props );
-				$child_props     = isset( $child_props[0] ) && count( $child_props[0] ) ? $child_props[0] : array();
-
-				if ( count( $child_props ) ) {
-					$child_prop_markup = sprintf( '%s,||', wp_json_encode( $child_props ) );
-					$html_output       = $callback( $post, $child_props );
-
-					// check available content.
-					if ( is_string( $html_output ) && ! empty( $html_output ) ) {
-						// Merge with raw content.
-						$module_content = str_replace( $child_prop_markup, $html_output, $child_module_content );
-
-						// Show the generated child module content.
-						print wp_kses_post( $module_content );
-					}
-				}
-			}
-		}
-
-		return ob_get_clean();
-	}
-
-	/**
-	 * Render icon which on is active.
-	 *
-	 * @param array $attrs List of attributes.
-	 *
-	 * @return string
-	 */
-	private function squad_render_element_icon( $attrs ) {
-		$wrapper_classes = array( 'squad-element-icon-wrapper' );
-
-		if ( isset( $attrs['element_icon_on_hover'] ) && 'on' === $attrs['element_icon_on_hover'] ) {
-			$wrapper_classes[] = 'show-on-hover';
-		}
-
-		return sprintf(
-			'<span class="%1$s"><span class="icon-element">%2$s%3$s%4$s</span></span>',
-			implode( ' ', $wrapper_classes ),
-			wp_kses_post( $this->squad_render_element_font_icon( $attrs ) ),
-			wp_kses_post( $this->squad_render_element_icon_image( $attrs ) ),
-			wp_kses_post( $this->squad_render_element_icon_text( $attrs ) )
-		);
-	}
-
-	/**
-	 * Render icon.
-	 *
-	 * @param array $attrs List of unprocessed attributes.
-	 *
-	 * @return string
-	 */
-	private function squad_render_element_font_icon( $attrs ) {
-		if ( 'icon' === $attrs['element_icon_type'] ) {
-			$multi_view   = et_pb_multi_view_options( $this );
-			$element_type = isset( $attrs['element'] ) ? $attrs['element'] : 'none';
-			$icon_classes = array( 'et-pb-icon', 'disq_list_icon' );
-
-			return $multi_view->render_element(
-				array(
-					'custom_props'   => $attrs,
-					'content'        => '{{element_icon}}',
-					'attrs'          => array(
-						'class' => implode( ' ', $icon_classes ),
-					),
-					'hover_selector' => "$this->main_css_element div .post-elements .squad-post-element.squad-element_$element_type",
-				)
-			);
-		}
-
-		return '';
-	}
-
-	/**
-	 * Render image.
-	 *
-	 * @param array $attrs List of unprocessed attributes.
-	 *
-	 * @return string
-	 */
-	private function squad_render_element_icon_image( $attrs ) {
-		if ( 'image' === $attrs['element_icon_type'] ) {
-			$multi_view    = et_pb_multi_view_options( $this );
-			$alt_text      = $this->_esc_attr( 'alt' );
-			$title_text    = $this->_esc_attr( 'title_text' );
-			$element_type  = isset( $attrs['element'] ) ? $attrs['element'] : 'none';
-			$image_classes = array( 'disq_list_image', 'et_pb_image_wrap' );
-
-			$image_attachment_class = et_pb_media_options()->get_image_attachment_class( $this->props, 'element_image' );
-
-			if ( ! empty( $image_attachment_class ) ) {
-				$image_classes[] = esc_attr( $image_attachment_class );
-			}
-
-			return $multi_view->render_element(
-				array(
-					'custom_props'   => $attrs,
-					'tag'            => 'img',
-					'attrs'          => array(
-						'src'   => '{{element_image}}',
-						'class' => implode( ' ', $image_classes ),
-						'alt'   => $alt_text,
-						'title' => $title_text,
-					),
-					'required'       => 'element_image',
-					'hover_selector' => "$this->main_css_element div .post-elements .squad-post-element.squad-element_$element_type",
-				)
-			);
-		}
-
-		return '';
-	}
-
-	/**
-	 * Render image.
-	 *
-	 * @param array $attrs List of unprocessed attributes.
-	 *
-	 * @return string
-	 */
-	private function squad_render_element_icon_text( $attrs ) {
-		if ( 'text' === $attrs['element_icon_type'] ) {
-			$multi_view        = et_pb_multi_view_options( $this );
-			$element_type      = isset( $attrs['element'] ) ? $attrs['element'] : 'none';
-			$icon_text_classes = array( 'squad-list-icon-text' );
-
-			return $multi_view->render_element(
-				array(
-					'custom_props'   => $attrs,
-					'content'        => '{{element_icon_text}}',
-					'attrs'          => array(
-						'class' => implode( ' ', $icon_text_classes ),
-					),
-					'hover_selector' => "$this->main_css_element div .post-elements .squad-post-element.squad-element_$element_type",
-				)
-			);
-		}
-
-		return '';
-	}
-
-	/**
-	 * Render element body.
-	 *
-	 * @param array         $attrs List of attributes.
-	 * @param false|WP_POST $post  The current post-object.
-	 *
-	 * @return string
-	 */
-	private function squad_render_post_element_body( $attrs, $post ) {
-		$element    = ! empty( $attrs['element'] ) ? $attrs['element'] : 'none';
-		$class_name = sprintf( 'squad-post-element squad-post-element__%1$s et_pb_with_background', $element );
-		$post_title = $post->post_title;
-		$post_id    = $post->ID;
-
-		$post_excerpt__enable = ! empty( $attrs['element_excerpt__enable'] ) ? sanitize_text_field( $attrs['element_excerpt__enable'] ) : 'off';
-		$post_content         = ( 'on' === $post_excerpt__enable ) ? $post->post_excerpt : wp_strip_all_tags( $post->post_content );
-
-		$categories  = wp_get_post_categories( $post_id, array( 'fields' => 'names' ) );
-		$tags        = wp_get_post_tags( $post_id, array( 'fields' => 'names' ) );
-		$custom_text = ! empty( $attrs['element_custom_text'] ) ? sanitize_text_field( $attrs['element_custom_text'] ) : '';
-
-		if ( 'title' === $element && ! empty( $post_title ) ) {
-			$title_tag = ! empty( $attrs['element_title_tag'] ) ? sanitize_text_field( $attrs['element_title_tag'] ) : 'span';
-			$content   = sprintf( '<span class="element-text">%1$s</span>', ucfirst( $post_title ) );
-
-			if ( 'on' === $attrs['element_title_icon__enable'] && '' !== $attrs['element_title_icon'] ) {
-				$title_icon = $this->squad_render_post_title_font_icon( $attrs );
-			} else {
-				$title_icon = '';
-			}
-
-			return sprintf(
-				'<div class="%1$s"><%3$s class="element-text">%2$s</%3$s>%4$s</div>',
-				esc_attr( $class_name ),
-				wp_kses_post( $content ),
-				esc_attr( $title_tag ),
-				wp_kses_post( $title_icon )
-			);
-		}
-
-		if ( in_array( $element, array( 'image', 'featured_image' ), true ) ) {
-			$post_image = get_the_post_thumbnail( $post_id, 'full' );
-			if ( ! empty( $post_image ) ) {
-				return sprintf(
-					'<div class="%1$s">%2$s</div>',
-					esc_attr( $class_name ),
-					wp_kses_post( $post_image )
-				);
-			}
-
-			return '';
-		}
-
-		if ( 'content' === $element && ! empty( $post_content ) ) {
-			$post_content_length__enable = ! empty( $attrs['element_ex_con_length__enable'] ) ? sanitize_text_field( $attrs['element_ex_con_length__enable'] ) : 'off';
-			$post_content_length         = ! empty( $attrs['element_ex_con_length'] ) ? absint( sanitize_text_field( $attrs['element_ex_con_length'] ) ) : 20;
-
-			// Ref: https://en.wikipedia.org/wiki/Wikipedia:Language_recognition_chart .
-			$character_map      = 'äëïöüÄËÏÖÜáǽćéíĺńóŕśúźÁǼĆÉÍĹŃÓŔŚÚŹ';
-			$character_map     .= 'àèìòùÀÈÌÒÙãẽĩõñũÃẼĨÕÑŨâêîôûÂÊÎÔÛăĕğĭŏœ̆ŭĂĔĞĬŎŒ̆Ŭ';
-			$character_map     .= 'āēīōūĀĒĪŌŪőűŐŰąęįųĄĘĮŲåůÅŮæÆøØýÝÿŸþÞẞßđĐıIœŒ';
-			$character_map     .= 'čďěľňřšťžČĎĚĽŇŘŠŤŽƒƑðÐłŁçģķļșțÇĢĶĻȘȚħĦċėġżĊĖĠŻʒƷǯǮŋŊŧŦ';
-			$character_map     .= ':~^!?';
-			$post_content_words = Str::word_count( $post_content, 2, $character_map );
-
-			if ( 'on' === $post_content_length__enable && count( $post_content_words ) > $post_content_length ) {
-				$content = implode( ' ', array_slice( $post_content_words, 0, $post_content_length ) );
-
-				return sprintf(
-					'<div class="%1$s"><span>%2$s</span></div>',
-					esc_attr( $class_name ),
-					wp_kses_post( $content )
-				);
-			}
-
-			return sprintf(
-				'<div class="%1$s"><span>%2$s</span></div>',
-				esc_attr( $class_name ),
-				wp_kses_post( $post_content )
-			);
-		}
-
-		if ( 'author' === $element ) {
-			$author            = get_userdata( absint( $post->post_author ) );
-			$default_name_type = 'nickname';
-			$author_name_type  = ! empty( $attrs['element_author_name_type'] ) ? sanitize_text_field( $attrs['element_author_name_type'] ) : $default_name_type;
-
-			switch ( $author_name_type ) {
-				case 'nickname':
-					$content = $author->nickname;
-					break;
-				case 'first-name':
-					$content = $author->first_name;
-					break;
-				case 'last-name':
-					$content = $author->last_name;
-					break;
-				case 'full-name':
-					$content = sprintf( '%1$s %2$s', $author->first_name, $author->last_name );
-					break;
-				default:
-					$content = $author->display_name;
-			}
-
-			return sprintf(
-				'<div class="%1$s"><span>%2$s</span></div>',
-				esc_attr( $class_name ),
-				esc_html( $content )
-			);
-		}
-
-		if ( 'gravatar' === $element ) {
-			$gravatar_size = ! empty( $attrs['element_gravatar_size'] ) ? absint( $attrs['element_gravatar_size'] ) : 40;
-			$gravatar      = get_avatar( $post->post_author, $gravatar_size );
-
-			return sprintf(
-				'<div class="%1$s">%2$s</div>',
-				esc_attr( $class_name ),
-				wp_kses_post( $gravatar )
-			);
-		}
-
-		if ( 'date' === $element ) {
-			$element_date_type = ! empty( $attrs['element_date_type'] ) ? sanitize_text_field( $attrs['element_date_type'] ) : 'publish';
-			$date_format_text  = ! empty( $attrs['parent_prop_date_format'] ) ? sanitize_text_field( $attrs['parent_prop_date_format'] ) : '';
-			$date_object       = ! empty( $date_format_text ) ? json_decode( $date_format_text, false ) : new \stdClass();
-			$date_format       = ! empty( $date_object->date_format ) ? $date_object->date_format : 'M j, Y';
-			$date              = 'modified' === $element_date_type ? $post->post_modified : $post->post_date;
-			$date_modified     = str_replace( '\\\\', '\\', $date_format );
-
-			return sprintf(
-				'<div class="%1$s"><time datetime="%3$s">%2$s</time></div>',
-				esc_attr( $class_name ),
-				wp_date( $date_modified, strtotime( $date ) ),
-				esc_attr( $date )
-			);
-		}
-
-		if ( 'read_more' === $element ) {
-			$permalink_url   = get_permalink( $post_id );
-			$read_more_title = esc_html__( 'Read the post', 'squad-modules-for-divi' );
-			$default_text    = esc_html__( 'Read More', 'squad-modules-for-divi' );
-			$read_more_text  = ! empty( $attrs['element_read_more_text'] ) ? sanitize_text_field( $attrs['element_read_more_text'] ) : $default_text;
-
-			return sprintf(
-				'<div class="%1$s"><a href="%2$s" title="%4$s">%3$s</a></div>',
-				esc_attr( $class_name ),
-				esc_url( $permalink_url ),
-				esc_html( $read_more_text ),
-				esc_attr( $read_more_title )
-			);
-		}
-
-		if ( 'comments' === $element ) {
-			$comment_before_text = ! empty( $attrs['element_comment_before_text'] ) ? sanitize_text_field( $attrs['element_comment_before_text'] ) : '';
-			$comment_after_text  = ! empty( $attrs['element_comments_after'] ) ? sanitize_text_field( $attrs['element_comments_after'] ) : '';
-
-			return sprintf(
-				'<div class="%1$s"><span class="element-text">%3$s%2$s%4$s</span></div>',
-				esc_attr( $class_name ),
-				esc_html( $post->comment_count ),
-				esc_html( $comment_before_text ),
-				esc_html( $comment_after_text )
-			);
-		}
-
-		if ( 'categories' === $element && count( $categories ) ) {
-			$categories_separator = ! empty( $attrs['element_categories_sepa'] ) ? $attrs['element_categories_sepa'] : '';
-
-			return sprintf(
-				'<div class="%1$s"><span class="element-text">%2$s</span></div>',
-				esc_attr( $class_name ),
-				esc_attr( implode( $categories_separator, $categories ) )
-			);
-		}
-
-		if ( 'tags' === $element && count( $tags ) ) {
-			$tags_separator = ! empty( $attrs['element_tags_sepa'] ) ? $attrs['element_tags_sepa'] : '';
-
-			return sprintf(
-				'<div class="%1$s"><span class="element-text">%2$s</span></div>',
-				esc_attr( $class_name ),
-				esc_attr( implode( $tags_separator, $tags ) )
-			);
-		}
-
-		if ( 'custom_text' === $element && ! empty( $custom_text ) ) {
-			return sprintf(
-				'<div class="%1$s"><span class="element-text">%2$s</span></div>',
-				esc_attr( $class_name ),
-				esc_html( $custom_text )
-			);
-		}
-
-		if ( 'divider' === $element && ( 'off' !== $attrs['show_divider'] ) ) {
-			$divider_position = ! empty( $attrs['divider_position'] ) ? sanitize_text_field( $attrs['divider_position'] ) : 'bottom';
-			$divider_classes  = implode( ' ', array( 'divider-element', $divider_position ) );
-
-			return sprintf(
-				'<div class="%1$s"><span class="%2$s">%2$s</span></div>',
-				esc_attr( $class_name ),
-				esc_attr( $divider_classes )
-			);
-		}
-
-		return '';
-	}
-
-	/**
-	 * Render post name icon.
-	 *
-	 * @param array $attrs List of attributes.
-	 *
-	 * @return string
-	 */
-	private function squad_render_post_title_font_icon( $attrs ) {
-		$multi_view   = et_pb_multi_view_options( $this );
-		$element_type = isset( $attrs['element'] ) ? $attrs['element'] : 'none';
-		$icon_classes = array( 'et-pb-icon', 'squad-element_title-icon' );
-
-		if ( 'on' !== $attrs['element_title_icon_show_on_hover'] ) {
-			$icon_classes[] = 'always_show';
-		}
-
-		return $multi_view->render_element(
-			array(
-				'custom_props'   => $attrs,
-				'content'        => '{{element_title_icon}}',
-				'attrs'          => array(
-					'class' => implode( ' ', $icon_classes ),
-				),
-				'hover_selector' => "$this->main_css_element div .post-elements .squad-post-element.squad-element_$element_type",
-			)
-		);
-	}
-
-	/**
-	 * Filter multi view value.
-	 *
-	 * @param mixed $raw_value Props raw value.
-	 * @param array $args      Props arguments.
-	 *
-	 * @return mixed
-	 *
-	 * @see   ET_Builder_Module_Helper_MultiViewOptions::filter_value
-	 */
-	public function multi_view_filter_value( $raw_value, $args ) {
-		$name = isset( $args['name'] ) ? $args['name'] : '';
-
-		// process font icon.
-		$icon_fields = array(
-			'element_icon',
-			'element_title_icon',
-			'load_more_button_icon',
-			'pagination_old_entries_icon',
-			'pagination_next_entries_icon',
-		);
-		if ( $raw_value && in_array( $name, $icon_fields, true ) ) {
-			return et_pb_get_extended_font_icon_value( $raw_value, true );
-		}
-
-		// process others.
-		return $raw_value;
 	}
 }

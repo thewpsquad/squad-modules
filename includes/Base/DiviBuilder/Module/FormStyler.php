@@ -7,8 +7,10 @@
  * @since   1.0.0
  */
 
-namespace DiviSquad\Base\DiviBuilder;
+namespace DiviSquad\Base\DiviBuilder\Module;
 
+use DiviSquad\Base\DiviBuilder\Module;
+use DiviSquad\Base\DiviBuilder\Utils;
 use function esc_html__;
 use function et_pb_background_options;
 use function wp_parse_args;
@@ -19,7 +21,7 @@ use function wp_parse_args;
  * @package DiviSquad
  * @since   1.0.0
  */
-abstract class DiviSquad_Form_Styler extends DiviSquad_Module {
+abstract class FormStyler extends Module {
 
 	/**
 	 * Collect all posts from the database.
@@ -118,9 +120,9 @@ abstract class DiviSquad_Form_Styler extends DiviSquad_Module {
 		foreach ( $custom_spacing_prefixes as $prefix => $options ) {
 			$label = ! empty( $options['label'] ) ? $options['label'] : '';
 
-			/* translators: 1: The Element Label */
+			/* translators: The Element Label */
 			$label_margin = sprintf( esc_html__( '%s Margin', 'squad-modules-for-divi' ), $label );
-			/* translators: 1: The Element Label */
+			/* translators: The Element Label */
 			$label_padding = sprintf( esc_html__( '%s Padding', 'squad-modules-for-divi' ), $label );
 
 			// The default attributes for margin and padding field.

@@ -13,7 +13,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
@@ -33,7 +33,7 @@ use function wp_kses_post;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class DualButton extends DiviSquad_Module {
+class DualButton extends Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.

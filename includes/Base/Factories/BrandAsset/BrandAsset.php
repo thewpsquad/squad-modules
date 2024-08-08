@@ -24,7 +24,7 @@ abstract class BrandAsset implements BrandAssetInterface {
 	 * @return string
 	 */
 	public function get_plugin_base() {
-		return divi_squad()->get_base();
+		return divi_squad()->get_basename();
 	}
 
 	/**

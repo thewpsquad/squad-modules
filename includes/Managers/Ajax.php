@@ -11,8 +11,6 @@
 
 namespace DiviSquad\Managers;
 
-use DiviSquad\Modules;
-
 /**
  * The Ajax actions handler class.
  *

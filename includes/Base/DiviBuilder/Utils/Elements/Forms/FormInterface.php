@@ -6,7 +6,7 @@
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
- * @since   3.0.1
+ * @since   3.1.0
  */
 
 namespace DiviSquad\Base\DiviBuilder\Utils\Elements\Forms;
@@ -17,7 +17,7 @@ namespace DiviSquad\Base\DiviBuilder\Utils\Elements\Forms;
  * Interface for form processors.
  *
  * @package DiviSquad
- * @since   3.0.1
+ * @since   3.1.0
  */
 interface FormInterface {
 

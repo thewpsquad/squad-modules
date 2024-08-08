@@ -12,9 +12,8 @@
 
 namespace DiviSquad\Modules\FormStylers;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Form_Styler as SquadFormStyler;
+use DiviSquad\Base\DiviBuilder\Module\FormStyler;
 use DiviSquad\Base\DiviBuilder\Utils;
-use DiviSquad\Base\DiviBuilder\Utils\Elements\Forms;
 use DiviSquad\Utils\Helper;
 use function esc_html__;
 
@@ -24,7 +23,7 @@ use function esc_html__;
  * @package DiviSquad
  * @since   1.2.0
  */
-class GravityForms extends SquadFormStyler {
+class GravityForms extends FormStyler {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -95,7 +94,7 @@ class GravityForms extends SquadFormStyler {
 				esc_html__( 'Form', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose the gravity form.', 'squad-modules-for-divi' ),
-					'options'          => Forms::get_all_forms( 'gravity_forms' ),
+					'options'          => Utils\Elements\Forms::get_all_forms( 'gravity_forms' ),
 					'computed_affects' => array(
 						'__forms',
 					),
@@ -697,7 +696,7 @@ class GravityForms extends SquadFormStyler {
 	 */
 	protected function get_field_selector_default() {
 		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Forms::get_allowed_fields();
+		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
 
 		$selectors = array();
 		foreach ( $allowed_fields as $allowed_field ) {
@@ -714,7 +713,7 @@ class GravityForms extends SquadFormStyler {
 	 */
 	protected function get_field_selector_hover() {
 		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Forms::get_allowed_fields();
+		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
 
 		$selectors = array();
 		foreach ( $allowed_fields as $allowed_field ) {
@@ -859,12 +858,12 @@ class GravityForms extends SquadFormStyler {
 	 */
 	public static function squad_form_styler__get_form_html( $attrs, $content = null ) {
 		// Check if the form id is empty or not.
-		if ( empty( $attrs['form_id'] ) || Forms::DEFAULT_FORM_ID === $attrs['form_id'] || ! function_exists( '\gravity_form' ) ) {
+		if ( empty( $attrs['form_id'] ) || Utils\Elements\Forms::DEFAULT_FORM_ID === $attrs['form_id'] || ! function_exists( '\gravity_form' ) ) {
 			return '';
 		}
 
 		// Collect all posts from the database.
-		$collection = Forms::get_all_forms( 'gravity_forms', 'id' );
+		$collection = Utils\Elements\Forms::get_all_forms( 'gravity_forms', 'id' );
 
 		// Check if the form id is existing.
 		if ( ! isset( $collection[ $attrs['form_id'] ] ) ) {

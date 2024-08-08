@@ -16,7 +16,7 @@ namespace DiviSquad\Base\DiviBuilder\Utils\Fields;
  * @author  WP Squad <support@squadmodules.com>
  * @since   1.0.0
  */
-trait Compatibility {
+trait CompatibilityTrait {
 	/**
 	 * Fix border transition issues.
 	 *

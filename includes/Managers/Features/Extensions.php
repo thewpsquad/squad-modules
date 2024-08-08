@@ -26,6 +26,102 @@ use function esc_html__;
 class Extensions extends ManagerBase {
 
 	/**
+	 * Get available extensions.
+	 *
+	 * @return array[]
+	 */
+	public function get_registered_list() {
+		$available_extensions = array(
+			array(
+				'classes'            => array( 'root_class' => \DiviSquad\Extensions\JSON::class ),
+				'name'               => 'JSON',
+				'label'              => esc_html__( 'JSON File Upload Support', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Enable this feature only if you would like allow JSON file through WordPress Media Uploader.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.0',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'category'           => 'media-upload',
+				'category_title'     => esc_html__( 'Media Upload', 'squad-modules-for-divi' ),
+			),
+			array(
+				'classes'            => array( 'root_class' => \DiviSquad\Extensions\SVG::class ),
+				'name'               => 'SVG',
+				'label'              => esc_html__( 'SVG Image Upload Support', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Enable this feature only if you would like allow svg file through WordPress Media Uploader.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.0',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'category'           => 'media-upload',
+				'category_title'     => esc_html__( 'Media Upload', 'squad-modules-for-divi' ),
+			),
+			array(
+				'classes'            => array( 'root_class' => \DiviSquad\Extensions\Font_Upload::class ),
+				'name'               => 'Font_Upload',
+				'label'              => esc_html__( 'Custom Fonts Upload Support', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Enable this feature only if you would like allow Font file through WordPress Media Uploader.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.0',
+				'is_default_active'  => false,
+				'is_premium_feature' => false,
+				'category'           => 'media-upload',
+				'category_title'     => esc_html__( 'Media Upload', 'squad-modules-for-divi' ),
+			),
+			array(
+				'classes'            => array( 'root_class' => \DiviSquad\Extensions\Divi_Layout_Shortcode::class ),
+				'name'               => 'Divi_Layout_Shortcode',
+				'label'              => esc_html__( 'Divi Library Shortcode', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Enable this feature only if you would like add Divi library shortcode feature.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.0',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'category'           => 'enhancement',
+				'category_title'     => esc_html__( 'Enhancement', 'squad-modules-for-divi' ),
+			),
+			array(
+				'classes'            => array( 'root_class' => \DiviSquad\Extensions\Copy::class ),
+				'name'               => 'Copy',
+				'label'              => esc_html__( 'Copy Post or Page', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Enable this feature only if you would like add Post or Page coping feature.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.4.8',
+				'last_modified'      => array( '1.4.8', '3.0.0' ),
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'category'           => 'enhancement',
+				'category_title'     => esc_html__( 'Enhancement', 'squad-modules-for-divi' ),
+			),
+		);
+
+		return Arr::sort( $available_extensions, 'name' );
+	}
+
+	/**
+	 * Get default active extensions.
+	 *
+	 * @return array
+	 */
+	public function get_default_registries() {
+		return $this->get_filtered_registries(
+			$this->get_registered_list(),
+			function ( $module ) {
+				return $module['is_default_active'];
+			}
+		);
+	}
+
+	/**
+	 * Get inactive extensions.
+	 *
+	 * @return array
+	 */
+	public function get_inactive_registries() {
+		return $this->get_filtered_registries(
+			$this->get_registered_list(),
+			function ( $module ) {
+				return ! $module['is_default_active'];
+			}
+		);
+	}
+
+	/**
 	 * Load enabled extensions
 	 *
 	 * @param string $path The defined directory.
@@ -66,96 +162,5 @@ class Extensions extends ManagerBase {
 				new $extension['classes']['root_class']();
 			}
 		}
-	}
-
-	/**
-	 * Get available extensions.
-	 *
-	 * @return array[]
-	 */
-	public function get_registered_list() {
-		$available_extensions = array(
-			array(
-				'classes'            => array( 'root_class' => \DiviSquad\Extensions\JSON::class ),
-				'name'               => 'JSON',
-				'label'              => esc_html__( 'JSON File Upload Support', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Enable this feature only if you would like allow JSON file through WordPress Media Uploader.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.0',
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'category'           => 'media-upload',
-			),
-			array(
-				'classes'            => array( 'root_class' => \DiviSquad\Extensions\SVG::class ),
-				'name'               => 'SVG',
-				'label'              => esc_html__( 'SVG Image Upload Support', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Enable this feature only if you would like allow svg file through WordPress Media Uploader.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.0',
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'category'           => 'media-upload',
-			),
-			array(
-				'classes'            => array( 'root_class' => \DiviSquad\Extensions\Font_Upload::class ),
-				'name'               => 'Font_Upload',
-				'label'              => esc_html__( 'Custom Fonts Upload Support', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Enable this feature only if you would like allow Font file through WordPress Media Uploader.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.0',
-				'is_default_active'  => false,
-				'is_premium_feature' => false,
-				'category'           => 'media-upload',
-			),
-			array(
-				'classes'            => array( 'root_class' => \DiviSquad\Extensions\Divi_Layout_Shortcode::class ),
-				'name'               => 'Divi_Layout_Shortcode',
-				'label'              => esc_html__( 'Divi Library Shortcode', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Enable this feature only if you would like add Divi library shortcode feature.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.0',
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'category'           => 'enhancement',
-			),
-			array(
-				'classes'            => array( 'root_class' => \DiviSquad\Extensions\Copy::class ),
-				'name'               => 'Copy',
-				'label'              => esc_html__( 'Copy Post or Page', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Enable this feature only if you would like add Post or Page coping feature.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.4.8',
-				'last_modified'      => array( '1.4.8', '3.0.0' ),
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'category'           => 'enhancement',
-			),
-		);
-
-		return Arr::sort( $available_extensions, 'name' );
-	}
-
-	/**
-	 * Get default active extensions.
-	 *
-	 * @return array
-	 */
-	public function get_default_registries() {
-		return $this->get_filtered_registries(
-			$this->get_registered_list(),
-			function ( $module ) {
-				return $module['is_default_active'];
-			}
-		);
-	}
-
-	/**
-	 * Get inactive extensions.
-	 *
-	 * @return array
-	 */
-	public function get_inactive_registries() {
-		return $this->get_filtered_registries(
-			$this->get_registered_list(),
-			function ( $module ) {
-				return ! $module['is_default_active'];
-			}
-		);
 	}
 }

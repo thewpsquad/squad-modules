@@ -12,6 +12,7 @@ namespace DiviSquad\Base\Factories;
 
 use DiviSquad\Base\Factories\FactoryBase\Factory;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\Polyfills\Constant;
 use DiviSquad\Utils\Singleton;
 
 /**
@@ -44,8 +45,8 @@ final class BrandAsset extends Factory {
 		add_filter( 'plugin_action_links', array( $this, 'add_plugin_actions' ), 0, 2 );
 		add_filter( 'network_admin_plugin_action_links', array( $this, 'add_plugin_actions' ), 0, 2 );
 		add_filter( 'plugin_row_meta', array( $this, 'add_plugin_row_actions' ), 0, 2 );
-		add_filter( 'admin_footer_text', array( $this, 'add_plugin_footer_text' ), PHP_INT_MAX );
-		add_filter( 'update_footer', array( $this, 'update_plugin_footer_text' ), PHP_INT_MAX );
+		add_filter( 'admin_footer_text', array( $this, 'add_plugin_footer_text' ), Constant::PHP_INT_MAX );
+		add_filter( 'update_footer', array( $this, 'update_plugin_footer_text' ), Constant::PHP_INT_MAX );
 	}
 
 	/**
@@ -87,7 +88,7 @@ final class BrandAsset extends Factory {
 			 * @return array
 			 * @since 3.0.0
 			 */
-			$allowed_positions = apply_filters( 'divi_squad_branding_plugin_actions_allowed_positions', array( 'before', 'after' ) );
+			$allowed_positions = \apply_filters( 'divi_squad_branding_plugin_actions_allowed_positions', array( 'before', 'after' ) );
 
 			foreach ( self::$registries['plugin_action_links'] as $asset ) {
 				if ( ! $asset instanceof BrandAsset\BrandAsset ) {

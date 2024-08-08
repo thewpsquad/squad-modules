@@ -64,6 +64,13 @@ class Modules extends PluginAsset {
 	 */
 	public function get_localize_data( $type = 'raw', $data = array() ) {
 		if ( 'output' === $type && Divi::is_fb_enabled() ) {
+			/**
+			 * Filters the extra data to localize for the builder.
+			 *
+			 * @since 3.0.0
+			 *
+			 * @param array $data The data to localize.
+			 */
 			$localize = apply_filters( 'divi_squad_assets_builder_backend_extra_data', array() );
 			$data    .= sprintf( 'window.DISQBuilderLocalize = %1$s;', esc_js( wp_json_encode( $localize ) ) );
 		}

@@ -10,16 +10,11 @@
 
 namespace DiviSquad\Integrations;
 
-use DiviSquad\Base as SquadBase;
-use DiviSquad\Managers as SquadManagers;
-use DiviSquad\Utils\DateTime;
 use function add_action;
 use function add_filter;
 use function divi_squad;
 use function is_admin;
-use function register_activation_hook;
-use function register_deactivation_hook;
-use const DIVI_SQUAD__FILE__;
+use function wp_normalize_path;
 
 /**
  * Divi Squad Core Class.
@@ -27,11 +22,11 @@ use const DIVI_SQUAD__FILE__;
  * @package DiviSquad
  * @since   1.0.0
  *
- * @property SquadBase\Memory                        $memory     Squad memory.
- * @property \DiviSquad\Managers\Features\Modules    $modules    Squad module manager.
- * @property \DiviSquad\Managers\Features\Extensions $extensions Squad extension manger.
+ * @property-read \DiviSquad\Base\Memory                  $memory     Squad memory.
+ * @property-read \DiviSquad\Managers\Features\Modules    $modules    Squad module manager.
+ * @property-read \DiviSquad\Managers\Features\Extensions $extensions Squad extension manger.
  */
-abstract class Core extends SquadBase\Core {
+abstract class Core extends \DiviSquad\Base\Core {
 
 	/**
 	 * Initialize the plugin with required components.
@@ -41,13 +36,8 @@ abstract class Core extends SquadBase\Core {
 	 * @return void
 	 */
 	protected function init( $options = array() ) {
-		$this->container['memory']     = new SquadBase\Memory( $this->opt_prefix );
-		$this->container['modules']    = new SquadManagers\Features\Modules();
-		$this->container['extensions'] = new SquadManagers\Features\Extensions();
-
-		// Register all hooks for plugin.
-		register_activation_hook( DIVI_SQUAD__FILE__, array( $this, 'hook_activation' ) );
-		register_deactivation_hook( DIVI_SQUAD__FILE__, array( $this, 'hook_deactivation' ) );
+		$this->container['modules']    = new \DiviSquad\Managers\Features\Modules();
+		$this->container['extensions'] = new \DiviSquad\Managers\Features\Extensions();
 	}
 
 	/**
@@ -57,7 +47,7 @@ abstract class Core extends SquadBase\Core {
 	 */
 	protected function load_assets() {
 		// Load all plugin assets.
-		SquadManagers\PluginAssets::load();
+		\DiviSquad\Managers\PluginAssets::load();
 	}
 
 	/**
@@ -94,16 +84,16 @@ abstract class Core extends SquadBase\Core {
 	 * @return void
 	 */
 	protected function load_admin() {
-		SquadManagers\Ajax::load();
-		SquadManagers\RestRoutes::load();
+		\DiviSquad\Managers\Ajax::load();
+		\DiviSquad\Managers\RestRoutes::load();
 
 		if ( is_admin() ) {
-			SquadManagers\Branding::load();
-			SquadManagers\Menus::load();
-			SquadManagers\Notices::load();
+			\DiviSquad\Managers\Branding::load();
+			\DiviSquad\Managers\Menus::load();
+			\DiviSquad\Managers\Notices::load();
 
 			// Load the site health integration.
-			SquadManagers\SiteHealth::get_instance()->load();
+			\DiviSquad\Managers\SiteHealth::get_instance()->load();
 		}
 	}
 
@@ -117,10 +107,10 @@ abstract class Core extends SquadBase\Core {
 		$this->memory->set( 'activation_time', time() );
 
 		// Set the plugin version.
-		if ( divi_squad()->get_version_dot() !== $this->memory->get( 'version' ) ) {
+		if ( $this->get_version_dot() !== $this->memory->get( 'version' ) ) {
 			$this->memory->set( 'previous_version', $this->memory->get( 'version' ) );
 		}
-		$this->memory->set( 'version', divi_squad()->get_version_dot() );
+		$this->memory->set( 'version', $this->get_version_dot() );
 
 		/*
 		 * Clean the Divi Builder old cache
@@ -128,24 +118,27 @@ abstract class Core extends SquadBase\Core {
 		 * @since 2.0.0
 		 */
 		if ( ! $this->memory->get( 'is_cache_deleted' ) ) {
-			global $wp_filesystem;
 
-			if ( ! isset( $wp_filesystem ) ) {
-				require_once divi_squad()->get_wp_path() . 'wp-admin/includes/file.php';
-				\WP_Filesystem();
-			}
+			$filesystem = divi_squad()->get_wp_filesystem();
 
 			// Clean the Divi Builder old cache from the current installation.
-			$cache_path = WP_CONTENT_DIR . 'et-cache';
-			$can_write  = $wp_filesystem->is_writable( $cache_path ) && ! is_file( $cache_path );
+			$cache_path = wp_normalize_path( WP_CONTENT_DIR ) . 'et-cache';
+			$can_write  = $filesystem->is_writable( $cache_path ) && ! $filesystem->is_file( $cache_path );
 
-			if ( $can_write && $wp_filesystem->exists( $cache_path ) ) {
-				$wp_filesystem->rmdir( $cache_path );
+			if ( $can_write && $filesystem->exists( $cache_path ) ) {
+				$filesystem->rmdir( $cache_path );
 
 				// Store the status.
 				$this->memory->set( 'is_cache_deleted', true );
 			}
 		}
+
+		/**
+		 * Fires after the plugin is activated.
+		 *
+		 * @param \DiviSquad\Integrations\Core $plugin The plugin instance.
+		 */
+		do_action( 'divi_squad_after_activation', $this );
 	}
 
 	/**
@@ -156,6 +149,13 @@ abstract class Core extends SquadBase\Core {
 	public function hook_deactivation() {
 		$this->memory->set( 'version', $this->get_version_dot() );
 		$this->memory->set( 'deactivation_time', time() );
+
+		/**
+		 * Fires after the plugin is deactivated.
+		 *
+		 * @param \DiviSquad\Integrations\Core $plugin The plugin instance.
+		 */
+		do_action( 'divi_squad_after_deactivation', $this );
 	}
 
 	/**
@@ -164,8 +164,8 @@ abstract class Core extends SquadBase\Core {
 	 * @return void
 	 */
 	public function hook_migrate_builder_settings() {
-		if ( class_exists( SquadManagers\Migrations::class ) ) {
-			SquadManagers\Migrations::init();
+		if ( class_exists( \DiviSquad\Managers\Migrations::class ) ) {
+			\DiviSquad\Managers\Migrations::init();
 		}
 	}
 

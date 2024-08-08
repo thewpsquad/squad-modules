@@ -1,6 +1,7 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
- * The main class for Divi Squad.
+ * Integration API Base
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
@@ -10,12 +11,12 @@
 namespace DiviSquad\Base\DiviBuilder;
 
 /**
- * Divi Squad Class.
+ * Integration API Base Class.
  *
  * @package DiviSquad
  * @since   1.0.0
  */
-abstract class IntegrationAPIBase {
+abstract class Integration {
 
 	/**
 	 * The plugin name.
@@ -63,7 +64,7 @@ abstract class IntegrationAPIBase {
 	protected $build_path = 'build/divi-builder-4/';
 
 	/**
-	 * Divi Squad constructor.
+	 * Constructor.
 	 *
 	 * @param string $name           The plugin's WP Plugin name.
 	 * @param string $plugin_dir     Absolute path to the plugin's directory.

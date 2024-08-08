@@ -29,11 +29,11 @@ class WP {
 	 */
 	public static function is_playground() {
 		// Check if WP_HOME or WP_SITEURL contains "playground.wordpress.net".
-		if ( defined( 'WP_HOME' ) && strpos( WP_HOME, 'playground.wordpress.net' ) !== false ) {
+		if ( defined( 'WP_HOME' ) && strpos( \WP_HOME, 'playground.wordpress.net' ) !== false ) {
 			return true;
 		}
 
-		if ( defined( 'WP_SITEURL' ) && strpos( WP_SITEURL, 'playground.wordpress.net' ) !== false ) {
+		if ( defined( 'WP_SITEURL' ) && strpos( \WP_SITEURL, 'playground.wordpress.net' ) !== false ) {
 			return true;
 		}
 
@@ -53,10 +53,11 @@ class WP {
 	 * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
 	 * Conditional Tags} article in the Theme Developer Handbook.
 	 *
+	 * @since 2.5.0
+	 *
 	 * @param string $plugin Path to the plugin file relative to the plugins' directory.
 	 *
 	 * @return bool True, if in the active plugins list. False, not in the list.
-	 * @since 2.5.0
 	 */
 	public static function is_plugin_active( $plugin ) {
 		return in_array( $plugin, (array) get_option( 'active_plugins', array() ), true ) || self::is_plugin_active_for_network( $plugin );
@@ -74,10 +75,11 @@ class WP {
 	 * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
 	 * Conditional Tags} article in the Theme Developer Handbook.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param string $plugin Path to the plugin file relative to the plugins' directory.
 	 *
 	 * @return bool True if active for the network, otherwise false.
-	 * @since 3.0.0
 	 */
 	public static function is_plugin_active_for_network( $plugin ) {
 		static $plugins;

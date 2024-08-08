@@ -15,19 +15,16 @@ namespace DiviSquad\Base\DiviBuilder;
  * @package DiviSquad
  * @since   1.5.0
  */
-final class Utils extends Utils\Base implements Utils\UtilsInterface {
+final class Utils extends Utils\Base {
 
 	/**
 	 * Connect with non-static public functions.
 	 *
-	 * @param DiviSquad_Module $element The instance of ET Builder Element (Squad Module).
+	 * @param Module $element The instance of ET Builder Element (Squad Module).
 	 *
 	 * @return Utils
 	 */
 	public static function connect( $element ) {
-		$my_instance          = new self();
-		$my_instance->element = $element;
-
-		return $my_instance;
+		return new self( $element );
 	}
 }

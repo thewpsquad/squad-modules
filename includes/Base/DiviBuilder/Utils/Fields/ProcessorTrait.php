@@ -24,7 +24,7 @@ use function wp_parse_args;
  * @package DiviSquad
  * @since   1.0.0
  */
-trait Processor {
+trait ProcessorTrait {
 
 	/**
 	 * Process styles for width fields in the module.

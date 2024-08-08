@@ -80,10 +80,11 @@ final class AdminNotice extends Factory {
 	/**
 	 * Filters the CSS classes for the body tag in the admin.
 	 *
+	 * @since 1.0.4
+	 *
 	 * @param string $classes Space-separated list of CSS classes.
 	 *
 	 * @return string
-	 * @since 1.0.4
 	 */
 	public function add_body_classes( $classes ) {
 		if ( ! empty( self::$registries ) ) {

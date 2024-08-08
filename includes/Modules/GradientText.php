@@ -12,7 +12,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function esc_html__;
@@ -25,7 +25,7 @@ use function wp_kses_post;
  * @package DiviSquad
  * @since   1.2.6
  */
-class GradientText extends DiviSquad_Module {
+class GradientText extends Module {
 
 	/**
 	 * Initiate Module.

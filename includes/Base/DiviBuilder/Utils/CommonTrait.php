@@ -20,7 +20,7 @@ use function wp_strip_all_tags;
  * @package DiviSquad
  * @since   1.0.0
  */
-trait Common {
+trait CommonTrait {
 
 	/**
 	 * Decode json data from properties in module.

@@ -19,7 +19,7 @@ use ET_Builder_Module;
  * @since   1.0.0
  */
 #[\AllowDynamicProperties]
-abstract class DiviSquad_Module extends ET_Builder_Module {
+abstract class Module extends ET_Builder_Module {
 
 	/**
 	 * Utils folder name.
@@ -28,6 +28,7 @@ abstract class DiviSquad_Module extends ET_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public $folder_name = 'et_pb_divi_squad_modules';
+
 	/**
 	 * Stylesheet selector for tooltip container.
 	 *
@@ -35,6 +36,7 @@ abstract class DiviSquad_Module extends ET_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public $tooltip_css_element = '';
+
 	/**
 	 * The default options for divider.
 	 *
@@ -45,6 +47,7 @@ abstract class DiviSquad_Module extends ET_Builder_Module {
 		'divider_position' => 'bottom',
 		'divider_weight'   => '2px',
 	);
+
 	/**
 	 * The show options for divider.
 	 *
@@ -54,12 +57,14 @@ abstract class DiviSquad_Module extends ET_Builder_Module {
 		'off' => 'No',
 		'on'  => 'Yes',
 	);
+
 	/**
 	 * The instance of Utils class
 	 *
-	 * @var Utils\UtilsInterface
+	 * @var Utils\Base
 	 */
 	public $squad_utils;
+
 	/**
 	 * Utils credits.
 	 *
@@ -71,6 +76,7 @@ abstract class DiviSquad_Module extends ET_Builder_Module {
 		'author'     => 'Divi Squad',
 		'author_uri' => Links::HOME_URL . '?utm_campaign=wporg&utm_source=module_modal&utm_medium=module_author_link',
 	);
+
 	/**
 	 * The icon for module.
 	 *
@@ -78,6 +84,7 @@ abstract class DiviSquad_Module extends ET_Builder_Module {
 	 * @since 1.0.0
 	 */
 	protected $icon = '';
+
 	/**
 	 * The icon path for module.
 	 *
@@ -85,10 +92,11 @@ abstract class DiviSquad_Module extends ET_Builder_Module {
 	 * @since 1.0.0
 	 */
 	protected $icon_path = '';
+
 	/**
 	 * The list of icon eligible element
 	 *
 	 * @var array
 	 */
-	protected $icon_not_eligible_elements;
+	protected $icon_not_eligible_elements = array();
 }

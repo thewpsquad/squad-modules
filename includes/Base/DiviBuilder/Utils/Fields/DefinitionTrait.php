@@ -24,7 +24,7 @@ use function wp_parse_args;
  * @author  WP Squad <support@squadmodules.com>
  * @since   1.0.0
  */
-trait Definition {
+trait DefinitionTrait {
 	/**
 	 * Simplifies the creation of filter configurations.
 	 *

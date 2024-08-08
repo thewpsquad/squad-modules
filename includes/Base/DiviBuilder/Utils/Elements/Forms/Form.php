@@ -5,7 +5,7 @@
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
- * @since   3.0.1
+ * @since   3.1.0
  */
 
 namespace DiviSquad\Base\DiviBuilder\Utils\Elements\Forms;
@@ -14,9 +14,25 @@ namespace DiviSquad\Base\DiviBuilder\Utils\Elements\Forms;
  * Abstract class for form processing.
  *
  * @package DiviSquad
- * @since   3.0.1
+ * @since   3.1.0
  */
 abstract class Form implements FormInterface {
+
+	/**
+	 * Get the ID of a form.
+	 *
+	 * @param mixed $form Form object.
+	 * @return mixed Form ID
+	 */
+	abstract protected function get_form_id( $form );
+
+	/**
+	 * Get the title of a form.
+	 *
+	 * @param mixed $form Form object.
+	 * @return string Form title
+	 */
+	abstract protected function get_form_title( $form );
 
 	/**
 	 * Process form data into a consistent format.
@@ -38,20 +54,4 @@ abstract class Form implements FormInterface {
 		}
 		return $processed;
 	}
-
-	/**
-	 * Get the ID of a form.
-	 *
-	 * @param mixed $form Form object.
-	 * @return mixed Form ID
-	 */
-	abstract protected function get_form_id( $form );
-
-	/**
-	 * Get the title of a form.
-	 *
-	 * @param mixed $form Form object.
-	 * @return string Form title
-	 */
-	abstract protected function get_form_title( $form );
 }

@@ -5,7 +5,7 @@
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
- * @since   3.0.1
+ * @since   3.1.0
  */
 
 namespace DiviSquad\Managers;
@@ -18,7 +18,7 @@ use DiviSquad\Utils\Singleton;
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
- * @since   3.0.1
+ * @since   3.1.0
  */
 class SiteHealth {
 
@@ -27,7 +27,7 @@ class SiteHealth {
 	/**
 	 * Init Site Health.
 	 *
-	 * @since 3.0.1
+	 * @since 3.1.0
 	 */
 	public function load() {
 		if ( $this->is_compatible() ) {
@@ -49,7 +49,7 @@ class SiteHealth {
 	/**
 	 * Integration hooks.
 	 *
-	 * @since 3.0.1
+	 * @since 3.1.0
 	 */
 	protected function hooks() {
 		add_filter( 'debug_information', array( $this, 'add_info_section' ) );
@@ -61,7 +61,7 @@ class SiteHealth {
 	 * @param array $debug_info Array of all information.
 	 *
 	 * @return array Array with added info section.
-	 * @since 3.0.1
+	 * @since 3.1.0
 	 */
 	public function add_info_section( array $debug_info ) {
 		$squad_core = array(
@@ -74,9 +74,9 @@ class SiteHealth {
 		 * Filter the Divi Squad debug information.
 		 *
 		 * @param array $squad_core The Divi Squad debug information.
-		 * @since 3.0.1
+		 * @since 3.1.0
 		 */
-		$debug_info['divi-squad'] = apply_filters( 'divi_squad_debug_information', $squad_core );
+		$debug_info['divi-squad'] = \apply_filters( 'divi_squad_debug_information', $squad_core );
 
 		return $debug_info;
 	}

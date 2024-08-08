@@ -12,7 +12,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function esc_attr;
@@ -33,7 +33,7 @@ use function wp_strip_all_tags;
  * @package DiviSquad
  * @since   1.2.2
  */
-class PostReadingTime extends DiviSquad_Module {
+class PostReadingTime extends Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -55,7 +55,7 @@ class PostReadingTime extends DiviSquad_Module {
 
 		// Connect with utils.
 		$this->squad_utils = Utils::connect( $this );
-		$this->squad_utils->initiate_the_divider_element();
+		$this->squad_utils->divider->initiate_element();
 
 		// Declare settings modal toggles for the module.
 		$this->settings_modal_toggles = array(
@@ -342,7 +342,7 @@ class PostReadingTime extends DiviSquad_Module {
 			),
 		);
 
-		$divider_fields = $this->squad_utils->get_divider_element_fields(
+		$divider_fields = $this->squad_utils->divider->get_fields(
 			array(
 				'toggle_slug' => 'time_divider',
 			)

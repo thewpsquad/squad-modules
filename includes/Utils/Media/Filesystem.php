@@ -29,7 +29,7 @@ class Filesystem {
 	 * @access protected
 	 * @return WP_Filesystem_Base
 	 */
-	protected function get_wp_fs() {
+	protected function get_wp_filesystem() {
 		global $wp_filesystem;
 
 		// If the filesystem has not been instantiated yet, do it here.

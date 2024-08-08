@@ -1,14 +1,15 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 /**
- * The main class for Divi Squad.
+ * Integration API
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
  * @since   1.0.0
  */
 
-namespace DiviSquad\Base\DiviBuilder;
+namespace DiviSquad\Base\DiviBuilder\Integration;
 
+use DiviSquad\Base\DiviBuilder\Integration;
 use DiviSquad\Utils\Asset;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
@@ -18,12 +19,12 @@ use function et_builder_enabled_for_post;
 use function get_the_ID;
 
 /**
- * Divi Squad Class.
+ * Integration API Class.
  *
  * @package DiviSquad
  * @since   1.0.0
  */
-abstract class IntegrationAPI extends IntegrationAPIBase {
+abstract class ShortcodeAPI extends Integration {
 
 	/**
 	 * Loads custom modules when the builder is ready.

@@ -52,7 +52,7 @@ use function sanitize_post;
  * @package DiviSquad
  * @since   1.5.0
  */
-trait Breadcrumbs {
+class Breadcrumbs {
 
 	/**
 	 * Function that generates the HTML from breadcrumbs.
@@ -63,7 +63,7 @@ trait Breadcrumbs {
 	 *
 	 * @return string
 	 */
-	public static function get_hansel_and_gretel_breadcrumbs( $_home_text = 'Home', $_before_text = '', $_delimiter = '&#x39;' ) {
+	public function get_hansel_and_gretel( $_home_text = 'Home', $_before_text = '', $_delimiter = '&#x39;' ) {
 		// Set variables for later use.
 		$here_text      = esc_html( $_before_text );
 		$home_link      = home_url( '/' );

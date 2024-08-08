@@ -23,7 +23,7 @@ use function wp_parse_args;
  * @package DiviSquad
  * @since   1.0.0
  */
-trait Fields {
+trait FieldsTrait {
 
 	/**
 	 * Get HTML tag elements for text item.

@@ -1,4 +1,33 @@
 == Changelog ==
+= 3.1.0 (01-08-2024) =
+
+**New Features:**
+
+- New Elements (custom icon, custom fields, custom fields(acf)) Divi Post Grid Module
+- New support for custom fields including acf with Divi Post Grid Module
+- New languages (Arabic, Dutch, English (UK), French (Canada), French (France), German, German (Austria), Spanish (Peru), Spanish (Spain) ) for Divi Squad Modules Lite plugin
+- Update languages (Bengali (Bangladesh), Portuguese (Brazil)) for Divi Squad Modules Lite plugin
+
+**Bug Fixes:**
+
+- Fix: Filter by tags is not working in frontend with Divi Post Grid Module
+- Fix: An fatal errors issue when old vesion of Divi Squad Modules Pro is installed with Divi Squad Modules Lite
+
+**Improvements:**
+
+- Improved: Divi Squad Modules Admin UI (More flexible, more user-friendly)
+- Improved: Security issues, Data sanitization and validation for all modules
+- Improved: Squad Copy Extension.
+- Tested for compatibility with WordPress (6.7 beta)
+- Tested for compatibility with WordPress (6.6.1 stable)
+- Tested for compatibility with Divi Theme (4.27.0)
+- Tested for compatibility with Contact Form 7 (5.9.8)
+- Tested for compatibility with Fluent Forms (5.1.20)
+- Tested for compatibility with WPForms (1.8.9.6)
+- Tested for compatibility with Gravity Forms (2.8.15)
+- Tested for compatibility with Ninja Forms (3.8.9)
+
+
 = 3.0.1 (16-07-2024) =
 
 **Bug Fixes:**

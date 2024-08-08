@@ -12,7 +12,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function apply_filters;
@@ -26,7 +26,7 @@ use function et_builder_i18n;
  * @package DiviSquad
  * @since   1.0.0
  */
-class ImageMask extends DiviSquad_Module {
+class ImageMask extends Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -45,6 +45,9 @@ class ImageMask extends DiviSquad_Module {
 
 		$this->child_title_var          = 'title';
 		$this->child_title_fallback_var = 'admin_label';
+
+		// Connect with utils.
+		$this->squad_utils = Utils::connect( $this );
 
 		// Declare settings modal toggles for the module.
 		$this->settings_modal_toggles = array(
@@ -117,7 +120,12 @@ class ImageMask extends DiviSquad_Module {
 			),
 		);
 
-		$shapes_list              = apply_filters(
+		/**
+		 * Filter the list of shapes available for the image mask module.
+		 *
+		 * @param array $shapes_list List of shapes available for the image mask module.
+		 */
+		$shapes_list = apply_filters(
 			'divi_squad_image_mask_module_shapes',
 			array(
 				'shape-01' => esc_html__( 'Mask 01', 'squad-modules-for-divi' ),
@@ -142,6 +150,11 @@ class ImageMask extends DiviSquad_Module {
 				'shape-20' => esc_html__( 'Mask 20', 'squad-modules-for-divi' ),
 			)
 		);
+		/**
+		 * Filter the list of pro fields available for the image mask module.
+		 *
+		 * @param array $mask_settings_pro_fields List of pro fields available for the image mask module.
+		 */
 		$mask_settings_pro_fields = apply_filters( 'divi_squad_image_mask_module_pro_fields', array() );
 
 		// Mask fields definitions.
@@ -334,7 +347,7 @@ class ImageMask extends DiviSquad_Module {
 		$image_src  = $this->prop( 'image' );
 		$alt_text   = $this->_esc_attr( 'alt' );
 		$unique_id  = self::get_module_order_class( $this->slug );
-		$mask_shape = Utils::get_mask_shape( $this->prop( 'mask_shape_image', 'shape-01' ) );
+		$mask_shape = $this->squad_utils->mask_shape->get_shape( $this->prop( 'mask_shape_image', 'shape-01' ) );
 
 		$mask_title = sprintf( '<title>%1$s</title>', $this->_esc_attr( 'alt' ) );
 

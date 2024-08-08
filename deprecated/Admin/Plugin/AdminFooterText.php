@@ -26,7 +26,7 @@ class AdminFooterText {
 	 *
 	 * @return  string
 	 * @since 1.3.2
-	 * @deprecated 3.0.1 marked as deprecated.
+	 * @deprecated 3.1.0 marked as deprecated.
 	 */
 	public function add_plugin_footer_text( $footer_text ) {
 		return $footer_text;
@@ -39,7 +39,7 @@ class AdminFooterText {
 	 *
 	 * @return  string
 	 * @since 1.4.8
-	 * @deprecated 3.0.1 marked as deprecated.
+	 * @deprecated 3.1.0 marked as deprecated.
 	 */
 	public function add_update_footer_text( $content ) {
 		return $content;
