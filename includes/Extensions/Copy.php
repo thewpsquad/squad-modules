@@ -158,7 +158,7 @@ class Copy extends Extension {
 			add_filter( 'divi_squad_assets_backend_extra_data', array( $this, 'wp_localize_script_data' ) );
 
 			// Load script translations.
-			WP::set_script_translations( 'squad-ext-copy', divi_squad()->get_name(), divi_squad()->get_localize_path() );
+			WP::set_script_translations( 'squad-ext-copy', divi_squad()->get_name() );
 		}
 	}
 

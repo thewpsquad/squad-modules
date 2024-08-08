@@ -1,4 +1,17 @@
 == Changelog ==
+= 2.1.1 (09-04-2024) =
+
+**Bug Fixes:**
+
+- Updated: Ninja Forms now properly displayed in the forms list.
+- Resolved: Plugin review not closing properly.
+- Resolved: Incorrect XHR URL for pro-activation, review, and license pages.
+- Removed: Third-party asset from Squad pages for improved performance.
+- Fixed: Issue with the feature lock button functionality.
+- Fixed: Squad features (modules and extensions) not loading initially.
+- Fixed: Background fields not functioning as expected.
+- Fixed: Styles not applying correctly in the WP Forms Module.
+
 = 2.1.0 (03-04-2024) =
 
 **New Features:**
@@ -21,7 +34,7 @@
 **✨ Improvements:**
 
 * Tested for compatibility with Divi Theme 4.24.3
-* Tested for compatibility with WordPress 6.5.
+* Tested for compatibility with WordPress 6.2.
 
 = 2.0.0 (01-02-2024) =
 

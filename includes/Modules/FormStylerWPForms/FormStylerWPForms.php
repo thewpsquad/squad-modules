@@ -27,21 +27,33 @@ use function esc_html__;
  * @package     squad-modules-for-divi
  */
 class FormStylerWPForms extends Squad_Form_Styler {
+
+	/**
+	 * The css selector for the form container.
+	 *
+	 * @var string
+	 */
+	private $form_container = '';
+
+
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
 	 *
 	 * @return void
-	 * @since 1.2.0
+	 * @since 2.1.1
 	 */
 	public function init() {
 		$this->name      = esc_html__( 'WP Forms', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'WP Forms', 'squad-modules-for-divi' );
 		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/wp-forms.svg' );
 
-		$this->slug             = 'disq_form_styler_wp_forms';
-		$this->vb_support       = 'on';
-		$this->main_css_element = "%%order_class%%.$this->slug";
+		$this->slug       = 'disq_form_styler_wp_forms';
+		$this->vb_support = 'on';
+
+		// Update css selector.
+		$this->main_css_element = "body #et-main-area .et-l %%order_class%%.$this->slug.et_pb_module";
+		$this->form_container   = "$this->main_css_element div div.wpforms-container.wpforms-container-full";
 
 		// Connect with utils.
 		$this->squad_utils = Utils::connect( $this );
@@ -440,16 +452,7 @@ class FormStylerWPForms extends Squad_Form_Styler {
 	 * @return string
 	 */
 	protected function get_form_selector_default() {
-		return "$this->main_css_element div .wpforms-container.wpforms-container-full form.wpforms-form";
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_hover() {
-		return "$this->main_css_element div .wpforms-container.wpforms-container-full form.wpforms-form:hover";
+		return "$this->form_container form.wpforms-form";
 	}
 
 	/**
@@ -492,7 +495,7 @@ class FormStylerWPForms extends Squad_Form_Styler {
 	 * @return string
 	 */
 	protected function get_error_message_selector_default() {
-		return "$this->main_css_element div div.wpforms-container-full .wpforms-error-container-full, $this->main_css_element div div.wpforms-container-full .wpforms-error-container";
+		return "$this->form_container .wpforms-error-container-full, $this->form_container .wpforms-error-container";
 	}
 
 	/**
@@ -501,7 +504,7 @@ class FormStylerWPForms extends Squad_Form_Styler {
 	 * @return string
 	 */
 	protected function get_error_message_selector_hover() {
-		return "$this->main_css_element div div.wpforms-container-full .wpforms-error-container-full:hover, $this->main_css_element div div.wpforms-container-full .wpforms-error-container:hover";
+		return "$this->form_container .wpforms-error-container-full:hover, $this->form_container .wpforms-error-container:hover";
 	}
 
 	/**
@@ -510,7 +513,7 @@ class FormStylerWPForms extends Squad_Form_Styler {
 	 * @return string
 	 */
 	protected function get_success_message_selector_default() {
-		return "$this->main_css_element div div.wpforms-container-full .wpforms-confirmation-container-full, $this->main_css_element div div[submit-success]>.wpforms-confirmation-container-full:not(.wpforms-redirection-message)";
+		return "$this->form_container .wpforms-confirmation-container-full, $this->main_css_element div div[submit-success]>.wpforms-confirmation-container-full:not(.wpforms-redirection-message)";
 	}
 
 	/**
@@ -519,7 +522,16 @@ class FormStylerWPForms extends Squad_Form_Styler {
 	 * @return string
 	 */
 	protected function get_success_message_selector_hover() {
-		return "$this->main_css_element div div.wpforms-container-full .wpforms-confirmation-container-full:hover, $this->main_css_element div div[submit-success]>.wpforms-confirmation-container-full:not(.wpforms-redirection-message):hover";
+		return "$this->form_container .wpforms-confirmation-container-full:hover, $this->main_css_element div div[submit-success]>.wpforms-confirmation-container-full:not(.wpforms-redirection-message):hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for form tag to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_hover() {
+		return "$this->form_container form.wpforms-form:hover";
 	}
 
 	/**
@@ -528,7 +540,7 @@ class FormStylerWPForms extends Squad_Form_Styler {
 	 * @return string
 	 */
 	protected function get_submit_button_selector_default() {
-		return "$this->main_css_element div div.wpforms-container-full input[type=submit], $this->main_css_element div div.wpforms-container-full button[type=submit], $this->main_css_element div div.wpforms-container-full .wpforms-page-button";
+		return "$this->form_container input[type=submit], $this->form_container button[type=submit], $this->form_container .wpforms-page-button";
 	}
 
 	/**
@@ -537,7 +549,7 @@ class FormStylerWPForms extends Squad_Form_Styler {
 	 * @return string
 	 */
 	protected function get_submit_button_selector_hover() {
-		return "$this->main_css_element div div.wpforms-container-full input[type=submit]:hover, $this->main_css_element div div.wpforms-container-full button[type=submit]:hover, $this->main_css_element div div.wpforms-container-full .wpforms-page-button:hover";
+		return "$this->form_container input[type=submit]:hover, $this->form_container button[type=submit]:hover, $this->form_container .wpforms-page-button:hover";
 	}
 }
 

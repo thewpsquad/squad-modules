@@ -167,6 +167,10 @@ abstract class SquadFeatures {
 	protected function get_verified_registries( $registered, $defaults, $activated ) {
 		$verified = array();
 
+		if ( is_array( $activated ) && 0 === count( $activated ) ) {
+			$activated = $defaults;
+		}
+
 		if ( is_array( $activated ) && 0 !== count( $activated ) ) {
 			// Get all registry names that activated by user.
 			$activated_names = array();

@@ -81,7 +81,7 @@ abstract class IntegrationAPI extends IntegrationAPIBase {
 			Asset::asset_enqueue( "{$this->name}-builder", $script_asset_path, $script_asset_deps, true );
 
 			// Load script translations.
-			WP::set_script_translations( "{$this->name}-builder", divi_squad()->get_name(), divi_squad()->get_localize_path() );
+			WP::set_script_translations( "{$this->name}-builder", divi_squad()->get_name() );
 		}
 
 		// Enqueues styles for divi builder including theme and plugin.

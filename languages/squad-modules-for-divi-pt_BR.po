@@ -23,7 +23,7 @@ msgid " Ignore sticky  posts for the current page."
 msgstr " Ignore posts fixos da página atual."
 
 #. translators: %1$s: Product title; %2$s: Plan title; %3$s: Activation link
-#: includes/Integrations/Freemius.php:94
+#: includes/Integrations/Freemius.php:96
 msgid " The paid plugin of %1$s is already installed. Please activate it to start benefiting the %2$s plugin. %3$s"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgid "%s Padding"
 msgstr "%s preenchimento"
 
 #. translators: %s The plugin name, example: Squad Modules Lite
-#: includes/Integrations/Freemius.php:90
+#: includes/Integrations/Freemius.php:92
 msgid "%s was successfully activated."
 msgstr ""
 
@@ -95,18 +95,13 @@ msgid "A json file is chosen for lottie."
 msgstr "Um arquivo JSON é escolhido para Lottie."
 
 #. translators: %s: Plan title
-#: includes/Integrations/Freemius.php:88
+#: includes/Integrations/Freemius.php:90
 msgid "Activate %s Plugin"
 msgstr ""
 
-#: includes/Admin/Assets.php:151
 #: build/admin/scripts/admin.js:178
 msgid "Active All"
 msgstr "Ativo tudo"
-
-#: includes/Admin/Assets.php:150
-msgid "Active License"
-msgstr "Licença Ativa"
 
 #: includes/Modules/PostGrid/PostGrid.php:109
 #: includes/Modules/PostGrid/PostGrid.php:474
@@ -556,8 +551,8 @@ msgstr "Horário comercial"
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:324
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:424
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:614
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:164
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:244
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:176
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:256
 #: includes/Modules/PostGrid/PostGrid.php:119
 #: includes/Modules/PostGrid/PostGrid.php:250
 msgid "Button"
@@ -577,7 +572,7 @@ msgstr "Alinhamento de botões"
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:449
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:632
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:527
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:333
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:345
 #: includes/Modules/PostGrid/PostGrid.php:381
 msgid "Button Box Shadow"
 msgstr "Sombra da caixa de botões"
@@ -976,7 +971,7 @@ msgstr "Contente"
 msgid "Content Alignment"
 msgstr ""
 
-#: includes/Admin/Assets.php:157
+#: includes/Admin/Assets.php:162
 msgid "Content Modules"
 msgstr "Módulos de conteúdo"
 
@@ -1041,7 +1036,7 @@ msgstr "Crie divisórias visualmente atraentes com vários estilos, formas e op�
 msgid "Create visually appealing drop caps to add emphasis and style to your text content."
 msgstr "Crie capitulares visualmente atraentes para adicionar ênfase e estilo ao conteúdo do texto."
 
-#: includes/Admin/Assets.php:158
+#: includes/Admin/Assets.php:163
 msgid "Creative Modules"
 msgstr "Módulos Criativos"
 
@@ -1133,7 +1128,7 @@ msgstr "Personalizar a cor lateral do divisor"
 msgid "Customize Divider Size"
 msgstr "Personalizar o tamanho do divisor"
 
-#: includes/Admin/Assets.php:144
+#: includes/Admin/Assets.php:158
 #: includes/Admin/Menu.php:58
 msgid "Dashboard"
 msgstr "Painel"
@@ -1181,7 +1176,6 @@ msgstr "Largura do texto do dia"
 msgid "Day Wrapper"
 msgstr "Invólucro do dia"
 
-#: includes/Admin/Assets.php:152
 #: build/admin/scripts/admin.js:178
 msgid "Deactivate All"
 msgstr "Desativar tudo"
@@ -1324,7 +1318,6 @@ msgstr "Mergulhe no Changelog e descubra toda a magia nos bastidores!"
 msgid "Divi Library Shortcode"
 msgstr "\"Shortcode\" da biblioteca Divi"
 
-#: includes/Admin/Assets.php:143
 #: includes/Admin/Menu.php:35
 #: includes/Admin/Menu.php:36
 #: templates/admin/subscription.php:46
@@ -1417,7 +1410,7 @@ msgstr "Botão duplo"
 msgid "Dual Buttons"
 msgstr "Botões duplos"
 
-#: includes/Admin/Assets.php:159
+#: includes/Admin/Assets.php:164
 msgid "Dynamic Content Modules"
 msgstr "Módulos de conteúdo dinâmico"
 
@@ -1602,7 +1595,6 @@ msgstr "Habilite este recurso apenas se desejar permitir arquivos SVG por meio d
 msgid "Enabled extensions saved!"
 msgstr "Extensões habilitadas salvas!"
 
-#: includes/Admin/Assets.php:165
 #: build/admin/scripts/admin.js:178
 msgid "Enabled modules saved!"
 msgstr "Módulos habilitados salvos!"
@@ -1623,7 +1615,7 @@ msgstr "Envolva seus visitantes com comparações interativas de imagens."
 msgid "Enhance navigation with a clear path for users to trace their steps through your website."
 msgstr "Aprimore a navegação com um caminho claro para os usuários rastrearem suas etapas em seu site."
 
-#: includes/Admin/Assets.php:163
+#: includes/Admin/Assets.php:168
 msgid "Enhancement"
 msgstr "Aprimoramento"
 
@@ -1686,7 +1678,7 @@ msgctxt "et_builder"
 msgid "<p>Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content in the module Design settings and even apply custom CSS to this text in the module Advanced settings.</p>"
 msgstr "<p>Seu conteúdo vai aqui. Edite ou remova este texto inline ou nas configurações de conteúdo do módulo. Você também pode estilizar cada aspecto deste conteúdo no módulo Configurações de design e até mesmo aplicar CSS personalizado a este texto no módulo Configurações avançadas.</p>"
 
-#: includes/Admin/Assets.php:146
+#: includes/Admin/Assets.php:160
 msgid "Extension"
 msgstr ""
 
@@ -1739,8 +1731,8 @@ msgstr "Tamanho da imagem de recurso"
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:404
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:598
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:602
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:128
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:224
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:140
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:236
 msgid "Field"
 msgstr "Campo"
 
@@ -1752,7 +1744,7 @@ msgstr "Fundo do campo"
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:421
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:618
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:513
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:319
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:331
 msgid "Field Box Shadow"
 msgstr "Sombra da caixa de campo"
 
@@ -1840,7 +1832,7 @@ msgstr "Forçar largura total"
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:62
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:96
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:60
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:63
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:75
 msgid "Form"
 msgstr "Formulário"
 
@@ -1852,7 +1844,7 @@ msgstr "Formulário antes"
 msgid "Form Before Text"
 msgstr "Formulário antes do texto"
 
-#: includes/Admin/Assets.php:160
+#: includes/Admin/Assets.php:165
 msgid "Form Styler Modules"
 msgstr "Módulos de estilização de formulários"
 
@@ -2005,7 +1997,6 @@ msgstr "Etiqueta de texto de falha"
 msgid "Glitch Texts"
 msgstr "Textos de falha"
 
-#: includes/Admin/Assets.php:169
 #: build/admin/scripts/admin.js:2
 msgid "Go Back"
 msgstr "Volte"
@@ -2125,7 +2116,7 @@ msgstr "Título 6"
 msgid "Height"
 msgstr "Altura"
 
-#: includes/Integrations/Freemius.php:84
+#: includes/Integrations/Freemius.php:86
 msgid "Hello Friend"
 msgstr ""
 
@@ -2395,7 +2386,7 @@ msgstr "Aqui você pode escolher o Formulário Ninja."
 msgid "Here you can choose the size of load more spinner."
 msgstr ""
 
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:65
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:77
 msgid "Here you can choose the wp form."
 msgstr "Aqui você pode escolher o formulário wp."
 
@@ -2501,7 +2492,7 @@ msgstr "Aqui você pode escolher se deseja ou não mostrar o cursor para o efeit
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:76
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:170
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:74
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:77
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:89
 msgid "Here you can choose whether or not show the error and success messages in the visual  builder."
 msgstr "Aqui você pode escolher se deseja mostrar ou não as mensagens de erro e sucesso no construtor visual."
 
@@ -2923,7 +2914,7 @@ msgstr "Aqui você pode selecionar diferentes tipos de ícone de reprodução do
 msgid "Here you can set the separator between the start time and end time."
 msgstr "Aqui você pode definir o separador entre a hora de início e a hora de término."
 
-#: includes/Integrations/Freemius.php:83
+#: includes/Integrations/Freemius.php:85
 msgid "Hey"
 msgstr ""
 
@@ -3153,7 +3144,7 @@ msgstr "Imagem"
 msgid "Image & Icon"
 msgstr "Imagem e ícone"
 
-#: includes/Admin/Assets.php:161
+#: includes/Admin/Assets.php:166
 msgid "Image & Media Modules"
 msgstr "Módulos de imagem e mídia"
 
@@ -3367,7 +3358,7 @@ msgstr "Escolha no mínimo uma linha para copiar."
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:246
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:371
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:282
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:140
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:152
 msgid "Label"
 msgstr "Rótulo"
 
@@ -3659,7 +3650,7 @@ msgstr "Largura do formato da máscara"
 msgid "Maybe Later"
 msgstr "Talvez mais tarde"
 
-#: includes/Admin/Assets.php:162
+#: includes/Admin/Assets.php:167
 msgid "Media Upload"
 msgstr "Envio de mídia"
 
@@ -3681,10 +3672,10 @@ msgstr "Envio de mídia"
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:348
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:444
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:463
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:176
 #: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:188
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:264
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:283
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:200
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:276
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:295
 msgid "Message"
 msgstr "Mensagem"
 
@@ -3701,8 +3692,8 @@ msgstr "Fundo da mensagem"
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:660
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:541
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:555
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:347
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:361
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:359
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:373
 msgid "Message Box Shadow"
 msgstr "Sombra da caixa de mensagens"
 
@@ -3714,7 +3705,7 @@ msgstr "Modificado"
 msgid "Modified Date"
 msgstr "Data modificada"
 
-#: includes/Admin/Assets.php:145
+#: includes/Admin/Assets.php:159
 #: includes/Admin/Menu.php:63
 msgid "Modules"
 msgstr "Módulos"
@@ -3936,7 +3927,7 @@ msgstr "Preciso de ajuda?"
 msgid "Never show again"
 msgstr "Nunca mais mostre"
 
-#: includes/Admin/Assets.php:154
+#: build/admin/scripts/admin.js:178
 msgid "NEW"
 msgstr "NOVO"
 
@@ -3993,7 +3984,7 @@ msgstr "Nenhum"
 msgid "Normal"
 msgstr "Normal"
 
-#: includes/Integrations/Freemius.php:86
+#: includes/Integrations/Freemius.php:88
 msgid "Not today"
 msgstr ""
 
@@ -4049,7 +4040,6 @@ msgstr "Um ou mais campos apresentam erro. Por favor verifique e tente novamente
 msgid "Only Line"
 msgstr "Somente linha"
 
-#: includes/Admin/Assets.php:167
 #: build/admin/scripts/admin.js:2
 msgid "Oops, Page not found!"
 msgstr "Ops, página não encontrada!"
@@ -4173,7 +4163,7 @@ msgstr "Escolha entre duas direções de animação diferentes, cada uma delas a
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:258
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:383
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:312
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:152
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:164
 msgid "Placeholder"
 msgstr "Espaço reservado"
 
@@ -4211,7 +4201,7 @@ msgstr "Jogue quando o contêiner estiver visível"
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:600
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:742
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:715
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:414
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:426
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Please select a form."
 msgstr "Selecione um formulário."
@@ -4289,11 +4279,10 @@ msgid "Posts not available according to your criteria."
 msgstr "Posts não disponíveis de acordo com seus critérios."
 
 #. translators: %s The module type
-#: includes/Integrations/Freemius.php:92
+#: includes/Integrations/Freemius.php:94
 msgid "Premium %s was successfully activated."
 msgstr ""
 
-#: includes/Admin/Assets.php:164
 #: build/admin/scripts/admin.js:178
 msgid "Preparing"
 msgstr "Preparando"
@@ -4462,7 +4451,6 @@ msgstr "Girar"
 msgid "Rotate Mask Shape"
 msgstr "Girar formato da máscara"
 
-#: includes/Admin/Assets.php:153
 #: build/admin/scripts/admin.js:178
 msgid "Save Changes"
 msgstr "Salvar alterações"
@@ -4646,7 +4634,7 @@ msgstr "Mostrar divisor"
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:74
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:168
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:72
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:75
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:87
 msgid "Show Error & Success Messages"
 msgstr "Mostrar mensagem de erro e sucesso"
 
@@ -4803,7 +4791,7 @@ msgstr "Extensão de cópia de esquadrão"
 msgid "Squad Modules Lite"
 msgstr "Squad Modules Lite"
 
-#: includes/Integrations/Freemius.php:244
+#: includes/Integrations/Freemius.php:247
 msgid "Squad Modules Pro"
 msgstr ""
 
@@ -5086,7 +5074,6 @@ msgstr ""
 msgid "The list of active modules are updated."
 msgstr ""
 
-#: includes/Admin/Assets.php:168
 #: build/admin/scripts/admin.js:2
 msgid "The page you are looking for might have been removed had its name changed or is temporarily unavailable."
 msgstr "A página que você procura pode ter sido removida, teve seu nome alterado ou está temporariamente indisponível."
@@ -5517,10 +5504,6 @@ msgstr "Não foi possível carregar a lista de módulos."
 msgid "Unable to load new changes."
 msgstr "Não foi possível carregar novas alterações."
 
-#: includes/Admin/Assets.php:156
-msgid "Uncategories"
-msgstr "Sem categoria"
-
 #: includes/Modules/FlipBox/FlipBox.php:1212
 msgid "Up"
 msgstr "Acima"
@@ -5529,13 +5512,9 @@ msgstr "Acima"
 msgid "up"
 msgstr ""
 
-#: includes/Admin/Assets.php:155
+#: build/admin/scripts/admin.js:178
 msgid "Updated"
 msgstr "Atualizada"
-
-#: includes/Admin/Assets.php:149
-msgid "Upgrade to Pro"
-msgstr "Atualizar para Pro"
 
 #: includes/Modules/Divider/Divider.php:617
 #: includes/Modules/Lottie/Lottie.php:111
@@ -5664,7 +5643,6 @@ msgstr "Tipo de vídeo"
 msgid "Video URL"
 msgstr "URL do vídeo"
 
-#: includes/Admin/Assets.php:148
 #: build/admin/scripts/admin.js:178
 msgid "View All"
 msgstr "Ver tudo"
@@ -5689,7 +5667,7 @@ msgstr "Vimeo"
 msgid "We are here to assist you with any queries you may have. Feel free to ask us anything!"
 msgstr "Estamos aqui para ajudá-lo com qualquer dúvida que você possa ter. Sinta-se livre para nos perguntar qualquer coisa!"
 
-#: includes/Admin/Assets.php:147
+#: includes/Admin/Assets.php:161
 #: includes/Admin/Menu.php:73
 msgid "What's New"
 msgstr "O que há de novo"
@@ -5698,7 +5676,6 @@ msgstr "O que há de novo"
 msgid "Whoops! Enabled extensions not saved. Try again later."
 msgstr "Opa! Extensões habilitadas não salvas. Tente mais tarde."
 
-#: includes/Admin/Assets.php:166
 #: build/admin/scripts/admin.js:178
 msgid "Whoops! Enabled modules not saved. Try again later."
 msgstr "Opa! Módulos habilitados não salvos. Tente mais tarde."
@@ -5717,8 +5694,8 @@ msgid "Words Per Minute"
 msgstr "Palavras por minuto"
 
 #: includes/Managers/Modules.php:156
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:38
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:39
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:47
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:48
 msgid "WP Forms"
 msgstr "WP Forms"
 
@@ -5727,7 +5704,7 @@ msgstr "WP Forms"
 msgid "WP Squad"
 msgstr "Esquadrão WP"
 
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:401
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:413
 msgid "WPForms is not installed"
 msgstr "WPForms não está instalado"
 
@@ -5749,7 +5726,7 @@ msgstr "WPForms não está instalado"
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:435
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:364
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:590
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:204
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:216
 #: includes/Modules/PostGrid/PostGrid.php:192
 #: includes/Modules/PostGrid/PostGrid.php:212
 #: includes/Modules/PostGrid/PostGrid.php:294
@@ -5785,7 +5762,7 @@ msgstr "Fundo do invólucro"
 #: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:305
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:576
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:485
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:305
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:317
 #: includes/Modules/PostGrid/PostGrid.php:339
 #: includes/Modules/PostGrid/PostGrid.php:353
 #: includes/Modules/PostGrid/PostGrid.php:397
@@ -5822,7 +5799,7 @@ msgstr "Preenchimento do invólucro"
 msgid "Yes"
 msgstr "Sim"
 
-#: includes/Integrations/Freemius.php:85
+#: includes/Integrations/Freemius.php:87
 msgid "Yes - I'm in!"
 msgstr ""
 
@@ -6149,4 +6126,20 @@ msgstr ""
 
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Form config data not available."
+msgstr ""
+
+#: build/admin/scripts/admin.js:178
+msgid "Go to Plugins"
+msgstr ""
+
+#: build/admin/scripts/admin.js:178
+msgid "Download Pro"
+msgstr ""
+
+#: build/admin/scripts/admin.js:178
+msgid "Activate Pro Plugin"
+msgstr ""
+
+#: build/divi-builder-4/scripts/builder-bundle.js:1
+msgid "Form has not been submitted, please see the errors below."
 msgstr ""

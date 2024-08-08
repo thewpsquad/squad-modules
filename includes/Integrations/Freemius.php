@@ -13,6 +13,8 @@
 namespace DiviSquad\Integrations;
 
 use DiviSquad\Utils\Asset;
+use DiviSquad\Utils\DevHelper;
+use DiviSquad\Utils\Polyfills\Str;
 use DiviSquad\Utils\Singleton;
 use function add_action;
 use function divi_squad_fs;
@@ -108,8 +110,9 @@ final class Freemius {
 		}
 
 		// Add hooks at the admin area.
-		add_action( 'admin_head', array( $this, 'wp_hook_clean_admin_content_section' ) );
+		add_action( 'admin_head', array( $this, 'wp_hook_clean_admin_content_section' ), 99 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'wp_hook_enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'wp_hook_clean_third_party_deps' ), 1000000 );
 	}
 
 	/**
@@ -271,11 +274,12 @@ final class Freemius {
 	}
 
 	/**
-	 * Remove all notices from the account page.
+	 * Remove all notices from the squad template pages.
 	 *
 	 * @return void
 	 */
 	public function wp_hook_clean_admin_content_section() {
+		// Current screen.
 		$screen = get_current_screen();
 
 		if ( $screen && self::is_squad_page( $screen->id ) ) {
@@ -298,6 +302,73 @@ final class Freemius {
 		if ( 'plugins.php' === $hook_suffix || self::is_squad_page( $hook_suffix ) ) {
 			Asset::style_enqueue( 'admin-components', Asset::admin_asset_path( 'admin-components', array( 'ext' => 'css' ) ) );
 			Asset::style_enqueue( 'admin', Asset::admin_asset_path( 'admin', array( 'ext' => 'css' ) ) );
+		}
+	}
+
+	/**
+	 * Remove all third party dependencies from the squad template pages.
+	 *
+	 * @return void
+	 */
+	public function wp_hook_clean_third_party_deps() {
+		global $wp_scripts, $wp_styles;
+
+		// Current screen.
+		$screen = get_current_screen();
+
+		// Dequeue the scripts and styles of the current page those are not required.
+		if ( $screen && self::is_squad_page( $screen->id ) ) {
+			$this->remove_unnecessary_dependencies( $wp_scripts );
+			$this->remove_unnecessary_dependencies( $wp_styles );
+		}
+	}
+
+	/**
+	 * Get the dependencies of the squad scripts.
+	 *
+	 * @param \_WP_Dependency[] $registered The registered scripts.
+	 *
+	 * @return array
+	 */
+	public function get_squad_dependencies( $registered ) {
+		// Store the dependencies of the squad dependencies.
+		$dependencies = array();
+
+		// Get the dependencies of the squad asset handles.
+		foreach ( $registered as $dependency ) {
+			if ( Str::starts_with( $dependency->handle, 'squad-' ) && count( $dependency->deps ) ) {
+				$dependencies = array_merge( $dependencies, $dependency->deps );
+			}
+		}
+
+		return $dependencies;
+	}
+
+	/**
+	 * Remove unnecessary styles from the current page.
+	 *
+	 * @param \WP_Scripts|\WP_Styles $root The Core class of dependencies.
+	 *
+	 * @return void
+	 */
+	public function remove_unnecessary_dependencies( $root ) {
+		// Get the dependencies of the squad asset handles.
+		$scripts_deps = $this->get_squad_dependencies( $root->registered );
+
+		/**
+		 * Remove all the dependencies of the current page those are not required.
+		 *
+		 * @see https://developer.wordpress.org/reference/classes/wp_styles/
+		 * @see https://developer.wordpress.org/reference/classes/wp_scripts/
+		 */
+		foreach ( $root->registered as $dependency ) {
+			if ( ! in_array( $dependency->handle, $scripts_deps, true )
+				&& ! Str::starts_with( $dependency->handle, 'squad-' )
+				&& Str::starts_with( $dependency->src, home_url( '/' ) )
+				&& ! Str::contains( $dependency->src, 'wp-content/plugins/squad-modules' )
+				&& ! Str::contains( $dependency->src, 'wp-content/themes' ) ) {
+				$root->remove( $dependency->handle );
+			}
 		}
 	}
 }

@@ -24,7 +24,7 @@ msgid " Ignore sticky  posts for the current page."
 msgstr "বর্তমান পৃষ্ঠার জন্য স্টিকি পোস্ট উপেক্ষা করুন."
 
 #. translators: %1$s: Product title; %2$s: Plan title; %3$s: Activation link
-#: includes/Integrations/Freemius.php:94
+#: includes/Integrations/Freemius.php:96
 msgid " The paid plugin of %1$s is already installed. Please activate it to start benefiting the %2$s plugin. %3$s"
 msgstr "%1$s এর প্রদত্ত প্লাগইন ইতিমধ্যেই ইনস্টল করা আছে৷ %2$s প্লাগইনের সুবিধা পেতে দয়া করে এটি সক্রিয় করুন৷ %3$s"
 
@@ -54,7 +54,7 @@ msgid "%s Padding"
 msgstr "%s প্যাডিং"
 
 #. translators: %s The plugin name, example: Squad Modules Lite
-#: includes/Integrations/Freemius.php:90
+#: includes/Integrations/Freemius.php:92
 msgid "%s was successfully activated."
 msgstr ""
 
@@ -96,18 +96,13 @@ msgid "A json file is chosen for lottie."
 msgstr "একটি JSON ফাইল লটির জন্য চয়ন করা হয়েছে।"
 
 #. translators: %s: Plan title
-#: includes/Integrations/Freemius.php:88
+#: includes/Integrations/Freemius.php:90
 msgid "Activate %s Plugin"
 msgstr ""
 
-#: includes/Admin/Assets.php:151
 #: build/admin/scripts/admin.js:178
 msgid "Active All"
 msgstr "সবগুলো সক্রিয় করুন"
-
-#: includes/Admin/Assets.php:150
-msgid "Active License"
-msgstr "সক্রিয় লাইসেন্স"
 
 #: includes/Modules/PostGrid/PostGrid.php:109
 #: includes/Modules/PostGrid/PostGrid.php:474
@@ -557,8 +552,8 @@ msgstr "ব্যবসা সময়সমূহ"
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:324
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:424
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:614
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:164
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:244
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:176
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:256
 #: includes/Modules/PostGrid/PostGrid.php:119
 #: includes/Modules/PostGrid/PostGrid.php:250
 msgid "Button"
@@ -578,7 +573,7 @@ msgstr "বাটন এলাইনমেন্ট"
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:449
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:632
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:527
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:333
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:345
 #: includes/Modules/PostGrid/PostGrid.php:381
 msgid "Button Box Shadow"
 msgstr "বাটন বক্স শাডো"
@@ -977,7 +972,7 @@ msgstr "কন্টেন্ট"
 msgid "Content Alignment"
 msgstr ""
 
-#: includes/Admin/Assets.php:157
+#: includes/Admin/Assets.php:162
 msgid "Content Modules"
 msgstr ""
 
@@ -1042,7 +1037,7 @@ msgstr ""
 msgid "Create visually appealing drop caps to add emphasis and style to your text content."
 msgstr ""
 
-#: includes/Admin/Assets.php:158
+#: includes/Admin/Assets.php:163
 msgid "Creative Modules"
 msgstr ""
 
@@ -1134,7 +1129,7 @@ msgstr "ডিভাইডার সাইড কালার কাস্টম
 msgid "Customize Divider Size"
 msgstr "বিভাজক আকার কাস্টমাইজ করুন"
 
-#: includes/Admin/Assets.php:144
+#: includes/Admin/Assets.php:158
 #: includes/Admin/Menu.php:58
 msgid "Dashboard"
 msgstr "ড্যাশবোর্ড"
@@ -1182,7 +1177,6 @@ msgstr "দিনের পাঠ্য প্রস্থ"
 msgid "Day Wrapper"
 msgstr "দিন র‍্যাপার"
 
-#: includes/Admin/Assets.php:152
 #: build/admin/scripts/admin.js:178
 msgid "Deactivate All"
 msgstr "সবগুলো নিষ্ক্রীয় করুন"
@@ -1325,7 +1319,6 @@ msgstr ""
 msgid "Divi Library Shortcode"
 msgstr ""
 
-#: includes/Admin/Assets.php:143
 #: includes/Admin/Menu.php:35
 #: includes/Admin/Menu.php:36
 #: templates/admin/subscription.php:46
@@ -1418,7 +1411,7 @@ msgstr "ডুয়াল বাটন"
 msgid "Dual Buttons"
 msgstr "ডুয়াল বাটনসমূহ"
 
-#: includes/Admin/Assets.php:159
+#: includes/Admin/Assets.php:164
 msgid "Dynamic Content Modules"
 msgstr ""
 
@@ -1603,7 +1596,6 @@ msgstr "আপনি যদি ওয়ার্ডপ্রেস মিডি
 msgid "Enabled extensions saved!"
 msgstr "সক্রিয় এক্সটেনশন সংরক্ষিত হয়েছে।"
 
-#: includes/Admin/Assets.php:165
 #: build/admin/scripts/admin.js:178
 msgid "Enabled modules saved!"
 msgstr ""
@@ -1624,7 +1616,7 @@ msgstr ""
 msgid "Enhance navigation with a clear path for users to trace their steps through your website."
 msgstr ""
 
-#: includes/Admin/Assets.php:163
+#: includes/Admin/Assets.php:168
 msgid "Enhancement"
 msgstr ""
 
@@ -1687,7 +1679,7 @@ msgctxt "et_builder"
 msgid "<p>Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content in the module Design settings and even apply custom CSS to this text in the module Advanced settings.</p>"
 msgstr "<p>আপনার সামগ্রিক বিষয়বস্তুটি এখানে যায়। এই টেক্সটটি ইনলাইনে বা মডিউল কনটেন্ট সেটিংসে সম্পাদনা বা সরানো যাতে পারে। আপনি মডিউল ডিজাইন সেটিংসে এই বিষয়বস্তুর প্রতিটি দিকের স্টাইল করতে পারেন এবং এই টেক্সটে কাস্টম CSS প্রয়োগ করতে পারেন মডিউল এডভান্সড সেটিংসে।</p>"
 
-#: includes/Admin/Assets.php:146
+#: includes/Admin/Assets.php:160
 msgid "Extension"
 msgstr ""
 
@@ -1739,8 +1731,8 @@ msgstr ""
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:404
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:598
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:602
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:128
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:224
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:140
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:236
 msgid "Field"
 msgstr ""
 
@@ -1752,7 +1744,7 @@ msgstr "ফিল্ড ব্যাকগ্রাউন্ড"
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:421
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:618
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:513
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:319
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:331
 msgid "Field Box Shadow"
 msgstr ""
 
@@ -1840,7 +1832,7 @@ msgstr "জোর করে সম্পূর্ণ প্রস্থ কর�
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:62
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:96
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:60
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:63
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:75
 msgid "Form"
 msgstr ""
 
@@ -1852,7 +1844,7 @@ msgstr "ফর্মের আগে"
 msgid "Form Before Text"
 msgstr ""
 
-#: includes/Admin/Assets.php:160
+#: includes/Admin/Assets.php:165
 msgid "Form Styler Modules"
 msgstr ""
 
@@ -2005,7 +1997,6 @@ msgstr ""
 msgid "Glitch Texts"
 msgstr ""
 
-#: includes/Admin/Assets.php:169
 #: build/admin/scripts/admin.js:2
 msgid "Go Back"
 msgstr "ফিরে যান"
@@ -2125,7 +2116,7 @@ msgstr "শিরোনাম ৬"
 msgid "Height"
 msgstr ""
 
-#: includes/Integrations/Freemius.php:84
+#: includes/Integrations/Freemius.php:86
 msgid "Hello Friend"
 msgstr ""
 
@@ -2395,7 +2386,7 @@ msgstr "এখানে আপনি নিনজা ফর্ম বেছে �
 msgid "Here you can choose the size of load more spinner."
 msgstr ""
 
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:65
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:77
 msgid "Here you can choose the wp form."
 msgstr ""
 
@@ -2501,7 +2492,7 @@ msgstr "টাইপ প্রভাবের জন্য কার্সার
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:76
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:170
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:74
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:77
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:89
 msgid "Here you can choose whether or not show the error and success messages in the visual  builder."
 msgstr ""
 
@@ -2923,7 +2914,7 @@ msgstr ""
 msgid "Here you can set the separator between the start time and end time."
 msgstr "এখানে আপনি শুরুর সময় এবং শেষ সময়ের মধ্যে বিভাজক সেট করতে পারেন।"
 
-#: includes/Integrations/Freemius.php:83
+#: includes/Integrations/Freemius.php:85
 msgid "Hey"
 msgstr ""
 
@@ -3152,7 +3143,7 @@ msgstr "ইমেজ"
 msgid "Image & Icon"
 msgstr "ছবি এবং আইকন"
 
-#: includes/Admin/Assets.php:161
+#: includes/Admin/Assets.php:166
 msgid "Image & Media Modules"
 msgstr ""
 
@@ -3366,7 +3357,7 @@ msgstr ""
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:246
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:371
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:282
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:140
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:152
 msgid "Label"
 msgstr "লেবেল"
 
@@ -3658,7 +3649,7 @@ msgstr "মাস্ক আকৃতি প্রস্থ"
 msgid "Maybe Later"
 msgstr "সম্ভবত পরে"
 
-#: includes/Admin/Assets.php:162
+#: includes/Admin/Assets.php:167
 msgid "Media Upload"
 msgstr ""
 
@@ -3680,10 +3671,10 @@ msgstr ""
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:348
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:444
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:463
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:176
 #: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:188
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:264
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:283
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:200
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:276
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:295
 msgid "Message"
 msgstr ""
 
@@ -3700,8 +3691,8 @@ msgstr "ম্যাসেজ ব্যাকগ্রাউন্ড"
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:660
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:541
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:555
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:347
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:361
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:359
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:373
 msgid "Message Box Shadow"
 msgstr ""
 
@@ -3713,7 +3704,7 @@ msgstr "পরিবর্তিত"
 msgid "Modified Date"
 msgstr "পরিবর্তিত তারিখ"
 
-#: includes/Admin/Assets.php:145
+#: includes/Admin/Assets.php:159
 #: includes/Admin/Menu.php:63
 msgid "Modules"
 msgstr "মডিউলস"
@@ -3935,7 +3926,7 @@ msgstr "সাহায্যের প্রয়োজন?"
 msgid "Never show again"
 msgstr "আর কখনও দেখাবেন না"
 
-#: includes/Admin/Assets.php:154
+#: build/admin/scripts/admin.js:178
 msgid "NEW"
 msgstr ""
 
@@ -3992,7 +3983,7 @@ msgstr "কোনোটি নয়"
 msgid "Normal"
 msgstr "স্বাভাবিক"
 
-#: includes/Integrations/Freemius.php:86
+#: includes/Integrations/Freemius.php:88
 msgid "Not today"
 msgstr ""
 
@@ -4048,7 +4039,6 @@ msgstr ""
 msgid "Only Line"
 msgstr "শুধু লাইন"
 
-#: includes/Admin/Assets.php:167
 #: build/admin/scripts/admin.js:2
 msgid "Oops, Page not found!"
 msgstr "ওহো, পৃষ্ঠাটি খুঁজে পাওয়া যায়নি."
@@ -4172,7 +4162,7 @@ msgstr "দুটি ভিন্ন অ্যানিমেশন দিকন
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:258
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:383
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:312
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:152
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:164
 msgid "Placeholder"
 msgstr ""
 
@@ -4210,7 +4200,7 @@ msgstr "কন্টেন্টেনার দেখা যালে চাল
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:600
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:742
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:715
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:414
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:426
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Please select a form."
 msgstr ""
@@ -4288,11 +4278,10 @@ msgid "Posts not available according to your criteria."
 msgstr ""
 
 #. translators: %s The module type
-#: includes/Integrations/Freemius.php:92
+#: includes/Integrations/Freemius.php:94
 msgid "Premium %s was successfully activated."
 msgstr ""
 
-#: includes/Admin/Assets.php:164
 #: build/admin/scripts/admin.js:178
 msgid "Preparing"
 msgstr ""
@@ -4461,7 +4450,6 @@ msgstr "ঘূর্ণন"
 msgid "Rotate Mask Shape"
 msgstr "ঘোরান মাস্ক আকৃতি"
 
-#: includes/Admin/Assets.php:153
 #: build/admin/scripts/admin.js:178
 msgid "Save Changes"
 msgstr "পরিবর্তনসমূহ সংরক্ষণ করুন"
@@ -4645,7 +4633,7 @@ msgstr "বিভাজক দেখানো হবে"
 #: includes/Modules/FormStylerFluentForms/FormStylerFluentForms.php:74
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:168
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:72
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:75
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:87
 msgid "Show Error & Success Messages"
 msgstr ""
 
@@ -4802,7 +4790,7 @@ msgstr ""
 msgid "Squad Modules Lite"
 msgstr ""
 
-#: includes/Integrations/Freemius.php:244
+#: includes/Integrations/Freemius.php:247
 msgid "Squad Modules Pro"
 msgstr ""
 
@@ -5085,7 +5073,6 @@ msgstr ""
 msgid "The list of active modules are updated."
 msgstr ""
 
-#: includes/Admin/Assets.php:168
 #: build/admin/scripts/admin.js:2
 msgid "The page you are looking for might have been removed had its name changed or is temporarily unavailable."
 msgstr "আপনি যে পৃষ্ঠাটি খুঁজছেন সেটির নাম পরিবর্তিত হলে বা সাময়িকভাবে অনুপলব্ধ হলে সেটি সরিয়ে ফেলা হতে পারে।"
@@ -5516,10 +5503,6 @@ msgstr ""
 msgid "Unable to load new changes."
 msgstr ""
 
-#: includes/Admin/Assets.php:156
-msgid "Uncategories"
-msgstr ""
-
 #: includes/Modules/FlipBox/FlipBox.php:1212
 msgid "Up"
 msgstr "আপ"
@@ -5528,13 +5511,9 @@ msgstr "আপ"
 msgid "up"
 msgstr ""
 
-#: includes/Admin/Assets.php:155
+#: build/admin/scripts/admin.js:178
 msgid "Updated"
 msgstr ""
-
-#: includes/Admin/Assets.php:149
-msgid "Upgrade to Pro"
-msgstr "প্রো-তে আপগ্রেড করুন"
 
 #: includes/Modules/Divider/Divider.php:617
 #: includes/Modules/Lottie/Lottie.php:111
@@ -5663,7 +5642,6 @@ msgstr ""
 msgid "Video URL"
 msgstr ""
 
-#: includes/Admin/Assets.php:148
 #: build/admin/scripts/admin.js:178
 msgid "View All"
 msgstr "সবকিছু দেখুন"
@@ -5688,7 +5666,7 @@ msgstr ""
 msgid "We are here to assist you with any queries you may have. Feel free to ask us anything!"
 msgstr ""
 
-#: includes/Admin/Assets.php:147
+#: includes/Admin/Assets.php:161
 #: includes/Admin/Menu.php:73
 msgid "What's New"
 msgstr ""
@@ -5697,7 +5675,6 @@ msgstr ""
 msgid "Whoops! Enabled extensions not saved. Try again later."
 msgstr "উফফফ! সক্রিয় এক্সটেনশানগুলি সংরক্ষিত হয়নি৷ পরে আবার চেষ্টা করুন."
 
-#: includes/Admin/Assets.php:166
 #: build/admin/scripts/admin.js:178
 msgid "Whoops! Enabled modules not saved. Try again later."
 msgstr ""
@@ -5716,8 +5693,8 @@ msgid "Words Per Minute"
 msgstr "প্রতি মিনিটে শব্দ"
 
 #: includes/Managers/Modules.php:156
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:38
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:39
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:47
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:48
 msgid "WP Forms"
 msgstr ""
 
@@ -5726,7 +5703,7 @@ msgstr ""
 msgid "WP Squad"
 msgstr "WP স্কোয়াড"
 
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:401
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:413
 msgid "WPForms is not installed"
 msgstr ""
 
@@ -5748,7 +5725,7 @@ msgstr ""
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:435
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:364
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:590
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:204
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:216
 #: includes/Modules/PostGrid/PostGrid.php:192
 #: includes/Modules/PostGrid/PostGrid.php:212
 #: includes/Modules/PostGrid/PostGrid.php:294
@@ -5784,7 +5761,7 @@ msgstr "র‍্যাপারের ব্যাকগ্রাউন্ড"
 #: includes/Modules/FormStylerContactForm7/FormStylerContactForm7.php:305
 #: includes/Modules/FormStylerGravityForms/FormStylerGravityForms.php:576
 #: includes/Modules/FormStylerNinjaForms/FormStylerNinjaForms.php:485
-#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:305
+#: includes/Modules/FormStylerWPForms/FormStylerWPForms.php:317
 #: includes/Modules/PostGrid/PostGrid.php:339
 #: includes/Modules/PostGrid/PostGrid.php:353
 #: includes/Modules/PostGrid/PostGrid.php:397
@@ -5821,7 +5798,7 @@ msgstr "র‍্যাপার এর প্যাডিং"
 msgid "Yes"
 msgstr "হ্যাঁ"
 
-#: includes/Integrations/Freemius.php:85
+#: includes/Integrations/Freemius.php:87
 msgid "Yes - I'm in!"
 msgstr ""
 
@@ -6148,4 +6125,20 @@ msgstr ""
 
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Form config data not available."
+msgstr ""
+
+#: build/admin/scripts/admin.js:178
+msgid "Go to Plugins"
+msgstr ""
+
+#: build/admin/scripts/admin.js:178
+msgid "Download Pro"
+msgstr ""
+
+#: build/admin/scripts/admin.js:178
+msgid "Activate Pro Plugin"
+msgstr ""
+
+#: build/divi-builder-4/scripts/builder-bundle.js:1
+msgid "Form has not been submitted, please see the errors below."
 msgstr ""

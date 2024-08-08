@@ -60,8 +60,8 @@ final class AdminNotice {
 			 * @var AdminNotice\NoticeInterface[] $notices
 			 */
 			foreach ( self::$notices as $notice ) {
-				if ( $notice->can_render_it() ) {
-					$notice->show_admin_notice();
+				if ( $notice->can_render_it() && file_exists( $notice->get_template() ) ) {
+					load_template( $notice->get_template() );
 				}
 			}
 		}
