@@ -147,6 +147,7 @@ class WordPress extends Processor {
 			return $this->custom_fields[ $post_id ];
 		}
 
+		// Initialize the custom fields array.
 		$this->custom_fields[ $post_id ] = array();
 
 		$custom_field_values = $this->get_available_field_values( $post_id );
@@ -155,13 +156,11 @@ class WordPress extends Processor {
 				continue;
 			}
 
-			foreach ( $metadata as $meta ) {
-				if ( ! $this->should_include_field( $meta->meta_key ) ) {
-					continue;
-				}
-
-				$this->custom_fields[ $post_id ][ $meta->meta_key ] = $meta->meta_value;
+			if ( ! $this->should_include_field( $metadata->meta_key ) ) {
+				continue;
 			}
+
+			$this->custom_fields[ $post_id ][ $metadata->meta_key ] = $metadata->meta_value;
 		}
 
 		return $this->custom_fields[ $post_id ];

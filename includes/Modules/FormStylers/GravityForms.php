@@ -440,6 +440,7 @@ class GravityForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
@@ -460,6 +461,7 @@ class GravityForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '0px|0px|0px|0px',
 							'color' => '#bbb',
@@ -480,6 +482,7 @@ class GravityForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '0px|0px|0px|0px',
 							'color' => '#bbb',
@@ -500,6 +503,7 @@ class GravityForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '1px|1px|1px|1px',
 							'color' => '#bbb',
@@ -520,6 +524,7 @@ class GravityForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '1px|1px|1px|1px',
 							'color' => '#bbb',
@@ -540,7 +545,9 @@ class GravityForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#dc3232',
 							'style' => 'solid',
 						),
@@ -559,7 +566,9 @@ class GravityForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#46b450',
 							'style' => 'solid',
 						),
@@ -681,6 +690,98 @@ class GravityForms extends FormStyler {
 	}
 
 	/**
+	 * Get CSS fields transition.
+	 *
+	 * Add form field options group and background image on the field list.
+	 *
+	 * @since 1.4.7
+	 */
+	public function get_transition_fields_css_props() {
+		$fields = parent::get_transition_fields_css_props();
+
+		// title style.
+		$fields['form_title_background_color'] = array( 'background' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
+		$fields['form_title_margin']           = array( 'margin' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
+		$fields['form_title_padding']          = array( 'padding' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
+		Utils::fix_fonts_transition( $fields, 'form_title_text', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
+		Utils::fix_border_transition( $fields, 'form_title', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
+		Utils::fix_box_shadow_transition( $fields, 'form_title', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
+
+		// description style.
+		$fields['form_description_background_color'] = array( 'background' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
+		$fields['form_description_margin']           = array( 'margin' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
+		$fields['form_description_padding']          = array( 'padding' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
+		Utils::fix_fonts_transition( $fields, 'form_description_text', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
+		Utils::fix_border_transition( $fields, 'form_description', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
+		Utils::fix_box_shadow_transition( $fields, 'form_description', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
+
+		return $fields;
+	}
+
+	/**
+	 * Render module output.
+	 *
+	 * @param array  $attrs       List of unprocessed attributes.
+	 * @param string $content     Content being processed.
+	 * @param string $render_slug Slug of module that is used for rendering output.
+	 *
+	 * @return string module's rendered output.
+	 * @since 1.0.0
+	 */
+	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
+		// Show a notice message in the frontend if the contact form is not installed.
+		if ( ! function_exists( 'gravity_form' ) ) {
+			return sprintf(
+				'<div class="squad-notice">%s</div>',
+				esc_html__( 'Gravity Forms is not installed', 'squad-modules-for-divi' )
+			);
+		}
+
+		if ( ! empty( self::squad_form_styler__get_form_html( $attrs ) ) ) {
+			$this->squad_generate_all_styles( $attrs );
+
+			return self::squad_form_styler__get_form_html( $attrs );
+		}
+
+		// Show a notice message in the frontend if the form is not selected.
+		return sprintf(
+			'<div class="squad-notice">%s</div>',
+			esc_html__( 'Please select a form.', 'squad-modules-for-divi' )
+		);
+	}
+
+	/**
+	 * Collect all posts from the database.
+	 *
+	 * @param array  $attrs   List of unprocessed attributes.
+	 * @param string $content Content being processed.
+	 *
+	 * @return string the html output.
+	 * @since 1.0.0
+	 */
+	public static function squad_form_styler__get_form_html( $attrs, $content = null ) {
+		// Check if the form id is empty or not.
+		if ( empty( $attrs['form_id'] ) || Utils\Elements\Forms::DEFAULT_FORM_ID === $attrs['form_id'] || ! function_exists( '\gravity_form' ) ) {
+			return '';
+		}
+
+		// Collect all posts from the database.
+		$collection = Utils\Elements\Forms::get_all_forms( 'gravity_forms', 'id' );
+
+		// Check if the form id is existing.
+		if ( ! isset( $collection[ $attrs['form_id'] ] ) ) {
+			return '';
+		}
+
+		$form_id          = $collection[ $attrs['form_id'] ];
+		$form_title       = isset( $attrs['form_title__enable'] ) && 'on' === $attrs['form_title__enable'];
+		$form_description = isset( $attrs['form_description__enable'] ) && 'on' === $attrs['form_description__enable'];
+		$form_ajax        = isset( $attrs['form_with_ajax__enable'] ) && 'on' === $attrs['form_with_ajax__enable'];
+
+		return \gravity_form( $form_id, $form_title, $form_description, false, null, $form_ajax, '', false );
+	}
+
+	/**
 	 * Get the stylesheet selector for form tag.
 	 *
 	 * @return string
@@ -784,97 +885,5 @@ class GravityForms extends FormStyler {
 	 */
 	protected function get_form_selector_hover() {
 		return "$this->main_css_element div .gform_wrapper.gravity-theme form:hover";
-	}
-
-	/**
-	 * Get CSS fields transition.
-	 *
-	 * Add form field options group and background image on the field list.
-	 *
-	 * @since 1.4.7
-	 */
-	public function get_transition_fields_css_props() {
-		$fields = parent::get_transition_fields_css_props();
-
-		// title style.
-		$fields['form_title_background_color'] = array( 'background' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
-		$fields['form_title_margin']           = array( 'margin' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
-		$fields['form_title_padding']          = array( 'padding' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
-		Utils::fix_fonts_transition( $fields, 'form_title_text', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
-		Utils::fix_border_transition( $fields, 'form_title', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
-		Utils::fix_box_shadow_transition( $fields, 'form_title', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_title" );
-
-		// description style.
-		$fields['form_description_background_color'] = array( 'background' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
-		$fields['form_description_margin']           = array( 'margin' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
-		$fields['form_description_padding']          = array( 'padding' => "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
-		Utils::fix_fonts_transition( $fields, 'form_description_text', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
-		Utils::fix_border_transition( $fields, 'form_description', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
-		Utils::fix_box_shadow_transition( $fields, 'form_description', "$this->main_css_element div .gform_wrapper.gravity-theme .gform_description" );
-
-		return $fields;
-	}
-
-	/**
-	 * Render module output.
-	 *
-	 * @param array  $attrs       List of unprocessed attributes.
-	 * @param string $content     Content being processed.
-	 * @param string $render_slug Slug of module that is used for rendering output.
-	 *
-	 * @return string module's rendered output.
-	 * @since 1.0.0
-	 */
-	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
-		// Show a notice message in the frontend if the contact form is not installed.
-		if ( ! function_exists( 'gravity_form' ) ) {
-			return sprintf(
-				'<div class="squad-notice">%s</div>',
-				esc_html__( 'Gravity Forms is not installed', 'squad-modules-for-divi' )
-			);
-		}
-
-		if ( ! empty( self::squad_form_styler__get_form_html( $attrs ) ) ) {
-			$this->squad_generate_all_styles( $attrs );
-
-			return self::squad_form_styler__get_form_html( $attrs );
-		}
-
-		// Show a notice message in the frontend if the form is not selected.
-		return sprintf(
-			'<div class="squad-notice">%s</div>',
-			esc_html__( 'Please select a form.', 'squad-modules-for-divi' )
-		);
-	}
-
-	/**
-	 * Collect all posts from the database.
-	 *
-	 * @param array  $attrs   List of unprocessed attributes.
-	 * @param string $content Content being processed.
-	 *
-	 * @return string the html output.
-	 * @since 1.0.0
-	 */
-	public static function squad_form_styler__get_form_html( $attrs, $content = null ) {
-		// Check if the form id is empty or not.
-		if ( empty( $attrs['form_id'] ) || Utils\Elements\Forms::DEFAULT_FORM_ID === $attrs['form_id'] || ! function_exists( '\gravity_form' ) ) {
-			return '';
-		}
-
-		// Collect all posts from the database.
-		$collection = Utils\Elements\Forms::get_all_forms( 'gravity_forms', 'id' );
-
-		// Check if the form id is existing.
-		if ( ! isset( $collection[ $attrs['form_id'] ] ) ) {
-			return '';
-		}
-
-		$form_id          = $collection[ $attrs['form_id'] ];
-		$form_title       = isset( $attrs['form_title__enable'] ) && 'on' === $attrs['form_title__enable'];
-		$form_description = isset( $attrs['form_description__enable'] ) && 'on' === $attrs['form_description__enable'];
-		$form_ajax        = isset( $attrs['form_with_ajax__enable'] ) && 'on' === $attrs['form_with_ajax__enable'];
-
-		return \gravity_form( $form_id, $form_title, $form_description, false, null, $form_ajax, '', false );
 	}
 }

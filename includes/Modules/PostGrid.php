@@ -201,6 +201,7 @@ class PostGrid extends Module {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '1px|1px|1px|1px',
 							'color' => '#d8d8d8',
@@ -221,7 +222,9 @@ class PostGrid extends Module {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
 							'style' => 'solid',
 						),
@@ -240,7 +243,9 @@ class PostGrid extends Module {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
 							'style' => 'solid',
 						),
@@ -282,7 +287,9 @@ class PostGrid extends Module {
 						),
 					),
 					'defaults'        => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
 							'style' => 'solid',
 						),
@@ -303,7 +310,9 @@ class PostGrid extends Module {
 						),
 					),
 					'defaults'        => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
 							'style' => 'solid',
 						),
@@ -324,7 +333,9 @@ class PostGrid extends Module {
 						),
 					),
 					'defaults'        => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
 							'style' => 'solid',
 						),

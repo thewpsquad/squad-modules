@@ -248,6 +248,7 @@ class WPForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
@@ -268,6 +269,7 @@ class WPForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '1px|1px|1px|1px',
 							'color' => '#bbb',
@@ -288,6 +290,7 @@ class WPForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
@@ -308,7 +311,9 @@ class WPForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#dc3232',
 							'style' => 'solid',
 						),
@@ -327,7 +332,9 @@ class WPForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#46b450',
 							'style' => 'solid',
 						),
@@ -418,112 +425,6 @@ class WPForms extends FormStyler {
 			'text'           => false,
 			'button'         => false,
 		);
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_default() {
-		return "$this->form_container form.wpforms-form";
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_default() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_hover() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field:hover";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_default() {
-		return "$this->form_container input[type=submit], $this->form_container button[type=submit], $this->form_container .wpforms-page-button";
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_hover() {
-		return "$this->form_container input[type=submit]:hover, $this->form_container button[type=submit]:hover, $this->form_container .wpforms-page-button:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_default() {
-		return "$this->form_container .wpforms-error-container-full, $this->form_container .wpforms-error-container";
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_hover() {
-		return "$this->form_container .wpforms-error-container-full:hover, $this->form_container .wpforms-error-container:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_default() {
-		return "$this->form_container .wpforms-confirmation-container-full, $this->main_css_element div div[submit-success]>.wpforms-confirmation-container-full:not(.wpforms-redirection-message)";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_hover() {
-		return "$this->form_container .wpforms-confirmation-container-full:hover, $this->main_css_element div div[submit-success]>.wpforms-confirmation-container-full:not(.wpforms-redirection-message):hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_hover() {
-		return "$this->form_container form.wpforms-form:hover";
 	}
 
 	/**
@@ -655,5 +556,111 @@ class WPForms extends FormStyler {
 		);
 
 		return $options;
+	}
+
+	/**
+	 * Get the stylesheet selector for form tag.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_default() {
+		return "$this->form_container form.wpforms-form";
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_default() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_hover() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field:hover";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_default() {
+		return "$this->form_container input[type=submit], $this->form_container button[type=submit], $this->form_container .wpforms-page-button";
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_hover() {
+		return "$this->form_container input[type=submit]:hover, $this->form_container button[type=submit]:hover, $this->form_container .wpforms-page-button:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_default() {
+		return "$this->form_container .wpforms-error-container-full, $this->form_container .wpforms-error-container";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_hover() {
+		return "$this->form_container .wpforms-error-container-full:hover, $this->form_container .wpforms-error-container:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_default() {
+		return "$this->form_container .wpforms-confirmation-container-full, $this->main_css_element div div[submit-success]>.wpforms-confirmation-container-full:not(.wpforms-redirection-message)";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_hover() {
+		return "$this->form_container .wpforms-confirmation-container-full:hover, $this->main_css_element div div[submit-success]>.wpforms-confirmation-container-full:not(.wpforms-redirection-message):hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for form tag to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_hover() {
+		return "$this->form_container form.wpforms-form:hover";
 	}
 }

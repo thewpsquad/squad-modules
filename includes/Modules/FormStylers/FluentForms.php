@@ -327,6 +327,7 @@ class FluentForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '1px|1px|1px|1px',
 							'color' => '#bbb',
@@ -347,7 +348,9 @@ class FluentForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
 							'style' => 'solid',
 						),
@@ -366,7 +369,9 @@ class FluentForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
 							'style' => 'solid',
 						),
@@ -385,7 +390,9 @@ class FluentForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#dc3232',
 							'style' => 'solid',
 						),
@@ -404,7 +411,9 @@ class FluentForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#46b450',
 							'style' => 'solid',
 						),
@@ -495,103 +504,6 @@ class FluentForms extends FormStyler {
 			'text'           => false,
 			'button'         => false,
 		);
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_default() {
-		return "$this->main_css_element div .fluentform form";
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_default() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_hover() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field:hover";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_default() {
-		return "$this->main_css_element div .fluentform form .ff-btn-submit:not(.ff_btn_no_style)";
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_hover() {
-		return "$this->main_css_element div .fluentform form .ff-btn-submit:not(.ff_btn_no_style):hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_default() {
-		return "$this->main_css_element div .fluentform .ff-el-is-error .text-danger";
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_hover() {
-		return "$this->main_css_element div .fluentform .ff-el-is-error .text-danger:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_default() {
-		return "$this->main_css_element div .fluentform .ff-message-success";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_hover() {
-		return "$this->main_css_element div .fluentform .ff-message-success:hover";
 	}
 
 	/**
@@ -800,5 +712,102 @@ class FluentForms extends FormStyler {
 	 */
 	protected function get_form_selector_hover() {
 		return "$this->main_css_element div .fluentform form:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for form tag.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_default() {
+		return "$this->main_css_element div .fluentform form";
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_default() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_hover() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field:hover";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_default() {
+		return "$this->main_css_element div .fluentform form .ff-btn-submit:not(.ff_btn_no_style)";
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_hover() {
+		return "$this->main_css_element div .fluentform form .ff-btn-submit:not(.ff_btn_no_style):hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_default() {
+		return "$this->main_css_element div .fluentform .ff-el-is-error .text-danger";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_hover() {
+		return "$this->main_css_element div .fluentform .ff-el-is-error .text-danger:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_default() {
+		return "$this->main_css_element div .fluentform .ff-message-success";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_hover() {
+		return "$this->main_css_element div .fluentform .ff-message-success:hover";
 	}
 }

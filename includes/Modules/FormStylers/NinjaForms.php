@@ -369,6 +369,7 @@ class NinjaForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
@@ -389,6 +390,7 @@ class NinjaForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
@@ -409,6 +411,7 @@ class NinjaForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '1px|1px|1px|1px',
 							'color' => '#bbb',
@@ -429,6 +432,7 @@ class NinjaForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
 							'width' => '0px|0px|0px|0px',
 							'color' => '#333',
@@ -449,7 +453,9 @@ class NinjaForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#dc3232',
 							'style' => 'solid',
 						),
@@ -468,7 +474,9 @@ class NinjaForms extends FormStyler {
 						),
 					),
 					'defaults'     => array(
+						'border_radii'  => 'on||||',
 						'border_styles' => array(
+							'width' => '0px|0px|0px|0px',
 							'color' => '#46b450',
 							'style' => 'solid',
 						),
@@ -573,115 +581,6 @@ class NinjaForms extends FormStyler {
 			'text'           => false,
 			'button'         => false,
 		);
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_default() {
-		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form";
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_default() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
-
-		// Add new fields.
-		$allowed_fields[] = '.listimage-wrap .nf-field-element label';
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_hover() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field:hover";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_default() {
-		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form input[type=submit], $this->main_css_element div .nf-form-wrap .nf-form-layout form button:not(.nf-remove-fieldset)";
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_hover() {
-		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form input[type=submit]:hover, $this->main_css_element div .nf-form-wrap .nf-form-layout form button:not(.nf-remove-fieldset):hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_default() {
-		return "$this->main_css_element div .nf-form-wrap .nf-response-msg";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_hover() {
-		return "$this->main_css_element div .nf-form-wrap .nf-response-msg:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_hover() {
-		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_default() {
-		return "$this->main_css_element div .nf-form-wrap .nf-form-errors, $this->main_css_element div .nf-form-wrap .nf-error-wrap";
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_hover() {
-		return "$this->main_css_element div .nf-form-wrap .nf-form-errors:hover, $this->main_css_element div .nf-form-wrap .nf-error-wrap:hover";
 	}
 
 	/**
@@ -860,7 +759,7 @@ class NinjaForms extends FormStyler {
 				$i18n = array();
 			}
 
-			if ( !empty($i18n)){
+			if ( ! empty( $i18n ) ) {
 				printf(
 					'<script type="application/json" id="squad-nf-builder-js-i18n">%s</script>',
 					wp_json_encode( $i18n )
@@ -1004,5 +903,114 @@ class NinjaForms extends FormStyler {
 		);
 
 		return $options;
+	}
+
+	/**
+	 * Get the stylesheet selector for form tag.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_default() {
+		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form";
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_default() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
+
+		// Add new fields.
+		$allowed_fields[] = '.listimage-wrap .nf-field-element label';
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_hover() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field:hover";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_default() {
+		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form input[type=submit], $this->main_css_element div .nf-form-wrap .nf-form-layout form button:not(.nf-remove-fieldset)";
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_hover() {
+		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form input[type=submit]:hover, $this->main_css_element div .nf-form-wrap .nf-form-layout form button:not(.nf-remove-fieldset):hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_default() {
+		return "$this->main_css_element div .nf-form-wrap .nf-response-msg";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_hover() {
+		return "$this->main_css_element div .nf-form-wrap .nf-response-msg:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for form tag to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_hover() {
+		return "$this->main_css_element div .nf-form-wrap .nf-form-layout form:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_default() {
+		return "$this->main_css_element div .nf-form-wrap .nf-form-errors, $this->main_css_element div .nf-form-wrap .nf-error-wrap";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_hover() {
+		return "$this->main_css_element div .nf-form-wrap .nf-form-errors:hover, $this->main_css_element div .nf-form-wrap .nf-error-wrap:hover";
 	}
 }
