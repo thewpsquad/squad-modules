@@ -1,7 +1,48 @@
 == Changelog ==
+= 3.0.0 (23-06-2024) =
+
+**New Features:**
+
+- New Brand logo for Squad Modules Lite
+- Load More Feature for Divi Post Grid Module
+- New Issue or Feature request form through the GitHub repository
+
+**Bug Fixes:**
+
+- Fix: Icon Vertical alignment does not work properly in the Divi Advanced List Module (PRO)
+- Fix: Item inner gap does working in builder for Advanced Blurb Module (PRO)
+- Fix: Fatal error when show lightbox feature is enabled in the Divi Image Gallery Module
+- Fix: The lightbox is not working in The Divi Image Gallery Module
+- Fix: Unable to detect pro version installation from core plugin
+- Fix: Separator and Before icon does not show properly in Breadcrumbs Module
+- Fix: The plugin review banner is not closing properly in WordPress Playground.
+- Fix: Pro plugin is not syncing with the lite plugin.
+- Fix: Squad Module asset loaded by theme unexpectedly
+- Fix: Fatal error when divi want to enqueue asset file out of squad page
+- Fix: Affiliate page does not working in WordPress Playground due to a fatal error, currently it turn off here only.
+- Fix: Uncaught Error: Call to undefined function DiviSquad\Utils\get_current_screen().
+- Fix: Modules are not saved properly when use try to save particular modules.
+- Fix: Divi Post Grid Module is not working properly.
+
+**✨ Improvements:**
+
+- Improved: Squad Modules Pro Admin UI (Header, Error Page) (More flexible, more user-friendly)
+- Improved: Data sanitization and validation for all modules
+- Improved: Squad Copy Extension.
+- Tested for compatibility with WordPress 6.6 (beta)
+- Tested for compatibility with WordPress 6.5.4 (stable)
+- Tested for compatibility with Divi Theme 4.25.2
+- Tested for compatibility with Contact Form 7 5.9.6
+- Tested for compatibility with Fluent Forms 5.1.19
+- Tested for compatibility with WPForms 1.8.8.3
+- Tested for compatibility with Gravity Forms 2.8.11
+- Tested for compatibility with Ninja Forms 3.8.4
+
+
 = 2.1.2 (24-04-2024) =
 
 **New Features:**
+
 - Introduced form field width feature for WPForms module
 - Introduced new font extensions support for Font Extensions
 

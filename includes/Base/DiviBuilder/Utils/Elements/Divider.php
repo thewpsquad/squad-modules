@@ -1,5 +1,13 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * Divider Utils Helper
+ *
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.5.0
+ */
+
 namespace DiviSquad\Base\DiviBuilder\Utils\Elements;
 
 use ET_Global_Settings;
@@ -8,6 +16,12 @@ use function et_builder_accent_color;
 use function et_builder_get_border_styles;
 use function et_builder_i18n;
 
+/**
+ * Divider Utils Helper Class
+ *
+ * @package DiviSquad
+ * @since   1.5.0
+ */
 trait Divider {
 
 	/**
@@ -17,26 +31,6 @@ trait Divider {
 	 */
 	public function get_divider_defaults() {
 		return $this->element->squad_divider_defaults;
-	}
-
-	/**
-	 * Get the default data.
-	 *
-	 * @param string $field The instance of ET Builder Element.
-	 *
-	 * @return string
-	 */
-	public function get_divider_default( $field ) {
-		return ! empty( $this->element->squad_divider_defaults[ $field ] ) ? $this->element->squad_divider_defaults[ $field ] : '';
-	}
-
-	/**
-	 * Get show options for divider.
-	 *
-	 * @return array
-	 */
-	public function get_show_divider_options() {
-		return $this->element->squad_divider_show_options;
 	}
 
 	/**
@@ -53,9 +47,9 @@ trait Divider {
 		$global_divider_weight   = ET_Global_Settings::get_value( $weight_option_name );
 
 		$this->element->squad_divider_defaults = array(
-			'divider_style'    => $global_divider_style && '' !== $global_divider_style ? $global_divider_style : 'solid',
-			'divider_position' => $global_divider_position && '' !== $global_divider_position ? $global_divider_position : 'bottom',
-			'divider_weight'   => $global_divider_weight && '' !== $global_divider_weight ? $global_divider_weight : '2px',
+			'divider_style'    => ! empty( $global_divider_style ) ? $global_divider_style : 'solid',
+			'divider_position' => ! empty( $global_divider_position ) ? $global_divider_position : 'bottom',
+			'divider_weight'   => ! empty( $global_divider_weight ) ? $global_divider_weight : '2px',
 		);
 
 		// Show divider options are modifiable via customizer.
@@ -197,5 +191,25 @@ trait Divider {
 				)
 			),
 		);
+	}
+
+	/**
+	 * Get show options for divider.
+	 *
+	 * @return array
+	 */
+	public function get_show_divider_options() {
+		return $this->element->squad_divider_show_options;
+	}
+
+	/**
+	 * Get the default data.
+	 *
+	 * @param string $field The instance of ET Builder Element.
+	 *
+	 * @return string
+	 */
+	public function get_divider_default( $field ) {
+		return ! empty( $this->element->squad_divider_defaults[ $field ] ) ? $this->element->squad_divider_defaults[ $field ] : '';
 	}
 }

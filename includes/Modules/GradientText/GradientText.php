@@ -5,28 +5,27 @@
  *
  * This class provides gradient text adding functionalities in the visual builder.
  *
- * @since           1.2.2
- * @package         squad-modules-for-divi
- * @author          WP Squad <support@thewpsquad.com>
- * @license         GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.2
  */
 
 namespace DiviSquad\Modules\GradientText;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function esc_html__;
-use function et_core_esc_previously;
 use function et_pb_background_options;
+use function wp_kses_post;
 
 /**
  * Gradient Text Module Class.
  *
- * @since           1.2.6
- * @package         squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.2.6
  */
-class GradientText extends Squad_Module {
+class GradientText extends DiviSquad_Module {
 
 	/**
 	 * Initiate Module.
@@ -38,7 +37,7 @@ class GradientText extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Gradient Text', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Gradient Texts', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/gradient-text.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/gradient-text.svg' );
 
 		$this->slug             = 'disq_gradient_text';
 		$this->vb_support       = 'on';
@@ -194,7 +193,7 @@ class GradientText extends Squad_Module {
 			$gradient_texts     = Utils::decode_json_data( $this->prop( 'gradient_text', array() ) );
 			$gradient_text_html = '';
 
-			if ( is_array( $gradient_texts ) && count( $gradient_texts ) ) {
+			if ( count( $gradient_texts ) > 0 ) {
 				foreach ( $gradient_texts as $gradient_text ) {
 					$gradient_text_html .= "<span>{$gradient_text['value']}</span> <br/>";
 				}
@@ -204,12 +203,12 @@ class GradientText extends Squad_Module {
 
 			return sprintf(
 				'<div class="gradient-text-wrapper et_pb_with_background"><%2$s class="gradient-text-element">%1$s</%2$s></div>',
-				et_core_esc_previously( $gradient_text_html ),
-				et_core_esc_previously( $gradient_text_tag )
+				wp_kses_post( $gradient_text_html ),
+				wp_kses_post( $gradient_text_tag )
 			);
 		}
 
-		return null;
+		return '';
 	}
 
 	/**

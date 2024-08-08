@@ -1,19 +1,23 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * Feature Management class
+ *
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   2.0.0
+ */
+
 namespace DiviSquad\Base\Factories;
 
 use DiviSquad\Utils\Polyfills\Str;
-use function gettype;
 use function sort;
 
 /**
  * Feature Management class
  *
- * @since       2.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   2.0.0
  */
 abstract class SquadFeatures {
 
@@ -46,26 +50,6 @@ abstract class SquadFeatures {
 	abstract public function get_default_registries();
 
 	/**
-	 * Retrieve details by the registered name.
-	 *
-	 * @param array  $registries The array list of available registries.
-	 * @param string $name       The name of the current registry.
-	 *
-	 * @return array
-	 */
-	protected function get_details_by_name( $registries, $name ) {
-		$details = array();
-		foreach ( $registries as $registry ) {
-			if ( isset( $registry['name'] ) && $name === $registry['name'] ) {
-				$details[] = $registry;
-				break;
-			}
-		}
-
-		return $details;
-	}
-
-	/**
 	 * Retrieve the filtered list of registered.
 	 *
 	 * @param array         $registered The list of registered.
@@ -78,7 +62,8 @@ abstract class SquadFeatures {
 			$filtered_registries = array();
 
 			foreach ( $registered as $registry ) {
-				if ( null !== $callback && $callback( $registry ) ) {
+				$filtered = $callback( $registry );
+				if ( is_bool( $filtered ) && $filtered ) {
 					$filtered_registries[] = $registry;
 				}
 			}
@@ -105,12 +90,10 @@ abstract class SquadFeatures {
 
 		// Verify if the registry has required plugins.
 		if ( ! empty( $registry_info['required']['plugin'] ) ) {
-			// Collect required plugins by current module.
 			$required_plugins = $registry_info['required']['plugin'];
 
 			// Verify for the single requirements.
-			if ( gettype( $required_plugins ) === 'string' ) {
-				// Store required plugins that are string data types.
+			if ( is_string( $required_plugins ) ) {
 				$verified_plugins = array();
 
 				// Verify optional plugins when available.
@@ -123,7 +106,6 @@ abstract class SquadFeatures {
 				// Collect all active plugins that are required by current plugin.
 				$activated_plugins = array();
 				foreach ( $verified_plugins as $plugin ) {
-					// Verify optional plugins are activated.
 					if ( in_array( $plugin, $active_plugins, true ) ) {
 						$activated_plugins[] = $plugin;
 					}
@@ -134,7 +116,7 @@ abstract class SquadFeatures {
 			}
 
 			// Verify for the multiple requirements.
-			if ( gettype( $required_plugins ) === 'array' ) {
+			if ( is_array( $required_plugins ) ) {
 				$dependencies_plugins = array();
 				foreach ( $required_plugins as $plugin ) {
 					if ( in_array( $plugin, $active_plugins, true ) ) {
@@ -158,50 +140,49 @@ abstract class SquadFeatures {
 	/**
 	 * Load the module class.
 	 *
-	 * @param array $registered The available modules list.
-	 * @param array $defaults   The default activated registries list.
-	 * @param array $activated  The user defined an activated registries list.
+	 * @param array  $registered The available modules list.
+	 * @param array  $defaults   The default activated registries list.
+	 * @param mixed  $activate   The user-defined activated registries list.
+	 * @param array  $inactivate The user-defined inactivated registries list.
+	 * @param string $version    Current version of the plugin.
 	 *
 	 * @return array
 	 */
-	protected function get_verified_registries( $registered, $defaults, $activated ) {
+	protected function get_verified_registries( $registered, $defaults, $activate, $inactivate, $version ) {
 		$verified = array();
+		$names    = array();
 
-		if ( is_array( $activated ) && 0 === count( $activated ) ) {
-			$activated = $defaults;
+		// If activate is null, set it to defaults.
+		if ( is_null( $activate ) ) {
+			$activate = $defaults;
 		}
 
-		if ( is_array( $activated ) && 0 !== count( $activated ) ) {
-			// Get all registry names that activated by user.
-			$activated_names = array();
-			foreach ( $activated as $activate ) {
-				if ( 'string' === gettype( $activate ) ) {
-					$activated_names[] = $activate;
-				}
-
-				if ( 'array' === gettype( $activate ) ) {
-					if ( ! empty( $activate['name'] ) ) {
-						$activated_names[] = $activate['name'];
-					}
-				}
-			}
-
-			// Verify default active registries.
-			foreach ( $defaults as $default ) {
-				if ( ! in_array( $default['name'], $activated_names, true ) ) {
-					$verified[] = $default;
-				}
-			}
-
-			// Get registry details that user activates.
-			foreach ( $registered as $module ) {
-				if ( in_array( $module['name'], $activated_names, true ) ) {
-					$verified[] = $module;
-				}
+		// Extract names from the activate list.
+		foreach ( $activate as $active ) {
+			if ( is_string( $active ) ) {
+				$names[] = $active;
+			} elseif ( is_array( $active ) && ! empty( $active['name'] ) ) {
+				$names[] = $active['name'];
 			}
 		}
 
-		// Collect all activate registries.
+		// Verify default active registries.
+		foreach ( $defaults as $default ) {
+			if ( $default['release_version'] === $version &&
+				! in_array( $default['name'], $names, true ) &&
+				! in_array( $default['name'], $inactivate, true ) ) {
+				$verified[] = $default;
+			}
+		}
+
+		// Get registry details that user activates.
+		foreach ( $registered as $module ) {
+			if ( in_array( $module['name'], $names, true ) ) {
+				$verified[] = $module;
+			}
+		}
+
+		// Collect all activated registries and ensure uniqueness.
 		return array_unique( $verified, SORT_REGULAR );
 	}
 }

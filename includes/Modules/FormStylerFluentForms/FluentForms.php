@@ -5,16 +5,14 @@
  *
  * This class provides Fluent Forms with customization opportunities in the visual builder.
  *
- * @since       1.4.7
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.4.7
  */
 
 namespace DiviSquad\Modules\FormStylerFluentForms;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Form_Styler as Squad_Form_Styler;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Form_Styler as SquadFormStyler;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function do_shortcode;
@@ -24,10 +22,10 @@ use function esc_html__;
 /**
  * The Form Styler: Fluent Forms Module Class.
  *
- * @since       1.4.7
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.4.7
  */
-class FluentForms extends Squad_Form_Styler {
+class FluentForms extends SquadFormStyler {
 
 	/**
 	 * Initiate Module.
@@ -39,7 +37,7 @@ class FluentForms extends Squad_Form_Styler {
 	public function init() {
 		$this->name      = esc_html__( 'Fluent Forms', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Fluent Forms', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/fluent-forms.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/fluent-forms.svg' );
 
 		$this->slug             = 'disq_form_styler_fluent_forms';
 		$this->vb_support       = 'on';
@@ -90,7 +88,7 @@ class FluentForms extends Squad_Form_Styler {
 			),
 			'__forms'                  => array(
 				'type'                => 'computed',
-				'computed_callback'   => array( self::class, 'disq_form_styler__get_form_html' ),
+				'computed_callback'   => array( self::class, 'squad_form_styler__get_form_html' ),
 				'computed_depends_on' => array(
 					'form_id',
 				),
@@ -223,7 +221,7 @@ class FluentForms extends Squad_Form_Styler {
 	/**
 	 * Declare advanced fields for the module
 	 *
-	 * @return array[]
+	 * @return array
 	 */
 	public function get_advanced_fields_config() {
 		$form_selector = $this->get_form_selector_default();
@@ -500,6 +498,103 @@ class FluentForms extends Squad_Form_Styler {
 	}
 
 	/**
+	 * Get the stylesheet selector for form tag.
+	 *
+	 * @return string
+	 */
+	protected function get_form_selector_default() {
+		return "$this->main_css_element div .fluentform form";
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_default() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils::form_get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form fields to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_field_selector_hover() {
+		$form_selector  = $this->get_form_selector_default();
+		$allowed_fields = Utils::form_get_allowed_fields();
+
+		$selectors = array();
+		foreach ( $allowed_fields as $allowed_field ) {
+			$selectors[] = "$form_selector $allowed_field:hover";
+		}
+
+		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_default() {
+		return "$this->main_css_element div .fluentform form .ff-btn-submit:not(.ff_btn_no_style)";
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_hover() {
+		return "$this->main_css_element div .fluentform form .ff-btn-submit:not(.ff_btn_no_style):hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_default() {
+		return "$this->main_css_element div .fluentform .ff-el-is-error .text-danger";
+	}
+
+	/**
+	 * Get the stylesheet selector for the error message to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_error_message_selector_hover() {
+		return "$this->main_css_element div .fluentform .ff-el-is-error .text-danger:hover";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_default() {
+		return "$this->main_css_element div .fluentform .ff-message-success";
+	}
+
+	/**
+	 * Get the stylesheet selector for the success message to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_success_message_selector_hover() {
+		return "$this->main_css_element div .fluentform .ff-message-success:hover";
+	}
+
+	/**
 	 * Declare custom css fields for the module
 	 *
 	 * @return array[]
@@ -510,7 +605,7 @@ class FluentForms extends Squad_Form_Styler {
 		return array(
 			'wrapper'         => array(
 				'label'    => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
-				'selector' => "$form_selector",
+				'selector' => $form_selector,
 			),
 			'field'           => array(
 				'label'    => esc_html__( 'Field', 'squad-modules-for-divi' ),
@@ -583,20 +678,20 @@ class FluentForms extends Squad_Form_Styler {
 		// Show a notice message in the frontend if the contact form is not installed.
 		if ( ! function_exists( 'wpFluentForm' ) ) {
 			return sprintf(
-				'<div class="divi_squad_notice">%s</div>',
+				'<div class="squad-notice">%s</div>',
 				esc_html__( 'Fluent Forms is not installed', 'squad-modules-for-divi' )
 			);
 		}
 
-		if ( ! empty( self::disq_form_styler__get_form_html( $attrs ) ) ) {
+		if ( ! empty( self::squad_form_styler__get_form_html( $attrs ) ) ) {
 			$this->squad_generate_all_styles( $attrs );
 
-			return self::disq_form_styler__get_form_html( $attrs );
+			return self::squad_form_styler__get_form_html( $attrs );
 		}
 
 		// Show a notice message in the frontend if the form is not selected.
 		return sprintf(
-			'<div class="divi_squad_notice">%s</div>',
+			'<div class="squad-notice">%s</div>',
 			esc_html__( 'Please select a form.', 'squad-modules-for-divi' )
 		);
 	}
@@ -610,14 +705,39 @@ class FluentForms extends Squad_Form_Styler {
 	 * @return string the html output.
 	 * @since 1.4.7
 	 */
-	public static function disq_form_styler__get_form_html( $attrs, $content = null ) {
-		// Collect all posts from the database.
-		$collection = Utils::form_get_all_items( 'fluent_forms', 'id' );
-		if ( ! empty( $attrs['form_id'] ) && Utils::$default_form_id !== $attrs['form_id'] && isset( $collection[ $attrs['form_id'] ] ) ) {
-			return do_shortcode( sprintf( '[fluentform id="%s"]', esc_attr( $collection[ $attrs['form_id'] ] ) ) );
+	public static function squad_form_styler__get_form_html( $attrs, $content = null ) {
+		// Check if the form id is empty or not.
+		if ( empty( $attrs['form_id'] ) || Utils::$default_form_id === $attrs['form_id'] || ! function_exists( '\wpFluentForm' ) ) {
+			return '';
 		}
 
-		return null;
+		// Collect all posts from the database.
+		$collection = Utils::form_get_all_items( 'fluent_forms', 'id' );
+
+		// Check if the form id is existing.
+		if ( ! isset( $collection[ $attrs['form_id'] ] ) ) {
+			return '';
+		}
+
+		return do_shortcode( sprintf( '[fluentform id="%s"]', esc_attr( $collection[ $attrs['form_id'] ] ) ) );
+	}
+
+	/**
+	 * Generate styles.
+	 *
+	 * @param array $attrs List of unprocessed attributes.
+	 *
+	 * @return void
+	 */
+	protected function squad_generate_all_styles( $attrs ) {
+		// Get merge all attributes.
+		$attrs = array_merge( $attrs, $this->props );
+
+		// Get stylesheet selectors.
+		$options = $this->squad_get_module_stylesheet_selectors( $attrs );
+
+		// Generate module styles from hook.
+		$this->squad_form_styler_generate_module_styles( $attrs, $options );
 	}
 
 	/**
@@ -674,126 +794,11 @@ class FluentForms extends Squad_Form_Styler {
 	}
 
 	/**
-	 * Generate styles.
-	 *
-	 * @param array $attrs List of unprocessed attributes.
-	 *
-	 * @return void
-	 */
-	protected function squad_generate_all_styles( $attrs ) {
-		// Get merge all attributes.
-		$attrs = array_merge( $attrs, $this->props );
-
-		// Get stylesheet selectors.
-		$options = $this->squad_get_module_stylesheet_selectors( $attrs );
-
-		// Generate module styles from hook.
-		$this->form_styler_generate_module_styles( $attrs, $options );
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_default() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils::form_get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form fields to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_field_selector_hover() {
-		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Utils::form_get_allowed_fields();
-
-		$selectors = array();
-		foreach ( $allowed_fields as $allowed_field ) {
-			$selectors[] = "$form_selector $allowed_field:hover";
-		}
-
-		return implode( ', ', $selectors );
-	}
-
-	/**
-	 * Get the stylesheet selector for form tag.
-	 *
-	 * @return string
-	 */
-	protected function get_form_selector_default() {
-		return "$this->main_css_element div .fluentform form";
-	}
-
-	/**
 	 * Get the stylesheet selector for form tag to use in hover.
 	 *
 	 * @return string
 	 */
 	protected function get_form_selector_hover() {
 		return "$this->main_css_element div .fluentform form:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_default() {
-		return "$this->main_css_element div .fluentform .ff-el-is-error .text-danger";
-	}
-
-	/**
-	 * Get the stylesheet selector for the error message to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_error_message_selector_hover() {
-		return "$this->main_css_element div .fluentform .ff-el-is-error .text-danger:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_default() {
-		return "$this->main_css_element div .fluentform .ff-message-success";
-	}
-
-	/**
-	 * Get the stylesheet selector for the success message to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_success_message_selector_hover() {
-		return "$this->main_css_element div .fluentform .ff-message-success:hover";
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_default() {
-		return "$this->main_css_element div .fluentform form .ff-btn-submit:not(.ff_btn_no_style)";
-	}
-
-	/**
-	 * Get the stylesheet selector for form submit button to use in hover.
-	 *
-	 * @return string
-	 */
-	protected function get_submit_button_selector_hover() {
-		return "$this->main_css_element div .fluentform form .ff-btn-submit:not(.ff_btn_no_style):hover";
 	}
 }

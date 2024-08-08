@@ -5,16 +5,14 @@
  *
  * This class provides the wp forms with customization opportunities in the visual builder.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.0
  */
 
 namespace DiviSquad\Modules\FormStylerWPForms;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Form_Styler as Squad_Form_Styler;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Form_Styler as SquadFormStyler;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function do_shortcode;
@@ -23,10 +21,10 @@ use function esc_html__;
 /**
  * The Form Styler: WP Forms Module Class.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.2.0
  */
-class WPForms extends Squad_Form_Styler {
+class WPForms extends SquadFormStyler {
 
 	/**
 	 * The css selector for the form container.
@@ -45,7 +43,7 @@ class WPForms extends Squad_Form_Styler {
 	public function init() {
 		$this->name      = esc_html__( 'WP Forms', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'WP Forms', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/wp-forms.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/wp-forms.svg' );
 
 		$this->slug       = 'disq_form_styler_wp_forms';
 		$this->vb_support = 'on';
@@ -90,7 +88,7 @@ class WPForms extends Squad_Form_Styler {
 			),
 			'__forms'               => array(
 				'type'                => 'computed',
-				'computed_callback'   => array( self::class, 'disq_form_styler__get_form_html' ),
+				'computed_callback'   => array( self::class, 'squad_form_styler__get_form_html' ),
 				'computed_depends_on' => array(
 					'form_id',
 				),
@@ -156,7 +154,7 @@ class WPForms extends Squad_Form_Styler {
 	/**
 	 * Declare advanced fields for the module
 	 *
-	 * @return array[]
+	 * @return array
 	 */
 	public function get_advanced_fields_config() {
 		$form_selector = $this->get_form_selector_default();
@@ -423,134 +421,6 @@ class WPForms extends Squad_Form_Styler {
 	}
 
 	/**
-	 * Render module output.
-	 *
-	 * @param array  $attrs       List of unprocessed attributes.
-	 * @param string $content     Content being processed.
-	 * @param string $render_slug Slug of module that is used for rendering output.
-	 *
-	 * @return string module's rendered output.
-	 * @since 1.0.0
-	 */
-	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
-		// Show a notice message in the frontend if the contact form is not installed.
-		if ( ! function_exists( 'wpforms' ) ) {
-			return sprintf(
-				'<div class="divi_squad_notice">%s</div>',
-				esc_html__( 'WPForms is not installed', 'squad-modules-for-divi' )
-			);
-		}
-
-		if ( ! empty( self::disq_form_styler__get_form_html( $attrs ) ) ) {
-			$this->squad_generate_all_styles( $attrs );
-
-			return self::disq_form_styler__get_form_html( $attrs );
-		}
-
-		// Show a notice message in the frontend if the form is not selected.
-		return sprintf(
-			'<div class="divi_squad_notice">%s</div>',
-			esc_html__( 'Please select a form.', 'squad-modules-for-divi' )
-		);
-	}
-
-	/**
-	 * Collect all posts from the database.
-	 *
-	 * @param array  $attrs   List of unprocessed attributes.
-	 * @param string $content Content being processed.
-	 *
-	 * @return string the html output.
-	 * @since 1.0.0
-	 */
-	public static function disq_form_styler__get_form_html( $attrs, $content = null ) {
-		// Collect all from the database.
-		$collection = Utils::form_get_all_items( 'wpforms', 'id' );
-		if ( ! empty( $attrs['form_id'] ) && Utils::$default_form_id !== $attrs['form_id'] && isset( $collection[ $attrs['form_id'] ] ) ) {
-			return do_shortcode( sprintf( '[wpforms id="%s"]', esc_attr( $collection[ $attrs['form_id'] ] ) ) );
-		}
-
-		return null;
-	}
-
-	/**
-	 * Get the stylesheet configuration for generating styles.
-	 *
-	 * @param array $attrs List of unprocessed attributes.
-	 *
-	 * @return array
-	 */
-	protected function squad_get_module_stylesheet_selectors( $attrs ) {
-		$options = parent::squad_get_module_stylesheet_selectors( $attrs );
-
-		// Get form selector.
-		$form_selector = $this->get_form_selector_default();
-
-		// Set max-width for form fields (medium single text input).
-		// .wpforms-container input.wpforms-field-medium,
-		//.wpforms-container select.wpforms-field-medium,
-		//.wpforms-container .wpforms-field-row.wpforms-field-medium,
-		//.wp-core-ui div.wpforms-container input.wpforms-field-medium,
-		//.wp-core-ui div.wpforms-container select.wpforms-field-medium,
-		//.wp-core-ui div.wpforms-container .wpforms-field-row.wpforms-field-medium
-		$medium_field_selectors  = "$this->main_css_element .wpforms-container input.wpforms-field-medium";
-		$medium_field_selectors .= ", $this->main_css_element .wpforms-container select.wpforms-field-medium";
-		$medium_field_selectors .= ", $this->main_css_element .wpforms-container .wpforms-field-row.wpforms-field-medium";
-		$medium_field_selectors .= ", $this->main_css_element .wp-core-ui div.wpforms-container input.wpforms-field-medium";
-		$medium_field_selectors .= ", $this->main_css_element .wp-core-ui div.wpforms-container select.wpforms-field-medium";
-		$medium_field_selectors .= ", $this->main_css_element .wp-core-ui div.wpforms-container .wpforms-field-row.wpforms-field-medium";
-
-		// Set max-width for form fields (small single text input).
-		// .wpforms-container input.wpforms-field-small,
-		//.wpforms-container select.wpforms-field-small,
-		//.wpforms-container .wpforms-field-row.wpforms-field-small,
-		//.wp-core-ui div.wpforms-container input.wpforms-field-small,
-		//.wp-core-ui div.wpforms-container select.wpforms-field-small,
-		//.wp-core-ui div.wpforms-container .wpforms-field-row.wpforms-field-small
-		$small_field_selectors  = "$this->main_css_element .wpforms-container input.wpforms-field-small";
-		$small_field_selectors .= ", $this->main_css_element .wpforms-container select.wpforms-field-small";
-		$small_field_selectors .= ", $this->main_css_element .wpforms-container .wpforms-field-row.wpforms-field-small";
-		$small_field_selectors .= ", $this->main_css_element .wp-core-ui div.wpforms-container input.wpforms-field-small";
-		$small_field_selectors .= ", $this->main_css_element .wp-core-ui div.wpforms-container select.wpforms-field-small";
-		$small_field_selectors .= ", $this->main_css_element .wp-core-ui div.wpforms-container .wpforms-field-row.wpforms-field-small";
-
-		$options['form_field_width'] = array(
-			'type'      => 'default',
-			'data_type' => 'range',
-			'options'   => array(
-				array(
-					'selector'     => $medium_field_selectors,
-					'css_property' => 'max-width',
-				),
-				array(
-					'selector'     => $small_field_selectors,
-					'css_property' => 'max-width',
-				),
-			),
-		);
-
-		return $options;
-	}
-
-	/**
-	 * Generate styles.
-	 *
-	 * @param array $attrs List of unprocessed attributes.
-	 *
-	 * @return void
-	 */
-	protected function squad_generate_all_styles( $attrs ) {
-		// Get merge all attributes.
-		$attrs = array_merge( $attrs, $this->props );
-
-		// Get stylesheet selectors.
-		$options = $this->squad_get_module_stylesheet_selectors( $attrs );
-
-		// Generate module styles from hook.
-		$this->form_styler_generate_module_styles( $attrs, $options );
-	}
-
-	/**
 	 * Get the stylesheet selector for form tag.
 	 *
 	 * @return string
@@ -591,6 +461,24 @@ class WPForms extends Squad_Form_Styler {
 		}
 
 		return implode( ', ', $selectors );
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_default() {
+		return "$this->form_container input[type=submit], $this->form_container button[type=submit], $this->form_container .wpforms-page-button";
+	}
+
+	/**
+	 * Get the stylesheet selector for form submit button to use in hover.
+	 *
+	 * @return string
+	 */
+	protected function get_submit_button_selector_hover() {
+		return "$this->form_container input[type=submit]:hover, $this->form_container button[type=submit]:hover, $this->form_container .wpforms-page-button:hover";
 	}
 
 	/**
@@ -639,20 +527,133 @@ class WPForms extends Squad_Form_Styler {
 	}
 
 	/**
-	 * Get the stylesheet selector for form submit button.
+	 * Render module output.
 	 *
-	 * @return string
+	 * @param array  $attrs       List of unprocessed attributes.
+	 * @param string $content     Content being processed.
+	 * @param string $render_slug Slug of module that is used for rendering output.
+	 *
+	 * @return string module's rendered output.
+	 * @since 1.0.0
 	 */
-	protected function get_submit_button_selector_default() {
-		return "$this->form_container input[type=submit], $this->form_container button[type=submit], $this->form_container .wpforms-page-button";
+	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
+		// Show a notice message in the frontend if the contact form is not installed.
+		if ( ! function_exists( 'wpforms' ) ) {
+			return sprintf(
+				'<div class="squad-notice">%s</div>',
+				esc_html__( 'WPForms is not installed', 'squad-modules-for-divi' )
+			);
+		}
+
+		if ( ! empty( self::squad_form_styler__get_form_html( $attrs ) ) ) {
+			$this->squad_generate_all_styles( $attrs );
+
+			return self::squad_form_styler__get_form_html( $attrs );
+		}
+
+		// Show a notice message in the frontend if the form is not selected.
+		return sprintf(
+			'<div class="squad-notice">%s</div>',
+			esc_html__( 'Please select a form.', 'squad-modules-for-divi' )
+		);
 	}
 
 	/**
-	 * Get the stylesheet selector for form submit button to use in hover.
+	 * Collect all posts from the database.
 	 *
-	 * @return string
+	 * @param array  $attrs   List of unprocessed attributes.
+	 * @param string $content Content being processed.
+	 *
+	 * @return string the html output.
+	 * @since 1.0.0
 	 */
-	protected function get_submit_button_selector_hover() {
-		return "$this->form_container input[type=submit]:hover, $this->form_container button[type=submit]:hover, $this->form_container .wpforms-page-button:hover";
+	public static function squad_form_styler__get_form_html( $attrs, $content = null ) {
+		// Check if the form id is empty or not.
+		if ( empty( $attrs['form_id'] ) || Utils::$default_form_id === $attrs['form_id'] || ! function_exists( 'wpforms' ) ) {
+			return '';
+		}
+
+		// Collect all from the database.
+		$collection = Utils::form_get_all_items( 'wpforms', 'id' );
+
+		if ( ! isset( $collection[ $attrs['form_id'] ] ) ) {
+			return '';
+		}
+
+		return do_shortcode( sprintf( '[wpforms id="%s"]', esc_attr( $collection[ $attrs['form_id'] ] ) ) );
+	}
+
+	/**
+	 * Generate styles.
+	 *
+	 * @param array $attrs List of unprocessed attributes.
+	 *
+	 * @return void
+	 */
+	protected function squad_generate_all_styles( $attrs ) {
+		// Get merge all attributes.
+		$attrs = array_merge( $attrs, $this->props );
+
+		// Get stylesheet selectors.
+		$options = $this->squad_get_module_stylesheet_selectors( $attrs );
+
+		// Generate module styles from hook.
+		$this->squad_form_styler_generate_module_styles( $attrs, $options );
+	}
+
+	/**
+	 * Get the stylesheet configuration for generating styles.
+	 *
+	 * @param array $attrs List of unprocessed attributes.
+	 *
+	 * @return array
+	 */
+	protected function squad_get_module_stylesheet_selectors( $attrs ) {
+		$options = parent::squad_get_module_stylesheet_selectors( $attrs );
+
+		// Set max-width for form fields (medium single text input).
+		// .wpforms-container input.wpforms-field-medium,
+		// .wpforms-container select.wpforms-field-medium,
+		// .wpforms-container .wpforms-field-row.wpforms-field-medium,
+		// .wp-core-ui div.wpforms-container input.wpforms-field-medium,
+		// .wp-core-ui div.wpforms-container select.wpforms-field-medium,
+		// .wp-core-ui div.wpforms-container .wpforms-field-row.wpforms-field-medium.
+		$medium_field_selectors  = "$this->main_css_element .wpforms-container input.wpforms-field-medium";
+		$medium_field_selectors .= ", $this->main_css_element .wpforms-container select.wpforms-field-medium";
+		$medium_field_selectors .= ", $this->main_css_element .wpforms-container .wpforms-field-row.wpforms-field-medium";
+		$medium_field_selectors .= ", $this->main_css_element .wp-core-ui div.wpforms-container input.wpforms-field-medium";
+		$medium_field_selectors .= ", $this->main_css_element .wp-core-ui div.wpforms-container select.wpforms-field-medium";
+		$medium_field_selectors .= ", $this->main_css_element .wp-core-ui div.wpforms-container .wpforms-field-row.wpforms-field-medium";
+
+		// Set max-width for form fields (small single text input).
+		// .wpforms-container input.wpforms-field-small,
+		// .wpforms-container select.wpforms-field-small,
+		// .wpforms-container .wpforms-field-row.wpforms-field-small,
+		// .wp-core-ui div.wpforms-container input.wpforms-field-small,
+		// .wp-core-ui div.wpforms-container select.wpforms-field-small,
+		// .wp-core-ui div.wpforms-container .wpforms-field-row.wpforms-field-small.
+		$small_field_selectors  = "$this->main_css_element .wpforms-container input.wpforms-field-small";
+		$small_field_selectors .= ", $this->main_css_element .wpforms-container select.wpforms-field-small";
+		$small_field_selectors .= ", $this->main_css_element .wpforms-container .wpforms-field-row.wpforms-field-small";
+		$small_field_selectors .= ", $this->main_css_element .wp-core-ui div.wpforms-container input.wpforms-field-small";
+		$small_field_selectors .= ", $this->main_css_element .wp-core-ui div.wpforms-container select.wpforms-field-small";
+		$small_field_selectors .= ", $this->main_css_element .wp-core-ui div.wpforms-container .wpforms-field-row.wpforms-field-small";
+
+		$options['form_field_width'] = array(
+			'type'      => 'default',
+			'data_type' => 'range',
+			'options'   => array(
+				array(
+					'selector'     => $medium_field_selectors,
+					'css_property' => 'max-width',
+				),
+				array(
+					'selector'     => $small_field_selectors,
+					'css_property' => 'max-width',
+				),
+			),
+		);
+
+		return $options;
 	}
 }

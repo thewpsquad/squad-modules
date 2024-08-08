@@ -7,13 +7,13 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@squadmodules.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\FlipBox;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
@@ -22,11 +22,11 @@ use function apply_filters;
 use function esc_attr__;
 use function esc_html__;
 use function et_builder_get_text_orientation_options;
-use function et_core_esc_previously;
 use function et_pb_background_options;
 use function et_pb_get_extended_font_icon_value;
 use function et_pb_media_options;
 use function et_pb_multi_view_options;
+use function wp_kses_post;
 
 /**
  * Flip Box Module Class.
@@ -34,7 +34,7 @@ use function et_pb_multi_view_options;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class FlipBox extends Squad_Module {
+class FlipBox extends DiviSquad_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -45,7 +45,7 @@ class FlipBox extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Flip Box', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Flip Boxes', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/flip-box.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/flip-box.svg' );
 
 		$this->slug             = 'disq_flip_box';
 		$this->vb_support       = 'on';
@@ -1445,8 +1445,12 @@ class FlipBox extends Squad_Module {
 			'button_icon_on_hover',
 			'button_icon_hover_move_icon',
 		);
+
 		foreach ( $button_removable_features as $button_removable_feature ) {
-			unset( $front_button[ 'front_' . $button_removable_feature ] );
+			$front_button_feature = 'front_' . $button_removable_feature;
+			if ( array_key_exists( $front_button_feature, $front_button ) ) {
+				unset( $front_button[ $front_button_feature ] );
+			}
 		}
 
 		// Clean hover features from all backgrounds.
@@ -1468,1201 +1472,6 @@ class FlipBox extends Squad_Module {
 			$side_assoc_fields,
 			$order_fields,
 			$z_index_fields
-		);
-	}
-
-	/**
-	 * Filter multi view value.
-	 *
-	 * @param mixed $raw_value Props raw value.
-	 * @param mixed $args      Arguments.
-	 *
-	 * @return mixed
-	 * @since 3.27.1
-	 *
-	 * @see   ET_Builder_Module_Helper_MultiViewOptions::filter_value
-	 */
-	public function multi_view_filter_value( $raw_value, $args ) {
-		$name = isset( $args['name'] ) ? $args['name'] : '';
-
-		// process font.
-		$icon_fields = array(
-			'front_icon',
-			'back_icon',
-			'front_button_icon',
-			'back_button_icon',
-		);
-		if ( $raw_value && in_array( $name, $icon_fields, true ) ) {
-			return et_pb_get_extended_font_icon_value( $raw_value, true );
-		}
-
-		$rich_content_fields = array(
-			'front_content',
-			'back_content',
-		);
-
-		if ( $raw_value && in_array( $name, $rich_content_fields, true ) ) {
-			$raw_value = preg_replace( '/^[\w]?<\/p>/smi', '', $raw_value );
-			$raw_value = preg_replace( '/<p>$/smi', '', $raw_value );
-		}
-
-		// process others: fields, image, title.
-		return $raw_value;
-	}
-
-	/**
-	 * Renders the module output.
-	 *
-	 * @param array  $attrs       List of attributes.
-	 * @param string $content     Content being processed.
-	 * @param string $render_slug Slug of module that is used for rendering output.
-	 *
-	 * @return string
-	 */
-	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
-		$animation_type   = $this->prop( 'flip_animation_type', 'rotate' );
-		$flip_3d_effect   = $this->prop( 'flip_3d_effect__enable', 'off' );
-		$flip_move_both   = $this->prop( 'flip_move_both_slide__enable', 'off' );
-		$flip_swap_slide  = $this->prop( 'flip_swap_slide__enable', 'off' );
-		$flip_box_classes = array( 'flip-box', $animation_type );
-
-		if ( 'diagonal' === $animation_type ) {
-			$flip_box_classes[] = $this->prop( 'flip_animation_d_lr', 'right' );
-		}
-		if ( 'open' === $animation_type ) {
-			$flip_box_classes[] = $this->prop( 'flip_animation_d_bt', 'bottom' );
-		}
-		if ( in_array( $animation_type, array( 'rotate', 'slide' ), true ) ) {
-			$flip_box_classes[] = $this->prop( 'flip_animation_d_lrbt', 'right' );
-		}
-		if ( in_array( $animation_type, array( 'bounce', 'zoom-in', 'zoom-out', 'fold' ), true ) ) {
-			$flip_box_classes[] = $this->prop( 'flip_animation_d_clrbt', 'center' );
-		}
-		if ( 'rotate' === $animation_type && 'on' === $flip_3d_effect ) {
-			$flip_box_classes[] = 'flip-3d-content-effect';
-		}
-		if ( 'slide' === $animation_type && 'on' === $flip_move_both ) {
-			$flip_box_classes[] = 'flip-slide-move-both';
-		}
-		if ( 'on' === $flip_swap_slide ) {
-			$flip_box_classes[] = 'swap-slide';
-		}
-
-		$this->squad_generate_animation_styles();
-		$this->squad_generate_additional_styles( 'front', $attrs );
-		$this->squad_generate_additional_styles( 'back', $attrs );
-
-		$front_slide = sprintf(
-			'<div class="flip-slide front-slide et_pb_with_background"><div class="flip-slide-inner">%1$s%2$s</div></div>',
-			et_core_esc_previously( $this->squad_render_slide_icons( 'front', $attrs ) ),
-			et_core_esc_previously( $this->squad_render_slide_elements( 'front', $attrs ) )
-		);
-		$back_slide  = sprintf(
-			'<div class="flip-slide back-slide et_pb_with_background"><div class="flip-slide-inner">%1$s%2$s</div></div>',
-			et_core_esc_previously( $this->squad_render_slide_icons( 'back', $attrs ) ),
-			et_core_esc_previously( $this->squad_render_slide_elements( 'back', $attrs ) )
-		);
-
-		return sprintf(
-			'<div class="%1$s"><div class="flip-box-slides">%2$s%3$s</div></div>',
-			esc_attr( implode( ' ', $flip_box_classes ) ),
-			et_core_esc_previously( $front_slide ),
-			et_core_esc_previously( $back_slide )
-		);
-	}
-
-	/**
-	 * Render the icon which on is active
-	 *
-	 * @param string $slide_type The slide type.
-	 * @param array  $attrs      List of unprocessed attributes.
-	 *
-	 * @return string
-	 */
-	private function squad_render_slide_icons( $slide_type, $attrs ) {
-		if ( 'none' !== $this->props[ "{$slide_type}_icon_type" ] ) {
-
-			// Fixed: a custom background doesn't work at frontend.
-			$this->props     = array_merge( $attrs, $this->props );
-			$multi_view      = et_pb_multi_view_options( $this );
-			$icon_element    = null;
-			$wrapper_classes = array(
-				'slide-element',
-				"slide-$slide_type-element",
-				'slide-icon-element',
-				"slide-$slide_type-icon-element",
-				'squad-icon-wrapper',
-			);
-
-			if ( 'text' === $this->props[ "{$slide_type}_icon_type" ] ) {
-				$icon_element = $multi_view->render_element(
-					array(
-						'content'        => "{{{$slide_type}_icon_text}}",
-						'attrs'          => array(
-							'class' => "slide-icon-text slide-$slide_type-icon-text",
-						),
-						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-					)
-				);
-			}
-
-			if ( 'icon' === $this->props[ "{$slide_type}_icon_type" ] ) {
-				$icon_classes = array( 'et-pb-icon', 'slide-font-icon', "slide-$slide_type-icon" );
-
-				// Load font Awesome css for frontend.
-				Divi::inject_fa_icons( $this->props[ "{$slide_type}_icon" ] );
-
-				$icon_element = $multi_view->render_element(
-					array(
-						'content'        => "{{{$slide_type}_icon}}",
-						'attrs'          => array(
-							'class' => implode( ' ', $icon_classes ),
-						),
-						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-					)
-				);
-
-				// Set font family for Icon.
-				$this->generate_styles(
-					array(
-						'utility_arg'    => 'icon_font_family',
-						'render_slug'    => $this->slug,
-						'base_attr_name' => "{$slide_type}_icon",
-						'important'      => true,
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element .et-pb-icon",
-						'processor'      => array(
-							'ET_Builder_Module_Helper_Style_Processor',
-							'process_extended_icon',
-						),
-					)
-				);
-
-				// Set color for Icon.
-				$this->generate_styles(
-					array(
-						'base_attr_name' => "{$slide_type}_icon_color",
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element .et-pb-icon",
-						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element .et-pb-icon",
-						'css_property'   => 'color',
-						'render_slug'    => $this->slug,
-						'type'           => 'color',
-						'important'      => true,
-					)
-				);
-
-				// Set size for Icon.
-				$this->generate_styles(
-					array(
-						'base_attr_name' => "{$slide_type}_icon_size",
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element .et-pb-icon",
-						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element .et-pb-icon",
-						'css_property'   => 'font-size',
-						'render_slug'    => $this->slug,
-						'type'           => 'range',
-						'important'      => true,
-					)
-				);
-				$this->generate_styles(
-					array(
-						'base_attr_name' => "{$slide_type}_icon_size",
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-						'css_property'   => 'min-width',
-						'render_slug'    => $this->slug,
-						'type'           => 'range',
-						'important'      => true,
-					)
-				);
-			}
-
-			if ( 'image' === $this->props[ "{$slide_type}_icon_type" ] ) {
-				$alt_text = $this->_esc_attr( "{$slide_type}_alt" );
-
-				$image_classes   = array( 'slide-icon-image', "slide-$slide_type-icon-image", 'et_pb_image_wrap' );
-				$image_classes[] = esc_attr( et_pb_media_options()->get_image_attachment_class( $this->props, 'image' ) );
-
-				$icon_element = $multi_view->render_element(
-					array(
-						'tag'            => 'img',
-						'attrs'          => array(
-							'src'   => "{{{$slide_type}_image}}",
-							'class' => implode( ' ', $image_classes ),
-							'alt'   => $alt_text,
-						),
-						'required'       => "{$slide_type}_image",
-						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-					)
-				);
-
-				// Set icon background color.
-				$this->generate_styles(
-					array(
-						'base_attr_name' => "{$slide_type}_image_icon_background_color",
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-						'css_property'   => 'background-color',
-						'render_slug'    => $this->slug,
-						'type'           => 'color',
-						'important'      => true,
-					)
-				);
-
-				// Set width for Image.
-				if ( 'on' === $this->prop( "{$slide_type}_image_force_full_width", 'off' ) ) {
-					self::set_style(
-						$this->slug,
-						array(
-							'selector'    => implode(
-								', ',
-								array(
-									"$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-									"$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element img",
-								)
-							),
-							'declaration' => 'width: 100% !important; max-width:100% !important;',
-						)
-					);
-				} else {
-					$this->generate_styles(
-						array(
-							'base_attr_name' => "{$slide_type}_image_width",
-							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element img",
-							'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element img",
-							'css_property'   => 'width',
-							'render_slug'    => $this->slug,
-							'type'           => 'range',
-							'important'      => true,
-						)
-					);
-					$this->generate_styles(
-						array(
-							'base_attr_name' => "{$slide_type}_image_width",
-							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-							'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-							'css_property'   => 'min-width',
-							'render_slug'    => $this->slug,
-							'type'           => 'range',
-							'important'      => true,
-						)
-					);
-				}
-
-				// Set height for Image.
-				$this->generate_styles(
-					array(
-						'base_attr_name' => "{$slide_type}_image_height",
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element img",
-						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element img",
-						'css_property'   => 'height',
-						'render_slug'    => $this->slug,
-						'type'           => 'range',
-						'important'      => true,
-					)
-				);
-			}
-
-			// Icon wrapper margin with default, responsive, hover.
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'          => "{$slide_type}_icon_wrapper_margin",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
-					'important'      => true,
-				)
-			);
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'          => "{$slide_type}_icon_wrapper_padding",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-					'css_property'   => 'padding',
-					'type'           => 'padding',
-					'important'      => true,
-				)
-			);
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'          => "{$slide_type}_icon_margin",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
-					'important'      => true,
-				)
-			);
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'          => "{$slide_type}_icon_padding",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-					'css_property'   => 'padding',
-					'type'           => 'padding',
-					'important'      => true,
-				)
-			);
-
-			// Set icon background color.
-			if ( 'image' !== $this->props[ "{$slide_type}_icon_type" ] ) {
-				$this->generate_styles(
-					array(
-						'base_attr_name' => "{$slide_type}_image_icon_background_color",
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
-						'css_property'   => 'background-color',
-						'render_slug'    => $this->slug,
-						'type'           => 'color',
-						'important'      => true,
-					)
-				);
-			}
-
-			if ( 'on' === $this->props[ "{$slide_type}_content_outside_container" ] ) {
-				$this->generate_styles(
-					array(
-						'base_attr_name' => "{$slide_type}_icon_item_inner_gap",
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .flip-slide-container slide-$slide_type-elements-container",
-						'css_property'   => 'gap',
-						'render_slug'    => $this->slug,
-						'type'           => 'gap',
-						'important'      => true,
-					)
-				);
-				$this->generate_styles(
-					array(
-						'base_attr_name' => "{$slide_type}_icon_horizontal_alignment",
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .flip-slide-outer-container slide-$slide_type-elements-outer-container",
-						'css_property'   => 'justify-content',
-						'render_slug'    => $this->slug,
-						'type'           => 'align',
-						'important'      => true,
-					)
-				);
-				$this->generate_styles(
-					array(
-						'base_attr_name' => "{$slide_type}_icon_text_gap",
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-						'css_property'   => 'gap',
-						'render_slug'    => $this->slug,
-						'type'           => 'gap',
-						'important'      => true,
-					)
-				);
-
-				// Icon placement with default, responsive, hover.
-				$this->generate_styles(
-					array(
-						'base_attr_name' => "{$slide_type}_icon_placement",
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-						'css_property'   => 'flex-direction',
-						'render_slug'    => $this->slug,
-						'type'           => 'align',
-						'important'      => true,
-					)
-				);
-
-				// working with icon styles.
-				$placement    = "{$slide_type}_icon_placement";
-				$en_placement = array( 'row', 'row-reverse' );
-				$is_desktop   = in_array( $this->prop( $placement ), $en_placement, true );
-				$is_tablet    = in_array( $this->prop( "{$placement}_tablet" ), $en_placement, true );
-				$is_phone     = in_array( $this->prop( "{$placement}_phone" ), $en_placement, true );
-				if ( $is_desktop || $is_tablet || $is_phone ) {
-					$this->generate_styles(
-						array(
-							'base_attr_name' => "{$slide_type}_icon_vertical_alignment",
-							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-							'css_property'   => 'align-items',
-							'render_slug'    => $this->slug,
-							'type'           => 'align',
-							'important'      => true,
-						)
-					);
-					$this->generate_styles(
-						array(
-							'base_attr_name' => "{$slide_type}_icon_wrapper_width",
-							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .flip-slide-outer-container slide-$slide_type-elements-outer-container",
-							'css_property'   => 'width',
-							'render_slug'    => $this->slug,
-							'type'           => 'input',
-							'important'      => true,
-						)
-					);
-				} else {
-					$this->generate_styles(
-						array(
-							'base_attr_name' => "{$slide_type}_icon_horizontal_alignment",
-							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-icon-wrapper",
-							'css_property'   => 'text-align',
-							'render_slug'    => $this->slug,
-							'type'           => 'align',
-							'important'      => true,
-						)
-					);
-				}
-			} else {
-				$this->generate_styles(
-					array(
-						'base_attr_name' => "{$slide_type}_icon_item_inner_gap",
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-						'css_property'   => 'gap',
-						'render_slug'    => $this->slug,
-						'type'           => 'gap',
-						'important'      => true,
-					)
-				);
-				$this->generate_styles(
-					array(
-						'base_attr_name' => "{$slide_type}_icon_default_alignment",
-						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
-						'css_property'   => 'justify-content',
-						'render_slug'    => $this->slug,
-						'type'           => 'align',
-						'important'      => true,
-					)
-				);
-			}
-
-			return sprintf(
-				'<span class="%1$s"><span class="icon-element">%2$s</span></span>',
-				implode( ' ', $wrapper_classes ),
-				et_core_esc_previously( $icon_element )
-			);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Render all text elements for slide with dynamic and multiview support for Flip Box.
-	 *
-	 * @param string $slide_type The slide type.
-	 * @param array  $attrs      List of unprocessed attributes.
-	 *
-	 * @return string
-	 */
-	private function squad_render_slide_elements( $slide_type, $attrs ) {
-		$multi_view = et_pb_multi_view_options( $this );
-
-		$title_text_element     = null;
-		$sub_title_text_element = null;
-		$body_text_element      = null;
-
-		$title_text     = $multi_view->render_element(
-			array(
-				'content'        => "{{{$slide_type}_title}}",
-				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-			)
-		);
-		$sub_title_text = $multi_view->render_element(
-			array(
-				'content'        => "{{{$slide_type}_sub_title}}",
-				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-			)
-		);
-		$body_text      = $multi_view->render_element(
-			array(
-				'content'        => "{{{$slide_type}_content}}",
-				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-			)
-		);
-
-		if ( '' !== $title_text ) {
-			// title margin with default, responsive, hover.
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'        => "{$slide_type}_title_margin",
-					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-title-text",
-					'css_property' => 'margin',
-					'type'         => 'margin',
-				)
-			);
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'        => "{$slide_type}_title_padding",
-					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-title-text",
-					'css_property' => 'padding',
-					'type'         => 'padding',
-				)
-			);
-
-			$title_text_element = sprintf(
-				'<div class="slide-element slide-%3$s-element slide-title-wrapper"><%1$s class="slide-title-text">%2$s</%1$s></div>',
-				et_core_esc_previously( $this->prop( "{$slide_type}_title_tag", 'h2' ) ),
-				et_core_esc_previously( $title_text ),
-				$slide_type
-			);
-		}
-
-		if ( '' !== $sub_title_text ) {
-			// The subtitle margin with default, responsive, hover.
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'        => "{$slide_type}_sub_title_margin",
-					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-sub-title-text",
-					'css_property' => 'margin',
-					'type'         => 'margin',
-				)
-			);
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'        => "{$slide_type}_sub_title_padding",
-					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-sub-title-text",
-					'css_property' => 'padding',
-					'type'         => 'padding',
-				)
-			);
-
-			$sub_title_text_element = sprintf(
-				'<div class="slide-element slide-%3$s-element slide-title-wrapper"><%1$s class="slide-sub-title-text">%2$s</%1$s></div>',
-				et_core_esc_previously( $this->prop( "{$slide_type}_sub_title_tag", 'h2' ) ),
-				et_core_esc_previously( $sub_title_text ),
-				$slide_type
-			);
-		}
-
-		if ( '' !== $body_text ) {
-			// content margin with default, responsive, hover.
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'        => "{$slide_type}_content_margin",
-					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-content-text",
-					'css_property' => 'margin',
-					'type'         => 'margin',
-				)
-			);
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'        => "{$slide_type}_content_padding",
-					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-content-text",
-					'css_property' => 'padding',
-					'type'         => 'padding',
-				)
-			);
-
-			$sub_title_text_element = sprintf(
-				'<div class="slide-element slide-%2$s-element slide-content-wrapper"><span class="slide-content-text">%1$s</span></div>',
-				et_core_esc_previously( $body_text ),
-				$slide_type
-			);
-		}
-
-		$button_text_element = ( 'on' === $this->prop( "{$slide_type}_button__enable", 'off' ) ) ? $this->squad_render_button_text( $slide_type, $attrs ) : null;
-
-		if ( 'on' === $this->prop( "{$slide_type}_content_outside_container", 'off' ) ) {
-			return sprintf(
-				'<div class="flip-slide-container slide-%5$s-elements-container">%1$s%2$s%3$s%4$s</div>',
-				$title_text_element,
-				$sub_title_text_element,
-				$body_text_element,
-				$button_text_element,
-				$slide_type
-			);
-		}
-
-		return sprintf(
-			'%1$s%2$s%3$s%4$s',
-			$title_text_element,
-			$sub_title_text_element,
-			$body_text_element,
-			$button_text_element
-		);
-	}
-
-	/**
-	 * Render button text with icon.
-	 *
-	 * @param string $slide_type The slide type.
-	 * @param array  $attrs      List of unprocessed attributes.
-	 *
-	 * @return null|string
-	 */
-	private function squad_render_button_text( $slide_type, $attrs ) {
-		$multi_view = et_pb_multi_view_options( $this );
-
-		// title url and its target.
-		$button_url    = $this->prop( "{$slide_type}_button_url", '' );
-		$button_target = $this->prop( "{$slide_type}_button_url_new_window", 'off' );
-
-		$button_tag   = '' !== $button_url ? 'a' : 'span';
-		$button_attrs = array();
-
-		if ( 'a' === $button_tag ) {
-			$button_attrs['href'] = $button_url;
-
-			if ( 'on' === $button_target ) {
-				$button_attrs['target'] = '_blank';
-			} else {
-				$button_attrs['target'] = '_self';
-			}
-		}
-
-		$button_text = $multi_view->render_element(
-			array(
-				'tag'            => $button_tag,
-				'content'        => "{{{$slide_type}_button_text}}",
-				'attrs'          => $button_attrs,
-				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-			)
-		);
-
-		if ( '' !== $button_text ) {
-			// Fixed: the custom background doesn't work at frontend.
-			$this->props = array_merge( $attrs, $this->props );
-
-			$icon_elements      = '';
-			$icon_wrapper_class = array( 'squad-icon-wrapper' );
-			$button_classes     = array( 'squad-slide-button', 'et_pb_with_background' );
-
-			if ( 'on' === $this->prop( "{$slide_type}_button_hover_animation__enable", 'off' ) ) {
-				$button_classes[] = $this->prop( "{$slide_type}_button_hover_animation_type", 'fill' );
-			}
-
-			// button background with default, responsive, hover.
-			et_pb_background_options()->get_background_style(
-				array(
-					'base_prop_name'         => "{$slide_type}_button_background",
-					'props'                  => $this->props,
-					'selector'               => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
-					'selector_hover'         => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
-					'selector_sticky'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
-					'function_name'          => $this->slug,
-					'important'              => ' !important',
-					'use_background_video'   => false,
-					'use_background_pattern' => false,
-					'use_background_mask'    => false,
-					'prop_name_aliases'      => array(
-						"use_{$slide_type}_button_background_color_gradient" => "{$slide_type}_button_background_use_color_gradient",
-						"{$slide_type}_button_background" => "{$slide_type}_button_background_color",
-					),
-				)
-			);
-
-			$this->generate_styles(
-				array(
-					'base_attr_name' => "{$slide_type}_button_horizontal_alignment",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-$slide_type-button-wrapper",
-					'css_property'   => 'justify-content',
-					'render_slug'    => $this->slug,
-					'type'           => 'align',
-					'important'      => true,
-				)
-			);
-			$this->generate_styles(
-				array(
-					'base_attr_name' => "{$slide_type}_button_elements_alignment",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
-					'css_property'   => 'justify-content',
-					'render_slug'    => $this->slug,
-					'type'           => 'align',
-					'important'      => true,
-				)
-			);
-			$this->generate_styles(
-				array(
-					'base_attr_name' => "{$slide_type}_button_width",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
-					'css_property'   => 'width',
-					'render_slug'    => $this->slug,
-					'type'           => 'input',
-					'important'      => true,
-				)
-			);
-
-			$this->generate_styles(
-				array(
-					'base_attr_name' => "{$slide_type}_button_icon_placement",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
-					'css_property'   => 'flex-direction',
-					'render_slug'    => $this->slug,
-					'type'           => 'align',
-					'important'      => true,
-				)
-			);
-			$this->generate_styles(
-				array(
-					'base_attr_name' => "{$slide_type}_button_icon_gap",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
-					'css_property'   => 'gap',
-					'render_slug'    => $this->slug,
-					'type'           => 'input',
-					'important'      => true,
-				)
-			);
-
-			// button margin with default, responsive, hover.
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'          => "{$slide_type}_button_icon_margin",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .icon-element",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .icon-element:hover",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
-				)
-			);
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'          => "{$slide_type}_button_margin",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
-				)
-			);
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'          => "{$slide_type}_button_padding",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
-					'css_property'   => 'padding',
-					'type'           => 'padding',
-				)
-			);
-
-			$font_icon_element = $this->squad_render_button_font_icon( $slide_type );
-			$image_element     = $this->squad_render_button_icon_image( $slide_type );
-
-			if ( ( 'none' !== $this->props[ "{$slide_type}_button_icon_type" ] ) && ( ! empty( $font_icon_element ) || ! empty( $image_element ) ) ) {
-				if ( ( 'on' === $this->prop( "{$slide_type}_button_icon_on_hover", 'off' ) ) ) {
-					$icon_wrapper_class[] = 'show-on-hover';
-
-					$mapping_values = array(
-						'inherit'     => '0 0 0 0',
-						'column'      => '0 0 -#px 0',
-						'row'         => '0 -#px 0 0',
-						'row-reverse' => '0 0 0 -#px',
-					);
-
-					if ( 'on' === $this->prop( "{$slide_type}_button_icon_hover_move_icon", 'off' ) ) {
-						$mapping_values = array(
-							'inherit'     => '0 0 0 0',
-							'column'      => '#px 0 -#px 0',
-							'row'         => '0 -#px 0 #px',
-							'row-reverse' => '0 #px 0 -#px',
-						);
-					}
-
-					// set icon placement for button image with default, hover, and responsive.
-					$this->squad_utils->genereate_show_icon_on_hover_styles(
-						array(
-							'field'          => "{$slide_type}_button_icon_placement",
-							'trigger'        => "{$slide_type}_button_icon_type",
-							'depends_on'     => array(
-								'icon'  => "{$slide_type}_button_icon_size",
-								'image' => "{$slide_type}_button_image_width",
-							),
-							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .squad-icon-wrapper.show-on-hover",
-							'hover'          => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover .squad-icon-wrapper.show-on-hover",
-							'css_property'   => 'margin',
-							'type'           => 'margin',
-							'mapping_values' => $mapping_values,
-							'defaults'       => array(
-								'icon'  => '40px',
-								'image' => '40px',
-								'field' => 'row',
-							),
-						)
-					);
-				}
-
-				$icon_elements = sprintf(
-					'<span class="%1$s"><span class="icon-element">%2$s%3$s</span></span>',
-					implode( ' ', $icon_wrapper_class ),
-					et_core_esc_previously( $font_icon_element ),
-					et_core_esc_previously( $image_element )
-				);
-			}
-
-			return sprintf(
-				'<div class="slide-element slide-%4$s-element slide-%4$s-button-wrapper"><div class="%3$s">%1$s%2$s</div></div>',
-				et_core_esc_previously( $button_text ),
-				et_core_esc_previously( $icon_elements ),
-				et_core_esc_previously( implode( ' ', $button_classes ) ),
-				$slide_type
-			);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Render button icon.
-	 *
-	 * @param string $slide_type The slide type.
-	 *
-	 * @return null|string
-	 */
-	private function squad_render_button_font_icon( $slide_type ) {
-		if ( 'icon' === $this->props[ "{$slide_type}_button_icon_type" ] ) {
-			$multi_view   = et_pb_multi_view_options( $this );
-			$icon_classes = array( 'et-pb-icon', "squad-{$slide_type}_button-icon" );
-
-			// Load font Awesome css for frontend.
-			Divi::inject_fa_icons( $this->props[ "{$slide_type}_button_icon" ] );
-
-			$this->generate_styles(
-				array(
-					'utility_arg'    => 'icon_font_family',
-					'render_slug'    => $this->slug,
-					'base_attr_name' => "{$slide_type}_button_icon",
-					'important'      => true,
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .et-pb-icon",
-					'processor'      => array(
-						'ET_Builder_Module_Helper_Style_Processor',
-						'process_extended_icon',
-					),
-				)
-			);
-			$this->generate_styles(
-				array(
-					'base_attr_name' => "{$slide_type}_button_icon_color",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .et-pb-icon",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover .et-pb-icon",
-					'css_property'   => 'color',
-					'render_slug'    => $this->slug,
-					'type'           => 'color',
-					'important'      => true,
-				)
-			);
-			$this->generate_styles(
-				array(
-					'base_attr_name' => "{$slide_type}_button_icon_size",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .et-pb-icon",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover .et-pb-icon",
-					'css_property'   => 'font-size',
-					'render_slug'    => $this->slug,
-					'type'           => 'range',
-					'important'      => true,
-				)
-			);
-
-			return $multi_view->render_element(
-				array(
-					'content'        => "{{{$slide_type}_button_icon}}",
-					'attrs'          => array(
-						'class' => implode( ' ', $icon_classes ),
-					),
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
-				)
-			);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Render button image.
-	 *
-	 * @param string $slide_type The slide type.
-	 *
-	 * @return null|string
-	 */
-	private function squad_render_button_icon_image( $slide_type ) {
-		if ( 'icon' === $this->props[ "{$slide_type}_button_icon_type" ] ) {
-			$multi_view             = et_pb_multi_view_options( $this );
-			$image_classes          = array( "squad-{$slide_type}_button-image", 'et_pb_image_wrap' );
-			$image_attachment_class = et_pb_media_options()->get_image_attachment_class( $this->props, "{$slide_type}_button_image" );
-
-			if ( ! empty( $image_attachment_class ) ) {
-				$image_classes[] = esc_attr( $image_attachment_class );
-			}
-
-			// Set width for Image.
-			$this->generate_styles(
-				array(
-					'base_attr_name' => "{$slide_type}_button_image_width",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .squad-icon-wrapper img",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover .squad-icon-wrapper img",
-					'css_property'   => 'width',
-					'render_slug'    => $this->slug,
-					'type'           => 'range',
-					'important'      => true,
-				)
-			);
-			// Set height for Image.
-			$this->generate_styles(
-				array(
-					'base_attr_name' => "{$slide_type}_button_image_height",
-					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .squad-icon-wrapper img",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover .squad-icon-wrapper img",
-					'css_property'   => 'height',
-					'render_slug'    => $this->slug,
-					'type'           => 'range',
-					'important'      => true,
-				)
-			);
-
-			return $multi_view->render_element(
-				array(
-					'tag'            => 'img',
-					'attrs'          => array(
-						'src'   => "{{{$slide_type}_button_image}}",
-						'class' => implode( ' ', $image_classes ),
-						'alt'   => '',
-					),
-					'required'       => "{$slide_type}_button_image",
-					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
-				)
-			);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Renders animation styles for the module output.
-	 */
-	private function squad_generate_animation_styles() {
-		$animation_type = $this->prop( 'flip_animation_type', 'rotate' );
-
-		// Working with flip settings.
-		if ( 'on' === $this->prop( 'flip_custom_height__enable', 'off' ) ) {
-			$this->generate_styles(
-				array(
-					'base_attr_name' => 'flip_custom_height',
-					'selector'       => "$this->main_css_element div .flip-box",
-					'css_property'   => 'height',
-					'render_slug'    => $this->slug,
-					'type'           => 'range',
-				)
-			);
-		}
-
-		$this->generate_styles(
-			array(
-				'base_attr_name' => 'flip_elements_hr_alignment',
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .flip-slide",
-				'css_property'   => 'justify-content',
-				'render_slug'    => $this->slug,
-				'type'           => 'align',
-			)
-		);
-		$this->generate_styles(
-			array(
-				'base_attr_name' => 'flip_elements_vr_alignment',
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .flip-slide",
-				'css_property'   => 'align-items',
-				'render_slug'    => $this->slug,
-				'type'           => 'align',
-			)
-		);
-		// End of working with flip settings.
-
-		// Working with flip animations.
-		if ( 'rotate' === $animation_type && 'on' === $this->prop( 'flip_3d_effect__enable', 'off' ) ) {
-			$flip_translate_z = $this->prop( 'flip_translate_z', '50px' );
-			$flip_scale       = $this->prop( 'flip_scale', '.9' );
-
-			self::set_style(
-				$this->slug,
-				array(
-					'selector'    => "$this->main_css_element div .flip-box.flip-3d-content-effect .flip-slide .flip-slide-inner",
-					'declaration' => "transform: translateZ($flip_translate_z) scale($flip_scale);",
-				)
-			);
-		}
-
-		$flip_transition_selector = "$this->main_css_element div .flip-box .flip-box-slides";
-		if ( in_array( $animation_type, array( 'fade', 'zoom', 'slide', 'open' ), true ) ) {
-			$flip_transition_selector .= ' .flip-slide';
-		}
-		self::set_style(
-			$this->slug,
-			array(
-				'selector'    => $flip_transition_selector,
-				'declaration' => 'transform-style: preserve-3d;transition-property: all;',
-			)
-		);
-
-		$this->generate_styles(
-			array(
-				'base_attr_name' => 'flip_transition_delay',
-				'selector'       => $flip_transition_selector,
-				'css_property'   => 'transition-delay',
-				'render_slug'    => $this->slug,
-				'type'           => 'range',
-			)
-		);
-		$this->generate_styles(
-			array(
-				'base_attr_name' => 'flip_transition_duration',
-				'selector'       => $flip_transition_selector,
-				'css_property'   => 'transition-duration',
-				'render_slug'    => $this->slug,
-				'type'           => 'range',
-			)
-		);
-		$this->generate_styles(
-			array(
-				'base_attr_name' => 'flip_transition_speed_curve',
-				'selector'       => $flip_transition_selector,
-				'css_property'   => 'transition-timing-function',
-				'render_slug'    => $this->slug,
-				'type'           => 'string',
-			)
-		);
-		// End of working with flip animations.
-	}
-
-	/**
-	 * Renders additional styles for the module output.
-	 *
-	 * @param string $slide_type The slide type.
-	 * @param array  $attrs      List of attributes.
-	 */
-	private function squad_generate_additional_styles( $slide_type, $attrs ) {
-		// Fixed: the custom background doesn't work at frontend.
-		$this->props = array_merge( $attrs, $this->props );
-
-		// wrapper background with default, responsive, hover.
-		et_pb_background_options()->get_background_style(
-			array(
-				'base_prop_name'         => "{$slide_type}_wrapper_background",
-				'props'                  => $this->props,
-				'selector'               => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-				'selector_hover'         => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
-				'selector_sticky'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-				'function_name'          => $this->slug,
-				'important'              => ' !important',
-				'use_background_video'   => false,
-				'use_background_pattern' => false,
-				'use_background_mask'    => false,
-				'prop_name_aliases'      => array(
-					"use_{$slide_type}_wrapper_background_color_gradient" => "{$slide_type}_wrapper_background_use_color_gradient",
-					"{$slide_type}_wrapper_background" => "{$slide_type}_wrapper_background_color",
-				),
-			)
-		);
-
-		// content text aligns with default, responsive, hover.
-		$this->generate_styles(
-			array(
-				'base_attr_name' => "{$slide_type}_text_orientation",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
-				'css_property'   => 'text-align',
-				'render_slug'    => $this->slug,
-				'type'           => 'align',
-			)
-		);
-		// wrapper margin with default, responsive, hover.
-		$this->squad_utils->generate_margin_padding_styles(
-			array(
-				'field'          => "{$slide_type}_wrapper_margin",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
-				'css_property'   => 'margin',
-				'type'           => 'margin',
-			)
-		);
-		// wrapper padding with default, responsive, hover.
-		$this->squad_utils->generate_margin_padding_styles(
-			array(
-				'field'          => "{$slide_type}_wrapper_padding",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
-				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
-				'css_property'   => 'padding',
-				'type'           => 'padding',
-			)
-		);
-
-		// order system.
-		$this->generate_styles(
-			array(
-				'base_attr_name' => "{$slide_type}_icon_order",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.squad-icon-wrapper",
-				'css_property'   => 'order',
-				'render_slug'    => $this->slug,
-				'type'           => 'input',
-			)
-		);
-		$this->generate_styles(
-			array(
-				'base_attr_name' => "{$slide_type}_title_order",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-title-wrapper",
-				'css_property'   => 'order',
-				'render_slug'    => $this->slug,
-				'type'           => 'input',
-			)
-		);
-		$this->generate_styles(
-			array(
-				'base_attr_name' => "{$slide_type}_sub_title_order",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-sub-title-wrapper",
-				'css_property'   => 'order',
-				'render_slug'    => $this->slug,
-				'type'           => 'input',
-			)
-		);
-		$this->generate_styles(
-			array(
-				'base_attr_name' => "{$slide_type}_body_order",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-content-wrapper",
-				'css_property'   => 'order',
-				'render_slug'    => $this->slug,
-				'type'           => 'input',
-			)
-		);
-		$this->generate_styles(
-			array(
-				'base_attr_name' => "{$slide_type}_button_order",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-button-wrapper",
-				'css_property'   => 'order',
-				'render_slug'    => $this->slug,
-				'type'           => 'input',
-			)
-		);
-
-		// z index system.
-		$this->generate_styles(
-			array(
-				'base_attr_name' => "{$slide_type}_icon_z_index",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.squad-icon-wrapper",
-				'css_property'   => 'z-index',
-				'render_slug'    => $this->slug,
-				'type'           => 'input',
-			)
-		);
-		$this->generate_styles(
-			array(
-				'base_attr_name' => "{$slide_type}_title_z_index",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-title-wrapper",
-				'css_property'   => 'z-index',
-				'render_slug'    => $this->slug,
-				'type'           => 'input',
-			)
-		);
-		$this->generate_styles(
-			array(
-				'base_attr_name' => "{$slide_type}_sub_title_z_index",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-sub-title-wrapper",
-				'css_property'   => 'z-index',
-				'render_slug'    => $this->slug,
-				'type'           => 'input',
-			)
-		);
-		$this->generate_styles(
-			array(
-				'base_attr_name' => "{$slide_type}_body_z_index",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-content-wrapper",
-				'css_property'   => 'z-index',
-				'render_slug'    => $this->slug,
-				'type'           => 'input',
-			)
-		);
-		$this->generate_styles(
-			array(
-				'base_attr_name' => "{$slide_type}_button_z_index",
-				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-button-wrapper",
-				'css_property'   => 'z-index',
-				'render_slug'    => $this->slug,
-				'type'           => 'input',
-			)
 		);
 	}
 
@@ -3512,5 +2321,1200 @@ class FlipBox extends Squad_Module {
 				)
 			),
 		);
+	}
+
+	/**
+	 * Filter multi view value.
+	 *
+	 * @param mixed $raw_value Props raw value.
+	 * @param mixed $args      Arguments.
+	 *
+	 * @return mixed
+	 * @since 3.27.1
+	 *
+	 * @see   ET_Builder_Module_Helper_MultiViewOptions::filter_value
+	 */
+	public function multi_view_filter_value( $raw_value, $args ) {
+		$name = isset( $args['name'] ) ? $args['name'] : '';
+
+		// process font.
+		$icon_fields = array(
+			'front_icon',
+			'back_icon',
+			'front_button_icon',
+			'back_button_icon',
+		);
+		if ( $raw_value && in_array( $name, $icon_fields, true ) ) {
+			return et_pb_get_extended_font_icon_value( $raw_value, true );
+		}
+
+		$rich_content_fields = array(
+			'front_content',
+			'back_content',
+		);
+
+		if ( $raw_value && in_array( $name, $rich_content_fields, true ) ) {
+			$raw_value = preg_replace( '/^[\w]?<\/p>/smi', '', $raw_value );
+			$raw_value = preg_replace( '/<p>$/smi', '', $raw_value );
+		}
+
+		// process others: fields, image, title.
+		return $raw_value;
+	}
+
+	/**
+	 * Renders the module output.
+	 *
+	 * @param array  $attrs       List of attributes.
+	 * @param string $content     Content being processed.
+	 * @param string $render_slug Slug of module that is used for rendering output.
+	 *
+	 * @return string
+	 */
+	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
+		$animation_type   = $this->prop( 'flip_animation_type', 'rotate' );
+		$flip_3d_effect   = $this->prop( 'flip_3d_effect__enable', 'off' );
+		$flip_move_both   = $this->prop( 'flip_move_both_slide__enable', 'off' );
+		$flip_swap_slide  = $this->prop( 'flip_swap_slide__enable', 'off' );
+		$flip_box_classes = array( 'flip-box', $animation_type );
+
+		if ( 'diagonal' === $animation_type ) {
+			$flip_box_classes[] = $this->prop( 'flip_animation_d_lr', 'right' );
+		}
+		if ( 'open' === $animation_type ) {
+			$flip_box_classes[] = $this->prop( 'flip_animation_d_bt', 'bottom' );
+		}
+		if ( in_array( $animation_type, array( 'rotate', 'slide' ), true ) ) {
+			$flip_box_classes[] = $this->prop( 'flip_animation_d_lrbt', 'right' );
+		}
+		if ( in_array( $animation_type, array( 'bounce', 'zoom-in', 'zoom-out', 'fold' ), true ) ) {
+			$flip_box_classes[] = $this->prop( 'flip_animation_d_clrbt', 'center' );
+		}
+		if ( 'rotate' === $animation_type && 'on' === $flip_3d_effect ) {
+			$flip_box_classes[] = 'flip-3d-content-effect';
+		}
+		if ( 'slide' === $animation_type && 'on' === $flip_move_both ) {
+			$flip_box_classes[] = 'flip-slide-move-both';
+		}
+		if ( 'on' === $flip_swap_slide ) {
+			$flip_box_classes[] = 'swap-slide';
+		}
+
+		$this->squad_generate_animation_styles();
+		$this->squad_generate_additional_styles( 'front', $attrs );
+		$this->squad_generate_additional_styles( 'back', $attrs );
+
+		$front_slide = sprintf(
+			'<div class="flip-slide front-slide et_pb_with_background"><div class="flip-slide-inner">%1$s%2$s</div></div>',
+			wp_kses_post( $this->squad_render_slide_icons( 'front', $attrs ) ),
+			wp_kses_post( $this->squad_render_slide_elements( 'front', $attrs ) )
+		);
+		$back_slide  = sprintf(
+			'<div class="flip-slide back-slide et_pb_with_background"><div class="flip-slide-inner">%1$s%2$s</div></div>',
+			wp_kses_post( $this->squad_render_slide_icons( 'back', $attrs ) ),
+			wp_kses_post( $this->squad_render_slide_elements( 'back', $attrs ) )
+		);
+
+		return sprintf(
+			'<div class="%1$s"><div class="flip-box-slides">%2$s%3$s</div></div>',
+			esc_attr( implode( ' ', $flip_box_classes ) ),
+			wp_kses_post( $front_slide ),
+			wp_kses_post( $back_slide )
+		);
+	}
+
+	/**
+	 * Renders animation styles for the module output.
+	 */
+	private function squad_generate_animation_styles() {
+		$animation_type = $this->prop( 'flip_animation_type', 'rotate' );
+
+		// Working with flip settings.
+		if ( 'on' === $this->prop( 'flip_custom_height__enable', 'off' ) ) {
+			$this->generate_styles(
+				array(
+					'base_attr_name' => 'flip_custom_height',
+					'selector'       => "$this->main_css_element div .flip-box",
+					'css_property'   => 'height',
+					'render_slug'    => $this->slug,
+					'type'           => 'range',
+				)
+			);
+		}
+
+		$this->generate_styles(
+			array(
+				'base_attr_name' => 'flip_elements_hr_alignment',
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .flip-slide",
+				'css_property'   => 'justify-content',
+				'render_slug'    => $this->slug,
+				'type'           => 'align',
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => 'flip_elements_vr_alignment',
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .flip-slide",
+				'css_property'   => 'align-items',
+				'render_slug'    => $this->slug,
+				'type'           => 'align',
+			)
+		);
+		// End of working with flip settings.
+
+		// Working with flip animations.
+		if ( 'rotate' === $animation_type && 'on' === $this->prop( 'flip_3d_effect__enable', 'off' ) ) {
+			$flip_translate_z = $this->prop( 'flip_translate_z', '50px' );
+			$flip_scale       = $this->prop( 'flip_scale', '.9' );
+
+			self::set_style(
+				$this->slug,
+				array(
+					'selector'    => "$this->main_css_element div .flip-box.flip-3d-content-effect .flip-slide .flip-slide-inner",
+					'declaration' => "transform: translateZ($flip_translate_z) scale($flip_scale);",
+				)
+			);
+		}
+
+		$flip_transition_selector = "$this->main_css_element div .flip-box .flip-box-slides";
+		if ( in_array( $animation_type, array( 'fade', 'zoom', 'slide', 'open' ), true ) ) {
+			$flip_transition_selector .= ' .flip-slide';
+		}
+		self::set_style(
+			$this->slug,
+			array(
+				'selector'    => $flip_transition_selector,
+				'declaration' => 'transform-style: preserve-3d;transition-property: all;',
+			)
+		);
+
+		$this->generate_styles(
+			array(
+				'base_attr_name' => 'flip_transition_delay',
+				'selector'       => $flip_transition_selector,
+				'css_property'   => 'transition-delay',
+				'render_slug'    => $this->slug,
+				'type'           => 'range',
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => 'flip_transition_duration',
+				'selector'       => $flip_transition_selector,
+				'css_property'   => 'transition-duration',
+				'render_slug'    => $this->slug,
+				'type'           => 'range',
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => 'flip_transition_speed_curve',
+				'selector'       => $flip_transition_selector,
+				'css_property'   => 'transition-timing-function',
+				'render_slug'    => $this->slug,
+				'type'           => 'string',
+			)
+		);
+		// End of working with flip animations.
+	}
+
+	/**
+	 * Renders additional styles for the module output.
+	 *
+	 * @param string $slide_type The slide type.
+	 * @param array  $attrs      List of attributes.
+	 */
+	private function squad_generate_additional_styles( $slide_type, $attrs ) {
+		// Fixed: the custom background doesn't work at frontend.
+		$this->props = array_merge( $attrs, $this->props );
+
+		// wrapper background with default, responsive, hover.
+		et_pb_background_options()->get_background_style(
+			array(
+				'base_prop_name'         => "{$slide_type}_wrapper_background",
+				'props'                  => $this->props,
+				'selector'               => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+				'selector_hover'         => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
+				'selector_sticky'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+				'function_name'          => $this->slug,
+				'important'              => ' !important',
+				'use_background_video'   => false,
+				'use_background_pattern' => false,
+				'use_background_mask'    => false,
+				'prop_name_aliases'      => array(
+					"use_{$slide_type}_wrapper_background_color_gradient" => "{$slide_type}_wrapper_background_use_color_gradient",
+					"{$slide_type}_wrapper_background" => "{$slide_type}_wrapper_background_color",
+				),
+			)
+		);
+
+		// content text aligns with default, responsive, hover.
+		$this->generate_styles(
+			array(
+				'base_attr_name' => "{$slide_type}_text_orientation",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
+				'css_property'   => 'text-align',
+				'render_slug'    => $this->slug,
+				'type'           => 'align',
+			)
+		);
+		// wrapper margin with default, responsive, hover.
+		$this->squad_utils->generate_margin_padding_styles(
+			array(
+				'field'          => "{$slide_type}_wrapper_margin",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
+				'css_property'   => 'margin',
+				'type'           => 'margin',
+			)
+		);
+		// wrapper padding with default, responsive, hover.
+		$this->squad_utils->generate_margin_padding_styles(
+			array(
+				'field'          => "{$slide_type}_wrapper_padding",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover",
+				'css_property'   => 'padding',
+				'type'           => 'padding',
+			)
+		);
+
+		// order system.
+		$this->generate_styles(
+			array(
+				'base_attr_name' => "{$slide_type}_icon_order",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.squad-icon-wrapper",
+				'css_property'   => 'order',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => "{$slide_type}_title_order",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-title-wrapper",
+				'css_property'   => 'order',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => "{$slide_type}_sub_title_order",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-sub-title-wrapper",
+				'css_property'   => 'order',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => "{$slide_type}_body_order",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-content-wrapper",
+				'css_property'   => 'order',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => "{$slide_type}_button_order",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-button-wrapper",
+				'css_property'   => 'order',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+			)
+		);
+
+		// z index system.
+		$this->generate_styles(
+			array(
+				'base_attr_name' => "{$slide_type}_icon_z_index",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.squad-icon-wrapper",
+				'css_property'   => 'z-index',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => "{$slide_type}_title_z_index",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-title-wrapper",
+				'css_property'   => 'z-index',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => "{$slide_type}_sub_title_z_index",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-sub-title-wrapper",
+				'css_property'   => 'z-index',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => "{$slide_type}_body_z_index",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-content-wrapper",
+				'css_property'   => 'z-index',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+			)
+		);
+		$this->generate_styles(
+			array(
+				'base_attr_name' => "{$slide_type}_button_z_index",
+				'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-button-wrapper",
+				'css_property'   => 'z-index',
+				'render_slug'    => $this->slug,
+				'type'           => 'input',
+			)
+		);
+	}
+
+	/**
+	 * Render the icon which on is active
+	 *
+	 * @param string $slide_type The slide type.
+	 * @param array  $attrs      List of unprocessed attributes.
+	 *
+	 * @return string
+	 */
+	private function squad_render_slide_icons( $slide_type, $attrs ) {
+		if ( 'none' !== $this->props[ "{$slide_type}_icon_type" ] ) {
+
+			// Fixed: a custom background doesn't work at frontend.
+			$this->props     = array_merge( $attrs, $this->props );
+			$multi_view      = et_pb_multi_view_options( $this );
+			$icon_element    = null;
+			$wrapper_classes = array(
+				'slide-element',
+				"slide-$slide_type-element",
+				'slide-icon-element',
+				"slide-$slide_type-icon-element",
+				'squad-icon-wrapper',
+			);
+
+			if ( 'text' === $this->props[ "{$slide_type}_icon_type" ] ) {
+				$icon_element = $multi_view->render_element(
+					array(
+						'content'        => "{{{$slide_type}_icon_text}}",
+						'attrs'          => array(
+							'class' => "slide-icon-text slide-$slide_type-icon-text",
+						),
+						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+					)
+				);
+			}
+
+			if ( 'icon' === $this->props[ "{$slide_type}_icon_type" ] ) {
+				$icon_classes = array( 'et-pb-icon', 'slide-font-icon', "slide-$slide_type-icon" );
+
+				// Load font Awesome css for frontend.
+				Divi::inject_fa_icons( $this->props[ "{$slide_type}_icon" ] );
+
+				$icon_element = $multi_view->render_element(
+					array(
+						'content'        => "{{{$slide_type}_icon}}",
+						'attrs'          => array(
+							'class' => implode( ' ', $icon_classes ),
+						),
+						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+					)
+				);
+
+				// Set font family for Icon.
+				$this->generate_styles(
+					array(
+						'utility_arg'    => 'icon_font_family',
+						'render_slug'    => $this->slug,
+						'base_attr_name' => "{$slide_type}_icon",
+						'important'      => true,
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element .et-pb-icon",
+						'processor'      => array(
+							'ET_Builder_Module_Helper_Style_Processor',
+							'process_extended_icon',
+						),
+					)
+				);
+
+				// Set color for Icon.
+				$this->generate_styles(
+					array(
+						'base_attr_name' => "{$slide_type}_icon_color",
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element .et-pb-icon",
+						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element .et-pb-icon",
+						'css_property'   => 'color',
+						'render_slug'    => $this->slug,
+						'type'           => 'color',
+						'important'      => true,
+					)
+				);
+
+				// Set size for Icon.
+				$this->generate_styles(
+					array(
+						'base_attr_name' => "{$slide_type}_icon_size",
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element .et-pb-icon",
+						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element .et-pb-icon",
+						'css_property'   => 'font-size',
+						'render_slug'    => $this->slug,
+						'type'           => 'range',
+						'important'      => true,
+					)
+				);
+				$this->generate_styles(
+					array(
+						'base_attr_name' => "{$slide_type}_icon_size",
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+						'css_property'   => 'min-width',
+						'render_slug'    => $this->slug,
+						'type'           => 'range',
+						'important'      => true,
+					)
+				);
+			}
+
+			if ( 'image' === $this->props[ "{$slide_type}_icon_type" ] ) {
+				$alt_text = $this->_esc_attr( "{$slide_type}_alt" );
+
+				$image_classes   = array( 'slide-icon-image', "slide-$slide_type-icon-image", 'et_pb_image_wrap' );
+				$image_classes[] = esc_attr( et_pb_media_options()->get_image_attachment_class( $this->props, 'image' ) );
+
+				$icon_element = $multi_view->render_element(
+					array(
+						'tag'            => 'img',
+						'attrs'          => array(
+							'src'   => "{{{$slide_type}_image}}",
+							'class' => implode( ' ', $image_classes ),
+							'alt'   => $alt_text,
+						),
+						'required'       => "{$slide_type}_image",
+						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+					)
+				);
+
+				// Set icon background color.
+				$this->generate_styles(
+					array(
+						'base_attr_name' => "{$slide_type}_image_icon_background_color",
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+						'css_property'   => 'background-color',
+						'render_slug'    => $this->slug,
+						'type'           => 'color',
+						'important'      => true,
+					)
+				);
+
+				// Set width for Image.
+				if ( 'on' === $this->prop( "{$slide_type}_image_force_full_width", 'off' ) ) {
+					self::set_style(
+						$this->slug,
+						array(
+							'selector'    => implode(
+								', ',
+								array(
+									"$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+									"$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element img",
+								)
+							),
+							'declaration' => 'width: 100% !important; max-width:100% !important;',
+						)
+					);
+				} else {
+					$this->generate_styles(
+						array(
+							'base_attr_name' => "{$slide_type}_image_width",
+							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element img",
+							'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element img",
+							'css_property'   => 'width',
+							'render_slug'    => $this->slug,
+							'type'           => 'range',
+							'important'      => true,
+						)
+					);
+					$this->generate_styles(
+						array(
+							'base_attr_name' => "{$slide_type}_image_width",
+							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+							'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+							'css_property'   => 'min-width',
+							'render_slug'    => $this->slug,
+							'type'           => 'range',
+							'important'      => true,
+						)
+					);
+				}
+
+				// Set height for Image.
+				$this->generate_styles(
+					array(
+						'base_attr_name' => "{$slide_type}_image_height",
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element img",
+						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element img",
+						'css_property'   => 'height',
+						'render_slug'    => $this->slug,
+						'type'           => 'range',
+						'important'      => true,
+					)
+				);
+			}
+
+			// Icon wrapper margin with default, responsive, hover.
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'          => "{$slide_type}_icon_wrapper_margin",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
+					'important'      => true,
+				)
+			);
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'          => "{$slide_type}_icon_wrapper_padding",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
+					'important'      => true,
+				)
+			);
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'          => "{$slide_type}_icon_margin",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
+					'important'      => true,
+				)
+			);
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'          => "{$slide_type}_icon_padding",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
+					'important'      => true,
+				)
+			);
+
+			// Set icon background color.
+			if ( 'image' !== $this->props[ "{$slide_type}_icon_type" ] ) {
+				$this->generate_styles(
+					array(
+						'base_attr_name' => "{$slide_type}_image_icon_background_color",
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+						'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide:hover .slide-element.slide-icon-element",
+						'css_property'   => 'background-color',
+						'render_slug'    => $this->slug,
+						'type'           => 'color',
+						'important'      => true,
+					)
+				);
+			}
+
+			if ( 'on' === $this->props[ "{$slide_type}_content_outside_container" ] ) {
+				$this->generate_styles(
+					array(
+						'base_attr_name' => "{$slide_type}_icon_item_inner_gap",
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .flip-slide-container slide-$slide_type-elements-container",
+						'css_property'   => 'gap',
+						'render_slug'    => $this->slug,
+						'type'           => 'gap',
+						'important'      => true,
+					)
+				);
+				$this->generate_styles(
+					array(
+						'base_attr_name' => "{$slide_type}_icon_horizontal_alignment",
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .flip-slide-outer-container slide-$slide_type-elements-outer-container",
+						'css_property'   => 'justify-content',
+						'render_slug'    => $this->slug,
+						'type'           => 'align',
+						'important'      => true,
+					)
+				);
+				$this->generate_styles(
+					array(
+						'base_attr_name' => "{$slide_type}_icon_text_gap",
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+						'css_property'   => 'gap',
+						'render_slug'    => $this->slug,
+						'type'           => 'gap',
+						'important'      => true,
+					)
+				);
+
+				// Icon placement with default, responsive, hover.
+				$this->generate_styles(
+					array(
+						'base_attr_name' => "{$slide_type}_icon_placement",
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+						'css_property'   => 'flex-direction',
+						'render_slug'    => $this->slug,
+						'type'           => 'align',
+						'important'      => true,
+					)
+				);
+
+				// working with icon styles.
+				$placement    = "{$slide_type}_icon_placement";
+				$en_placement = array( 'row', 'row-reverse' );
+				$is_desktop   = in_array( $this->prop( $placement ), $en_placement, true );
+				$is_tablet    = in_array( $this->prop( "{$placement}_tablet" ), $en_placement, true );
+				$is_phone     = in_array( $this->prop( "{$placement}_phone" ), $en_placement, true );
+				if ( $is_desktop || $is_tablet || $is_phone ) {
+					$this->generate_styles(
+						array(
+							'base_attr_name' => "{$slide_type}_icon_vertical_alignment",
+							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+							'css_property'   => 'align-items',
+							'render_slug'    => $this->slug,
+							'type'           => 'align',
+							'important'      => true,
+						)
+					);
+					$this->generate_styles(
+						array(
+							'base_attr_name' => "{$slide_type}_icon_wrapper_width",
+							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .flip-slide-outer-container slide-$slide_type-elements-outer-container",
+							'css_property'   => 'width',
+							'render_slug'    => $this->slug,
+							'type'           => 'input',
+							'important'      => true,
+						)
+					);
+				} else {
+					$this->generate_styles(
+						array(
+							'base_attr_name' => "{$slide_type}_icon_horizontal_alignment",
+							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-icon-wrapper",
+							'css_property'   => 'text-align',
+							'render_slug'    => $this->slug,
+							'type'           => 'align',
+							'important'      => true,
+						)
+					);
+				}
+			} else {
+				$this->generate_styles(
+					array(
+						'base_attr_name' => "{$slide_type}_icon_item_inner_gap",
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+						'css_property'   => 'gap',
+						'render_slug'    => $this->slug,
+						'type'           => 'gap',
+						'important'      => true,
+					)
+				);
+				$this->generate_styles(
+					array(
+						'base_attr_name' => "{$slide_type}_icon_default_alignment",
+						'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-icon-element",
+						'css_property'   => 'justify-content',
+						'render_slug'    => $this->slug,
+						'type'           => 'align',
+						'important'      => true,
+					)
+				);
+			}
+
+			return sprintf(
+				'<span class="%1$s"><span class="icon-element">%2$s</span></span>',
+				implode( ' ', $wrapper_classes ),
+				wp_kses_post( $icon_element )
+			);
+		}
+
+		return '';
+	}
+
+	/**
+	 * Render all text elements for slide with dynamic and multiview support for Flip Box.
+	 *
+	 * @param string $slide_type The slide type.
+	 * @param array  $attrs      List of unprocessed attributes.
+	 *
+	 * @return string
+	 */
+	private function squad_render_slide_elements( $slide_type, $attrs ) {
+		$multi_view = et_pb_multi_view_options( $this );
+
+		$title_text_element     = null;
+		$sub_title_text_element = null;
+		$body_text_element      = null;
+
+		$title_text     = $multi_view->render_element(
+			array(
+				'content'        => "{{{$slide_type}_title}}",
+				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+			)
+		);
+		$sub_title_text = $multi_view->render_element(
+			array(
+				'content'        => "{{{$slide_type}_sub_title}}",
+				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+			)
+		);
+		$body_text      = $multi_view->render_element(
+			array(
+				'content'        => "{{{$slide_type}_content}}",
+				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+			)
+		);
+
+		if ( '' !== $title_text ) {
+			// title margin with default, responsive, hover.
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'        => "{$slide_type}_title_margin",
+					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-title-text",
+					'css_property' => 'margin',
+					'type'         => 'margin',
+				)
+			);
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'        => "{$slide_type}_title_padding",
+					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-title-text",
+					'css_property' => 'padding',
+					'type'         => 'padding',
+				)
+			);
+
+			$title_text_element = sprintf(
+				'<div class="slide-element slide-%3$s-element slide-title-wrapper"><%1$s class="slide-title-text">%2$s</%1$s></div>',
+				wp_kses_post( $this->prop( "{$slide_type}_title_tag", 'h2' ) ),
+				wp_kses_post( $title_text ),
+				$slide_type
+			);
+		}
+
+		if ( '' !== $sub_title_text ) {
+			// The subtitle margin with default, responsive, hover.
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'        => "{$slide_type}_sub_title_margin",
+					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-sub-title-text",
+					'css_property' => 'margin',
+					'type'         => 'margin',
+				)
+			);
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'        => "{$slide_type}_sub_title_padding",
+					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-sub-title-text",
+					'css_property' => 'padding',
+					'type'         => 'padding',
+				)
+			);
+
+			$sub_title_text_element = sprintf(
+				'<div class="slide-element slide-%3$s-element slide-title-wrapper"><%1$s class="slide-sub-title-text">%2$s</%1$s></div>',
+				wp_kses_post( $this->prop( "{$slide_type}_sub_title_tag", 'h2' ) ),
+				wp_kses_post( $sub_title_text ),
+				$slide_type
+			);
+		}
+
+		if ( '' !== $body_text ) {
+			// content margin with default, responsive, hover.
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'        => "{$slide_type}_content_margin",
+					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-content-text",
+					'css_property' => 'margin',
+					'type'         => 'margin',
+				)
+			);
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'        => "{$slide_type}_content_padding",
+					'selector'     => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-content-text",
+					'css_property' => 'padding',
+					'type'         => 'padding',
+				)
+			);
+
+			$sub_title_text_element = sprintf(
+				'<div class="slide-element slide-%2$s-element slide-content-wrapper"><span class="slide-content-text">%1$s</span></div>',
+				wp_kses_post( $body_text ),
+				$slide_type
+			);
+		}
+
+		$button_text_element = ( 'on' === $this->prop( "{$slide_type}_button__enable", 'off' ) ) ? $this->squad_render_button_text( $slide_type, $attrs ) : null;
+
+		if ( 'on' === $this->prop( "{$slide_type}_content_outside_container", 'off' ) ) {
+			return sprintf(
+				'<div class="flip-slide-container slide-%5$s-elements-container">%1$s%2$s%3$s%4$s</div>',
+				$title_text_element,
+				$sub_title_text_element,
+				$body_text_element,
+				$button_text_element,
+				$slide_type
+			);
+		}
+
+		return sprintf(
+			'%1$s%2$s%3$s%4$s',
+			$title_text_element,
+			$sub_title_text_element,
+			$body_text_element,
+			$button_text_element
+		);
+	}
+
+	/**
+	 * Render button text with icon.
+	 *
+	 * @param string $slide_type The slide type.
+	 * @param array  $attrs      List of unprocessed attributes.
+	 *
+	 * @return string
+	 */
+	private function squad_render_button_text( $slide_type, $attrs ) {
+		$multi_view = et_pb_multi_view_options( $this );
+
+		// title url and its target.
+		$button_url    = $this->prop( "{$slide_type}_button_url", '' );
+		$button_target = $this->prop( "{$slide_type}_button_url_new_window", 'off' );
+
+		$button_tag   = '' !== $button_url ? 'a' : 'span';
+		$button_attrs = array();
+
+		if ( 'a' === $button_tag ) {
+			$button_attrs['href'] = $button_url;
+
+			if ( 'on' === $button_target ) {
+				$button_attrs['target'] = '_blank';
+			} else {
+				$button_attrs['target'] = '_self';
+			}
+		}
+
+		$button_text = $multi_view->render_element(
+			array(
+				'tag'            => $button_tag,
+				'content'        => "{{{$slide_type}_button_text}}",
+				'attrs'          => $button_attrs,
+				'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide",
+			)
+		);
+
+		if ( '' !== $button_text ) {
+			// Fixed: the custom background doesn't work at frontend.
+			$this->props = array_merge( $attrs, $this->props );
+
+			$icon_elements      = '';
+			$icon_wrapper_class = array( 'squad-icon-wrapper' );
+			$button_classes     = array( 'squad-slide-button', 'et_pb_with_background' );
+
+			if ( 'on' === $this->prop( "{$slide_type}_button_hover_animation__enable", 'off' ) ) {
+				$button_classes[] = $this->prop( "{$slide_type}_button_hover_animation_type", 'fill' );
+			}
+
+			// button background with default, responsive, hover.
+			et_pb_background_options()->get_background_style(
+				array(
+					'base_prop_name'         => "{$slide_type}_button_background",
+					'props'                  => $this->props,
+					'selector'               => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
+					'selector_hover'         => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
+					'selector_sticky'        => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
+					'function_name'          => $this->slug,
+					'important'              => ' !important',
+					'use_background_video'   => false,
+					'use_background_pattern' => false,
+					'use_background_mask'    => false,
+					'prop_name_aliases'      => array(
+						"use_{$slide_type}_button_background_color_gradient" => "{$slide_type}_button_background_use_color_gradient",
+						"{$slide_type}_button_background" => "{$slide_type}_button_background_color",
+					),
+				)
+			);
+
+			$this->generate_styles(
+				array(
+					'base_attr_name' => "{$slide_type}_button_horizontal_alignment",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .slide-element.slide-$slide_type-button-wrapper",
+					'css_property'   => 'justify-content',
+					'render_slug'    => $this->slug,
+					'type'           => 'align',
+					'important'      => true,
+				)
+			);
+			$this->generate_styles(
+				array(
+					'base_attr_name' => "{$slide_type}_button_elements_alignment",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
+					'css_property'   => 'justify-content',
+					'render_slug'    => $this->slug,
+					'type'           => 'align',
+					'important'      => true,
+				)
+			);
+			$this->generate_styles(
+				array(
+					'base_attr_name' => "{$slide_type}_button_width",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
+					'css_property'   => 'width',
+					'render_slug'    => $this->slug,
+					'type'           => 'input',
+					'important'      => true,
+				)
+			);
+
+			$this->generate_styles(
+				array(
+					'base_attr_name' => "{$slide_type}_button_icon_placement",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
+					'css_property'   => 'flex-direction',
+					'render_slug'    => $this->slug,
+					'type'           => 'align',
+					'important'      => true,
+				)
+			);
+			$this->generate_styles(
+				array(
+					'base_attr_name' => "{$slide_type}_button_icon_gap",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
+					'css_property'   => 'gap',
+					'render_slug'    => $this->slug,
+					'type'           => 'input',
+					'important'      => true,
+				)
+			);
+
+			// button margin with default, responsive, hover.
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'          => "{$slide_type}_button_icon_margin",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .icon-element",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .icon-element:hover",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
+				)
+			);
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'          => "{$slide_type}_button_margin",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
+				)
+			);
+			$this->squad_utils->generate_margin_padding_styles(
+				array(
+					'field'          => "{$slide_type}_button_padding",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover",
+					'css_property'   => 'padding',
+					'type'           => 'padding',
+				)
+			);
+
+			$font_icon_element = $this->squad_render_button_font_icon( $slide_type );
+			$image_element     = $this->squad_render_button_icon_image( $slide_type );
+
+			if ( ( 'none' !== $this->props[ "{$slide_type}_button_icon_type" ] ) && ( ! empty( $font_icon_element ) || ! empty( $image_element ) ) ) {
+				if ( ( 'on' === $this->prop( "{$slide_type}_button_icon_on_hover", 'off' ) ) ) {
+					$icon_wrapper_class[] = 'show-on-hover';
+
+					$mapping_values = array(
+						'inherit'     => '0 0 0 0',
+						'column'      => '0 0 -#px 0',
+						'row'         => '0 -#px 0 0',
+						'row-reverse' => '0 0 0 -#px',
+					);
+
+					if ( 'on' === $this->prop( "{$slide_type}_button_icon_hover_move_icon", 'off' ) ) {
+						$mapping_values = array(
+							'inherit'     => '0 0 0 0',
+							'column'      => '#px 0 -#px 0',
+							'row'         => '0 -#px 0 #px',
+							'row-reverse' => '0 #px 0 -#px',
+						);
+					}
+
+					// set icon placement for button image with default, hover, and responsive.
+					$this->squad_utils->generate_show_icon_on_hover_styles(
+						array(
+							'field'          => "{$slide_type}_button_icon_placement",
+							'trigger'        => "{$slide_type}_button_icon_type",
+							'depends_on'     => array(
+								'icon'  => "{$slide_type}_button_icon_size",
+								'image' => "{$slide_type}_button_image_width",
+							),
+							'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .squad-icon-wrapper.show-on-hover",
+							'hover'          => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover .squad-icon-wrapper.show-on-hover",
+							'css_property'   => 'margin',
+							'type'           => 'margin',
+							'mapping_values' => $mapping_values,
+							'defaults'       => array(
+								'icon'  => '40px',
+								'image' => '40px',
+								'field' => 'row',
+							),
+						)
+					);
+				}
+
+				$icon_elements = sprintf(
+					'<span class="%1$s"><span class="icon-element">%2$s%3$s</span></span>',
+					implode( ' ', $icon_wrapper_class ),
+					wp_kses_post( $font_icon_element ),
+					wp_kses_post( $image_element )
+				);
+			}
+
+			return sprintf(
+				'<div class="slide-element slide-%4$s-element slide-%4$s-button-wrapper"><div class="%3$s">%1$s%2$s</div></div>',
+				wp_kses_post( $button_text ),
+				wp_kses_post( $icon_elements ),
+				wp_kses_post( implode( ' ', $button_classes ) ),
+				$slide_type
+			);
+		}
+
+		return '';
+	}
+
+	/**
+	 * Render button icon.
+	 *
+	 * @param string $slide_type The slide type.
+	 *
+	 * @return string
+	 */
+	private function squad_render_button_font_icon( $slide_type ) {
+		if ( 'icon' === $this->props[ "{$slide_type}_button_icon_type" ] ) {
+			$multi_view   = et_pb_multi_view_options( $this );
+			$icon_classes = array( 'et-pb-icon', "squad-{$slide_type}_button-icon" );
+
+			// Load font Awesome css for frontend.
+			Divi::inject_fa_icons( $this->props[ "{$slide_type}_button_icon" ] );
+
+			$this->generate_styles(
+				array(
+					'utility_arg'    => 'icon_font_family',
+					'render_slug'    => $this->slug,
+					'base_attr_name' => "{$slide_type}_button_icon",
+					'important'      => true,
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .et-pb-icon",
+					'processor'      => array(
+						'ET_Builder_Module_Helper_Style_Processor',
+						'process_extended_icon',
+					),
+				)
+			);
+			$this->generate_styles(
+				array(
+					'base_attr_name' => "{$slide_type}_button_icon_color",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover .et-pb-icon",
+					'css_property'   => 'color',
+					'render_slug'    => $this->slug,
+					'type'           => 'color',
+					'important'      => true,
+				)
+			);
+			$this->generate_styles(
+				array(
+					'base_attr_name' => "{$slide_type}_button_icon_size",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover .et-pb-icon",
+					'css_property'   => 'font-size',
+					'render_slug'    => $this->slug,
+					'type'           => 'range',
+					'important'      => true,
+				)
+			);
+
+			return $multi_view->render_element(
+				array(
+					'content'        => "{{{$slide_type}_button_icon}}",
+					'attrs'          => array(
+						'class' => implode( ' ', $icon_classes ),
+					),
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
+				)
+			);
+		}
+
+		return '';
+	}
+
+	/**
+	 * Render button image.
+	 *
+	 * @param string $slide_type The slide type.
+	 *
+	 * @return string
+	 */
+	private function squad_render_button_icon_image( $slide_type ) {
+		if ( 'icon' === $this->props[ "{$slide_type}_button_icon_type" ] ) {
+			$multi_view             = et_pb_multi_view_options( $this );
+			$image_classes          = array( "squad-{$slide_type}_button-image", 'et_pb_image_wrap' );
+			$image_attachment_class = et_pb_media_options()->get_image_attachment_class( $this->props, "{$slide_type}_button_image" );
+
+			if ( ! empty( $image_attachment_class ) ) {
+				$image_classes[] = esc_attr( $image_attachment_class );
+			}
+
+			// Set width for Image.
+			$this->generate_styles(
+				array(
+					'base_attr_name' => "{$slide_type}_button_image_width",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .squad-icon-wrapper img",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover .squad-icon-wrapper img",
+					'css_property'   => 'width',
+					'render_slug'    => $this->slug,
+					'type'           => 'range',
+					'important'      => true,
+				)
+			);
+			// Set height for Image.
+			$this->generate_styles(
+				array(
+					'base_attr_name' => "{$slide_type}_button_image_height",
+					'selector'       => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button .squad-icon-wrapper img",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button:hover .squad-icon-wrapper img",
+					'css_property'   => 'height',
+					'render_slug'    => $this->slug,
+					'type'           => 'range',
+					'important'      => true,
+				)
+			);
+
+			return $multi_view->render_element(
+				array(
+					'tag'            => 'img',
+					'attrs'          => array(
+						'src'   => "{{{$slide_type}_button_image}}",
+						'class' => implode( ' ', $image_classes ),
+						'alt'   => '',
+					),
+					'required'       => "{$slide_type}_button_image",
+					'hover_selector' => "$this->main_css_element div .flip-box .flip-box-slides .$slide_type-slide .squad-slide-button",
+				)
+			);
+		}
+
+		return '';
 	}
 }

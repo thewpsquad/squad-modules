@@ -1,12 +1,10 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 /**
- * String Helper helper.
+ * String Helper class for utility
  *
- * @since       1.2.3
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.3
  */
 
 namespace DiviSquad\Utils\Polyfills;
@@ -14,8 +12,8 @@ namespace DiviSquad\Utils\Polyfills;
 /**
  * String Helper class.
  *
- * @since       1.2.3
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.2.3
  */
 class Str {
 
@@ -118,5 +116,19 @@ class Str {
 		$break_words = preg_split( '~[^\p{L}\p{N}\']+~u', $string_content );
 
 		return 0 === $format ? count( $break_words ) : $break_words;
+	}
+
+	/**
+	 * Remove all `\t` and `\n` from the string content.
+	 *
+	 * @since SQUAD_MODULES_SINCE
+	 *
+	 * @param string $string_content The string content to remove new lines and tabs.
+	 *
+	 * @return array|string|string[]
+	 */
+	public static function remove_new_lines_and_tabs( $string_content ) {
+		// Remove all `\t` and `\n` from the string content.
+		return str_replace( array( "\n", "\t" ), '', $string_content );
 	}
 }

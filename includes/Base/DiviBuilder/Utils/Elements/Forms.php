@@ -2,11 +2,9 @@
 /**
  * Builder Form Utils Helper Class
  *
- * @since       1.5.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.5.0
  */
 
 namespace DiviSquad\Base\DiviBuilder\Utils\Elements;
@@ -15,6 +13,12 @@ use WP_Post;
 use function esc_html__;
 use function get_posts;
 
+/**
+ * Form Utils Helper Class
+ *
+ * @package DiviSquad
+ * @since   1.5.0
+ */
 trait Forms {
 
 	/**
@@ -27,7 +31,7 @@ trait Forms {
 	/**
 	 * Store all forms and remove redundancy.
 	 *
-	 * @var array The collection of forms.
+	 * @var array<string, array<string, array>> The collection of forms.
 	 */
 	public static $form_collections = array(
 		'cf7'           => array(
@@ -150,7 +154,7 @@ trait Forms {
 				 * @var WP_Post   $form
 				 */
 				foreach ( $forms as $form ) {
-					$hash_id   = md5( $form->ID );
+					$hash_id   = hash( 'sha256', (string) $form->ID );
 					$form_data = 'title' === $collection ? $form->post_title : $form->ID;
 
 					// Store the form data in the collection.
@@ -191,7 +195,7 @@ trait Forms {
 			 * @var \FluentForm\Framework\Database\Query\Builder|object $form
 			 */
 			foreach ( $collections as $form ) {
-				$hash_id   = md5( $form->id );
+				$hash_id   = hash( 'sha256', (string) $form->id );
 				$form_data = 'title' === $collection ? $form->title : $form->id;
 
 				// Store the form data in the collection.
@@ -224,7 +228,7 @@ trait Forms {
 			$forms = \RGFormsModel::get_forms( null, 'title' );
 			if ( count( $forms ) ) {
 				foreach ( $forms as $form ) {
-					$hash_id   = md5( $form->id );
+					$hash_id   = hash( 'sha256', (string) $form->id );
 					$form_data = 'title' === $collection ? $form->title : $form->id;
 
 					// Store the form data in the collection.
@@ -264,7 +268,7 @@ trait Forms {
 				 * @var \NF_Abstracts_Model   $form
 				 */
 				foreach ( $ninja_forms as $form ) {
-					$hash_id   = md5( $form->get_id() );
+					$hash_id   = hash( 'sha256', (string) $form->get_id() );
 					$form_data = 'title' === $collection ? $form->get_setting( 'title' ) : $form->get_id();
 
 					// Store the form data in the collection.
@@ -310,7 +314,7 @@ trait Forms {
 				 * @var WP_Post   $form
 				 */
 				foreach ( $forms as $form ) {
-					$hash_id   = md5( $form->ID );
+					$hash_id   = hash( 'sha256', (string) $form->ID );
 					$form_data = 'title' === $collection ? $form->post_title : $form->ID;
 
 					// Store the form data in the collection.

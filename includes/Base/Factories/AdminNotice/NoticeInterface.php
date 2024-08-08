@@ -1,9 +1,20 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * Interface for the Notice class.
+ *
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   2.0.0
+ */
+
 namespace DiviSquad\Base\Factories\AdminNotice;
 
 /**
- * Interface for the Notice class.
+ * Notice Interface.
+ *
+ * @package DiviSquad
+ * @since   2.0.0
  */
 interface NoticeInterface {
 
@@ -20,4 +31,18 @@ interface NoticeInterface {
 	 * @return string
 	 */
 	public function get_body_classes();
+
+	/**
+	 * Get the template arguments
+	 *
+	 * @return array
+	 */
+	public function get_template_args();
+
+	/**
+	 * Get the template path.
+	 *
+	 * @return string
+	 */
+	public function get_template();
 }

@@ -2,16 +2,13 @@
 /**
  * Builder Base for Form Styler Class
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Base\DiviBuilder;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
 use function esc_html__;
 use function et_pb_background_options;
 use function wp_parse_args;
@@ -19,83 +16,22 @@ use function wp_parse_args;
 /**
  * Builder Utils Helper Class which help to the all module class
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.0.0
  */
-abstract class DiviSquad_Form_Styler extends Squad_Module {
+abstract class DiviSquad_Form_Styler extends DiviSquad_Module {
 
 	/**
-	 * Get the stylesheet selector for form tag.
+	 * Collect all posts from the database.
 	 *
-	 * @return string
-	 */
-	abstract protected function get_form_selector_default();
-
-	/**
-	 * Get the stylesheet selector for form tag to use in hover.
+	 * @param array  $attrs   List of unprocessed attributes.
+	 * @param string $content Content being processed.
 	 *
-	 * @return string
+	 * @return string the html output.
 	 */
-	abstract protected function get_form_selector_hover();
-
-	/**
-	 * Get the stylesheet selector for the error message.
-	 *
-	 * @return string
-	 */
-	abstract protected function get_error_message_selector_default();
-
-	/**
-	 * Get the stylesheet selector for the error message to use in hover.
-	 *
-	 * @return string
-	 */
-	abstract protected function get_error_message_selector_hover();
-
-	/**
-	 * Get the stylesheet selector for the success message.
-	 *
-	 * @return string
-	 */
-	abstract protected function get_success_message_selector_default();
-
-	/**
-	 * Get the stylesheet selector for the success message to use in hover.
-	 *
-	 * @return string
-	 */
-	abstract protected function get_success_message_selector_hover();
-
-	/**
-	 * Get the stylesheet selector for form fields.
-	 *
-	 * @return string
-	 */
-	abstract protected function get_field_selector_default();
-
-	/**
-	 * Get the stylesheet selector for form fields to use in hover.
-	 *
-	 * @return string
-	 */
-	abstract protected function get_field_selector_hover();
-
-	/**
-	 * Get the stylesheet selector for form submit button.
-	 *
-	 * @return string
-	 */
-	abstract protected function get_submit_button_selector_default();
-
-	/**
-	 * Get the stylesheet selector for form submit button to use in hover.
-	 *
-	 * @return string
-	 */
-	abstract protected function get_submit_button_selector_hover();
+	public static function squad_form_styler__get_form_html( $attrs, $content = null ) {
+		return '';
+	}
 
 	/**
 	 * Get toggles for the module's settings modal.
@@ -298,7 +234,7 @@ abstract class DiviSquad_Form_Styler extends Squad_Module {
 	 * @return array[]
 	 */
 	public function squad_remove_pre_assigned_fields( $fields, $removals ) {
-		if ( is_array( $fields ) && count( $fields ) > 1 && is_array( $removals ) && count( $removals ) > 1 ) {
+		if ( count( $fields ) > 1 && count( $removals ) > 1 ) {
 			foreach ( $removals as $removal ) {
 				unset( $fields[ $removal ] );
 			}
@@ -320,7 +256,7 @@ abstract class DiviSquad_Form_Styler extends Squad_Module {
 		return array(
 			'wrapper'         => array(
 				'label'    => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
-				'selector' => "$form_selector",
+				'selector' => $form_selector,
 			),
 			'field'           => array(
 				'label'    => esc_html__( 'Field', 'squad-modules-for-divi' ),
@@ -344,6 +280,41 @@ abstract class DiviSquad_Form_Styler extends Squad_Module {
 			),
 		);
 	}
+
+	/**
+	 * Get the stylesheet selector for form tag.
+	 *
+	 * @return string
+	 */
+	abstract protected function get_form_selector_default();
+
+	/**
+	 * Get the stylesheet selector for form fields.
+	 *
+	 * @return string
+	 */
+	abstract protected function get_field_selector_default();
+
+	/**
+	 * Get the stylesheet selector for form submit button.
+	 *
+	 * @return string
+	 */
+	abstract protected function get_submit_button_selector_default();
+
+	/**
+	 * Get the stylesheet selector for the error message.
+	 *
+	 * @return string
+	 */
+	abstract protected function get_error_message_selector_default();
+
+	/**
+	 * Get the stylesheet selector for the success message.
+	 *
+	 * @return string
+	 */
+	abstract protected function get_success_message_selector_default();
 
 	/**
 	 * Get CSS fields transition.
@@ -431,7 +402,7 @@ abstract class DiviSquad_Form_Styler extends Squad_Module {
 		$options = $this->squad_get_module_stylesheet_selectors( $attrs );
 
 		// Generate module styles from hook.
-		$this->form_styler_generate_module_styles( $attrs, $options );
+		$this->squad_form_styler_generate_module_styles( $attrs, $options );
 	}
 
 	/**
@@ -500,7 +471,7 @@ abstract class DiviSquad_Form_Styler extends Squad_Module {
 		);
 
 		// Set width for form button with default, responsive, hover.
-		if ( ! empty( array( 'form_button_custom_width' ) ) && 'on' === $attrs['form_button_custom_width'] ) {
+		if ( ! empty( $attrs['form_button_custom_width'] ) && 'on' === $attrs['form_button_custom_width'] ) {
 			$options['form_button_width'] = array(
 				'type'           => 'default',
 				'selector'       => $this->get_submit_button_selector_default(),
@@ -566,6 +537,41 @@ abstract class DiviSquad_Form_Styler extends Squad_Module {
 	}
 
 	/**
+	 * Get the stylesheet selector for form tag to use in hover.
+	 *
+	 * @return string
+	 */
+	abstract protected function get_form_selector_hover();
+
+	/**
+	 * Get the stylesheet selector for form fields to use in hover.
+	 *
+	 * @return string
+	 */
+	abstract protected function get_field_selector_hover();
+
+	/**
+	 * Get the stylesheet selector for form submit button to use in hover.
+	 *
+	 * @return string
+	 */
+	abstract protected function get_submit_button_selector_hover();
+
+	/**
+	 * Get the stylesheet selector for the error message to use in hover.
+	 *
+	 * @return string
+	 */
+	abstract protected function get_error_message_selector_hover();
+
+	/**
+	 * Get the stylesheet selector for the success message to use in hover.
+	 *
+	 * @return string
+	 */
+	abstract protected function get_success_message_selector_hover();
+
+	/**
 	 * Generate styles.
 	 *
 	 * @param array $attrs   List of unprocessed attributes.
@@ -573,7 +579,7 @@ abstract class DiviSquad_Form_Styler extends Squad_Module {
 	 *
 	 * @return void
 	 */
-	protected function form_styler_generate_module_styles( $attrs, $options ) {
+	protected function squad_form_styler_generate_module_styles( $attrs, $options ) {
 		if ( count( $attrs ) > 1 && count( $options ) > 1 ) {
 			foreach ( $options as $option_key => $option ) {
 				if ( ! empty( $option['type'] ) && 'background' === $option['type'] ) {
@@ -663,17 +669,5 @@ abstract class DiviSquad_Form_Styler extends Squad_Module {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Collect all posts from the database.
-	 *
-	 * @param array  $attrs   List of unprocessed attributes.
-	 * @param string $content Content being processed.
-	 *
-	 * @return string the html output.
-	 */
-	public static function disq_form_styler__get_form_html( $attrs, $content = null ) {
-		return null;
 	}
 }

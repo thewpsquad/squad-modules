@@ -2,11 +2,9 @@
 /**
  * Builder Utils Class
  *
- * @since       1.5.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.5.0
  */
 
 namespace DiviSquad\Base\DiviBuilder;
@@ -14,13 +12,10 @@ namespace DiviSquad\Base\DiviBuilder;
 /**
  * Builder Utils Class
  *
- * @since       1.5.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.5.0
  */
-final class Utils extends Utils\Base {
+final class Utils extends Utils\Base implements Utils\UtilsInterface {
 
 	/**
 	 * Connect with non-static public functions.

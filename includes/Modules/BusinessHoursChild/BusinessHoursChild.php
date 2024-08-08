@@ -7,20 +7,20 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <wp@thewpsquad.com>
+ * @author          WP Squad <support@squadmodules.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\BusinessHoursChild;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use function esc_html__;
 use function et_builder_get_text_orientation_options;
 use function et_builder_i18n;
-use function et_core_esc_previously;
 use function et_pb_background_options;
 use function et_pb_multi_view_options;
+use function wp_kses_post;
 
 /**
  * Business Hours Day Module Class.
@@ -28,7 +28,7 @@ use function et_pb_multi_view_options;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class BusinessHoursChild extends Squad_Module {
+class BusinessHoursChild extends DiviSquad_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -354,6 +354,11 @@ class BusinessHoursChild extends Squad_Module {
 			),
 		);
 
+		// clean unnecessary fields.
+		if ( array_key_exists( 'divider_position', $divider_fields ) ) {
+			unset( $divider_fields['divider_position'] );
+		}
+
 		// update some fields.
 		$divider_fields['divider_color']['default']           = '';
 		$divider_fields['divider_color']['default_on_front']  = '';
@@ -361,9 +366,6 @@ class BusinessHoursChild extends Squad_Module {
 		$divider_fields['divider_style']['default_on_front']  = '';
 		$divider_fields['divider_weight']['default']          = '';
 		$divider_fields['divider_weight']['default_on_front'] = '';
-
-		// clean unnecessary fields.
-		unset( $divider_fields['divider_position'] );
 
 		return array_merge(
 			$text_fields,
@@ -436,51 +438,9 @@ class BusinessHoursChild extends Squad_Module {
 
 		return sprintf(
 			'<div class="day-elements et_pb_with_background">%1$s%2$s%3$s</div>',
-			et_core_esc_previously( $day_name_text ),
-			et_core_esc_previously( $divider ),
-			et_core_esc_previously( $this->squad_render_day_time_text() )
-		);
-	}
-
-	/**
-	 * Render day name
-	 *
-	 * @return null|string
-	 */
-	private function squad_render_day_time_text() {
-		$multi_view = et_pb_multi_view_options( $this );
-
-		// Show start time and end time when enabled it.
-		if ( 'on' === $this->prop( 'dual_time__enable', 'off' ) ) {
-			$start_time     = $multi_view->render_element( array( 'content' => '{{start_time}}' ) );
-			$end_time       = $multi_view->render_element( array( 'content' => '{{end_time}}' ) );
-			$time_separator = $multi_view->render_element( array( 'content' => '{{time_separator}}' ) );
-
-			return sprintf(
-				'<span class="day-element day-element-time">%1$s%2$s%3$s</span>',
-				et_core_esc_previously( $start_time ),
-				et_core_esc_previously( $time_separator ),
-				et_core_esc_previously( $end_time )
-			);
-		}
-
-		// Show off day label when enabled it.
-		if ( 'on' === $this->prop( 'off_day__enable', 'off' ) ) {
-			$off_day_label = $multi_view->render_element( array( 'content' => '{{off_day_label}}' ) );
-
-			return sprintf(
-				'<span class="day-element day-element-time">%1$s</span>',
-				et_core_esc_previously( $off_day_label )
-			);
-		}
-
-		return $multi_view->render_element(
-			array(
-				'content' => '{{time}}',
-				'attrs'   => array(
-					'class' => 'day-element day-element-time',
-				),
-			)
+			wp_kses_post( $day_name_text ),
+			wp_kses_post( $divider ),
+			wp_kses_post( $this->squad_render_day_time_text() )
 		);
 	}
 
@@ -560,6 +520,48 @@ class BusinessHoursChild extends Squad_Module {
 			array(
 				'selector'  => "$this->main_css_element div .day-elements .day-element.day-element-divider:before",
 				'important' => true,
+			)
+		);
+	}
+
+	/**
+	 * Render day name
+	 *
+	 * @return string
+	 */
+	private function squad_render_day_time_text() {
+		$multi_view = et_pb_multi_view_options( $this );
+
+		// Show start time and end time when enabled it.
+		if ( 'on' === $this->prop( 'dual_time__enable', 'off' ) ) {
+			$start_time     = $multi_view->render_element( array( 'content' => '{{start_time}}' ) );
+			$end_time       = $multi_view->render_element( array( 'content' => '{{end_time}}' ) );
+			$time_separator = $multi_view->render_element( array( 'content' => '{{time_separator}}' ) );
+
+			return sprintf(
+				'<span class="day-element day-element-time">%1$s%2$s%3$s</span>',
+				wp_kses_post( $start_time ),
+				wp_kses_post( $time_separator ),
+				wp_kses_post( $end_time )
+			);
+		}
+
+		// Show off day label when enabled it.
+		if ( 'on' === $this->prop( 'off_day__enable', 'off' ) ) {
+			$off_day_label = $multi_view->render_element( array( 'content' => '{{off_day_label}}' ) );
+
+			return sprintf(
+				'<span class="day-element day-element-time">%1$s</span>',
+				wp_kses_post( $off_day_label )
+			);
+		}
+
+		return $multi_view->render_element(
+			array(
+				'content' => '{{time}}',
+				'attrs'   => array(
+					'class' => 'day-element day-element-time',
+				),
 			)
 		);
 	}

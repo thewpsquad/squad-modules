@@ -2,11 +2,9 @@
 /**
  * The Divi Library Shortcode extension class for Divi Squad.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.2.0
  */
 
 namespace DiviSquad\Extensions;
@@ -25,11 +23,8 @@ use function shortcode_exists;
 /**
  * The Divi Library Shortcode class.
  *
- * @since       1.2.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.2.0
  */
 class Divi_Layout_Shortcode extends Extension {
 
@@ -76,9 +71,27 @@ class Divi_Layout_Shortcode extends Extension {
 	 * @return array
 	 */
 	public function create_shortcode_column( $columns ) {
-		$columns['disq_shortcode_column'] = esc_html__( 'Shortcode', 'squad-modules-for-divi' );
+		$columns[ $this->get_column_slug() ] = $this->get_column_name();
 
 		return $columns;
+	}
+
+	/**
+	 * Get the column slug.
+	 *
+	 * @return string
+	 */
+	protected function get_column_slug() {
+		return 'disq_shortcode_column';
+	}
+
+	/**
+	 * Get the column name.
+	 *
+	 * @return string
+	 */
+	protected function get_column_name() {
+		return esc_html__( 'Shortcode', 'squad-modules-for-divi' );
 	}
 
 	/**
@@ -90,9 +103,20 @@ class Divi_Layout_Shortcode extends Extension {
 	 * @return void
 	 */
 	public function shortcode_column_content( $column, $id ) {
-		if ( 'disq_shortcode_column' === $column ) {
-			printf( '<p>[squad_divi_library_layout id="%s"]</p>', esc_attr( $id ) );
+		if ( $this->get_column_slug() === $column ) {
+			echo wp_kses_post( $this->get_column_content( $id ) );
 		}
+	}
+
+	/**
+	 * Get the column content.
+	 *
+	 * @param int $id The current post id.
+	 *
+	 * @return string
+	 */
+	protected function get_column_content( $id ) {
+		return sprintf( '<p>[squad_divi_library_layout id="%s"]</p>', esc_attr( (string) $id ) );
 	}
 
 	/**
@@ -110,7 +134,7 @@ class Divi_Layout_Shortcode extends Extension {
 			add_filter( 'pre_do_shortcode_tag', array( $this, 'shortcode_set_ajax_module_index' ) );
 		}
 
-		$layout_content = do_shortcode( '[et_pb_section global_module="' . esc_attr( (int) $attributes['id'] ) . ' "][/et_pb_section]' );
+		$layout_content = do_shortcode( '[et_pb_section global_module="' . esc_attr( (string) $attributes['id'] ) . ' "][/et_pb_section]' );
 
 		if ( $is_vb_preview ) {
 			global $et_pb_predefined_module_index, $divi_squad_pbe_module_index_before;
@@ -120,6 +144,7 @@ class Divi_Layout_Shortcode extends Extension {
 			} else {
 				unset( $et_pb_predefined_module_index );
 			}
+
 			remove_filter( 'pre_do_shortcode_tag', array( $this, 'shortcode_set_ajax_module_index' ) );
 		}
 
@@ -146,5 +171,3 @@ class Divi_Layout_Shortcode extends Extension {
 		return $value;
 	}
 }
-
-new Divi_Layout_Shortcode();

@@ -1,0 +1,37 @@
+<?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
+/**
+ * The plugin branding manager.
+ *
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   3.0.0
+ */
+
+namespace DiviSquad\Managers;
+
+use DiviSquad\Base\Factories\BrandAsset as BrandingFactory;
+
+/**
+ * The plugin branding management class.
+ *
+ * @package DiviSquad
+ * @since   3.0.0
+ */
+class Branding {
+
+	/**
+	 * Load all the branding.
+	 *
+	 * @return void
+	 */
+	public static function load() {
+		// Load available branding.
+		$branding = BrandingFactory::get_instance();
+		if ( $branding instanceof BrandingFactory ) {
+			$branding->add( Branding\AdminFooterText::class );
+			$branding->add( Branding\PluginActionLinks::class );
+			$branding->add( Branding\PluginRowActions::class );
+		}
+	}
+}

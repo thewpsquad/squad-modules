@@ -1,13 +1,11 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
 /**
- * Asset loading helper.
+ * Asset loading helper class for enqueuing scripts and styles.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Utils;
@@ -17,12 +15,14 @@ use function divi_squad;
 use function wp_enqueue_script;
 use function wp_enqueue_style;
 use function wp_parse_args;
+use function wp_register_style;
+use function wp_script_is;
 
 /**
  * Utils class.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.0.0
  */
 class Asset {
 
@@ -33,7 +33,26 @@ class Asset {
 	 * @since 1.0.0
 	 */
 	public static function get_the_version() {
-		return (string) divi_squad()->get_version();
+		return divi_squad()->get_version();
+	}
+
+	/**
+	 * Resolve the resource root path.
+	 *
+	 * @return string
+	 * @phpstan-return string|null
+	 */
+	public static function root_path() {
+		return divi_squad()->get_path();
+	}
+
+	/**
+	 * Resolve the resource root uri.
+	 *
+	 * @return string
+	 */
+	public static function root_path_uri() {
+		return divi_squad()->get_url();
 	}
 
 	/**
@@ -44,24 +63,6 @@ class Asset {
 	 */
 	public static function is_production_mode() {
 		return strpos( static::get_the_version(), '.' );
-	}
-
-	/**
-	 * Resolve the resource root path.
-	 *
-	 * @return string
-	 */
-	public static function root_path() {
-		return DIVI_SQUAD_DIR_PATH;
-	}
-
-	/**
-	 * Resolve the resource root uri.
-	 *
-	 * @return string
-	 */
-	public static function root_path_uri() {
-		return DIVI_SQUAD_DIR_URL;
 	}
 
 	/**
@@ -91,7 +92,7 @@ class Asset {
 	 * @return string
 	 */
 	public static function resolve_file_path( $relative_path ) {
-		return sprintf( '%1$s%2$s', static::root_path(), static::validate_relative_path( $relative_path ) );
+		return sprintf( '%1$s/%2$s', static::root_path(), static::validate_relative_path( $relative_path ) );
 	}
 
 	/**
@@ -109,10 +110,11 @@ class Asset {
 	 * Process asset path and version data.
 	 *
 	 * @param array $path The asset relative path with options.
+	 * @param array $dependencies The asset dependencies.
 	 *
 	 * @return array
 	 */
-	public static function process_asset_path_data( $path ) {
+	public static function process_asset_path_data( $path, $dependencies ) {
 		$full_path   = '';
 		$pattern     = ! empty( $path['pattern'] ) ? $path['pattern'] : 'build/[path_prefix]/[file].[ext]';
 		$path_prefix = ! empty( $path['path'] ) ? $path['path'] : 'divi-builder-4';
@@ -133,28 +135,26 @@ class Asset {
 		$the_file = $path['file'];
 
 		// Load alternative production file when found.
-		if ( static::is_production_mode() && ! empty( $path['prod_file'] ) ) {
+		if ( ! empty( $path['prod_file'] ) && static::is_production_mode() ) {
 			$the_file = $path['prod_file'];
 		}
 
 		// Load alternative development file when found.
-		if ( ! static::is_production_mode() && ! empty( $path['dev_file'] ) ) {
+		if ( ! empty( $path['dev_file'] ) && ! static::is_production_mode() ) {
 			$the_file = $path['dev_file'];
 		}
 
 		// The validated path of default file.
 		$path_clean    = str_replace( array( '[path_prefix]', '[file]', '[ext]' ), array( $path_prefix, $the_file, $extension ), $pattern );
 		$path_validate = static::validate_relative_path( $path_clean );
-
-		$version      = static::get_the_version();
-		$dependencies = array();
+		$version       = static::get_the_version();
 
 		if ( in_array( $extension, array( 'js', 'css' ), true ) ) {
 			// Check for the minified version in the server on production mode.
 			$minified_asset_file     = str_replace( array( ".$extension" ), array( ".min.$extension" ), $path_validate );
 			$is_minified_asset_file  = Str::ends_with( $path_validate, ".min.$extension" );
 			$is_minified_asset_found = file_exists( static::resolve_file_path( $minified_asset_file ) );
-			if ( Str::ends_with( $path_validate, ".$extension" ) && ! $is_minified_asset_file && $is_minified_asset_found ) {
+			if ( ! $is_minified_asset_file && $is_minified_asset_found && Str::ends_with( $path_validate, ".$extension" ) ) {
 				$path_validate = $minified_asset_file;
 			}
 
@@ -186,11 +186,45 @@ class Asset {
 		$plugin_url_root = untrailingslashit( static::root_path_uri() );
 		$full_path       = "{$plugin_url_root}{$path_validate}";
 
+		// Clean the dependencies if is not empty.
+		$dependencies = array_unique( array_filter( $dependencies ) );
+
+		// Enqueue the JSX Runtime script for WordPress 6.6 and above.
+		if ( ! empty( $dependencies ) && in_array( 'react-jsx-runtime', $dependencies, true ) ) {
+			if ( ! wp_script_is( 'react-jsx-runtime', 'registered' ) ) {
+				unset( $dependencies[ array_search( 'react-jsx-runtime', $dependencies, true ) ] );
+
+				$jsx_runtime = self::asset_path( 'react-jsx-runtime', array( 'path' => 'compat' ) );
+				self::asset_enqueue( 'react-jsx-runtime', $jsx_runtime, array( 'react' ) );
+			}
+		}
+
 		return array(
 			'path'         => $full_path,
 			'version'      => $version,
 			'dependencies' => $dependencies,
 		);
+	}
+
+	/**
+	 * Set the asset path.
+	 *
+	 * @param string $file    The file name.
+	 * @param array  $options The options for current asset file.
+	 *
+	 * @return array
+	 */
+	public static function asset_path( $file, $options = array() ) {
+		$defaults = array(
+			'pattern'   => 'build/[path_prefix]/[file].[ext]',
+			'file'      => $file,
+			'dev_file'  => '',
+			'prod_file' => '',
+			'path'      => '',
+			'ext'       => 'js',
+		);
+
+		return wp_parse_args( $options, $defaults );
 	}
 
 	/**
@@ -258,24 +292,24 @@ class Asset {
 	}
 
 	/**
-	 * Set the asset path.
+	 * Enqueue styles.
 	 *
-	 * @param string $file    The file name.
-	 * @param array  $options The options for current asset file.
+	 * @param string $keyword   Name of the stylesheet. Should be unique.
+	 * @param array  $path      Relative path of the stylesheet with options for the WordPress root directory.
+	 * @param array  $deps      Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
+	 * @param string $media     Optional. The media for which this stylesheet has been defined. Default 'all'.
+	 * @param bool   $no_prefix Optional. Set the plugin prefix with asset handle name is or not.
 	 *
-	 * @return array
+	 * @return void
+	 * @since 1.0.0
 	 */
-	public static function asset_path( $file, $options = array() ) {
-		$defaults = array(
-			'pattern'   => 'build/[path_prefix]/[file].[ext]',
-			'file'      => $file,
-			'dev_file'  => '',
-			'prod_file' => '',
-			'ext'       => 'js',
-			'path'      => '',
-		);
+	public static function style_enqueue( $keyword, $path, $deps = array(), $media = 'all', $no_prefix = false ) {
+		$asset_data = static::process_asset_path_data( $path, $deps );
+		$handle     = $no_prefix ? $keyword : sprintf( 'squad-%1$s', $keyword );
+		$version    = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
 
-		return wp_parse_args( $options, $defaults );
+		// Load stylesheet file.
+		wp_enqueue_style( $handle, $asset_data['path'], $asset_data['dependencies'], $version, $media );
 	}
 
 	/**
@@ -290,34 +324,12 @@ class Asset {
 	 * @since 1.0.0
 	 */
 	public static function asset_enqueue( $keyword, $path, array $deps = array(), $no_prefix = false ) {
-		$asset_data   = self::process_asset_path_data( $path );
-		$dependencies = array_merge( $asset_data['dependencies'], $deps );
-		$handle       = $no_prefix ? $keyword : sprintf( 'squad-%1$s', $keyword );
-		$version      = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
-
-		// Load script file.
-		wp_enqueue_script( $handle, $asset_data['path'], $dependencies, $version, self::footer_arguments( true ) );
-	}
-
-	/**
-	 * Enqueue styles.
-	 *
-	 * @param string $keyword   Name of the stylesheet. Should be unique.
-	 * @param array  $path      Relative path of the stylesheet with options for the WordPress root directory.
-	 * @param array  $deps      Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
-	 * @param string $media     Optional. The media for which this stylesheet has been defined. Default 'all'.
-	 * @param bool   $no_prefix Optional. Set the plugin prefix with asset handle name is or not.
-	 *
-	 * @return void
-	 * @since 1.0.0
-	 */
-	public static function style_enqueue( $keyword, $path, $deps = array(), $media = 'all', $no_prefix = false ) {
-		$asset_data = static::process_asset_path_data( $path );
+		$asset_data = self::process_asset_path_data( $path, $deps );
 		$handle     = $no_prefix ? $keyword : sprintf( 'squad-%1$s', $keyword );
 		$version    = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
 
-		// Load stylesheet file.
-		wp_enqueue_style( $handle, $asset_data['path'], $deps, $version, $media );
+		// Load script file.
+		wp_enqueue_script( $handle, $asset_data['path'], $asset_data['dependencies'], $version, self::footer_arguments( true ) );
 	}
 
 	/**
@@ -330,12 +342,11 @@ class Asset {
 	 * @return void
 	 */
 	public static function register_script( $handle, $path, $deps = array() ) {
-		$asset_data   = self::process_asset_path_data( $path );
-		$handle       = sprintf( 'squad-%1$s', $handle );
-		$dependencies = array_merge( $asset_data['dependencies'], $deps );
-		$version      = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
+		$asset_data = self::process_asset_path_data( $path, $deps );
+		$handle     = sprintf( 'squad-%1$s', $handle );
+		$version    = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
 
-		wp_register_script( $handle, $asset_data['path'], $dependencies, $version, self::footer_arguments( true ) );
+		wp_register_script( $handle, $asset_data['path'], $asset_data['dependencies'], $version, self::footer_arguments( true ) );
 	}
 
 	/**
@@ -350,18 +361,19 @@ class Asset {
 	 * @since 1.0.0
 	 */
 	public static function register_style( $keyword, $path, $deps = array(), $media = 'all' ) {
-		$asset_data = static::process_asset_path_data( $path );
+		$asset_data = static::process_asset_path_data( $path, $deps );
 		$handle     = sprintf( 'squad-%1$s', $keyword );
 		$version    = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
 
 		// Load stylesheet file.
-		wp_register_style( $handle, $asset_data['path'], $deps, $version, $media );
+		wp_register_style( $handle, $asset_data['path'], $asset_data['dependencies'], $version, $media );
 	}
 
 	/**
 	 * Get available script enqueue footer arguments.
 	 *
-	 * @param bool $add_strategy Optional. If provided, may be either 'defer' or 'async'.
+	 * @param bool $strategy Optional. If provided, may be either 'defer' or 'async'. Default false.
+	 * @param bool $priority Optional. If provided, may be either 'high' or 'low'. Default 'low'.
 	 *
 	 * @return array
 	 * @since 1.4.8

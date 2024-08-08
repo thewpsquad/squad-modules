@@ -1,75 +1,60 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 /**
- * Divi helper.
+ * Divi helper class for common functions.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Utils;
 
+use function add_filter;
 use function et_get_dynamic_assets_path;
 use function et_pb_maybe_fa_font_icon;
 use function et_use_dynamic_icons;
-use function add_filter;
-use function get_option;
-use function get_template;
-use function wp_get_theme;
-use function wp_get_themes;
 
 /**
  * Divi class.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.0.0
  */
 class Divi {
-	/**
-	 * Check if Divi visual builder is enabled.
-	 *
-	 * @return boolean
-	 */
-	public static function is_fb_enabled() {
-		return function_exists( 'et_core_is_fb_enabled' ) && et_core_is_fb_enabled();
-	}
 	/**
 	 * Check if Divi theme builder is enabled.
 	 *
 	 * @return boolean
 	 */
 	public static function is_bfb_enabled() {
-		return function_exists( 'et_builder_bfb_enabled' ) && et_builder_bfb_enabled();
+		return function_exists( '\et_builder_bfb_enabled' ) && \et_builder_bfb_enabled();
 	}
 
 	/**
-	 * Check if Divi Builder 5 is enabled.
+	 * Check if Theme Builder is Used on the page.
 	 *
 	 * @return boolean
 	 */
-	public static function is_d5_enabled() {
-		return function_exists( 'et_builder_d5_enabled' ) && et_builder_d5_enabled() && self::is_fb_enabled();
+	public static function is_theme_builder_used() {
+		return function_exists( '\et_fb_is_theme_builder_used_on_page' ) && \et_fb_is_theme_builder_used_on_page();
 	}
 
 	/**
-	 * Get unicode icon data
+	 * Check if the current screen is the Theme Builder administration screen.
 	 *
-	 * @param string $icon_value Icon font value.
-	 *
-	 * @return string Icon data
+	 * @return boolean
 	 */
-	public static function get_icon_data_to_unicode( $icon_value ) {
-		if ( ! empty( $icon_value ) ) {
-			$icon_all_data = explode( '||', $icon_value );
-			$icon_data     = array_shift( $icon_all_data );
-			$icon_data     = str_replace( ';', '', $icon_data );
+	public static function is_tb_admin_screen() {
+		return function_exists( '\et_builder_is_tb_admin_screen' ) && \et_builder_is_tb_admin_screen();
+	}
 
-			return str_replace( '&#x', '\\', $icon_data );
-		} else {
-			return '';
-		}
+	/**
+	 * Check if Divi visual builder is enabled.
+	 *
+	 * @return boolean
+	 */
+	public static function is_fb_enabled() {
+		return function_exists( '\et_core_is_fb_enabled' ) && \et_core_is_fb_enabled();
 	}
 
 	/**

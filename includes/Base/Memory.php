@@ -1,5 +1,13 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * Memory class
+ *
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
+ */
+
 namespace DiviSquad\Base;
 
 use function add_action;
@@ -12,11 +20,8 @@ use function wp_cache_set;
 /**
  * Memory class
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.0.0
  */
 class Memory {
 
@@ -48,7 +53,7 @@ class Memory {
 	 *
 	 * @since 1.2.0
 	 */
-	public function __construct( $prefix = 'squad' ) {
+	public function __construct( $prefix = 'squad-core' ) {
 		$this->option_group = $prefix;
 		$this->option_name  = sprintf( '%1$s-settings', $prefix );
 		$this->data         = wp_cache_get( $this->option_name, $this->option_group );
@@ -62,16 +67,16 @@ class Memory {
 		}
 
 		// Store the memory data to the database.
-		add_action( 'shutdown', array( $this, 'sync_all_data' ) );
+		add_action( 'shutdown', array( $this, 'sync_all_data' ), 0 );
 	}
 
 	/**
 	 * Get the field value.
 	 *
-	 * @param string                          $field    The field key.
-	 * @param array|string|numeric|null|false $defaults The default value for field.
+	 * @param string                     $field    The field key.
+	 * @param array|string|int|null|bool $defaults The default value for field.
 	 *
-	 * @return array|string|numeric|null|false
+	 * @return array|string|int|null|bool
 	 */
 	public function get( $field, $defaults = null ) {
 		return isset( $this->data[ $field ] ) ? $this->data[ $field ] : $defaults;
@@ -80,10 +85,10 @@ class Memory {
 	/**
 	 * Set the field value.
 	 *
-	 * @param string                          $field The field key.
-	 * @param array|string|numeric|null|false $value The value for field.
+	 * @param string                     $field The field key.
+	 * @param array|string|int|null|bool $value The value for field.
 	 *
-	 * @return array|string|numeric|null|false
+	 * @return array|string|int|null|bool
 	 */
 	public function set( $field, $value ) {
 		$this->data[ $field ] = $value;
@@ -94,10 +99,10 @@ class Memory {
 	/**
 	 * Update the field value.
 	 *
-	 * @param string                          $field The field key.
-	 * @param array|string|numeric|null|false $value The value for field.
+	 * @param string                     $field The field key.
+	 * @param array|string|int|null|bool $value The value for field.
 	 *
-	 * @return array|string|numeric|null|false
+	 * @return array|string|int|null|bool
 	 */
 	public function update( $field, $value ) {
 		if ( isset( $this->data[ $field ] ) ) {

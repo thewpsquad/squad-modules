@@ -2,13 +2,10 @@
 /**
  * Builder Utils Base Class
  *
- * @since       1.5.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.5.0
  */
-
 
 namespace DiviSquad\Base\DiviBuilder\Utils;
 
@@ -18,11 +15,9 @@ use DiviSquad\Base\DiviBuilder\Utils;
 /**
  * Utils Base class
  *
- * @since       2.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   2.0.0
  */
 abstract class Base {
 	use Utils\Common;

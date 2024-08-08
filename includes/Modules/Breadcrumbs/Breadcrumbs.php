@@ -5,15 +5,14 @@
  *
  * This class provides breadcrumbs adding functionalities in the visual builder.
  *
- * @since           1.4.0
- * @package         squad-modules-for-divi
- * @author          WP Squad <support@thewpsquad.com>
- * @license         GPL-3.0-only
+ * @package DiviSquad\Modules\Breadcrumbs
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.4.0
  */
 
 namespace DiviSquad\Modules\Breadcrumbs;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
@@ -25,10 +24,10 @@ use function et_pb_process_font_icon;
 /**
  * Breadcrumbs Module Class.
  *
- * @since           1.4.0
- * @package         squad-modules-for-divi
+ * @package DiviSquad\Modules\Breadcrumbs
+ * @since   1.4.0
  */
-class Breadcrumbs extends Squad_Module {
+class Breadcrumbs extends DiviSquad_Module {
 
 	/**
 	 * Initiate Module.
@@ -40,7 +39,7 @@ class Breadcrumbs extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Breadcrumbs', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Breadcrumbs', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/breadcrumbs.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/breadcrumbs.svg' );
 
 		$this->slug             = 'disq_breadcrumbs';
 		$this->vb_support       = 'on';
@@ -260,7 +259,7 @@ class Breadcrumbs extends Squad_Module {
 		$breadcrumbs = Utils::get_hansel_and_gretel_breadcrumbs(
 			esc_html( $this->props['home_text'] ),
 			esc_html( $this->props['before_text'] ),
-			esc_attr( et_pb_process_font_icon( $this->prop( 'before_icon', '%%24%%' ) ) )
+			esc_attr( et_pb_process_font_icon( $this->prop( 'font_icon', '%%24%%' ) ) )
 		);
 
 		// Divi icon fallback support.

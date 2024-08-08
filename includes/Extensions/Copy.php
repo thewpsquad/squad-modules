@@ -3,11 +3,9 @@
 /**
  * The Post Duplicator extension class for Divi Squad.
  *
- * @since       1.4.8
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.4.8
  */
 
 namespace DiviSquad\Extensions;
@@ -15,9 +13,10 @@ namespace DiviSquad\Extensions;
 use DiviSquad\Base\Extension;
 use DiviSquad\Utils\Asset;
 use DiviSquad\Utils\WP;
+use WP_Post;
+use WP_User;
 use function add_action;
 use function add_filter;
-use function check_ajax_referer;
 use function current_user_can;
 use function esc_attr;
 use function esc_attr__;
@@ -30,21 +29,15 @@ use function is_multisite;
 use function load_template;
 use function sanitize_post;
 use function switch_to_blog;
-use function wp_create_nonce;
-use function wp_get_current_user;
 use function wp_get_object_terms;
 use function wp_insert_post;
-use function wp_send_json;
 use function wp_set_object_terms;
 
 /**
  * The Post Duplicator class.
  *
- * @since       1.4.8
- * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.4.8
  */
 class Copy extends Extension {
 
@@ -63,39 +56,50 @@ class Copy extends Extension {
 	 * @return void
 	 */
 	protected function load() {
+		/**
+		 * Fires before the extension is loaded.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param Copy $instance The Copy extension object.
+		 */
+		do_action( 'divi_squad_ext_copy_before_loaded', $this );
+
 		// Add CSS body class name for the available post or page.
 		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
-
-		// Load the template at footer.
-		add_action( 'admin_footer', array( $this, 'admin_footer_template' ) );
 
 		// Enqueuing scripts.
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 
+		// Load the template at footer.
+		add_action( 'admin_footer', array( $this, 'admin_footer_template' ) );
+
 		// Add a duplicate link in the array of row action links on the Posts list table.
-		add_filter( 'post_row_actions', array( $this, 'row_actions' ), 10, 2 );
-		add_filter( 'page_row_actions', array( $this, 'row_actions' ), 10, 2 );
-		add_filter( 'cuar/core/admin/content-list-table/row-actions', array( $this, 'row_actions' ), 10, 2 );
+		foreach ( $this->get_allowed_list_table_for_row_actions() as $list_table ) {
+			if ( 'cuar/core/admin/content-list-table' === $list_table ) {
+				add_filter( "$list_table/row-actions", array( $this, 'row_actions' ), 10, 2 );
+			} else {
+				add_filter( "{$list_table}_row_actions", array( $this, 'row_actions' ), 10, 2 );
+			}
+		}
 
 		// Add duplicate action in the bulk actions menu of the list table.
-		add_filter( 'bulk_actions-edit-post', array( $this, 'bulk_actions' ) );
-		add_filter( 'bulk_actions-edit-page', array( $this, 'bulk_actions' ) );
-		add_filter( 'cuar/core/admin/container-list-table/bulk-actions?post_type=cuar_private_file', array( $this, 'bulk_actions' ) );
-		add_filter( 'cuar/core/admin/container-list-table/bulk-actions?post_type=cuar_private_page', array( $this, 'bulk_actions' ) );
-	}
+		foreach ( $this->get_allowed_post_types_for_bulk_actions() as $post_type ) {
+			if ( in_array( $post_type, array( 'cuar_private_file', 'cuar_private_page' ), true ) ) {
+				add_filter( "cuar/core/admin/container-list-table/bulk-actions?post_type=$post_type", array( $this, 'bulk_actions' ) );
+			} else {
+				add_filter( "bulk_actions-edit-$post_type", array( $this, 'bulk_actions' ) );
+			}
+		}
 
-	/**
-	 * Verify allowed screen.
-	 *
-	 * @return bool
-	 */
-	public function is_ignored_admin_screen() {
-		global $pagenow;
-
-		$screen  = get_current_screen();
-		$allowed = array( 'post', 'edit-post', 'edit-page', 'page' );
-
-		return ( ! $screen || ! in_array( $screen->id, $allowed, true ) ) && ! ( 'edit.php' === $pagenow || 'post.php' === $pagenow );
+		/**
+		 * Fires after the extension is loaded.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param Copy $instance The Copy extension object.
+		 */
+		do_action( 'divi_squad_ext_copy_loaded', $this );
 	}
 
 	/**
@@ -106,7 +110,7 @@ class Copy extends Extension {
 	 * @return string
 	 */
 	public function admin_body_class( $classes ) {
-		if ( $this->is_ignored_admin_screen() ) {
+		if ( ! $this->is_allowed_admin_screen() ) {
 			return $classes;
 		}
 
@@ -121,25 +125,8 @@ class Copy extends Extension {
 	 *
 	 * @return void
 	 */
-	public function admin_footer_template() {
-		if ( $this->is_ignored_admin_screen() ) {
-			return;
-		}
-
-		// The template path.
-		$template_path = sprintf( '%1$s/extensions/copy.php', DIVI_SQUAD_TEMPLATES_PATH );
-		if ( current_user_can( 'edit_posts' ) && file_exists( $template_path ) ) {
-			load_template( $template_path );
-		}
-	}
-
-	/**
-	 * Enqueuing scripts for all admin pages.
-	 *
-	 * @return void
-	 */
 	public function admin_enqueue_scripts() {
-		if ( $this->is_ignored_admin_screen() ) {
+		if ( ! $this->is_allowed_admin_screen() ) {
 			return;
 		}
 
@@ -149,9 +136,9 @@ class Copy extends Extension {
 			Asset::register_script( 'vendor-toast', Asset::vendor_asset_path( 'jquery.toast' ), array( 'jquery' ) );
 			Asset::register_style( 'vendor-toast', Asset::vendor_asset_path( 'jquery.toast', array( 'ext' => 'css' ) ) );
 
-			Asset::asset_enqueue( 'ext-copy', Asset::extension_asset_path( 'copy' ), array( 'lodash', 'jquery', 'squad-vendor-tooltipster', 'squad-vendor-toast' ) );
+			Asset::asset_enqueue( 'ext-copy', Asset::extension_asset_path( 'copy' ), array( 'lodash', 'jquery', 'wp-api-fetch', 'squad-vendor-tooltipster', 'squad-vendor-toast' ) );
 			Asset::style_enqueue( 'ext-copy', Asset::extension_asset_path( 'copy', array( 'ext' => 'css' ) ), array( 'squad-vendor-tooltipster', 'squad-vendor-toast' ) );
-			Asset::asset_enqueue( 'ext-copy-bulk', Asset::extension_asset_path( 'copy-bulk' ), array( 'lodash', 'jquery', 'squad-vendor-toast' ) );
+			Asset::asset_enqueue( 'ext-copy-bulk', Asset::extension_asset_path( 'copy-bulk' ), array( 'lodash', 'jquery', 'wp-api-fetch', 'squad-vendor-toast' ) );
 			Asset::style_enqueue( 'ext-copy-bulk', Asset::extension_asset_path( 'copy-bulk', array( 'ext' => 'css' ) ), array( 'squad-vendor-toast' ) );
 
 			// Load localize data.
@@ -163,6 +150,60 @@ class Copy extends Extension {
 	}
 
 	/**
+	 * Enqueuing scripts for all admin pages.
+	 *
+	 * @return void
+	 */
+	public function admin_footer_template() {
+		if ( ! $this->is_allowed_admin_screen() ) {
+			return;
+		}
+
+		// The template args.
+		$template_args = array(
+			'current_site'  => get_current_blog_id(),
+			'site_is_multi' => is_multisite() !== true ? ' disabled' : '',
+		);
+
+		// Get all sites in multisite.
+		if ( function_exists( '\get_sites' ) ) {
+			$sites = \get_sites();
+			foreach ( $sites as $site ) {
+				$template_args['blog_sites'][ $site->blog_id ] = $site->blogname;
+			}
+		}
+
+		// The template path.
+		$template_path = sprintf( '%1$s/extensions/copy.php', divi_squad()->get_template_path() );
+		if ( current_user_can( 'edit_posts' ) && file_exists( $template_path ) ) {
+			load_template( $template_path, true, $template_args );
+		}
+	}
+
+	/**
+	 * Verify allowed screen.
+	 *
+	 * @return bool
+	 */
+	public function is_allowed_admin_screen() {
+		// Get the current screen.
+		$screen = get_current_screen();
+
+		/**
+		 * Filters the allowed screen for the extension.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string[] $allowed_screen The allowed screen.
+		 *
+		 * @return string[]
+		 */
+		$allowed_screen = apply_filters( 'divi_squad_ext_copy_allowed_screen', array( 'post', 'edit-post', 'page', 'edit-page' ) );
+
+		return $screen instanceof \WP_Screen && in_array( $screen->id, $allowed_screen, true );
+	}
+
+	/**
 	 * Set localize data for admin area.
 	 *
 	 * @param array $exists_data Exists extra data.
@@ -170,12 +211,15 @@ class Copy extends Extension {
 	 * @return array
 	 */
 	public function wp_localize_script_data( $exists_data ) {
+		$screen = get_current_screen();
+		// Check if the current screen is not a WP_Screen object.
+		if ( ! $screen instanceof \WP_Screen ) {
+			return $exists_data;
+		}
+
 		// Localize data.
 		$admin_localize = array(
-			'ajax_url'         => admin_url( 'admin-ajax.php' ),
-			'ajax_nonce_copy'  => wp_create_nonce( 'divi_squad_ext_duplicate_post' ),
-			'ajax_action_copy' => 'divi_squad_ext_duplicate_post',
-			'l10n'             => array(
+			'l10n' => array(
 				'copy'             => esc_html__( 'Copy', 'squad-modules-for-divi' ),
 				'copy_toast_title' => esc_html__( 'Squad Copy Extension', 'squad-modules-for-divi' ),
 				'copy_empty_post'  => esc_html__( 'Kindly choose a minimum of one row for copying.', 'squad-modules-for-divi' ),
@@ -190,17 +234,17 @@ class Copy extends Extension {
 	 * Add the duplicate link to post, page, and custom actions
 	 *
 	 * @param string[] $actions An array of row action links. Defaults are 'Edit', 'Quick Edit', 'Restore', 'Trash', 'Delete Permanently', 'Preview', and 'View'.
-	 * @param \WP_Post $post    The post-object.
+	 * @param WP_Post  $post    The post-object.
 	 *
 	 * @return string[] An array of row action links.
 	 */
 	public function row_actions( $actions, $post ) {
-		if ( current_user_can( 'edit_posts' ) && 'trash' !== $post->post_status ) {
+		if ( 'trash' !== $post->post_status && current_user_can( 'edit_posts' ) ) {
 			$actions['copy_this'] = sprintf(
-				'<a class="copy-this-post-link" href="#squad_ext_copy" title="%1$s" data-id="%3$s" rel="permalink">%2$s</a>',
+				'<a class="copy-this-post-link" href="#" title="%1$s" data-id="%3$s" rel="permalink">%2$s</a>',
 				esc_attr__( 'Copy this', 'squad-modules-for-divi' ),
 				esc_html__( 'Copy', 'squad-modules-for-divi' ),
-				esc_attr( $post->ID )
+				esc_attr( (string) $post->ID )
 			);
 		}
 
@@ -223,45 +267,89 @@ class Copy extends Extension {
 	}
 
 	/**
+	 * Get the allowed list table for row actions.
+	 *
+	 * @return string[]
+	 */
+	public function get_allowed_list_table_for_row_actions() {
+		/**
+		 * Filters the allowed post types for row actions.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string[] $post_types The allowed post types.
+		 *
+		 * @return string[]
+		 */
+		return apply_filters( 'divi_squad_ext_copy_allowed_post_types_for_row_actions', array( 'post', 'page', 'cuar/core/admin/content-list-table' ) );
+	}
+
+	/**
+	 * Get the allowed post types.
+	 *
+	 * @return string[]
+	 */
+	public function get_allowed_post_types_for_bulk_actions() {
+		/**
+		 * Filters the allowed post types for bulk actions.
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string[] $post_types The allowed post types.
+		 *
+		 * @return string[]
+		 */
+		return apply_filters( 'divi_squad_ext_copy_allowed_post_types_for_bulk_actions', array( 'post', 'page', 'project', 'et_pb_layout', 'cuar_private_file', 'cuar_private_page' ) );
+	}
+
+	/**
 	 * Duplicate the post.
 	 *
+	 * @param array $options The post duplication options.
+	 *
 	 * @return void
+	 * @throws \RuntimeException When the post duplication failed.
 	 */
-	public static function duplicate_the_post() {
+	public static function duplicate_the_post( $options ) {
 		// Get access to the database.
-		global $wpdb;
-
-		// Nonce verification.
-		check_ajax_referer( 'divi_squad_ext_duplicate_post', '_wpnonce' );
-
-		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_send_json(
-				array(
-					'type'    => 'error',
-					'message' => 'Permission denied.',
-				)
-			);
-		}
+		global $wpdb, $current_user, $blog_id;
 
 		// Collect current post.
-		$post_ids   = (array) $_POST['copyQueryOptions']['postID'];
-		$post_count = intval( $_POST['copyQueryOptions']['postCount'] );
-		$blog_id    = intval( $_POST['copyQueryOptions']['siteID'] );
-		$current_id = get_current_blog_id();
+		$post_ids   = isset( $options['post_ids'] ) ? array_map( 'absint', (array) $options['post_ids'] ) : array();
+		$post_count = isset( $options['posts_count'] ) ? absint( sanitize_text_field( $options['posts_count'] ) ) : 1;
+		$site_id    = isset( $options['site_id'] ) ? absint( sanitize_text_field( $options['site_id'] ) ) : 1;
 
-		// Collect post-author info.
-		$user = wp_get_current_user();
+		// Check the requested post ids is empty or not.
+		if ( empty( $post_ids ) ) {
+			throw new \RuntimeException( esc_html__( 'Kindly choose a minimum of one row for copying.', 'squad-modules-for-divi' ) );
+		}
 
-		if ( count( $post_ids ) !== 0 ) {
+		// Check if the user is not super admin in multisite.
+		if ( ! $current_user instanceof WP_User ) {
+			throw new \RuntimeException( esc_html__( 'User not found.', 'squad-modules-for-divi' ) );
+		}
+
+		// Check if the user is not super admin in multisite.
+		if ( is_multisite() && ! is_super_admin( $current_user->ID ) ) {
+			throw new \RuntimeException( esc_html__( 'You do not have permission to access this endpoint.', 'squad-modules-for-divi' ) );
+		}
+
+		if ( 0 !== count( $post_ids ) ) {
 			$is_copy_done = false;
 
+			/**
+			 * Loop through all the selected posts and duplicate them.
+			 *
+			 * @param int $post_id The post ID.
+			 * @param int $interval The post duplication interval.
+			 */
 			foreach ( $post_ids as $post_id ) {
-				$post = sanitize_post( get_post( $post_id ), 'db' );
-				if ( isset( $post ) ) {
+				$post = sanitize_post( get_post( absint( $post_id ) ), 'db' );
+				if ( $post instanceof WP_Post ) {
 
 					// Switch to target blog site when multisite available.
-					if ( is_multisite() && $blog_id !== $current_id ) {
-						switch_to_blog( $blog_id );
+					if ( $site_id !== $blog_id && is_multisite() ) {
+						switch_to_blog( $site_id );
 					}
 
 					for ( $interval = 1; $interval <= $post_count; $interval++ ) {
@@ -269,7 +357,7 @@ class Copy extends Extension {
 							'post_status'    => 'draft',
 							'comment_status' => $post->comment_status,
 							'ping_status'    => $post->ping_status,
-							'post_author'    => $user->ID,
+							'post_author'    => $current_user->ID,
 							'post_content'   => $post->post_content,
 							'post_excerpt'   => $post->post_excerpt,
 							'post_name'      => $post->post_name,
@@ -286,38 +374,40 @@ class Copy extends Extension {
 						// get all current post-terms ad set them to the new post-draft.
 						$taxonomies = get_object_taxonomies( $post->post_type );
 						foreach ( $taxonomies as $taxonomy ) {
-							$post_terms = wp_get_object_terms( $post_id, $taxonomy, array( 'fields' => 'slugs' ) );
-							wp_set_object_terms( $new_post_id, $post_terms, $taxonomy, false );
+							$post_terms = wp_get_object_terms( array( absint( $post_id ) ), $taxonomy, array( 'fields' => 'slugs' ) );
+
+							// set the post terms.
+							wp_set_object_terms( $new_post_id, $post_terms, $taxonomy );
 						}
 
 						// Duplicate all post meta just in two SQL queries.
-						$post_meta_infos = $wpdb->get_results(
-							$wpdb->prepare(
-								"SELECT meta_key, meta_value FROM `$wpdb->postmeta` WHERE `post_id` = %s",
-								array( $post_id )
-							)
-						);
-						if ( count( $post_meta_infos ) !== 0 ) {
-							$sql_query_sel = array();
-							$sql_query     = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
-							foreach ( $post_meta_infos as $meta_info ) {
-								$meta_key = $meta_info->meta_key;
+						$meta_data = get_post_meta( absint( $post_id ) );
+						if ( 0 !== count( $meta_data ) ) {
+							$query  = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) VALUES ";
+							$values = array();
 
-								if ( '_wp_old_slug' === $meta_key ) {
+							foreach ( $meta_data as $meta_key => $meta_value ) {
+								// Do not duplicate the following post meta.
+								$excluded_defaults  = array( '_wp_old_slug', '_wp_old_date', '_edit_lock', '_edit_last', '_wp_trash_meta_status', '_wp_trash_meta_time', 'fakerpress_flag' );
+								$excluded_meta_keys = apply_filters( 'divi_squad_ext_copy_excluded_meta_keys', $excluded_defaults );
+								if ( in_array( $meta_key, $excluded_meta_keys, true ) ) {
 									continue;
 								}
 
-								$meta_value      = $wpdb->prepare( '%s', $meta_info->meta_value );
-								$sql_query_sel[] = $wpdb->prepare( 'SELECT %d, %s, %s', $new_post_id, $meta_key, $meta_value );
+								$values[] = $wpdb->prepare( '(%d, %s, %s)', $new_post_id, $meta_key, $meta_value[0] );
 							}
-							$sql_query .= implode( ' UNION ALL ', $sql_query_sel );
-							$wpdb->query( $sql_query ); // phpcs:ignore
+
+							// Join all values.
+							$query .= implode( ', ', $values );
+
+							// Insert the post meta.
+							$wpdb->query( $query ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
 						}
 					}
 
 					// Rollback to current blog site when multisite available.
-					if ( is_multisite() && $blog_id !== $current_id ) {
-						switch_to_blog( $current_id );
+					if ( $site_id !== $blog_id && is_multisite() ) {
+						switch_to_blog( absint( $blog_id ) );
 					}
 
 					$is_copy_done = true;
@@ -327,30 +417,11 @@ class Copy extends Extension {
 				}
 			}
 
-			if ( $is_copy_done ) {
-				wp_send_json(
-					array(
-						'type'    => 'success',
-						'message' => 'Post duplication completed successfully. All duplicated posts are now saved as drafts for your review.',
-					)
-				);
-			} else {
-				wp_send_json(
-					array(
-						'type'    => 'error',
-						'message' => 'Post creation encountered an error, and one or more posts could not be successfully duplicated.',
-					)
-				);
+			if ( ! $is_copy_done ) {
+				throw new \RuntimeException( esc_html__( 'Post(s) duplication failed.', 'squad-modules-for-divi' ) );
 			}
 		} else {
-			wp_send_json(
-				array(
-					'type'    => 'error',
-					'message' => esc_html__( 'Kindly choose a minimum of one post for copying.', 'squad-modules-for-divi' ),
-				)
-			);
+			throw new \RuntimeException( esc_html__( 'Kindly choose a minimum of one post for copying.', 'squad-modules-for-divi' ) );
 		}
 	}
 }
-
-new Copy();

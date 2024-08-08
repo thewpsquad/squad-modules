@@ -1,12 +1,25 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * The Core class.
+ *
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
+ */
+
 namespace DiviSquad\Base;
 
+use DiviSquad\Utils\Divi;
+use DiviSquad\Utils\Media\Image;
 use function add_action;
 use function apply_filters;
+use function divi_squad;
 use function esc_attr;
+use function esc_url;
 use function is_admin;
 use function is_multisite;
+use function is_wp_error;
 use function load_plugin_textdomain;
 use function wp_json_encode;
 use function wp_kses_data;
@@ -14,14 +27,16 @@ use function wp_kses_data;
 /**
  * The Base class for Core
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.0.0
  */
 abstract class Core {
 
+	/**
+	 * The plugin admin menu slug.
+	 *
+	 * @var string
+	 */
 	protected $admin_menu_slug = '';
 
 	/**
@@ -29,7 +44,7 @@ abstract class Core {
 	 *
 	 * @var array
 	 */
-	protected $options;
+	protected $options = array();
 
 	/**
 	 * The Plugin name.
@@ -89,20 +104,6 @@ abstract class Core {
 	abstract protected function init( $options = array() );
 
 	/**
-	 * Load all extensions.
-	 *
-	 * @return void
-	 */
-	abstract protected function load_extensions();
-
-	/**
-	 * Load all divi modules.
-	 *
-	 * @return void
-	 */
-	abstract protected function load_modules_for_builder();
-
-	/**
 	 * Get the plugin options.
 	 *
 	 * @return array
@@ -131,6 +132,28 @@ abstract class Core {
 	abstract public function hook_activation();
 
 	/**
+	 * Load all assets.
+	 *
+	 * @return void
+	 * @since 3.0.0
+	 */
+	protected function load_assets() {}
+
+	/**
+	 * Load all extensions.
+	 *
+	 * @return void
+	 */
+	abstract protected function load_extensions();
+
+	/**
+	 * Load all divi modules.
+	 *
+	 * @return void
+	 */
+	abstract protected function load_modules_for_builder();
+
+	/**
 	 * Get the plugin name.
 	 *
 	 * @return string
@@ -154,6 +177,13 @@ abstract class Core {
 	 * @return string
 	 */
 	public function get_admin_menu_slug() {
+		/**
+		 * Filter the plugin admin menu slug.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $admin_menu_slug The plugin admin menu slug.
+		 */
 		return apply_filters( 'divi_squad_admin_main_menu_slug', $this->admin_menu_slug );
 	}
 
@@ -176,17 +206,6 @@ abstract class Core {
 	}
 
 	/**
-	 * The admin interface asset and others.
-	 *
-	 * @return void
-	 */
-	protected function load_global_assets() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'wp_hook_enqueue_admin_scripts' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'wp_hook_enqueue_admin_scripts' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'wp_hook_enqueue_scripts' ) );
-	}
-
-	/**
 	 * Load css variables in the admin panel.
 	 *
 	 * @return void
@@ -194,7 +213,7 @@ abstract class Core {
 	public function wp_hook_enqueue_admin_scripts() {
 		$logo_css_selector = '';
 		$is_maybe_admin    = is_admin();
-		$is_visual_builder = function_exists( 'et_core_is_fb_enabled' ) && et_core_is_fb_enabled();
+		$is_visual_builder = Divi::is_fb_enabled() || Divi::is_bfb_enabled() || Divi::is_tb_admin_screen();
 
 		if ( $is_maybe_admin || $is_visual_builder ) {
 			if ( $is_maybe_admin ) {
@@ -212,17 +231,17 @@ abstract class Core {
 			// Start style tag and class selector.
 			printf( '<style id="divi_squad_admin_assets_backend"> %1$s {', esc_attr( $logo_css_selector ) );
 
-			// Set current required data into variables.
-			$logo_fill_colored = DIVI_SQUAD_DIR_URL . 'build/admin/images/divi-squad-default.png';
-			$logo_fill_default = DIVI_SQUAD_DIR_URL . 'build/admin/images/divi-squad-menu-default.png';
-			$logo_fill_active  = DIVI_SQUAD_DIR_URL . 'build/admin/images/divi-squad-menu-active.png';
-			$logo_fill_focus   = DIVI_SQUAD_DIR_URL . 'build/admin/images/divi-squad-menu-focus.png';
+			// Load the image class.
+			$image = new Image( divi_squad()->get_path( '/build/admin/images/logos' ) );
+
+			// Get the image.
+			$squad_image = $image->get_image( 'divi-squad-d-default.png', 'png' );
+			if ( is_wp_error( $squad_image ) ) {
+				return;
+			}
 
 			// Define all css variables for logos.
-			printf( '--squad-brand-logo: url("%s");', esc_url( $logo_fill_colored ) );
-			printf( '--squad-brand-logo-menu-default: url("%s");', esc_url( $logo_fill_default ) );
-			printf( '--squad-brand-logo-active-default: url("%s");', esc_url( $logo_fill_active ) );
-			printf( '--squad-brand-logo-focus-default: url("%s");', esc_url( $logo_fill_focus ) );
+			printf( '--squad-brand-logo: url("%s");', esc_url( $squad_image, array( 'data' ) ) );
 
 			// End class selector and style tag.
 			print '} </style>';
@@ -230,11 +249,15 @@ abstract class Core {
 	}
 
 	/**
-	 * Load css variables in the frontend.
+	 * The admin interface asset and others.
 	 *
 	 * @return void
 	 */
-	public function wp_hook_enqueue_scripts() {}
+	protected function load_global_assets() {
+		add_action( 'admin_enqueue_scripts', array( $this, 'wp_hook_enqueue_admin_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'wp_hook_enqueue_admin_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'wp_hook_enqueue_scripts' ) );
+	}
 
 	/**
 	 * Set the localize data.
@@ -247,6 +270,13 @@ abstract class Core {
 	}
 
 	/**
+	 * Load css variables in the frontend.
+	 *
+	 * @return void
+	 */
+	public function wp_hook_enqueue_scripts() {}
+
+	/**
 	 * Load the localized data in the frontend and admin panel.
 	 *
 	 * @return void
@@ -256,20 +286,41 @@ abstract class Core {
 
 		// Default data for asset backend.
 		$assets_backend_data_defaults = array(
+			'site_url'   => home_url(),
 			'site_type'  => is_multisite() ? 'multi' : 'default',
 			'wp_version' => $wp_version,
 		);
 
-		// Add public api to modify or delete asset backend extra data.
-		$assets_backend_data  = apply_filters( 'divi_squad_assets_backend_extra_data', $assets_backend_data_defaults );
+		/**
+		 * Filter the extra data for the backend assets.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $assets_backend_data_defaults The default data for the backend assets.
+		 *
+		 * @return array
+		 */
+		$assets_backend_data = apply_filters( 'divi_squad_assets_backend_extra_data', $assets_backend_data_defaults );
+
+		// Generate the extra data for the backend assets.
 		$assets_backend_extra = sprintf( 'window.DiviSquadExtra = %1$s;', wp_json_encode( $assets_backend_data ) );
+
+		/**
+		 * Filter the extra data for the backend assets.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $assets_backend_extra The extra data for the backend assets.
+		 *
+		 * @return string
+		 */
 		$assets_backend_extra = apply_filters( 'divi_squad_assets_backend_extra', $assets_backend_extra );
 
-		// Start script tag.
-		print '<script id="divi_squad_assets_extra" type="text/javascript">';
-		print wp_kses_data( $assets_backend_extra );
-		print '</script>';
-		// End script tag.
+		// Generate the localize data for the frontend assets.
+		printf(
+			'<script type="text/javascript" id="divi_squad_assets_data_frontend"> %s </script>',
+			wp_kses_data( $assets_backend_extra )
+		);
 	}
 
 	/**
@@ -292,18 +343,26 @@ abstract class Core {
 	 * @param string $plugin_file Absolute path to the main plugin file.
 	 *
 	 * @return array
+	 * @throws \RuntimeException If the plugin file does not exist or the function cannot be included.
 	 */
 	protected function get_plugin_data( $plugin_file ) {
 		if ( ! function_exists( 'get_plugin_data' ) ) {
-			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+			$plugin_path = divi_squad()->get_wp_path() . 'wp-admin/includes/plugin.php';
+
+			if ( file_exists( $plugin_path ) ) {
+				require_once $plugin_path;
+			} else {
+				throw new \RuntimeException( "The 'wp-admin/includes/plugin.php' file loading failed. Cannot retrieve plugin data." );
+			}
 		}
 
-		// Retrieve plugin's metadata.
 		return get_plugin_data( $plugin_file );
 	}
 
 	/**
-	 * @param string $key
+	 * Set the plugin options.
+	 *
+	 * @param string $key The key to set.
 	 *
 	 * @return bool
 	 */
@@ -312,7 +371,9 @@ abstract class Core {
 	}
 
 	/**
-	 * @param string $key
+	 * Set the plugin options.
+	 *
+	 * @param string $key The key to set.
 	 *
 	 * @return mixed
 	 */
@@ -322,5 +383,17 @@ abstract class Core {
 		}
 
 		return new \stdClass();
+	}
+
+	/**
+	 * Set the plugin options.
+	 *
+	 * @param string $key The key to set.
+	 * @param mixed  $value The value to set.
+	 *
+	 * @return void
+	 */
+	public function __set( $key, $value ) {
+		$this->container[ $key ] = $value;
 	}
 }

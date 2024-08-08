@@ -7,18 +7,17 @@
  *
  * @since           1.4.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <support@thewpsquad.com>
+ * @author          WP Squad <support@squadmodules.com>
  * @license         GPL-3.0-only
  */
 
 namespace DiviSquad\Modules\DropCapText;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module as Squad_Module;
+use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function esc_html__;
 use function et_builder_i18n;
-use function et_core_esc_previously;
 use function et_pb_background_options;
 use function sanitize_text_field;
 use function wp_kses_post;
@@ -29,7 +28,7 @@ use function wp_kses_post;
  * @since       1.4.0
  * @package     squad-modules-for-divi
  */
-class DropCapText extends Squad_Module {
+class DropCapText extends DiviSquad_Module {
 
 	/**
 	 * Initiate Module.
@@ -41,7 +40,7 @@ class DropCapText extends Squad_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Drop Cap Text', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Drop Cap Texts', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( DIVI_SQUAD_MODULES_ICON_DIR_PATH . '/drop-cap-text.svg' );
+		$this->icon_path = Helper::fix_slash( divi_squad()->get_icon_path() . '/drop-cap-text.svg' );
 
 		$this->slug             = 'disq_drop_cap_text';
 		$this->vb_support       = 'on';
@@ -242,8 +241,8 @@ class DropCapText extends Squad_Module {
 
 		return sprintf(
 			'<div class="dropcap-text-container"><span class="drop-cap-letter">%1$s</span><span class="body-text">%2$s</span></div>',
-			et_core_esc_previously( $drop_cap_letter ),
-			et_core_esc_previously( $body_content )
+			wp_kses_post( $drop_cap_letter ),
+			wp_kses_post( $body_content )
 		);
 	}
 

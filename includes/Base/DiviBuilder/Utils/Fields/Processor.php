@@ -3,15 +3,14 @@
 /**
  * Builder Utils Helper Class which help to the all module class.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Base\DiviBuilder\Utils\Fields;
 
+use ET_Builder_Element;
 use function esc_html;
 use function et_builder_get_element_style_css;
 use function et_pb_get_responsive_status;
@@ -22,11 +21,8 @@ use function wp_parse_args;
 /**
  * Field Processor class.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.0.0
  */
 trait Processor {
 
@@ -60,7 +56,7 @@ trait Processor {
 		$width_hover = $hover->get_value( $qualified_name, $this->element->props, '' );
 
 		// Get responsive values for the current property.
-		$responsive_values = self::collect_prop_value_responsive( $options, $qualified_name, $last_modified_key );
+		$responsive_values = $this->collect_prop_value_responsive( $options, $qualified_name, $last_modified_key );
 
 		// Extract responsive values.
 		list( $value_default, $value_last_edited, $value_responsive_values ) = $responsive_values;
@@ -76,7 +72,7 @@ trait Processor {
 				)
 			);
 		} else {
-			$this->element->set_style(
+			ET_Builder_Element::set_style(
 				$this->element->slug,
 				array(
 					'selector'    => $options['selector'],
@@ -91,7 +87,7 @@ trait Processor {
 				'declaration' => sprintf( '%1$s:%2$s %3$s', $css_prop, $width_hover, $additional_css ),
 			);
 
-			$this->element->set_style( $this->element->slug, $hover_style );
+			ET_Builder_Element::set_style( $this->element->slug, $hover_style );
 		}
 	}
 
@@ -193,13 +189,13 @@ trait Processor {
 			);
 
 			if ( 'desktop_only' === $device ) {
-				$style['media_query'] = $this->element->get_media_query( 'min_width_981' );
+				$style['media_query'] = ET_Builder_Element::get_media_query( 'min_width_981' );
 			} elseif ( 'desktop' !== $device ) {
 				$current_media_query  = 'tablet' === $device ? 'max_width_980' : 'max_width_767';
-				$style['media_query'] = $this->element->get_media_query( $current_media_query );
+				$style['media_query'] = ET_Builder_Element::get_media_query( $current_media_query );
 			}
 
-			$this->element->set_style( $this->element->slug, $style );
+			ET_Builder_Element::set_style( $this->element->slug, $style );
 		}
 	}
 
@@ -211,7 +207,7 @@ trait Processor {
 	 * @return void
 	 * @since 1.0.0
 	 */
-	public function genereate_show_icon_on_hover_styles( $options = array() ) {
+	public function generate_show_icon_on_hover_styles( $options = array() ) {
 		$additional_css = '';
 		$default_units  = array( '%', 'em', 'rem', 'px', 'cm', 'mm', 'in', 'pt', 'pc', 'ex', 'vh', 'vw' );
 
@@ -230,7 +226,7 @@ trait Processor {
 		$options         = wp_parse_args( $options, $default_options );
 
 		// default Unit for margin replacement.
-		$default_unit_value = isset( $options['defaults']['unit_value'] ) ? (int) $options['defaults']['unit_value'] : 4;
+		$default_unit_value = isset( $options['defaults']['unit_value'] ) ? absint( $options['defaults']['unit_value'] ) : 4;
 
 		$module_props   = ! empty( $options['props'] ) ? $options['props'] : $this->element->props;
 		$allowed_units  = ! empty( $options['allowed_units'] ) ? $options['allowed_units'] : $default_units;
@@ -282,20 +278,20 @@ trait Processor {
 
 			if ( 'desktop' !== $device ) {
 				$current_media_query  = 'tablet' === $device ? 'max_width_980' : 'max_width_767';
-				$style['media_query'] = $this->element->get_media_query( $current_media_query );
+				$style['media_query'] = ET_Builder_Element::get_media_query( $current_media_query );
 			}
 
-			$this->element->set_style( $this->element->slug, $style );
+			ET_Builder_Element::set_style( $this->element->slug, $style );
 		}
 
-		$this->element->set_style(
+		ET_Builder_Element::set_style(
 			$this->element->slug,
 			array(
 				'selector'    => $options['selector'],
 				'declaration' => 'opacity: 0;',
 			)
 		);
-		$this->element->set_style(
+		ET_Builder_Element::set_style(
 			$this->element->slug,
 			array(
 				'selector'    => $hover_selector,
@@ -340,7 +336,7 @@ trait Processor {
 		$icon_trigger_prop  = $options['trigger'];
 		$icon_trigger_value = $props[ $icon_trigger_prop ];
 
-		if ( ( 'off' !== $icon_trigger_value ) || in_array( $icon_trigger_value, $allowed_props, true ) ) {
+		if ( in_array( $icon_trigger_value, $allowed_props, true ) ) {
 			foreach ( $devices as $current_device ) {
 				$field_suffix = 'desktop' !== $current_device ? "_$current_device" : '';
 
@@ -395,10 +391,10 @@ trait Processor {
 		// Generate actual value.
 		$field_value          = self::collect_prop_mapping_value( $options, $default_value );
 		$clean_default_value  = str_replace( $options['allowed_units'], '', $options['default_width'] );
-		$increased_value_data = (int) $clean_default_value + (int) $options['default_unit_value'];
+		$increased_value_data = absint( $clean_default_value ) + absint( $options['default_unit_value'] );
 
 		// Return actual value.
-		return str_replace( '#', $increased_value_data, $field_value );
+		return str_replace( '#', (string) $increased_value_data, $field_value );
 	}
 
 	/**
@@ -410,7 +406,7 @@ trait Processor {
 	 * @return mixed
 	 */
 	public static function collect_prop_mapping_value( $options, $current_value ) {
-		if ( ! empty( $options['mapping_values'] ) && array() !== $options['mapping_values'] ) {
+		if ( ! empty( $options['mapping_values'] ) ) {
 			if ( is_callable( $options['mapping_values'] ) ) {
 				return $options['mapping_values']( $current_value );
 			}
@@ -477,7 +473,7 @@ trait Processor {
 			);
 		} else {
 			// Set the default size for button icon or image with font-size and width style.
-			$this->element->set_style(
+			ET_Builder_Element::set_style(
 				$this->element->slug,
 				array(
 					'selector'    => $options['selector'],
@@ -501,7 +497,7 @@ trait Processor {
 					$options['important']
 				),
 			);
-			$this->element->set_style( $this->element->slug, $hover_style );
+			ET_Builder_Element::set_style( $this->element->slug, $hover_style );
 		}
 	}
 
@@ -558,7 +554,7 @@ trait Processor {
 			);
 
 			if ( 'on' === $this->element->prop( $options['base_attr_name'] . '_bg_clip__enable', 'off' ) ) {
-				$this->element->set_style(
+				ET_Builder_Element::set_style(
 					$this->element->slug,
 					array(
 						'selector'    => $options['selector'],

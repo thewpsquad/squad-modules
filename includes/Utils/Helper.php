@@ -1,24 +1,22 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 /**
- * Generic helper.
+ * Generic helper class for utility.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Utils;
 
+use function divi_squad;
 use function get_shortcode_regex;
-use function wp_doing_ajax;
 
 /**
  * Helper class.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.0.0
  */
 class Helper {
 
@@ -58,5 +56,29 @@ class Helper {
 		);
 
 		return implode( '  ', $array_data );
+	}
+
+	/**
+	 * Verify the current screen is a squad page or not.
+	 *
+	 * @param string $page_id The page id.
+	 *
+	 * @return bool
+	 */
+	public static function is_squad_page( $page_id = '' ) {
+		$plugin_slug = divi_squad()->get_admin_menu_slug();
+
+		// Get the current screen id if not provided.
+		if ( empty( $page_id ) ) {
+			if ( is_admin() || ! function_exists( '\get_current_screen' ) ) {
+				return false;
+			}
+
+			$screen = \get_current_screen();
+
+			return $screen instanceof \WP_Screen && strpos( $screen->id, $plugin_slug ) !== false;
+		}
+
+		return strpos( $page_id, $plugin_slug ) !== false;
 	}
 }

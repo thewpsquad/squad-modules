@@ -1,5 +1,13 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * Migration process to migrate image into Featured Image of Post Element modules.
+ *
+ * @package DiviSquad\Settings
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   2.0.0
+ */
+
 namespace DiviSquad\Settings\Migration;
 
 use DiviSquad\Settings\Migration;
@@ -14,11 +22,21 @@ class PostElement extends Migration {
 	/**
 	 * Migration Version
 	 *
-	 * @since 4.24
+	 * @since 2.0.0
 	 *
 	 * @var string
 	 */
 	public $version = '4.24';
+
+	/**
+	 * Get all modules affected.
+	 *
+	 * @return array
+	 * @since 2.0.0
+	 */
+	public function get_modules() {
+		return array( 'disq_post_grid_child', 'disq_cpt_grid_child' );
+	}
 
 	/**
 	 * Get all fields to need to be migrated.
@@ -29,7 +47,6 @@ class PostElement extends Migration {
 	 *
 	 * @return array New and old fields need to be migrated.
 	 * @since 2.0.0
-	 *
 	 */
 	public function get_fields() {
 		return array(
@@ -42,27 +59,16 @@ class PostElement extends Migration {
 	}
 
 	/**
-	 * Get all modules affected.
-	 *
-	 * @return array
-	 * @since 2.0.0
-	 *
-	 */
-	public function get_modules() {
-		return array( 'disq_post_grid_child', 'disq_cpt_grid_child' );
-	}
-
-	/**
 	 * Migrate from old value into new value.
 	 *
-	 * @param string $field_name
-	 * @param mixed $current_value
-	 * @param string $module_slug
-	 * @param mixed $saved_value
-	 * @param string $saved_field_name
-	 * @param array $attrs
-	 * @param mixed $content
-	 * @param string $module_address
+	 * @param string $field_name        The field name.
+	 * @param mixed  $current_value     The current value.
+	 * @param string $module_slug       The module slug.
+	 * @param mixed  $saved_value       The saved value.
+	 * @param string $saved_field_name  The saved field name.
+	 * @param array  $attrs             The attributes.
+	 * @param mixed  $content           The content.
+	 * @param string $module_address    The module address.
 	 *
 	 * @return mixed
 	 */

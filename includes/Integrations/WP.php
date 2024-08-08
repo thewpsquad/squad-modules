@@ -3,24 +3,22 @@
 /**
  * The WordPress integration helper
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad\Integrations
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Integrations;
 
+use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Singleton;
-use function divi_squad;
 use function version_compare;
 
 /**
  * Define integration helper functionalities for this plugin.
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad\Integrations
+ * @since   1.0.0
  */
 class WP {
 
@@ -34,10 +32,17 @@ class WP {
 	protected $options;
 
 	/**
-	 * Constructor.
+	 * Checks compatibility with the current version.
+	 *
+	 * @param string $required       Minimum required version.
+	 * @param string $target_version The current version.
+	 *
+	 * @return bool True if a required version is compatible or empty, false if not.
+	 * @since 1.2.0
+	 * @deprecated 1.2.3
 	 */
-	public function __construct() {
-		$this->options = divi_squad()->get_options();
+	public static function is_version_compatible( $required, $target_version ) {
+		return self::version_compare( $required, $target_version );
 	}
 
 	/**
@@ -47,10 +52,19 @@ class WP {
 	 * @param string $target_version The current version.
 	 *
 	 * @return bool True if a required version is compatible or empty, false if not.
-	 * @since 1.2.0
+	 * @since 1.2.3
 	 */
-	public static function is_version_compatible( $required, $target_version ) {
+	public static function version_compare( $required, $target_version ) {
 		return empty( $required ) || version_compare( $target_version, $required, '>=' );
+	}
+
+	/**
+	 * Set the plugin options.
+	 *
+	 * @param array $options The plugin options.
+	 */
+	public function set_options( $options ) {
+		$this->options = $options;
 	}
 
 	/**
@@ -60,13 +74,23 @@ class WP {
 	 */
 	public function let_the_journey_start() {
 		// Check for the required PHP version.
-		if ( ! $this->is_version_compatible( $this->options['RequiresPHP'], PHP_VERSION ) ) {
-			return ! add_action( 'admin_notices', array( $this, 'required_php_version_missing_notice' ) );
+		if ( isset( $this->options['RequiresPHP'] ) && ! self::version_compare( $this->options['RequiresPHP'], PHP_VERSION ) ) {
+			add_action( 'admin_notices', array( $this, 'required_php_version_missing_notice' ) );
+
+			return false;
 		}
 
-		// Check for the required WordPress version.
-		if ( ! $this->is_version_compatible( $this->options['RequiresWP'], get_bloginfo( 'version' ) ) ) {
-			return ! add_action( 'admin_notices', array( $this, 'required_wordpress_version_missing_notice' ) );
+		/**
+		 * Check for the required WordPress version.
+		 * If the current WordPress version is less than the required version, then disable the plugin.
+		 * The plugin will not be activated if the current WordPress version is less than the required version.
+		 *
+		 * @since 1.2.0
+		 */
+		if ( isset( $this->options['RequiresWP'] ) && ! self::version_compare( $this->options['RequiresWP'], get_bloginfo( 'version' ) ) ) {
+			add_action( 'admin_notices', array( $this, 'required_wordpress_version_missing_notice' ) );
+
+			return false;
 		}
 
 		return true;

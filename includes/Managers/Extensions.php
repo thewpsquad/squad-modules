@@ -1,79 +1,29 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * Extension Manager
+ *
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
+ */
+
 namespace DiviSquad\Managers;
 
+use DiviSquad\Base\Extension;
 use DiviSquad\Base\Factories\SquadFeatures as ManagerBase;
 use DiviSquad\Base\Memory;
 use DiviSquad\Utils\Polyfills\Arr;
 use function divi_squad;
+use function esc_html__;
 
 /**
  * Extension Manager class
  *
- * @since       1.0.0
- * @package     squad-modules-for-divi
- * @author      WP Squad <wp@thewpsquad.com>
- * @copyright   2023 WP Squad
- * @license     GPL-3.0-only
+ * @package DiviSquad
+ * @since   1.0.0
  */
 class Extensions extends ManagerBase {
-
-	/**
-	 * Get available extensions.
-	 *
-	 * @return array[]
-	 */
-	public function get_registered_list() {
-		$available_extensions = array(
-			array(
-				'name'               => 'JSON',
-				'label'              => esc_html__( 'JSON File Upload Support', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Enable this feature only if you would like allow JSON file through WordPress Media Uploader.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.0',
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'category'           => 'media-upload',
-			),
-			array(
-				'name'               => 'SVG',
-				'label'              => esc_html__( 'SVG Image Upload Support', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Enable this feature only if you would like allow svg file through WordPress Media Uploader.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.0',
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'category'           => 'media-upload',
-			),
-			array(
-				'name'               => 'Font_Upload',
-				'label'              => esc_html__( 'Custom Fonts Upload Support', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Enable this feature only if you would like allow Font file through WordPress Media Uploader.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.0',
-				'is_default_active'  => false,
-				'is_premium_feature' => false,
-				'category'           => 'media-upload',
-			),
-			array(
-				'name'               => 'Divi_Layout_Shortcode',
-				'label'              => esc_html__( 'Divi Library Shortcode', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Enable this feature only if you would like add Divi library shortcode feature.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.0',
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'category'           => 'enhancement',
-			),
-			array(
-				'name'               => 'Copy',
-				'label'              => esc_html__( 'Copy Post or Page', 'squad-modules-for-divi' ),
-				'description'        => esc_html__( 'Enable this feature only if you would like add Post or Page coping feature.', 'squad-modules-for-divi' ),
-				'release_version'    => '1.4.8',
-				'is_default_active'  => true,
-				'is_premium_feature' => false,
-				'category'           => 'enhancement',
-			),
-		);
-
-		return Arr::sort( $available_extensions, 'name' );
-	}
 
 	/**
 	 * Load enabled extensions
@@ -83,7 +33,7 @@ class Extensions extends ManagerBase {
 	 * @return void
 	 */
 	public function load_extensions( $path ) {
-		if ( ! class_exists( \DiviSquad\Base\Extension::class ) ) {
+		if ( ! class_exists( Extension::class ) ) {
 			return;
 		}
 
@@ -99,36 +49,86 @@ class Extensions extends ManagerBase {
 	 * @return void
 	 */
 	protected function load_extensions_files( $path, $memory ) {
-		// Load enabled extensions.
-		$activated  = $memory->get( 'active_extensions', array() );
-		$registered = $this->get_registered_list();
-		$defaults   = $this->get_default_registries();
+		// Retrieve total active extensions and current version from the memory.
+		$current_version     = $memory->get( 'version' );
+		$active_extensions   = $memory->get( 'active_extensions' );
+		$inactive_extensions = $memory->get( 'inactive_extensions', array() );
+
+		// Get all registered and default extensions.
+		$features = $this->get_registered_list();
+		$defaults = $this->get_default_registries();
 
 		// Get verified active modules.
-		$activated_extensions = $this->get_verified_registries( $registered, $defaults, $activated );
+		$activated = $this->get_verified_registries( $features, $defaults, $active_extensions, $inactive_extensions, $current_version );
 
-		foreach ( $activated_extensions as $activated_extension ) {
-			$extension_name = $activated_extension['name'];
-			$extension_file = sprintf( '%1$s/Extensions/%2$s.php', $path, $extension_name );
-
-			if ( file_exists( $extension_file ) ) {
-				require_once $extension_file;
+		foreach ( $activated as $extension ) {
+			if ( isset( $extension['classes']['root_class'] ) ) {
+				new $extension['classes']['root_class']();
 			}
 		}
 	}
 
 	/**
-	 * Get inactive extensions.
+	 * Get available extensions.
 	 *
-	 * @return array
+	 * @return array[]
 	 */
-	public function get_inactive_registries() {
-		return $this->get_filtered_registries(
-			$this->get_registered_list(),
-			function ( $module ) {
-				return ! $module['is_default_active'];
-			}
+	public function get_registered_list() {
+		$available_extensions = array(
+			array(
+				'classes'            => array( 'root_class' => \DiviSquad\Extensions\JSON::class ),
+				'name'               => 'JSON',
+				'label'              => esc_html__( 'JSON File Upload Support', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Enable this feature only if you would like allow JSON file through WordPress Media Uploader.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.0',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'category'           => 'media-upload',
+			),
+			array(
+				'classes'            => array( 'root_class' => \DiviSquad\Extensions\SVG::class ),
+				'name'               => 'SVG',
+				'label'              => esc_html__( 'SVG Image Upload Support', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Enable this feature only if you would like allow svg file through WordPress Media Uploader.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.0',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'category'           => 'media-upload',
+			),
+			array(
+				'classes'            => array( 'root_class' => \DiviSquad\Extensions\Font_Upload::class ),
+				'name'               => 'Font_Upload',
+				'label'              => esc_html__( 'Custom Fonts Upload Support', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Enable this feature only if you would like allow Font file through WordPress Media Uploader.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.0',
+				'is_default_active'  => false,
+				'is_premium_feature' => false,
+				'category'           => 'media-upload',
+			),
+			array(
+				'classes'            => array( 'root_class' => \DiviSquad\Extensions\Divi_Layout_Shortcode::class ),
+				'name'               => 'Divi_Layout_Shortcode',
+				'label'              => esc_html__( 'Divi Library Shortcode', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Enable this feature only if you would like add Divi library shortcode feature.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.0',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'category'           => 'enhancement',
+			),
+			array(
+				'classes'            => array( 'root_class' => \DiviSquad\Extensions\Copy::class ),
+				'name'               => 'Copy',
+				'label'              => esc_html__( 'Copy Post or Page', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Enable this feature only if you would like add Post or Page coping feature.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.4.8',
+				'last_modified'      => array( '1.4.8', '3.0.0' ),
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'category'           => 'enhancement',
+			),
 		);
+
+		return Arr::sort( $available_extensions, 'name' );
 	}
 
 	/**
@@ -141,6 +141,20 @@ class Extensions extends ManagerBase {
 			$this->get_registered_list(),
 			function ( $module ) {
 				return $module['is_default_active'];
+			}
+		);
+	}
+
+	/**
+	 * Get inactive extensions.
+	 *
+	 * @return array
+	 */
+	public function get_inactive_registries() {
+		return $this->get_filtered_registries(
+			$this->get_registered_list(),
+			function ( $module ) {
+				return ! $module['is_default_active'];
 			}
 		);
 	}

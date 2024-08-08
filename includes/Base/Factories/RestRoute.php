@@ -1,24 +1,51 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
+/**
+ * Class RestRoute
+ *
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   2.0.0
+ */
+
 namespace DiviSquad\Base\Factories;
 
+use DiviSquad\Base\Factories\FactoryBase\Factory;
 use DiviSquad\Utils\Singleton;
 
-final class RestRoute {
+/**
+ * Class RestRoute
+ *
+ * @package DiviSquad
+ * @since   2.0.0
+ */
+final class RestRoute extends Factory {
 
 	use Singleton;
 
 	/**
-	 * Store all router
+	 * Store all registry
 	 *
 	 * @var RestRoute\RouteInterface[]
 	 */
-	private static $routers = array();
+	private static $registries = array();
 
-	private function __construct() {
-		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
+	/**
+	 * Initialize hooks.
+	 *
+	 * @return void
+	 */
+	protected function init_hooks() {
+		add_action( 'rest_api_init', array( $this, 'register_routes' ), 0 );
 	}
 
+	/**
+	 * Add a new route to the list of routes.
+	 *
+	 * @param string $route_class The class name of the route to add to the list. The class must implement the RouteInterface.
+	 *
+	 * @return bool
+	 */
 	public function add( $route_class ) {
 		$route = new $route_class();
 
@@ -31,21 +58,36 @@ final class RestRoute {
 		$rest_routes    = $route->get_routes();
 
 		// Add namespace.
-		if ( ! isset( self::$routers[ $product_name ] ) ) {
-			self::$routers[ $product_name ] = array(
+		if ( ! isset( self::$registries[ $product_name ] ) ) {
+			self::$registries[ $product_name ] = array(
 				'namespace' => $rest_namespace,
 				'routes'    => array(),
 			);
 		}
 
 		// Add routes.
-		if ( is_array( $rest_routes ) && count( $rest_routes ) > 0 ) {
+		if ( count( $rest_routes ) > 0 ) {
 			foreach ( $rest_routes as $route => $args ) {
-				self::$routers[ $product_name ]['routes'][ $route ] = $args;
+				self::$registries[ $product_name ]['routes'][ $route ] = $args;
 			}
 		}
 
 		return true;
+	}
+
+	/**
+	 * Registered all namespace.
+	 *
+	 * @param string $name Current product name.
+	 *
+	 * @return string
+	 */
+	public function get_namespace( $name ) {
+		if ( ! empty( self::$registries ) && isset( self::$registries[ $name ] ) && ! empty( self::$registries[ $name ]['namespace'] ) ) {
+			return self::$registries[ $name ]['namespace'];
+		}
+
+		return '';
 	}
 
 	/**
@@ -54,8 +96,8 @@ final class RestRoute {
 	 * @return void
 	 */
 	public function register_routes() {
-		if ( ! empty( self::$routers ) ) {
-			foreach ( self::$routers as $router ) {
+		if ( ! empty( self::$registries ) ) {
+			foreach ( self::$registries as $router ) {
 				$namespace = $router['namespace'];
 				$routes    = $router['routes'];
 
@@ -76,21 +118,6 @@ final class RestRoute {
 	}
 
 	/**
-	 * Registered all namespace.
-	 *
-	 * @param string $name Current product name.
-	 *
-	 * @return string
-	 */
-	public function get_namespace( $name ) {
-		if ( ! empty( self::$routers ) && isset( self::$routers[ $name ] ) && ! empty( self::$routers[ $name ]['namespace'] ) ) {
-			return self::$routers[ $name ]['namespace'];
-		}
-
-		return '';
-	}
-
-	/**
 	 * Registered all routes.
 	 *
 	 * @param string $name Current product name.
@@ -101,8 +128,8 @@ final class RestRoute {
 		// Set initial value.
 		$results = array();
 
-		if ( ! empty( self::$routers ) && isset( self::$routers[ $name ] ) && ! empty( self::$routers[ $name ]['routes'] ) ) {
-			$routes = self::$routers[ $name ]['routes'];
+		if ( ! empty( self::$registries ) && isset( self::$registries[ $name ] ) && ! empty( self::$registries[ $name ]['routes'] ) ) {
+			$routes = self::$registries[ $name ]['routes'];
 
 			foreach ( $routes as $route => $args ) {
 				$route_name = str_replace( array( '_', '-' ), '/', $route );

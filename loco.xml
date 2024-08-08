@@ -14,6 +14,7 @@
     </project>
   </domain>
   <exclude>
+    <directory>freemius</directory>
     <directory>node_modules</directory>
     <directory>vendor</directory>
   </exclude>
