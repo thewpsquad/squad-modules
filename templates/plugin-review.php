@@ -3,7 +3,7 @@
  * Template file to the plugin review notice.
  *
  * @since           1.2.3
- * @package         squad-modules-pro-for-divi
+ * @package         squad-modules-for-divi
  * @author          WP Squad <support@thewpsquad.com>
  * @license         GPL-3.0-only
  */
@@ -21,8 +21,8 @@ defined( 'ABSPATH' ) || die();
 		</svg>
 	</div>
 	<div class="divi-squad-banner-content">
-		<h2><?php esc_html_e( 'Enjoy Using Divi Squad Lite?', 'squad-modules-for-divi' ); ?></h2>
-		<p><?php esc_html_e( "Hello! It's been a while since you've been using the Squad Modules plugin. We trust that our plugin has been beneficial in your website development journey. If you could take a moment, we'd greatly appreciate your feedback by leaving a rating. Your input means a lot to us—thank you!", 'squad-modules-for-divi' ); ?></p>
+		<h2><?php esc_html_e( 'Enjoy Using Squad Modules Lite?', 'squad-modules-for-divi' ); ?></h2>
+		<p><?php esc_html_e( "Hello! It's been a while since you've been using the Squad Modules Lite plugin. We trust that our plugin has been beneficial in your website development journey. If you could take a moment, we'd greatly appreciate your feedback by leaving a rating. Your input means a lot to us—thank you!", 'squad-modules-for-divi' ); ?></p>
 		<div class="divi-squad-notice-action">
 			<div class="divi-squad-notice-action-left">
 				<a href="https://wordpress.org/support/plugin/squad-modules-for-divi/reviews/?rate=5#new-post" target="_blank" class="divi-squad-notice-action-button">

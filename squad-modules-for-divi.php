@@ -1,17 +1,17 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
 /**
- * Divi Squad Lite
+ * Squad Modules Lite
  *
  * @package     divi-squad
  * @author      WP Squad <wp@thewpsquad.com>
  * @license     GPL-3.0-only
  *
  * @wordpress-plugin
- * Plugin Name:         Divi Squad Lite
+ * Plugin Name:         Squad Modules Lite
  * Plugin URI:          https://squadmodules.com/
  * Description:         Unlock your potential Divi Builder experience with advanced Divi plugin with powerful Divi modules and extensions.
- * Version:             1.4.1
+ * Version:             1.4.2
  * Requires at least:   5.0.0
  * Requires PHP:        5.6.40
  * Author:              WP Squad
@@ -80,7 +80,7 @@ try {
 	define( 'DISQ_ASSET_URL', trailingslashit( DISQ_DIR_URL . 'build' ) );
 
 	// Define the general constants for the plugin.
-	define( 'DISQ_VERSION', '1.4.1' );
+	define( 'DISQ_VERSION', '1.4.2' );
 	define( 'DISQ_MINIMUM_DIVI_VERSION', '4.14.0' );
 	define( 'DISQ_MINIMUM_PHP_VERSION', '5.6.40' );
 	define( 'DISQ_MINIMUM_WP_VERSION', '5.0.0' );

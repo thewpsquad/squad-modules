@@ -37,8 +37,9 @@ class Modules {
 			array(
 				'name'               => 'Divider',
 				'label'              => esc_html__( 'Advanced Divider', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Create visually appealing dividers with various styles, shapes, and customization options.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.2.2', '1.2.3', '1.2.6' ),
+				'last_modified'      => array( '1.2.2', '1.2.3', '1.2.6', '1.4.1' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -47,6 +48,7 @@ class Modules {
 			array(
 				'name'               => 'DualButton',
 				'label'              => esc_html__( 'Dual Button', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'It allows you to display two buttons side by side with customizable styles and text.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'last_modified'      => array( '1.1.0', '1.2.3' ),
 				'is_default_active'  => true,
@@ -57,6 +59,7 @@ class Modules {
 			array(
 				'name'               => 'Lottie',
 				'label'              => esc_html__( 'Lottie', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Effortlessly add animated elements for a more engaging website experience', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'last_modified'      => array( '1.0.1', '1.0.5', '1.2.3' ),
 				'is_default_active'  => false,
@@ -67,6 +70,7 @@ class Modules {
 			array(
 				'name'               => 'PostGrid',
 				'label'              => esc_html__( 'Post Grid', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Display your blog posts in a stylish and organized grid layout.', 'squad-modules-for-divi' ),
 				'child_name'         => 'PostGridChild',
 				'child_label'        => esc_html__( 'Post Element', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
@@ -79,6 +83,7 @@ class Modules {
 			array(
 				'name'               => 'TypingText',
 				'label'              => esc_html__( 'Typing Text', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Create eye-catching animated title or heading text that simulates a typing effect.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'last_modified'      => array( '1.0.1', '1.0.5', '1.2.3' ),
 				'is_default_active'  => false,
@@ -89,6 +94,7 @@ class Modules {
 			array(
 				'name'               => 'ImageMask',
 				'label'              => esc_html__( 'Image Mask', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Apply stunning masks to your images, adding creativity and visual appeal to your website.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'last_modified'      => '1.2.3',
 				'is_default_active'  => true,
@@ -99,6 +105,7 @@ class Modules {
 			array(
 				'name'               => 'FlipBox',
 				'label'              => esc_html__( 'Flip Box', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Display content on one side, then on hover, flip to reveal more info or a different design.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'last_modified'      => '1.2.3',
 				'is_default_active'  => false,
@@ -109,6 +116,7 @@ class Modules {
 			array(
 				'name'               => 'BusinessHours',
 				'label'              => esc_html__( 'Business Hours', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Display your business hours in a clear and organized manner.', 'squad-modules-for-divi' ),
 				'child_name'         => 'BusinessHoursChild',
 				'child_label'        => esc_html__( 'Business Day', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
@@ -116,11 +124,12 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
-				'category'           => 'content-elements',
+				'category'           => 'content-modules',
 			),
 			array(
 				'name'               => 'BeforeAfterImageSlider',
 				'label'              => esc_html__( 'Before After Image Slider', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Engage your visitors with interactive image comparisons.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'last_modified'      => '1.2.3',
 				'is_default_active'  => false,
@@ -131,6 +140,7 @@ class Modules {
 			array(
 				'name'               => 'ImageGallery',
 				'label'              => esc_html__( 'Image Gallery', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Effortlessly create stunning galleries to engage and captivate your audience.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
 				'last_modified'      => array( '1.2.2', '1.2.3', '1.3.0' ),
 				'is_default_active'  => false,
@@ -141,6 +151,7 @@ class Modules {
 			array(
 				'name'               => 'FormStylerContactForm7',
 				'label'              => esc_html__( 'Contact Form 7', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Effortlessly customize Contact Form 7 design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
 				'last_modified'      => '1.2.3',
 				'is_default_active'  => false,
@@ -152,6 +163,7 @@ class Modules {
 			array(
 				'name'               => 'FormStylerWPForms',
 				'label'              => esc_html__( 'WP Forms', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
 				'last_modified'      => '1.2.3',
 				'is_default_active'  => false,
@@ -163,6 +175,7 @@ class Modules {
 			array(
 				'name'               => 'FormStylerGravityForms',
 				'label'              => esc_html__( 'Gravity Forms', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Effortlessly customize Gravity Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
 				'last_modified'      => '1.2.3',
 				'is_default_active'  => false,
@@ -174,6 +187,7 @@ class Modules {
 			array(
 				'name'               => 'PostReadingTime',
 				'label'              => esc_html__( 'Post Reading Time', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Show how long it takes to read your blog posts. Useful for readers planning their time.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.2',
 				'last_modified'      => '1.2.3',
 				'is_default_active'  => false,
@@ -184,6 +198,7 @@ class Modules {
 			array(
 				'name'               => 'GlitchText',
 				'label'              => esc_html__( 'Glitch Text', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Create eye-catching headlines and captions with a mesmerizing glitch effect.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.3',
 				'last_modified'      => array( '1.3.0' ),
 				'is_default_active'  => false,
@@ -194,6 +209,7 @@ class Modules {
 			array(
 				'name'               => 'GradientText',
 				'label'              => esc_html__( 'Gradient Text', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Create eye-catching headlines, captions, and more with this versatile and dynamic module.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.6',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
@@ -203,6 +219,7 @@ class Modules {
 			array(
 				'name'               => 'ScrollingText',
 				'label'              => esc_html__( 'Scrolling Text', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Add dynamic, attention-grabbing text animations to your Divi-powered website.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.3.0',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
@@ -212,6 +229,7 @@ class Modules {
 			array(
 				'name'               => 'StarRating',
 				'label'              => esc_html__( 'Star Rating', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Add stylish star ratings to your content for user feedback and ratings.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.0',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
@@ -221,7 +239,9 @@ class Modules {
 			array(
 				'name'               => 'Breadcrumbs',
 				'label'              => esc_html__( 'Breadcrumbs', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Enhance navigation with a clear path for users to trace their steps through your website.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.0',
+				'last_modified'      => array( '1.4.1', '1.4.2' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -230,6 +250,7 @@ class Modules {
 			array(
 				'name'               => 'DropCap',
 				'label'              => esc_html__( 'Drop Cap Text', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Create visually appealing drop caps to add emphasis and style to your text content.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.0',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
@@ -239,6 +260,7 @@ class Modules {
 			array(
 				'name'               => 'VideoPopup',
 				'label'              => esc_html__( 'Video Popup', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Engage visitors with customizable video popups for YouTube and Vimeo.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.1',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
