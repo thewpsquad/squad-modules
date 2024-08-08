@@ -1,11 +1,11 @@
-=== Squad Modules for Divi ===
+=== Squad Modules for Divi Builder ===
 Contributors: wpsquad, mralaminahamed
 Donate link: https://squadmodules.com/
 Tags: divi, divi module, divi theme, divi page builder, divi builder, extra theme, divi extensions, divi addons, divi plugin, divi modules
 Requires at least: 5.8
 Tested up to: 6.2
 Requires PHP: 5.6
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -127,6 +127,9 @@ Yes, we offer support for Squad Modules for Divi. If you encounter any issues or
 * Enjoy the new collection of elegant Divi modules and enhance your website.
 
 == Changelog ==
+
+= 1.0.3 =
+* Locked: Premium features inclusion and Pro with ads.
 
 = 1.0.2 =
 * Improved: Post Grid, Dual-Button Modules
