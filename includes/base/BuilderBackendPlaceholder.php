@@ -4,7 +4,8 @@
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
 
@@ -49,6 +50,7 @@ abstract class BuilderBackendPlaceholder {
 			'button'          => _x( 'Click Here', 'Modules dummy content', 'squad-modules-for-divi' ),
 			'button_two'      => _x( 'Learn More', 'Modules dummy content', 'squad-modules-for-divi' ),
 			'custom_text'     => _x( 'Custom Text Here', 'Modules dummy content', 'squad-modules-for-divi' ),
+			// SEO ISSUE: https://developer.chrome.com/docs/lighthouse/seo/link-text/.
 			'read_more'       => _x( 'Read More', 'Modules dummy content', 'squad-modules-for-divi' ),
 			'comments_before' => _x( 'Comments: ', 'Modules dummy content', 'squad-modules-for-divi' ),
 			'icon'            => array(

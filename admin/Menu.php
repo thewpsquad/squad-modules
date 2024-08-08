@@ -5,7 +5,8 @@
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
 
@@ -127,6 +128,18 @@ class Menu {
 				'view'       => array( $this, 'get_template' ),
 			),
 		);
+
+		// phpcs:disable
+		// if ( ! is_the_pro_plugin_active() ) {
+		// $default_menus[] = array(
+		// 'name'       => esc_html__( 'Go Premium', 'squad-modules-for-divi' ),
+		// 'capability' => $this->admin_management_permission(),
+		// 'slug'       => 'divi_squad_go_premium',
+		// 'parent'     => 'divi_squad_dashboard',
+		// 'view'       => array( $this, 'get_template' ),
+		// );
+		// }
+		// phpcs:enable
 
 		return apply_filters( 'divi_squad_admin_sub_menu', $default_menus );
 	}

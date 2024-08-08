@@ -6,7 +6,7 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <support@thewpsquad.com>
+ * @author          WP Squad <wp@thewpsquad.com>
  * @license         GPL-3.0-only
  */
 
@@ -289,7 +289,7 @@ class BusinessHoursChild extends DISQ_Builder_Module {
 					'default_on_front' => 'off',
 					'affects'          => array(
 						'off_day_label',
-						'dual_time_enable',
+						'dual_time__enable',
 					),
 					'tab_slug'         => 'general',
 					'toggle_slug'      => 'day_n_time_content',
@@ -477,6 +477,8 @@ class BusinessHoursChild extends DISQ_Builder_Module {
 	 */
 	private function disq_render_day_time_text() {
 		$multi_view = et_pb_multi_view_options( $this );
+
+		// Show start time and end time when enabled it.
 		if ( 'on' === $this->prop( 'dual_time__enable', 'off' ) ) {
 			$start_time     = $multi_view->render_element( array( 'content' => '{{start_time}}' ) );
 			$end_time       = $multi_view->render_element( array( 'content' => '{{end_time}}' ) );
@@ -487,6 +489,16 @@ class BusinessHoursChild extends DISQ_Builder_Module {
 				et_core_esc_previously( $start_time ),
 				et_core_esc_previously( $time_separator ),
 				et_core_esc_previously( $end_time )
+			);
+		}
+
+		// Show off day label when enabled it.
+		if ( 'on' === $this->prop( 'off_day__enable', 'off' ) ) {
+			$off_day_label = $multi_view->render_element( array( 'content' => '{{off_day_label}}' ) );
+
+			return sprintf(
+				'<span class="day-element day-element-time">%1$s</span>',
+				et_core_esc_previously( $off_day_label )
 			);
 		}
 

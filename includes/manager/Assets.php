@@ -10,7 +10,8 @@ use DiviSquad\Utils\Helper;
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
 class Assets {
@@ -89,6 +90,7 @@ class Assets {
 		$this->register_scripts( 'module-lottie', $this->asset_path( 'lottie-bundle' ), $lottie_asset_deps );
 		$this->register_scripts( 'module-typing-text', $this->asset_path( 'typing-text-bundle' ), $typing_text_module_deps );
 		$this->register_scripts( 'module-bais', $this->asset_path( 'bai-slider-bundle' ), $core_asset_deps );
+		$this->register_scripts( 'module-accordion', $this->asset_path( 'accordion-bundle' ), $core_asset_deps );
 	}
 
 	/**

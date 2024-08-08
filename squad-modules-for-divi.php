@@ -4,22 +4,23 @@
  * Squad Modules for Divi Builder
  *
  * @package     divi-squad
- * @author      WP Squad <support@thewpsquad.com>
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  *
  * @wordpress-plugin
  * Plugin Name:         Squad Modules for Divi Builder
  * Plugin URI:          https://squadmodules.com/
  * Description:         Enhance your Divi-powered websites with an elegant collection of Divi modules.
+ * Version:             1.1.0
  * Requires at least:   5.8
  * Requires PHP:        5.6
- * Version:             1.0.5
  * Author:              WP Squad
- * Author URI:          https://thewpsquad.com/
- * Text Domain:         squad-modules-for-divi
- * Domain Path:         /languages
+ * Author URI:          https://squadmodules.com/
  * License:             GPL-3.0-only
  * License URI:         https://www.gnu.org/licenses/gpl-3.0.en.html
+ * Text Domain:         squad-modules-for-divi
+ * Domain Path:         /languages
  */
 
 namespace DiviSquad;
@@ -87,7 +88,7 @@ final class SquadModules extends Integration\Core {
 	public function __construct() {
 		$this->name             = 'squad-modules-for-divi';
 		$this->option_prefix    = 'disq';
-		$this->version          = '1.0.5';
+		$this->version          = '1.0.6';
 		$this->min_version_divi = '4.0.0';
 		$this->min_version_php  = '5.6';
 		$this->min_version_wp   = '5.8';

@@ -7,7 +7,7 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <support@thewpsquad.com>
+ * @author          WP Squad <wp@thewpsquad.com>
  * @license         GPL-3.0-only
  */
 
@@ -1041,7 +1041,7 @@ class DualButton extends DISQ_Builder_Module {
 				array(
 					'field'        => "{$element}_margin",
 					'selector'     => "$this->main_css_element div .elements .disq-button.$element",
-					'hover'        => "$this->main_css_element div .elements .disq-button.$element:hover",
+					'hover_selector'        => "$this->main_css_element div .elements .disq-button.$element:hover",
 					'css_property' => 'margin',
 					'type'         => 'margin',
 				)
@@ -1050,7 +1050,7 @@ class DualButton extends DISQ_Builder_Module {
 				array(
 					'field'        => "{$element}_padding",
 					'selector'     => "$this->main_css_element div .elements .disq-button.$element",
-					'hover'        => "$this->main_css_element div .elements .disq-button.$element:hover",
+					'hover_selector'        => "$this->main_css_element div .elements .disq-button.$element:hover",
 					'css_property' => 'padding',
 					'type'         => 'padding',
 				)
