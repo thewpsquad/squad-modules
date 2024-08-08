@@ -344,7 +344,7 @@ class TypingText extends DISQ_Builder_Module {
 
 		// The settings definitions for typing effect texts.
 		$typing_effects = array(
-			'typing_speed'                 => $this->disq_add_range_fields(
+			'typing_speed'                 => $this->disq_add_range_field(
 				esc_html__( 'Typing Speed (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you can choose how much speed in the typing text.', 'squad-modules-for-divi' ),
@@ -367,7 +367,7 @@ class TypingText extends DISQ_Builder_Module {
 					'toggle_slug'       => 'typing_settings',
 				)
 			),
-			'typing_start_delay'           => $this->disq_add_range_fields(
+			'typing_start_delay'           => $this->disq_add_range_field(
 				esc_html__( 'Start Delay (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you  can choose how much delay to start the typing text.', 'squad-modules-for-divi' ),
@@ -388,7 +388,7 @@ class TypingText extends DISQ_Builder_Module {
 					'toggle_slug'       => 'typing_settings',
 				)
 			),
-			'typing_back_speed'            => $this->disq_add_range_fields(
+			'typing_back_speed'            => $this->disq_add_range_field(
 				esc_html__( 'Delete Speed (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you  can choose how much speed to delete the typing text.', 'squad-modules-for-divi' ),
@@ -412,7 +412,7 @@ class TypingText extends DISQ_Builder_Module {
 					'toggle_slug'       => 'typing_settings',
 				)
 			),
-			'typing_back_delay'            => $this->disq_add_range_fields(
+			'typing_back_delay'            => $this->disq_add_range_field(
 				esc_html__( 'Delete Delay (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you  can choose how much delay to delete the typing text.', 'squad-modules-for-divi' ),
@@ -468,7 +468,7 @@ class TypingText extends DISQ_Builder_Module {
 					'toggle_slug' => 'typing_settings',
 				)
 			),
-			'typing_fade_out_delay'        => $this->disq_add_range_fields(
+			'typing_fade_out_delay'        => $this->disq_add_range_field(
 				esc_html__( 'Fade Out Delay (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you  can choose how much delay to fade out the typing text.', 'squad-modules-for-divi' ),
@@ -570,7 +570,7 @@ class TypingText extends DISQ_Builder_Module {
 					'toggle_slug'     => 'typed_cursor_element',
 				)
 			),
-			'custom_cursor_icon_size'     => $this->disq_add_range_fields(
+			'custom_cursor_icon_size'     => $this->disq_add_range_field(
 				esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose cursor icon size.', 'squad-modules-for-divi' ),
@@ -586,7 +586,7 @@ class TypingText extends DISQ_Builder_Module {
 					'hover'           => false,
 				)
 			),
-			'custom_cursor_icon_text_gap' => $this->disq_add_range_fields(
+			'custom_cursor_icon_text_gap' => $this->disq_add_range_field(
 				esc_html__( 'Gap Between Cursor Icon and Text', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose gap between icon and text.', 'squad-modules-for-divi' ),
@@ -625,7 +625,7 @@ class TypingText extends DISQ_Builder_Module {
 					'toggle_slug'      => 'wrapper',
 				)
 			),
-			'text_gap'             => $this->disq_add_range_fields(
+			'text_gap'             => $this->disq_add_range_field(
 				esc_html__( 'Gap Between Texts', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can choose gap between texts.', 'squad-modules-for-divi' ),

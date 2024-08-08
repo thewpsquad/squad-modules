@@ -207,7 +207,7 @@ class ScrollingText extends DISQ_Builder_Module {
 					'toggle_slug' => 'scrolling_settings',
 				)
 			),
-			'scrolling_speed'        => $this->disq_add_range_fields(
+			'scrolling_speed'        => $this->disq_add_range_field(
 				esc_html__( 'Scrolling Text Speed (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Choose the speed for your scrolling text in milliseconds.', 'squad-modules-for-divi' ),

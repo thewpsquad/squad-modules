@@ -347,7 +347,7 @@ class BeforeAfterImageSlider extends DISQ_Builder_Module {
 					'toggle_slug'      => 'comparable_settings',
 				)
 			),
-			'slide_control_start_point'         => $this->disq_add_range_fields(
+			'slide_control_start_point'         => $this->disq_add_range_field(
 				esc_html__( 'Control Starting Point', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the order number to position the item lower.', 'squad-modules-for-divi' ),
@@ -417,7 +417,7 @@ class BeforeAfterImageSlider extends DISQ_Builder_Module {
 					'toggle_slug'      => 'comparable_settings',
 				)
 			),
-			'slide_control_smoothing_amount'    => $this->disq_add_range_fields(
+			'slide_control_smoothing_amount'    => $this->disq_add_range_field(
 				esc_html__( 'Control Smoothing Amount', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the slide control smoothing.', 'squad-modules-for-divi' ),

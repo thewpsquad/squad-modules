@@ -306,7 +306,7 @@ class BusinessHours extends DISQ_Builder_Module {
 					'toggle_slug'      => 'general_settings',
 				)
 			),
-			'day_elements_gap' => $this->disq_add_range_fields(
+			'day_elements_gap' => $this->disq_add_range_field(
 				esc_html__( 'Gap Between Days', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose the gap between days.', 'squad-modules-for-divi' ),
@@ -326,7 +326,7 @@ class BusinessHours extends DISQ_Builder_Module {
 				),
 				array( 'use_hover' => false )
 			),
-			'wrapper_gap'      => $this->disq_add_range_fields(
+			'wrapper_gap'      => $this->disq_add_range_field(
 				esc_html__( 'Gap between Title and Day Wrapper', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Adjust the gap between the title and the day wrapper.', 'squad-modules-for-divi' ),
@@ -377,7 +377,7 @@ class BusinessHours extends DISQ_Builder_Module {
 			)
 		);
 		$wrapper_associated_fields = array(
-			'day_text_width'               => $this->disq_add_range_fields(
+			'day_text_width'               => $this->disq_add_range_field(
 				esc_html__( 'Day Text Width', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Adjust the width of the day text.', 'squad-modules-for-divi' ),
@@ -395,7 +395,7 @@ class BusinessHours extends DISQ_Builder_Module {
 					'toggle_slug'    => 'day_wrapper',
 				)
 			),
-			'time_text_width'              => $this->disq_add_range_fields(
+			'time_text_width'              => $this->disq_add_range_field(
 				esc_html__( 'Time Text Width', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Adjust the width of the time text.', 'squad-modules-for-divi' ),

@@ -189,7 +189,7 @@ class StarRating extends DISQ_Builder_Module {
 					'toggle_slug'      => 'main_content',
 				)
 			),
-			'rating_upto_5'  => $this->disq_add_range_fields(
+			'rating_upto_5'  => $this->disq_add_range_field(
 				esc_html__( 'Rating', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Choose the rating up to 5.', 'squad-modules-for-divi' ),
@@ -213,7 +213,7 @@ class StarRating extends DISQ_Builder_Module {
 					'toggle_slug'       => 'main_content',
 				)
 			),
-			'rating_upto_10' => $this->disq_add_range_fields(
+			'rating_upto_10' => $this->disq_add_range_field(
 				esc_html__( 'Rating', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Choose the rating up to 10.', 'squad-modules-for-divi' ),
@@ -309,7 +309,7 @@ class StarRating extends DISQ_Builder_Module {
 					'toggle_slug'      => 'main_content',
 				)
 			),
-			'title_gap'              => $this->disq_add_range_fields(
+			'title_gap'              => $this->disq_add_range_field(
 				esc_html__( 'Gap Between Title and Stars', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can define a gap between the title and the star rating.', 'squad-modules-for-divi' ),
@@ -342,7 +342,7 @@ class StarRating extends DISQ_Builder_Module {
 					'toggle_slug'      => 'stars',
 				)
 			),
-			'stars_size'     => $this->disq_add_range_fields(
+			'stars_size'     => $this->disq_add_range_field(
 				esc_html__( 'Size', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can choose stars size.', 'squad-modules-for-divi' ),
@@ -362,7 +362,7 @@ class StarRating extends DISQ_Builder_Module {
 					'mobile_options' => true,
 				)
 			),
-			'stars_gap'      => $this->disq_add_range_fields(
+			'stars_gap'      => $this->disq_add_range_field(
 				esc_html__( 'Gap', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can choose gap between each stars.', 'squad-modules-for-divi' ),

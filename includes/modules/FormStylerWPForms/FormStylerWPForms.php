@@ -16,9 +16,9 @@ namespace DiviSquad\Modules\FormStylerWPForms;
 
 use DiviSquad\Base\BuilderModule\DISQ_Form_Styler_Module;
 use DiviSquad\Utils\Helper;
+use function do_shortcode;
 use function esc_html__;
 use function get_posts;
-use function do_shortcode;
 
 /**
  * The Form Styler: WP Forms Module Class.
@@ -519,7 +519,7 @@ class FormStylerWPForms extends DISQ_Form_Styler_Module {
 	 */
 	public static function disq_form_styler__get_form_html( $attrs, $content = null ) {
 		if ( ! empty( $attrs['form_id'] ) ) {
-			return do_shortcode( '[wpforms id="' . $attrs['form_id'] . '"]' );
+			return do_shortcode( sprintf( '[wpforms id="%s"]', esc_attr( $attrs['form_id'] ) ) );
 		}
 
 		return null;

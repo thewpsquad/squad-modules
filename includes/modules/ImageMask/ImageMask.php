@@ -185,7 +185,7 @@ class ImageMask extends DISQ_Builder_Module {
 					'toggle_slug'      => 'mask_settings',
 				)
 			),
-			'mask_shape_rotate'  => $this->disq_add_range_fields(
+			'mask_shape_rotate'  => $this->disq_add_range_field(
 				esc_html__( 'Rotate Mask Shape', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose mask shape rotation.', 'squad-modules-for-divi' ),
@@ -205,7 +205,7 @@ class ImageMask extends DISQ_Builder_Module {
 					'toggle_slug'      => 'mask_settings',
 				)
 			),
-			'mask_shape_scale_x' => $this->disq_add_range_fields(
+			'mask_shape_scale_x' => $this->disq_add_range_field(
 				esc_html__( 'Mask Shape Width', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose mask shape width.', 'squad-modules-for-divi' ),
@@ -225,7 +225,7 @@ class ImageMask extends DISQ_Builder_Module {
 					'toggle_slug'      => 'mask_settings',
 				)
 			),
-			'mask_shape_scale_y' => $this->disq_add_range_fields(
+			'mask_shape_scale_y' => $this->disq_add_range_field(
 				esc_html__( 'Mask Shape Height', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose mask shape height.', 'squad-modules-for-divi' ),
@@ -270,7 +270,7 @@ class ImageMask extends DISQ_Builder_Module {
 		);
 
 		$image_associated_fields = array(
-			'image_width'               => $this->disq_add_range_fields(
+			'image_width'               => $this->disq_add_range_field(
 				esc_html__( 'Image Width', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose image width.', 'squad-modules-for-divi' ),
@@ -289,7 +289,7 @@ class ImageMask extends DISQ_Builder_Module {
 					'toggle_slug'      => 'image',
 				)
 			),
-			'image_height'              => $this->disq_add_range_fields(
+			'image_height'              => $this->disq_add_range_field(
 				esc_html__( 'Image Height', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can choose image height.', 'squad-modules-for-divi' ),
@@ -306,7 +306,7 @@ class ImageMask extends DISQ_Builder_Module {
 					'toggle_slug'    => 'image',
 				)
 			),
-			'image_horizontal_position' => $this->disq_add_range_fields(
+			'image_horizontal_position' => $this->disq_add_range_field(
 				esc_html__( 'Image Horizontal Position', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can choose image horizontal position.', 'squad-modules-for-divi' ),
@@ -322,7 +322,7 @@ class ImageMask extends DISQ_Builder_Module {
 					'toggle_slug'    => 'image',
 				)
 			),
-			'image_vertical_position'   => $this->disq_add_range_fields(
+			'image_vertical_position'   => $this->disq_add_range_field(
 				esc_html__( 'Image Vertical Position', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can choose image vertical position.', 'squad-modules-for-divi' ),

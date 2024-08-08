@@ -14,6 +14,7 @@
 namespace DiviSquad\Modules\Breadcrumbs;
 
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
+use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
 
 /**
@@ -32,7 +33,6 @@ class Breadcrumbs extends DISQ_Builder_Module {
 	 * @since 1.4.0
 	 */
 	public function init() {
-		parent::init();
 		$this->name      = esc_html__( 'Breadcrumbs', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Breadcrumbs', 'squad-modules-for-divi' );
 		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/breadcrumbs.svg' );
@@ -277,6 +277,10 @@ class Breadcrumbs extends DISQ_Builder_Module {
 			esc_html( $this->props['before_text'] ),
 			esc_attr( et_pb_process_font_icon( $this->prop( 'before_icon', '%%24%%' ) ) )
 		);
+
+		// Divi icon fallback support
+		Divi::inject_fa_icons( $this->prop( 'font_icon', '&#x39;||divi||400' ) );
+		Divi::inject_fa_icons( $this->prop( 'before_icon', '&#x24;||divi||400' ) );
 
 		// Generate additional styles for frontend.
 		$this->generate_additional_styles( $attrs );

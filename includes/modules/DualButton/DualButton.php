@@ -447,7 +447,7 @@ class DualButton extends DISQ_Builder_Module {
 					'toggle_slug'     => 'separator_element',
 				)
 			),
-			'separator_icon_size'      => $this->disq_add_range_fields(
+			'separator_icon_size'      => $this->disq_add_range_field(
 				esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose separator icon size.', 'squad-modules-for-divi' ),
@@ -465,7 +465,7 @@ class DualButton extends DISQ_Builder_Module {
 					'toggle_slug'     => 'separator_element',
 				)
 			),
-			'separator_image_width'    => $this->disq_add_range_fields(
+			'separator_image_width'    => $this->disq_add_range_field(
 				esc_html__( 'Image Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose image width.', 'squad-modules-for-divi' ),
@@ -483,7 +483,7 @@ class DualButton extends DISQ_Builder_Module {
 					'toggle_slug'     => 'separator_element',
 				)
 			),
-			'separator_image_height'   => $this->disq_add_range_fields(
+			'separator_image_height'   => $this->disq_add_range_field(
 				esc_html__( 'Image Height', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose image height.', 'squad-modules-for-divi' ),
@@ -514,7 +514,7 @@ class DualButton extends DISQ_Builder_Module {
 					'toggle_slug'      => 'separator_element',
 				)
 			),
-			'separator_width'          => $this->disq_add_range_fields(
+			'separator_width'          => $this->disq_add_range_field(
 				esc_html__( 'Separator Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Adjust the width of the separator.', 'squad-modules-for-divi' ),
@@ -629,7 +629,7 @@ class DualButton extends DISQ_Builder_Module {
 					'depends_show_if'  => 'column',
 				)
 			),
-			'wrapper_elements_gap'         => $this->disq_add_range_fields(
+			'wrapper_elements_gap'         => $this->disq_add_range_field(
 				esc_html__( 'Gap Between Elements', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__(

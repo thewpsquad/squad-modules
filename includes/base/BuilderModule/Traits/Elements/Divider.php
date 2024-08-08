@@ -141,7 +141,7 @@ trait Divider {
 				'mobile_options'   => true,
 				'sticky'           => true,
 			),
-			'divider_max_width'     => $this->disq_add_range_fields(
+			'divider_max_width'     => $this->disq_add_range_field(
 				esc_html__( 'Divider Max Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose divider max width.', 'squad-modules-for-divi' ),
@@ -158,7 +158,7 @@ trait Divider {
 					'toggle_slug'     => $toggle_slug,
 				)
 			),
-			'divider_border_radius' => $this->disq_add_range_fields(
+			'divider_border_radius' => $this->disq_add_range_field(
 				esc_html__( 'Divider Border Radius', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose divider border  radius.', 'squad-modules-for-divi' ),

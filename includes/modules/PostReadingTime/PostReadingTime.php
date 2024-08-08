@@ -226,7 +226,7 @@ class PostReadingTime extends DISQ_Builder_Module {
 
 		// Time general settings.
 		$general_settings = array(
-			'words_per_minute'           => $this->disq_add_range_fields(
+			'words_per_minute'           => $this->disq_add_range_field(
 				esc_html__( 'Words Per Minute', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you can choose how much words you would like to count in a minute.', 'squad-modules-for-divi' ),
@@ -270,7 +270,7 @@ class PostReadingTime extends DISQ_Builder_Module {
 					'toggle_slug'      => 'reading_settings',
 				)
 			),
-			'calculate_images_count'     => $this->disq_add_range_fields(
+			'calculate_images_count'     => $this->disq_add_range_field(
 				esc_html__( 'Images Count', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you can choose how much images you would like to count in a minute.', 'squad-modules-for-divi' ),
@@ -315,7 +315,7 @@ class PostReadingTime extends DISQ_Builder_Module {
 					'toggle_slug'      => 'time_element',
 				)
 			),
-			'time_text_gap'             => $this->disq_add_range_fields(
+			'time_text_gap'             => $this->disq_add_range_field(
 				esc_html__( 'Gap Between Texts', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can choose gap between texts.', 'squad-modules-for-divi' ),
