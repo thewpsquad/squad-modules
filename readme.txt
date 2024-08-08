@@ -5,7 +5,7 @@ Tags: divi, divi module, divi theme, divi builder, divi page builder, divi plugi
 Requires at least: 5.0.0
 Tested up to: 6.5
 Requires PHP: 5.6
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -208,6 +208,11 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 * Enjoy the new collection of elegant Divi modules and enhance your website.
 
 == Changelog ==
+= 1.4.6 (13-11-2023) =
+* Fixed: Squad Dashboard is broken
+* Fixed: PHP Log for the Star Rating Module
+* Improved: Breadcrumbs, Star Rating, Typed Text Modules
+
 = 1.4.5 (12-11-2023) =
 * Fixed: External url cors origin issue in the lottie module
 * Fixed: Browser console log when light box not enabled in gallery module

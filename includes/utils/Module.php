@@ -87,5 +87,4 @@ class Module {
 
 		return $child_props;
 	}
-
 }

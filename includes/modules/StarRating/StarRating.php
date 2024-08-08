@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
-use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
+use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Helper;
 
 /**
@@ -26,7 +26,7 @@ use DiviSquad\Utils\Helper;
  * @since           1.4.0
  * @package         squad-modules-for-divi
  */
-class StarRating extends Squad_Builder_Module {
+class StarRating extends Squad_Divi_Builder_Module {
 
 	/**
 	 * Initiate Module.
@@ -542,7 +542,7 @@ class StarRating extends Squad_Builder_Module {
 
 		if ( 'inline-block' === $stars_display_type ) {
 			$position_output = sprintf(
-				'%1$s<div class="star-rating"%6$s title="%2$s/%3$s">%4$s</div>%5$s',
+				'%1$s<div class="star-rating" %6$s title="%2$s/%3$s">%4$s</div>%5$s',
 				'left' === $title_inline_position ? $title : '',
 				esc_attr( $rating ),
 				esc_attr( $rating_scale ),
@@ -552,7 +552,7 @@ class StarRating extends Squad_Builder_Module {
 			);
 		} else {
 			$position_output = sprintf(
-				'%1$s<div class="star-rating"%6$s title="%2$s/%3$s">%4$s</div>%5$s',
+				'%1$s<div class="star-rating" %6$s title="%2$s/%3$s">%4$s</div>%5$s',
 				'top' === $title_stacked_position ? $title : '',
 				esc_attr( $rating ),
 				esc_attr( $rating_scale ),
@@ -615,13 +615,7 @@ class StarRating extends Squad_Builder_Module {
 		// Fixed: the custom background doesn't work at frontend.
 		$this->props = array_merge( $attrs, $this->props );
 
-		$background_layout = $this->props['background_layout'];
-		$this->add_classname(
-			array(
-				$this->get_text_orientation_classname(),
-				"et_pb_bg_layout_{$background_layout}",
-			)
-		);
+		$this->add_classname( array( $this->get_text_orientation_classname() ) );
 
 		$stars_display_type     = $this->prop( 'stars_display_type', 'inline' );
 		$title_inline_position  = $this->prop( 'title_inline_position', 'left' );
@@ -633,7 +627,7 @@ class StarRating extends Squad_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'title_gap',
-					'selector'       => "$this->main_css_element div .star-title-position-${title_display} .star-rating-title",
+					'selector'       => "$this->main_css_element div .star-title-position-{$title_display} .star-rating-title",
 					'css_property'   => "margin-$inline_position",
 					'render_slug'    => $this->slug,
 					'type'           => 'input',
@@ -644,7 +638,7 @@ class StarRating extends Squad_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'title_gap',
-					'selector'       => "$this->main_css_element div .star-title-position-${title_display} .star-rating-title",
+					'selector'       => "$this->main_css_element div .star-title-position-{$title_display} .star-rating-title",
 					'css_property'   => "margin-$stacked_position",
 					'render_slug'    => $this->slug,
 					'type'           => 'input',

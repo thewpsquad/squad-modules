@@ -72,7 +72,7 @@ class Arr {
 	/**
 	 * Check current array data is a list
 	 *
-	 * @param array $a The array data
+	 * @param array $a The array data.
 	 *
 	 * @return bool
 	 */

@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
-use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
+use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
 use ET_Builder_Module_Helper_MultiViewOptions;
@@ -37,7 +37,7 @@ use function et_builder_get_text_orientation_options;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class FlipBox extends Squad_Builder_Module {
+class FlipBox extends Squad_Divi_Builder_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.

@@ -27,7 +27,7 @@ use ET_Builder_Module;
  * @license     GPL-3.0-only
  */
 #[\AllowDynamicProperties]
-abstract class Squad_Builder_Module extends ET_Builder_Module {
+abstract class Squad_Divi_Builder_Module extends ET_Builder_Module {
 
 	use Traits\Field_Compatibility;
 	use Traits\Field_Definition;

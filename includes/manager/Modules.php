@@ -89,7 +89,7 @@ class Modules {
 				'label'              => esc_html__( 'Typing Text', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Create eye-catching animated title or heading text that simulates a typing effect.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.0.1', '1.0.5', '1.2.3' ),
+				'last_modified'      => array( '1.0.1', '1.0.5', '1.2.3', '1.4.6' ),
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -235,7 +235,7 @@ class Modules {
 				'label'              => esc_html__( 'Star Rating', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Add stylish star ratings to your content for user feedback and ratings.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.0',
-				'last_modified'      => array( '1.4.5' ),
+				'last_modified'      => array( '1.4.5', '1.4.6' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -246,7 +246,7 @@ class Modules {
 				'label'              => esc_html__( 'Breadcrumbs', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Enhance navigation with a clear path for users to trace their steps through your website.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.0',
-				'last_modified'      => array( '1.4.1', '1.4.2' ),
+				'last_modified'      => array( '1.4.1', '1.4.2', '1.4.6' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -282,7 +282,7 @@ class Modules {
 	 *  Check the current module is an active module.
 	 *
 	 * @param array  $module The array of current module.
-	 * @param string $type   The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
+	 * @param string $type   The type of Divi Builder module, default is: D4. Available opinions are: D4, D5.
 	 *
 	 * @return array|null
 	 */
@@ -298,7 +298,7 @@ class Modules {
 	 *
 	 * @param callable $callback The callback function for filter the current module.
 	 * @param array    $modules  The available modules.
-	 * @param string   $type     The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
+	 * @param string   $type     The type of Divi Builder module, default is: D4. Available opinions are: D4, D5.
 	 *
 	 * @return array
 	 */
@@ -318,7 +318,7 @@ class Modules {
 	/**
 	 *  Get default active modules.
 	 *
-	 * @param string $type The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
+	 * @param string $type The type of Divi Builder module, default is: D4. Available opinions are: D4, D5.
 	 *
 	 * @return array
 	 */
@@ -377,7 +377,7 @@ class Modules {
 	}
 
 	/**
-	 * Load enabled modules for Divi Builder from defined directory
+	 * Load enabled modules for Divi Builder from defined directory.
 	 *
 	 * @param string $path The defined directory.
 	 *

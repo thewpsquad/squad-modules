@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
  * The plugin action links management class for the plugin dashboard at admin area.
  *
@@ -40,10 +41,10 @@ class Plugin_Action_Links {
 	 * @return array All action links for plugin.
 	 */
 	public function add_plugin_action_links( $links ) {
-		$dashboard_url = admin_url( 'admin.php?page=divi_squad_dashboard' );
+		$manage_modules_url = admin_url( 'admin.php?page=divi_squad_dashboard#/modules' );
 
 		$action_links = array(
-			sprintf( '<a href="%1$s" aria-label="%2$s">%2$s</a>', $dashboard_url, esc_html__( 'Settings', 'squad-modules-for-divi' ) ),
+			sprintf( '<a href="%1$s" aria-label="%2$s">%2$s</a>', $manage_modules_url, esc_html__( 'Manage', 'squad-modules-for-divi' ) ),
 		);
 
 		return array_merge( $action_links, $links );

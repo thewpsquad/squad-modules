@@ -27,7 +27,7 @@ use function et_pb_background_options;
  * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
-abstract class Squad_Form_Styler_Module extends Squad_Builder_Module {
+abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 
 	/**
 	 * Get the stylesheet selector for form tag.
