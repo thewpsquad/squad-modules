@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-3.0-only.
 msgid ""
 msgstr ""
-"Project-Id-Version: Squad Modules Lite 1.4.9\n"
+"Project-Id-Version: Squad Modules Lite 1.4.10\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/temp\n"
-"POT-Creation-Date: 2024-01-11 14:43:40+00:00\n"
+"POT-Creation-Date: 2024-01-13 16:46:33+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -382,8 +382,8 @@ msgstr ""
 #: includes/modules/PostGrid/PostGrid.php:179
 #: includes/modules/PostGrid/PostGrid.php:199
 #: includes/modules/PostGrid/PostGrid.php:281
-#: includes/modules/PostGridChild/PostGridChild.php:102
-#: includes/modules/PostGridChild/PostGridChild.php:292
+#: includes/modules/PostGridChild/PostGridChild.php:103
+#: includes/modules/PostGridChild/PostGridChild.php:293
 #: includes/modules/TypingText/TypingText.php:67
 #: includes/modules/TypingText/TypingText.php:129
 #: includes/modules/TypingText/TypingText.php:264
@@ -589,7 +589,7 @@ msgstr ""
 #: includes/modules/PostGrid/PostGrid.php:1071
 #: includes/modules/PostGrid/PostGrid.php:1105
 #: includes/modules/PostGrid/PostGrid.php:1247
-#: includes/modules/PostGridChild/PostGridChild.php:941
+#: includes/modules/PostGridChild/PostGridChild.php:939
 msgid "Here you can define a custom margin size."
 msgstr ""
 
@@ -626,10 +626,10 @@ msgstr ""
 #: includes/modules/PostGrid/PostGrid.php:1214
 #: includes/modules/PostGrid/PostGrid.php:1236
 #: includes/modules/PostGrid/PostGrid.php:1263
-#: includes/modules/PostGridChild/PostGridChild.php:852
-#: includes/modules/PostGridChild/PostGridChild.php:873
-#: includes/modules/PostGridChild/PostGridChild.php:916
-#: includes/modules/PostGridChild/PostGridChild.php:956
+#: includes/modules/PostGridChild/PostGridChild.php:850
+#: includes/modules/PostGridChild/PostGridChild.php:871
+#: includes/modules/PostGridChild/PostGridChild.php:914
+#: includes/modules/PostGridChild/PostGridChild.php:954
 #: includes/modules/PostReadingTime/PostReadingTime.php:335
 #: includes/modules/TypingText/TypingText.php:642
 #: includes/modules/TypingText/TypingText.php:770
@@ -786,8 +786,8 @@ msgstr ""
 #: includes/base/BuilderModule/Traits/Fields.php:644
 #: includes/modules/FlipBox/FlipBox.php:3041
 #: includes/modules/FlipBox/FlipBox.php:3074
-#: includes/modules/PostGridChild/PostGridChild.php:774
-#: includes/modules/PostGridChild/PostGridChild.php:803
+#: includes/modules/PostGridChild/PostGridChild.php:772
+#: includes/modules/PostGridChild/PostGridChild.php:801
 msgid "Here you can choose where to place the icon."
 msgstr ""
 
@@ -803,7 +803,7 @@ msgstr ""
 #: includes/modules/FlipBox/FlipBox.php:3063
 #: includes/modules/PostGrid/PostGrid.php:989
 #: includes/modules/PostGrid/PostGrid.php:1148
-#: includes/modules/PostGridChild/PostGridChild.php:793
+#: includes/modules/PostGridChild/PostGridChild.php:791
 #: includes/modules/PostReadingTime/PostReadingTime.php:293
 #: includes/modules/TypingText/TypingText.php:603
 msgid "Align icon to the left, right or center."
@@ -972,9 +972,9 @@ msgstr ""
 #: includes/modules/FlipBox/FlipBox.php:166
 #: includes/modules/FlipBox/FlipBox.php:199
 #: includes/modules/FlipBox/FlipBox.php:2790
-#: includes/modules/PostGridChild/PostGridChild.php:103
-#: includes/modules/PostGridChild/PostGridChild.php:116
-#: includes/modules/PostGridChild/PostGridChild.php:540
+#: includes/modules/PostGridChild/PostGridChild.php:104
+#: includes/modules/PostGridChild/PostGridChild.php:117
+#: includes/modules/PostGridChild/PostGridChild.php:538
 #: includes/modules/VideoPopup/VideoPopup.php:71
 #: includes/modules/VideoPopup/VideoPopup.php:122
 #: includes/modules/VideoPopup/VideoPopup.php:179
@@ -985,7 +985,7 @@ msgstr ""
 #: includes/modules/Divider/Divider.php:833
 #: includes/modules/FlipBox/FlipBox.php:2793
 #: includes/modules/Lottie/Lottie.php:162
-#: includes/modules/PostGridChild/PostGridChild.php:543
+#: includes/modules/PostGridChild/PostGridChild.php:541
 msgid "None"
 msgstr ""
 
@@ -993,8 +993,8 @@ msgstr ""
 #: includes/modules/Divider/Divider.php:576
 #: includes/modules/DualButton/DualButton.php:383
 #: includes/modules/FlipBox/FlipBox.php:2821
-#: includes/modules/PostGridChild/PostGridChild.php:575
-#: includes/modules/PostGridChild/PostGridChild.php:642
+#: includes/modules/PostGridChild/PostGridChild.php:573
+#: includes/modules/PostGridChild/PostGridChild.php:640
 #: includes/modules/TypingText/TypingText.php:517
 msgid "Choose an icon"
 msgstr ""
@@ -1013,7 +1013,7 @@ msgstr ""
 #: includes/modules/DualButton/DualButton.php:401
 #: includes/modules/FlipBox/FlipBox.php:2839
 #: includes/modules/ImageMask/ImageMask.php:108
-#: includes/modules/PostGridChild/PostGridChild.php:593
+#: includes/modules/PostGridChild/PostGridChild.php:591
 #: includes/modules/VideoPopup/VideoPopup.php:160
 msgid "Choose an Image"
 msgstr ""
@@ -1024,7 +1024,7 @@ msgstr ""
 #: includes/modules/DualButton/DualButton.php:402
 #: includes/modules/FlipBox/FlipBox.php:2840
 #: includes/modules/ImageMask/ImageMask.php:109
-#: includes/modules/PostGridChild/PostGridChild.php:594
+#: includes/modules/PostGridChild/PostGridChild.php:592
 #: includes/modules/VideoPopup/VideoPopup.php:161
 msgid "Set As Image"
 msgstr ""
@@ -1043,7 +1043,7 @@ msgstr ""
 #: includes/modules/Divider/Divider.php:727
 #: includes/modules/DualButton/DualButton.php:423
 #: includes/modules/FlipBox/FlipBox.php:2875
-#: includes/modules/PostGridChild/PostGridChild.php:667
+#: includes/modules/PostGridChild/PostGridChild.php:665
 #: includes/modules/TypingText/TypingText.php:546
 msgid "Icon Color"
 msgstr ""
@@ -1056,7 +1056,7 @@ msgstr ""
 #: includes/modules/Divider/Divider.php:746
 #: includes/modules/DualButton/DualButton.php:432
 #: includes/modules/FlipBox/FlipBox.php:2895
-#: includes/modules/PostGridChild/PostGridChild.php:694
+#: includes/modules/PostGridChild/PostGridChild.php:692
 #: includes/modules/TypingText/TypingText.php:555
 msgid "Icon Size"
 msgstr ""
@@ -1065,8 +1065,8 @@ msgstr ""
 #: includes/modules/Divider/Divider.php:748
 #: includes/modules/FlipBox/FlipBox.php:2897
 #: includes/modules/PostGrid/PostGrid.php:931
-#: includes/modules/PostGridChild/PostGridChild.php:696
-#: includes/modules/PostGridChild/PostGridChild.php:742
+#: includes/modules/PostGridChild/PostGridChild.php:694
+#: includes/modules/PostGridChild/PostGridChild.php:740
 msgid "Here you can choose icon size."
 msgstr ""
 
@@ -1075,7 +1075,7 @@ msgstr ""
 #: includes/modules/DualButton/DualButton.php:450
 #: includes/modules/FlipBox/FlipBox.php:2929
 #: includes/modules/ImageMask/ImageMask.php:251
-#: includes/modules/PostGridChild/PostGridChild.php:710
+#: includes/modules/PostGridChild/PostGridChild.php:708
 msgid "Image Width"
 msgstr ""
 
@@ -1084,7 +1084,7 @@ msgstr ""
 #: includes/modules/DualButton/DualButton.php:452
 #: includes/modules/FlipBox/FlipBox.php:2931
 #: includes/modules/ImageMask/ImageMask.php:253
-#: includes/modules/PostGridChild/PostGridChild.php:712
+#: includes/modules/PostGridChild/PostGridChild.php:710
 msgid "Here you can choose image width."
 msgstr ""
 
@@ -1093,7 +1093,7 @@ msgstr ""
 #: includes/modules/DualButton/DualButton.php:468
 #: includes/modules/FlipBox/FlipBox.php:2948
 #: includes/modules/ImageMask/ImageMask.php:270
-#: includes/modules/PostGridChild/PostGridChild.php:725
+#: includes/modules/PostGridChild/PostGridChild.php:723
 #: includes/modules/VideoPopup/VideoPopup.php:318
 msgid "Image Height"
 msgstr ""
@@ -1103,7 +1103,7 @@ msgstr ""
 #: includes/modules/DualButton/DualButton.php:470
 #: includes/modules/FlipBox/FlipBox.php:2950
 #: includes/modules/ImageMask/ImageMask.php:272
-#: includes/modules/PostGridChild/PostGridChild.php:727
+#: includes/modules/PostGridChild/PostGridChild.php:725
 msgid "Here you can choose image height."
 msgstr ""
 
@@ -1115,19 +1115,19 @@ msgstr ""
 #: includes/base/BuilderModule/Traits/Fields.php:623
 #: includes/modules/FlipBox/FlipBox.php:2997
 #: includes/modules/FlipBox/FlipBox.php:3164
-#: includes/modules/PostGridChild/PostGridChild.php:757
+#: includes/modules/PostGridChild/PostGridChild.php:755
 #: includes/modules/TypingText/TypingText.php:573
 msgid "Here you can choose gap between icon and text."
 msgstr ""
 
 #: includes/base/BuilderModule/Traits/Fields.php:642
 #: includes/modules/FlipBox/FlipBox.php:3039
-#: includes/modules/PostGridChild/PostGridChild.php:772
+#: includes/modules/PostGridChild/PostGridChild.php:770
 msgid "Icon Placement"
 msgstr ""
 
 #: includes/base/BuilderModule/Traits/Fields.php:656
-#: includes/modules/PostGridChild/PostGridChild.php:817
+#: includes/modules/PostGridChild/PostGridChild.php:815
 msgid "Show Icon On Hover"
 msgstr ""
 
@@ -1138,7 +1138,7 @@ msgid ""
 msgstr ""
 
 #: includes/base/BuilderModule/Traits/Fields.php:669
-#: includes/modules/PostGridChild/PostGridChild.php:830
+#: includes/modules/PostGridChild/PostGridChild.php:828
 msgid "Move Icon On Hover Only"
 msgstr ""
 
@@ -1396,7 +1396,7 @@ msgid "Display your blog posts in a stylish and organized grid layout."
 msgstr ""
 
 #: includes/manager/Modules.php:79
-#: includes/modules/PostGridChild/PostGridChild.php:59
+#: includes/modules/PostGridChild/PostGridChild.php:60
 msgid "Post Element"
 msgstr ""
 
@@ -1832,7 +1832,7 @@ msgstr ""
 #: includes/modules/Divider/Divider.php:604
 #: includes/modules/FlipBox/FlipBox.php:2849
 #: includes/modules/ImageMask/ImageMask.php:115
-#: includes/modules/PostGridChild/PostGridChild.php:603
+#: includes/modules/PostGridChild/PostGridChild.php:601
 #: includes/modules/VideoPopup/VideoPopup.php:167
 msgid "Image Alt Text"
 msgstr ""
@@ -1841,7 +1841,7 @@ msgstr ""
 #: includes/modules/Divider/Divider.php:605
 #: includes/modules/FlipBox/FlipBox.php:2850
 #: includes/modules/ImageMask/ImageMask.php:116
-#: includes/modules/PostGridChild/PostGridChild.php:604
+#: includes/modules/PostGridChild/PostGridChild.php:602
 msgid "Define the HTML ALT text for your image here."
 msgstr ""
 
@@ -1894,7 +1894,7 @@ msgstr ""
 
 #: includes/modules/Breadcrumbs/Breadcrumbs.php:112
 #: includes/modules/Breadcrumbs/Breadcrumbs.php:142
-#: includes/modules/PostGridChild/PostGridChild.php:457
+#: includes/modules/PostGridChild/PostGridChild.php:455
 #: includes/modules/TypingText/TypingText.php:69
 #: includes/modules/TypingText/TypingText.php:284
 msgid "Before Text"
@@ -1969,7 +1969,7 @@ msgstr ""
 #: includes/modules/FormStylerNinjaForms/FormStylerNinjaForms.php:386
 #: includes/modules/FormStylerNinjaForms/FormStylerNinjaForms.php:596
 #: includes/modules/PostGrid/PostGrid.php:560
-#: includes/modules/PostGridChild/PostGridChild.php:72
+#: includes/modules/PostGridChild/PostGridChild.php:73
 #: includes/modules/StarRating/StarRating.php:70
 #: includes/modules/StarRating/StarRating.php:128
 #: includes/modules/StarRating/StarRating.php:222
@@ -2038,7 +2038,7 @@ msgstr ""
 #: includes/modules/PostGrid/PostGrid.php:326
 #: includes/modules/PostGrid/PostGrid.php:340
 #: includes/modules/PostGrid/PostGrid.php:384
-#: includes/modules/PostGridChild/PostGridChild.php:225
+#: includes/modules/PostGridChild/PostGridChild.php:226
 #: includes/modules/TypingText/TypingText.php:184
 msgid "Wrapper Box Shadow"
 msgstr ""
@@ -2063,7 +2063,7 @@ msgstr ""
 
 #: includes/modules/BusinessHours/BusinessHours.php:265
 #: includes/modules/FlipBox/FlipBox.php:2721
-#: includes/modules/PostGridChild/PostGridChild.php:344
+#: includes/modules/PostGridChild/PostGridChild.php:345
 #: includes/modules/StarRating/StarRating.php:231
 msgid "Title Tag"
 msgstr ""
@@ -2134,7 +2134,7 @@ msgstr ""
 #: includes/modules/BusinessHoursChild/BusinessHoursChild.php:321
 #: includes/modules/FlipBox/FlipBox.php:3148
 #: includes/modules/PostGrid/PostGrid.php:1189
-#: includes/modules/PostGridChild/PostGridChild.php:894
+#: includes/modules/PostGridChild/PostGridChild.php:892
 msgid "Text Alignment"
 msgstr ""
 
@@ -2142,7 +2142,7 @@ msgstr ""
 #: includes/modules/BusinessHoursChild/BusinessHoursChild.php:323
 #: includes/modules/FlipBox/FlipBox.php:3150
 #: includes/modules/PostGrid/PostGrid.php:1191
-#: includes/modules/PostGridChild/PostGridChild.php:896
+#: includes/modules/PostGridChild/PostGridChild.php:894
 msgid "This controls how your text is aligned within the module."
 msgstr ""
 
@@ -2165,7 +2165,7 @@ msgstr ""
 #: includes/modules/FlipBox/FlipBox.php:3185
 #: includes/modules/PostGrid/PostGrid.php:1205
 #: includes/modules/PostGrid/PostGrid.php:1227
-#: includes/modules/PostGridChild/PostGridChild.php:907
+#: includes/modules/PostGridChild/PostGridChild.php:905
 #: includes/modules/TypingText/TypingText.php:633
 msgid "Here you can define a custom margin size for the wrapper."
 msgstr ""
@@ -2279,9 +2279,9 @@ msgstr ""
 
 #: includes/modules/Divider/Divider.php:69
 #: includes/modules/Divider/Divider.php:77
-#: includes/modules/PostGridChild/PostGridChild.php:82
-#: includes/modules/PostGridChild/PostGridChild.php:97
-#: includes/modules/PostGridChild/PostGridChild.php:107
+#: includes/modules/PostGridChild/PostGridChild.php:83
+#: includes/modules/PostGridChild/PostGridChild.php:98
+#: includes/modules/PostGridChild/PostGridChild.php:108
 #: includes/modules/PostReadingTime/PostReadingTime.php:70
 #: includes/modules/PostReadingTime/PostReadingTime.php:77
 msgid "Divider"
@@ -2306,12 +2306,12 @@ msgstr ""
 
 #: includes/modules/Divider/Divider.php:90
 #: includes/modules/FlipBox/FlipBox.php:111
-#: includes/modules/PostGridChild/PostGridChild.php:104
+#: includes/modules/PostGridChild/PostGridChild.php:105
 msgid "Icon Text"
 msgstr ""
 
 #: includes/modules/Divider/Divider.php:158
-#: includes/modules/PostGridChild/PostGridChild.php:239
+#: includes/modules/PostGridChild/PostGridChild.php:240
 msgid "Icon Box Shadow"
 msgstr ""
 
@@ -2418,7 +2418,7 @@ msgstr ""
 
 #: includes/modules/Divider/Divider.php:539
 #: includes/modules/FlipBox/FlipBox.php:2786
-#: includes/modules/PostGridChild/PostGridChild.php:536
+#: includes/modules/PostGridChild/PostGridChild.php:534
 msgid "Icon Type"
 msgstr ""
 
@@ -2508,39 +2508,39 @@ msgstr ""
 #: includes/modules/Divider/Divider.php:729
 #: includes/modules/FlipBox/FlipBox.php:2877
 #: includes/modules/PostGrid/PostGrid.php:922
-#: includes/modules/PostGridChild/PostGridChild.php:669
-#: includes/modules/PostGridChild/PostGridChild.php:687
+#: includes/modules/PostGridChild/PostGridChild.php:667
+#: includes/modules/PostGridChild/PostGridChild.php:685
 msgid "Here you can define a custom color for your icon."
 msgstr ""
 
 #: includes/modules/Divider/Divider.php:737
 #: includes/modules/FlipBox/FlipBox.php:2885
-#: includes/modules/PostGridChild/PostGridChild.php:676
+#: includes/modules/PostGridChild/PostGridChild.php:674
 msgid "Icon Background Color"
 msgstr ""
 
 #: includes/modules/Divider/Divider.php:739
 #: includes/modules/FlipBox/FlipBox.php:2887
-#: includes/modules/PostGridChild/PostGridChild.php:678
+#: includes/modules/PostGridChild/PostGridChild.php:676
 msgid "Here you can define a custom background color."
 msgstr ""
 
 #: includes/modules/Divider/Divider.php:800
 #: includes/modules/FlipBox/FlipBox.php:3112
-#: includes/modules/PostGridChild/PostGridChild.php:840
+#: includes/modules/PostGridChild/PostGridChild.php:838
 msgid "Icon Margin"
 msgstr ""
 
 #: includes/modules/Divider/Divider.php:802
 #: includes/modules/FlipBox/FlipBox.php:3114
-#: includes/modules/PostGridChild/PostGridChild.php:842
-#: includes/modules/PostGridChild/PostGridChild.php:862
+#: includes/modules/PostGridChild/PostGridChild.php:840
+#: includes/modules/PostGridChild/PostGridChild.php:860
 msgid "Here you can define a custom margin size for the icon."
 msgstr ""
 
 #: includes/modules/Divider/Divider.php:810
 #: includes/modules/FlipBox/FlipBox.php:3123
-#: includes/modules/PostGridChild/PostGridChild.php:850
+#: includes/modules/PostGridChild/PostGridChild.php:848
 msgid "Icon Padding"
 msgstr ""
 
@@ -2774,7 +2774,7 @@ msgstr ""
 
 #: includes/modules/DropCap/DropCap.php:58
 #: includes/modules/FlipBox/FlipBox.php:76
-#: includes/modules/PostGridChild/PostGridChild.php:74
+#: includes/modules/PostGridChild/PostGridChild.php:75
 #: includes/modules/PostReadingTime/PostReadingTime.php:68
 #: includes/modules/ScrollingText/ScrollingText.php:59
 #: includes/modules/TypingText/TypingText.php:61
@@ -2821,15 +2821,15 @@ msgstr ""
 
 #: includes/modules/DropCap/DropCap.php:156
 #: includes/modules/DualButton/DualButton.php:413
-#: includes/modules/PostGridChild/PostGridChild.php:884
-#: includes/modules/PostGridChild/PostGridChild.php:926
+#: includes/modules/PostGridChild/PostGridChild.php:882
+#: includes/modules/PostGridChild/PostGridChild.php:924
 #: includes/modules/VideoPopup/VideoPopup.php:345
 msgid "Background"
 msgstr ""
 
 #: includes/modules/DropCap/DropCap.php:166
-#: includes/modules/PostGridChild/PostGridChild.php:905
-#: includes/modules/PostGridChild/PostGridChild.php:939
+#: includes/modules/PostGridChild/PostGridChild.php:903
+#: includes/modules/PostGridChild/PostGridChild.php:937
 msgid "Margin"
 msgstr ""
 
@@ -2838,8 +2838,8 @@ msgid "Here you can define a custom margin size for the drop cap letter."
 msgstr ""
 
 #: includes/modules/DropCap/DropCap.php:180
-#: includes/modules/PostGridChild/PostGridChild.php:914
-#: includes/modules/PostGridChild/PostGridChild.php:954
+#: includes/modules/PostGridChild/PostGridChild.php:912
+#: includes/modules/PostGridChild/PostGridChild.php:952
 msgid "Padding"
 msgstr ""
 
@@ -3197,7 +3197,7 @@ msgstr ""
 
 #: includes/modules/FlipBox/FlipBox.php:1177
 #: includes/modules/FlipBox/FlipBox.php:3076
-#: includes/modules/PostGridChild/PostGridChild.php:805
+#: includes/modules/PostGridChild/PostGridChild.php:803
 #: includes/modules/StarRating/StarRating.php:279
 msgid "Top"
 msgstr ""
@@ -3205,13 +3205,13 @@ msgstr ""
 #: includes/modules/FlipBox/FlipBox.php:1178
 #: includes/modules/FlipBox/FlipBox.php:1218
 #: includes/modules/FlipBox/FlipBox.php:3077
-#: includes/modules/PostGridChild/PostGridChild.php:806
+#: includes/modules/PostGridChild/PostGridChild.php:804
 msgid "Center"
 msgstr ""
 
 #: includes/modules/FlipBox/FlipBox.php:1179
 #: includes/modules/FlipBox/FlipBox.php:3078
-#: includes/modules/PostGridChild/PostGridChild.php:807
+#: includes/modules/PostGridChild/PostGridChild.php:805
 #: includes/modules/StarRating/StarRating.php:280
 msgid "Bottom"
 msgstr ""
@@ -3384,7 +3384,7 @@ msgstr ""
 
 #: includes/modules/FlipBox/FlipBox.php:2967
 #: includes/modules/FlipBox/FlipBox.php:3061
-#: includes/modules/PostGridChild/PostGridChild.php:791
+#: includes/modules/PostGridChild/PostGridChild.php:789
 msgid "Icon Horizontal Alignment"
 msgstr ""
 
@@ -3407,7 +3407,7 @@ msgid "Here you can choose icon wrapper width."
 msgstr ""
 
 #: includes/modules/FlipBox/FlipBox.php:3072
-#: includes/modules/PostGridChild/PostGridChild.php:801
+#: includes/modules/PostGridChild/PostGridChild.php:799
 msgid "Icon Vertical Placement"
 msgstr ""
 
@@ -4208,11 +4208,11 @@ msgstr ""
 
 #: includes/modules/PostGrid/PostGrid.php:90
 #: includes/modules/PostGrid/PostGrid.php:218
-#: includes/modules/PostGridChild/PostGridChild.php:95
-#: includes/modules/PostGridChild/PostGridChild.php:105
-#: includes/modules/PostGridChild/PostGridChild.php:139
-#: includes/modules/PostGridChild/PostGridChild.php:207
-#: includes/modules/PostGridChild/PostGridChild.php:296
+#: includes/modules/PostGridChild/PostGridChild.php:96
+#: includes/modules/PostGridChild/PostGridChild.php:106
+#: includes/modules/PostGridChild/PostGridChild.php:140
+#: includes/modules/PostGridChild/PostGridChild.php:208
+#: includes/modules/PostGridChild/PostGridChild.php:297
 msgid "Element"
 msgstr ""
 
@@ -4248,7 +4248,7 @@ msgid "Active Pagination Text"
 msgstr ""
 
 #: includes/modules/PostGrid/PostGrid.php:354
-#: includes/modules/PostGridChild/PostGridChild.php:256
+#: includes/modules/PostGridChild/PostGridChild.php:257
 msgid "Element Box Shadow"
 msgstr ""
 
@@ -4330,7 +4330,7 @@ msgid "Name"
 msgstr ""
 
 #: includes/modules/PostGrid/PostGrid.php:561
-#: includes/modules/PostGridChild/PostGridChild.php:75
+#: includes/modules/PostGridChild/PostGridChild.php:76
 #: includes/modules/StarRating/StarRating.php:411
 msgid "Author"
 msgstr ""
@@ -4537,266 +4537,268 @@ msgstr ""
 msgid "Next Entries"
 msgstr ""
 
-#: includes/modules/PostGrid/PostGrid.php:2566
-#: includes/modules/PostGridChild/PostGridChild.php:77
+#: includes/modules/PostGrid/PostGrid.php:2563
+#: includes/modules/PostGridChild/PostGridChild.php:78
 msgid "Read More"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:60
+#: includes/modules/PostGridChild/PostGridChild.php:61
 msgid "Post Elements"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:73
-#: includes/modules/PostGridChild/PostGridChild.php:288
+#: includes/modules/PostGridChild/PostGridChild.php:74
+#: includes/modules/PostGridChild/PostGridChild.php:289
 msgid "Feature Image"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:76
+#: includes/modules/PostGridChild/PostGridChild.php:77
 msgid "Date"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:78
+#: includes/modules/PostGridChild/PostGridChild.php:79
 msgid "Comments Count"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:79
+#: includes/modules/PostGridChild/PostGridChild.php:80
 msgid "Categories"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:80
+#: includes/modules/PostGridChild/PostGridChild.php:81
 msgid "Tags"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:81
-#: includes/modules/PostGridChild/PostGridChild.php:505
+#: includes/modules/PostGridChild/PostGridChild.php:82
+#: includes/modules/PostGridChild/PostGridChild.php:503
 msgid "Custom Text"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:96
+#: includes/modules/PostGridChild/PostGridChild.php:97
 msgid "Icon Element"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:106
+#: includes/modules/PostGridChild/PostGridChild.php:107
 msgid "Element Text"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:284
+#: includes/modules/PostGridChild/PostGridChild.php:285
 msgid "Title Icon"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:312
+#: includes/modules/PostGridChild/PostGridChild.php:313
 msgid "Element Type"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:314
+#: includes/modules/PostGridChild/PostGridChild.php:315
 msgid "Choose an element type to display for current post."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:315
+#: includes/modules/PostGridChild/PostGridChild.php:316
 msgid "Choose a type"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:346
+#: includes/modules/PostGridChild/PostGridChild.php:347
 msgid "Choose a tag to display with your title element."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:355
+#: includes/modules/PostGridChild/PostGridChild.php:356
 msgid "Force Fullwidth"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:357
+#: includes/modules/PostGridChild/PostGridChild.php:358
 msgid "Here you can choose whether or not the image element is full width."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:365
+#: includes/modules/PostGridChild/PostGridChild.php:366
 msgid "Show Post Excerpt"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:367
+#: includes/modules/PostGridChild/PostGridChild.php:368
 msgid "Here you can choose whether or not show post excerpt."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:378
+#: includes/modules/PostGridChild/PostGridChild.php:376
 msgid "Enable Text Limit"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:380
+#: includes/modules/PostGridChild/PostGridChild.php:378
 msgid ""
 "Here you can choose whether or not custom length for post content or "
 "excerpt text limit."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:391
+#: includes/modules/PostGridChild/PostGridChild.php:389
 msgid "Text Limit"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:393
-msgid "Here you can choose how much text you would like to display for biography."
+#: includes/modules/PostGridChild/PostGridChild.php:391
+msgid ""
+"Here you can choose how much text you would like to display for post "
+"content or excerpt."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:414
+#: includes/modules/PostGridChild/PostGridChild.php:412
 msgid "Author Name Type"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:416
+#: includes/modules/PostGridChild/PostGridChild.php:414
 msgid "Choose a author name type to display for current post."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:418
+#: includes/modules/PostGridChild/PostGridChild.php:416
 msgid "Nickname"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:419
+#: includes/modules/PostGridChild/PostGridChild.php:417
 msgid "Display Name"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:420
+#: includes/modules/PostGridChild/PostGridChild.php:418
 msgid "Full Name"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:421
+#: includes/modules/PostGridChild/PostGridChild.php:419
 msgid "First Name"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:422
+#: includes/modules/PostGridChild/PostGridChild.php:420
 msgid "Last Name"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:431
+#: includes/modules/PostGridChild/PostGridChild.php:429
 msgid "Date Type"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:433
+#: includes/modules/PostGridChild/PostGridChild.php:431
 msgid "Choose a date type to display for current post."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:435
+#: includes/modules/PostGridChild/PostGridChild.php:433
 msgid "Publish"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:436
+#: includes/modules/PostGridChild/PostGridChild.php:434
 msgid "Modified"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:445
+#: includes/modules/PostGridChild/PostGridChild.php:443
 msgid "Read More Text"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:446
+#: includes/modules/PostGridChild/PostGridChild.php:444
 msgid "The text will appear in with your read more element."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:458
+#: includes/modules/PostGridChild/PostGridChild.php:456
 msgid "The before text of your title will appear in with your post element."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:469
+#: includes/modules/PostGridChild/PostGridChild.php:467
 #: includes/modules/TypingText/TypingText.php:74
 #: includes/modules/TypingText/TypingText.php:303
 msgid "After Text"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:470
+#: includes/modules/PostGridChild/PostGridChild.php:468
 msgid "The after text of your title will appear in with your post element."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:481
+#: includes/modules/PostGridChild/PostGridChild.php:479
 msgid "Categories Separator"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:482
+#: includes/modules/PostGridChild/PostGridChild.php:480
 msgid ""
 "The seperator text of your categories will appear in with your categories "
 "element."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:493
+#: includes/modules/PostGridChild/PostGridChild.php:491
 msgid "Tags Separator"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:494
+#: includes/modules/PostGridChild/PostGridChild.php:492
 msgid "The seperator text of your tags will appear in with your tags element."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:506
+#: includes/modules/PostGridChild/PostGridChild.php:504
 msgid "The text will appear in with your custom text element."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:517
+#: includes/modules/PostGridChild/PostGridChild.php:515
 msgid "Show Outside the Container"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:519
+#: includes/modules/PostGridChild/PostGridChild.php:517
 msgid "Here you can choose whether or not show avatar in the outside container."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:538
+#: includes/modules/PostGridChild/PostGridChild.php:536
 msgid "Choose an icon type to display with your post."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:576
+#: includes/modules/PostGridChild/PostGridChild.php:574
 msgid "Choose an icon to display with your post."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:589
+#: includes/modules/PostGridChild/PostGridChild.php:587
 msgid "Upload an image to display at the top of your post."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:614
+#: includes/modules/PostGridChild/PostGridChild.php:612
 msgid "The text of your post will appear in bold as icon."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:623
+#: includes/modules/PostGridChild/PostGridChild.php:621
 msgid "Use Left Icon for Title"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:625
+#: includes/modules/PostGridChild/PostGridChild.php:623
 msgid "Here you can choose whether or not use icon for the post title."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:643
+#: includes/modules/PostGridChild/PostGridChild.php:641
 msgid "Choose an icon to display with your post title."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:653
+#: includes/modules/PostGridChild/PostGridChild.php:651
 msgid "Show Title Icon On Hover"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:655
+#: includes/modules/PostGridChild/PostGridChild.php:653
 msgid ""
 "By default, post title icon on hover be displayed. If you would like post "
 "title icon is displayed all time, then you can enable this option."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:685
+#: includes/modules/PostGridChild/PostGridChild.php:683
 msgid "Title Icon Color"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:740
+#: includes/modules/PostGridChild/PostGridChild.php:738
 msgid "Title Icon Size"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:755
+#: includes/modules/PostGridChild/PostGridChild.php:753
 msgid "Gap Between Icon and Text"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:819
+#: includes/modules/PostGridChild/PostGridChild.php:817
 msgid ""
 "By default, post element icon to always be displayed. If you would like "
 "post element icon are displayed on hover, then you can enable this option."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:832
+#: includes/modules/PostGridChild/PostGridChild.php:830
 msgid ""
 "By default, icon and text are both move on hover. If you would like post "
 "element icon move on hover, then you can enable this option."
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:860
+#: includes/modules/PostGridChild/PostGridChild.php:858
 msgid "Title Icon Margin"
 msgstr ""
 
-#: includes/modules/PostGridChild/PostGridChild.php:871
+#: includes/modules/PostGridChild/PostGridChild.php:869
 msgid "Title Icon Padding"
 msgstr ""
 
@@ -5753,7 +5755,6 @@ msgid "Click Here"
 msgstr ""
 
 #: includes/base/BuilderBackendPlaceholder.php:50
-#: includes/integration/DiviBuilderBackend.php:96
 msgctxt "Modules dummy content"
 msgid "Learn More"
 msgstr ""
@@ -5774,7 +5775,7 @@ msgid "Comments: "
 msgstr ""
 
 #: includes/integration/DiviBuilderBackend.php:46
-#: includes/integration/DiviBuilderBackend.php:267
+#: includes/integration/DiviBuilderBackend.php:250
 msgctxt "Modules dummy content"
 msgid "Sun Day"
 msgstr ""
@@ -5784,7 +5785,7 @@ msgstr ""
 #: includes/integration/DiviBuilderBackend.php:57
 #: includes/integration/DiviBuilderBackend.php:62
 #: includes/integration/DiviBuilderBackend.php:67
-#: includes/integration/DiviBuilderBackend.php:268
+#: includes/integration/DiviBuilderBackend.php:251
 msgctxt "Modules dummy content"
 msgid "10AM - 5PM"
 msgstr ""
@@ -5825,102 +5826,102 @@ msgctxt "Modules dummy content"
 msgid "Sat Day"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:193
+#: includes/integration/DiviBuilderBackend.php:187
 msgctxt "Modules dummy content"
 msgid "Typing Text"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:200
+#: includes/integration/DiviBuilderBackend.php:194
 msgctxt "Modules dummy content"
 msgid "Your Gradient Text Here"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:230
+#: includes/integration/DiviBuilderBackend.php:213
 msgctxt "Modules dummy content"
 msgid "Your"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:232
+#: includes/integration/DiviBuilderBackend.php:215
 msgctxt "Modules dummy content"
 msgid "Goes Here"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:246
+#: includes/integration/DiviBuilderBackend.php:229
 msgctxt "Modules dummy content"
 msgid "Older"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:247
+#: includes/integration/DiviBuilderBackend.php:230
 msgctxt "Modules dummy content"
 msgid "Next"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:248
+#: includes/integration/DiviBuilderBackend.php:231
 msgctxt "Modules dummy content"
 msgid "Load More"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:252
+#: includes/integration/DiviBuilderBackend.php:235
 msgctxt "Modules dummy content"
 msgid "Flip Right"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:255
+#: includes/integration/DiviBuilderBackend.php:238
 msgctxt "Modules dummy content"
 msgid "View More"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:263
+#: includes/integration/DiviBuilderBackend.php:246
 msgctxt "Modules dummy content"
 msgid "Business Hours"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:275
+#: includes/integration/DiviBuilderBackend.php:258
 msgctxt "Modules dummy content"
 msgid "Before"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:276
+#: includes/integration/DiviBuilderBackend.php:259
 msgctxt "Modules dummy content"
 msgid "After"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:288
+#: includes/integration/DiviBuilderBackend.php:271
 msgctxt "Modules dummy content"
 msgid "Reading Time"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:289
+#: includes/integration/DiviBuilderBackend.php:272
 msgctxt "Modules dummy content"
 msgid "minutes"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:290
+#: includes/integration/DiviBuilderBackend.php:273
 msgctxt "Modules dummy content"
 msgid "minute"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:293
+#: includes/integration/DiviBuilderBackend.php:276
 msgctxt "Modules dummy content"
 msgid "Your Glitch Text Here"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:301
+#: includes/integration/DiviBuilderBackend.php:284
 msgctxt "Modules dummy content"
 msgid "Your Scrolling Text Here"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:304
+#: includes/integration/DiviBuilderBackend.php:287
 msgctxt "Modules dummy content"
 msgid "Home"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:307
+#: includes/integration/DiviBuilderBackend.php:290
 msgctxt "Modules dummy content"
 msgid "Y"
 msgstr ""
 
-#: includes/integration/DiviBuilderBackend.php:308
+#: includes/integration/DiviBuilderBackend.php:291
 msgctxt "Modules dummy content"
 msgid ""
 "<p>our content goes here. Edit or remove this text inline or in the module "

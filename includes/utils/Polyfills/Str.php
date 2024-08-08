@@ -116,9 +116,14 @@ class Str {
 		 */
 
 		if ( function_exists( '\str_word_count' ) ) {
+			// $characters .= 'áéíóúüñ';
+			// https://www.php.net/manual/en/function.str-word-count.php#87801
 			return \str_word_count( $string_content, $format, $characters );
 		}
 
-		return count( preg_split( '~[^\p{L}\p{N}\']+~u', $string_content ) );
+		// Split string into words.
+		$break_words = preg_split( '~[^\p{L}\p{N}\']+~u', $string_content );
+
+		return 0 === $format ? count( $break_words ) : $break_words;
 	}
 }
