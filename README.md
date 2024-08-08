@@ -1,53 +1,62 @@
-# Squad Modules for Divi (Issue Tracker)
+# Divi Squad - GitHub Mirror
 
 [![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE)
-[![Issues](https://img.shields.io/github/issues/thewpsquad/squad-modules.svg)](https://github.com/thewpsquad/squad-modules/issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-This repository serves as a dedicated issue tracker for the [Squad Modules for Divi](https://wordpress.org/plugins/squad-modules-for-divi/) project. It provides a centralized platform where users can report bugs, request new features, or seek support related to the Squad Modules for Divi plugin.
+Welcome to the GitHub mirror of the Divi Squad plugin! This repository is synchronized with our SVN repository and serves as a platform for community contributions and collaborative development.
 
-## Description
+## About Divi Squad
 
-The Squad Modules for Divi is a free and open-source plugin that extends the functionality of the Divi Builder by introducing a suite of powerful and versatile custom modules. This issue tracker repository is specifically designed to track and manage issues, bugs, and feature requests for the project.
+Divi Squad is a powerful plugin that enhances the Divi theme and Divi Builder with additional custom modules and extensions. It's designed to unlock new possibilities and streamline your workflow when building websites with Divi.
+
+## Repository Purpose
+
+This GitHub repository serves several purposes:
+
+1. **Mirror of SVN**: It provides a GitHub mirror of our SVN repository, making the code more accessible to the wider development community.
+2. **Community Contributions**: We welcome pull requests from anyone who wants to contribute to improving Divi Squad.
+3. **Issue Tracking**: You can use the GitHub Issues feature to report bugs, suggest features, or discuss improvements.
+
+## How to Contribute
+
+We're excited to welcome contributions from the community! Here's how you can get involved:
+
+1. **Fork the Repository**: Click the 'Fork' button at the top right of this page.
+2. **Clone Your Fork**: `git clone https://github.com/your-username/divi-squad.git`
+3. **Create a Branch**: `git checkout -b feature/your-feature-name`
+4. **Make Your Changes**: Implement your feature or bug fix.
+5. **Commit Your Changes**: `git commit -am 'Add some feature'`
+6. **Push to the Branch**: `git push origin feature/your-feature-name`
+7. **Create a Pull Request**: Go to the original Divi Squad repository and click 'New Pull Request'
+
+Please ensure your code adheres to our coding standards and include tests if applicable.
 
 ## Reporting Issues
 
-If you encounter any issues, bugs, or have suggestions for new features, please open a new issue in this repository. When creating an issue, please provide as much detail as possible, including:
+If you encounter any bugs or have feature suggestions, please open an issue on this GitHub repository. Provide as much detail as possible, including:
 
-- A clear and descriptive title
-- A detailed description of the issue or feature request
-- Steps to reproduce the issue (if applicable)
-- Screenshots or error messages (if applicable)
-- Your WordPress and Divi version
-- Any relevant information about your environment or setup (e.g., server configuration, browser, operating system)
+- A clear description of the issue or feature request
+- Steps to reproduce (for bugs)
+- Expected vs actual behavior
+- Your environment (WordPress version, Divi version, browser, etc.)
 
-Please also search for existing issues before creating a new one to avoid duplicates.
+## Development Setup
 
-## Feature Requests
-
-If you have an idea for a new feature or enhancement, feel free to open a new issue and describe your proposal in detail. Please provide as much context and rationale as possible to help us understand the need and potential impact of the requested feature.
-
-## Support
-
-For general support or questions regarding the Squad Modules for Divi plugin, please open an issue in this repository. Our team will do their best to assist you or provide guidance as soon as possible.
-
-## Contributing
-
-While this repository is primarily intended for issue tracking, we welcome contributions from the community to improve the Squad Modules for Divi project. If you would like to contribute code, documentation, or other resources, please refer to the [this repository](https://github.com/thewpsquad/squad-modules) and follow the guidelines outlined in the `CONTRIBUTING.md` file.
-
-**Note: No one can modify the files in this repository without explicit permission from WP Squad.**
+(Include instructions on how to set up the development environment, run tests, etc.)
 
 ## License
 
-The Squad Modules for Divi project is licensed under the [GNU General Public License v3.0](LICENSE).
+Divi Squad is open-source software licensed under the [GNU General Public License v3.0](LICENSE).
 
-## Credits
+## Community and Support
 
-The Squad Modules for Divi is built and maintained by the following contributors:
+- [Official Website](https://example.com/divi-squad)
+- [Documentation](https://example.com/divi-squad/docs)
+- [Support Forum](https://example.com/divi-squad/support)
 
-- [WP Squad](https://github.com/thewpsquad)
+## Acknowledgments
 
-We would like to express our gratitude to the Divi community and Elegant Themes for creating such an amazing theme and providing the foundation for this project.
+- Thanks to all contributors who have helped shape Divi Squad
+- Special thanks to the Divi community and Elegant Themes for creating the amazing Divi ecosystem
 
-## Code of Conduct
-
-Please note that this project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project, you are expected to uphold a respectful and inclusive environment for all contributors.
+We're thrilled to have you here and look forward to your contributions!
