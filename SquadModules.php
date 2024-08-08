@@ -37,12 +37,8 @@ final class SquadModules extends Integration\Core {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->name             = 'squad-modules-for-divi';
-		$this->option_prefix    = 'disq';
-		$this->version          = '1.2.2';
-		$this->min_version_divi = '4.0.0';
-		$this->min_version_php  = '5.6';
-		$this->min_version_wp   = '5.8';
+		$this->name          = 'squad-modules-for-divi';
+		$this->option_prefix = 'disq';
 
 		// translations.
 		$this->localize_path = __DIR__;
@@ -89,12 +85,12 @@ final class SquadModules extends Integration\Core {
 			self::$instance = new self();
 
 			try {
-				self::$instance->define_general_constants();
 				self::$instance->set_memory( self::$instance->option_prefix );
 				self::$instance->load_core_components();
 
 				// Load the core.
-				$wp = Integration\WP::get_instance( self::$instance->min_version_php );
+				$wp = new Integration\WP();
+				$wp->assign_all_versions();
 				$wp->let_the_journey_start(
 					static function () {
 						self::$instance->load_global_assets();
@@ -108,19 +104,10 @@ final class SquadModules extends Integration\Core {
 					}
 				);
 			} catch ( \Exception $exception ) {
-				error_log( $exception->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+				error_log( 'DiviSquad: ' . $exception->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 			}
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * Get the plugin name for the pro-version
-	 *
-	 * @return bool
-	 */
-	public static function is_the_pro_plugin_active() {
-		return defined( '\DISQ_PRO_PLUGIN_BASE' ) && Utils\Helper::is_plugin_active( DISQ_PRO_PLUGIN_BASE );
 	}
 }

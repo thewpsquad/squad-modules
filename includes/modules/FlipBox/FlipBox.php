@@ -17,6 +17,15 @@ use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
 use ET_Builder_Module_Helper_MultiViewOptions;
+use function esc_html__;
+use function esc_attr__;
+use function apply_filters;
+use function et_core_esc_previously;
+use function et_pb_multi_view_options;
+use function et_pb_background_options;
+use function et_pb_media_options;
+use function et_pb_get_extended_font_icon_value;
+use function et_builder_get_text_orientation_options;
 
 /**
  * Flip Box Module Class.
@@ -35,7 +44,7 @@ class FlipBox extends DISQ_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Flip Box', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Flip Boxes', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/flip-box.svg' );
 
 		$this->slug       = 'disq_flip_box';
 		$this->vb_support = 'on';
@@ -2001,7 +2010,7 @@ class FlipBox extends DISQ_Builder_Module {
 		}
 
 		if ( '' !== $sub_title_text ) {
-			// The sub-title margin with default, responsive, hover.
+			// The subtitle margin with default, responsive, hover.
 			$this->disq_process_margin_padding_styles(
 				array(
 					'field'        => "{$slide_type}_sub_title_margin",

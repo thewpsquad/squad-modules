@@ -17,6 +17,17 @@ use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
 use ET_Builder_Module_Helper_MultiViewOptions;
+use function esc_attr__;
+use function esc_html__;
+use function et_builder_get_border_styles;
+use function et_builder_i18n;
+use function et_core_esc_previously;
+use function et_pb_background_options;
+use function et_pb_get_extended_font_icon_value;
+use function et_pb_media_options;
+use function et_pb_multi_view_options;
+use function wp_enqueue_script;
+use function wp_json_encode;
 
 /**
  * Divider Module Class.
@@ -35,7 +46,7 @@ class Divider extends DISQ_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Advanced Divider', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Advanced Dividers', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/divider.svg' );
 
 		$this->slug             = 'disq_divider';
 		$this->main_css_element = "%%order_class%%.$this->slug";
@@ -1188,19 +1199,10 @@ class Divider extends DISQ_Builder_Module {
 	/**
 	 * Filter multi view value.
 	 *
-	 * @param mixed $raw_value                                        Props raw value.
-	 * @param array $args                                             {
-	 *                                                                Context data.
-	 *
-	 * @type string $context                                          Context param: content, attrs, visibility, classes.
-	 * @type string $name                                             Module options props name.
-	 * @type string $mode                                             Current data mode: desktop, hover, tablet, phone.
-	 * @type string $attr_key                                         Attribute key for attrs context data. Example: src, class, etc.
-	 * @type string $attr_sub_key                                     Attribute sub key that availabe when passing attrs value as array such as styes. Example: padding-top, margin-botton, etc.
-	 *                                                                }
+	 * @param mixed $raw_value Props raw value.
+	 * @param array $args      Context data.
 	 *
 	 * @return mixed
-	 * @since 3.27.1
 	 *
 	 * @see   ET_Builder_Module_Helper_MultiViewOptions::filter_value
 	 */
@@ -1277,7 +1279,7 @@ class Divider extends DISQ_Builder_Module {
 				'use_background_mask'    => false,
 				'prop_name_aliases'      => array(
 					'use_wrapper_background_color_gradient' => 'wrapper_background_use_color_gradient',
-					'wrapper_background'                    => 'wrapper_background_color',
+					'wrapper_background' => 'wrapper_background_color',
 				),
 			)
 		);
@@ -1501,7 +1503,6 @@ class Divider extends DISQ_Builder_Module {
 				'important'      => true,
 			)
 		);
-
 
 		$no_of_line = 'on' === $this->prop( 'multiple_divider', 'off' ) ? (int) $this->prop( 'multiple_divider_no', '2' ) : 1;
 		$hr_tags    = array_fill( 0, $no_of_line, '<hr/>' );

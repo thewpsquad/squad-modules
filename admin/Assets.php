@@ -57,21 +57,22 @@ class Assets {
 	 */
 	public function wp_hook_enqueue_plugin_admin_asset( $hook_suffix ) {
 		// Load plugin asset in the all admin pages.
-		Asset::asset_enqueue( 'admin-common-free', 'build/admin/scripts/admin-common.js' );
-		Asset::style_enqueue( 'admin-common-free', 'build/admin/styles/admin-common.css' );
+		Asset::asset_enqueue( 'admin-common', Asset::asset_path( 'admin-common', array( 'path' => 'admin/scripts', 'ext' => 'js' ) ) ); // phpcs:ignore
+		Asset::style_enqueue( 'admin-common', Asset::asset_path( 'admin-common', array( 'path' => 'admin/styles', 'ext' => 'css' ) ) ); // phpcs:ignore
 
 		// Load plugin asset in the allowed admin pages only.
 		if ( in_array( $hook_suffix, self::get_plugin_asset_allowed_pages(), true ) ) {
-			Asset::asset_enqueue( 'admin-free', 'build/admin/scripts/admin-script.js' );
-			Asset::style_enqueue( 'admin-free', 'build/admin/styles/admin-style.css' );
+			// Load all assets including scripts and stylesheets.
+			Asset::asset_enqueue( 'admin', Asset::asset_path( 'admin', array( 'path' => 'admin/scripts', 'ext' => 'js' ) ) ); // phpcs:ignore
+			Asset::style_enqueue( 'admin', Asset::asset_path( 'admin', array( 'path' => 'admin/styles', 'ext' => 'css' ) ) ); // phpcs:ignore
 
-			// Load localize scripts
+			// Load localize scripts.
 			$admin_localize_scripts = $this->wp_localize_script_data();
-			wp_localize_script( 'disq-admin-free', 'DISQAdminBackend', $admin_localize_scripts );
+			WP::localize_script( 'disq-admin', 'DISQAdminBackend', $admin_localize_scripts );
 
-			// Load script translations
+			// Load script translations.
 			$localize_path = divi_squad()->get_localize_path();
-			wp_set_script_translations( 'admin-free', divi_squad()->get_name(), "{$localize_path}/languages" );
+			WP::set_script_translations( 'admin', divi_squad()->get_name(), "$localize_path/languages" );
 		}
 	}
 
@@ -94,10 +95,11 @@ class Assets {
 		$namespace = divi_squad()->get_name();
 
 		return array(
-			'version'  => divi_squad()->get_version(),
-			'rest_api' => array(
+			'version'      => divi_squad()->get_version(),
+			'version_real' => DISQ_VERSION,
+			'rest_api'     => array(
 				'route'     => get_rest_url(),
-				'namespace' => "/{$namespace}/v1",
+				'namespace' => "/$namespace/v1",
 				'routes'    => array(
 					'getModules'       => array(
 						'root'    => 'modules',
@@ -117,12 +119,12 @@ class Assets {
 					),
 				),
 			),
-			'links'    => array(
+			'links'        => array(
 				'dashboard' => admin_url( 'admin.php?page=divi_squad_dashboard' ),
 				'modules'   => admin_url( 'admin.php?page=divi_squad_modules' ),
 				'premium'   => admin_url( 'admin.php?page=divi_squad_go_premium' ),
 			),
-			'l10n'     => array(
+			'l10n'         => array(
 				'divi_squad'                  => esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
 				'upgrade'                     => esc_html__( 'Upgrade to Pro', 'squad-modules-for-divi' ),
 				'active'                      => esc_html__( 'Active License', 'squad-modules-for-divi' ),
@@ -153,7 +155,7 @@ class Assets {
 				'badge_text_new'              => esc_html__( 'NEW', 'squad-modules-for-divi' ),
 				'badge_text_updated'          => esc_html__( 'Updated', 'squad-modules-for-divi' ),
 			),
-			'plugins'  => WP::get_active_plugins(),
+			'plugins'      => WP::get_active_plugins(),
 		);
 	}
 }

@@ -16,6 +16,11 @@ namespace DiviSquad\Modules\PostGridChild;
 
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Divi;
+use function esc_html__;
+use function esc_attr__;
+use function et_builder_get_element_style_css;
+use function et_pb_background_options;
+use function wp_json_encode;
 
 /**
  * Post-Grid Child Module Class.
@@ -24,7 +29,6 @@ use DiviSquad\Utils\Divi;
  * @package     squad-modules-for-divi
  */
 class PostGridChild extends DISQ_Builder_Module {
-
 	/**
 	 * The list of element types
 	 *

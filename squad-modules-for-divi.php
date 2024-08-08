@@ -11,9 +11,9 @@
  * Plugin Name:         Squad Modules for Divi Builder
  * Plugin URI:          https://squadmodules.com/
  * Description:         Enhance your Divi-powered websites with an elegant collection of Divi modules.
- * Version:             1.2.2
- * Requires at least:   5.8
- * Requires PHP:        5.6
+ * Version:             1.2.3
+ * Requires at least:   5.0.0
+ * Requires PHP:        5.6.40
  * Author:              WP Squad
  * Author URI:          https://squadmodules.com/
  * License:             GPL-3.0-only
@@ -23,8 +23,6 @@
  */
 
 namespace DiviSquad;
-
-use Exception;
 
 defined( 'ABSPATH' ) || die();
 
@@ -68,12 +66,24 @@ try {
 		}
 	);
 
+	// Fixed the free plugin load issue in the live site.
+	if ( ! file_exists( __DIR__ . '/SquadModules.php' ) ) {
+		return;
+	}
+
 	// Define the core constants.
 	define( 'DISQ__FILE__', __FILE__ );
 	define( 'DISQ_PLUGIN_BASE', plugin_basename( DISQ__FILE__ ) );
-	define( 'DISQ_DIR_PATH', dirname( DISQ__FILE__ ) );
+	define( 'DISQ_DIR_PATH', __DIR__ );
+	define( 'DISQ_MODULES_ICON_DIR_PATH', __DIR__ . '/build/admin/modules-icon' );
 	define( 'DISQ_DIR_URL', plugin_dir_url( DISQ__FILE__ ) );
 	define( 'DISQ_ASSET_URL', trailingslashit( DISQ_DIR_URL . 'build' ) );
+
+	// Define the general constants for the plugin
+	define( 'DISQ_VERSION', '1.2.3' );
+	define( 'DISQ_MINIMUM_DIVI_VERSION', '4.14.0' );
+	define( 'DISQ_MINIMUM_PHP_VERSION', '5.6.40' );
+	define( 'DISQ_MINIMUM_WP_VERSION', '5.0.0' );
 
 	/**
 	 * Load the Plugin (free version).
@@ -93,6 +103,6 @@ try {
 
 	// Load the plugin.
 	divi_squad();
-} catch ( Exception $exception ) {
-	error_log( $exception->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+} catch ( \Exception $exception ) {
+	error_log( 'DiviSquad: ' . $exception->getMessage() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 }

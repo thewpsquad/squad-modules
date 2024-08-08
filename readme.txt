@@ -2,10 +2,10 @@
 Contributors: wpsquad, mralaminahamed
 Donate link: https://squadmodules.com/
 Tags: divi, divi module, divi theme, divi page builder, divi builder, extra theme, divi extensions, divi addons, divi plugin, divi modules
-Requires at least: 5.8
+Requires at least: 5.0.0
 Tested up to: 6.4
 Requires PHP: 5.6
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -32,10 +32,10 @@ With [Squad Modules for Divi Builder](https://squadmodules.com/), you can effort
 
 
 
-== 14+ free modules and counting ==
-Squad Modules for Divi Builder includes over 14+ free modules that you can use to create stunning layouts, add interactive elements, and engage your website visitors.
+== 15+ free modules and counting ==
+Squad Modules for Divi Builder includes over 15+ free modules that you can use to create stunning layouts, add interactive elements, and engage your website visitors.
 
-== 11 General Modules ==
+== 12 General Modules ==
 1. **Advanced Divider Module**: Create visually appealing dividers with various styles, shapes, and customization options.
 2. **Before After Image Slider**: Engage your visitors with interactive image comparisons using the Before After Image Slider module.
 3. **Business Hours**: Display your business hours in a clear and organized manner.
@@ -47,6 +47,7 @@ Squad Modules for Divi Builder includes over 14+ free modules that you can use t
 9. **Typing Text**: Create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 10. **Image Gallery**: Showcase your visuals with elegance using the Image Gallery module from Squad Modules for Divi. Effortlessly create stunning galleries to engage and captivate your audience.
 11. **Post Reading Time**: It allows you to display an estimated reading time for your blog posts. This can be helpful for users who want to know how long it will take them to read a particular post.
+12. **Glitch Text**: Create eye-catching headlines and captions with a mesmerizing glitch effect.
 
 == 3 Form Styler Modules ==
 1. **Form Styler: Contact Form 7**: Enhance the design of your Contact Form 7 form with the Form Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
@@ -82,7 +83,7 @@ Squad Modules for Divi Builder is brought to you by [Divi Squad](https://squadmo
 
 == Before Installation ==
 Before installing the Divi Squad Plugin, make sure you have the following requirement
-  - WordPress version 5.8 or later.
+  - WordPress version 5.0.0 or later.
   - Divi theme, Extra Theme or Divi Builder Plugin installed and activated.
   - PHP version 5.6 or later.
 
@@ -161,6 +162,11 @@ If you would like to contribute to the translation efforts for Squad Modules for
 
 
 == Upgrade Notice ==
+= 1.2.3 =
+* Introduced the Glitch Text module
+* Improved all modules
+* Improved: Modules management dashboard
+
 = 1.2.2 =
 * Introduced the Post Reading Time Module
 * Improved: Image Gallery, Post Grid modules
@@ -189,6 +195,11 @@ If you would like to contribute to the translation efforts for Squad Modules for
 
 
 == Changelog ==
+= 1.2.3 (15-09-2023) =
+* Introduced the Glitch Text module
+* Improved all modules
+* Improved: Modules management dashboard
+
 = 1.2.2 (08-09-2023) =
 * Introduced the Post Reading Time Module
 * Improved: Image Gallery, Post Grid modules

@@ -16,6 +16,9 @@ namespace DiviSquad\Modules\FormStylerWPForms;
 
 use DiviSquad\Base\BuilderModule\DISQ_Form_Styler_Module;
 use DiviSquad\Utils\Helper;
+use function esc_html__;
+use function get_posts;
+use function do_shortcode;
 
 /**
  * The Form Styler: WP Forms Module Class.
@@ -24,7 +27,6 @@ use DiviSquad\Utils\Helper;
  * @package     squad-modules-for-divi
  */
 class FormStylerWPForms extends DISQ_Form_Styler_Module {
-
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -35,7 +37,7 @@ class FormStylerWPForms extends DISQ_Form_Styler_Module {
 	public function init() {
 		$this->name      = esc_html__( 'WP Forms', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'WP Forms', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/wp-forms.svg' );
 
 		$this->slug       = 'disq_form_styler_wp_forms';
 		$this->vb_support = 'on';

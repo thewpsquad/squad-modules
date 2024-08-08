@@ -13,6 +13,12 @@
 namespace DiviSquad\Modules\BusinessHoursChild;
 
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
+use function esc_html__;
+use function et_builder_i18n;
+use function et_core_esc_previously;
+use function et_pb_background_options;
+use function et_pb_multi_view_options;
+use function et_builder_get_text_orientation_options;
 
 /**
  * Business Hours Day Module Class.
@@ -21,8 +27,6 @@ use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
  * @package         squad-modules-for-divi
  */
 class BusinessHoursChild extends DISQ_Builder_Module {
-
-
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.

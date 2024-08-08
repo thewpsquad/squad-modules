@@ -16,6 +16,12 @@ namespace DiviSquad\Modules\Lottie;
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Helper;
 use ET_Builder_Module_Helper_MultiViewOptions;
+use function esc_html__;
+use function esc_attr__;
+use function wp_enqueue_script;
+use function et_core_esc_previously;
+use function et_pb_multi_view_options;
+use function wp_json_encode;
 
 /**
  * Lottie Image Module Class.
@@ -24,7 +30,6 @@ use ET_Builder_Module_Helper_MultiViewOptions;
  * @package         squad-modules-for-divi
  */
 class Lottie extends DISQ_Builder_Module {
-
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -35,7 +40,7 @@ class Lottie extends DISQ_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Lottie Image', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Lottie Images', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/lottie.svg' );
 
 		$this->slug       = 'disq_lottie';
 		$this->vb_support = 'on';

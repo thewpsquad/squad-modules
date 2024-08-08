@@ -16,6 +16,22 @@ namespace DiviSquad\Modules\ImageGallery;
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Helper;
 use WP_Post;
+use function esc_html__;
+use function et_builder_i18n;
+use function et_builder_is_loading_data;
+use function get_intermediate_image_sizes;
+use function wp_enqueue_script;
+use function apply_filters;
+use function wp_array_slice_assoc;
+use function et_pb_media_options;
+use function wp_json_encode;
+use function wp_parse_args;
+use function get_posts;
+use function get_permalink;
+use function wp_get_attachment_image_src;
+use function get_post_meta;
+use function wp_get_attachment_metadata;
+use function _wp_get_image_size_from_meta;
 
 /**
  * Image Gallery Module Class.
@@ -34,7 +50,7 @@ class ImageGallery extends DISQ_Builder_Module {
 	public function init() {
 		$this->name      = esc_html__( 'Image Gallery', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Image Galleries', 'squad-modules-for-divi' );
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
+		$this->icon_path = Helper::fix_slash( DISQ_MODULES_ICON_DIR_PATH . '/image-gallery.svg' );
 
 		$this->slug       = 'disq_image_gallery';
 		$this->vb_support = 'on';

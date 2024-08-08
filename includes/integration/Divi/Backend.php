@@ -276,6 +276,9 @@ class Backend extends BuilderBackendPlaceholder {
 					'time_suffix_text'          => _x( 'minutes', 'Modules dummy content', 'squad-modules-for-divi' ),
 					'time_suffix_text_singular' => _x( 'minute', 'Modules dummy content', 'squad-modules-for-divi' ),
 				),
+				'disq_glitch_text'               => array(
+					'glitch_text' => _x( 'Your Glitch Text Here', 'Modules dummy content', 'squad-modules-for-divi' ),
+				),
 			),
 		);
 
@@ -291,8 +294,8 @@ class Backend extends BuilderBackendPlaceholder {
 	 */
 	public function asset_definitions( $content ) {
 		return $content . sprintf(
-			';window.DISQBuilderBackend=%1$s; jQuery.extend(true, window.ETBuilderBackend, %1$s);',
-			et_fb_remove_site_url_protocol( wp_json_encode( $this->static_asset_definitions() ) )
-		);
+				';window.DISQBuilderBackend=%1$s; jQuery.extend(true, window.ETBuilderBackend, %1$s);',
+				et_fb_remove_site_url_protocol( wp_json_encode( $this->static_asset_definitions() ) )
+			);
 	}
 }

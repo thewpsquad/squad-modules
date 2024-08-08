@@ -1,6 +1,18 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+/**
+ * Builder Module Helper Class
+ *
+ * @since       1.0.0
+ * @package     squad-modules-for-divi
+ * @author      WP Squad <support@thewpsquad.com>
+ * @copyright   2023 WP Squad
+ * @license     GPL-3.0-only
+ */
 
 namespace DiviSquad\Base\BuilderModule;
+
+use function esc_html__;
+use function et_pb_background_options;
 
 /**
  * Builder Module Helper Class which help to the all module class
@@ -276,7 +288,7 @@ abstract class DISQ_Form_Styler_Module extends DISQ_Builder_Module {
 		$this->disq_fix_border_transition( $fields, 'message_error', $this->get_error_message_selector_default() );
 		$this->disq_fix_box_shadow_transition( $fields, 'message_error', $this->get_error_message_selector_default() );
 
-		// success message text and others style.
+		// success message text and other style.
 		$fields['message_success_background_color'] = array( 'background' => $this->get_success_message_selector_default() );
 		$fields['message_success_margin']           = array( 'margin' => $this->get_success_message_selector_default() );
 		$fields['message_success_padding']          = array( 'padding' => $this->get_success_message_selector_default() );
