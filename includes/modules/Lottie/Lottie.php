@@ -384,10 +384,7 @@ class Lottie extends DISQ_Builder_Module {
 			'lottie_color'  => $this->disq_add_color_field(
 				esc_html__( 'Lottie Color', 'squad-modules-for-divi' ),
 				array(
-					'description'     => esc_html__(
-						'Here you can define a custom color for lottie image.',
-						'squad-modules-for-divi'
-					),
+					'description'     => esc_html__( 'Here you can define a custom color for lottie image.', 'squad-modules-for-divi' ),
 					'depends_show_if' => 'lottie',
 					'tab_slug'        => 'advanced',
 					'toggle_slug'     => 'lottie_image',

@@ -296,6 +296,13 @@ class Backend extends BuilderBackendPlaceholder {
 				'disq_scrolling_text'            => array(
 					'scrolling_text' => _x( 'Your Scrolling Text Here', 'Modules dummy content', 'squad-modules-for-divi' ),
 				),
+				'disq_breadcrumbs'               => array(
+					'home_text' => _x( 'Home', 'Modules dummy content', 'squad-modules-for-divi' ),
+				),
+				'disq_drop_cap_text'             => array(
+					'drop_cap_letter' => _x( 'Y', 'Modules dummy content', 'squad-modules-for-divi' ),
+					'body_content'    => _x( '<p>our content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content in the module Design settings and even apply custom CSS to this text in the module Advanced settings.</p>', 'Modules dummy content', 'squad-modules-for-divi' ), // phpcs:ignore WordPress.WP.I18n.NoHtmlWrappedStrings -- Need to have p tag.
+				),
 			),
 		);
 
@@ -311,8 +318,8 @@ class Backend extends BuilderBackendPlaceholder {
 	 */
 	public function asset_definitions( $content ) {
 		return $content . sprintf(
-				';window.DISQBuilderBackend=%1$s; jQuery.extend(true, window.ETBuilderBackend, %1$s);',
-				et_fb_remove_site_url_protocol( wp_json_encode( $this->static_asset_definitions() ) )
-			);
+			';window.DISQBuilderBackend=%1$s; jQuery.extend(true, window.ETBuilderBackend, %1$s);',
+			et_fb_remove_site_url_protocol( wp_json_encode( $this->static_asset_definitions() ) )
+		);
 	}
 }
