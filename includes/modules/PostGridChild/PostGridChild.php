@@ -14,6 +14,7 @@ namespace DiviSquad\Modules\PostGridChild;
 
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Divi;
+use DiviSquad\Utils\Helper;
 
 /**
  * Post-Grid Child Module Class.
@@ -1095,14 +1096,12 @@ class PostGridChild extends DISQ_Builder_Module {
 	 *
 	 * @return string|null
 	 */
-	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed
+	public function render( $attrs, $content, $render_slug ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
 		if ( 'none' !== $this->prop( 'element', 'none' ) ) {
-			$order_class    = self::get_module_order_class( $render_slug );
-			$order_selector = ".$order_class.$this->slug";
 
-			$this->disq_generate_all_styles( $attrs, $order_selector );
-			$this->disq_generate_element_title_font_icon_styles( $attrs, $order_selector );
-			$this->disq_generate_all_icon_styles( $attrs, $order_selector );
+			$this->disq_generate_all_styles( $attrs );
+			$this->disq_generate_element_title_font_icon_styles( $attrs );
+			$this->disq_generate_all_icon_styles( $attrs );
 
 			// Render json code to communicate with the parent module.
 			return wp_json_encode( $this->props ) . ',||';
@@ -1114,23 +1113,22 @@ class PostGridChild extends DISQ_Builder_Module {
 	/**
 	 * Generate styles.
 	 *
-	 * @param array  $attrs          List of unprocessed attributes.
-	 * @param string $order_selector The order class of current module.
+	 * @param array $attrs  List of unprocessed attributes.
 	 *
 	 * @return void
 	 */
-	private function disq_generate_all_styles( $attrs, $order_selector ) {
+	private function disq_generate_all_styles( $attrs ) {
 		// Fixed: the custom background doesn't work at frontend.
 		$this->props = array_merge( $attrs, $this->props );
 
-		// element wrapper background with default, responsive, hover.
+		// background with default, responsive, hover.
 		et_pb_background_options()->get_background_style(
 			array(
 				'base_prop_name'         => 'element_wrapper_background',
 				'props'                  => $this->props,
-				'selector'               => "$order_selector div .element-elements",
-				'selector_hover'         => "$order_selector div .element-elements:hover",
-				'selector_sticky'        => "$order_selector div .element-elements",
+				'selector'               => "$this->main_css_element div .element-elements",
+				'selector_hover'         => "$this->main_css_element div .element-elements:hover",
+				'selector_sticky'        => "$this->main_css_element div .element-elements",
 				'function_name'          => $this->slug,
 				'important'              => ' !important',
 				'use_background_video'   => false,
@@ -1142,16 +1140,14 @@ class PostGridChild extends DISQ_Builder_Module {
 				),
 			)
 		);
-
-		// element wrapper background with default, responsive, hover.
 		et_pb_background_options()->get_background_style(
 			array(
 				'base_prop_name'         => 'element_background',
 				'props'                  => $this->props,
-				'selector'               => "$order_selector div .element-elements .disq-post-element",
-				'selector_hover'         => "$order_selector div .element-elements:hover .disq-post-element",
-				'selector_sticky'        => "$order_selector div .element-elements .disq-post-element",
-				'function_title'         => $this->slug,
+				'selector'               => "$this->main_css_element div .element-elements .et_pb_with_background",
+				'selector_hover'         => "$this->main_css_element div .element-elements:hover .et_pb_with_background",
+				'selector_sticky'        => "$this->main_css_element div .element-elements .et_pb_with_background",
+				'function_name'          => $this->slug,
 				'important'              => ' !important',
 				'use_background_video'   => false,
 				'use_background_pattern' => false,
@@ -1167,7 +1163,7 @@ class PostGridChild extends DISQ_Builder_Module {
 		$this->generate_styles(
 			array(
 				'base_attr_name' => 'element_text_orientation',
-				'selector'       => "$order_selector div .element-elements",
+				'selector'       => "$this->main_css_element div .element-elements",
 				'css_property'   => 'justify-content',
 				'render_slug'    => $this->slug,
 				'type'           => 'align',
@@ -1176,7 +1172,7 @@ class PostGridChild extends DISQ_Builder_Module {
 		$this->generate_styles(
 			array(
 				'base_attr_name' => 'element_text_orientation',
-				'selector'       => "$order_selector div .element-elements .disq-post-element",
+				'selector'       => "$this->main_css_element div .element-elements .disq-post-element",
 				'css_property'   => 'text-align',
 				'render_slug'    => $this->slug,
 				'type'           => 'align',
@@ -1187,8 +1183,8 @@ class PostGridChild extends DISQ_Builder_Module {
 		$this->disq_process_margin_padding_styles(
 			array(
 				'field'        => 'element_wrapper_margin',
-				'selector'     => "$order_selector div .element-elements",
-				'hover'        => "$order_selector div .element-elements:hover",
+				'selector'     => "$this->main_css_element div .element-elements",
+				'hover'        => "$this->main_css_element div .element-elements:hover",
 				'css_property' => 'margin',
 				'type'         => 'margin',
 			)
@@ -1196,8 +1192,8 @@ class PostGridChild extends DISQ_Builder_Module {
 		$this->disq_process_margin_padding_styles(
 			array(
 				'field'        => 'element_wrapper_padding',
-				'selector'     => "$order_selector div .element-elements",
-				'hover'        => "$order_selector div .element-elements:hover",
+				'selector'     => "$this->main_css_element div .element-elements",
+				'hover'        => "$this->main_css_element div .element-elements:hover",
 				'css_property' => 'padding',
 				'type'         => 'padding',
 			)
@@ -1207,8 +1203,8 @@ class PostGridChild extends DISQ_Builder_Module {
 		$this->disq_process_margin_padding_styles(
 			array(
 				'field'        => 'element_margin',
-				'selector'     => "$order_selector div .element-elements .disq-post-element",
-				'hover'        => "$order_selector div .element-elements:hover .disq-post-element",
+				'selector'     => "$this->main_css_element div .element-elements .disq-post-element",
+				'hover'        => "$this->main_css_element div .element-elements:hover .disq-post-element",
 				'css_property' => 'margin',
 				'type'         => 'margin',
 			)
@@ -1216,8 +1212,8 @@ class PostGridChild extends DISQ_Builder_Module {
 		$this->disq_process_margin_padding_styles(
 			array(
 				'field'        => 'element_padding',
-				'selector'     => "$order_selector div .element-elements .disq-post-element",
-				'hover'        => "$order_selector div .element-elements:hover .disq-post-element",
+				'selector'     => "$this->main_css_element div .element-elements .disq-post-element",
+				'hover'        => "$this->main_css_element div .element-elements:hover .disq-post-element",
 				'css_property' => 'padding',
 				'type'         => 'padding',
 			)
@@ -1227,12 +1223,11 @@ class PostGridChild extends DISQ_Builder_Module {
 	/**
 	 * Render post name icon.
 	 *
-	 * @param array  $attrs          List of attributes.
-	 * @param string $order_selector The order class of current module.
+	 * @param array $attrs  List of attributes.
 	 *
 	 * @return void
 	 */
-	private function disq_generate_element_title_font_icon_styles( $attrs, $order_selector ) {
+	private function disq_generate_element_title_font_icon_styles( $attrs ) {
 		if ( isset( $attrs['element_title_icon__enable'] ) && 'on' === $attrs['element_title_icon__enable'] && '' !== $attrs['element_title_icon'] ) {
 			$this->props = array_merge( $this->props, $attrs );
 
@@ -1245,7 +1240,7 @@ class PostGridChild extends DISQ_Builder_Module {
 					'render_slug'    => $this->slug,
 					'base_attr_name' => 'element_title_icon',
 					'important'      => true,
-					'selector'       => "$order_selector div .element-elements .disq-post-element span.disq-element_title-icon.et-pb-icon",
+					'selector'       => "$this->main_css_element div .element-elements .disq-post-element span.disq-element_title-icon.et-pb-icon",
 					'processor'      => array(
 						'ET_Builder_Module_Helper_Style_Processor',
 						'process_extended_icon',
@@ -1255,8 +1250,8 @@ class PostGridChild extends DISQ_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'element_title_icon_color',
-					'selector'       => "$order_selector div .element-elements .disq-post-element span.disq-element_title-icon.et-pb-icon",
-					'hover_selector' => "$order_selector div .element-elements:hover .disq-post-element span.disq-element_title-icon.et-pb-icon",
+					'selector'       => "$this->main_css_element div .element-elements .disq-post-element span.disq-element_title-icon.et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .element-elements:hover .disq-post-element span.disq-element_title-icon.et-pb-icon",
 					'css_property'   => 'color',
 					'render_slug'    => $this->slug,
 					'type'           => 'color',
@@ -1266,8 +1261,8 @@ class PostGridChild extends DISQ_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'element_title_icon_size',
-					'selector'       => "$order_selector div .element-elements .disq-post-element span.disq-element_title-icon.et-pb-icon",
-					'hover_selector' => "$order_selector div .element-elements:hover .disq-post-element span.disq-element_title-icon.et-pb-icon",
+					'selector'       => "$this->main_css_element div .element-elements .disq-post-element span.disq-element_title-icon.et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .element-elements:hover .disq-post-element span.disq-element_title-icon.et-pb-icon",
 					'css_property'   => 'font-size',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',
@@ -1279,8 +1274,8 @@ class PostGridChild extends DISQ_Builder_Module {
 			$this->disq_process_margin_padding_styles(
 				array(
 					'field'          => 'element_title_icon_margin',
-					'selector'       => "$order_selector div .element-elements .disq-post-element span.disq-element_title-icon.et-pb-icon",
-					'hover_selector' => "$order_selector div .element-elements:hover .disq-post-element span.disq-element_title-icon.et-pb-icon",
+					'selector'       => "$this->main_css_element div .element-elements .disq-post-element span.disq-element_title-icon.et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .element-elements:hover .disq-post-element span.disq-element_title-icon.et-pb-icon",
 					'css_property'   => 'margin',
 					'type'           => 'margin',
 				)
@@ -1288,8 +1283,8 @@ class PostGridChild extends DISQ_Builder_Module {
 			$this->disq_process_margin_padding_styles(
 				array(
 					'field'          => 'element_title_icon_padding',
-					'selector'       => "$order_selector div .element-elements .disq-post-element span.disq-element_title-icon.et-pb-icon",
-					'hover_selector' => "$order_selector div .element-elements:hover .disq-post-element span.disq-element_title-icon.et-pb-icon",
+					'selector'       => "$this->main_css_element div .element-elements .disq-post-element span.disq-element_title-icon.et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .element-elements:hover .disq-post-element span.disq-element_title-icon.et-pb-icon",
 					'css_property'   => 'padding',
 					'type'           => 'padding',
 				)
@@ -1300,12 +1295,11 @@ class PostGridChild extends DISQ_Builder_Module {
 	/**
 	 * Render all styles for icon.
 	 *
-	 * @param array  $attrs          List of attributes.
-	 * @param string $order_selector The order class of current module.
+	 * @param array $attrs  List of attributes.
 	 *
 	 * @return void
 	 */
-	private function disq_generate_all_icon_styles( $attrs, $order_selector ) {
+	private function disq_generate_all_icon_styles( $attrs ) {
 		// render icon element for eligible element.
 		$icon_type    = ! empty( $attrs['element_icon_type'] ) ? $attrs['element_icon_type'] : 'icon';
 		$element_type = ! empty( $attrs['element'] ) ? $attrs['element'] : 'none';
@@ -1317,7 +1311,7 @@ class PostGridChild extends DISQ_Builder_Module {
 				array(
 					'attrs'          => $this->props,
 					'base_attr_name' => 'element_icon_text_gap',
-					'selector'       => "$order_selector div .element-elements",
+					'selector'       => "$this->main_css_element div .element-elements",
 					'css_property'   => 'gap',
 					'render_slug'    => $this->slug,
 					'type'           => 'gap',
@@ -1328,7 +1322,7 @@ class PostGridChild extends DISQ_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'element_icon_placement',
-					'selector'       => "$order_selector div .element-elements .disq_element_container",
+					'selector'       => "$this->main_css_element div .element-elements .disq_element_container",
 					'css_property'   => 'flex-direction',
 					'render_slug'    => $this->slug,
 					'type'           => 'align',
@@ -1341,8 +1335,8 @@ class PostGridChild extends DISQ_Builder_Module {
 				$this->generate_styles(
 					array(
 						'base_attr_name' => 'element_icon_background_color',
-						'selector'       => "$order_selector div .element-elements span.disq-element-icon-wrapper .icon-element",
-						'hover_selector' => "$order_selector div .element-elements:hover span.disq-element-icon-wrapper .icon-element",
+						'selector'       => "$this->main_css_element div .element-elements span.disq-element-icon-wrapper .icon-element",
+						'hover_selector' => "$this->main_css_element div .element-elements:hover span.disq-element-icon-wrapper .icon-element",
 						'css_property'   => 'background-color',
 						'render_slug'    => $this->slug,
 						'type'           => 'color',
@@ -1362,7 +1356,7 @@ class PostGridChild extends DISQ_Builder_Module {
 						'render_slug'    => $this->slug,
 						'base_attr_name' => 'element_icon',
 						'important'      => true,
-						'selector'       => "$order_selector div .element-elements span.disq-element-icon-wrapper .icon-element .et-pb-icon",
+						'selector'       => "$this->main_css_element div .element-elements span.disq-element-icon-wrapper .icon-element .et-pb-icon",
 						'processor'      => array(
 							'ET_Builder_Module_Helper_Style_Processor',
 							'process_extended_icon',
@@ -1374,8 +1368,8 @@ class PostGridChild extends DISQ_Builder_Module {
 				$this->generate_styles(
 					array(
 						'base_attr_name' => 'element_icon_color',
-						'selector'       => "$order_selector div .element-elements span.disq-element-icon-wrapper .icon-element .et-pb-icon",
-						'hover_selector' => "$order_selector div .element-elements:hover span.disq-element-icon-wrapper .icon-element .et-pb-icon",
+						'selector'       => "$this->main_css_element div .element-elements span.disq-element-icon-wrapper .icon-element .et-pb-icon",
+						'hover_selector' => "$this->main_css_element div .element-elements:hover span.disq-element-icon-wrapper .icon-element .et-pb-icon",
 						'css_property'   => 'color',
 						'render_slug'    => $this->slug,
 						'type'           => 'color',
@@ -1387,7 +1381,7 @@ class PostGridChild extends DISQ_Builder_Module {
 				$this->generate_styles(
 					array(
 						'base_attr_name' => 'element_icon_size',
-						'selector'       => "$order_selector div .element-elements span.disq-element-icon-wrapper .icon-element .et-pb-icon",
+						'selector'       => "$this->main_css_element div .element-elements span.disq-element-icon-wrapper .icon-element .et-pb-icon",
 						'css_property'   => 'font-size',
 						'render_slug'    => $this->slug,
 						'type'           => 'range',
@@ -1401,8 +1395,8 @@ class PostGridChild extends DISQ_Builder_Module {
 				$this->generate_styles(
 					array(
 						'base_attr_name' => 'element_image_width',
-						'selector'       => "$order_selector div .element-elements span.disq-element-icon-wrapper img",
-						'hover_selector' => "$order_selector div .element-elements:hover span.disq-element-icon-wrapper img",
+						'selector'       => "$this->main_css_element div .element-elements span.disq-element-icon-wrapper img",
+						'hover_selector' => "$this->main_css_element div .element-elements:hover span.disq-element-icon-wrapper img",
 						'css_property'   => 'width',
 						'render_slug'    => $this->slug,
 						'type'           => 'range',
@@ -1413,8 +1407,8 @@ class PostGridChild extends DISQ_Builder_Module {
 				$this->generate_styles(
 					array(
 						'base_attr_name' => 'element_image_height',
-						'selector'       => "$order_selector div .element-elements span.disq-element-icon-wrapper img",
-						'hover_selector' => "$order_selector div .element-elements:hover span.disq-element-icon-wrapper img",
+						'selector'       => "$this->main_css_element div .element-elements span.disq-element-icon-wrapper img",
+						'hover_selector' => "$this->main_css_element div .element-elements:hover span.disq-element-icon-wrapper img",
 						'css_property'   => 'height',
 						'render_slug'    => $this->slug,
 						'type'           => 'range',
@@ -1434,7 +1428,7 @@ class PostGridChild extends DISQ_Builder_Module {
 				$this->generate_styles(
 					array(
 						'base_attr_name' => 'element_icon_horizontal_alignment',
-						'selector'       => "$order_selector div .element-elements span.disq-element-icon-wrapper",
+						'selector'       => "$this->main_css_element div .element-elements span.disq-element-icon-wrapper",
 						'css_property'   => 'text-align',
 						'render_slug'    => $this->slug,
 						'type'           => 'align',
@@ -1449,7 +1443,7 @@ class PostGridChild extends DISQ_Builder_Module {
 				$this->generate_styles(
 					array(
 						'base_attr_name' => 'element_icon_vertical_alignment',
-						'selector'       => "$order_selector div .element-elements span.disq-element-icon-wrapper",
+						'selector'       => "$this->main_css_element div .element-elements span.disq-element-icon-wrapper",
 						'css_property'   => 'align-items',
 						'render_slug'    => $this->slug,
 						'type'           => 'align',
@@ -1473,7 +1467,7 @@ class PostGridChild extends DISQ_Builder_Module {
 					);
 				}
 
-				// set icon placement for button image with default, hover and responsive.
+				// set icon placement for button image with default, hover, and responsive.
 				$this->process_show_icon_on_hover_styles(
 					array(
 						'props'          => $this->props,
@@ -1484,8 +1478,8 @@ class PostGridChild extends DISQ_Builder_Module {
 							'image' => 'element_image_width',
 							'text'  => 'element_icon_text_font_size',
 						),
-						'selector'       => "$order_selector div .element-elements span.disq-element-icon-wrapper.show_on_hover",
-						'hover'          => "$order_selector div .element-elements:hover span.disq-element-icon-wrapper.show_on_hover",
+						'selector'       => "$this->main_css_element div .element-elements span.disq-element-icon-wrapper.show_on_hover",
+						'hover'          => "$this->main_css_element div .element-elements:hover span.disq-element-icon-wrapper.show_on_hover",
 						'css_property'   => 'margin',
 						'type'           => 'margin',
 						'mapping_values' => $mapping_values,
@@ -1504,8 +1498,8 @@ class PostGridChild extends DISQ_Builder_Module {
 			$this->disq_process_margin_padding_styles(
 				array(
 					'field'        => 'element_icon_margin',
-					'selector'     => "$order_selector div .element-elements span.disq-element-icon-wrapper .icon-element",
-					'hover'        => "$order_selector div .element-elements:hover span.disq-element-icon-wrapper .icon-element",
+					'selector'     => "$this->main_css_element div .element-elements span.disq-element-icon-wrapper .icon-element",
+					'hover'        => "$this->main_css_element div .element-elements:hover span.disq-element-icon-wrapper .icon-element",
 					'css_property' => 'margin',
 					'type'         => 'margin',
 					'important'    => true,
@@ -1514,8 +1508,8 @@ class PostGridChild extends DISQ_Builder_Module {
 			$this->disq_process_margin_padding_styles(
 				array(
 					'field'        => 'element_icon_padding',
-					'selector'     => "$order_selector div .element-elements span.disq-element-icon-wrapper .icon-element",
-					'hover'        => "$order_selector div .element-elements:hover span.disq-element-icon-wrapper .icon-element",
+					'selector'     => "$this->main_css_element div .element-elements span.disq-element-icon-wrapper .icon-element",
+					'hover'        => "$this->main_css_element div .element-elements:hover span.disq-element-icon-wrapper .icon-element",
 					'css_property' => 'padding',
 					'type'         => 'padding',
 					'important'    => true,
@@ -1527,7 +1521,7 @@ class PostGridChild extends DISQ_Builder_Module {
 				$this->generate_css_filters(
 					$this->slug,
 					'child_',
-					self::$data_utils->array_get( $this->advanced_fields['element_icon_element']['css'], 'main', $order_selector )
+					self::$data_utils->array_get( $this->advanced_fields['element_icon_element']['css'], 'main', $this->main_css_element )
 				);
 			}
 		}

@@ -12,7 +12,7 @@
  * Description:         Enhance your Divi-powered websites with an elegant collection of Divi modules.
  * Requires at least:   5.8
  * Requires PHP:        5.6
- * Version:             1.0.1
+ * Version:             1.0.2
  * Author:              WP Squad
  * Author URI:          https://thewpsquad.com/
  * Text Domain:         squad-modules-for-divi
