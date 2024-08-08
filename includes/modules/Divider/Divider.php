@@ -1243,6 +1243,8 @@ class Divider extends DISQ_Builder_Module {
 			'divider-elements',
 			'et_pb_with_background',
 			$this->prop( 'divider_element_placement', 'center' ),
+			$this->prop( 'divider_type', 'none' ),
+			$this->prop( 'divider_style', 'solid' ),
 		);
 
 		if ( 'on' === $this->prop( 'use_divider_custom_color', 'off' ) ) {
@@ -1524,7 +1526,7 @@ class Divider extends DISQ_Builder_Module {
 	 * @return string
 	 */
 	private function disq_render_divider_icon( $multi_view ) {
-		if ( 'icon' !== $this->props['divider_type'] ) {
+		if ( 'none' !== $this->props['divider_type'] ) {
 			// Set icon background color.
 			if ( ! in_array( $this->props['divider_icon_type'], array( 'image', 'lottie' ), true ) ) {
 				$this->generate_styles(

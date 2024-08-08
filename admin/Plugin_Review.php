@@ -43,6 +43,8 @@ class Plugin_Review {
 		add_action( 'admin_notices', array( $this, 'notice' ) );
 		add_action( 'wp_ajax_divi_squad_notice_close', array( $this, 'close' ) );
 		add_action( 'wp_ajax_divi_squad_notice_review', array( $this, 'review' ) );
+		add_action( 'wp_ajax_divi_squad_notice_close_count', array( $this, 'notice_close_count' ) );
+		add_action( 'wp_ajax_divi_squad_notice_ask_support', array( $this, 'ask_support_count' ) );
 
 		// Set the initial options for the plugin review.
 		$this->initial_option();
@@ -52,11 +54,15 @@ class Plugin_Review {
 	 * Initial Option.
 	 */
 	public function initial_option() {
-		$activation_time = divi_squad()->get_memory()->get( 'activation_time' );
+		$memory     = divi_squad()->get_memory();
+		$activation = $memory->get( 'activation_time' );
+		$first_time = $this->get_second( $this->first_time_show );
 
-		if ( false === $activation_time ) {
-			divi_squad()->get_memory()->set( 'next_review_time', time() + $this->get_second( $this->first_time_show ) );
-			divi_squad()->get_memory()->set( 'review_flag', false );
+		// Set review flag and time for the first time.
+		if ( false === $memory->get( 'review_flag', false ) ) {
+			$next_time = false === $activation ? time() : $activation;
+			$memory->set( 'next_review_time', $next_time + $first_time );
+			$memory->set( 'review_flag', false );
 		}
 	}
 
@@ -84,6 +90,23 @@ class Plugin_Review {
 	 */
 	public function review() {
 		divi_squad()->get_memory()->set( 'review_flag', true );
+		divi_squad()->get_memory()->set( 'review_status', 'received' );
+	}
+
+	/**
+	 * Count the close time for notice banner.
+	 */
+	public function notice_close_count() {
+		$notice_close_count = divi_squad()->get_memory()->get( 'notice_close_count', 0 );
+		divi_squad()->get_memory()->set( 'notice_close_count', (int) $notice_close_count + 1 );
+	}
+
+	/**
+	 * Count the ask for support time for notice banner.
+	 */
+	public function ask_support_count() {
+		$ask_support_count = divi_squad()->get_memory()->get( 'ask_support_count', 0 );
+		divi_squad()->get_memory()->set( 'ask_support_count', (int) $ask_support_count + 1 );
 	}
 
 	/**

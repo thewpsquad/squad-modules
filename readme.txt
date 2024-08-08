@@ -5,11 +5,11 @@ Tags: divi, divi module, divi theme, divi page builder, divi builder, extra them
 Requires at least: 5.0.0
 Tested up to: 6.4
 Requires PHP: 5.6
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-Enhance your Divi-powered websites with an elegant collection of Divi modules.
+Enhance your Divi Theme/Builder-powered websites effortlessly with an elegant collection of Divi modules. Elevate design and functionality with advanced dividers, post grids, flip boxes, image sliders, form styles and more. Create visually stunning layouts tailored to your unique style. Unlock the full potential of your Divi Builder experience today!
 
 
 
@@ -32,10 +32,10 @@ With [Squad Modules for Divi Builder](https://squadmodules.com/), you can effort
 
 
 
-== 15+ free modules and counting ==
-Squad Modules for Divi Builder includes over 15+ free modules that you can use to create stunning layouts, add interactive elements, and engage your website visitors.
+== 16+ free modules and counting ==
+Squad Modules for Divi Builder includes over 16+ free modules that you can use to create stunning layouts, add interactive elements, and engage your website visitors.
 
-== 12 General Modules ==
+== 13 General Modules ==
 1. **Advanced Divider Module**: Create visually appealing dividers with various styles, shapes, and customization options.
 2. **Before After Image Slider**: Engage your visitors with interactive image comparisons using the Before After Image Slider module.
 3. **Business Hours**: Display your business hours in a clear and organized manner.
@@ -48,6 +48,7 @@ Squad Modules for Divi Builder includes over 15+ free modules that you can use t
 10. **Image Gallery**: Showcase your visuals with elegance using the Image Gallery module from Squad Modules for Divi. Effortlessly create stunning galleries to engage and captivate your audience.
 11. **Post Reading Time**: It allows you to display an estimated reading time for your blog posts. This can be helpful for users who want to know how long it will take them to read a particular post.
 12. **Glitch Text**: Create eye-catching headlines and captions with a mesmerizing glitch effect.
+13. **Gradient Text**: Enhance your typography with stunning color transitions. Create eye-catching headlines, captions, and more with this versatile and dynamic module.
 
 == 3 Form Styler Modules ==
 1. **Form Styler: Contact Form 7**: Enhance the design of your Contact Form 7 form with the Form Styler module. Change the colors, fonts, and spacing of your form, and add custom CSS to make it look exactly the way you want.
@@ -162,6 +163,12 @@ If you would like to contribute to the translation efforts for Squad Modules for
 
 
 == Upgrade Notice ==
+= 1.2.6 =
+* Introduced the Gradient Text module
+* Added Support systems in Divi Squad pages at admin area
+* Improved: Review Banner
+* Improved: Advanced Divider Module
+
 = 1.2.3 =
 * Introduced the Glitch Text module
 * Improved all modules
@@ -195,6 +202,12 @@ If you would like to contribute to the translation efforts for Squad Modules for
 
 
 == Changelog ==
+= 1.2.6 (23-09-2023) =
+* Introduced the Gradient Text module
+* Added Support systems in Divi Squad pages at admin area
+* Improved: Review Banner
+* Improved: Advanced Divider Module
+
 = 1.2.5 (22-09-2023) =
 * Fixed: Feedback banner does not close properly.
 

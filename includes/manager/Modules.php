@@ -3,6 +3,7 @@
 namespace DiviSquad\Manager;
 
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\WP;
 use function DiviSquad\divi_squad;
 
 /**
@@ -36,7 +37,7 @@ class Modules {
 				'name'               => 'Divider',
 				'label'              => esc_html__( 'Advanced Divider', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.2.2', '1.2.3' ),
+				'last_modified'      => array( '1.2.2', '1.2.3', '1.2.6' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -127,17 +128,6 @@ class Modules {
 				'type'               => 'D4',
 			),
 			array(
-				'name'               => 'Accordion',
-				'label'              => esc_html__( 'Advanced Accordion', 'squad-modules-for-divi' ),
-				'child_name'         => 'AccordionChild',
-				'child_label'        => esc_html__( 'Advanced Accordion', 'squad-modules-for-divi' ),
-				'release_version'    => '1.2.2',
-				'last_modified'      => '1.2.3',
-				'is_default_active'  => false,
-				'is_premium_feature' => false,
-				'type'               => 'D4',
-			),
-			array(
 				'name'               => 'FormStylerContactForm7',
 				'label'              => esc_html__( 'Contact Form 7', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
@@ -180,6 +170,14 @@ class Modules {
 				'name'               => 'GlitchText',
 				'label'              => esc_html__( 'Glitch Text', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.3',
+				'is_default_active'  => false,
+				'is_premium_feature' => false,
+				'type'               => 'D4',
+			),
+			array(
+				'name'               => 'GradientText',
+				'label'              => esc_html__( 'Gradient Text', 'squad-modules-for-divi' ),
+				'release_version'    => '1.2.6',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
