@@ -90,7 +90,6 @@ final class SquadModules extends Integration\Core {
 
 				// Load the core.
 				$wp = new Integration\WP();
-				$wp->assign_all_versions();
 				$wp->let_the_journey_start(
 					static function () {
 						self::$instance->load_global_assets();
@@ -109,5 +108,14 @@ final class SquadModules extends Integration\Core {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Get the plugin name for the pro-version
+	 *
+	 * @return bool
+	 */
+	public static function is_the_pro_plugin_active() {
+		return defined( '\DISQ_PRO_PLUGIN_BASE' ) && Utils\WP::is_plugin_active( DISQ_PRO_PLUGIN_BASE );
 	}
 }
