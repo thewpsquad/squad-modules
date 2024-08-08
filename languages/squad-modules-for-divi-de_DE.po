@@ -4621,7 +4621,7 @@ msgstr "Vorbereitung"
 msgid "Press"
 msgstr "Drücken Sie"
 
-#: includes/Managers/Branding/PluginRowActions.php:76
+#: includes/Managers/Branding/PluginRowActions.php:77
 msgid "Pricing"
 msgstr "Preise"
 
@@ -4715,7 +4715,7 @@ msgstr "Verwandte third-party plugin erforderlich."
 msgid "Relative To"
 msgstr "Relativ Zu"
 
-#. translators: Relevant Page url on Your Site
+#. translators: The relevant page url.
 #: build/admin/scripts/admin.js:181
 msgid "Relevant page on your site (E.g. %s)"
 msgstr "Entsprechende Seite auf Ihrer Website (E. g. %s)"
@@ -5271,14 +5271,6 @@ msgstr "Erfolgsmeldung"
 msgid "Success Message Text"
 msgstr "Erfolg Message Text"
 
-#: build/admin/scripts/admin.js:178
-msgid "Summary (in 10 words or less, summarize your issue or question)"
-msgstr "Zusammenfassung in 10 Worten oder weniger beschreiben Sie Ihr Problem oder Frage)"
-
-#: build/admin/scripts/admin.js:178
-msgid "Summery"
-msgstr "Sommerlich"
-
 #: build/admin/scripts/admin.js:175
 msgid "Supercharge your experience with our game-changing new updates!"
 msgstr "Optimieren Sie Ihre Erfahrung mit unseren game-changing new updates!"
@@ -5763,6 +5755,7 @@ msgstr "Mal Der Breite Des Textes"
 #: includes/Modules/StarRating.php:67
 #: includes/Modules/StarRating.php:125
 #: includes/Modules/StarRating.php:219
+#: build/admin/scripts/admin.js:178
 msgid "Title"
 msgstr "Titel"
 
@@ -6372,7 +6365,7 @@ msgstr "Ihre Abfrage senden fehlgeschlagen. Bitte versuchen Sie es später erneu
 msgid "Your query sent successfully."
 msgstr "Ihre Abfrage erfolgreich gesendet."
 
-#. translators: Example site url
+#. translators: The site url.
 #: build/admin/scripts/admin.js:178
 msgid "Your site address (E.g %1$s)"
 msgstr "Ihre Website-Adresse (E. g %1$s)"
@@ -6523,4 +6516,12 @@ msgstr ""
 #: templates/admin/subscription.php:68
 #: build/admin/scripts/admin.js:175
 msgid "Lite"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Select a type"
+msgstr ""
+
+#: build/admin/scripts/admin.js:178
+msgid "Title (in 10 words or less, summarize your issue or question)"
 msgstr ""

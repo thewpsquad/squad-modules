@@ -4699,7 +4699,7 @@ msgstr "La preparación de"
 msgid "Press"
 msgstr "Pulse"
 
-#: includes/Managers/Branding/PluginRowActions.php:76
+#: includes/Managers/Branding/PluginRowActions.php:77
 msgid "Pricing"
 msgstr "Precios"
 
@@ -4793,7 +4793,7 @@ msgstr "De terceros relacionado plugin necesario."
 msgid "Relative To"
 msgstr "En Relación A"
 
-#. translators: Relevant Page url on Your Site
+#. translators: The relevant page url.
 #: build/admin/scripts/admin.js:181
 msgid "Relevant page on your site (E.g. %s)"
 msgstr "Correspondiente página en su sitio (E. g. %s)"
@@ -5349,14 +5349,6 @@ msgstr "Mensaje De Éxito"
 msgid "Success Message Text"
 msgstr "El Éxito De Mensaje De Texto"
 
-#: build/admin/scripts/admin.js:178
-msgid "Summary (in 10 words or less, summarize your issue or question)"
-msgstr "Resumen (en 10 palabras o menos, un resumen de su problema o pregunta)"
-
-#: build/admin/scripts/admin.js:178
-msgid "Summery"
-msgstr "Veraniego"
-
 #: build/admin/scripts/admin.js:175
 msgid "Supercharge your experience with our game-changing new updates!"
 msgstr "Potencie su experiencia con nuestro juego cambiante de las nuevas actualizaciones!"
@@ -5849,6 +5841,7 @@ msgstr "El Tiempo El Ancho De Texto"
 #: includes/Modules/StarRating.php:67
 #: includes/Modules/StarRating.php:125
 #: includes/Modules/StarRating.php:219
+#: build/admin/scripts/admin.js:178
 msgid "Title"
 msgstr "Título"
 
@@ -6477,7 +6470,7 @@ msgstr "Su consulta enviando fallado. Por favor, inténtelo de nuevo más tarde.
 msgid "Your query sent successfully."
 msgstr "Su consulta se ha enviado correctamente."
 
-#. translators: Example site url
+#. translators: The site url.
 #: build/admin/scripts/admin.js:178
 msgid "Your site address (E.g %1$s)"
 msgstr "Su dirección de sitio (E. g %1$s)"
@@ -6523,4 +6516,12 @@ msgstr ""
 #: templates/admin/subscription.php:68
 #: build/admin/scripts/admin.js:175
 msgid "Lite"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Select a type"
+msgstr ""
+
+#: build/admin/scripts/admin.js:178
+msgid "Title (in 10 words or less, summarize your issue or question)"
 msgstr ""

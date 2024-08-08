@@ -1339,7 +1339,7 @@ msgstr "Support"
 msgid "Documentation"
 msgstr "Documentation"
 
-#: includes/Managers/Branding/PluginRowActions.php:76
+#: includes/Managers/Branding/PluginRowActions.php:77
 msgid "Pricing"
 msgstr "Pricing"
 
@@ -2253,6 +2253,7 @@ msgstr "Here you can define a custom color for the current text in the breadcrum
 #: includes/Modules/StarRating.php:67
 #: includes/Modules/StarRating.php:125
 #: includes/Modules/StarRating.php:219
+#: build/admin/scripts/admin.js:178
 msgid "Title"
 msgstr "Title"
 
@@ -6345,24 +6346,16 @@ msgstr "No options found"
 msgid "Site Address"
 msgstr "Site Address"
 
-#. translators: Example site url
+#. translators: The site url.
 #: build/admin/scripts/admin.js:178
 msgid "Your site address (E.g %1$s)"
 msgstr "Your site address (E.g %1$s)"
 
 #: build/admin/scripts/admin.js:178
-msgid "Summery"
-msgstr "Summery"
-
-#: build/admin/scripts/admin.js:178
-msgid "Summary (in 10 words or less, summarize your issue or question)"
-msgstr "Summary (in 10 words or less, summarize your issue or question)"
-
-#: build/admin/scripts/admin.js:178
 msgid "If it's about a specific page on your site, please add the relevant link."
 msgstr "If it's about a specific page on your site, please add the relevant link."
 
-#. translators: Relevant Page url on Your Site
+#. translators: The relevant page url.
 #: build/admin/scripts/admin.js:181
 msgid "Relevant page on your site (E.g. %s)"
 msgstr "Relevant page on your site (E.g. %s)"
@@ -6523,4 +6516,12 @@ msgstr ""
 #: templates/admin/subscription.php:68
 #: build/admin/scripts/admin.js:175
 msgid "Lite"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Select a type"
+msgstr ""
+
+#: build/admin/scripts/admin.js:178
+msgid "Title (in 10 words or less, summarize your issue or question)"
 msgstr ""

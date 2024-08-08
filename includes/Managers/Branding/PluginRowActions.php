@@ -70,11 +70,13 @@ class PluginRowActions extends BrandAsset {
 		);
 
 		// Add the pricing link to the plugin row meta.
-		$links[] = sprintf(
-			'<a href="%1$s?utm_campaign=wporg&utm_source=wp_plugin_dashboard&utm_medium=rowmeta" target="_blank" aria-label="%2$s">%2$s</a>',
-			esc_url( Links::PRICING_URL ),
-			esc_html__( 'Pricing', 'squad-modules-for-divi' )
-		);
+		if ( divi_squad_fs() instanceof \Freemius && divi_squad_fs()->is_free_plan() ) {
+			$links[] = sprintf(
+				'<a href="%1$s?utm_campaign=wporg&utm_source=wp_plugin_dashboard&utm_medium=rowmeta" target="_blank" aria-label="%2$s">%2$s</a>',
+				esc_url( Links::PRICING_URL ),
+				esc_html__( 'Pricing', 'squad-modules-for-divi' )
+			);
+		}
 
 		return $links;
 	}

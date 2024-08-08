@@ -4620,7 +4620,7 @@ msgstr "প্রস্তুতি নিচ্ছে"
 msgid "Press"
 msgstr "চাপুন"
 
-#: includes/Managers/Branding/PluginRowActions.php:76
+#: includes/Managers/Branding/PluginRowActions.php:77
 msgid "Pricing"
 msgstr "মূল্য নির্ধারণ"
 
@@ -4714,7 +4714,7 @@ msgstr "সম্পর্কিত তৃতীয় পক্ষের প্
 msgid "Relative To"
 msgstr "সম্পর্কিত সাথে"
 
-#. translators: Relevant Page url on Your Site
+#. translators: The relevant page url.
 #: build/admin/scripts/admin.js:181
 msgid "Relevant page on your site (E.g. %s)"
 msgstr "আপনার সাইটে প্রাসঙ্গিক পৃষ্ঠা (যেমন %s)"
@@ -5271,14 +5271,6 @@ msgstr "সাফল্য বার্তা"
 msgid "Success Message Text"
 msgstr "সফলতার বার্তা টেক্সট"
 
-#: build/admin/scripts/admin.js:178
-msgid "Summary (in 10 words or less, summarize your issue or question)"
-msgstr "সারাংশ (10 শব্দ বা তার কম, আপনার সমস্যা বা প্রশ্নের সারসংক্ষেপ)"
-
-#: build/admin/scripts/admin.js:178
-msgid "Summery"
-msgstr "সামারী"
-
 #: build/admin/scripts/admin.js:175
 msgid "Supercharge your experience with our game-changing new updates!"
 msgstr "আমাদের গেম পরিবর্তনকারী নতুন আপডেটের সাথে আপনার অভিজ্ঞতাকে সুপারচার্জ করুন!"
@@ -5765,6 +5757,7 @@ msgstr "সময় টেক্সট প্রস্থ"
 #: includes/Modules/StarRating.php:67
 #: includes/Modules/StarRating.php:125
 #: includes/Modules/StarRating.php:219
+#: build/admin/scripts/admin.js:178
 msgid "Title"
 msgstr "শিরোনাম"
 
@@ -6374,7 +6367,7 @@ msgstr "আপনার ক্যোয়ারী পাঠানো ব্য
 msgid "Your query sent successfully."
 msgstr "আপনার প্রশ্ন সফলভাবে পাঠানো হয়েছে."
 
-#. translators: Example site url
+#. translators: The site url.
 #: build/admin/scripts/admin.js:178
 msgid "Your site address (E.g %1$s)"
 msgstr "আপনার সাইটের ঠিকানা (যেমন %1$s)"
@@ -6525,4 +6518,12 @@ msgstr ""
 #: templates/admin/subscription.php:68
 #: build/admin/scripts/admin.js:175
 msgid "Lite"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Select a type"
+msgstr ""
+
+#: build/admin/scripts/admin.js:178
+msgid "Title (in 10 words or less, summarize your issue or question)"
 msgstr ""

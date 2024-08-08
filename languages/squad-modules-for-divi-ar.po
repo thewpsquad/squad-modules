@@ -4699,7 +4699,7 @@ msgstr "إعداد"
 msgid "Press"
 msgstr "اضغط"
 
-#: includes/Managers/Branding/PluginRowActions.php:76
+#: includes/Managers/Branding/PluginRowActions.php:77
 msgid "Pricing"
 msgstr "التسعير"
 
@@ -4793,7 +4793,7 @@ msgstr "ذات الصلة المساعد طرف ثالث المطلوبة."
 msgid "Relative To"
 msgstr "نسبة إلى"
 
-#. translators: Relevant Page url on Your Site
+#. translators: The relevant page url.
 #: build/admin/scripts/admin.js:181
 msgid "Relevant page on your site (E.g. %s)"
 msgstr "الصفحة ذات الصلة على موقع الويب الخاص بك (على سبيل المثال. %s)"
@@ -5349,14 +5349,6 @@ msgstr "رسالة نجاح"
 msgid "Success Message Text"
 msgstr "النجاح نص الرسالة"
 
-#: build/admin/scripts/admin.js:178
-msgid "Summary (in 10 words or less, summarize your issue or question)"
-msgstr "ملخص (في 10 كلمات أو أقل ، تلخيص المشكلة أو السؤال)"
-
-#: build/admin/scripts/admin.js:178
-msgid "Summery"
-msgstr "صيفي"
-
 #: build/admin/scripts/admin.js:175
 msgid "Supercharge your experience with our game-changing new updates!"
 msgstr "أدائنا تجربتك مع اللعبة لدينا-تغيير التحديثات الجديدة!"
@@ -5849,6 +5841,7 @@ msgstr "وقت عرض النص"
 #: includes/Modules/StarRating.php:67
 #: includes/Modules/StarRating.php:125
 #: includes/Modules/StarRating.php:219
+#: build/admin/scripts/admin.js:178
 msgid "Title"
 msgstr "العنوان"
 
@@ -6477,7 +6470,7 @@ msgstr "الاستعلام الخاص بك فشل الإرسال. يرجى ال�
 msgid "Your query sent successfully."
 msgstr "الاستعلام الخاص بك إرسالها بنجاح."
 
-#. translators: Example site url
+#. translators: The site url.
 #: build/admin/scripts/admin.js:178
 msgid "Your site address (E.g %1$s)"
 msgstr "عنوان موقع الويب الخاص بك (على سبيل المثال %1$s)"
@@ -6523,4 +6516,12 @@ msgstr ""
 #: templates/admin/subscription.php:68
 #: build/admin/scripts/admin.js:175
 msgid "Lite"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Select a type"
+msgstr ""
+
+#: build/admin/scripts/admin.js:178
+msgid "Title (in 10 words or less, summarize your issue or question)"
 msgstr ""
