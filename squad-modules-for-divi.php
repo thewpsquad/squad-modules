@@ -11,7 +11,7 @@
  * Plugin Name:         Squad Modules for Divi Builder
  * Plugin URI:          https://squadmodules.com/
  * Description:         Enhance your Divi-powered websites with an elegant collection of Divi modules.
- * Version:             1.2.0
+ * Version:             1.2.1
  * Requires at least:   5.8
  * Requires PHP:        5.6
  * Author:              WP Squad
@@ -65,7 +65,19 @@ spl_autoload_register(
 	}
 );
 
-/** Load the Plugin (free version).
+/**
+ * Define the core constants.
+ *
+ * @since 1.2.1
+ */
+define( 'DISQ__FILE__', __FILE__ );
+define( 'DISQ_PLUGIN_BASE', plugin_basename( DISQ__FILE__ ) );
+define( 'DISQ_DIR_PATH', dirname( DISQ__FILE__ ) );
+define( 'DISQ_DIR_URL', plugin_dir_url( DISQ__FILE__ ) );
+define( 'DISQ_ASSET_URL', trailingslashit( DISQ_DIR_URL . 'build' ) );
+
+/**
+ * Load the Plugin (free version).
  *
  * @since 1.2.0
  */
