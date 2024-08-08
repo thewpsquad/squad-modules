@@ -80,9 +80,9 @@ class DiviBuilderBackend extends BuilderBackendPlaceholder {
 		// child module default data.
 		$post_grid_child_defaults = array(
 			'element_image_fullwidth__enable' => 'off',
-			'element_excerpt__enable'         => 'on',
+			'element_excerpt__enable'         => 'off',
 			'element_ex_con_length__enable'   => 'on',
-			'element_ex_con_length'           => '20',
+			'element_ex_con_length'           => '30',
 			'element_author_name_type'        => 'nickname',
 			'element_read_more_text'          => $defaults['read_more'],
 			'element_comments_before'         => $defaults['comments_before'],

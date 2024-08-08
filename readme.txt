@@ -5,7 +5,7 @@ Tags: divi, divi module, divi theme, divi builder, divi page builder, divi plugi
 Requires at least: 5.0.0
 Tested up to: 6.5
 Requires PHP: 5.6
-Stable tag: 1.4.10
+Stable tag: 1.4.11
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -163,6 +163,10 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 13. Typing Text Module - This is a module that allows you to create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 
 == Upgrade Notice ==
+= 1.4.11 =
+* Added: Character support for Special alphabet (Post Grid Module)
+* Fixed: Elements direction issue on Post Element
+
 = 1.4.9 =
 * Improved:Modules locales support
 * Improved:Managers (Modules & Extensions)
@@ -174,6 +178,7 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 * Image Gallery Module: Image orientation and Count
 * Compatibility with Divi 4.23.3 & 4.23.4
 * Improved Plugin Preview Banner
+* Improved Modules locales support
 
 = 1.4.7 =
 * Added: Preview Button support in the WP Plugin Directory
@@ -244,20 +249,30 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 * Enjoy the new collection of elegant Divi modules and enhance your website.
 
 == Changelog ==
-= 1.4.10 (13-01-2023) =
+= 1.4.11 (15-01-2024) =
+
+**New Features:**
+
+* **Special Character support:** Character support for Special alphabet (Post Grid Module)
 
 **✨ Improvements:**
 
-* **Module: Post Grid: ** Improve the post-content support with special character
+* **Elements direction:** Improved elements direction on Post Element (Post Grid Module)
 
-= 1.4.9 (11-01-2023) =
+= 1.4.10 (13-01-2024) =
 
 **✨ Improvements:**
 
-* **Extension: Copy: ** Improved the Copy Extension
-* **Modules locales support: ** Enhanced localization support for modules.
-* **Managers (Modules & Extensions): ** Improved the managers for Modules and Extensions
-* **Spacing Generation: ** Improved the spacing generation for all form stylers.
+* **Module: Post Grid:** Improve the post-content support with special character
+
+= 1.4.9 (11-01-2024) =
+
+**✨ Improvements:**
+
+* **Extension: Copy:** Improved the Copy Extension
+* **Modules locales support:** Enhanced localization support for modules.
+* **Managers (Modules & Extensions):** Improved the managers for Modules and Extensions
+* **Spacing Generation:** Improved the spacing generation for all form stylers.
 
 = 1.4.8 (06-01-2023) =
 
@@ -270,6 +285,7 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 **✨ Improvements:**
 
 * **Compatibility with Divi 4.23.3 & 4.23.4:** Rest assured, Squad Modules plays nice with the latest Divi update.
+* **Modules locales support:** Enhanced localization support for modules.
 * **Plugin Preview Banner:** We've made it user-friendly for yours.
 
 = 1.4.7 (21-12-2023) =
@@ -279,7 +295,7 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 * **Preview Button support in the WP Plugin Directory:** Now you can see your modules in action right from the plugin page!
 * **Portuguese (Brazil) locales:** Grande abraço to Gianni Marinho for contributing this! 🇧🇷
 * **Divi Google Map Module:** Add beautiful and interactive Google Maps to your Divi pages with ease.
-* **Divi Form Styler: Ninja Forms & Fluent Forms:** Style your **Ninja Forms** and **Fluent Forms** forms effortlessly with Squad's powerful styling tools.
+* **Divi Form Styler: Ninja Forms & Fluent Forms:** Style your **Ninja Forms**, and **Fluent Forms** forms effortlessly with Squad's powerful styling tools.
 
 **✨ Improvements:**
 

@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Divi;
+use DiviSquad\Utils\Helper;
 use DiviSquad\Utils\Module;
 use function esc_attr__;
 use function esc_html__;
@@ -1258,22 +1259,21 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 	 * @return void
 	 */
 	private function disq_generate_all_icon_styles( $attrs ) {
+		$this->props = array_merge( $attrs, $this->props );
+
 		// render icon element for eligible element.
 		$icon_type         = ! empty( $attrs['element_icon_type'] ) ? $attrs['element_icon_type'] : 'icon';
 		$element_type      = ! empty( $attrs['element'] ) ? $attrs['element'] : 'none';
 		$eligible_elements = $this->icon_not_eligible_elements;
 
 		if ( 'none' !== $icon_type && ! in_array( $element_type, $eligible_elements, true ) ) {
-			$this->props = array_merge( $attrs, $this->props );
-
 			$this->generate_styles(
 				array(
-					'attrs'          => $this->props,
 					'base_attr_name' => 'element_icon_text_gap',
 					'selector'       => "$this->main_css_element div .post-elements",
 					'css_property'   => 'gap',
 					'render_slug'    => $this->slug,
-					'type'           => 'gap',
+					'type'           => 'range',
 					'important'      => true,
 				)
 			);
@@ -1281,7 +1281,7 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'element_icon_placement',
-					'selector'       => "$this->main_css_element div .post-elements .disq_element_container",
+					'selector'       => "$this->main_css_element div .post-elements",
 					'css_property'   => 'flex-direction',
 					'render_slug'    => $this->slug,
 					'type'           => 'align',
@@ -1474,13 +1474,11 @@ class PostGridChild extends Squad_Divi_Builder_Module {
 			);
 
 			// Images: Add CSS Filters and Mix Blend Mode rules (if set).
-			if ( array_key_exists( 'element_icon_element', $this->advanced_fields ) && array_key_exists( 'css', $this->advanced_fields['element_icon_element'] ) ) {
-				$this->generate_css_filters(
-					$this->slug,
-					'child_',
-					self::$data_utils->array_get( $this->advanced_fields['element_icon_element']['css'], 'main', $this->main_css_element )
-				);
-			}
+			$this->generate_css_filters(
+				$this->slug,
+				'child_',
+				"$this->main_css_element div .post-elements span.disq-element-icon-wrapper"
+			);
 		}
 	}
 }

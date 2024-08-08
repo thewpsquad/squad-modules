@@ -2496,7 +2496,13 @@ class PostGrid extends Squad_Divi_Builder_Module {
 		if ( 'content' === $element && ! empty( $post_content ) ) {
 			$post_content_length__enable = ! empty( $attrs['element_ex_con_length__enable'] ) ? $attrs['element_ex_con_length__enable'] : 'off';
 			$post_content_length         = ! empty( $attrs['element_ex_con_length'] ) ? (int) $attrs['element_ex_con_length'] : 20;
-			$post_content_words          = Str::word_count( $post_content, 2, 'áéíóúüñ' );
+
+			$character_map      = 'äëïöüÄËÏÖÜáǽćéíĺńóŕśúźÁǼĆÉÍĹŃÓŔŚÚŹ';
+			$character_map     .= 'àèìòùÀÈÌÒÙãẽĩõñũÃẼĨÕÑŨâêîôûÂÊÎÔÛăĕğĭŏœ̆ŭĂĔĞĬŎŒ̆Ŭ';
+			$character_map     .= 'āēīōūĀĒĪŌŪőűŐŰąęįųĄĘĮŲåůÅŮæÆøØýÝÿŸþÞẞßđĐıIœŒ';
+			$character_map     .= 'čďěľňřšťžČĎĚĽŇŘŠŤŽƒƑðÐłŁçģķļșțÇĢĶĻȘȚħĦċėġżĊĖĠŻʒƷǯǮŋŊŧŦ';
+			$character_map     .= ':~^';
+			$post_content_words = Str::word_count( $post_content, 2, $character_map );
 
 			if ( 'on' === $post_content_length__enable && count( $post_content_words ) > $post_content_length ) {
 				$content = implode( ' ', array_slice( $post_content_words, 0, $post_content_length ) );
