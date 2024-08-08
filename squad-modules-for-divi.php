@@ -11,7 +11,7 @@
  * Plugin Name:         Squad Modules Lite
  * Plugin URI:          https://squadmodules.com/
  * Description:         The Advanced Divi plugin you install after Divi or Extra Theme!
- * Version:             1.4.4
+ * Version:             1.4.5
  * Requires at least:   5.0.0
  * Requires PHP:        5.6.40
  * Author:              WP Squad
@@ -74,12 +74,6 @@ define( 'DISQ_MODULES_ICON_DIR_PATH', __DIR__ . '/build/admin/modules-icon' );
 define( 'DISQ_DIR_URL', plugin_dir_url( DISQ__FILE__ ) );
 define( 'DISQ_ASSET_URL', trailingslashit( DISQ_DIR_URL . 'build' ) );
 
-// Define the general constants for the plugin.
-define( 'DISQ_VERSION', '1.4.4' );
-define( 'DISQ_MINIMUM_DIVI_VERSION', '4.14.0' );
-define( 'DISQ_MINIMUM_PHP_VERSION', '5.6.40' );
-define( 'DISQ_MINIMUM_WP_VERSION', '5.0.0' );
-
 // Fixed the free plugin load issue in the live site.
 if ( ! file_exists( __DIR__ . '/SquadModules.php' ) ) {
 	return;
@@ -98,7 +92,16 @@ require_once __DIR__ . '/SquadModules.php';
  * @return SquadModules
  */
 function divi_squad() {
-	return SquadModules::get_instance();
+	$options = array(
+		'Name'         => 'squad-modules-for-divi',
+		'Version'      => '1.4.5',
+		'OptionPrefix' => 'disq',
+		'Minimum_PHP'  => '5.6.40',
+		'Minimum_WP'   => '5.0.0',
+		'Minimum_DIVI' => '4.14.0',
+	);
+
+	return SquadModules::get_instance( $options );
 }
 
 // Load the plugin.

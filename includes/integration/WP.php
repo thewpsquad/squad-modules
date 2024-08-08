@@ -27,6 +27,22 @@ use function version_compare;
 class WP {
 
 	/**
+	 * The plugin options.
+	 *
+	 * @var array
+	 */
+	protected $options;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param array $options The plugin options.
+	 */
+	public function __construct( $options ) {
+		$this->options = $options;
+	}
+
+	/**
 	 * Checks compatibility with the current version.
 	 *
 	 * @param string $required       Minimum required version.
@@ -48,12 +64,12 @@ class WP {
 	 */
 	public function let_the_journey_start( callable $callback ) {
 		// Check for the required PHP version.
-		if ( ! $this->is_version_compatible( DISQ_MINIMUM_PHP_VERSION, PHP_VERSION ) ) {
+		if ( ! $this->is_version_compatible( $this->options['Minimum_PHP'], PHP_VERSION ) ) {
 			return add_action( 'admin_notices', array( $this, 'required_php_version_missing_notice' ) );
 		}
 
 		// Check for the required WordPress version.
-		if ( ! $this->is_version_compatible( DISQ_MINIMUM_WP_VERSION, get_bloginfo( 'version' ) ) ) {
+		if ( ! $this->is_version_compatible( $this->options['Minimum_WP'], get_bloginfo( 'version' ) ) ) {
 			return add_action( 'admin_notices', array( $this, 'required_wordpress_version_missing_notice' ) );
 		}
 
@@ -68,7 +84,7 @@ class WP {
 	 *
 	 * @return void
 	 */
-	public static function required_php_version_missing_notice() {
+	public function required_php_version_missing_notice() {
 		printf(
 			'<div class="notice notice-error"><p>%1$s</p><p>%2$s</p></div>',
 			sprintf(
@@ -90,14 +106,14 @@ class WP {
 	 *
 	 * @return void
 	 */
-	public static function required_wordpress_version_missing_notice() {
+	public function required_wordpress_version_missing_notice() {
 		printf(
 			'<div class="notice notice-error is-dismissible"><p>%1$s</p></div>',
 			sprintf(
 			/* translators: 1: Plugin name 2: Required WordPress version */
 				esc_html__( 'The %1$s plugin is disabled because it requires WordPress "%2$s" or later.', 'squad-modules-for-divi' ),
 				'<strong>' . esc_html__( 'Squad Modules Lite', 'squad-modules-for-divi' ) . '</strong>',
-				esc_html( DISQ_MINIMUM_WP_VERSION )
+				esc_html( $this->options['Minimum_WP'] )
 			)
 		);
 	}

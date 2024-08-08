@@ -40,7 +40,7 @@ class Plugin_Action_Links {
 	 * @return array All action links for plugin.
 	 */
 	public function add_plugin_action_links( $links ) {
-		$dashboard_url   = admin_url( 'admin.php?page=divi_squad_dashboard#/' );
+		$dashboard_url = admin_url( 'admin.php?page=divi_squad_dashboard' );
 
 		$action_links = array(
 			sprintf( '<a href="%1$s" aria-label="%2$s">%2$s</a>', $dashboard_url, esc_html__( 'Settings', 'squad-modules-for-divi' ) ),

@@ -51,13 +51,22 @@ abstract class Core {
 	protected $name;
 
 	/**
+	 * The Plugin Version.
+	 *
+	 * @since 1.4.5
+	 *
+	 * @var string
+	 */
+	protected $version;
+
+	/**
 	 * The plugin option prefix
 	 *
 	 * @since 1.0.0
 	 *
 	 * @var string
 	 */
-	protected $option_prefix;
+	protected $opt_prefix;
 
 	/**
 	 * The Script handle the text domain will be attached to.
@@ -150,7 +159,7 @@ abstract class Core {
 	 * @return string
 	 */
 	public function get_option_prefix() {
-		return $this->option_prefix;
+		return $this->opt_prefix;
 	}
 
 	/**

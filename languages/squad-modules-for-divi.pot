@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-3.0-only.
 msgid ""
 msgstr ""
-"Project-Id-Version: Squad Modules Lite 1.4.4\n"
+"Project-Id-Version: Squad Modules Lite 1.4.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/temp\n"
-"POT-Creation-Date: 2023-11-04 20:20:05+00:00\n"
+"POT-Creation-Date: 2023-11-11 15:50:54+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,77 +25,77 @@ msgstr ""
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 "Last-Translator: WP Squad <support@thewpsquad.com>\n"
 
-#: admin/Assets.php:182 admin/Menu.php:90
+#: admin/Assets.php:199 admin/Menu.php:90
 msgid "Divi Squad"
 msgstr ""
 
-#: admin/Assets.php:183
+#: admin/Assets.php:200
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: admin/Assets.php:184
+#: admin/Assets.php:201
 msgid "Active License"
 msgstr ""
 
-#: admin/Assets.php:185
+#: admin/Assets.php:202
 msgid "View Documentation"
 msgstr ""
 
-#: admin/Assets.php:186
+#: admin/Assets.php:203
 msgid ""
 "Get started by spending some time with the documentation to get familiar "
 "with Divi Squad Modules."
 msgstr ""
 
-#: admin/Assets.php:187
+#: admin/Assets.php:204
 msgid "Show Your Love"
 msgstr ""
 
-#: admin/Assets.php:188
+#: admin/Assets.php:205
 msgid ""
 "Take your 2 minutes to review the plugin and spread the love to encourage "
 "us to keep it going."
 msgstr ""
 
-#: admin/Assets.php:189
+#: admin/Assets.php:206
 msgid "Need Help?"
 msgstr ""
 
-#: admin/Assets.php:190
+#: admin/Assets.php:207
 msgid "Stuck with something? Get help from live chat or submit a support ticket."
 msgstr ""
 
-#: admin/Assets.php:191
+#: admin/Assets.php:208
 msgid "Join the Community"
 msgstr ""
 
-#: admin/Assets.php:192
+#: admin/Assets.php:209
 msgid "Join the user community and discuss with fellow developers & users."
 msgstr ""
 
-#: admin/Assets.php:193
+#: admin/Assets.php:210
 msgid "Changelog"
 msgstr ""
 
-#: admin/Assets.php:194
+#: admin/Assets.php:211
 msgid "View Changelog"
 msgstr ""
 
-#: admin/Assets.php:195 admin/Assets.php:206
+#: admin/Assets.php:212 admin/Assets.php:223
 msgid "Check out the changes & features we have added with our new updates"
 msgstr ""
 
-#: admin/Assets.php:196
+#: admin/Assets.php:213
 msgid ""
 "Unlock 20+ Advanced PRO Modules to Enhance Your Divi Site Building "
 "Experience"
 msgstr ""
 
-#: admin/Assets.php:197
+#: admin/Assets.php:214
 msgid "Automatic Updates & Priority Support"
 msgstr ""
 
-#: admin/Assets.php:198
+#: admin/Assets.php:215
 msgid ""
 "Get access to automatic updates & keep your website up-to-date with "
 "constantly developing features.Having any trouble? Don’t worry as you can "
@@ -103,103 +103,103 @@ msgid ""
 "tickets."
 msgstr ""
 
-#: admin/Assets.php:199
+#: admin/Assets.php:216
 msgid "Unable to load module list."
 msgstr ""
 
-#: admin/Assets.php:200
+#: admin/Assets.php:217
 msgid "Loading available modules..."
 msgstr ""
 
-#: admin/Assets.php:201
+#: admin/Assets.php:218
 msgid "Unable to load extension list."
 msgstr ""
 
-#: admin/Assets.php:202
+#: admin/Assets.php:219
 msgid "Loading available extensions..."
 msgstr ""
 
-#: admin/Assets.php:203
+#: admin/Assets.php:220
 msgid "Unable to load new changes."
 msgstr ""
 
-#: admin/Assets.php:204
+#: admin/Assets.php:221
 msgid "Loading available what's new changes..."
 msgstr ""
 
-#: admin/Assets.php:205
+#: admin/Assets.php:222
 msgid "Manage Modules"
 msgstr ""
 
-#: admin/Assets.php:207 includes/modules/TypingText/TypingText.php:738
+#: admin/Assets.php:224 includes/modules/TypingText/TypingText.php:738
 #: includes/modules/TypingText/TypingText.php:752
 #: includes/modules/TypingText/TypingText.php:766
 msgid "Default"
 msgstr ""
 
-#: admin/Assets.php:208
+#: admin/Assets.php:225
 msgid "Active All"
 msgstr ""
 
-#: admin/Assets.php:209
+#: admin/Assets.php:226
 msgid "Deactivate All"
 msgstr ""
 
-#: admin/Assets.php:210
+#: admin/Assets.php:227
 msgid "Save Changes"
 msgstr ""
 
-#: admin/Assets.php:211
+#: admin/Assets.php:228
 msgid "Manage Extensions"
 msgstr ""
 
-#: admin/Assets.php:212
+#: admin/Assets.php:229
 msgid "NEW"
 msgstr ""
 
-#: admin/Assets.php:213
+#: admin/Assets.php:230
 msgid "Updated"
 msgstr ""
 
-#: admin/Assets.php:214
+#: admin/Assets.php:231
 msgid "Uncategories"
 msgstr ""
 
-#: admin/Assets.php:215
+#: admin/Assets.php:232
 msgid "Content Modules"
 msgstr ""
 
-#: admin/Assets.php:216
+#: admin/Assets.php:233
 msgid "Creative Modules"
 msgstr ""
 
-#: admin/Assets.php:217
+#: admin/Assets.php:234
 msgid "Dynamic Content Modules"
 msgstr ""
 
-#: admin/Assets.php:218
+#: admin/Assets.php:235
 msgid "Form Styler Modules"
 msgstr ""
 
-#: admin/Assets.php:219
+#: admin/Assets.php:236
 msgid "Image & Media Modules"
 msgstr ""
 
-#: admin/Assets.php:220
+#: admin/Assets.php:237
 msgid "Media Upload"
 msgstr ""
 
-#: admin/Assets.php:221
+#: admin/Assets.php:238
 msgid "Divi Enhancement"
 msgstr ""
 
-#: admin/Assets.php:223
+#: admin/Assets.php:240
 msgid ""
 "We are here to assist you with any queries you may have. Feel free to ask "
 "us anything!"
 msgstr ""
 
-#: admin/Assets.php:224
+#: admin/Assets.php:241
 msgid "Hi, how can I help?"
 msgstr ""
 
@@ -973,27 +973,27 @@ msgstr ""
 msgid "Shortcode"
 msgstr ""
 
-#: includes/integration/WP.php:76
+#: includes/integration/WP.php:92
 #. translators: 1: PHP version symbolic text
 msgid ""
 "Your site is running an %1$s of PHP that is no longer supported. Please "
 "contact your web hosting provider to update your PHP version."
 msgstr ""
 
-#: includes/integration/WP.php:77
+#: includes/integration/WP.php:93
 msgid "insecure version"
 msgstr ""
 
-#: includes/integration/WP.php:81
+#: includes/integration/WP.php:97
 #. translators: 1: Plugin name 2: Required WordPress version
 msgid "%1$s The %2$s plugin is disabled on your site until you fix the issue."
 msgstr ""
 
-#: includes/integration/WP.php:82
+#: includes/integration/WP.php:98
 msgid "Note"
 msgstr ""
 
-#: includes/integration/WP.php:98
+#: includes/integration/WP.php:114
 #. translators: 1: Plugin name 2: Required WordPress version
 msgid "The %1$s plugin is disabled because it requires WordPress \"%2$s\" or later."
 msgstr ""
@@ -1245,35 +1245,35 @@ msgstr ""
 msgid "Add stylish star ratings to your content for user feedback and ratings."
 msgstr ""
 
-#: includes/manager/Modules.php:245
+#: includes/manager/Modules.php:246
 #: includes/modules/Breadcrumbs/Breadcrumbs.php:40
 #: includes/modules/Breadcrumbs/Breadcrumbs.php:41
 #: includes/modules/Breadcrumbs/Breadcrumbs.php:56
 msgid "Breadcrumbs"
 msgstr ""
 
-#: includes/manager/Modules.php:246
+#: includes/manager/Modules.php:247
 msgid ""
 "Enhance navigation with a clear path for users to trace their steps through "
 "your website."
 msgstr ""
 
-#: includes/manager/Modules.php:256 includes/modules/DropCap/DropCap.php:39
+#: includes/manager/Modules.php:257 includes/modules/DropCap/DropCap.php:39
 msgid "Drop Cap Text"
 msgstr ""
 
-#: includes/manager/Modules.php:257
+#: includes/manager/Modules.php:258
 msgid ""
 "Create visually appealing drop caps to add emphasis and style to your text "
 "content."
 msgstr ""
 
-#: includes/manager/Modules.php:266
+#: includes/manager/Modules.php:267
 #: includes/modules/VideoPopup/VideoPopup.php:47
 msgid "Video Popup"
 msgstr ""
 
-#: includes/manager/Modules.php:267
+#: includes/manager/Modules.php:268
 msgid "Engage visitors with customizable video popups for YouTube and Vimeo."
 msgstr ""
 
