@@ -32,10 +32,7 @@ class Assets {
 	 * @since 1.2.0
 	 */
 	protected static function get_plugin_asset_allowed_pages() {
-		return apply_filters(
-			'divi_squad_admin_asset_allowed_pages',
-			array( 'toplevel_page_divi_squad_dashboard', 'divi-squad_page_divi_squad_modules', 'divi-squad_page_divi_squad_extensions', 'divi-squad_page_divi_squad_pro' )
-		);
+		return apply_filters( 'divi_squad_admin_asset_allowed_pages', array( 'toplevel_page_divi_squad_dashboard' ) );
 	}
 
 	/**
@@ -59,6 +56,10 @@ class Assets {
 		// Load plugin asset in the all admin pages.
 		Asset::asset_enqueue( 'admin-common', Asset::asset_path( 'admin-common', array( 'path' => 'admin/scripts', 'ext' => 'js' ) ) ); // phpcs:ignore
 		Asset::style_enqueue( 'admin-common', Asset::asset_path( 'admin-common', array( 'path' => 'admin/styles', 'ext' => 'css' ) ) ); // phpcs:ignore
+
+		// Load localize scripts.
+		$admin_localize_scripts = $this->wp_common_localize_script_data();
+		WP::localize_script( 'disq-admin-common', 'DISQAdminCommonBackend', $admin_localize_scripts );
 
 		// Load plugin asset in the allowed admin pages only.
 		if ( in_array( $hook_suffix, self::get_plugin_asset_allowed_pages(), true ) ) {
@@ -90,9 +91,82 @@ class Assets {
 	 *
 	 * @return array
 	 */
+	public function wp_common_localize_script_data() {
+		// Collect the plugin name.
+		$namespace = divi_squad()->get_name();
+
+		// for review notice.
+		$review_routes = array(
+			'reviewNextWeek'         => array(
+				'root'    => 'review/next_week',
+				'methods' => array( 'post' ),
+			),
+			'reviewDone'             => array(
+				'root'    => 'review/done',
+				'methods' => array( 'post' ),
+			),
+			'reviewNoticeCloseCount' => array(
+				'root'    => 'review/notice_close_count',
+				'methods' => array( 'post' ),
+			),
+			'reviewAskSupportCount'  => array(
+				'root'    => 'review/ask_support',
+				'methods' => array( 'post' ),
+			),
+		);
+
+		return array(
+			'rest_api' => array(
+				'route'     => get_rest_url(),
+				'namespace' => "/$namespace/v1",
+				'routes'    => array_merge( $review_routes, array() ),
+			),
+		);
+	}
+
+	/**
+	 * Set localize data for admin area.
+	 *
+	 * @return array
+	 */
 	public function wp_localize_script_data() {
 		// Collect the plugin name.
 		$namespace = divi_squad()->get_name();
+
+		// Collect admin menus.
+		$admin_menu = new \DiviSquad\Admin\Menu();
+
+		// for modules.
+		$module_routes = array(
+			'getModules'    => array(
+				'root'    => 'modules',
+				'methods' => array( 'get' ),
+			),
+			'activeModules' => array(
+				'root'    => 'active_modules',
+				'methods' => array( 'get', 'post' ),
+			),
+		);
+
+		// for extensions.
+		$extension_routes = array(
+			'getExtensions'    => array(
+				'root'    => 'extensions',
+				'methods' => array( 'get' ),
+			),
+			'activeExtensions' => array(
+				'root'    => 'active_extensions',
+				'methods' => array( 'get', 'post' ),
+			),
+		);
+
+		// for what's new.
+		$whats_new_routes = array(
+			'getWnatsNew' => array(
+				'root'    => 'whats-new',
+				'methods' => array( 'get' ),
+			),
+		);
 
 		return array(
 			'version'      => divi_squad()->get_version(),
@@ -100,29 +174,15 @@ class Assets {
 			'rest_api'     => array(
 				'route'     => get_rest_url(),
 				'namespace' => "/$namespace/v1",
-				'routes'    => array(
-					'getModules'       => array(
-						'root'    => 'modules',
-						'methods' => array( 'get' ),
-					),
-					'activeModules'    => array(
-						'root'    => 'active_modules',
-						'methods' => array( 'get', 'post' ),
-					),
-					'getExtensions'    => array(
-						'root'    => 'extensions',
-						'methods' => array( 'get' ),
-					),
-					'activeExtensions' => array(
-						'root'    => 'active_extensions',
-						'methods' => array( 'get', 'post' ),
-					),
-				),
+				'routes'    => array_merge( $module_routes, $extension_routes, $whats_new_routes ),
 			),
+			'admin_menus'  => $admin_menu->get_admin_sub_menu(),
 			'links'        => array(
-				'dashboard' => admin_url( 'admin.php?page=divi_squad_dashboard' ),
-				'modules'   => admin_url( 'admin.php?page=divi_squad_modules' ),
-				'premium'   => admin_url( 'admin.php?page=divi_squad_go_premium' ),
+				'dashboard'  => admin_url( 'admin.php?page=divi_squad_dashboard' ),
+				'modules'    => admin_url( 'admin.php?page=divi_squad_dashboard#/modules' ),
+				'extensions' => admin_url( 'admin.php?page=divi_squad_dashboard#/extensions' ),
+				'whatsNew'   => admin_url( 'admin.php?page=divi_squad_dashboard#/whats-new' ),
+				'premium'    => admin_url( 'admin.php?page=divi_squad_dashboard#/go-premium' ),
 			),
 			'l10n'         => array(
 				'divi_squad'                  => esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
@@ -136,15 +196,18 @@ class Assets {
 				'help_desc'                   => esc_html__( 'Stuck with something? Get help from live chat or submit a support ticket.', 'squad-modules-for-divi' ),
 				'group_title'                 => esc_html__( 'Join the Community', 'squad-modules-for-divi' ),
 				'group_desc'                  => esc_html__( 'Join the user community and discuss with fellow developers & users.', 'squad-modules-for-divi' ),
-				'changelog_title'             => esc_html__( 'View Changelog', 'squad-modules-for-divi' ),
+				'changelog'                   => esc_html__( 'Changelog', 'squad-modules-for-divi' ),
+				'changelog_view'              => esc_html__( 'View Changelog', 'squad-modules-for-divi' ),
 				'update_title_desc'           => esc_html__( 'Check out the changes & features we have added with our new updates', 'squad-modules-for-divi' ),
 				'unlock_pro'                  => esc_html__( 'Unlock 20+ Advanced PRO Modules to Enhance Your Divi Site Building Experience', 'squad-modules-for-divi' ),
 				'unlock_pro_title'            => esc_html__( 'Automatic Updates & Priority Support', 'squad-modules-for-divi' ),
 				'unlock_pro_desc'             => esc_html__( 'Get access to automatic updates & keep your website up-to-date with constantly developing features.Having any trouble? Don’t worry as you can reach out to our expert Support team any time through live chat or support tickets.', 'squad-modules-for-divi' ),
 				'module_load_server_issue'    => esc_html__( 'Unable to load module list.', 'squad-modules-for-divi' ),
 				'module_loading'              => esc_html__( 'Loading available modules...', 'squad-modules-for-divi' ),
-				'extension_load_server_issue' => esc_html__( 'Unable to load  extension list.', 'squad-modules-for-divi' ),
+				'extension_load_server_issue' => esc_html__( 'Unable to load extension list.', 'squad-modules-for-divi' ),
 				'extension_loading'           => esc_html__( 'Loading available extensions...', 'squad-modules-for-divi' ),
+				'whats_new_load_server_issue' => esc_html__( 'Unable to load new changes.', 'squad-modules-for-divi' ),
+				'whats_new_loading'           => esc_html__( 'Loading available what\'s new changes...', 'squad-modules-for-divi' ),
 				'module_manage_title'         => esc_html__( 'Manage Modules', 'squad-modules-for-divi' ),
 				'module_manage_desc'          => esc_html__( 'Check out the changes & features we have added with our new updates', 'squad-modules-for-divi' ),
 				'module_defaults'             => esc_html__( 'Default', 'squad-modules-for-divi' ),
@@ -155,7 +218,7 @@ class Assets {
 				'badge_text_new'              => esc_html__( 'NEW', 'squad-modules-for-divi' ),
 				'badge_text_updated'          => esc_html__( 'Updated', 'squad-modules-for-divi' ),
 				'support'                     => array(
-					'popup_title'     => esc_html__( "We are here to assist you with any queries you may have. Feel free to ask us anything!", 'squad-modules-for-divi' ),
+					'popup_title'     => esc_html__( 'We are here to assist you with any queries you may have. Feel free to ask us anything!', 'squad-modules-for-divi' ),
 					'message_default' => esc_html__( 'Hi, how can I help?', 'squad-modules-for-divi' ),
 				),
 			),

@@ -23,45 +23,39 @@ use function DiviSquad\divi_squad;
  */
 class Menu {
 
-	/** The instance.
-	 *
-	 * @var self
-	 */
-	protected static $instance;
-
 	/**
 	 * Enqueue scripts and styles files in the WordPress admin area.
 	 */
 	public function admin_menu_create() {
+		global $submenu;
+
 		// Check permission and create menu pages.
-		if ( current_user_can( $this->admin_management_permission() ) ) :
+		if ( current_user_can( $this->admin_management_permission() ) ) {
 			// main page.
-			$main_menus = $this->get_admin_main_menu();
-			foreach ( $main_menus as $main_menu ) {
-				add_menu_page(
-					$main_menu['name'],
-					$main_menu['name'],
-					$main_menu['capability'],
-					$main_menu['slug'],
-					$main_menu['view'],
-					$main_menu['icon'],
-					$main_menu['position']
-				);
-			}
+			$main_menu = $this->get_admin_main_menu();
+			add_menu_page(
+				$main_menu['name'],
+				$main_menu['name'],
+				$main_menu['capability'],
+				$main_menu['slug'],
+				$main_menu['view'],
+				$main_menu['icon'],
+				$main_menu['position']
+			);
 
 			// Sub pages.
-			$sub_menus = $this->get_admin_sub_menu();
-			foreach ( $sub_menus as $sub_menu ) {
-				add_submenu_page(
-					$sub_menu['parent'],
-					$sub_menu['name'],
-					$sub_menu['name'],
-					$sub_menu['capability'],
-					$sub_menu['slug'],
-					$sub_menu['view']
-				);
+			$all_submenus   = $this->get_admin_sub_menu();
+			$main_menu_slug = $this->get_admin_main_menu_slug();
+			if ( empty( $submenu[ $main_menu_slug ] ) ) {
+				$submenu[$main_menu_slug] = array(); // phpcs:ignore.
 			}
-		endif;
+
+			// Update all submenus to the global submenu list.
+			array_push(
+				$submenu[ $main_menu_slug ],
+				...$all_submenus
+			);
+		}
 	}
 
 	/**
@@ -74,23 +68,30 @@ class Menu {
 	}
 
 	/**
+	 * Default slug for admin main menu.
+	 *
+	 * @return string
+	 */
+	public function get_admin_main_menu_slug() {
+		return apply_filters( 'divi_squad_admin_main_menu_slug', 'divi_squad_dashboard' );
+	}
+
+	/**
 	 * Details about the Main Menu.
 	 *
 	 * @return  array Details about the Main Menu.
 	 */
 	public function get_admin_main_menu() {
-		$default_menus = array(
-			array(
-				'name'       => esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
-				'capability' => $this->admin_management_permission(),
-				'slug'       => 'divi_squad_dashboard',
-				'view'       => null,
-				'icon'       => 'dashicons-warning',
-				'position'   => 101,
-			),
+		$default_menu = array(
+			'name'       => esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
+			'capability' => $this->admin_management_permission(),
+			'slug'       => $this->get_admin_main_menu_slug(),
+			'view'       => array( $this, 'get_template' ),
+			'icon'       => 'dashicons-warning',
+			'position'   => 101,
 		);
 
-		return apply_filters( 'divi_squad_admin_main_menu', $default_menus );
+		return apply_filters( 'divi_squad_admin_main_menu', $default_menu );
 	}
 
 	/**
@@ -99,27 +100,27 @@ class Menu {
 	 * @return  array Details about the submenus.
 	 */
 	public function get_admin_sub_menu() {
+		$base          = admin_url( 'admin.php?page=' . $this->get_admin_main_menu_slug() );
 		$default_menus = array(
 			array(
-				'name'       => esc_html__( 'Dashboard', 'squad-modules-for-divi' ),
-				'capability' => $this->admin_management_permission(),
-				'slug'       => 'divi_squad_dashboard',
-				'parent'     => 'divi_squad_dashboard',
-				'view'       => array( $this, 'get_template' ),
+				esc_html__( 'Dashboard', 'squad-modules-for-divi' ),
+				$this->admin_management_permission(),
+				$base . '#/',
 			),
 			array(
-				'name'       => esc_html__( 'Modules', 'squad-modules-for-divi' ),
-				'capability' => $this->admin_management_permission(),
-				'slug'       => 'divi_squad_modules',
-				'parent'     => 'divi_squad_dashboard',
-				'view'       => array( $this, 'get_template' ),
+				esc_html__( 'Modules', 'squad-modules-for-divi' ),
+				$this->admin_management_permission(),
+				$base . '#/modules',
 			),
 			array(
-				'name'       => esc_html__( 'Extensions', 'squad-modules-for-divi' ),
-				'capability' => $this->admin_management_permission(),
-				'slug'       => 'divi_squad_extensions',
-				'parent'     => 'divi_squad_dashboard',
-				'view'       => array( $this, 'get_template' ),
+				esc_html__( 'Extensions', 'squad-modules-for-divi' ),
+				$this->admin_management_permission(),
+				$base . '#/extensions',
+			),
+			array(
+				esc_html__( "What's New", 'squad-modules-for-divi' ),
+				$this->admin_management_permission(),
+				$base . '#/whats-new',
 			),
 		);
 

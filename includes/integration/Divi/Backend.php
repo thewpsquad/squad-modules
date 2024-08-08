@@ -292,6 +292,9 @@ class Backend extends BuilderBackendPlaceholder {
 					'text_gradient_use_color_gradient'   => 'on',
 					'text_gradient_color_gradient_stops' => '#1f7016 0%|#29c4a9 100%',
 				),
+				'disq_scrolling_text'            => array(
+					'scrolling_text' => _x( 'Your Scrolling Text Here', 'Modules dummy content', 'squad-modules-for-divi' ),
+				),
 			),
 		);
 
@@ -307,8 +310,8 @@ class Backend extends BuilderBackendPlaceholder {
 	 */
 	public function asset_definitions( $content ) {
 		return $content . sprintf(
-			';window.DISQBuilderBackend=%1$s; jQuery.extend(true, window.ETBuilderBackend, %1$s);',
-			et_fb_remove_site_url_protocol( wp_json_encode( $this->static_asset_definitions() ) )
-		);
+				';window.DISQBuilderBackend=%1$s; jQuery.extend(true, window.ETBuilderBackend, %1$s);',
+				et_fb_remove_site_url_protocol( wp_json_encode( $this->static_asset_definitions() ) )
+			);
 	}
 }

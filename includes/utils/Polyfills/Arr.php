@@ -25,15 +25,16 @@ class Arr {
 	 *
 	 * Get the first key of the given array without affecting the internal array pointer.
 	 *
-	 * @param array $array An array.
+	 * @param array $a An array.
+	 *
 	 * @return string|int|null The first key of array if the array is not empty; `null` otherwise.
 	 */
-	public static function key_first( array $array ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.arrayFound
+	public static function key_first( array $a ) {
 		if ( function_exists( '\array_key_first' ) ) {
-			return \array_key_first( $array );
+			return \array_key_first( $a );
 		}
 
-		foreach ( $array as $key => $value ) {
+		foreach ( $a as $key => $value ) {
 			return $key;
 		}
 
@@ -45,20 +46,49 @@ class Arr {
 	 *
 	 * Get the last key of the given array without affecting the internal array pointer.
 	 *
-	 * @param array $array An array.
+	 * @param array $a An array.
+	 *
 	 * @return string|int|null The last key of array if the array is not empty; `null` otherwise.
 	 */
-	public static function key_last( array $array ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.arrayFound
+	public static function key_last( array $a ) {
 		if ( function_exists( '\array_key_last' ) ) {
-			return array_key_last( $array );
+			return array_key_last( $a );
 		}
 
-		if ( empty( $array ) ) {
+		if ( empty( $a ) ) {
 			return null;
 		}
 
-		end( $array );
+		end( $a );
 
-		return key( $array );
+		return key( $a );
+	}
+
+
+	/**
+	 * Check current array data is a list
+	 *
+	 * @param array $a The array data
+	 *
+	 * @return bool
+	 */
+	public static function is_list( array $a ) {
+		if ( function_exists( '\array_is_list' ) ) {
+			return array_key_last( $a );
+		}
+
+		if ( array() === $a || array_values( $a ) === $a ) {
+			return true;
+		}
+
+		$next_key = - 1;
+
+		foreach ( $a as $k => $v ) {
+			if ( ++$next_key !== $k ) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 }

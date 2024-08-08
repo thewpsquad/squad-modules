@@ -16,22 +16,22 @@ namespace DiviSquad\Modules\ImageGallery;
 use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
 use DiviSquad\Utils\Helper;
 use WP_Post;
+use function _wp_get_image_size_from_meta;
+use function apply_filters;
 use function esc_html__;
 use function et_builder_i18n;
 use function et_builder_is_loading_data;
-use function get_intermediate_image_sizes;
-use function wp_enqueue_script;
-use function apply_filters;
-use function wp_array_slice_assoc;
 use function et_pb_media_options;
+use function get_intermediate_image_sizes;
+use function get_permalink;
+use function get_post_meta;
+use function get_posts;
+use function wp_array_slice_assoc;
+use function wp_enqueue_script;
+use function wp_get_attachment_image_src;
+use function wp_get_attachment_metadata;
 use function wp_json_encode;
 use function wp_parse_args;
-use function get_posts;
-use function get_permalink;
-use function wp_get_attachment_image_src;
-use function get_post_meta;
-use function wp_get_attachment_metadata;
-use function _wp_get_image_size_from_meta;
 
 /**
  * Image Gallery Module Class.
@@ -167,7 +167,8 @@ class ImageGallery extends DISQ_Builder_Module {
 				'type'             => 'select',
 				'option_category'  => 'layout',
 				'options'          => $this->get_available_image_sizes(),
-				'default_on_front' => 'off',
+				'default'          => 'thumbnail',
+				'default_on_front' => 'thumbnail',
 				'description'      => esc_html__( 'Choose image size.', 'squad-modules-for-divi' ),
 				'computed_affects' => array(
 					'__gallery',
@@ -231,7 +232,7 @@ class ImageGallery extends DISQ_Builder_Module {
 			'show_in_lightbox'   => $this->disq_add_yes_no_field(
 				esc_html__( 'Open in Lightbox', 'squad-modules-for-divi' ),
 				array(
-					'description' => esc_html__( ' Here you can choose whether or not the image should open in Lightbox. Note: if you select to open the image in Lightbox, url options below will be ignored.', 'squad-modules-for-divi' ),
+					'description' => esc_html__( 'Here you can choose whether or not the image should open in Lightbox. Note: if you select to open the image in Lightbox, url options below will be ignored.', 'squad-modules-for-divi' ),
 					'default'     => 'off',
 					'affects'     => array(
 						'url',
@@ -292,7 +293,7 @@ class ImageGallery extends DISQ_Builder_Module {
 				$this->slug,
 				array(
 					'selector'    => "$this->main_css_element .gallery-images a",
-					'declaration' => sprintf( 'padding-left: %1$s; padding-bottom: %1$s;', $images_gap ),
+					'declaration' => sprintf( 'padding-right: %1$s; padding-bottom: %1$s;', $images_gap ),
 				)
 			);
 		}

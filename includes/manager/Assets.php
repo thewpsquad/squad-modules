@@ -49,6 +49,7 @@ class Assets {
 		$images_loaded_js = Asset::asset_path( 'imagesloaded.pkgd', $vendor_asset_options );
 		$isotope_js       = Asset::asset_path( 'isotope.pkgd', $vendor_asset_options );
 		$light_gallery_js = Asset::asset_path( 'lightgallery.umd', array_merge( $vendor_asset_options, array( 'prod_file' => 'lightgallery' )) ); // phpcs:ignore
+		$scrolling_text_js = Asset::asset_path( 'jquery.marquee', $vendor_asset_options ); // phpcs:ignore
 
 		// All vendor scripts.
 		$this->register_scripts( 'vendor-lottie', $lottie_js );
@@ -56,6 +57,7 @@ class Assets {
 		$this->register_scripts( 'vendor-lightgallery', $light_gallery_js, $core_asset_deps );
 		$this->register_scripts( 'vendor-imagesloaded', $images_loaded_js, $core_asset_deps );
 		$this->register_scripts( 'vendor-isotope', $isotope_js, $core_asset_deps );
+		$this->register_scripts( 'vendor-scrolling-text', $scrolling_text_js, $core_asset_deps );
 
 		$lottie_asset_deps       = array_merge( $core_asset_deps, array( 'disq-vendor-lottie' ) );
 		$typing_text_module_deps = array_merge( $core_asset_deps, array( 'disq-vendor-typed' ) );
@@ -67,6 +69,7 @@ class Assets {
 		$this->register_scripts( 'module-bais', Asset::asset_path( 'bai-slider-bundle', $module_asset_options ), $core_asset_deps );
 		$this->register_scripts( 'module-accordion', Asset::asset_path( 'accordion-bundle', $module_asset_options ), $core_asset_deps );
 		$this->register_scripts( 'module-gallery', Asset::asset_path( 'gallery-bundle', $module_asset_options ), $core_asset_deps );
+		$this->register_scripts( 'module-scrolling-text', Asset::asset_path( 'scrolling-text-bundle', $module_asset_options ), $core_asset_deps );
 	}
 
 	/**
@@ -79,6 +82,7 @@ class Assets {
 		wp_enqueue_script( 'disq-vendor-imagesloaded' );
 		wp_enqueue_script( 'disq-vendor-isotope' );
 		wp_enqueue_script( 'disq-vendor-lightgallery' );
+		wp_enqueue_script( 'disq-vendor-scrolling-text' );
 
 		// Load third party resources.
 		if ( class_exists( 'WPCF7' ) ) {

@@ -149,7 +149,7 @@ class Helper {
 			if ( ! empty( $key_value_pairs ) ) {
 				foreach ( $key_value_pairs as $key_value_pair ) {
 					list( $key, $value ) = explode( '=', $key_value_pair );
-					$result[ $key ] = $value;
+					$result[ $key ]      = $value;
 				}
 
 				return array_filter( $result );
@@ -220,5 +220,27 @@ class Helper {
 		}
 
 		return $new_array;
+	}
+
+	/**
+	 * Get Second by days.
+	 *
+	 * @param int $days Days Number.
+	 *
+	 * @return int
+	 */
+	public static function get_second( $days ) {
+		return $days * 24 * 60 * 60;
+	}
+
+	/**
+	 * Get days by second.
+	 *
+	 * @param int $seconds Seconds Number.
+	 *
+	 * @return int
+	 */
+	public static function get_days( $seconds ) {
+		return $seconds / 86400;
 	}
 }

@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-3.0-only.
 msgid ""
 msgstr ""
-"Project-Id-Version: Squad Modules for Divi Builder 1.2.6\n"
+"Project-Id-Version: Squad Modules for Divi Builder 1.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/temp\n"
-"POT-Creation-Date: 2023-09-23 14:33:07+00:00\n"
+"POT-Creation-Date: 2023-09-30 18:45:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,73 +25,77 @@ msgstr ""
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 "Last-Translator: WP Squad <support@thewpsquad.com>\n"
 
-#: admin/Assets.php:128 admin/Menu.php:84
+#: admin/Assets.php:188 admin/Menu.php:86
 msgid "Divi Squad"
 msgstr ""
 
-#: admin/Assets.php:129
+#: admin/Assets.php:189
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: admin/Assets.php:130
+#: admin/Assets.php:190
 msgid "Active License"
 msgstr ""
 
-#: admin/Assets.php:131
+#: admin/Assets.php:191
 msgid "View Documentation"
 msgstr ""
 
-#: admin/Assets.php:132
+#: admin/Assets.php:192
 msgid ""
 "Get started by spending some time with the documentation to get familiar "
 "with Divi Squad Modules."
 msgstr ""
 
-#: admin/Assets.php:133
+#: admin/Assets.php:193
 msgid "Show Your Love"
 msgstr ""
 
-#: admin/Assets.php:134
+#: admin/Assets.php:194
 msgid ""
 "Take your 2 minutes to review the plugin and spread the love to encourage "
 "us to keep it going."
 msgstr ""
 
-#: admin/Assets.php:135
+#: admin/Assets.php:195
 msgid "Need Help?"
 msgstr ""
 
-#: admin/Assets.php:136
+#: admin/Assets.php:196
 msgid "Stuck with something? Get help from live chat or submit a support ticket."
 msgstr ""
 
-#: admin/Assets.php:137
+#: admin/Assets.php:197
 msgid "Join the Community"
 msgstr ""
 
-#: admin/Assets.php:138
+#: admin/Assets.php:198
 msgid "Join the user community and discuss with fellow developers & users."
 msgstr ""
 
-#: admin/Assets.php:139
+#: admin/Assets.php:199
+msgid "Changelog"
+msgstr ""
+
+#: admin/Assets.php:200
 msgid "View Changelog"
 msgstr ""
 
-#: admin/Assets.php:140 admin/Assets.php:149
+#: admin/Assets.php:201 admin/Assets.php:212
 msgid "Check out the changes & features we have added with our new updates"
 msgstr ""
 
-#: admin/Assets.php:141
+#: admin/Assets.php:202
 msgid ""
 "Unlock 20+ Advanced PRO Modules to Enhance Your Divi Site Building "
 "Experience"
 msgstr ""
 
-#: admin/Assets.php:142
+#: admin/Assets.php:203
 msgid "Automatic Updates & Priority Support"
 msgstr ""
 
-#: admin/Assets.php:143
+#: admin/Assets.php:204
 msgid ""
 "Get access to automatic updates & keep your website up-to-date with "
 "constantly developing features.Having any trouble? Don’t worry as you can "
@@ -99,67 +103,75 @@ msgid ""
 "tickets."
 msgstr ""
 
-#: admin/Assets.php:144
+#: admin/Assets.php:205
 msgid "Unable to load module list."
 msgstr ""
 
-#: admin/Assets.php:145
+#: admin/Assets.php:206
 msgid "Loading available modules..."
 msgstr ""
 
-#: admin/Assets.php:146
-msgid "Unable to load  extension list."
+#: admin/Assets.php:207
+msgid "Unable to load extension list."
 msgstr ""
 
-#: admin/Assets.php:147
+#: admin/Assets.php:208
 msgid "Loading available extensions..."
 msgstr ""
 
-#: admin/Assets.php:148
+#: admin/Assets.php:209
+msgid "Unable to load new changes."
+msgstr ""
+
+#: admin/Assets.php:210
+msgid "Loading available what's new changes..."
+msgstr ""
+
+#: admin/Assets.php:211
 msgid "Manage Modules"
 msgstr ""
 
-#: admin/Assets.php:150 includes/modules/TypingText/TypingText.php:734
+#: admin/Assets.php:213 includes/modules/TypingText/TypingText.php:734
 #: includes/modules/TypingText/TypingText.php:748
 #: includes/modules/TypingText/TypingText.php:762
 msgid "Default"
 msgstr ""
 
-#: admin/Assets.php:151
+#: admin/Assets.php:214
 msgid "Active All"
 msgstr ""
 
-#: admin/Assets.php:152
+#: admin/Assets.php:215
 msgid "Deactivate All"
 msgstr ""
 
-#: admin/Assets.php:153
+#: admin/Assets.php:216
 msgid "Save Changes"
 msgstr ""
 
-#: admin/Assets.php:154
+#: admin/Assets.php:217
 msgid "Manage Extensions"
 msgstr ""
 
-#: admin/Assets.php:155
+#: admin/Assets.php:218
 msgid "NEW"
 msgstr ""
 
-#: admin/Assets.php:156
+#: admin/Assets.php:219
 msgid "Updated"
 msgstr ""
 
-#: admin/Assets.php:158
+#: admin/Assets.php:221
 msgid ""
 "We are here to assist you with any queries you may have. Feel free to ask "
 "us anything!"
 msgstr ""
 
-#: admin/Assets.php:159
+#: admin/Assets.php:222
 msgid "Hi, how can I help?"
 msgstr ""
 
-#: admin/Menu.php:104
+#: admin/Menu.php:106
 msgid "Dashboard"
 msgstr ""
 
@@ -167,8 +179,12 @@ msgstr ""
 msgid "Modules"
 msgstr ""
 
-#: admin/Menu.php:118
+#: admin/Menu.php:116
 msgid "Extensions"
+msgstr ""
+
+#: admin/Menu.php:121
+msgid "What's New"
 msgstr ""
 
 #: admin/Plugin_Action_Links.php:42
@@ -381,6 +397,22 @@ msgstr ""
 #: includes/modules/FormStylerGravityForms/FormStylerGravityForms.php:785
 #: includes/modules/FormStylerWPForms/FormStylerWPForms.php:490
 msgid "Select one"
+msgstr ""
+
+#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:195
+msgid "Author archive for "
+msgstr ""
+
+#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:243
+msgid "Search query for: "
+msgstr ""
+
+#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:248
+msgid "Error 404"
+msgstr ""
+
+#: includes/base/BuilderModule/Traits/Elements/Breadcrumbs.php:254
+msgid " ( Page %s )"
 msgstr ""
 
 #: includes/base/BuilderModule/Traits/Elements/Divider.php:61
@@ -970,66 +1002,62 @@ msgstr ""
 msgid "Advanced Divider"
 msgstr ""
 
-#: includes/manager/Modules.php:47
+#: includes/manager/Modules.php:48
 #: includes/modules/DualButton/DualButton.php:44
 msgid "Dual Button"
 msgstr ""
 
-#: includes/manager/Modules.php:56 includes/modules/Divider/Divider.php:76
+#: includes/manager/Modules.php:58 includes/modules/Divider/Divider.php:76
 #: includes/modules/Divider/Divider.php:564
 #: includes/modules/Lottie/Lottie.php:57 includes/modules/Lottie/Lottie.php:63
 msgid "Lottie"
 msgstr ""
 
-#: includes/manager/Modules.php:65 includes/modules/PostGrid/PostGrid.php:61
+#: includes/manager/Modules.php:68 includes/modules/PostGrid/PostGrid.php:61
 msgid "Post Grid"
 msgstr ""
 
-#: includes/manager/Modules.php:67
+#: includes/manager/Modules.php:70
 #: includes/modules/PostGridChild/PostGridChild.php:54
 msgid "Post Element"
 msgstr ""
 
-#: includes/manager/Modules.php:76
+#: includes/manager/Modules.php:80
 #: includes/modules/TypingText/TypingText.php:40
 #: includes/modules/TypingText/TypingText.php:314
 msgid "Typing Text"
 msgstr ""
 
-#: includes/manager/Modules.php:85 includes/modules/ImageMask/ImageMask.php:37
+#: includes/manager/Modules.php:90 includes/modules/ImageMask/ImageMask.php:37
 msgid "Image Mask"
 msgstr ""
 
-#: includes/manager/Modules.php:94 includes/modules/FlipBox/FlipBox.php:45
+#: includes/manager/Modules.php:100 includes/modules/FlipBox/FlipBox.php:45
 msgid "Flip Box"
 msgstr ""
 
-#: includes/manager/Modules.php:103
+#: includes/manager/Modules.php:110
 #: includes/modules/BusinessHours/BusinessHours.php:40
 #: includes/modules/BusinessHours/BusinessHours.php:41
 msgid "Business Hours"
 msgstr ""
 
-#: includes/manager/Modules.php:105
+#: includes/manager/Modules.php:112
 #: includes/modules/BusinessHoursChild/BusinessHoursChild.php:38
 msgid "Business Day"
 msgstr ""
 
-#: includes/manager/Modules.php:114
+#: includes/manager/Modules.php:122
 #: includes/modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:43
 msgid "Before After Image Slider"
 msgstr ""
 
-#: includes/manager/Modules.php:123
+#: includes/manager/Modules.php:132
 #: includes/modules/ImageGallery/ImageGallery.php:51
 msgid "Image Gallery"
 msgstr ""
 
-#: includes/manager/Modules.php:132 includes/manager/Modules.php:134
-msgid "Advanced Accordion"
-msgstr ""
-
-#: includes/manager/Modules.php:143
+#: includes/manager/Modules.php:142
 #: includes/modules/FormStylerContactForm7/FormStylerContactForm7.php:39
 #: includes/modules/FormStylerContactForm7/FormStylerContactForm7.php:40
 msgid "Contact Form 7"
@@ -1041,31 +1069,39 @@ msgstr ""
 msgid "WP Forms"
 msgstr ""
 
-#: includes/manager/Modules.php:163
+#: includes/manager/Modules.php:164
 #: includes/modules/FormStylerGravityForms/FormStylerGravityForms.php:36
 #: includes/modules/FormStylerGravityForms/FormStylerGravityForms.php:37
 msgid "Gravity Forms"
 msgstr ""
 
-#: includes/manager/Modules.php:173
+#: includes/manager/Modules.php:175
 #: includes/modules/PostReadingTime/PostReadingTime.php:44
 msgid "Post Reading Time"
 msgstr ""
 
-#: includes/manager/Modules.php:182
+#: includes/manager/Modules.php:185
 #: includes/modules/GlitchText/GlitchText.php:37
-#: includes/modules/GlitchText/GlitchText.php:63
+#: includes/modules/GlitchText/GlitchText.php:62
 #: includes/modules/GlitchText/GlitchText.php:122
 #: includes/modules/GlitchText/GlitchText.php:138
 msgid "Glitch Text"
 msgstr ""
 
-#: includes/manager/Modules.php:190
+#: includes/manager/Modules.php:195
 #: includes/modules/GradientText/GradientText.php:38
 #: includes/modules/GradientText/GradientText.php:63
 #: includes/modules/GradientText/GradientText.php:133
 #: includes/modules/GradientText/GradientText.php:149
 msgid "Gradient Text"
+msgstr ""
+
+#: includes/manager/Modules.php:204
+#: includes/modules/ScrollingText/ScrollingText.php:38
+#: includes/modules/ScrollingText/ScrollingText.php:60
+#: includes/modules/ScrollingText/ScrollingText.php:130
+#: includes/modules/ScrollingText/ScrollingText.php:146
+msgid "Scrolling Text"
 msgstr ""
 
 #: includes/modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:44
@@ -2362,6 +2398,7 @@ msgstr ""
 #: includes/modules/FlipBox/FlipBox.php:71
 #: includes/modules/PostGridChild/PostGridChild.php:69
 #: includes/modules/PostReadingTime/PostReadingTime.php:63
+#: includes/modules/ScrollingText/ScrollingText.php:54
 #: includes/modules/TypingText/TypingText.php:56
 msgid "Content"
 msgstr ""
@@ -2563,10 +2600,12 @@ msgid "Fade"
 msgstr ""
 
 #: includes/modules/FlipBox/FlipBox.php:1222
+#: includes/modules/ScrollingText/ScrollingText.php:175
 msgid "Right"
 msgstr ""
 
 #: includes/modules/FlipBox/FlipBox.php:1223
+#: includes/modules/ScrollingText/ScrollingText.php:174
 msgid "Left"
 msgstr ""
 
@@ -2990,10 +3029,6 @@ msgstr ""
 msgid "Glitch Settings"
 msgstr ""
 
-#: includes/modules/GlitchText/GlitchText.php:62
-msgid "Text"
-msgstr ""
-
 #: includes/modules/GlitchText/GlitchText.php:139
 msgid "The text will appear in with your glitch text."
 msgstr ""
@@ -3116,49 +3151,49 @@ msgstr ""
 msgid "Image Size"
 msgstr ""
 
-#: includes/modules/ImageGallery/ImageGallery.php:171
+#: includes/modules/ImageGallery/ImageGallery.php:172
 msgid "Choose image size."
 msgstr ""
 
-#: includes/modules/ImageGallery/ImageGallery.php:192
+#: includes/modules/ImageGallery/ImageGallery.php:193
 msgid "Images Gap"
 msgstr ""
 
-#: includes/modules/ImageGallery/ImageGallery.php:194
+#: includes/modules/ImageGallery/ImageGallery.php:195
 msgid "Here you can choose gap between images."
 msgstr ""
 
-#: includes/modules/ImageGallery/ImageGallery.php:209
+#: includes/modules/ImageGallery/ImageGallery.php:210
 msgid "Image Order"
 msgstr ""
 
-#: includes/modules/ImageGallery/ImageGallery.php:210
+#: includes/modules/ImageGallery/ImageGallery.php:211
 msgid ""
 "Select an ordering method for the gallery. This controls which gallery "
 "items appear first in the list."
 msgstr ""
 
-#: includes/modules/ImageGallery/ImageGallery.php:214
+#: includes/modules/ImageGallery/ImageGallery.php:215
 #: includes/modules/PostGrid/PostGrid.php:581
 msgid "Random"
 msgstr ""
 
-#: includes/modules/ImageGallery/ImageGallery.php:232
+#: includes/modules/ImageGallery/ImageGallery.php:233
 msgid "Open in Lightbox"
 msgstr ""
 
-#: includes/modules/ImageGallery/ImageGallery.php:234
+#: includes/modules/ImageGallery/ImageGallery.php:235
 msgid ""
-" Here you can choose whether or not the image should open in Lightbox. "
-"Note: if you select to open the image in Lightbox, url options below will "
-"be ignored."
+"Here you can choose whether or not the image should open in Lightbox. Note: "
+"if you select to open the image in Lightbox, url options below will be "
+"ignored."
 msgstr ""
 
-#: includes/modules/ImageGallery/ImageGallery.php:260
+#: includes/modules/ImageGallery/ImageGallery.php:261
 msgid "Full"
 msgstr ""
 
-#: includes/modules/ImageGallery/ImageGallery.php:285
+#: includes/modules/ImageGallery/ImageGallery.php:286
 msgid "Add one or more image(s)."
 msgstr ""
 
@@ -4087,6 +4122,71 @@ msgstr ""
 msgid "Here you can define a custom padding size for the time."
 msgstr ""
 
+#: includes/modules/ScrollingText/ScrollingText.php:39
+msgid "Scrolling Texts"
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:55
+msgid "Scrolling Settings"
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:71
+msgid "Scrolling"
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:147
+msgid "The text will appear in with your scrolling text."
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:155
+msgid "Text Tag"
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:157
+#: includes/modules/TypingText/TypingText.php:335
+msgid "Choose a tag to display with your texts."
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:170
+msgid "Scrolling Direction"
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:172
+msgid "Choose Scrolling Text Direction."
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:184
+msgid "Enable Scrolling Text Outline"
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:186
+msgid "Enable Scrolling Text Outline for better look."
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:193
+msgid "Pause on Hover"
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:195
+msgid "You can pause Scrolling on Hover by enabling this option."
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:202
+msgid "Repeat Scrolling Text"
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:204
+msgid "You will need more repeats to create the infinite scrolling effect."
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:211
+msgid "Scrolling Text Speed (ms)"
+msgstr ""
+
+#: includes/modules/ScrollingText/ScrollingText.php:213
+msgid "Choose the speed for your scrolling text in milliseconds."
+msgstr ""
+
 #: includes/modules/TypingText/TypingText.php:41
 msgid "Typing Texts"
 msgstr ""
@@ -4140,10 +4240,6 @@ msgstr ""
 
 #: includes/modules/TypingText/TypingText.php:333
 msgid "Container Tag"
-msgstr ""
-
-#: includes/modules/TypingText/TypingText.php:335
-msgid "Choose a tag to display with your texts."
 msgstr ""
 
 #: includes/modules/TypingText/TypingText.php:348
@@ -4555,4 +4651,9 @@ msgstr ""
 #: includes/integration/Divi/Backend.php:288
 msgctxt "Modules dummy content"
 msgid "Your Glitch Text Here"
+msgstr ""
+
+#: includes/integration/Divi/Backend.php:296
+msgctxt "Modules dummy content"
+msgid "Your Scrolling Text Here"
 msgstr ""

@@ -86,7 +86,7 @@ abstract class DISQ_Builder_Module extends ET_Builder_Module {
 	protected function disq_get_all_modules( $allowed_prefix = array() ) {
 		// Initiate default data.
 		$all_modules            = self::get_modules_array();
-		$default_allowed_prefix = array( 'difl', 'df', 'dfadh' );
+		$default_allowed_prefix = array( 'disq' );
 		$clean_modules          = array(
 			'none'   => esc_html__( 'Select Module', 'squad-modules-for-divi' ),
 			'custom' => esc_html__( 'Custom', 'squad-modules-for-divi' ),
