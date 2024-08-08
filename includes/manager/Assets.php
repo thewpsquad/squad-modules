@@ -97,9 +97,6 @@ class Assets {
 	 * @return void
 	 */
 	public function enqueue_scripts_vb() {
-		wp_enqueue_script( 'disq-vendor-tippy-headless' );
-		wp_enqueue_script( 'disq-vendor-tippy-react-headless' );
-		wp_enqueue_script( 'disq-vendor-swiper' );
 		wp_enqueue_script( 'disq-vendor-typed' );
 	}
 

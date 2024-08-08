@@ -1,6 +1,6 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
-namespace DiviSquad\Manager\Rest_API;
+namespace DiviSquad\Manager\Rest_API_Routes;
 
 use DiviSquad\Base\Memory;
 use WP_REST_Request;

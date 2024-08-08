@@ -11,6 +11,7 @@
 namespace DiviSquad\Base\BuilderModule\Traits;
 
 use ET_Builder_Element;
+use stdClass;
 
 /**
  * Field Processor class.
@@ -365,7 +366,7 @@ trait Field_Processor {
 		}
 
 		// Generate actual value.
-		$field_value          = $this->collect_prop_mapping_value( $options, $default_value );
+		$field_value          = $this->disq_collect_prop_mapping_value( $options, $default_value );
 		$clean_default_value  = str_replace( $options['allowed_units'], '', $options['default_width'] );
 		$increased_value_data = (int) $clean_default_value + (int) $options['default_unit_value'];
 
@@ -381,7 +382,7 @@ trait Field_Processor {
 	 *
 	 * @return mixed
 	 */
-	protected function collect_prop_mapping_value( $options, $current_value ) {
+	protected function disq_collect_prop_mapping_value( $options, $current_value ) {
 		if ( ! empty( $options['mapping_values'] ) && array() !== $options['mapping_values'] ) {
 			if ( is_callable( $options['mapping_values'] ) ) {
 				return $options['mapping_values']( $current_value );
@@ -433,7 +434,7 @@ trait Field_Processor {
 		if ( et_pb_get_responsive_status( $value_last_edited ) && '' !== implode( '', $value_responsive_values ) ) {
 			$value_responsive_values = array_map(
 				function ( $current_value ) use ( $options ) {
-					return $this->collect_prop_mapping_value( $options, $current_value );
+					return $this->disq_collect_prop_mapping_value( $options, $current_value );
 				},
 				$value_responsive_values
 			);
@@ -455,7 +456,7 @@ trait Field_Processor {
 				array(
 					'selector'    => $options['selector'],
 					'declaration' => et_builder_get_element_style_css(
-						esc_html( $this->collect_prop_mapping_value( $options, $value_default ) ),
+						esc_html( $this->disq_collect_prop_mapping_value( $options, $value_default ) ),
 						$css_prop,
 						$options['important']
 					),
@@ -468,7 +469,7 @@ trait Field_Processor {
 			$hover_style = array(
 				'selector'    => $options['hover'],
 				'declaration' => et_builder_get_element_style_css(
-					esc_html( $this->collect_prop_mapping_value( $options, $margin_padding_hover ) ),
+					esc_html( $this->disq_collect_prop_mapping_value( $options, $margin_padding_hover ) ),
 					$css_prop,
 					$options['important']
 				),
@@ -605,6 +606,47 @@ trait Field_Processor {
 				'render_slug'    => $this->slug,
 				'type'           => 'input',
 				'important'      => $options['important'],
+			)
+		);
+	}
+
+	/**
+	 * Process text with url, example: title with url.
+	 *
+	 * @param array $options The options for text with url.
+	 *
+	 * @return string
+	 */
+	protected function disq_text_with_url( $options = array() ) {
+		$default        = array(
+			'text_attribute'      => '',
+			'text_tag'            => '',
+			'text_url'            => '',
+			'text_url_new_window' => '',
+			'multi_view'          => new stdClass(),
+			'hover_selector'      => '',
+		);
+		$options        = wp_parse_args( $options, $default );
+		$text_attribute = $options['text_attribute'];
+
+		if ( 'a' === $options['text_tag'] ) {
+			$raw_text     = $options['multi_view']->render_element( array( 'content' => "{{{$text_attribute}}}" ) );
+			$striped_text = wp_strip_all_tags( $raw_text );
+			$url_target   = 'on' === $options['target'] ? '_blank' : '_self';
+
+			return sprintf(
+				'<%1$s href="%3$s" target="%4$s">%2$s</%1$s>',
+				et_core_esc_previously( $options['text_tag'] ),
+				et_core_esc_previously( $striped_text ),
+				et_core_esc_previously( $options['text_url'] ),
+				et_core_esc_previously( $url_target )
+			);
+		}
+
+		return $options['multi_view']->render_element(
+			array(
+				'tag'     => $options['text_tag'],
+				'content' => "{{{$text_attribute}}}",
 			)
 		);
 	}

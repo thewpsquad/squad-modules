@@ -13,7 +13,7 @@ use function DiviSquad\divi_squad;
  * @author      WP Squad <support@thewpsquad.com>
  * @license     GPL-3.0-only
  */
-class Rest_API {
+class Rest_API_Routes {
 
 	/**
 	 * The instance of the current class.
@@ -85,7 +85,7 @@ class Rest_API {
 		$module = Modules::get_instance();
 
 		// Get all routes.
-		self::$routes = Rest_API\Modules::get_instance( self::$memory, $module )->get_routes();
+		self::$routes = Rest_API_Routes\Modules::get_instance( self::$memory, $module )->get_routes();
 
 		// Load on rest api init.
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );

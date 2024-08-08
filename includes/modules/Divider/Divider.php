@@ -32,10 +32,9 @@ class Divider extends DISQ_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name   = esc_html__( 'Advanced Divider', 'squad-modules-for-divi' );
-		$this->plural = esc_html__( 'Advanced Dividers', 'squad-modules-for-divi' );
-
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/divider.svg' );
+		$this->name      = esc_html__( 'Advanced Divider', 'squad-modules-for-divi' );
+		$this->plural    = esc_html__( 'Advanced Dividers', 'squad-modules-for-divi' );
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
 
 		$this->slug             = 'disq_divider';
 		$this->main_css_element = "%%order_class%%.$this->slug";
@@ -1794,7 +1793,7 @@ class Divider extends DISQ_Builder_Module {
 	 */
 	private function disq_render_divider_icon_lottie( $multi_view ) {
 		if ( 'lottie' === $this->props['divider_icon_type'] ) {
-			$lottie_image_classes = array( 'disq_lottie_player', 'lottie-player-container' );
+			$lottie_image_classes = array( 'disq-lottie-player', 'lottie-player-container' );
 
 			$lottie_type     = ! empty( $this->props['divider_icon_lottie_src_type'] ) ? $this->props['divider_icon_lottie_src_type'] : '';
 			$lottie_src_prop = 'local' === $lottie_type ? '{{divider_icon_lottie_src_upload}}' : '{{divider_icon_lottie_src_remote}}';
@@ -1803,8 +1802,8 @@ class Divider extends DISQ_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'divider_icon_lottie_color',
-					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element .disq_lottie_player svg path",
-					'selector_hover' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper .icon-element .disq_lottie_player",
+					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element .disq-lottie-player svg path",
+					'selector_hover' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper .icon-element .disq-lottie-player",
 					'css_property'   => 'fill',
 					'render_slug'    => $this->slug,
 					'type'           => 'color',
@@ -1815,8 +1814,8 @@ class Divider extends DISQ_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'divider_icon_lottie_background_color',
-					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element .disq_lottie_player",
-					'selector_hover' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper .icon-element .disq_lottie_player",
+					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element .disq-lottie-player",
+					'selector_hover' => "$this->main_css_element div .divider-elements:hover .divider-icon-wrapper .icon-element .disq-lottie-player",
 					'css_property'   => 'background-color',
 					'render_slug'    => $this->slug,
 					'type'           => 'color',
@@ -1827,7 +1826,7 @@ class Divider extends DISQ_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'divider_icon_lottie_width',
-					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element .disq_lottie_player",
+					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element .disq-lottie-player",
 					'css_property'   => 'width',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',
@@ -1838,7 +1837,7 @@ class Divider extends DISQ_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'divider_icon_lottie_height',
-					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element .disq_lottie_player",
+					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element .disq-lottie-player",
 					'css_property'   => 'height',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',

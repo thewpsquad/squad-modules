@@ -2,6 +2,8 @@
 
 namespace DiviSquad\Base;
 
+use DiviSquad\Utils\Helper;
+
 /**
  * The Base class for Core
  *
@@ -64,6 +66,20 @@ abstract class Core {
 	 */
 	protected $min_version_wp;
 
+	/**
+	 * The Script handle the text domain will be attached to.
+	 *
+	 * @var string
+	 */
+	protected $localize_handle;
+
+	/**
+	 * The full file path to the directory containing translation files.
+	 *
+	 * @var string
+	 */
+	protected $localize_path;
+
 
 	/**
 	 * Get the plugin name.
@@ -121,6 +137,7 @@ abstract class Core {
 	 */
 	public function load_text_domain() {
 		load_plugin_textdomain( $this->name, false, "{$this->name}/languages" );
+		// wp_set_script_translations( $this->localize_handle, $this->name, "{$this->localize_path}/languages" );
 	}
 
 	/**
