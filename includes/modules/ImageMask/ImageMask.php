@@ -5,8 +5,8 @@
  * This class provides mask adding functionalities for image in the visual builder.
  *
  * @since           1.0.0
- * @package         squad-modules
- * @author          WP Squad <support@thewpsquad.com>
+ * @package         squad-modules-for-divi
+ * @author          WP Squad <wp@thewpsquad.com>
  * @license         GPL-3.0-only
  */
 

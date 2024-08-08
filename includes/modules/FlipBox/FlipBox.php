@@ -7,7 +7,7 @@
  *
  * @since           1.0.0
  * @package         squad-modules-for-divi
- * @author          WP Squad <support@thewpsquad.com>
+ * @author          WP Squad <wp@thewpsquad.com>
  * @license         GPL-3.0-only
  */
 

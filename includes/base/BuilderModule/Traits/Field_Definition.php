@@ -5,7 +5,8 @@
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
 
@@ -18,7 +19,8 @@ use ET_Global_Settings;
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
 trait Field_Definition {

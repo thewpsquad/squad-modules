@@ -4,7 +4,8 @@
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
 
@@ -17,9 +18,11 @@ use ET_Builder_Module;
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
- * @author      WP Squad <support@thewpsquad.com>
+ * @author      WP Squad <wp@thewpsquad.com>
+ * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
+#[\AllowDynamicProperties]
 abstract class DISQ_Builder_Module extends ET_Builder_Module {
 
 	use Traits\Field_Compatibility;
