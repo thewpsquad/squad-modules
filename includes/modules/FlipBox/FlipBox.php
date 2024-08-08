@@ -1152,7 +1152,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'toggle_slug'      => 'flip_settings',
 				)
 			),
-			'flip_custom_height'         => $this->disq_add_range_fields(
+			'flip_custom_height'         => $this->disq_add_range_field(
 				esc_html__( 'Custom Height', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose the custom height for flip box.', 'squad-modules-for-divi' ),
@@ -1338,7 +1338,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'toggle_slug'      => 'fip_animations',
 				)
 			),
-			'flip_translate_z'             => $this->disq_add_range_fields(
+			'flip_translate_z'             => $this->disq_add_range_field(
 				esc_html__( 'Translate Z', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose how much the translate z on 3d effect.', 'squad-modules-for-divi' ),
@@ -1357,7 +1357,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'toggle_slug'      => 'fip_animations',
 				)
 			),
-			'flip_scale'                   => $this->disq_add_range_fields(
+			'flip_scale'                   => $this->disq_add_range_field(
 				esc_html__( 'Scale', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you can choose how much the scale on 3d effect.', 'squad-modules-for-divi' ),
@@ -2903,7 +2903,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'sub_toggle'          => "{$side}_side",
 				)
 			),
-			"{$side}_icon_size"                   => $this->disq_add_range_fields(
+			"{$side}_icon_size"                   => $this->disq_add_range_field(
 				esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose icon size.', 'squad-modules-for-divi' ),
@@ -2937,7 +2937,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'sub_toggle'       => "{$side}_side",
 				)
 			),
-			"{$side}_image_width"                 => $this->disq_add_range_fields(
+			"{$side}_image_width"                 => $this->disq_add_range_field(
 				esc_html__( 'Image Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose image width.', 'squad-modules-for-divi' ),
@@ -2956,7 +2956,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'sub_toggle'      => "{$side}_side",
 				)
 			),
-			"{$side}_image_height"                => $this->disq_add_range_fields(
+			"{$side}_image_height"                => $this->disq_add_range_field(
 				esc_html__( 'Image Height', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose image height.', 'squad-modules-for-divi' ),
@@ -3003,7 +3003,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'sub_toggle'          => "{$side}_side",
 				)
 			),
-			"{$side}_icon_text_gap"               => $this->disq_add_range_fields(
+			"{$side}_icon_text_gap"               => $this->disq_add_range_field(
 				esc_html__( 'Gap Between Icon/Image and Text', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose gap between icon and text.', 'squad-modules-for-divi' ),
@@ -3025,7 +3025,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'hover'            => false,
 				)
 			),
-			"{$side}_icon_wrapper_width"          => $this->disq_add_range_fields(
+			"{$side}_icon_wrapper_width"          => $this->disq_add_range_field(
 				esc_html__( 'Icon Wrapper Width', 'squad-modules-for-divi' ),
 				array(
 					'description'         => esc_html__( 'Here you can choose icon wrapper width.', 'squad-modules-for-divi' ),
@@ -3170,7 +3170,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'toggle_slug' => "{$side}_wrapper",
 				)
 			),
-			"{$side}_icon_item_inner_gap" => $this->disq_add_range_fields(
+			"{$side}_icon_item_inner_gap" => $this->disq_add_range_field(
 				esc_html__( 'Gap Between Elements', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose gap between icon and text.', 'squad-modules-for-divi' ),
@@ -3367,7 +3367,7 @@ class FlipBox extends DISQ_Builder_Module {
 	 */
 	private function disq_get_side_order_fields( $side ) {
 		return array(
-			"{$side}_icon_order"      => $this->disq_add_range_fields(
+			"{$side}_icon_order"      => $this->disq_add_range_field(
 				esc_html__( 'Image/Icon Order', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the order number to position the item lower.', 'squad-modules-for-divi' ),
@@ -3389,7 +3389,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'sub_toggle'        => "{$side}_side",
 				)
 			),
-			"{$side}_title_order"     => $this->disq_add_range_fields(
+			"{$side}_title_order"     => $this->disq_add_range_field(
 				esc_html__( 'Title Order', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the order number to position the item lower.', 'squad-modules-for-divi' ),
@@ -3411,7 +3411,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'sub_toggle'        => "{$side}_side",
 				)
 			),
-			"{$side}_sub_title_order" => $this->disq_add_range_fields(
+			"{$side}_sub_title_order" => $this->disq_add_range_field(
 				esc_html__( 'Sub Title Order', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the order number to position the item lower.', 'squad-modules-for-divi' ),
@@ -3434,7 +3434,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'sub_toggle'        => "{$side}_side",
 				)
 			),
-			"{$side}_body_order"      => $this->disq_add_range_fields(
+			"{$side}_body_order"      => $this->disq_add_range_field(
 				esc_html__( 'Body Order', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the order number to position the item lower.', 'squad-modules-for-divi' ),
@@ -3457,7 +3457,7 @@ class FlipBox extends DISQ_Builder_Module {
 					'sub_toggle'        => "{$side}_side",
 				)
 			),
-			"{$side}_button_order"    => $this->disq_add_range_fields(
+			"{$side}_button_order"    => $this->disq_add_range_field(
 				esc_html__( 'Button Order', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Increase the order number to position the item lower.', 'squad-modules-for-divi' ),

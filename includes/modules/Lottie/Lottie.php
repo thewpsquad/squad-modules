@@ -265,7 +265,7 @@ class Lottie extends DISQ_Builder_Module {
 					'toggle_slug'         => 'lottie_animation',
 				)
 			),
-			'lottie_loop_no_times'   => $this->disq_add_range_fields(
+			'lottie_loop_no_times'   => $this->disq_add_range_field(
 				esc_html__( 'Amount Of Loops', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'This option is only available if Yes is selected for Loop. Enter the number of times you wish to have the animation loop before stopping.', 'squad-modules-for-divi' ),
@@ -288,7 +288,7 @@ class Lottie extends DISQ_Builder_Module {
 					'mobile_options' => false,
 				)
 			),
-			'lottie_delay'           => $this->disq_add_range_fields(
+			'lottie_delay'           => $this->disq_add_range_field(
 				esc_html__( 'Delay', 'squad-modules-for-divi' ),
 				array(
 					'description'         => esc_html__( 'Delay the lottie animation (in ms).', 'squad-modules-for-divi' ),
@@ -311,7 +311,7 @@ class Lottie extends DISQ_Builder_Module {
 					'mobile_options' => false,
 				)
 			),
-			'lottie_speed'           => $this->disq_add_range_fields(
+			'lottie_speed'           => $this->disq_add_range_field(
 				esc_html__( 'Animation Speed', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'The speed of the animation.', 'squad-modules-for-divi' ),
@@ -390,7 +390,7 @@ class Lottie extends DISQ_Builder_Module {
 					'toggle_slug'     => 'lottie_image',
 				)
 			),
-			'lottie_width'  => $this->disq_add_range_fields(
+			'lottie_width'  => $this->disq_add_range_field(
 				esc_html__( 'Lottie Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose lottie width.', 'squad-modules-for-divi' ),
@@ -408,7 +408,7 @@ class Lottie extends DISQ_Builder_Module {
 					'toggle_slug'     => 'lottie_image',
 				)
 			),
-			'lottie_height' => $this->disq_add_range_fields(
+			'lottie_height' => $this->disq_add_range_field(
 				esc_html__( 'Lottie Height', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose lottie height.', 'squad-modules-for-divi' ),

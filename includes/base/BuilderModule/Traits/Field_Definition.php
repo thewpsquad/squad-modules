@@ -34,7 +34,7 @@ trait Field_Definition {
 	 *
 	 * @return array[]
 	 */
-	protected function disq_add_range_fields( $label, $properties = array(), $conditions = array() ) {
+	protected function disq_add_range_field( $label, $properties = array(), $conditions = array() ) {
 		// Add icon width feature for button, By default is 16px.
 		$field_options = array(
 			'label'           => $label,

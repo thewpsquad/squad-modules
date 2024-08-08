@@ -48,7 +48,7 @@ class Assets {
 		$typed_js          = Asset::asset_path( 'typed.umd', $vendor_asset_options );
 		$images_loaded_js  = Asset::asset_path( 'imagesloaded.pkgd', $vendor_asset_options );
 		$isotope_js        = Asset::asset_path( 'isotope.pkgd', $vendor_asset_options );
-		$light_gallery_js = Asset::asset_path( 'lightgallery.umd', array_merge( $vendor_asset_options, array( 'prod_file' => 'lightgallery' )) ); // phpcs:ignore
+		$light_gallery_js  = Asset::asset_path( 'lightgallery.umd', array_merge( $vendor_asset_options, array( 'prod_file' => 'lightgallery' ) ) ); // phpcs:ignore
 		$scrolling_text_js = Asset::asset_path( 'jquery.marquee', $vendor_asset_options ); // phpcs:ignore
 
 		// All vendor scripts.
@@ -58,6 +58,12 @@ class Assets {
 		$this->register_scripts( 'vendor-imagesloaded', $images_loaded_js, $core_asset_deps );
 		$this->register_scripts( 'vendor-isotope', $isotope_js, $core_asset_deps );
 		$this->register_scripts( 'vendor-scrolling-text', $scrolling_text_js, $core_asset_deps );
+
+		// Re-queue third party scripts
+		if ( ! wp_script_is( 'magnific-popup', 'registered' ) ) {
+			$magnific_popup_script_url = get_template_directory_uri() . '/includes/builder/feature/dynamic-assets/assets/js/magnific-popup.js';
+			wp_register_script( 'magnific-popup', $magnific_popup_script_url, $core_asset_deps, divi_squad()->get_version(), true );
+		}
 
 		$lottie_asset_deps       = array_merge( $core_asset_deps, array( 'disq-vendor-lottie' ) );
 		$typing_text_module_deps = array_merge( $core_asset_deps, array( 'disq-vendor-typed' ) );
@@ -70,6 +76,7 @@ class Assets {
 		$this->register_scripts( 'module-accordion', Asset::asset_path( 'accordion-bundle', $module_asset_options ), $core_asset_deps );
 		$this->register_scripts( 'module-gallery', Asset::asset_path( 'gallery-bundle', $module_asset_options ), $core_asset_deps );
 		$this->register_scripts( 'module-scrolling-text', Asset::asset_path( 'scrolling-text-bundle', $module_asset_options ), $core_asset_deps );
+		$this->register_scripts( 'module-video-popup', Asset::asset_path( 'video-popup-bundle', $module_asset_options ), array( 'magnific-popup' ) );
 	}
 
 	/**
@@ -83,12 +90,16 @@ class Assets {
 		wp_enqueue_script( 'disq-vendor-isotope' );
 		wp_enqueue_script( 'disq-vendor-lightgallery' );
 		wp_enqueue_script( 'disq-vendor-scrolling-text' );
+		wp_enqueue_script( 'disq-module-video-popup' );
 
 		// Load third party resources.
+
+		// Contact form default style.
 		if ( class_exists( 'WPCF7' ) ) {
 			wp_enqueue_style( 'contact-form-7' );
 		}
 
+		// WP Form default style
 		if ( function_exists( '\wpforms' ) && function_exists( '\wpforms_get_render_engine' ) && function_exists( '\wpforms_setting' ) && function_exists( '\wpforms_get_min_suffix' ) ) {
 			$min         = \wpforms_get_min_suffix();
 			$wp_forms_re = \wpforms_get_render_engine();
@@ -110,9 +121,15 @@ class Assets {
 			}
 		}
 
+		// Gravity form default style.
 		if ( function_exists( 'gravity_form' ) ) {
 			wp_enqueue_style( 'gform_basic' );
 			wp_enqueue_style( 'gform_theme' );
+		}
+
+
+		if ( 'on' === et_get_option( 'divi_gallery_layout_enable', 'off' ) && ( is_active_widget( false, false, 'media_gallery', true ) || et_is_active_block_widget( 'core/gallery' ) ) ) {
+			wp_enqueue_script( 'magnific-popup', get_template_directory_uri() . '/includes/builder/feature/dynamic-assets/assets/js/magnific-popup.js', array( 'jquery' ), $theme_version, true );
 		}
 	}
 }

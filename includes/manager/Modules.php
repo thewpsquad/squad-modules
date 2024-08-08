@@ -229,8 +229,17 @@ class Modules {
 			),
 			array(
 				'name'               => 'DropCap',
-				'label'              => esc_html__( 'Drop Cap', 'squad-modules-for-divi' ),
+				'label'              => esc_html__( 'Drop Cap Text', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.0',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'type'               => 'D4',
+				'category'           => 'creative-modules',
+			),
+			array(
+				'name'               => 'VideoPopup',
+				'label'              => esc_html__( 'Video Popup', 'squad-modules-for-divi' ),
+				'release_version'    => '1.4.1',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',

@@ -200,7 +200,7 @@ trait Fields {
 				'hover'           => 'tabs',
 			)
 		);
-		$fields[ $config['base_attr_name'] . '_stroke_width' ]    = $this->disq_add_range_fields(
+		$fields[ $config['base_attr_name'] . '_stroke_width' ]    = $this->disq_add_range_field(
 			esc_html__( 'Stroke Width', 'squad-modules-for-divi' ),
 			array(
 				'description'    => esc_html__( 'Here you can choose stroke width.', 'squad-modules-for-divi' ),
@@ -583,7 +583,7 @@ trait Fields {
 			),
 			$config['fields_after_colors'],
 			array(
-				"{$base_name}_icon_size"    => $this->disq_add_range_fields(
+				"{$base_name}_icon_size"    => $this->disq_add_range_field(
 					esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 					array(
 						'description'     => esc_html__( 'Here you can choose icon size.', 'squad-modules-for-divi' ),
@@ -599,7 +599,7 @@ trait Fields {
 						'depends_show_if' => 'icon',
 					)
 				),
-				"{$base_name}_image_width"  => $this->disq_add_range_fields(
+				"{$base_name}_image_width"  => $this->disq_add_range_field(
 					esc_html__( 'Image Width', 'squad-modules-for-divi' ),
 					array(
 						'description'     => esc_html__( 'Here you can choose image width.', 'squad-modules-for-divi' ),
@@ -614,7 +614,7 @@ trait Fields {
 						'depends_show_if' => 'image',
 					)
 				),
-				"{$base_name}_image_height" => $this->disq_add_range_fields(
+				"{$base_name}_image_height" => $this->disq_add_range_field(
 					esc_html__( 'Image Height', 'squad-modules-for-divi' ),
 					array(
 						'description'     => esc_html__( 'Here you can choose image height.', 'squad-modules-for-divi' ),
@@ -629,7 +629,7 @@ trait Fields {
 						'toggle_slug'     => $config['toggle_slug'],
 					)
 				),
-				"{$base_name}_icon_gap"     => $this->disq_add_range_fields(
+				"{$base_name}_icon_gap"     => $this->disq_add_range_field(
 					esc_html__( 'Gap Between Icon/Image and Text', 'squad-modules-for-divi' ),
 					array(
 						'description'         => esc_html__( 'Here you can choose gap between icon and text.', 'squad-modules-for-divi' ),
@@ -702,7 +702,7 @@ trait Fields {
 						'toggle_slug'      => $config['toggle_slug'],
 					)
 				),
-				"{$base_name}_width"              => $this->disq_add_range_fields(
+				"{$base_name}_width"              => $this->disq_add_range_field(
 					esc_html__( 'Button Width', 'squad-modules-for-divi' ),
 					array(
 						'description'     => esc_html__( 'Adjust the width of the content within the button.', 'squad-modules-for-divi' ),

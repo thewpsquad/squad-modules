@@ -11,7 +11,7 @@
  * Plugin Name:         Divi Squad Lite
  * Plugin URI:          https://squadmodules.com/
  * Description:         Unlock your potential Divi Builder experience with advanced Divi plugin with powerful Divi modules and extensions.
- * Version:             1.4.0
+ * Version:             1.4.1
  * Requires at least:   5.0.0
  * Requires PHP:        5.6.40
  * Author:              WP Squad
@@ -80,7 +80,7 @@ try {
 	define( 'DISQ_ASSET_URL', trailingslashit( DISQ_DIR_URL . 'build' ) );
 
 	// Define the general constants for the plugin.
-	define( 'DISQ_VERSION', '1.4.0' );
+	define( 'DISQ_VERSION', '1.4.1' );
 	define( 'DISQ_MINIMUM_DIVI_VERSION', '4.14.0' );
 	define( 'DISQ_MINIMUM_PHP_VERSION', '5.6.40' );
 	define( 'DISQ_MINIMUM_WP_VERSION', '5.0.0' );

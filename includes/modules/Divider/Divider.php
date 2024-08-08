@@ -300,7 +300,7 @@ class Divider extends DISQ_Builder_Module {
 					'toggle_slug'      => 'divider',
 				)
 			),
-			'multiple_divider_no'   => $this->disq_add_range_fields(
+			'multiple_divider_no'   => $this->disq_add_range_field(
 				esc_html__( 'Amount Of Line', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'This option is only available if Yes is selected for Loop. Enter the number of times you wish to have the animation loop before stopping.', 'squad-modules-for-divi' ),
@@ -324,7 +324,7 @@ class Divider extends DISQ_Builder_Module {
 					'mobile_options' => false,
 				)
 			),
-			'multiple_divider_gap'  => $this->disq_add_range_fields(
+			'multiple_divider_gap'  => $this->disq_add_range_field(
 				esc_html__( 'Gap Between Multiple Line', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose gap between multiple line.', 'squad-modules-for-divi' ),
@@ -462,7 +462,7 @@ class Divider extends DISQ_Builder_Module {
 					'toggle_slug'      => 'divider',
 				)
 			),
-			'divider_custom_size_left'  => $this->disq_add_range_fields(
+			'divider_custom_size_left'  => $this->disq_add_range_field(
 				esc_html__( 'Divider Left Side Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose divider left side width.', 'squad-modules-for-divi' ),
@@ -481,7 +481,7 @@ class Divider extends DISQ_Builder_Module {
 					'toggle_slug'     => 'divider',
 				)
 			),
-			'divider_custom_size_right' => $this->disq_add_range_fields(
+			'divider_custom_size_right' => $this->disq_add_range_field(
 				esc_html__( 'Divider Right Side Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose divider right side width.', 'squad-modules-for-divi' ),
@@ -502,7 +502,7 @@ class Divider extends DISQ_Builder_Module {
 			),
 		);
 		$divider_extra_fields       = array(
-			'divider_max_width'     => $this->disq_add_range_fields(
+			'divider_max_width'     => $this->disq_add_range_field(
 				esc_html__( 'Divider Max Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose divider max width.', 'squad-modules-for-divi' ),
@@ -521,7 +521,7 @@ class Divider extends DISQ_Builder_Module {
 					'toggle_slug'     => 'divider',
 				)
 			),
-			'divider_border_radius' => $this->disq_add_range_fields(
+			'divider_border_radius' => $this->disq_add_range_field(
 				esc_html__( 'Divider Border Radius', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose divider border  radius.', 'squad-modules-for-divi' ),
@@ -683,7 +683,7 @@ class Divider extends DISQ_Builder_Module {
 
 		// Divider_element fields definitions.
 		$divider_element_fields = array(
-			'divider_element_gap'       => $this->disq_add_range_fields(
+			'divider_element_gap'       => $this->disq_add_range_field(
 				esc_html__( 'Gap Between Element and Divider', 'squad-modules-for-divi' ),
 				array(
 					'description'         => esc_html__( 'Here you can choose gap between element and divider.', 'squad-modules-for-divi' ),
@@ -761,7 +761,7 @@ class Divider extends DISQ_Builder_Module {
 					'toggle_slug'         => 'icon_element',
 				)
 			),
-			'divider_icon_size'                   => $this->disq_add_range_fields(
+			'divider_icon_size'                   => $this->disq_add_range_field(
 				esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose icon size.', 'squad-modules-for-divi' ),
@@ -779,7 +779,7 @@ class Divider extends DISQ_Builder_Module {
 					'toggle_slug'     => 'icon_element',
 				)
 			),
-			'divider_image_width'                 => $this->disq_add_range_fields(
+			'divider_image_width'                 => $this->disq_add_range_field(
 				esc_html__( 'Image Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose image width.', 'squad-modules-for-divi' ),
@@ -797,7 +797,7 @@ class Divider extends DISQ_Builder_Module {
 					'toggle_slug'     => 'icon_element',
 				)
 			),
-			'divider_image_height'                => $this->disq_add_range_fields(
+			'divider_image_height'                => $this->disq_add_range_field(
 				esc_html__( 'Image Height', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose image height.', 'squad-modules-for-divi' ),
@@ -818,10 +818,7 @@ class Divider extends DISQ_Builder_Module {
 			'divider_icon_margin'                 => $this->disq_add_margin_padding_field(
 				esc_html__( 'Icon Margin', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__(
-						'Here you can define a custom margin size for the icon.',
-						'squad-modules-for-divi'
-					),
+					'description'         => esc_html__( 'Here you can define a custom margin size for the icon.', 'squad-modules-for-divi' ),
 					'type'                => 'custom_margin',
 					'depends_show_if_not' => array( 'none' ),
 					'tab_slug'            => 'advanced',
@@ -831,10 +828,7 @@ class Divider extends DISQ_Builder_Module {
 			'divider_icon_padding'                => $this->disq_add_margin_padding_field(
 				esc_html__( 'Icon Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__(
-						'Here you can define a custom padding size for the icon.',
-						'squad-modules-for-divi'
-					),
+					'description'         => esc_html__( 'Here you can define a custom padding size for the icon.', 'squad-modules-for-divi' ),
 					'type'                => 'custom_padding',
 					'depends_show_if_not' => array( 'none' ),
 					'tab_slug'            => 'advanced',
@@ -938,7 +932,7 @@ class Divider extends DISQ_Builder_Module {
 					'toggle_slug'         => 'lottie_element',
 				)
 			),
-			'divider_icon_lottie_loop_no_times'   => $this->disq_add_range_fields(
+			'divider_icon_lottie_loop_no_times'   => $this->disq_add_range_field(
 				esc_html__( 'Amount Of Loops', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'This option is only available if Yes is selected for Loop. Enter the number of times you wish to have the animation loop before stopping.', 'squad-modules-for-divi' ),
@@ -961,7 +955,7 @@ class Divider extends DISQ_Builder_Module {
 					'mobile_options' => false,
 				)
 			),
-			'divider_icon_lottie_delay'           => $this->disq_add_range_fields(
+			'divider_icon_lottie_delay'           => $this->disq_add_range_field(
 				esc_html__( 'Delay', 'squad-modules-for-divi' ),
 				array(
 					'description'         => esc_html__( 'Delay the lottie animation (in ms).', 'squad-modules-for-divi' ),
@@ -984,7 +978,7 @@ class Divider extends DISQ_Builder_Module {
 					'mobile_options' => false,
 				)
 			),
-			'divider_icon_lottie_speed'           => $this->disq_add_range_fields(
+			'divider_icon_lottie_speed'           => $this->disq_add_range_field(
 				esc_html__( 'Animation Speed', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'The speed of the animation.', 'squad-modules-for-divi' ),
@@ -1080,7 +1074,7 @@ class Divider extends DISQ_Builder_Module {
 					'toggle_slug'     => 'lottie_element',
 				)
 			),
-			'divider_icon_lottie_width'            => $this->disq_add_range_fields(
+			'divider_icon_lottie_width'            => $this->disq_add_range_field(
 				esc_html__( 'Lottie Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose lottie width.', 'squad-modules-for-divi' ),
@@ -1100,7 +1094,7 @@ class Divider extends DISQ_Builder_Module {
 					'use_hover' => false,
 				)
 			),
-			'divider_icon_lottie_height'           => $this->disq_add_range_fields(
+			'divider_icon_lottie_height'           => $this->disq_add_range_field(
 				esc_html__( 'Lottie Height', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose lottie height.', 'squad-modules-for-divi' ),
@@ -1684,7 +1678,7 @@ class Divider extends DISQ_Builder_Module {
 			);
 			$this->generate_styles(
 				array(
-					'base_attr_name' => 'item_image_height',
+					'base_attr_name' => 'divider_image_height',
 					'selector'       => "$this->main_css_element div .divider-elements .divider-icon-wrapper .icon-element img",
 					'hover_selector' => "$this->main_css_element div .divider-elements:hover divider-icon-wrapper .icon-element img",
 					'css_property'   => 'height',

@@ -189,7 +189,7 @@ class ImageGallery extends DISQ_Builder_Module {
 
 		// Gallery settings fields definitions.
 		$gallery_settings_fields = array(
-			'gallery_images_gap' => $this->disq_add_range_fields(
+			'gallery_images_gap' => $this->disq_add_range_field(
 				esc_html__( 'Images Gap', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose gap between images.', 'squad-modules-for-divi' ),

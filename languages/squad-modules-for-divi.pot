@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-3.0-only.
 msgid ""
 msgstr ""
-"Project-Id-Version: Divi Squad Lite 1.4.0\n"
+"Project-Id-Version: Divi Squad Lite 1.4.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/temp\n"
-"POT-Creation-Date: 2023-10-14 17:29:08+00:00\n"
+"POT-Creation-Date: 2023-10-23 18:20:37+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -188,6 +188,7 @@ msgid "What's New"
 msgstr ""
 
 #: admin/Plugin_Action_Links.php:42
+#: includes/modules/VideoPopup/VideoPopup.php:60
 msgid "Settings"
 msgstr ""
 
@@ -366,7 +367,7 @@ msgstr ""
 #: includes/base/BuilderModule/DISQ_Form_Styler_Module.php:166
 #: includes/modules/BusinessHours/BusinessHours.php:362
 #: includes/modules/BusinessHoursChild/BusinessHoursChild.php:330
-#: includes/modules/Divider/Divider.php:1127
+#: includes/modules/Divider/Divider.php:1121
 #: includes/modules/DualButton/DualButton.php:587
 #: includes/modules/FlipBox/FlipBox.php:1394
 #: includes/modules/FlipBox/FlipBox.php:1403
@@ -719,11 +720,14 @@ msgstr ""
 #: includes/modules/PostGridChild/PostGridChild.php:99
 #: includes/modules/PostGridChild/PostGridChild.php:112
 #: includes/modules/PostGridChild/PostGridChild.php:558
+#: includes/modules/VideoPopup/VideoPopup.php:66
+#: includes/modules/VideoPopup/VideoPopup.php:141
+#: includes/modules/VideoPopup/VideoPopup.php:198
 msgid "Icon"
 msgstr ""
 
 #: includes/base/BuilderModule/Traits/Fields.php:416
-#: includes/modules/Divider/Divider.php:858
+#: includes/modules/Divider/Divider.php:852
 #: includes/modules/FlipBox/FlipBox.php:2805
 #: includes/modules/Lottie/Lottie.php:185
 #: includes/modules/PostGridChild/PostGridChild.php:561
@@ -755,6 +759,7 @@ msgstr ""
 #: includes/modules/FlipBox/FlipBox.php:2851
 #: includes/modules/ImageMask/ImageMask.php:131
 #: includes/modules/PostGridChild/PostGridChild.php:611
+#: includes/modules/VideoPopup/VideoPopup.php:179
 msgid "Choose an Image"
 msgstr ""
 
@@ -765,6 +770,7 @@ msgstr ""
 #: includes/modules/FlipBox/FlipBox.php:2852
 #: includes/modules/ImageMask/ImageMask.php:132
 #: includes/modules/PostGridChild/PostGridChild.php:612
+#: includes/modules/VideoPopup/VideoPopup.php:180
 msgid "Set As Image"
 msgstr ""
 
@@ -833,6 +839,7 @@ msgstr ""
 #: includes/modules/FlipBox/FlipBox.php:2960
 #: includes/modules/ImageMask/ImageMask.php:293
 #: includes/modules/PostGridChild/PostGridChild.php:743
+#: includes/modules/VideoPopup/VideoPopup.php:337
 msgid "Image Height"
 msgstr ""
 
@@ -914,7 +921,7 @@ msgid "Icon/Image Margin"
 msgstr ""
 
 #: includes/base/BuilderModule/Traits/Fields.php:739
-#: includes/modules/Divider/Divider.php:834
+#: includes/modules/Divider/Divider.php:831
 #: includes/modules/DualButton/DualButton.php:549
 #: includes/modules/FlipBox/FlipBox.php:3137
 #: includes/modules/PostGridChild/PostGridChild.php:870
@@ -1125,8 +1132,13 @@ msgstr ""
 msgid "Breadcrumbs"
 msgstr ""
 
-#: includes/manager/Modules.php:232
-msgid "Drop Cap"
+#: includes/manager/Modules.php:232 includes/modules/DropCap/DropCap.php:35
+msgid "Drop Cap Text"
+msgstr ""
+
+#: includes/manager/Modules.php:241
+#: includes/modules/VideoPopup/VideoPopup.php:43
+msgid "Video Popup"
 msgstr ""
 
 #: includes/modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:44
@@ -1145,6 +1157,7 @@ msgstr ""
 #: includes/modules/TypingText/TypingText.php:80
 #: includes/modules/TypingText/TypingText.php:146
 #: includes/modules/TypingText/TypingText.php:271
+#: includes/modules/VideoPopup/VideoPopup.php:79
 msgid "Before"
 msgstr ""
 
@@ -1219,7 +1232,7 @@ msgid "Here you can choose whether or not show the label on hover effect."
 msgstr ""
 
 #: includes/modules/BeforeAfterImageSlider/BeforeAfterImageSlider.php:310
-#: includes/modules/Divider/Divider.php:1025
+#: includes/modules/Divider/Divider.php:1019
 #: includes/modules/Lottie/Lottie.php:352
 msgid "Direction"
 msgstr ""
@@ -1330,6 +1343,7 @@ msgstr ""
 #: includes/modules/FlipBox/FlipBox.php:2861
 #: includes/modules/ImageMask/ImageMask.php:138
 #: includes/modules/PostGridChild/PostGridChild.php:621
+#: includes/modules/VideoPopup/VideoPopup.php:186
 msgid "Image Alt Text"
 msgstr ""
 
@@ -1379,6 +1393,9 @@ msgid "Text Colors"
 msgstr ""
 
 #: includes/modules/Breadcrumbs/Breadcrumbs.php:59
+#: includes/modules/VideoPopup/VideoPopup.php:67
+#: includes/modules/VideoPopup/VideoPopup.php:145
+#: includes/modules/VideoPopup/VideoPopup.php:199
 msgid "Text"
 msgstr ""
 
@@ -1641,7 +1658,7 @@ msgstr ""
 
 #: includes/modules/BusinessHours/BusinessHours.php:432
 #: includes/modules/BusinessHoursChild/BusinessHoursChild.php:354
-#: includes/modules/Divider/Divider.php:1137
+#: includes/modules/Divider/Divider.php:1131
 #: includes/modules/DualButton/DualButton.php:655
 #: includes/modules/FlipBox/FlipBox.php:3195
 #: includes/modules/PostGrid/PostGrid.php:1051
@@ -1653,7 +1670,7 @@ msgstr ""
 
 #: includes/modules/BusinessHours/BusinessHours.php:434
 #: includes/modules/BusinessHoursChild/BusinessHoursChild.php:356
-#: includes/modules/Divider/Divider.php:1139
+#: includes/modules/Divider/Divider.php:1133
 #: includes/modules/DualButton/DualButton.php:657
 #: includes/modules/FlipBox/FlipBox.php:3197
 #: includes/modules/PostGrid/PostGrid.php:1223
@@ -1665,7 +1682,7 @@ msgstr ""
 
 #: includes/modules/BusinessHours/BusinessHours.php:441
 #: includes/modules/BusinessHoursChild/BusinessHoursChild.php:366
-#: includes/modules/Divider/Divider.php:1146
+#: includes/modules/Divider/Divider.php:1140
 #: includes/modules/DualButton/DualButton.php:667
 #: includes/modules/FlipBox/FlipBox.php:3205
 #: includes/modules/PostGrid/PostGrid.php:1070
@@ -1677,7 +1694,7 @@ msgstr ""
 
 #: includes/modules/BusinessHours/BusinessHours.php:443
 #: includes/modules/BusinessHoursChild/BusinessHoursChild.php:368
-#: includes/modules/Divider/Divider.php:1148
+#: includes/modules/Divider/Divider.php:1142
 #: includes/modules/DualButton/DualButton.php:669
 #: includes/modules/FlipBox/FlipBox.php:3207
 #: includes/modules/PostGrid/PostGrid.php:1232
@@ -1869,7 +1886,7 @@ msgid "Amount Of Line"
 msgstr ""
 
 #: includes/modules/Divider/Divider.php:306
-#: includes/modules/Divider/Divider.php:944
+#: includes/modules/Divider/Divider.php:938
 #: includes/modules/Lottie/Lottie.php:271
 msgid ""
 "This option is only available if Yes is selected for Loop. Enter the number "
@@ -2066,238 +2083,234 @@ msgstr ""
 msgid "Here you can define a custom margin size for the icon."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:832
+#: includes/modules/Divider/Divider.php:829
 #: includes/modules/FlipBox/FlipBox.php:3135
 #: includes/modules/PostGridChild/PostGridChild.php:868
 msgid "Icon Padding"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:849
+#: includes/modules/Divider/Divider.php:843
 #: includes/modules/Lottie/Lottie.php:176
 msgid "Animation Interaction"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:851
+#: includes/modules/Divider/Divider.php:845
 #: includes/modules/Lottie/Lottie.php:178
 msgid "Here you can choose interactivity with your Lottie animation."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:853
+#: includes/modules/Divider/Divider.php:847
 #: includes/modules/Lottie/Lottie.php:180
 msgid "Play on hover/mouse over"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:854
+#: includes/modules/Divider/Divider.php:848
 #: includes/modules/Lottie/Lottie.php:181
 msgid "Play on click"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:855
+#: includes/modules/Divider/Divider.php:849
 #: includes/modules/Lottie/Lottie.php:182
 msgid "Play on scroll"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:856
+#: includes/modules/Divider/Divider.php:850
 #: includes/modules/Lottie/Lottie.php:183
 msgid "Play when container is visible"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:857
+#: includes/modules/Divider/Divider.php:851
 #: includes/modules/Lottie/Lottie.php:184
 msgid "Freeze on click"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:875
+#: includes/modules/Divider/Divider.php:869
 #: includes/modules/Lottie/Lottie.php:202
 msgid "On Mouseout Action"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:877
+#: includes/modules/Divider/Divider.php:871
 #: includes/modules/Lottie/Lottie.php:204
 msgid "Here you can choose an action when mouse out with your Lottie animation."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:881
-#: includes/modules/Divider/Divider.php:895
+#: includes/modules/Divider/Divider.php:875
+#: includes/modules/Divider/Divider.php:889
 #: includes/modules/Lottie/Lottie.php:208
 #: includes/modules/Lottie/Lottie.php:222
 msgid "No action"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:882
-#: includes/modules/Divider/Divider.php:1030
+#: includes/modules/Divider/Divider.php:876
+#: includes/modules/Divider/Divider.php:1024
 #: includes/modules/Lottie/Lottie.php:209
 #: includes/modules/Lottie/Lottie.php:357
 msgid "Reverse"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:891
+#: includes/modules/Divider/Divider.php:885
 #: includes/modules/Lottie/Lottie.php:218
 msgid "On Click Action"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:893
+#: includes/modules/Divider/Divider.php:887
 #: includes/modules/Lottie/Lottie.php:220
 msgid "Here you can choose an action when click with your Lottie animation."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:896
+#: includes/modules/Divider/Divider.php:890
 #: includes/modules/Lottie/Lottie.php:223
 msgid "Lock animation"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:905
+#: includes/modules/Divider/Divider.php:899
 #: includes/modules/Lottie/Lottie.php:232
 msgid "Relative To"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:907
+#: includes/modules/Divider/Divider.php:901
 #: includes/modules/Lottie/Lottie.php:234
 msgid "Here you can choose a relation when scroll event with your Lottie animation."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:909
+#: includes/modules/Divider/Divider.php:903
 #: includes/modules/Lottie/Lottie.php:236
 msgid "Entire page"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:910
+#: includes/modules/Divider/Divider.php:904
 #: includes/modules/Lottie/Lottie.php:237
 msgid "Within this section/row"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:919
+#: includes/modules/Divider/Divider.php:913
 #: includes/modules/Lottie/Lottie.php:246
 msgid "Play On Hover"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:921
+#: includes/modules/Divider/Divider.php:915
 #: includes/modules/Lottie/Lottie.php:248
 msgid "Here you can choose whether or not your Lottie will animate on hover."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:929
+#: includes/modules/Divider/Divider.php:923
 #: includes/modules/Lottie/Lottie.php:256
 msgid "Loop"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:931
+#: includes/modules/Divider/Divider.php:925
 #: includes/modules/Lottie/Lottie.php:258
 msgid "Here you can choose whether or not your Lottie will animate in loop."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:942
+#: includes/modules/Divider/Divider.php:936
 #: includes/modules/Lottie/Lottie.php:269
 msgid "Amount Of Loops"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:965
+#: includes/modules/Divider/Divider.php:959
 #: includes/modules/Lottie/Lottie.php:292
 msgid "Delay"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:967
+#: includes/modules/Divider/Divider.php:961
 #: includes/modules/Lottie/Lottie.php:294
 msgid "Delay the lottie animation (in ms)."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:988
+#: includes/modules/Divider/Divider.php:982
 #: includes/modules/Lottie/Lottie.php:315
 msgid "Animation Speed"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:990
+#: includes/modules/Divider/Divider.php:984
 #: includes/modules/Lottie/Lottie.php:317
 msgid "The speed of the animation."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1012
+#: includes/modules/Divider/Divider.php:1006
 #: includes/modules/Lottie/Lottie.php:339
 msgid "Play Mode"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1014
+#: includes/modules/Divider/Divider.php:1008
 #: includes/modules/Lottie/Lottie.php:341
 msgid "Here you can choose play mode for your Lottie animation."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1016
-#: includes/modules/Divider/Divider.php:1029
+#: includes/modules/Divider/Divider.php:1010
+#: includes/modules/Divider/Divider.php:1023
 #: includes/modules/Lottie/Lottie.php:343
 #: includes/modules/Lottie/Lottie.php:356
 msgid "Normal"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1017
+#: includes/modules/Divider/Divider.php:1011
 #: includes/modules/Lottie/Lottie.php:344
 msgid "Reverse on complete"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1027
+#: includes/modules/Divider/Divider.php:1021
 #: includes/modules/Lottie/Lottie.php:354
 msgid "Here you can choose play direction for your Lottie animation."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1039
+#: includes/modules/Divider/Divider.php:1033
 #: includes/modules/Lottie/Lottie.php:366
 msgid "Render"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1041
+#: includes/modules/Divider/Divider.php:1035
 #: includes/modules/Lottie/Lottie.php:368
 msgid "Here you can choose renderer for your Lottie animation."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1043
+#: includes/modules/Divider/Divider.php:1037
 #: includes/modules/Lottie/Lottie.php:370
 msgid "SVG"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1044
+#: includes/modules/Divider/Divider.php:1038
 #: includes/modules/Lottie/Lottie.php:371
 msgid "Canvas"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1060
+#: includes/modules/Divider/Divider.php:1054
 msgid "Lottie Background Color"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1062
+#: includes/modules/Divider/Divider.php:1056
 msgid "Here you can define a custom background color for lottie image."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1072
+#: includes/modules/Divider/Divider.php:1066
 #: includes/modules/Lottie/Lottie.php:385
 msgid "Lottie Color"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1074
+#: includes/modules/Divider/Divider.php:1068
 #: includes/modules/Lottie/Lottie.php:387
 msgid "Here you can define a custom color for lottie image."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1084
+#: includes/modules/Divider/Divider.php:1078
 #: includes/modules/Lottie/Lottie.php:394
 msgid "Lottie Width"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1086
+#: includes/modules/Divider/Divider.php:1080
 #: includes/modules/Lottie/Lottie.php:396
 msgid "Here you can choose lottie width."
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1104
+#: includes/modules/Divider/Divider.php:1098
 #: includes/modules/Lottie/Lottie.php:412
 msgid "Lottie Height"
 msgstr ""
 
-#: includes/modules/Divider/Divider.php:1106
+#: includes/modules/Divider/Divider.php:1100
 #: includes/modules/Lottie/Lottie.php:414
 msgid "Here you can choose lottie height."
-msgstr ""
-
-#: includes/modules/DropCap/DropCap.php:35
-msgid "Drop Cap Text"
 msgstr ""
 
 #: includes/modules/DropCap/DropCap.php:36
@@ -2310,6 +2323,7 @@ msgstr ""
 #: includes/modules/PostReadingTime/PostReadingTime.php:63
 #: includes/modules/ScrollingText/ScrollingText.php:54
 #: includes/modules/TypingText/TypingText.php:56
+#: includes/modules/VideoPopup/VideoPopup.php:59
 msgid "Content"
 msgstr ""
 
@@ -2354,6 +2368,7 @@ msgstr ""
 #: includes/modules/DualButton/DualButton.php:432
 #: includes/modules/PostGridChild/PostGridChild.php:902
 #: includes/modules/PostGridChild/PostGridChild.php:944
+#: includes/modules/VideoPopup/VideoPopup.php:364
 msgid "Background"
 msgstr ""
 
@@ -3312,6 +3327,9 @@ msgstr ""
 #: includes/modules/ImageMask/ImageMask.php:59
 #: includes/modules/ImageMask/ImageMask.php:110
 #: includes/modules/ImageMask/ImageMask.php:126
+#: includes/modules/VideoPopup/VideoPopup.php:65
+#: includes/modules/VideoPopup/VideoPopup.php:133
+#: includes/modules/VideoPopup/VideoPopup.php:174
 msgid "Image"
 msgstr ""
 
@@ -4456,6 +4474,7 @@ msgid "Align your Stars to the left, right or center of the module."
 msgstr ""
 
 #: includes/modules/StarRating/StarRating.php:346
+#: includes/modules/VideoPopup/VideoPopup.php:374
 msgid "Size"
 msgstr ""
 
@@ -4765,6 +4784,287 @@ msgstr ""
 
 #: includes/modules/TypingText/TypingText.php:863
 msgid "Here you can define a custom padding size for the after text."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:44
+msgid "Video Popups"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:68
+msgid "Popup"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:137
+msgid "Icon Wrapper"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:160
+msgid "Use Overlay Image"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:162
+#: includes/modules/VideoPopup/VideoPopup.php:484
+msgid "Here you can choose whether overlay image should be used."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:175
+msgid "Here you can define placeholder image for the video."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:178
+msgid "Upload an image"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:187
+msgid "Here you can define the HTML ALT text for your overlay image."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:194
+msgid "Button Element"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:196
+msgid "Here you can select button element for the video popup."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:200
+msgid "Icon & Text"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:221
+msgid "Select Play Icon"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:223
+msgid "Here you can select different type of play icon from the video."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:225
+msgid "Icon 1"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:226
+msgid "Icon 2"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:227
+msgid "Icon 3"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:228
+msgid "Icon 4"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:229
+msgid "Icon 5"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:230
+msgid "Icon 6"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:239
+msgid "Trigger Text"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:240
+msgid "Define the trigger text for your popup."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:248
+msgid "Video Type"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:250
+msgid "Define video type for the popup."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:252
+msgid "Youtube"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:253
+msgid "Vimeo"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:254
+msgid "Custom Upload"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:266
+msgid "Video URL"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:267
+msgid ""
+"Type youtube or vimeo video url which you would like to display in the "
+"popup."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:274
+msgid "Video MP4 File"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:275
+msgid ""
+"Upload your desired video in .MP4 format, or type in the URL to the video "
+"you would like to display"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:278
+msgid "Upload a video"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:279
+msgid "Choose a Video MP4 File"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:280
+msgid "Set As Video"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:286
+msgid "Use Animated Icon"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:288
+msgid ""
+"Use animated wave for your icon. For better experience please set icon "
+"background color from icon design toggle."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:297
+msgid "Animated Wave Color"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:299
+msgid "Here you can define custom color for the animated wave of your icon."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:307
+msgid "Icon/Text Alignment"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:309
+msgid "Align content to the left, right or center."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:320
+msgid "Spacing Between Icon and Text"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:322
+msgid "Here you can define spacing between icon and text."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:339
+msgid "Here you can define static height for your image."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:353
+msgid "Color"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:355
+msgid "Here you can define custom color for your icon . "
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:366
+msgid "Here you can define custom background for your icon."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:376
+msgid "Here you can define custom size for your icon."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:392
+msgid "Opacity"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:394
+msgid ""
+"Define the opacity for the icon. Set the value from 0 - 1. The lower value, "
+"the more transparent."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:409
+msgid "Height"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:411
+msgid "Here you can define static height for your icon."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:426
+msgid "Width"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:428
+msgid "Here you can define static width for your icon."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:443
+msgid "Border Radius"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:445
+msgid "Here you can define the radius value for your icon border."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:461
+msgid "Popup Background"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:463
+msgid "Here you can define custom background color for your popup."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:470
+msgid "Close Icon Color"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:472
+msgid "Here you can define custom color for your popup close icon."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:482
+msgid "Use Text Box"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:497
+msgid "Text Box Height"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:499
+msgid "Here you can define static height for your text box."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:514
+msgid "Text Box Width"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:516
+msgid "Here you can define static width for your text box."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:531
+msgid "Text Box Background"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:533
+msgid "Here you can define custom background for your text box."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:542
+msgid "Text Box Border Radius"
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:544
+msgid "Here you can define the radius value for your text box border."
+msgstr ""
+
+#: includes/modules/VideoPopup/VideoPopup.php:560
+msgid "Image Overlay"
 msgstr ""
 
 #: templates/plugin-review.php:24

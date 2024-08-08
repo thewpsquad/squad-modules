@@ -603,7 +603,7 @@ class PostGrid extends DISQ_Builder_Module {
 					'toggle_slug'      => 'wrapper',
 				)
 			),
-			'list_post_count'               => $this->disq_add_range_fields(
+			'list_post_count'               => $this->disq_add_range_field(
 				esc_html__( 'Post Count', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you can choose how much posts you would like to display per page.', 'squad-modules-for-divi' ),
@@ -629,7 +629,7 @@ class PostGrid extends DISQ_Builder_Module {
 					'toggle_slug'       => 'wrapper',
 				)
 			),
-			'list_post_offset'              => $this->disq_add_range_fields(
+			'list_post_offset'              => $this->disq_add_range_field(
 				esc_html__( 'Post Offset', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you can choose how much post show in the current page.', 'squad-modules-for-divi' ),
@@ -708,7 +708,7 @@ class PostGrid extends DISQ_Builder_Module {
 			),
 		);
 		$layout_settings  = array(
-			'list_number_of_columns' => $this->disq_add_range_fields(
+			'list_number_of_columns' => $this->disq_add_range_field(
 				esc_html__( 'Column Numbers', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you can choose list column for grid layout.', 'squad-modules-for-divi' ),
@@ -730,7 +730,7 @@ class PostGrid extends DISQ_Builder_Module {
 					'hover'             => false,
 				)
 			),
-			'list_item_gap'          => $this->disq_add_range_fields(
+			'list_item_gap'          => $this->disq_add_range_field(
 				esc_html__( 'Columns Gap', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Here you can choose list item gap.', 'squad-modules-for-divi' ),
@@ -943,7 +943,7 @@ class PostGrid extends DISQ_Builder_Module {
 					'toggle_slug'     => 'pagination',
 				)
 			),
-			'pagination_icon_size'            => $this->disq_add_range_fields(
+			'pagination_icon_size'            => $this->disq_add_range_field(
 				esc_html__( 'Entries Icon Size', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose icon size.', 'squad-modules-for-divi' ),
@@ -961,7 +961,7 @@ class PostGrid extends DISQ_Builder_Module {
 					'toggle_slug'     => 'pagination',
 				)
 			),
-			'pagination_icon_text_gap'        => $this->disq_add_range_fields(
+			'pagination_icon_text_gap'        => $this->disq_add_range_field(
 				esc_html__( 'Gap Between Entries Icon and Text', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose gap between entries icon and text.', 'squad-modules-for-divi' ),
@@ -981,7 +981,7 @@ class PostGrid extends DISQ_Builder_Module {
 					'mobile_options'  => true,
 				)
 			),
-			'pagination_elements_gap'         => $this->disq_add_range_fields(
+			'pagination_elements_gap'         => $this->disq_add_range_field(
 				esc_html__( 'Gap Between Pagination Elements', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose gap between pagination elements.', 'squad-modules-for-divi' ),
