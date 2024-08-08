@@ -32,10 +32,9 @@ class TypingText extends DISQ_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name   = esc_html__( 'Typing Text', 'squad-modules-for-divi' );
-		$this->plural = esc_html__( 'Typing Texts', 'squad-modules-for-divi' );
-
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/typing.svg' );
+		$this->name      = esc_html__( 'Typing Text', 'squad-modules-for-divi' );
+		$this->plural    = esc_html__( 'Typing Texts', 'squad-modules-for-divi' );
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
 
 		$this->slug       = 'disq_typing_text';
 		$this->vb_support = 'on';

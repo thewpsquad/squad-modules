@@ -55,7 +55,7 @@ class Modules {
 		$available_modules = array(
 			array(
 				'name'               => 'Divider',
-				'label'              => 'Advanced Divider',
+				'label'              => esc_html__( 'Advanced Divider', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
@@ -63,7 +63,7 @@ class Modules {
 			),
 			array(
 				'name'               => 'DualButton',
-				'label'              => 'Dual Button',
+				'label'              => esc_html__( 'Dual Button', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
@@ -71,7 +71,7 @@ class Modules {
 			),
 			array(
 				'name'               => 'Lottie',
-				'label'              => 'Lottie',
+				'label'              => esc_html__( 'Lottie', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
@@ -79,9 +79,9 @@ class Modules {
 			),
 			array(
 				'name'               => 'PostGrid',
-				'label'              => 'Post Grid',
+				'label'              => esc_html__( 'Post Grid', 'squad-modules-for-divi' ),
 				'child_name'         => 'PostGridChild',
-				'child_label'        => 'Post Element',
+				'child_label'        => esc_html__( 'Post Element', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
@@ -89,23 +89,23 @@ class Modules {
 			),
 			array(
 				'name'               => 'TypingText',
-				'label'              => 'Typing Text',
-				'release_version'    => '1.0.1',
+				'label'              => esc_html__( 'Typing Text', 'squad-modules-for-divi' ),
+				'release_version'    => '1.0.0',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => '4',
 			),
 			array(
 				'name'               => 'ImageMask',
-				'label'              => 'Image Mask',
-				'release_version'    => '1.0.2',
+				'label'              => esc_html__( 'Image Mask', 'squad-modules-for-divi' ),
+				'release_version'    => '1.0.0',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => '4',
 			),
 			array(
 				'name'               => 'FlipBox',
-				'label'              => 'Flip Box',
+				'label'              => esc_html__( 'Flip Box', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
@@ -113,9 +113,9 @@ class Modules {
 			),
 			array(
 				'name'               => 'BusinessHours',
-				'label'              => 'Business Hours',
+				'label'              => esc_html__( 'Business Hours', 'squad-modules-for-divi' ),
 				'child_name'         => 'BusinessHoursChild',
-				'child_label'        => 'Business Day',
+				'child_label'        => esc_html__( 'Business Day', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
@@ -123,7 +123,7 @@ class Modules {
 			),
 			array(
 				'name'               => 'BeforeAfterImageSlider',
-				'label'              => 'Before After Image Slider',
+				'label'              => esc_html__( 'Before After Image Slider', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
@@ -131,8 +131,7 @@ class Modules {
 			),
 		);
 
-		$sorts = Helper::array_sort( $available_modules, 'name' );
-		return array_values( $sorts );
+		return array_values( Helper::array_sort( $available_modules, 'name' ) );
 	}
 
 	/**
@@ -140,7 +139,7 @@ class Modules {
 	 *
 	 * @return array
 	 */
-	private function get_inactive_modules() {
+	public function get_inactive_modules() {
 		$inactive_modules_fn = static function ( $module ) {
 			return ! $module['is_default_active'] ? $module : null;
 		};
@@ -160,7 +159,7 @@ class Modules {
 	 *
 	 * @return array
 	 */
-	private function get_default_active_modules() {
+	public function get_default_active_modules() {
 		$active_modules_fn = static function ( $module ) {
 			return $module['is_default_active'] ? $module : null;
 		};
@@ -183,7 +182,7 @@ class Modules {
 	 *
 	 * @return void
 	 */
-	private function require_module_path( $path, $module ) {
+	protected function require_module_path( $path, $module ) {
 		$module_path = sprintf( '%1$s/modules/%2$s/%2$s.php', $path, $module );
 		if ( file_exists( $module_path ) ) {
 			require_once $module_path;
@@ -191,22 +190,19 @@ class Modules {
 	}
 
 	/**
-	 * Load enabled modules for Divi Builder from defined directory
+	 * Load the module class.
 	 *
-	 * @param string $path The defined directory.
+	 * @param string $path    The module class path.
+	 * @param mixed  $modules The available modules list.
 	 *
 	 * @return void
 	 */
-	public function load_modules( $path ) {
-		if ( ! class_exists( \ET_Builder_Element::class ) ) {
-			return;
-		}
+	protected function load_module_files( $path, $modules ) {
+		// Collect all active modules.
+		$active_modules = $this->get_default_active_modules();
 
-		$current_activates = self::$memory->get( 'active_modules', null );
-		$active_modules    = $this->get_default_active_modules();
-
-		if ( is_array( $current_activates ) ) {
-			$active_modules = $current_activates;
+		if ( is_array( $modules ) && count( $modules ) ) {
+			$active_modules = $modules;
 		}
 
 		foreach ( $active_modules as $active_module ) {
@@ -226,5 +222,21 @@ class Modules {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Load enabled modules for Divi Builder from defined directory
+	 *
+	 * @param string $path The defined directory.
+	 *
+	 * @return void
+	 */
+	public function load_modules( $path ) {
+		if ( ! class_exists( \ET_Builder_Element::class ) ) {
+			return;
+		}
+
+		// Load enabled modules.
+		$this->load_module_files( $path, self::$memory->get( 'active_modules' ) );
 	}
 }

@@ -42,6 +42,14 @@ abstract class DISQ_Builder_Module extends ET_Builder_Module {
 	);
 
 	/**
+	 * The icon for module.
+	 *
+	 * @var string
+	 * @since 1.0.0
+	 */
+	protected $icon = '';
+
+	/**
 	 * The icon path for module.
 	 *
 	 * @var string

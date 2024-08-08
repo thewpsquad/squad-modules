@@ -32,10 +32,9 @@ class Lottie extends DISQ_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name   = esc_html__( 'Lottie Image', 'squad-modules-for-divi' );
-		$this->plural = esc_html__( 'Lottie Images', 'squad-modules-for-divi' );
-
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/lottie.svg' );
+		$this->name      = esc_html__( 'Lottie Image', 'squad-modules-for-divi' );
+		$this->plural    = esc_html__( 'Lottie Images', 'squad-modules-for-divi' );
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
 
 		$this->slug       = 'disq_lottie';
 		$this->vb_support = 'on';
@@ -440,8 +439,6 @@ class Lottie extends DISQ_Builder_Module {
 	 *
 	 * Add form field options group and background image on the field list.
 	 *
-	 * @ref   wp-content/plugins/divi-builder/includes/builder/class-et-builder-element.php:8582
-	 *
 	 * @since 1.0.0
 	 */
 	public function get_transition_fields_css_props() {
@@ -490,7 +487,7 @@ class Lottie extends DISQ_Builder_Module {
 	 */
 	private function disq_render_lottie( $multi_view ) {
 		if ( '' !== $this->props['lottie_src_type'] && ( '' !== $this->props['lottie_src_upload'] || '' !== $this->props['lottie_src_remote'] ) ) {
-			$lottie_image_classes = array( 'disq_lottie_player', 'lottie-player-container' );
+			$lottie_image_classes = array( 'disq-lottie-player', 'lottie-player-container' );
 
 			$lottie_type     = isset( $this->props['lottie_src_type'] ) ? $this->props['lottie_src_type'] : '';
 			$lottie_src_prop = 'local' === $lottie_type ? '{{lottie_src_upload}}' : '{{lottie_src_remote}}';
@@ -499,7 +496,7 @@ class Lottie extends DISQ_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'lottie_color',
-					'selector'       => "$this->main_css_element .disq-lottie-wrapper .disq_lottie_player svg path",
+					'selector'       => "$this->main_css_element .disq-lottie-wrapper .disq-lottie-player svg path",
 					'css_property'   => 'fill',
 					'render_slug'    => $this->slug,
 					'type'           => 'color',
@@ -510,7 +507,7 @@ class Lottie extends DISQ_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'lottie_width',
-					'selector'       => "$this->main_css_element .disq-lottie-wrapper .disq_lottie_player",
+					'selector'       => "$this->main_css_element .disq-lottie-wrapper .disq-lottie-player",
 					'css_property'   => 'width',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',
@@ -521,7 +518,7 @@ class Lottie extends DISQ_Builder_Module {
 			$this->generate_styles(
 				array(
 					'base_attr_name' => 'lottie_height',
-					'selector'       => "$this->main_css_element .disq-lottie-wrapper .disq_lottie_player",
+					'selector'       => "$this->main_css_element .disq-lottie-wrapper .disq-lottie-player",
 					'css_property'   => 'height',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',

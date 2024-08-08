@@ -17,6 +17,17 @@ namespace DiviSquad\Admin\Assets;
  * @package     squad-modules-for-divi
  */
 class Utils {
+
+	/**
+	 * Get the version
+	 *
+	 * @return string
+	 * @since 1.0.0
+	 */
+	public static function get_the_version() {
+		return DISQ_VERSION;
+	}
+
 	/**
 	 * Validate the relative path.
 	 *
@@ -87,7 +98,7 @@ class Utils {
 		$full_path     = '';
 		$validate_path = self::validate_relative_path( $path );
 
-		$version      = DISQ_VERSION;
+		$version      = self::get_the_version();
 		$dependencies = array();
 
 		// search minified file when it is existed.
@@ -102,14 +113,14 @@ class Utils {
 			$minified_version_file = str_replace( array( ".min.{$file_ext}" ), array( '.min.asset.php' ), $validate_path );
 			if ( str_ends_with( $minified_version_file, '.asset.php' ) && file_exists( self::resolve_file_path( $minified_version_file ) ) ) {
 				$minified_asset_data = include self::resolve_file_path( $minified_version_file );
-				$version             = isset( $minified_asset_data['version'] ) ? $minified_asset_data['version'] : DISQ_VERSION;
+				$version             = isset( $minified_asset_data['version'] ) ? $minified_asset_data['version'] : $version;
 				$dependencies        = isset( $minified_asset_data['dependencies'] ) ? $minified_asset_data['dependencies'] : array();
 			}
 
 			$main_version_file = str_replace( array( ".{$file_ext}" ), array( '.asset.php' ), $validate_path );
 			if ( str_ends_with( $main_version_file, '.asset.php' ) && file_exists( self::resolve_file_path( $main_version_file ) ) ) {
 				$main_asset_data = include self::resolve_file_path( $main_version_file );
-				$version         = isset( $main_asset_data['version'] ) ? $main_asset_data['version'] : DISQ_VERSION;
+				$version         = isset( $main_asset_data['version'] ) ? $main_asset_data['version'] : $version;
 				$dependencies    = isset( $main_asset_data['dependencies'] ) ? $main_asset_data['dependencies'] : array();
 			}
 		}
@@ -127,11 +138,12 @@ class Utils {
 	/**
 	 * Enqueue javascript.
 	 *
-	 * @param string $keyword The keyword name for an enqueue handle.
-	 * @param string $path The asset relative path.
-	 * @param array  $deps The dependencies for the current asset.
+	 * @param string $keyword Name of the javascript. Should be unique.
+	 * @param string $path    Relative path of the javascript, or path of the stylesheet relative to the WordPress root directory. Default empty.
+	 * @param array  $deps    Optional. An array of registered javascript handles this stylesheet depends on. Default empty array.
 	 *
 	 * @return void
+	 * @since 1.0.0
 	 */
 	public static function asset_enqueue( $keyword, $path, array $deps = array() ) {
 		$asset_data   = self::process_asset_path_data( $path );
@@ -139,24 +151,25 @@ class Utils {
 		$dependencies = array_merge( $asset_data['dependencies'], $deps );
 
 		// Load script file.
-		wp_enqueue_script( $handle, $asset_data['path'], $dependencies, DISQ_VERSION, true );
+		wp_enqueue_script( $handle, $asset_data['path'], $dependencies, self::get_the_version(), true );
 	}
 
 	/**
 	 * Enqueue styles.
 	 *
-	 * @param string $keyword The keyword name for an enqueue handle.
-	 * @param string $path The asset relative path.
-	 * @param array  $deps The dependencies for the current asset.
-	 * @param string $media The media query for the current asset.
+	 * @param string $keyword Name of the stylesheet. Should be unique.
+	 * @param string $path    Relative path of the stylesheet, or path of the stylesheet relative to the WordPress root directory. Default empty.
+	 * @param array  $deps    Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
+	 * @param string $media   Optional. The media for which this stylesheet has been defined. Default 'all'. Accepts media types like 'all', 'print' and 'screen', or media queries like '(orientation: portrait)' and '(max-width: 640px)'.
 	 *
 	 * @return void
+	 * @since 1.0.0
 	 */
 	public static function style_enqueue( $keyword, $path, $deps = array(), $media = 'all' ) {
 		$asset_data = self::process_asset_path_data( $path );
 		$handle     = sprintf( 'disq-%1$s', $keyword );
 
 		// Load stylesheet file.
-		wp_enqueue_style( $handle, $asset_data['path'], $deps, DISQ_VERSION, $media );
+		wp_enqueue_style( $handle, $asset_data['path'], $deps, self::get_the_version(), $media );
 	}
 }

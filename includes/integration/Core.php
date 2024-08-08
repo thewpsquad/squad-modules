@@ -68,7 +68,7 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 */
 	protected function register_ajax_rest_api_routes() {
 		// Register all rest api.
-		Manager\Rest_API::get_instance()->register_all();
+		Manager\Rest_API_Routes::get_instance()->register_all();
 	}
 
 	/**

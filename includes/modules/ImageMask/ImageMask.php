@@ -30,10 +30,9 @@ class ImageMask extends DISQ_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name   = esc_html__( 'Image Mask', 'squad-modules-for-divi' );
-		$this->plural = esc_html__( 'Image Masks', 'squad-modules-for-divi' );
-
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/mask.svg' );
+		$this->name      = esc_html__( 'Image Mask', 'squad-modules-for-divi' );
+		$this->plural    = esc_html__( 'Image Masks', 'squad-modules-for-divi' );
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
 
 		$this->slug       = 'disq_image_mask';
 		$this->vb_support = 'on';
@@ -120,7 +119,7 @@ class ImageMask extends DISQ_Builder_Module {
 		// Image fields definitions.
 		$image_fields = array(
 			'image' => array(
-				'label'              => et_builder_i18n( 'Image' ),
+				'label'              => esc_html__( 'Image', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Upload an image to display at the top.', 'squad-modules-for-divi' ),
 				'type'               => 'upload',
 				'option_category'    => 'basic_option',

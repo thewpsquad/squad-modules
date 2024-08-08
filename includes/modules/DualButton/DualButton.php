@@ -34,10 +34,9 @@ class DualButton extends DISQ_Builder_Module {
 	 * @since 1.0.0
 	 */
 	public function init() {
-		$this->name   = esc_html__( 'Dual Button', 'squad-modules-for-divi' );
-		$this->plural = esc_html__( 'Dual Buttons', 'squad-modules-for-divi' );
-
-		$this->icon_path = Helper::fix_slash( __DIR__ . '/dual-button.svg' );
+		$this->name      = esc_html__( 'Dual Button', 'squad-modules-for-divi' );
+		$this->plural    = esc_html__( 'Dual Buttons', 'squad-modules-for-divi' );
+		$this->icon_path = Helper::fix_slash( __DIR__ . '/icon.svg' );
 
 		$this->slug       = 'disq_dual_button';
 		$this->vb_support = 'on';
@@ -923,9 +922,12 @@ class DualButton extends DISQ_Builder_Module {
 	 */
 	private function render_element_text( $attrs, $element ) {
 		$multi_view = et_pb_multi_view_options( $this );
-		// element url, by default is empty.
-		$element_url = isset( $this->props[ "{$element}_url" ] ) ? $this->props[ "{$element}_url" ] : '';
-		// element url target, by default is empty.
+
+		// Fixed: the custom background doesn't work at frontend.
+		$this->props = array_merge( $attrs, $this->props );
+
+		// Initiate the button tag, button url, and url target with default value.
+		$element_url        = isset( $this->props[ "{$element}_url" ] ) ? $this->props[ "{$element}_url" ] : '';
 		$element_url_target = isset( $this->props[ "{$element}_url_new_window" ] ) ? $this->props[ "{$element}_url_new_window" ] : '';
 		$url_target         = 'on' === $element_url_target ? '_blank' : '_self';
 
@@ -937,27 +939,26 @@ class DualButton extends DISQ_Builder_Module {
 			)
 		);
 
-		if ( '' !== $element_text ) {
-			// Fixed: the custom background doesn't work at frontend.
-			$this->props = array_merge( $attrs, $this->props );
+		// Assign variables for icon wrapper.
+		$icon_elements      = '';
+		$icon_wrapper_class = array( 'disq-icon-wrapper' );
+		$button_classes     = $this->disq_add_background_class(
+			array(
+				'background_field' => "{$element}_background_color",
+				'classes'          => array(
+					'disq-button',
+					'button-element',
+					$element,
+				),
+			)
+		);
 
-			$icon_elements      = '';
-			$icon_wrapper_class = array( 'disq-icon-wrapper' );
-			$button_classes     = $this->disq_add_background_class(
-				array(
-					'background_field' => "{$element}_background_color",
-					'classes'          => array(
-						'disq-button',
-						'button-element',
-						$element,
-					),
-				)
-			);
+		if ( 'on' === $this->prop( "{$element}_hover_animation__enable", 'off' ) ) {
+			$button_classes[] = $this->prop( "{$element}_hover_animation_type", 'fill' );
+		}
 
-			if ( 'on' === $this->prop( "{$element}_hover_animation__enable", 'off' ) ) {
-				$button_classes[] = $this->prop( "{$element}_hover_animation_type", 'fill' );
-			}
-
+		// Render text output when it is not empty.
+		if ( ! empty( $element_text ) ) {
 			// button background with default, responsive, hover.
 			et_pb_background_options()->get_background_style(
 				array(
@@ -1060,7 +1061,7 @@ class DualButton extends DISQ_Builder_Module {
 
 			if ( ( 'none' !== $this->props[ "{$element}_icon_type" ] ) && ( ! empty( $font_icon_element ) || ! empty( $image_element ) ) ) {
 				if ( ( 'on' === $this->props[ "{$element}_icon_on_hover" ] ) ) {
-					$icon_wrapper_class[] = 'show_on_hover';
+					$icon_wrapper_class[] = 'show-on-hover';
 
 					$mapping_values = array(
 						'inherit'     => '0 0 0 0',
@@ -1087,8 +1088,8 @@ class DualButton extends DISQ_Builder_Module {
 								'icon'  => "{$element}_icon_size",
 								'image' => "{$element}_image_width",
 							),
-							'selector'       => "$this->main_css_element div .elements .disq-button.$element .disq-icon-wrapper.show_on_hover",
-							'hover'          => "$this->main_css_element div .elements .disq-button.$element:hover .disq-icon-wrapper.show_on_hover",
+							'selector'       => "$this->main_css_element div .elements .disq-button.$element .disq-icon-wrapper.show-on-hover",
+							'hover'          => "$this->main_css_element div .elements .disq-button.$element:hover .disq-icon-wrapper.show-on-hover",
 							'css_property'   => 'margin',
 							'type'           => 'margin',
 							'mapping_values' => $mapping_values,

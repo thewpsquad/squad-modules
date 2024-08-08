@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
  * Squad Modules for Divi Builder
  *
@@ -12,7 +13,7 @@
  * Description:         Enhance your Divi-powered websites with an elegant collection of Divi modules.
  * Requires at least:   5.8
  * Requires PHP:        5.6
- * Version:             1.0.3
+ * Version:             1.0.4
  * Author:              WP Squad
  * Author URI:          https://thewpsquad.com/
  * Text Domain:         squad-modules-for-divi
@@ -25,13 +26,43 @@ namespace DiviSquad;
 
 defined( 'ABSPATH' ) || die();
 
-// Verify the composer autoload file is existed or not.
-if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
-	return;
-}
+/**
+ * Autoload function.
+ *
+ * @param string $class_name Class name.
+ *
+ * @return void
+ */
+spl_autoload_register(
+	static function ( $class_name ) {
+		// Bail out if the class name doesn't start with our prefix.
+		if ( strpos( $class_name, 'DiviSquad\\' ) !== 0 ) {
+			return;
+		}
+		// Generate paths by namespace.
+		$regex = array(
+			'DiviSquad\\Admin\\'       => '/admin/',
+			'DiviSquad\\Base\\'        => '/includes/base/',
+			'DiviSquad\\Integration\\' => '/includes/integration/',
+			'DiviSquad\\Manager\\'     => '/includes/manager/',
+			'DiviSquad\\Modules\\'     => '/includes/modules/',
+			'DiviSquad\\Utils\\'       => '/includes/utils/',
+		);
 
-// Load the composer autoload file.
-require __DIR__ . '/vendor/autoload.php';
+		// Replace the namespace separator with the path prefix.
+		$class_name = str_replace( array_keys( $regex ), array_values( $regex ), $class_name );
+
+		// Replace the namespace separator with the directory separator.
+		$class_name = str_replace( array( '\\', '//' ), DIRECTORY_SEPARATOR, $class_name );
+
+		// Add the .php extension.
+		$file_path = __DIR__ . $class_name . '.php';
+
+		if ( file_exists( $file_path ) ) {
+			require_once $file_path;
+		}
+	}
+);
 
 /**
  * Free Plugin Load class.
@@ -56,10 +87,14 @@ final class SquadModules extends Integration\Core {
 	public function __construct() {
 		$this->name             = 'squad-modules-for-divi';
 		$this->option_prefix    = 'disq';
-		$this->version          = '1.0.0';
+		$this->version          = '1.0.4';
 		$this->min_version_divi = '4.0.0';
 		$this->min_version_php  = '5.6';
 		$this->min_version_wp   = '5.8';
+
+		// translations.
+		$this->localize_handle = 'admin-free';
+		$this->localize_path   = __DIR__;
 	}
 
 	/**
@@ -73,15 +108,6 @@ final class SquadModules extends Integration\Core {
 		define( 'DISQ_DIR_PATH', dirname( DISQ__FILE__ ) );
 		define( 'DISQ_DIR_URL', plugin_dir_url( DISQ__FILE__ ) );
 		define( 'DISQ_ASSET_URL', trailingslashit( DISQ_DIR_URL . 'build' ) );
-	}
-
-	/**
-	 * Get the plugin name for the pro-version
-	 *
-	 * @return bool
-	 */
-	public static function is_the_pro_plugin_active() {
-		return defined( '\DISQ_PRO_PLUGIN_BASE' ) && Utils\Helper::is_plugin_active( DISQ_PRO_PLUGIN_BASE );
 	}
 
 	/**
@@ -100,28 +126,19 @@ final class SquadModules extends Integration\Core {
 			$wp = Integration\WP::get_instance( self::$instance->min_version_php );
 			$wp->let_the_journey_start(
 				static function () {
-						self::$instance->load_global_assets();
-						self::$instance->localize_scripts_data();
-						self::$instance->load_admin_interface();
-						self::$instance->register_ajax_rest_api_routes();
-						self::$instance->init();
-						self::$instance->load_text_domain();
-						self::$instance->load_divi_modules_for_builder();
+					self::$instance->load_global_assets();
+					self::$instance->localize_scripts_data();
+					self::$instance->load_admin_interface();
+					self::$instance->register_ajax_rest_api_routes();
+					self::$instance->init();
+					self::$instance->load_text_domain();
+					self::$instance->load_divi_modules_for_builder();
 				}
 			);
 		}
 
 		return self::$instance;
 	}
-}
-
-/**
- * Get the plugin name for the pro-version
- *
- * @return bool
- */
-function is_the_pro_plugin_active() {
-	return defined( '\DISQ_PRO_PLUGIN_BASE' ) && Utils\Helper::is_plugin_active( DISQ_PRO_PLUGIN_BASE );
 }
 
 /**
