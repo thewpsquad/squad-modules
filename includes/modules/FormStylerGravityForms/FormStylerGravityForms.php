@@ -161,15 +161,6 @@ class FormStylerGravityForms extends DISQ_Form_Styler_Module {
 					'toggle_slug'      => 'forms',
 				)
 			),
-			'form_messages__enable'    => $this->disq_add_yes_no_field(
-				esc_html__( 'Show Error & Success Message', 'squad-modules-for-divi' ),
-				array(
-					'description'      => esc_html__( 'Here you can choose whether or not show the error and success messages in the visual  builder.', 'squad-modules-for-divi' ),
-					'default_on_front' => 'off',
-					'tab_slug'         => 'general',
-					'toggle_slug'      => 'forms',
-				)
-			),
 			'__forms'                  => array(
 				'type'                => 'computed',
 				'computed_callback'   => array( __CLASS__, 'disq_form_styler__get_form_html' ),

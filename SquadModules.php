@@ -39,26 +39,13 @@ final class SquadModules extends Integration\Core {
 	public function __construct() {
 		$this->name             = 'squad-modules-for-divi';
 		$this->option_prefix    = 'disq';
-		$this->version          = '1.2.0';
+		$this->version          = '1.2.1';
 		$this->min_version_divi = '4.0.0';
 		$this->min_version_php  = '5.6';
 		$this->min_version_wp   = '5.8';
 
 		// translations.
 		$this->localize_path = __DIR__;
-	}
-
-	/**
-	 * Define the core constants.
-	 *
-	 * @return void
-	 */
-	private function define_core_constants() {
-		define( 'DISQ__FILE__', __FILE__ );
-		define( 'DISQ_PLUGIN_BASE', plugin_basename( DISQ__FILE__ ) );
-		define( 'DISQ_DIR_PATH', dirname( DISQ__FILE__ ) );
-		define( 'DISQ_DIR_URL', plugin_dir_url( DISQ__FILE__ ) );
-		define( 'DISQ_ASSET_URL', trailingslashit( DISQ_DIR_URL . 'build' ) );
 	}
 
 	/**
@@ -103,7 +90,6 @@ final class SquadModules extends Integration\Core {
 
 			try {
 				self::$instance->define_general_constants();
-				self::$instance->define_core_constants();
 				self::$instance->set_memory( self::$instance->option_prefix );
 				self::$instance->load_core_components();
 
