@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
  * Plugin Review
  *
@@ -17,7 +18,7 @@ use function DiviSquad\divi_squad;
  * Plugin Review Class
  *
  * @since       1.2.3
- * @package squad-modules-for-divi
+ * @package     squad-modules-for-divi
  */
 class Plugin_Review {
 	/**
@@ -38,6 +39,7 @@ class Plugin_Review {
 	 * Init constructor.
 	 */
 	public function __construct() {
+		add_filter( 'admin_body_class', array( $this, 'admin_classes' ) );
 		add_action( 'admin_notices', array( $this, 'notice' ) );
 		add_action( 'wp_ajax_divi_squad_notice_close', array( $this, 'close' ) );
 		add_action( 'wp_ajax_divi_squad_notice_review', array( $this, 'review' ) );
@@ -97,6 +99,23 @@ class Plugin_Review {
 
 			return time() > $next_review_time;
 		}
+	}
+
+	/**
+	 * Filters the CSS classes for the body tag in the admin.
+	 *
+	 * @param string $classes Space-separated list of CSS classes.
+	 *
+	 * @return string
+	 * @since 1.2.5
+	 */
+	public function admin_classes( $classes ) {
+		// Add a specific class to detect the banner page.
+		if ( $this->can_render_notice() ) {
+			$classes .= ' divi-squad-notice';
+		}
+
+		return $classes;
 	}
 
 	/**

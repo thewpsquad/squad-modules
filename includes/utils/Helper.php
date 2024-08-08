@@ -149,7 +149,7 @@ class Helper {
 			if ( ! empty( $key_value_pairs ) ) {
 				foreach ( $key_value_pairs as $key_value_pair ) {
 					list( $key, $value ) = explode( '=', $key_value_pair );
-					$result[ $key ]      = $value;
+					$result[ $key ] = $value;
 				}
 
 				return array_filter( $result );
@@ -221,5 +221,4 @@ class Helper {
 
 		return $new_array;
 	}
-
 }
