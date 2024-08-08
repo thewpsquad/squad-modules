@@ -195,5 +195,3 @@ class GoogleMap extends Squad_Module {
 		return $output;
 	}
 }
-
-new GoogleMap();

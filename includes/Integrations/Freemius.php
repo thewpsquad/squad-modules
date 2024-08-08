@@ -58,7 +58,7 @@ final class Freemius {
 				array(
 					'id'                  => '14784',
 					'slug'                => 'squad-modules-for-divi',
-					'premium_slug'        => 'squad-modules-pro-for-divi',
+					'premium_slug'        => 'squad-modules-for-divi',
 					'type'                => 'plugin',
 					'public_key'          => 'pk_016b4bcadcf416ffec072540ef065',
 					'is_premium'          => divi_squad_is_pro_activated(),

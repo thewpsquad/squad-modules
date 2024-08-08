@@ -81,6 +81,13 @@ abstract class IntegrationAPIBase {
 	}
 
 	/**
+	 * Performs initialization tasks.
+	 *
+	 * @since 1.0.0
+	 */
+	abstract public function initialize();
+
+	/**
 	 * Get the plugin version number
 	 *
 	 * @return string

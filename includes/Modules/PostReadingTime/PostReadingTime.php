@@ -6,7 +6,7 @@
  * This class provides item adding functionalities for a post-reading time element in the visual builder.
  *
  * @since           1.2.2
- * @package         squad-modules-pro-for-divi
+ * @package         squad-modules-for-divi
  * @author          WP Squad <support@thewpsquad.com>
  * @license         GPL-3.0-only
  */
@@ -628,5 +628,3 @@ class PostReadingTime extends Squad_Module {
 		);
 	}
 }
-
-new PostReadingTime();

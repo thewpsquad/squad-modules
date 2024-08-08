@@ -306,7 +306,7 @@ class BusinessHoursChild extends Squad_Module {
 		// Item wrapper fields definitions.
 		$wrapper_background_fields = $this->squad_utils->add_background_field(
 			array(
-				'label'       => esc_html__( 'Wrapper Background', 'squad-modules-pro-for-divi' ),
+				'label'       => esc_html__( 'Wrapper Background', 'squad-modules-for-divi' ),
 				'base_name'   => 'wrapper_background',
 				'context'     => 'wrapper_background_color',
 				'tab_slug'    => 'advanced',
@@ -564,5 +564,3 @@ class BusinessHoursChild extends Squad_Module {
 		);
 	}
 }
-
-new BusinessHoursChild();

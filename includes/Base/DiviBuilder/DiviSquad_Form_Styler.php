@@ -227,16 +227,27 @@ abstract class DiviSquad_Form_Styler extends Squad_Module {
 			$additional_custom_fields = $this->get_form_styler_additional_custom_fields();
 		}
 
-		$fields_before_margin    = array();
 		$fields_after_background = array();
-		if ( isset( $additional_custom_fields['fields_before_margin'] ) ) {
-			$fields_before_margin = $additional_custom_fields['fields_before_margin'];
-			unset( $additional_custom_fields['fields_before_margin'] );
+		$fields_before_margin    = array();
+		if ( isset( $additional_custom_fields['button_fields_after_background'] ) ) {
+			$fields_after_background = $additional_custom_fields['button_fields_after_background'];
+			unset( $additional_custom_fields['button_fields_after_background'] );
 		}
-		if ( isset( $additional_custom_fields['fields_after_background'] ) ) {
-			$fields_after_background = $additional_custom_fields['fields_after_background'];
-			unset( $additional_custom_fields['fields_after_background'] );
+		if ( isset( $additional_custom_fields['button_fields_before_margin'] ) ) {
+			$fields_before_margin = $additional_custom_fields['button_fields_before_margin'];
+			unset( $additional_custom_fields['button_fields_before_margin'] );
 		}
+
+		// Button fields definitions.
+		$form_submit_button = $this->squad_utils->get_button_fields(
+			array(
+				'base_attr_name'          => 'form_button',
+				'fields_after_background' => $fields_after_background,
+				'fields_before_margin'    => $fields_before_margin,
+				'toggle_slug'             => 'form_button',
+				'depends_show_if'         => 'on',
+			)
+		);
 
 		// Checkbox and Radio fields definitions.
 		$checkbox_radio_fields = array(
@@ -264,17 +275,6 @@ abstract class DiviSquad_Form_Styler extends Squad_Module {
 					'toggle_slug'    => 'field',
 				)
 			),
-		);
-
-		// Button fields definitions.
-		$form_submit_button = $this->squad_utils->get_button_fields(
-			array(
-				'base_attr_name'          => 'form_button',
-				'fields_after_background' => $fields_after_background,
-				'fields_before_margin'    => $fields_before_margin,
-				'toggle_slug'             => 'form_button',
-				'depends_show_if'         => 'on',
-			)
 		);
 
 		return array_merge_recursive(

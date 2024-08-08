@@ -11,6 +11,7 @@
 namespace DiviSquad;
 
 use DiviSquad\Utils\Singleton;
+use function add_action;
 
 /**
  * Squad Modules class.
@@ -41,6 +42,9 @@ final class SquadModules extends Integrations\Core {
 
 		// Translations path.
 		$this->localize_path = DIVI_SQUAD_DIR_PATH . 'languages';
+
+		// Initialize the plugin.
+		add_action( 'plugins_loaded', array( $this, 'run' ) );
 	}
 
 	/**

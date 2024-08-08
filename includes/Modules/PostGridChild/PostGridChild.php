@@ -1494,5 +1494,3 @@ class PostGridChild extends Squad_Module {
 		}
 	}
 }
-
-new PostGridChild();

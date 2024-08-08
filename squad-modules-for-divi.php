@@ -11,7 +11,7 @@
  * Plugin Name:         Squad Modules Lite
  * Plugin URI:          https://squadmodules.com/
  * Description:         The Advanced Divi plugin you install after Divi or Extra Theme!
- * Version:             2.1.1
+ * Version:             2.1.2
  * Requires at least:   5.0.0
  * Requires PHP:        5.6.40
  * Author:              WP Squad
@@ -132,5 +132,5 @@ if ( class_exists( DiviSquad\SquadModules::class ) ) {
 	}
 
 	// Load the plugin.
-	divi_squad()->run();
+	divi_squad();
 }

@@ -27,6 +27,31 @@ use function wp_get_themes;
  * @package     squad-modules-for-divi
  */
 class Divi {
+	/**
+	 * Check if Divi visual builder is enabled.
+	 *
+	 * @return boolean
+	 */
+	public static function is_fb_enabled() {
+		return function_exists( 'et_core_is_fb_enabled' ) && et_core_is_fb_enabled();
+	}
+	/**
+	 * Check if Divi theme builder is enabled.
+	 *
+	 * @return boolean
+	 */
+	public static function is_bfb_enabled() {
+		return function_exists( 'et_builder_bfb_enabled' ) && et_builder_bfb_enabled();
+	}
+
+	/**
+	 * Check if Divi Builder 5 is enabled.
+	 *
+	 * @return boolean
+	 */
+	public static function is_d5_enabled() {
+		return function_exists( 'et_builder_d5_enabled' ) && et_builder_d5_enabled() && self::is_fb_enabled();
+	}
 
 	/**
 	 * Get unicode icon data
@@ -94,12 +119,12 @@ class Divi {
 	 */
 	public static function inject_fa_icons( $icon_data ) {
 		if ( function_exists( 'et_use_dynamic_icons' ) && 'on' === et_use_dynamic_icons() ) {
-			add_filter( 'et_global_assets_list', array( __CLASS__, 'global_assets_list' ) );
-			add_filter( 'et_late_global_assets_list', array( __CLASS__, 'global_assets_list' ) );
+			add_filter( 'et_global_assets_list', array( self::class, 'global_assets_list' ) );
+			add_filter( 'et_late_global_assets_list', array( self::class, 'global_assets_list' ) );
 
 			if ( function_exists( 'et_pb_maybe_fa_font_icon' ) && et_pb_maybe_fa_font_icon( $icon_data ) ) {
-				add_filter( 'et_global_assets_list', array( __CLASS__, 'global_fa_assets_list' ) );
-				add_filter( 'et_late_global_assets_list', array( __CLASS__, 'global_fa_assets_list' ) );
+				add_filter( 'et_global_assets_list', array( self::class, 'global_fa_assets_list' ) );
+				add_filter( 'et_late_global_assets_list', array( self::class, 'global_fa_assets_list' ) );
 			}
 		}
 	}

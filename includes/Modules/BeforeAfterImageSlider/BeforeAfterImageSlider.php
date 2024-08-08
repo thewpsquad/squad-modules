@@ -780,5 +780,3 @@ class BeforeAfterImageSlider extends Squad_Module {
 		// phpcs:enable
 	}
 }
-
-new BeforeAfterImageSlider();

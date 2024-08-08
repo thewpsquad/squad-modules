@@ -247,9 +247,9 @@ abstract class Migration {
 	}
 
 	public static function init() {
-		add_filter( 'et_pb_module_processed_fields', array( __CLASS__, 'maybe_override_processed_fields' ), 10, 2 );
-		add_filter( 'et_pb_module_shortcode_attributes', array( __CLASS__, 'maybe_override_shortcode_attributes' ), 10, 6 );
-		add_filter( 'et_pb_module_content', array( __CLASS__, 'maybe_override_content' ), 10, 4 );
+		add_filter( 'et_pb_module_processed_fields', array( self::class, 'maybe_override_processed_fields' ), 10, 2 );
+		add_filter( 'et_pb_module_shortcode_attributes', array( self::class, 'maybe_override_shortcode_attributes' ), 10, 6 );
+		add_filter( 'et_pb_module_content', array( self::class, 'maybe_override_content' ), 10, 4 );
 	}
 
 	/**
@@ -261,9 +261,9 @@ abstract class Migration {
 	 * @link  https://make.wordpress.org/core/handbook/testing/automated-testing/writing-phpunit-tests/#shared-setup-between-related-tests
 	 */
 	public static function tear_down() {
-		remove_filter( 'et_pb_module_processed_fields', array( __CLASS__, 'maybe_override_processed_fields' ) );
-		remove_filter( 'et_pb_module_shortcode_attributes', array( __CLASS__, 'maybe_override_shortcode_attributes' ) );
-		remove_filter( 'et_pb_module_content', array( __CLASS__, 'maybe_override_content' ) );
+		remove_filter( 'et_pb_module_processed_fields', array( self::class, 'maybe_override_processed_fields' ) );
+		remove_filter( 'et_pb_module_shortcode_attributes', array( self::class, 'maybe_override_shortcode_attributes' ) );
+		remove_filter( 'et_pb_module_content', array( self::class, 'maybe_override_content' ) );
 	}
 
 	/**

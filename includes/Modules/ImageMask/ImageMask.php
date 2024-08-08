@@ -388,5 +388,3 @@ class ImageMask extends Squad_Module {
 		);
 	}
 }
-
-new ImageMask();

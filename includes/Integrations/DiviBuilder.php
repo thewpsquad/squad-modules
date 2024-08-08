@@ -36,6 +36,6 @@ class DiviBuilder extends IntegrationAPI {
 	 * @since 1.0.0
 	 */
 	public function hook_et_builder_ready() {
-		divi_squad()->modules->load_divi_builder_4_modules( dirname( __DIR__ ) );
+		divi_squad()->modules->load_modules( dirname( __DIR__ ) );
 	}
 }

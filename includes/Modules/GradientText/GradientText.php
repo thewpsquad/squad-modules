@@ -6,7 +6,7 @@
  * This class provides gradient text adding functionalities in the visual builder.
  *
  * @since           1.2.2
- * @package         squad-modules-pro-for-divi
+ * @package         squad-modules-for-divi
  * @author          WP Squad <support@thewpsquad.com>
  * @license         GPL-3.0-only
  */
@@ -242,5 +242,3 @@ class GradientText extends Squad_Module {
 		);
 	}
 }
-
-new GradientText();

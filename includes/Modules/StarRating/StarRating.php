@@ -714,5 +714,3 @@ class StarRating extends Squad_Module {
 		return $output;
 	}
 }
-
-new StarRating();

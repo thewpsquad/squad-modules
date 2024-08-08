@@ -51,9 +51,10 @@ class Font_Upload extends Extension {
 	 */
 	public function get_available_mime_types() {
 		return array(
-			'ttf'  => 'application/x-font-ttf',
-			'otf'  => 'application/font-sfnt',
-			'woff' => 'application/x-font-woff',
+			'ttf'	=> 'font/ttf|application/font-ttf|application/x-font-ttf|application/octet-stream',
+			'otf'	=> 'font/otf|application/font-sfnt|application/font-otf|application/x-font-otf|application/octet-stream',
+			'woff'	=> 'font/woff|application/font-woff|application/x-font-woff|application/octet-stream',
+			'woff2'	=> 'font/woff2|application/font-woff2|application/x-font-woff2|application/octet-stream',
 		);
 	}
 
