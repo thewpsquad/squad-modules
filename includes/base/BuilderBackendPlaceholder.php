@@ -11,6 +11,10 @@
 
 namespace DiviSquad\Base;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 /**
  * Builder Backend Placeholder class.
  *
@@ -24,13 +28,6 @@ abstract class BuilderBackendPlaceholder {
 	 * @var self
 	 */
 	protected static $instance;
-
-	/**
-	 * The default data for module.
-	 *
-	 * @var array
-	 */
-	protected $modules_defaults;
 
 	/**
 	 *  Get The defaults data for module.

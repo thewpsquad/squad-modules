@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Base\BuilderModule\Traits;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use ET_Builder_Element;
 use stdClass;
 
@@ -610,54 +614,6 @@ trait Field_Processor {
 				'render_slug'    => $this->slug,
 				'type'           => 'input',
 				'important'      => $options['important'],
-			)
-		);
-	}
-
-	/**
-	 * Process text with url, example: title with url.
-	 *
-	 * @param array $options The options for text with url.
-	 *
-	 * @return string
-	 */
-	protected function disq_text_with_url( $options = array() ) {
-		$default        = array(
-			'text_attribute'      => '',
-			'text_tag'            => '',
-			'text_url'            => '',
-			'text_url_new_window' => '',
-			'multi_view'          => new stdClass(),
-			'hover_selector'      => '',
-			'attrs'               => array(),
-		);
-		$options        = wp_parse_args( $options, $default );
-		$text_attribute = $options['text_attribute'];
-
-		if ( 'a' === $options['text_tag'] ) {
-			$raw_text     = $options['multi_view']->render_element(
-				array(
-					'content' => "{{{$text_attribute}}}",
-					'attrs'   => $options['attrs'],
-				)
-			);
-			$striped_text = wp_strip_all_tags( $raw_text );
-			$url_target   = isset( $options['target'] ) && 'on' === $options['target'] ? '_blank' : '_self';
-
-			return sprintf(
-				'<%1$s href="%3$s" target="%4$s">%2$s</%1$s>',
-				et_core_esc_previously( $options['text_tag'] ),
-				et_core_esc_previously( $striped_text ),
-				et_core_esc_previously( $options['text_url'] ),
-				et_core_esc_previously( $url_target )
-			);
-		}
-
-		return $options['multi_view']->render_element(
-			array(
-				'tag'     => $options['text_tag'],
-				'attrs'   => $options['attrs'],
-				'content' => "{{{$text_attribute}}}",
 			)
 		);
 	}

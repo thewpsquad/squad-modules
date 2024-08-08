@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use DiviSquad\Utils\Helper;
 use function DiviSquad\divi_squad;
 

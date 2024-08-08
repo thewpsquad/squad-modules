@@ -11,6 +11,10 @@
 
 namespace DiviSquad\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 /**
  * Plugin Row Meta class.
  *

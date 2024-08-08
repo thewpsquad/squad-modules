@@ -2,6 +2,10 @@
 
 namespace DiviSquad\Base;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 /**
  * Memory class
  *

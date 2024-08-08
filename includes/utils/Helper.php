@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Utils;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 /**
  * Helper class.
  *
@@ -19,82 +23,6 @@ namespace DiviSquad\Utils;
  * @package     squad-modules-for-divi
  */
 class Helper {
-
-	/**
-	 * Remove quotes from string.
-	 *
-	 * @param string $value The array value in string format.
-	 *
-	 * @return array The clean array.
-	 */
-	public static function remove_quotes( $value ) {
-		return str_replace( '"', '', $value );
-	}
-
-	/**
-	 * Collect shortcode tags from html content.
-	 *
-	 * @param string $content The HTML content.
-	 *
-	 * @return array The shortcode tags list.
-	 */
-	public static function collect_all_shortcode_tags( $content ) {
-		if ( preg_match_all( '@\[([^<>&/\[\]\x00-\x20=]++)@', $content, $matches ) ) {
-			return array_unique( $matches );
-		}
-
-		return array();
-	}
-
-	/**
-	 * Collect the shortcode list with tag and attributes from content.
-	 *
-	 * @param string $content The HTML content.
-	 *
-	 * @return array The shortcode list with tag and attributes.
-	 */
-	public static function collect_all_shortcodes( $content ) {
-		$reg = get_shortcode_regex();
-		if ( preg_match_all( '/' . $reg . '/', $content, $matches, PREG_SET_ORDER ) ) {
-			return array_map(
-				static function ( $v ) {
-					return array_values( array_filter( $v ) );
-				},
-				$matches
-			);
-		}
-
-		return array();
-	}
-
-	/**
-	 * Show data in debug mode
-	 *
-	 * @param string|array|false|null $content     content for debugging and showing frontend.
-	 * @param bool                    $is_any_time Show content in output anyway, by default is off.
-	 *
-	 * @return void
-	 */
-	public static function debug( $content, $is_any_time = false ) {
-		if ( $is_any_time ) {
-			self::debug_output( $content );
-		} elseif ( ! wp_doing_ajax() ) {
-			self::debug_output( $content );
-		}
-	}
-
-	/**
-	 * Show data in debug mode
-	 *
-	 * @param string|array|int|bool|object $content Content for debugging and showing frontend.
-	 *
-	 * @return void
-	 */
-	public static function debug_output( $content ) {
-		echo '<pre>';
-		print_r( $content, false ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
-		echo '</pre>';
-	}
 
 	/**
 	 * Fix slash issue for Windows os
@@ -132,31 +60,6 @@ class Helper {
 		);
 
 		return implode( '  ', $array_data );
-	}
-
-	/**
-	 * Clean all array values.
-	 *
-	 * @param string $array_values The array values in string format.
-	 *
-	 * @return array The clean array
-	 */
-	public static function clean_array_values( $array_values ) {
-		$result = array();
-
-		if ( ! empty( $array_values ) ) {
-			$key_value_pairs = explode( ' ', $array_values );
-			if ( ! empty( $key_value_pairs ) ) {
-				foreach ( $key_value_pairs as $key_value_pair ) {
-					list( $key, $value ) = explode( '=', $key_value_pair );
-					$result[ $key ]      = $value;
-				}
-
-				return array_filter( $result );
-			}
-		}
-
-		return $result;
 	}
 
 	/**
@@ -231,16 +134,5 @@ class Helper {
 	 */
 	public static function get_second( $days ) {
 		return $days * 24 * 60 * 60;
-	}
-
-	/**
-	 * Get days by second.
-	 *
-	 * @param int $seconds Seconds Number.
-	 *
-	 * @return int
-	 */
-	public static function get_days( $seconds ) {
-		return $seconds / 86400;
 	}
 }

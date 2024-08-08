@@ -2,6 +2,10 @@
 
 namespace DiviSquad\Manager;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use DiviSquad\Utils\Helper;
 use DiviSquad\Utils\Polyfills\Str;
 use DiviSquad\Utils\WP;
@@ -74,7 +78,7 @@ class Modules {
 				'child_name'         => 'PostGridChild',
 				'child_label'        => esc_html__( 'Post Element', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.0.2', '1.0.4', '1.1.0', '1.2.0', '1.2.2', '1.2.3' ),
+				'last_modified'      => array( '1.0.2', '1.0.4', '1.1.0', '1.2.0', '1.2.2', '1.2.3', '1.4.4' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -262,6 +266,7 @@ class Modules {
 				'label'              => esc_html__( 'Video Popup', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Engage visitors with customizable video popups for YouTube and Vimeo.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.4.1',
+				'last_modified'      => array( '1.4.4' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',
@@ -270,21 +275,6 @@ class Modules {
 		);
 
 		return array_values( Helper::array_sort( $available_modules, 'name' ) );
-	}
-
-	/**
-	 * Check the current module is an inactive module.
-	 *
-	 * @param array  $module The array of current module.
-	 * @param string $type   The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
-	 *
-	 * @return array|null
-	 */
-	protected function is_inactive_module( $module, $type = 'D4' ) {
-		$single        = ! empty( is_string( $module['type'] ) ) && is_string( $module['type'] ) && $type === $module['type'];
-		$compatibility = ! empty( is_string( $module['type'] ) ) && is_array( $module['type'] ) && in_array( $type, $module['type'], true );
-
-		return ( $single || $compatibility ) && ! $module['is_default_active'] ? $module : null;
 	}
 
 	/**
@@ -325,17 +315,6 @@ class Modules {
 	}
 
 	/**
-	 *  Get inactive modules.
-	 *
-	 * @param string $type The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
-	 *
-	 * @return array
-	 */
-	protected function get_inactive_modules( $type = 'D4' ) {
-		return $this->get_filtered_modules( array( $this, 'is_inactive_module' ), $this->get_available_modules(), $type );
-	}
-
-	/**
 	 *  Get default active modules.
 	 *
 	 * @param string $type The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
@@ -349,63 +328,47 @@ class Modules {
 	/**
 	 * Load the module class.
 	 *
-	 * @param string      $path            The module class path.
-	 * @param string      $module          The module name.
-	 * @param string      $type            The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
-	 * @param object|null $dependency_tree `DependencyTree` class is used as a utility to manage loading classes in a meaningful manner.
+	 * @param string $path   The module class path.
+	 * @param string $module The module name.
 	 *
 	 * @return void
 	 */
-	protected function require_module_path( $path, $module, $type = 'D4', $dependency_tree = null ) {
-		if ( 'D5' === $type ) {
-			$module_path = sprintf( '%1$s/%2$s/%2$s.php', $path, $module );
-			if ( file_exists( $module_path ) && is_object( $dependency_tree ) && method_exists( $dependency_tree, 'add_dependency' ) ) {
-				$module_instance = require_once $module_path;
-				$dependency_tree->add_dependency( $module_instance );
-			}
-		} else {
-			$module_path = sprintf( '%1$s/modules/%2$s/%2$s.php', $path, $module );
-			if ( file_exists( $module_path ) ) {
-				require_once $module_path;
-			}
+	protected function require_module_path( $path, $module ) {
+		$module_path = sprintf( '%1$s/modules/%2$s/%2$s.php', $path, $module );
+		if ( file_exists( $module_path ) ) {
+			require_once $module_path;
 		}
 	}
 
 	/**
 	 * Load the module class.
 	 *
-	 * @param string      $path            The module class path.
-	 * @param mixed       $modules         The available modules list.
-	 * @param string      $type            The type of Divi Builder module, default is: D4. Available opinions are: D4, D5
-	 * @param object|null $dependency_tree `DependencyTree` class is used as a utility to manage loading classes in a meaningful manner.
+	 * @param string $path    The module class path.
+	 * @param mixed  $modules The available modules list.
 	 *
 	 * @return void
 	 */
-	protected function load_module_files( $path, $modules, $type = 'D4', $dependency_tree = null ) {
+	protected function load_module_files( $path, $modules ) {
 		// Collect all active modules.
-		$active_modules = $this->get_default_active_modules( $type );
+		$active_modules = $this->get_default_active_modules();
 
 		if ( is_array( $modules ) ) {
 			$active_modules = $modules;
 		}
 
 		foreach ( $active_modules as $active_module ) {
-			$divi4_module_path = sprintf( '%1$s/modules/%2$s/%2$s.php', $path, $active_module['name'] );
-			$divi5_module_path = sprintf( '%1$s/%2$s/%2$s.php', $path, $active_module['name'] );
-			$module_path       = 'D5' === $type ? $divi5_module_path : $divi4_module_path;
-
-			if ( file_exists( $module_path ) ) {
-				$this->require_module_path( $path, $active_module['name'], $type, $dependency_tree );
+			if ( file_exists( sprintf( '%1$s/modules/%2$s/%2$s.php', $path, $active_module['name'] ) ) ) {
+				$this->require_module_path( $path, $active_module['name'] );
 
 				if ( isset( $active_module['child_name'] ) ) {
-					$this->require_module_path( $path, $active_module['child_name'], $type, $dependency_tree );
+					$this->require_module_path( $path, $active_module['child_name'] );
 				}
 
 				if ( isset( $active_module['full_width_name'] ) ) {
-					$this->require_module_path( $path, $active_module['full_width_name'], $type, $dependency_tree );
+					$this->require_module_path( $path, $active_module['full_width_name'] );
 
 					if ( isset( $active_module['full_width_child_name'] ) ) {
-						$this->require_module_path( $path, $active_module['full_width_child_name'], $type, $dependency_tree );
+						$this->require_module_path( $path, $active_module['full_width_child_name'] );
 					}
 				}
 			}

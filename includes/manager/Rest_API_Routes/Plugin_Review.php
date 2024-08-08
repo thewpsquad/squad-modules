@@ -2,6 +2,10 @@
 
 namespace DiviSquad\Manager\Rest_API_Routes;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use DiviSquad\Utils\Helper;
 use WP_Error;
 use WP_HTTP_Response;

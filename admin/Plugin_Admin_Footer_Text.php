@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use function get_current_screen;
 
 /**

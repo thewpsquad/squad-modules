@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Utils;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use function et_get_dynamic_assets_path;
 use function et_pb_maybe_fa_font_icon;
 use function et_use_dynamic_icons;
@@ -24,34 +28,6 @@ use function add_filter;
  * @package     squad-modules-for-divi
  */
 class Divi {
-
-	/**
-	 * Collect icon type from Divi formatted value.
-	 *
-	 * @param string $icon_value Divi formatted value for Icon.
-	 *
-	 * @return string
-	 */
-	public static function get_icon_type( $icon_value ) {
-		return $icon_value && strpos( $icon_value, '||fa||' ) !== - 1 ? 'fa' : 'divi';
-	}
-
-	/**
-	 * Determine icon font weight
-	 *
-	 * @param string $icon_value Divi formatted value for Icon.
-	 *
-	 * @return string
-	 */
-	public static function get_icon_font_weight( $icon_value ) {
-		if ( ! empty( $icon_value ) ) {
-			$icon_data = explode( $icon_value, '|' );
-
-			return array_pop( $icon_data );
-		} else {
-			return 400;
-		}
-	}
 
 	/**
 	 * Get unicode icon data

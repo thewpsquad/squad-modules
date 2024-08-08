@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Utils\Polyfills;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 /**
  * Array Helper class.
  *

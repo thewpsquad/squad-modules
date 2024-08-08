@@ -14,7 +14,11 @@
 
 namespace DiviSquad\Modules\FormStylerWPForms;
 
-use DiviSquad\Base\BuilderModule\DISQ_Form_Styler_Module;
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
+use DiviSquad\Base\BuilderModule\Squad_Form_Styler_Module;
 use DiviSquad\Utils\Helper;
 use function do_shortcode;
 use function esc_html__;
@@ -26,7 +30,7 @@ use function get_posts;
  * @since       1.2.0
  * @package     squad-modules-for-divi
  */
-class FormStylerWPForms extends DISQ_Form_Styler_Module {
+class FormStylerWPForms extends Squad_Form_Styler_Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.

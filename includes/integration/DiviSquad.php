@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Integration;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use DiviSquad\Base\BuilderIntegrationAPI;
 use function DiviSquad\divi_squad;
 

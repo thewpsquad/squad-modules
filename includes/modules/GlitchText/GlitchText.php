@@ -13,7 +13,11 @@
 
 namespace DiviSquad\Modules\GlitchText;
 
-use DiviSquad\Base\BuilderModule\DISQ_Builder_Module;
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
+use DiviSquad\Base\BuilderModule\Squad_Builder_Module;
 use DiviSquad\Utils\Helper;
 use function esc_html__;
 use function et_core_esc_previously;
@@ -24,7 +28,7 @@ use function et_core_esc_previously;
  * @since           1.2.2
  * @package         squad-modules-for-divi
  */
-class GlitchText extends DISQ_Builder_Module {
+class GlitchText extends Squad_Builder_Module {
 
 	/**
 	 * Initiate Module.

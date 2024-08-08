@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Utils;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use DiviSquad\Utils\Polyfills\Str;
 use function DiviSquad\divi_squad;
 use function wp_parse_args;
@@ -34,6 +38,16 @@ class Asset {
 	 */
 	public static function get_the_version() {
 		return divi_squad()->get_version();
+	}
+
+	/**
+	 * Get current mode is production or not
+	 *
+	 * @return bool
+	 * @since 1.0.0
+	 */
+	public static function is_production_mode() {
+		return strpos( static::get_the_version(), '.' ) !== - 1;
 	}
 
 	/**
@@ -120,12 +134,12 @@ class Asset {
 		$the_file = $path['file'];
 
 		// Load alternative production file when found.
-		if ( ! empty( $path['prod_file'] ) ) {
+		if ( static::is_production_mode() && ! empty( $path['prod_file'] ) ) {
 			$the_file = $path['prod_file'];
 		}
 
 		// Load alternative development file when found.
-		if ( ! empty( $path['dev_file'] ) ) {
+		if ( ! static::is_production_mode() && ! empty( $path['dev_file'] ) ) {
 			$the_file = $path['dev_file'];
 		}
 
@@ -213,11 +227,12 @@ class Asset {
 	 */
 	public static function asset_enqueue( $keyword, $path, array $deps = array(), $no_prefix = false ) {
 		$asset_data   = self::process_asset_path_data( $path );
-		$handle       = $no_prefix ? $keyword : sprintf( 'disq-%1$s', $keyword );
 		$dependencies = array_merge( $asset_data['dependencies'], $deps );
+		$handle       = $no_prefix ? $keyword : sprintf( 'disq-%1$s', $keyword );
+		$version      = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
 
 		// Load script file.
-		wp_enqueue_script( $handle, $asset_data['path'], $dependencies, static::get_the_version(), true );
+		wp_enqueue_script( $handle, $asset_data['path'], $dependencies, $version, true );
 	}
 
 	/**
@@ -234,8 +249,27 @@ class Asset {
 	public static function style_enqueue( $keyword, $path, $deps = array(), $media = 'all' ) {
 		$asset_data = static::process_asset_path_data( $path );
 		$handle     = sprintf( 'disq-%1$s', $keyword );
+		$version    = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
 
 		// Load stylesheet file.
-		wp_enqueue_style( $handle, $asset_data['path'], $deps, static::get_the_version(), $media );
+		wp_enqueue_style( $handle, $asset_data['path'], $deps, $version, $media );
+	}
+
+	/**
+	 * Register scripts for frontend and builder.
+	 *
+	 * @param string $handle The handle name.
+	 * @param array  $path   The script path url with options.
+	 * @param array  $deps   The script dependencies.
+	 *
+	 * @return void
+	 */
+	public static function register_scripts( $handle, $path, $deps = array() ) {
+		$asset_data   = self::process_asset_path_data( $path );
+		$handle       = sprintf( 'disq-%1$s', $handle );
+		$dependencies = array_merge( $asset_data['dependencies'], $deps );
+		$version      = ! empty( $asset_data['version'] ) ? $asset_data['version'] : static::get_the_version();
+
+		wp_register_script( $handle, $asset_data['path'], $dependencies, $version, true );
 	}
 }

@@ -11,6 +11,10 @@
 
 namespace DiviSquad\Base\BuilderModule;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use function esc_html__;
 use function et_pb_background_options;
 
@@ -23,7 +27,7 @@ use function et_pb_background_options;
  * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
-abstract class DISQ_Form_Styler_Module extends DISQ_Builder_Module {
+abstract class Squad_Form_Styler_Module extends Squad_Builder_Module {
 
 	/**
 	 * Get the stylesheet selector for form tag.

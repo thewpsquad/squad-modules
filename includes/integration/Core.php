@@ -12,6 +12,10 @@
 
 namespace DiviSquad\Integration;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'Direct access forbidden.' );
+}
+
 use DiviSquad\Manager;
 use function DiviSquad\divi_squad;
 use function et_pb_force_regenerate_templates;
@@ -111,9 +115,7 @@ abstract class Core extends \DiviSquad\Base\Core {
 		// Register all assets.
 		$asset_manager = new Manager\Assets();
 		add_action( 'wp_enqueue_scripts', array( $asset_manager, 'enqueue_scripts' ) );
-		if ( isset( $_GET['et_fb'] ) && '1' === $_GET['et_fb'] ) { // phpcs:ignore
-			add_action( 'wp_enqueue_scripts', array( $asset_manager, 'enqueue_scripts_vb' ) );
-		}
+		add_action( 'wp_enqueue_scripts', array( $asset_manager, 'enqueue_scripts_vb' ) );
 
 		// Register all hooks for divi integration.
 		add_action( 'divi_extensions_init', array( $this, 'initialize_divi_extension' ) );
