@@ -12,7 +12,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use ET_Builder_Module_Helper_Overlay as OverlayHelper;
@@ -43,7 +43,7 @@ use function wp_parse_args;
  * @package DiviSquad
  * @since   1.2.0
  */
-class ImageGallery extends DiviSquad_Module {
+class ImageGallery extends Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.

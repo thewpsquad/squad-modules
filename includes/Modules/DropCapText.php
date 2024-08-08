@@ -13,7 +13,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function esc_html__;
@@ -28,7 +28,7 @@ use function wp_kses_post;
  * @since       1.4.0
  * @package     squad-modules-for-divi
  */
-class DropCapText extends DiviSquad_Module {
+class DropCapText extends Module {
 
 	/**
 	 * Initiate Module.

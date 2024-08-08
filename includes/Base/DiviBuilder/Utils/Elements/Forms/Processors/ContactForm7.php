@@ -7,7 +7,7 @@
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
- * @since   3.0.1
+ * @since   3.1.0
  */
 
 namespace DiviSquad\Base\DiviBuilder\Utils\Elements\Forms\Processors;
@@ -18,7 +18,7 @@ use DiviSquad\Base\DiviBuilder\Utils\Elements\Forms\Form;
  * Class for handling Contact Form 7 forms.
  *
  * @package DiviSquad
- * @since   3.0.1
+ * @since   3.1.0
  */
 class ContactForm7 extends Form {
 

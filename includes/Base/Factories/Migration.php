@@ -5,7 +5,7 @@
  *
  * @package DiviSquad\Settings
  * @author  WP Squad <support@squadmodules.com>
- * @since   3.0.1
+ * @since   3.1.0
  */
 
 namespace DiviSquad\Base\Factories;
@@ -17,7 +17,7 @@ use InvalidArgumentException;
  * Factory for creating migration instances.
  *
  * @package DiviSquad\Settings
- * @since   3.0.1
+ * @since   3.1.0
  */
 class Migration {
 

@@ -29,8 +29,9 @@ class Asset {
 	/**
 	 * Get the version
 	 *
-	 * @return string
 	 * @since 1.0.0
+	 *
+	 * @return string
 	 */
 	public static function get_the_version() {
 		return divi_squad()->get_version();
@@ -58,8 +59,9 @@ class Asset {
 	/**
 	 * Get current mode is production or not
 	 *
-	 * @return bool
 	 * @since 1.0.0
+	 *
+	 * @return bool
 	 */
 	public static function is_production_mode() {
 		return strpos( static::get_the_version(), '.' );
@@ -294,6 +296,8 @@ class Asset {
 	/**
 	 * Enqueue styles.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param string $keyword   Name of the stylesheet. Should be unique.
 	 * @param array  $path      Relative path of the stylesheet with options for the WordPress root directory.
 	 * @param array  $deps      Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
@@ -301,8 +305,7 @@ class Asset {
 	 * @param bool   $no_prefix Optional. Set the plugin prefix with asset handle name is or not.
 	 *
 	 * @return void
-	 * @since 1.0.0
-	 * @deprecated 3.0.1
+	 * @deprecated 3.1.0
 	 */
 	public static function style_enqueue( $keyword, $path, $deps = array(), $media = 'all', $no_prefix = false ) {
 		self::enqueue_style( $keyword, $path, $deps, $media, $no_prefix );
@@ -311,14 +314,15 @@ class Asset {
 	/**
 	 * Enqueue javascript.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param string $keyword   Name of the javascript. Should be unique.
 	 * @param array  $path      Relative path of the javascript with options for the WordPress root directory.
 	 * @param array  $deps      Optional. An array of registered javascript handles this stylesheet depends on. Default empty array.
 	 * @param bool   $no_prefix Optional. Set the plugin prefix with asset handle name is or not.
 	 *
 	 * @return void
-	 * @since 1.0.0
-	 * @deprecated 3.0.1
+	 * @deprecated 3.1.0
 	 */
 	public static function asset_enqueue( $keyword, $path, array $deps = array(), $no_prefix = false ) {
 		self::enqueue_script( $keyword, $path, $deps, $no_prefix );
@@ -327,13 +331,14 @@ class Asset {
 	/**
 	 * Enqueue javascript.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param string $keyword   Name of the javascript. Should be unique.
 	 * @param array  $path      Relative path of the javascript with options for the WordPress root directory.
 	 * @param array  $deps      Optional. An array of registered javascript handles this stylesheet depends on. Default empty array.
 	 * @param bool   $no_prefix Optional. Set the plugin prefix with asset handle name is or not.
 	 *
 	 * @return void
-	 * @since 1.0.0
 	 */
 	public static function enqueue_script( $keyword, $path, array $deps = array(), $no_prefix = false ) {
 		$asset_data = self::process_asset_path_data( $path, $deps );
@@ -347,6 +352,8 @@ class Asset {
 	/**
 	 * Enqueue styles.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param string $keyword   Name of the stylesheet. Should be unique.
 	 * @param array  $path      Relative path of the stylesheet with options for the WordPress root directory.
 	 * @param array  $deps      Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
@@ -354,7 +361,6 @@ class Asset {
 	 * @param bool   $no_prefix Optional. Set the plugin prefix with asset handle name is or not.
 	 *
 	 * @return void
-	 * @since 1.0.0
 	 */
 	public static function enqueue_style( $keyword, $path, $deps = array(), $media = 'all', $no_prefix = false ) {
 		$asset_data = static::process_asset_path_data( $path, $deps );
@@ -385,13 +391,14 @@ class Asset {
 	/**
 	 * Enqueue styles.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param string $keyword Name of the stylesheet. Should be unique.
 	 * @param array  $path    Relative path of the stylesheet with options for the WordPress root directory.
 	 * @param array  $deps    Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
 	 * @param string $media   Optional. The media for which this stylesheet has been defined. Default 'all'.
 	 *
 	 * @return void
-	 * @since 1.0.0
 	 */
 	public static function register_style( $keyword, $path, $deps = array(), $media = 'all' ) {
 		$asset_data = static::process_asset_path_data( $path, $deps );
@@ -405,11 +412,12 @@ class Asset {
 	/**
 	 * Get available script enqueue footer arguments.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param bool $strategy Optional. If provided, may be either 'defer' or 'async'. Default false.
 	 * @param bool $priority Optional. If provided, may be either 'high' or 'low'. Default 'low'.
 	 *
 	 * @return array
-	 * @since 1.4.8
 	 */
 	public static function footer_arguments( $strategy = false, $priority = false ) {
 		$footer_arguments = array(

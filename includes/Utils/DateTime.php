@@ -5,7 +5,7 @@
  *
  * @package DiviSquad
  * @author WP Squad <support@squadmodules.com>
- * @since 3.0.1
+ * @since 3.1.0
  */
 
 namespace DiviSquad\Utils;
@@ -14,7 +14,7 @@ namespace DiviSquad\Utils;
  * Helper functions to work with dates, time and timezones.
  *
  * @package DiviSquad
- * @since 3.0.1
+ * @since 3.1.0
  */
 class DateTime {
 

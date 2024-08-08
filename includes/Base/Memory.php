@@ -13,18 +13,18 @@ namespace DiviSquad\Base;
 use function add_action;
 use function get_option;
 use function update_option;
-use function wp_cache_delete;
 use function wp_cache_get;
 use function wp_cache_set;
 
 /**
- * Memory class for managing plugin settings.
+ * Memory class for managing Divi Squad plugin settings.
  *
  * This class provides a caching layer for WordPress options,
- * improving performance by reducing database queries.
+ * improving performance by reducing database queries and adding
+ * advanced features for option management.
  *
  * @package DiviSquad\Base
- * @since 1.0.0
+ * @since 2.0.0
  */
 class Memory {
 	/**
@@ -56,13 +56,20 @@ class Memory {
 	private $is_modified = false;
 
 	/**
+	 * Batch operation queue.
+	 *
+	 * @var array
+	 */
+	private $batch_queue = array();
+
+	/**
 	 * Memory constructor.
 	 *
 	 * @param string $prefix The prefix name for the plugin settings option.
 	 */
-	public function __construct( $prefix = 'squad-core' ) {
+	public function __construct( $prefix = 'divi-squad' ) {
 		$this->option_group = $prefix;
-		$this->option_name  = "{$prefix}-settings";
+		$this->option_name  = "{$prefix}_settings";
 		$this->load_data();
 
 		add_action( 'shutdown', array( $this, 'sync_data' ), 0 );
@@ -74,13 +81,9 @@ class Memory {
 	 * @return void
 	 */
 	private function load_data() {
-		// Get cache from memory.
-		if ( wp_cache_get( $this->option_name, $this->option_group ) ) {
-			$this->data = wp_cache_get( $this->option_name, $this->option_group );
-		}
+		$this->data = wp_cache_get( $this->option_name, $this->option_group );
 
-		// Get data from database if cache is empty.
-		if ( empty( $this->data ) ) {
+		if ( false === $this->data ) {
 			$this->data = get_option( $this->option_name, array() );
 			wp_cache_set( $this->option_name, $this->data, $this->option_group );
 		}
@@ -95,6 +98,15 @@ class Memory {
 	 */
 	public function get( $field, $default_value = null ) {
 		return isset( $this->data[ $field ] ) ? $this->data[ $field ] : $default_value;
+	}
+
+	/**
+	 * Get all stored options.
+	 *
+	 * @return array All stored options.
+	 */
+	public function get_all() {
+		return $this->data;
 	}
 
 	/**
@@ -142,6 +154,81 @@ class Memory {
 	}
 
 	/**
+	 * Add a value to an array field.
+	 *
+	 * @param string $field The field key.
+	 * @param mixed  $value The value to add.
+	 * @throws \Exception If the field is not an array.
+	 * @return void
+	 */
+	public function add_to_array( $field, $value ) {
+		if ( ! isset( $this->data[ $field ] ) || ! is_array( $this->data[ $field ] ) ) {
+			$this->data[ $field ] = array();
+		}
+		$this->data[ $field ][] = $value;
+		$this->is_modified      = true;
+	}
+
+	/**
+	 * Remove a value from an array field.
+	 *
+	 * @param string $field The field key.
+	 * @param mixed  $value The value to remove.
+	 * @throws \Exception If the field is not an array.
+	 * @return bool True if the value was removed, false otherwise.
+	 */
+	public function remove_from_array( $field, $value ) {
+		if ( ! isset( $this->data[ $field ] ) || ! is_array( $this->data[ $field ] ) ) {
+			throw new \Exception( sprintf( 'Field %s is not an array.', esc_html( $field ) ) );
+		}
+		$key = array_search( $value, $this->data[ $field ], true );
+		if ( false !== $key ) {
+			unset( $this->data[ $field ][ $key ] );
+			$this->is_modified = true;
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Queue a batch operation.
+	 *
+	 * @param string $operation The operation type ('set', 'update', 'delete').
+	 * @param string $field     The field key.
+	 * @param mixed  $value     The value (for 'set' and 'update' operations).
+	 * @return void
+	 */
+	public function queue_batch_operation( $operation, $field, $value = null ) {
+		$this->batch_queue[] = array(
+			'operation' => $operation,
+			'field'     => $field,
+			'value'     => $value,
+		);
+	}
+
+	/**
+	 * Execute all queued batch operations.
+	 *
+	 * @return void
+	 */
+	public function execute_batch() {
+		foreach ( $this->batch_queue as $operation ) {
+			switch ( $operation['operation'] ) {
+				case 'set':
+					$this->set( $operation['field'], $operation['value'] );
+					break;
+				case 'update':
+					$this->update( $operation['field'], $operation['value'] );
+					break;
+				case 'delete':
+					$this->delete( $operation['field'] );
+					break;
+			}
+		}
+		$this->batch_queue = array();
+	}
+
+	/**
 	 * Sync modified data to the database and update cache.
 	 *
 	 * This method is hooked to the 'shutdown' action.
@@ -150,9 +237,62 @@ class Memory {
 	 */
 	public function sync_data() {
 		if ( $this->is_modified ) {
-			update_option( $this->option_name, $this->data, false );
+			update_option( $this->option_name, $this->data );
 			wp_cache_set( $this->option_name, $this->data, $this->option_group );
 			$this->is_modified = false;
 		}
 	}
+
+	/**
+	 * Clear all stored data.
+	 *
+	 * @return void
+	 */
+	public function clear_all() {
+		$this->data        = array();
+		$this->is_modified = true;
+	}
+
+	/**
+	 * Check if a field exists.
+	 *
+	 * @param string $field The field key to check.
+	 * @return bool True if the field exists, false otherwise.
+	 */
+	public function has( $field ) {
+		return array_key_exists( $field, $this->data );
+	}
+
+	/**
+	 * Get the number of stored fields.
+	 *
+	 * @return int The number of stored fields.
+	 */
+	public function count() {
+		return count( $this->data );
+	}
 }
+
+
+/**
+ * Example:
+ *
+ * $memory = new DiviSquad\Base\Memory();
+ *
+ * // Get an option
+ * $value = $memory->get('some_option', 'default_value');
+ *
+ * // Set an option
+ * $memory->set('new_option', 'new_value');
+ *
+ * // Add to an array option
+ * $memory->add_to_array('array_option', 'new_item');
+ *
+ * // Queue batch operations
+ * $memory->queue_batch_operation('set', 'option1', 'value1');
+ * $memory->queue_batch_operation('update', 'option2', 'value2');
+ * $memory->queue_batch_operation('delete', 'option3');
+ *
+ * // Execute batch operations
+ * $memory->execute_batch();
+ */

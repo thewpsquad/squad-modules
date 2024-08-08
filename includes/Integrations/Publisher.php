@@ -12,6 +12,7 @@ namespace DiviSquad\Integrations;
 
 use DiviSquad\Utils\Asset;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\Polyfills\Constant;
 use DiviSquad\Utils\Polyfills\Str;
 use DiviSquad\Utils\Singleton;
 use DiviSquad\Utils\WP as WpUtils;
@@ -112,8 +113,8 @@ final class Publisher {
 		}
 
 		// Clean the third party dependencies from the squad template pages.
-		add_action( 'admin_enqueue_scripts', array( $this, 'wp_hook_clean_third_party_deps' ), PHP_INT_MAX );
-		add_action( 'admin_head', array( $this, 'wp_hook_clean_admin_content_section' ), PHP_INT_MAX );
+		add_action( 'admin_enqueue_scripts', array( $this, 'wp_hook_clean_third_party_deps' ), Constant::PHP_INT_MAX );
+		add_action( 'admin_head', array( $this, 'wp_hook_clean_admin_content_section' ), Constant::PHP_INT_MAX );
 	}
 
 	/**
@@ -336,7 +337,7 @@ final class Publisher {
 		 *
 		 * @return array
 		 */
-		$allowed_plugin_paths = apply_filters( 'divi_squad_dependencies_cleaning_allowed_plugin_paths', $allowed_plugin_defaults );
+		$allowed_plugin_paths = \apply_filters( 'divi_squad_dependencies_cleaning_allowed_plugin_paths', $allowed_plugin_defaults );
 
 		/**
 		 * Remove all the dependencies of the current page those are not required.

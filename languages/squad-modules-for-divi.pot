@@ -1,14 +1,14 @@
 # Copyright (C) 2024 WP Squad <support@squadmodules.com>
 msgid ""
 msgstr ""
-"Project-Id-Version: Squad Modules Lite 3.0.1\n"
+"Project-Id-Version: Squad Modules Lite 3.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/squad-modules-for-divi\n"
 "Last-Translator: $NAME <$EMAIL_ADDRESS>\n"
 "Language-Team: $NAME <$EMAIL_ADDRESS>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-07-16T17:51:54+00:00\n"
+"POT-Creation-Date: 2024-08-01T15:44:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: squad-modules-for-divi\n"
@@ -37,188 +37,188 @@ msgstr ""
 msgid "WP Squad"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:43
-#: includes/Modules/FormStylers/GravityForms.php:73
+#: includes/Base/DiviBuilder/Module/FormStyler.php:45
+#: includes/Modules/FormStylers/GravityForms.php:72
 msgid "Forms Settings"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:44
+#: includes/Base/DiviBuilder/Module/FormStyler.php:46
 msgid "Field Icons"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:49
-#: includes/Modules/FormStylers/GravityForms.php:63
+#: includes/Base/DiviBuilder/Module/FormStyler.php:51
+#: includes/Modules/FormStylers/GravityForms.php:62
 msgid "Form Wrapper"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:50
+#: includes/Base/DiviBuilder/Module/FormStyler.php:52
 msgid "Form Title"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:51
+#: includes/Base/DiviBuilder/Module/FormStyler.php:53
 msgid "Form Title Text"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:52
+#: includes/Base/DiviBuilder/Module/FormStyler.php:54
 msgid "Form Before Text"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:53
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:262
+#: includes/Base/DiviBuilder/Module/FormStyler.php:55
+#: includes/Base/DiviBuilder/Module/FormStyler.php:264
 #: includes/Base/DiviBuilder/Utils/Elements/Forms.php:83
-#: includes/Modules/FormStylers/ContactForm7.php:127
-#: includes/Modules/FormStylers/ContactForm7.php:223
-#: includes/Modules/FormStylers/ContactForm7.php:441
-#: includes/Modules/FormStylers/FluentForms.php:233
-#: includes/Modules/FormStylers/FluentForms.php:321
-#: includes/Modules/FormStylers/FluentForms.php:612
-#: includes/Modules/FormStylers/GravityForms.php:358
-#: includes/Modules/FormStylers/GravityForms.php:494
-#: includes/Modules/FormStylers/NinjaForms.php:266
-#: includes/Modules/FormStylers/NinjaForms.php:403
-#: includes/Modules/FormStylers/NinjaForms.php:706
-#: includes/Modules/FormStylers/NinjaForms.php:710
-#: includes/Modules/FormStylers/WPForms.php:166
-#: includes/Modules/FormStylers/WPForms.php:262
+#: includes/Modules/FormStylers/ContactForm7.php:126
+#: includes/Modules/FormStylers/ContactForm7.php:222
+#: includes/Modules/FormStylers/ContactForm7.php:440
+#: includes/Modules/FormStylers/FluentForms.php:232
+#: includes/Modules/FormStylers/FluentForms.php:320
+#: includes/Modules/FormStylers/FluentForms.php:611
+#: includes/Modules/FormStylers/GravityForms.php:357
+#: includes/Modules/FormStylers/GravityForms.php:493
+#: includes/Modules/FormStylers/NinjaForms.php:265
+#: includes/Modules/FormStylers/NinjaForms.php:402
+#: includes/Modules/FormStylers/NinjaForms.php:705
+#: includes/Modules/FormStylers/NinjaForms.php:709
+#: includes/Modules/FormStylers/WPForms.php:165
+#: includes/Modules/FormStylers/WPForms.php:261
 msgid "Field"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:54
+#: includes/Base/DiviBuilder/Module/FormStyler.php:56
 msgid "Field Text"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:55
+#: includes/Base/DiviBuilder/Module/FormStyler.php:57
 msgid "Field Label Text"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:56
+#: includes/Base/DiviBuilder/Module/FormStyler.php:58
 msgid "Field Description Text"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:57
+#: includes/Base/DiviBuilder/Module/FormStyler.php:59
 msgid "Field Placeholder Text"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:58
-#: includes/Modules/FormStylers/FluentForms.php:269
-#: includes/Modules/FormStylers/FluentForms.php:341
+#: includes/Base/DiviBuilder/Module/FormStyler.php:60
+#: includes/Modules/FormStylers/FluentForms.php:268
+#: includes/Modules/FormStylers/FluentForms.php:340
 msgid "Custom HTML"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:59
+#: includes/Base/DiviBuilder/Module/FormStyler.php:61
 msgid "Custom HTML Text"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:60
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:270
-#: includes/Base/DiviBuilder/Utils/Fields.php:393
+#: includes/Base/DiviBuilder/Module/FormStyler.php:62
+#: includes/Base/DiviBuilder/Module/FormStyler.php:272
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:393
 #: includes/Modules/DualButton.php:145
 #: includes/Modules/DualButton.php:166
 #: includes/Modules/FlipBox.php:776
 #: includes/Modules/FlipBox.php:808
 #: includes/Modules/FlipBox.php:895
 #: includes/Modules/FlipBox.php:919
-#: includes/Modules/FlipBox.php:2317
-#: includes/Modules/FormStylers/ContactForm7.php:163
-#: includes/Modules/FormStylers/ContactForm7.php:243
-#: includes/Modules/FormStylers/ContactForm7.php:453
-#: includes/Modules/FormStylers/FluentForms.php:281
-#: includes/Modules/FormStylers/FluentForms.php:360
-#: includes/Modules/FormStylers/FluentForms.php:624
-#: includes/Modules/FormStylers/GravityForms.php:394
-#: includes/Modules/FormStylers/GravityForms.php:514
-#: includes/Modules/FormStylers/NinjaForms.php:323
-#: includes/Modules/FormStylers/NinjaForms.php:423
-#: includes/Modules/FormStylers/NinjaForms.php:722
-#: includes/Modules/FormStylers/WPForms.php:202
-#: includes/Modules/FormStylers/WPForms.php:282
-#: includes/Modules/PostGrid.php:109
-#: includes/Modules/PostGrid.php:240
+#: includes/Modules/FlipBox.php:2323
+#: includes/Modules/FormStylers/ContactForm7.php:162
+#: includes/Modules/FormStylers/ContactForm7.php:242
+#: includes/Modules/FormStylers/ContactForm7.php:452
+#: includes/Modules/FormStylers/FluentForms.php:280
+#: includes/Modules/FormStylers/FluentForms.php:359
+#: includes/Modules/FormStylers/FluentForms.php:623
+#: includes/Modules/FormStylers/GravityForms.php:393
+#: includes/Modules/FormStylers/GravityForms.php:513
+#: includes/Modules/FormStylers/NinjaForms.php:322
+#: includes/Modules/FormStylers/NinjaForms.php:422
+#: includes/Modules/FormStylers/NinjaForms.php:721
+#: includes/Modules/FormStylers/WPForms.php:201
+#: includes/Modules/FormStylers/WPForms.php:281
+#: includes/Modules/PostGrid.php:121
+#: includes/Modules/PostGrid.php:252
 msgid "Button"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:61
+#: includes/Base/DiviBuilder/Module/FormStyler.php:63
 #: includes/Modules/FlipBox.php:146
 msgid "Button Text"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:62
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:274
-#: includes/Modules/FormStylers/ContactForm7.php:457
-#: includes/Modules/FormStylers/FluentForms.php:628
-#: includes/Modules/FormStylers/NinjaForms.php:730
+#: includes/Base/DiviBuilder/Module/FormStyler.php:64
+#: includes/Base/DiviBuilder/Module/FormStyler.php:276
+#: includes/Modules/FormStylers/ContactForm7.php:456
+#: includes/Modules/FormStylers/FluentForms.php:627
+#: includes/Modules/FormStylers/NinjaForms.php:729
 msgid "Error Message"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:63
+#: includes/Base/DiviBuilder/Module/FormStyler.php:65
 msgid "Error Message Text"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:64
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:278
-#: includes/Modules/FormStylers/ContactForm7.php:461
-#: includes/Modules/FormStylers/FluentForms.php:632
-#: includes/Modules/FormStylers/NinjaForms.php:734
+#: includes/Base/DiviBuilder/Module/FormStyler.php:66
+#: includes/Base/DiviBuilder/Module/FormStyler.php:280
+#: includes/Modules/FormStylers/ContactForm7.php:460
+#: includes/Modules/FormStylers/FluentForms.php:631
+#: includes/Modules/FormStylers/NinjaForms.php:733
 msgid "Success Message"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:65
+#: includes/Base/DiviBuilder/Module/FormStyler.php:67
 msgid "Success Message Text"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:79
+#: includes/Base/DiviBuilder/Module/FormStyler.php:81
 #: includes/Modules/BusinessHours.php:338
 #: includes/Modules/BusinessHoursChild.php:309
 #: includes/Modules/Divider.php:1101
 #: includes/Modules/DualButton.php:564
-#: includes/Modules/FlipBox.php:1381
-#: includes/Modules/FlipBox.php:1390
-#: includes/Modules/PostGrid.php:914
-#: includes/Modules/PostGrid.php:1226
-#: includes/Modules/PostGrid.php:1235
+#: includes/Modules/FlipBox.php:1387
+#: includes/Modules/FlipBox.php:1396
+#: includes/Modules/PostGrid.php:927
+#: includes/Modules/PostGrid.php:1239
+#: includes/Modules/PostGrid.php:1248
 #: includes/Modules/TypingText.php:591
 msgid "Wrapper Background"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:88
+#: includes/Base/DiviBuilder/Module/FormStyler.php:90
 msgid "Field Background"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:97
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:106
+#: includes/Base/DiviBuilder/Module/FormStyler.php:99
+#: includes/Base/DiviBuilder/Module/FormStyler.php:108
 msgid "Message Background"
 msgstr ""
 
-#. translators: 1: The Element Label
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:122
+#. translators: The Element Label
+#: includes/Base/DiviBuilder/Module/FormStyler.php:124
 msgid "%s Margin"
 msgstr ""
 
-#. translators: 1: The Element Label
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:124
+#. translators: The Element Label
+#: includes/Base/DiviBuilder/Module/FormStyler.php:126
 msgid "%s Padding"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:146
+#: includes/Base/DiviBuilder/Module/FormStyler.php:148
 #: includes/Modules/Divider.php:703
-#: includes/Modules/FormStylers/FluentForms.php:112
-#: includes/Modules/FormStylers/FluentForms.php:186
-#: includes/Modules/FormStylers/GravityForms.php:209
-#: includes/Modules/FormStylers/GravityForms.php:243
-#: includes/Modules/FormStylers/NinjaForms.php:102
-#: includes/Modules/PostGrid.php:1025
-#: includes/Modules/PostGrid.php:1059
-#: includes/Modules/PostGrid.php:1095
-#: includes/Modules/PostGrid.php:1129
-#: includes/Modules/PostGrid.php:1312
-#: includes/Modules/PostGridChild.php:945
+#: includes/Modules/FormStylers/FluentForms.php:111
+#: includes/Modules/FormStylers/FluentForms.php:185
+#: includes/Modules/FormStylers/GravityForms.php:208
+#: includes/Modules/FormStylers/GravityForms.php:242
+#: includes/Modules/FormStylers/NinjaForms.php:101
+#: includes/Modules/PostGrid.php:1038
+#: includes/Modules/PostGrid.php:1072
+#: includes/Modules/PostGrid.php:1108
+#: includes/Modules/PostGrid.php:1142
+#: includes/Modules/PostGrid.php:1325
+#: includes/Modules/PostGridChild.php:961
 msgid "Here you can define a custom margin size."
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:156
-#: includes/Base/DiviBuilder/Utils/Fields.php:750
-#: includes/Base/DiviBuilder/Utils/Fields.php:775
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:412
+#: includes/Base/DiviBuilder/Module/FormStyler.php:158
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:412
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:750
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:775
 #: includes/Modules/BeforeAfterImageSlider.php:511
 #: includes/Modules/BusinessHours.php:418
 #: includes/Modules/BusinessHours.php:447
@@ -230,28 +230,28 @@ msgstr ""
 #: includes/Modules/DualButton.php:528
 #: includes/Modules/DualButton.php:553
 #: includes/Modules/DualButton.php:642
-#: includes/Modules/FlipBox.php:1903
-#: includes/Modules/FlipBox.php:1925
-#: includes/Modules/FlipBox.php:1995
-#: includes/Modules/FlipBox.php:2029
-#: includes/Modules/FlipBox.php:2065
-#: includes/Modules/FlipBox.php:2101
-#: includes/Modules/FormStylers/FluentForms.php:128
-#: includes/Modules/FormStylers/FluentForms.php:205
-#: includes/Modules/FormStylers/GravityForms.php:226
-#: includes/Modules/FormStylers/GravityForms.php:260
-#: includes/Modules/FormStylers/NinjaForms.php:120
-#: includes/Modules/PostGrid.php:1042
-#: includes/Modules/PostGrid.php:1078
-#: includes/Modules/PostGrid.php:1112
-#: includes/Modules/PostGrid.php:1146
-#: includes/Modules/PostGrid.php:1279
-#: includes/Modules/PostGrid.php:1301
-#: includes/Modules/PostGrid.php:1328
-#: includes/Modules/PostGridChild.php:856
-#: includes/Modules/PostGridChild.php:877
-#: includes/Modules/PostGridChild.php:920
-#: includes/Modules/PostGridChild.php:960
+#: includes/Modules/FlipBox.php:1909
+#: includes/Modules/FlipBox.php:1931
+#: includes/Modules/FlipBox.php:2001
+#: includes/Modules/FlipBox.php:2035
+#: includes/Modules/FlipBox.php:2071
+#: includes/Modules/FlipBox.php:2107
+#: includes/Modules/FormStylers/FluentForms.php:127
+#: includes/Modules/FormStylers/FluentForms.php:204
+#: includes/Modules/FormStylers/GravityForms.php:225
+#: includes/Modules/FormStylers/GravityForms.php:259
+#: includes/Modules/FormStylers/NinjaForms.php:119
+#: includes/Modules/PostGrid.php:1055
+#: includes/Modules/PostGrid.php:1091
+#: includes/Modules/PostGrid.php:1125
+#: includes/Modules/PostGrid.php:1159
+#: includes/Modules/PostGrid.php:1292
+#: includes/Modules/PostGrid.php:1314
+#: includes/Modules/PostGrid.php:1341
+#: includes/Modules/PostGridChild.php:872
+#: includes/Modules/PostGridChild.php:893
+#: includes/Modules/PostGridChild.php:936
+#: includes/Modules/PostGridChild.php:976
 #: includes/Modules/PostReadingTime.php:331
 #: includes/Modules/TypingText.php:641
 #: includes/Modules/TypingText.php:769
@@ -260,23 +260,23 @@ msgstr ""
 msgid "Here you can define a custom padding size."
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:191
+#: includes/Base/DiviBuilder/Module/FormStyler.php:193
 msgid "Checkbox & Radio Active Color"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:193
+#: includes/Base/DiviBuilder/Module/FormStyler.php:195
 msgid "Here you can define a custom color for checkbox and radio fields."
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:199
+#: includes/Base/DiviBuilder/Module/FormStyler.php:201
 msgid "Checkbox & Radio Field Size"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:201
+#: includes/Base/DiviBuilder/Module/FormStyler.php:203
 msgid "Here you can choose size for checkbox and radio fields."
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:258
+#: includes/Base/DiviBuilder/Module/FormStyler.php:260
 #: includes/Base/DiviBuilder/Utils/Elements/Forms.php:82
 #: includes/Modules/BusinessHours.php:145
 #: includes/Modules/BusinessHoursChild.php:64
@@ -288,73 +288,73 @@ msgstr ""
 #: includes/Modules/FlipBox.php:835
 #: includes/Modules/FlipBox.php:848
 #: includes/Modules/FlipBox.php:1030
-#: includes/Modules/FormStylers/ContactForm7.php:203
-#: includes/Modules/FormStylers/ContactForm7.php:437
-#: includes/Modules/FormStylers/FluentForms.php:608
-#: includes/Modules/FormStylers/GravityForms.php:434
-#: includes/Modules/FormStylers/NinjaForms.php:363
-#: includes/Modules/FormStylers/NinjaForms.php:698
-#: includes/Modules/FormStylers/WPForms.php:242
-#: includes/Modules/PostGrid.php:182
-#: includes/Modules/PostGrid.php:202
-#: includes/Modules/PostGrid.php:284
-#: includes/Modules/PostGridChild.php:91
-#: includes/Modules/PostGridChild.php:276
+#: includes/Modules/FormStylers/ContactForm7.php:202
+#: includes/Modules/FormStylers/ContactForm7.php:436
+#: includes/Modules/FormStylers/FluentForms.php:607
+#: includes/Modules/FormStylers/GravityForms.php:433
+#: includes/Modules/FormStylers/NinjaForms.php:362
+#: includes/Modules/FormStylers/NinjaForms.php:697
+#: includes/Modules/FormStylers/WPForms.php:241
+#: includes/Modules/PostGrid.php:194
+#: includes/Modules/PostGrid.php:214
+#: includes/Modules/PostGrid.php:296
+#: includes/Modules/PostGridChild.php:94
+#: includes/Modules/PostGridChild.php:279
 #: includes/Modules/TypingText.php:66
 #: includes/Modules/TypingText.php:128
 #: includes/Modules/TypingText.php:263
 msgid "Wrapper"
 msgstr ""
 
-#: includes/Base/DiviBuilder/DiviSquad_Form_Styler.php:266
-#: includes/Modules/FormStylers/ContactForm7.php:445
-#: includes/Modules/FormStylers/FluentForms.php:616
-#: includes/Modules/FormStylers/NinjaForms.php:714
+#: includes/Base/DiviBuilder/Module/FormStyler.php:268
+#: includes/Modules/FormStylers/ContactForm7.php:444
+#: includes/Modules/FormStylers/FluentForms.php:615
+#: includes/Modules/FormStylers/NinjaForms.php:713
 msgid "Radio Checkbox"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Placeholder.php:35
+#: includes/Base/DiviBuilder/Placeholder.php:34
 msgctxt "Modules dummy content"
 msgid "Your Title Goes Here"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Placeholder.php:36
+#: includes/Base/DiviBuilder/Placeholder.php:35
 msgctxt "Modules dummy content"
 msgid "Subtitle goes Here"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Placeholder.php:37
+#: includes/Base/DiviBuilder/Placeholder.php:36
 msgctxt "et_builder"
 msgid "<p>Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content in the module Design settings and even apply custom CSS to this text in the module Advanced settings.</p>"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Placeholder.php:43
+#: includes/Base/DiviBuilder/Placeholder.php:42
 msgctxt "Modules dummy content"
 msgid "Click Here"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Placeholder.php:44
+#: includes/Base/DiviBuilder/Placeholder.php:43
 msgctxt "Modules dummy content"
 msgid "Learn More"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Placeholder.php:45
+#: includes/Base/DiviBuilder/Placeholder.php:44
 msgctxt "Modules dummy content"
 msgid "Custom Text Here"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Placeholder.php:46
+#: includes/Base/DiviBuilder/Placeholder.php:45
 msgctxt "Modules dummy content"
 msgid "Read More"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Placeholder.php:47
+#: includes/Base/DiviBuilder/Placeholder.php:46
 msgctxt "Modules dummy content"
 msgid "Comments: "
 msgstr ""
 
 #. translators: 1: Error message.
-#: includes/Base/DiviBuilder/Utils/Common.php:68
+#: includes/Base/DiviBuilder/Utils/CommonTrait.php:68
 msgid "%1$s found when decoding the content: %2$s"
 msgstr ""
 
@@ -375,101 +375,204 @@ msgstr ""
 msgid " ( Page %s )"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:75
+#. translators: %s: The unsupported field type
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields.php:185
+msgid "Unsupported field type: %s"
+msgstr ""
+
+#. translators: %s: The unsupported storage type
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields.php:197
+msgid "Unsupported storage type: %s"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:90
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/WordPress.php:88
+msgid "Custom Field"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:92
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:119
+msgid "Choose a custom field to display for current post."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:117
+msgid "Custom Field Type"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:137
+msgid "Custom Email Text"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:138
+msgid "The after text of your custom email field text will appear in with your post element."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:147
+msgid "Custom URL Text"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:148
+msgid "The after text of your custom url field text will appear in with your post element."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:151
+#: includes/Modules/PostGrid.php:2626
+msgid "Visit the link"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:158
+msgid "Custom URL Target"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:160
+msgid "Choose a custom url field target to open new tab or self."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:162
+#: includes/Modules/DualButton.php:666
+#: includes/Modules/DualButton.php:686
+#: includes/Modules/FlipBox.php:2142
+msgid "In The Same Window"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:163
+#: includes/Modules/DualButton.php:667
+#: includes/Modules/DualButton.php:687
+#: includes/Modules/FlipBox.php:2143
+msgid "In The New Tab"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:172
+msgid "Custom Image Width"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:174
+msgid "Here you can choose custom image width will appear in with your post element."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:187
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/WordPress.php:113
+msgid "Custom Field Before Text"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:188
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/WordPress.php:114
+msgid "The before text of your custom field text will appear in with your post element."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:197
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/WordPress.php:123
+msgid "Custom Field After Text"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:198
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/WordPress.php:124
+msgid "The after text of your custom field text will appear in with your post element."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:222
+msgid "You need to enable install ACF plugin to see advanced custom fields."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/WordPress.php:90
+msgid "Choose a custom field to display for the current post."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:114
 msgid "Show Divider"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:76
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:115
 msgid "This settings turns on and off the 1px divider line, but does not affect the divider height."
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:98
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:137
 #: includes/Modules/Divider.php:327
 msgid "Line Color"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:99
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:138
 #: includes/Modules/Divider.php:329
 msgid "This will adjust the color of the 1px divider line."
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:110
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:149
 #: includes/Modules/Divider.php:378
 msgid "Line Style"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:111
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:150
 #: includes/Modules/Divider.php:379
 msgid "Select the shape of the dividing line used for the divider."
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:123
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:162
 #: includes/Modules/Divider.php:390
 msgid "Line Position"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:124
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:163
 #: includes/Modules/Divider.php:391
 msgid "The dividing line can be placed either above, below or in the center of the module."
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:129
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:168
 #: includes/Modules/Divider.php:396
 msgid "Vertically Centered"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:140
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:179
 #: includes/Modules/Divider.php:406
 msgid "Divider Weight"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:141
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:180
 #: includes/Modules/Divider.php:407
 msgid "Increasing the divider weight will increase the thickness of the dividing line."
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:160
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:199
 #: includes/Modules/Divider.php:485
 msgid "Divider Max Width"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:162
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:201
 #: includes/Modules/Divider.php:487
 msgid "Here you can choose divider max width."
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:177
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:216
 #: includes/Modules/Divider.php:504
 msgid "Divider Border Radius"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:179
+#: includes/Base/DiviBuilder/Utils/Elements/Divider.php:218
 #: includes/Modules/Divider.php:506
 msgid "Here you can choose divider border  radius."
 msgstr ""
 
 #: includes/Base/DiviBuilder/Utils/Elements/Forms.php:84
 #: includes/Base/DiviBuilder/Utils/Elements/Forms.php:85
-#: includes/Modules/FormStylers/ContactForm7.php:175
-#: includes/Modules/FormStylers/ContactForm7.php:187
-#: includes/Modules/FormStylers/ContactForm7.php:262
-#: includes/Modules/FormStylers/ContactForm7.php:281
-#: includes/Modules/FormStylers/FluentForms.php:293
-#: includes/Modules/FormStylers/FluentForms.php:305
-#: includes/Modules/FormStylers/FluentForms.php:379
-#: includes/Modules/FormStylers/FluentForms.php:398
-#: includes/Modules/FormStylers/GravityForms.php:406
-#: includes/Modules/FormStylers/GravityForms.php:418
-#: includes/Modules/FormStylers/GravityForms.php:534
-#: includes/Modules/FormStylers/GravityForms.php:553
-#: includes/Modules/FormStylers/NinjaForms.php:335
-#: includes/Modules/FormStylers/NinjaForms.php:347
-#: includes/Modules/FormStylers/NinjaForms.php:443
-#: includes/Modules/FormStylers/NinjaForms.php:462
-#: includes/Modules/FormStylers/WPForms.php:214
-#: includes/Modules/FormStylers/WPForms.php:226
-#: includes/Modules/FormStylers/WPForms.php:302
-#: includes/Modules/FormStylers/WPForms.php:321
+#: includes/Modules/FormStylers/ContactForm7.php:174
+#: includes/Modules/FormStylers/ContactForm7.php:186
+#: includes/Modules/FormStylers/ContactForm7.php:261
+#: includes/Modules/FormStylers/ContactForm7.php:280
+#: includes/Modules/FormStylers/FluentForms.php:292
+#: includes/Modules/FormStylers/FluentForms.php:304
+#: includes/Modules/FormStylers/FluentForms.php:378
+#: includes/Modules/FormStylers/FluentForms.php:397
+#: includes/Modules/FormStylers/GravityForms.php:405
+#: includes/Modules/FormStylers/GravityForms.php:417
+#: includes/Modules/FormStylers/GravityForms.php:533
+#: includes/Modules/FormStylers/GravityForms.php:552
+#: includes/Modules/FormStylers/NinjaForms.php:334
+#: includes/Modules/FormStylers/NinjaForms.php:346
+#: includes/Modules/FormStylers/NinjaForms.php:442
+#: includes/Modules/FormStylers/NinjaForms.php:461
+#: includes/Modules/FormStylers/WPForms.php:213
+#: includes/Modules/FormStylers/WPForms.php:225
+#: includes/Modules/FormStylers/WPForms.php:301
+#: includes/Modules/FormStylers/WPForms.php:320
 msgid "Message"
 msgstr ""
 
@@ -478,409 +581,409 @@ msgid "Unsupported form type."
 msgstr ""
 
 #: includes/Base/DiviBuilder/Utils/Elements/Forms.php:109
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:163
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:163
 msgid "Select one"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Fields.php:35
-#: includes/Modules/Divider.php:252
-msgid "H1 tag"
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:112
+msgid "No"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Fields.php:36
-#: includes/Modules/Divider.php:253
-msgid "H2 tag"
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:113
+msgid "Yes"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Fields.php:37
-#: includes/Modules/Divider.php:254
-msgid "H3 tag"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:38
-#: includes/Modules/Divider.php:255
-msgid "H4 tag"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:39
-#: includes/Modules/Divider.php:256
-msgid "H5 tag"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:40
-#: includes/Modules/Divider.php:257
-msgid "H6 tag"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:41
-#: includes/Modules/Divider.php:258
-msgid "P tag"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:42
-#: includes/Modules/Divider.php:259
-msgid "SPAN tag"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:43
-#: includes/Modules/Divider.php:260
-msgid "DIV tag"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:157
-msgid "Enable Clip"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:159
-msgid "Here you can choose whether or not use clip for the text."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:172
-msgid "Enable Background Clip"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:174
-msgid "Here you can choose whether or not use background clip for the text."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:182
-msgid "Fill Color"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:184
-#: includes/Base/DiviBuilder/Utils/Fields.php:195
-msgid "Pick a color to use."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:193
-msgid "Stroke Color"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:203
-msgid "Stroke Width"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:205
-msgid "Here you can choose stroke width."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:268
-msgid "Z Index"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:269
-msgid "Here you can control element position on the z axis. Elements with higher z-index values will sit atop elements with lower z-index values."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:321
-msgid "This will change the label of the module in the builder for easy identification."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:327
-msgid "CSS ID"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:328
-msgid "Assign a unique CSS ID to the element which can be used to assign custom CSS styles from within your child theme or from within Divi's custom CSS inputs."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:336
-msgid "CSS Class"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:337
-msgid "Assign any number of CSS Classes to the element, separated by spaces, which can be used to assign custom CSS styles from within your child theme or from within Divi's custom CSS inputs."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:394
-msgid "The text of your button will appear in with the module."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:409
-msgid "Button Icon Type"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:411
-msgid "Choose an icon type to display with your button."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:413
-#: includes/Modules/Divider.php:124
-#: includes/Modules/Divider.php:541
-#: includes/Modules/DualButton.php:363
-#: includes/Modules/FlipBox.php:164
-#: includes/Modules/FlipBox.php:197
-#: includes/Modules/FlipBox.php:1590
-#: includes/Modules/PostGridChild.php:92
-#: includes/Modules/PostGridChild.php:105
-#: includes/Modules/PostGridChild.php:540
-#: includes/Modules/VideoPopup.php:70
-#: includes/Modules/VideoPopup.php:121
-#: includes/Modules/VideoPopup.php:178
-msgid "Icon"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:415
-#: includes/Modules/Divider.php:831
-#: includes/Modules/FlipBox.php:1593
-#: includes/Modules/Lottie.php:156
-#: includes/Modules/PostGridChild.php:543
-msgid "None"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:436
-#: includes/Modules/Divider.php:574
-#: includes/Modules/DualButton.php:381
-#: includes/Modules/FlipBox.php:1621
-#: includes/Modules/PostGridChild.php:579
-#: includes/Modules/PostGridChild.php:646
-#: includes/Modules/TypingText.php:516
-msgid "Choose an icon"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:437
-msgid "Choose an icon to display with your button."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:450
-msgid "Upload an image to display at the top of your button."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:454
-#: includes/Modules/BeforeAfterImageSlider.php:447
-#: includes/Modules/Divider.php:592
-#: includes/Modules/DualButton.php:399
-#: includes/Modules/FlipBox.php:1639
-#: includes/Modules/ImageMask.php:103
-#: includes/Modules/PostGridChild.php:597
-#: includes/Modules/VideoPopup.php:159
-msgid "Choose an Image"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:455
-#: includes/Modules/BeforeAfterImageSlider.php:448
-#: includes/Modules/Divider.php:593
-#: includes/Modules/DualButton.php:400
-#: includes/Modules/FlipBox.php:1640
-#: includes/Modules/ImageMask.php:104
-#: includes/Modules/PostGridChild.php:598
-#: includes/Modules/VideoPopup.php:160
-msgid "Set As Image"
-msgstr ""
-
-#. translators: Field Name
-#: includes/Base/DiviBuilder/Utils/Fields.php:521
-msgid "%s Background"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:524
-msgid "Adjust the background style of the button by customizing the background color, gradient, and image."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:586
-#: includes/Modules/Divider.php:725
-#: includes/Modules/DualButton.php:421
-#: includes/Modules/FlipBox.php:1675
-#: includes/Modules/PostGridChild.php:671
-#: includes/Modules/TypingText.php:545
-msgid "Icon Color"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:588
-msgid "Here you can define a custom color for your button icon."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:598
-#: includes/Modules/Divider.php:744
-#: includes/Modules/DualButton.php:430
-#: includes/Modules/FlipBox.php:1695
-#: includes/Modules/PostGridChild.php:698
-#: includes/Modules/TypingText.php:554
-msgid "Icon Size"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:600
-#: includes/Modules/Divider.php:746
-#: includes/Modules/FlipBox.php:1697
-#: includes/Modules/PostGrid.php:955
-#: includes/Modules/PostGridChild.php:700
-#: includes/Modules/PostGridChild.php:746
-msgid "Here you can choose icon size."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:614
-#: includes/Modules/Divider.php:762
-#: includes/Modules/DualButton.php:448
-#: includes/Modules/FlipBox.php:1729
-#: includes/Modules/ImageMask.php:246
-#: includes/Modules/PostGridChild.php:714
-msgid "Image Width"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:616
-#: includes/Modules/Divider.php:764
-#: includes/Modules/DualButton.php:450
-#: includes/Modules/FlipBox.php:1731
-#: includes/Modules/ImageMask.php:248
-#: includes/Modules/PostGridChild.php:716
-msgid "Here you can choose image width."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:629
-#: includes/Modules/Divider.php:780
-#: includes/Modules/DualButton.php:466
-#: includes/Modules/FlipBox.php:1748
-#: includes/Modules/ImageMask.php:265
-#: includes/Modules/PostGridChild.php:729
-#: includes/Modules/VideoPopup.php:317
-msgid "Image Height"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:631
-#: includes/Modules/Divider.php:782
-#: includes/Modules/DualButton.php:468
-#: includes/Modules/FlipBox.php:1750
-#: includes/Modules/ImageMask.php:267
-#: includes/Modules/PostGridChild.php:731
-msgid "Here you can choose image height."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:644
-#: includes/Modules/FlipBox.php:1795
-msgid "Gap Between Icon/Image and Text"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:646
-#: includes/Modules/FlipBox.php:1797
-#: includes/Modules/FlipBox.php:1964
-#: includes/Modules/PostGridChild.php:761
-#: includes/Modules/TypingText.php:572
-msgid "Here you can choose gap between icon and text."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:665
-#: includes/Modules/FlipBox.php:1839
-#: includes/Modules/PostGridChild.php:776
-msgid "Icon Placement"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:667
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:159
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:196
-#: includes/Modules/FlipBox.php:1841
-#: includes/Modules/FlipBox.php:1874
-#: includes/Modules/PostGridChild.php:778
-#: includes/Modules/PostGridChild.php:807
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:159
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:196
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:667
+#: includes/Modules/FlipBox.php:1847
+#: includes/Modules/FlipBox.php:1880
+#: includes/Modules/PostGridChild.php:794
+#: includes/Modules/PostGridChild.php:823
 msgid "Here you can choose where to place the icon."
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Fields.php:679
-#: includes/Modules/PostGridChild.php:821
-msgid "Show Icon On Hover"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:681
-msgid "By default, button icon to always be displayed. If you would like button icon are displayed on hover, then you can enable this option."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:692
-#: includes/Modules/PostGridChild.php:834
-msgid "Move Icon On Hover Only"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:694
-msgid "By default, icon and text are both move on hover. If you would like button icon move on hover, then you can enable this option."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:704
-msgid "Resize Button"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:706
-msgid "By default, the button element will be get default width. If you would like resize the button, then you can enable this option."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:717
-msgid "Button Width"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:719
-msgid "Adjust the width of the content within the button."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:734
-msgid "Button Elements Alignment"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields.php:736
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:221
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:221
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:736
 #: includes/Modules/DualButton.php:518
 #: includes/Modules/DualButton.php:575
 #: includes/Modules/DualButton.php:601
 #: includes/Modules/FlipBox.php:1063
 #: includes/Modules/FlipBox.php:1083
 #: includes/Modules/FlipBox.php:1163
-#: includes/Modules/FlipBox.php:1769
-#: includes/Modules/FlipBox.php:1863
-#: includes/Modules/PostGrid.php:1013
-#: includes/Modules/PostGrid.php:1213
-#: includes/Modules/PostGridChild.php:797
+#: includes/Modules/FlipBox.php:1775
+#: includes/Modules/FlipBox.php:1869
+#: includes/Modules/PostGrid.php:1026
+#: includes/Modules/PostGrid.php:1226
+#: includes/Modules/PostGridChild.php:813
 #: includes/Modules/PostReadingTime.php:289
 #: includes/Modules/TypingText.php:602
 msgid "Align icon to the left, right or center."
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Fields.php:748
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:259
+msgid "Transition Duration"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:260
+msgid "This controls the transition duration of the animation."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:281
+msgid "Transition Delay"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:282
+msgid "This controls the transition delay of the animation."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:303
+msgid "Transition Speed Curve"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:304
+msgid "This controls the transition speed curve of the animation."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:488
+msgid "Adjust the background style of the current field by customizing the background color, gradient, and image."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:35
+#: includes/Modules/Divider.php:252
+msgid "H1 tag"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:36
+#: includes/Modules/Divider.php:253
+msgid "H2 tag"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:37
+#: includes/Modules/Divider.php:254
+msgid "H3 tag"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:38
+#: includes/Modules/Divider.php:255
+msgid "H4 tag"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:39
+#: includes/Modules/Divider.php:256
+msgid "H5 tag"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:40
+#: includes/Modules/Divider.php:257
+msgid "H6 tag"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:41
+#: includes/Modules/Divider.php:258
+msgid "P tag"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:42
+#: includes/Modules/Divider.php:259
+msgid "SPAN tag"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:43
+#: includes/Modules/Divider.php:260
+msgid "DIV tag"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:157
+msgid "Enable Clip"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:159
+msgid "Here you can choose whether or not use clip for the text."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:172
+msgid "Enable Background Clip"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:174
+msgid "Here you can choose whether or not use background clip for the text."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:182
+msgid "Fill Color"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:184
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:195
+msgid "Pick a color to use."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:193
+msgid "Stroke Color"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:203
+msgid "Stroke Width"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:205
+msgid "Here you can choose stroke width."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:268
+msgid "Z Index"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:269
+msgid "Here you can control element position on the z axis. Elements with higher z-index values will sit atop elements with lower z-index values."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:321
+msgid "This will change the label of the module in the builder for easy identification."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:327
+msgid "CSS ID"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:328
+msgid "Assign a unique CSS ID to the element which can be used to assign custom CSS styles from within your child theme or from within Divi's custom CSS inputs."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:336
+msgid "CSS Class"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:337
+msgid "Assign any number of CSS Classes to the element, separated by spaces, which can be used to assign custom CSS styles from within your child theme or from within Divi's custom CSS inputs."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:394
+msgid "The text of your button will appear in with the module."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:409
+msgid "Button Icon Type"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:411
+msgid "Choose an icon type to display with your button."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:413
+#: includes/Modules/Divider.php:124
+#: includes/Modules/Divider.php:541
+#: includes/Modules/DualButton.php:363
+#: includes/Modules/FlipBox.php:164
+#: includes/Modules/FlipBox.php:197
+#: includes/Modules/FlipBox.php:1596
+#: includes/Modules/PostGridChild.php:95
+#: includes/Modules/PostGridChild.php:108
+#: includes/Modules/PostGridChild.php:556
+#: includes/Modules/VideoPopup.php:70
+#: includes/Modules/VideoPopup.php:121
+#: includes/Modules/VideoPopup.php:178
+msgid "Icon"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:415
+#: includes/Modules/Divider.php:831
+#: includes/Modules/FlipBox.php:1599
+#: includes/Modules/Lottie.php:156
+#: includes/Modules/PostGridChild.php:559
+msgid "None"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:436
+#: includes/Modules/Divider.php:574
+#: includes/Modules/DualButton.php:381
+#: includes/Modules/FlipBox.php:1627
+#: includes/Modules/PostGridChild.php:595
+#: includes/Modules/PostGridChild.php:662
+#: includes/Modules/TypingText.php:516
+msgid "Choose an icon"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:437
+msgid "Choose an icon to display with your button."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:450
+msgid "Upload an image to display at the top of your button."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:454
+#: includes/Modules/BeforeAfterImageSlider.php:447
+#: includes/Modules/Divider.php:592
+#: includes/Modules/DualButton.php:399
+#: includes/Modules/FlipBox.php:1645
+#: includes/Modules/ImageMask.php:106
+#: includes/Modules/PostGridChild.php:613
+#: includes/Modules/VideoPopup.php:159
+msgid "Choose an Image"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:455
+#: includes/Modules/BeforeAfterImageSlider.php:448
+#: includes/Modules/Divider.php:593
+#: includes/Modules/DualButton.php:400
+#: includes/Modules/FlipBox.php:1646
+#: includes/Modules/ImageMask.php:107
+#: includes/Modules/PostGridChild.php:614
+#: includes/Modules/VideoPopup.php:160
+msgid "Set As Image"
+msgstr ""
+
+#. translators: Field Name
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:521
+msgid "%s Background"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:524
+msgid "Adjust the background style of the button by customizing the background color, gradient, and image."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:586
+#: includes/Modules/Divider.php:725
+#: includes/Modules/DualButton.php:421
+#: includes/Modules/FlipBox.php:1681
+#: includes/Modules/PostGridChild.php:687
+#: includes/Modules/TypingText.php:545
+msgid "Icon Color"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:588
+msgid "Here you can define a custom color for your button icon."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:598
+#: includes/Modules/Divider.php:744
+#: includes/Modules/DualButton.php:430
+#: includes/Modules/FlipBox.php:1701
+#: includes/Modules/PostGridChild.php:714
+#: includes/Modules/TypingText.php:554
+msgid "Icon Size"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:600
+#: includes/Modules/Divider.php:746
+#: includes/Modules/FlipBox.php:1703
+#: includes/Modules/PostGrid.php:968
+#: includes/Modules/PostGridChild.php:716
+#: includes/Modules/PostGridChild.php:762
+msgid "Here you can choose icon size."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:614
+#: includes/Modules/Divider.php:762
+#: includes/Modules/DualButton.php:448
+#: includes/Modules/FlipBox.php:1735
+#: includes/Modules/ImageMask.php:259
+#: includes/Modules/PostGridChild.php:730
+msgid "Image Width"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:616
+#: includes/Modules/Divider.php:764
+#: includes/Modules/DualButton.php:450
+#: includes/Modules/FlipBox.php:1737
+#: includes/Modules/ImageMask.php:261
+#: includes/Modules/PostGridChild.php:732
+msgid "Here you can choose image width."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:629
+#: includes/Modules/Divider.php:780
+#: includes/Modules/DualButton.php:466
+#: includes/Modules/FlipBox.php:1754
+#: includes/Modules/ImageMask.php:278
+#: includes/Modules/PostGridChild.php:745
+#: includes/Modules/VideoPopup.php:317
+msgid "Image Height"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:631
+#: includes/Modules/Divider.php:782
+#: includes/Modules/DualButton.php:468
+#: includes/Modules/FlipBox.php:1756
+#: includes/Modules/ImageMask.php:280
+#: includes/Modules/PostGridChild.php:747
+msgid "Here you can choose image height."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:644
+#: includes/Modules/FlipBox.php:1801
+msgid "Gap Between Icon/Image and Text"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:646
+#: includes/Modules/FlipBox.php:1803
+#: includes/Modules/FlipBox.php:1970
+#: includes/Modules/PostGridChild.php:777
+#: includes/Modules/TypingText.php:572
+msgid "Here you can choose gap between icon and text."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:665
+#: includes/Modules/FlipBox.php:1845
+#: includes/Modules/PostGridChild.php:792
+msgid "Icon Placement"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:679
+#: includes/Modules/PostGridChild.php:837
+msgid "Show Icon On Hover"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:681
+msgid "By default, button icon to always be displayed. If you would like button icon are displayed on hover, then you can enable this option."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:692
+#: includes/Modules/PostGridChild.php:850
+msgid "Move Icon On Hover Only"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:694
+msgid "By default, icon and text are both move on hover. If you would like button icon move on hover, then you can enable this option."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:704
+msgid "Resize Button"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:706
+msgid "By default, the button element will be get default width. If you would like resize the button, then you can enable this option."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:717
+msgid "Button Width"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:719
+msgid "Adjust the width of the content within the button."
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:734
+msgid "Button Elements Alignment"
+msgstr ""
+
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:748
 #: includes/Modules/DualButton.php:526
 msgid "Icon/Image Margin"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Fields.php:761
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:761
 msgid "Button Margin"
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Fields.php:763
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:763
 msgid "Here you can define a custom margin size for the button."
 msgstr ""
 
-#: includes/Base/DiviBuilder/Utils/Fields.php:773
+#: includes/Base/DiviBuilder/Utils/FieldsTrait.php:773
 msgid "Button Padding"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:112
-msgid "No"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:113
-msgid "Yes"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:259
-msgid "Transition Duration"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:260
-msgid "This controls the transition duration of the animation."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:281
-msgid "Transition Delay"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:282
-msgid "This controls the transition delay of the animation."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:303
-msgid "Transition Speed Curve"
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:304
-msgid "This controls the transition speed curve of the animation."
-msgstr ""
-
-#: includes/Base/DiviBuilder/Utils/Fields/Definition.php:488
-msgid "Adjust the background style of the current field by customizing the background color, gradient, and image."
 msgstr ""
 
 #. translators: %s: class name.
@@ -905,7 +1008,7 @@ msgid "Squad Copy Extension"
 msgstr ""
 
 #: includes/Extensions/Copy.php:225
-#: includes/Extensions/Copy.php:324
+#: includes/Extensions/Copy.php:326
 msgid "Kindly choose a minimum of one row for copying."
 msgstr ""
 
@@ -921,22 +1024,22 @@ msgstr ""
 msgid "Copy "
 msgstr ""
 
-#: includes/Extensions/Copy.php:329
+#: includes/Extensions/Copy.php:331
 msgid "User not found."
 msgstr ""
 
-#: includes/Extensions/Copy.php:334
+#: includes/Extensions/Copy.php:336
 #: includes/Managers/RestRoutes/V1/Extensions/Copy.php:49
 #: includes/Managers/RestRoutes/V1/Extensions/Copy.php:64
 #: includes/Managers/RestRoutes/V1/Modules/PostGrid.php:59
 msgid "You do not have permission to access this endpoint."
 msgstr ""
 
-#: includes/Extensions/Copy.php:421
+#: includes/Extensions/Copy.php:433
 msgid "Post(s) duplication failed."
 msgstr ""
 
-#: includes/Extensions/Copy.php:424
+#: includes/Extensions/Copy.php:436
 msgid "Kindly choose a minimum of one post for copying."
 msgstr ""
 
@@ -1091,43 +1194,43 @@ msgctxt "Modules dummy content"
 msgid "Y"
 msgstr ""
 
-#: includes/Integrations/Publisher.php:83
+#: includes/Integrations/Publisher.php:84
 msgid "Hey"
 msgstr ""
 
-#: includes/Integrations/Publisher.php:84
+#: includes/Integrations/Publisher.php:85
 msgid "Hello Friend"
 msgstr ""
 
-#: includes/Integrations/Publisher.php:85
+#: includes/Integrations/Publisher.php:86
 msgid "Yes - I'm in!"
 msgstr ""
 
-#: includes/Integrations/Publisher.php:86
+#: includes/Integrations/Publisher.php:87
 msgid "Not today"
 msgstr ""
 
 #. translators: %s: Plan title
-#: includes/Integrations/Publisher.php:88
+#: includes/Integrations/Publisher.php:89
 msgid "Activate %s Plugin"
 msgstr ""
 
 #. translators: %s The plugin name, example: Squad Modules Lite
-#: includes/Integrations/Publisher.php:90
+#: includes/Integrations/Publisher.php:91
 msgid "%s was successfully activated."
 msgstr ""
 
 #. translators: %s The module type
-#: includes/Integrations/Publisher.php:92
+#: includes/Integrations/Publisher.php:93
 msgid "Premium %s was successfully activated."
 msgstr ""
 
 #. translators: %1$s: Product title; %2$s: Plan title; %3$s: Activation link
-#: includes/Integrations/Publisher.php:94
+#: includes/Integrations/Publisher.php:95
 msgid " The paid plugin of %1$s is already installed. Please activate it to start benefiting the %2$s plugin. %3$s"
 msgstr ""
 
-#: includes/Integrations/Publisher.php:235
+#: includes/Integrations/Publisher.php:236
 msgid "Squad Modules Pro"
 msgstr ""
 
@@ -1172,34 +1275,6 @@ msgstr ""
 #: includes/Managers/Assets/Admin.php:199
 #: includes/Managers/Menus/AdminMenu.php:83
 msgid "What's New"
-msgstr ""
-
-#: includes/Managers/Assets/Admin.php:200
-msgid "Content Modules"
-msgstr ""
-
-#: includes/Managers/Assets/Admin.php:201
-msgid "Creative Modules"
-msgstr ""
-
-#: includes/Managers/Assets/Admin.php:202
-msgid "Dynamic Content Modules"
-msgstr ""
-
-#: includes/Managers/Assets/Admin.php:203
-msgid "Form Styler Modules"
-msgstr ""
-
-#: includes/Managers/Assets/Admin.php:204
-msgid "Image & Media Modules"
-msgstr ""
-
-#: includes/Managers/Assets/Admin.php:205
-msgid "Media Upload"
-msgstr ""
-
-#: includes/Managers/Assets/Admin.php:206
-msgid "Enhancement"
 msgstr ""
 
 #: includes/Managers/Branding/AdminFooterText.php:59
@@ -1254,252 +1329,313 @@ msgstr ""
 msgid "Pricing"
 msgstr ""
 
-#: includes/Managers/Features/Extensions.php:81
+#: includes/Managers/Features/Extensions.php:38
 msgid "JSON File Upload Support"
 msgstr ""
 
-#: includes/Managers/Features/Extensions.php:82
+#: includes/Managers/Features/Extensions.php:39
 msgid "Enable this feature only if you would like allow JSON file through WordPress Media Uploader."
 msgstr ""
 
-#: includes/Managers/Features/Extensions.php:91
+#: includes/Managers/Features/Extensions.php:44
+#: includes/Managers/Features/Extensions.php:55
+#: includes/Managers/Features/Extensions.php:66
+msgid "Media Upload"
+msgstr ""
+
+#: includes/Managers/Features/Extensions.php:49
 msgid "SVG Image Upload Support"
 msgstr ""
 
-#: includes/Managers/Features/Extensions.php:92
+#: includes/Managers/Features/Extensions.php:50
 msgid "Enable this feature only if you would like allow svg file through WordPress Media Uploader."
 msgstr ""
 
-#: includes/Managers/Features/Extensions.php:101
+#: includes/Managers/Features/Extensions.php:60
 msgid "Custom Fonts Upload Support"
 msgstr ""
 
-#: includes/Managers/Features/Extensions.php:102
+#: includes/Managers/Features/Extensions.php:61
 msgid "Enable this feature only if you would like allow Font file through WordPress Media Uploader."
 msgstr ""
 
-#: includes/Managers/Features/Extensions.php:111
+#: includes/Managers/Features/Extensions.php:71
 msgid "Divi Library Shortcode"
 msgstr ""
 
-#: includes/Managers/Features/Extensions.php:112
+#: includes/Managers/Features/Extensions.php:72
 msgid "Enable this feature only if you would like add Divi library shortcode feature."
 msgstr ""
 
-#: includes/Managers/Features/Extensions.php:121
+#: includes/Managers/Features/Extensions.php:77
+#: includes/Managers/Features/Extensions.php:89
+msgid "Enhancement"
+msgstr ""
+
+#: includes/Managers/Features/Extensions.php:82
 msgid "Copy Post or Page"
 msgstr ""
 
-#: includes/Managers/Features/Extensions.php:122
+#: includes/Managers/Features/Extensions.php:83
 msgid "Enable this feature only if you would like add Post or Page coping feature."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:40
+#: includes/Managers/Features/Modules.php:42
 msgid "Advanced List"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:41
+#: includes/Managers/Features/Modules.php:43
 msgid "Elevate your content presentation providing versatile and stylish list formats for a captivating user experience."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:48
+#: includes/Managers/Features/Modules.php:47
+#: includes/Managers/Features/Modules.php:56
+#: includes/Managers/Features/Modules.php:65
+#: includes/Managers/Features/Modules.php:74
+#: includes/Managers/Features/Modules.php:83
+#: includes/Managers/Features/Modules.php:92
+#: includes/Managers/Features/Modules.php:101
+#: includes/Managers/Features/Modules.php:110
+msgid "Premium Modules"
+msgstr ""
+
+#: includes/Managers/Features/Modules.php:51
 msgid "Advanced Blurb"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:49
+#: includes/Managers/Features/Modules.php:52
 msgid "Craft engaging and informative content with advanced styling and layout options for a standout user experience."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:56
+#: includes/Managers/Features/Modules.php:60
 msgid "User List"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:57
+#: includes/Managers/Features/Modules.php:61
 msgid "Showcase your users allowing you to display user profiles in a sleek and customizable list format."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:64
+#: includes/Managers/Features/Modules.php:69
 msgid "Advanced Heading"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:65
+#: includes/Managers/Features/Modules.php:70
 msgid "Make a bold statement offering enhanced customization and design options for impactful and visually stunning headings."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:72
+#: includes/Managers/Features/Modules.php:78
 msgid "Advanced Slider"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:73
+#: includes/Managers/Features/Modules.php:79
 msgid "Transform your content offering dynamic and customizable sliders to captivate your audience effortlessly."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:80
+#: includes/Managers/Features/Modules.php:87
 msgid "Taxonomy List"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:81
+#: includes/Managers/Features/Modules.php:88
 msgid "Easily organize and display your taxonomy enhancing user experience."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:88
+#: includes/Managers/Features/Modules.php:96
 msgid "CPT Grid"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:89
+#: includes/Managers/Features/Modules.php:97
 msgid "Showcase your Custom Post Types creating a visually appealing grid layout."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:96
+#: includes/Managers/Features/Modules.php:105
 msgid "Advanced Accordion"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:97
+#: includes/Managers/Features/Modules.php:106
 msgid "Elevate your website bringing a sleek and interactive touch to content presentation."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:121
+#: includes/Managers/Features/Modules.php:133
 #: includes/Modules/Divider.php:48
 msgid "Advanced Divider"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:122
+#: includes/Managers/Features/Modules.php:134
 msgid "Create visually appealing dividers with various styles, shapes, and customization options."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:133
+#: includes/Managers/Features/Modules.php:141
+#: includes/Managers/Features/Modules.php:156
+#: includes/Managers/Features/Modules.php:207
+#: includes/Managers/Features/Modules.php:365
+#: includes/Managers/Features/Modules.php:379
+#: includes/Managers/Features/Modules.php:394
+#: includes/Managers/Features/Modules.php:409
+#: includes/Managers/Features/Modules.php:424
+#: includes/Managers/Features/Modules.php:439
+msgid "Creative Modules"
+msgstr ""
+
+#: includes/Managers/Features/Modules.php:148
 #: includes/Modules/DualButton.php:45
 msgid "Dual Button"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:134
+#: includes/Managers/Features/Modules.php:149
 msgid "It allows you to display two buttons side by side with customizable styles and text."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:145
+#: includes/Managers/Features/Modules.php:163
 #: includes/Modules/Lottie.php:41
 msgid "Lottie Image"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:146
+#: includes/Managers/Features/Modules.php:164
 msgid "Effortlessly add animated elements for a more engaging website experience"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:160
-#: includes/Modules/PostGrid.php:64
+#: includes/Managers/Features/Modules.php:171
+#: includes/Managers/Features/Modules.php:222
+#: includes/Managers/Features/Modules.php:270
+#: includes/Managers/Features/Modules.php:285
+#: includes/Managers/Features/Modules.php:454
+msgid "Image & Media Modules"
+msgstr ""
+
+#: includes/Managers/Features/Modules.php:179
+#: includes/Modules/PostGrid.php:76
 msgid "Post Grid"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:161
+#: includes/Managers/Features/Modules.php:180
 msgid "Display your blog posts in a stylish and organized grid layout."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:163
+#: includes/Managers/Features/Modules.php:182
 #: includes/Modules/PostGridChild.php:46
 msgid "Post Element"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:174
+#: includes/Managers/Features/Modules.php:192
+#: includes/Managers/Features/Modules.php:350
+msgid "Dynamic Content Modules"
+msgstr ""
+
+#: includes/Managers/Features/Modules.php:199
 #: includes/Modules/TypingText.php:42
 #: includes/Modules/TypingText.php:294
 msgid "Typing Text"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:175
+#: includes/Managers/Features/Modules.php:200
 msgid "Create eye-catching animated title or heading text that simulates a typing effect."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:186
+#: includes/Managers/Features/Modules.php:214
 #: includes/Modules/ImageMask.php:38
 msgid "Image Mask"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:187
+#: includes/Managers/Features/Modules.php:215
 msgid "Apply stunning masks to your images, adding creativity and visual appeal to your website."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:198
+#: includes/Managers/Features/Modules.php:229
 #: includes/Modules/FlipBox.php:46
 msgid "Flip Box"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:199
+#: includes/Managers/Features/Modules.php:230
 msgid "Display content on one side, then on hover, flip to reveal more info or a different design."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:213
+#: includes/Managers/Features/Modules.php:237
+#: includes/Managers/Features/Modules.php:255
+#: includes/Managers/Features/Modules.php:469
+msgid "Content Modules"
+msgstr ""
+
+#: includes/Managers/Features/Modules.php:245
 #: includes/Modules/BusinessHours.php:41
 #: includes/Modules/BusinessHours.php:42
 msgid "Business Hours"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:214
+#: includes/Managers/Features/Modules.php:246
 msgid "Display your business hours in a clear and organized manner."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:216
+#: includes/Managers/Features/Modules.php:248
 #: includes/Modules/BusinessHoursChild.php:40
 msgid "Business Day"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:227
+#: includes/Managers/Features/Modules.php:262
 #: includes/Modules/BeforeAfterImageSlider.php:44
 msgid "Before After Image Slider"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:228
+#: includes/Managers/Features/Modules.php:263
 msgid "Engage your visitors with interactive image comparisons."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:239
+#: includes/Managers/Features/Modules.php:277
 #: includes/Modules/ImageGallery.php:55
 msgid "Image Gallery"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:240
+#: includes/Managers/Features/Modules.php:278
 msgid "Effortlessly create stunning galleries to engage and captivate your audience."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:251
+#: includes/Managers/Features/Modules.php:292
+#: includes/Modules/FormStylers/ContactForm7.php:36
 #: includes/Modules/FormStylers/ContactForm7.php:37
-#: includes/Modules/FormStylers/ContactForm7.php:38
 msgid "Contact Form 7"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:252
+#: includes/Managers/Features/Modules.php:293
 msgid "Effortlessly customize Contact Form 7 design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:264
+#: includes/Managers/Features/Modules.php:303
+#: includes/Managers/Features/Modules.php:317
+#: includes/Managers/Features/Modules.php:335
+#: includes/Managers/Features/Modules.php:487
+#: includes/Managers/Features/Modules.php:505
+msgid "Form Styler Modules"
+msgstr ""
+
+#: includes/Managers/Features/Modules.php:308
+#: includes/Modules/FormStylers/WPForms.php:44
 #: includes/Modules/FormStylers/WPForms.php:45
-#: includes/Modules/FormStylers/WPForms.php:46
 msgid "WP Forms"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:265
+#: includes/Managers/Features/Modules.php:309
 msgid "Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:277
+#: includes/Managers/Features/Modules.php:324
+#: includes/Modules/FormStylers/GravityForms.php:35
 #: includes/Modules/FormStylers/GravityForms.php:36
-#: includes/Modules/FormStylers/GravityForms.php:37
 msgid "Gravity Forms"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:278
+#: includes/Managers/Features/Modules.php:325
 msgid "Effortlessly customize Gravity Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:290
+#: includes/Managers/Features/Modules.php:342
 #: includes/Modules/PostReadingTime.php:45
 msgid "Post Reading Time"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:291
+#: includes/Managers/Features/Modules.php:343
 msgid "Show how long it takes to read your blog posts. Useful for readers planning their time."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:302
+#: includes/Managers/Features/Modules.php:357
 #: includes/Modules/GlitchText.php:38
 #: includes/Modules/GlitchText.php:59
 #: includes/Modules/GlitchText.php:95
@@ -1507,11 +1643,11 @@ msgstr ""
 msgid "Glitch Text"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:303
+#: includes/Managers/Features/Modules.php:358
 msgid "Create eye-catching headlines and captions with a mesmerizing glitch effect."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:314
+#: includes/Managers/Features/Modules.php:372
 #: includes/Modules/GradientText.php:38
 #: includes/Modules/GradientText.php:62
 #: includes/Modules/GradientText.php:108
@@ -1519,11 +1655,11 @@ msgstr ""
 msgid "Gradient Text"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:315
+#: includes/Managers/Features/Modules.php:373
 msgid "Create eye-catching headlines, captions, and more with this versatile and dynamic module."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:325
+#: includes/Managers/Features/Modules.php:386
 #: includes/Modules/ScrollingText.php:39
 #: includes/Modules/ScrollingText.php:60
 #: includes/Modules/ScrollingText.php:102
@@ -1531,74 +1667,74 @@ msgstr ""
 msgid "Scrolling Text"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:326
+#: includes/Managers/Features/Modules.php:387
 msgid "Add dynamic, attention-grabbing text animations to your Divi-powered website."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:337
+#: includes/Managers/Features/Modules.php:401
 #: includes/Modules/StarRating.php:38
 msgid "Star Rating"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:338
+#: includes/Managers/Features/Modules.php:402
 msgid "Add stylish star ratings to your content for user feedback and ratings."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:349
+#: includes/Managers/Features/Modules.php:416
 #: includes/Modules/Breadcrumbs.php:40
 #: includes/Modules/Breadcrumbs.php:41
 #: includes/Modules/Breadcrumbs.php:58
 msgid "Breadcrumbs"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:350
+#: includes/Managers/Features/Modules.php:417
 msgid "Enhance navigation with a clear path for users to trace their steps through your website."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:361
+#: includes/Managers/Features/Modules.php:431
 #: includes/Modules/DropCapText.php:41
 msgid "Drop Cap Text"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:362
+#: includes/Managers/Features/Modules.php:432
 msgid "Create visually appealing drop caps to add emphasis and style to your text content."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:373
+#: includes/Managers/Features/Modules.php:446
 #: includes/Modules/VideoPopup.php:45
 msgid "Video Popup"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:374
+#: includes/Managers/Features/Modules.php:447
 msgid "Engage visitors with customizable video popups for YouTube and Vimeo."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:385
+#: includes/Managers/Features/Modules.php:461
 #: includes/Modules/GoogleMap.php:42
 msgid "Google Embed Map"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:386
+#: includes/Managers/Features/Modules.php:462
 msgid "Right into your Divi's site easily without having to worry about anything else."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:397
+#: includes/Managers/Features/Modules.php:476
+#: includes/Modules/FormStylers/NinjaForms.php:36
 #: includes/Modules/FormStylers/NinjaForms.php:37
-#: includes/Modules/FormStylers/NinjaForms.php:38
 msgid "Ninja Forms"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:398
+#: includes/Managers/Features/Modules.php:477
 msgid "Effortlessly customize Ninja Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:410
+#: includes/Managers/Features/Modules.php:494
+#: includes/Modules/FormStylers/FluentForms.php:38
 #: includes/Modules/FormStylers/FluentForms.php:39
-#: includes/Modules/FormStylers/FluentForms.php:40
 msgid "Fluent Forms"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:411
+#: includes/Managers/Features/Modules.php:495
 msgid "Effortlessly customize Fluent Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr ""
 
@@ -1827,11 +1963,11 @@ msgstr ""
 #: includes/Modules/BeforeAfterImageSlider.php:106
 #: includes/Modules/BeforeAfterImageSlider.php:144
 #: includes/Modules/BeforeAfterImageSlider.php:159
-#: includes/Modules/FormStylers/ContactForm7.php:139
-#: includes/Modules/FormStylers/FluentForms.php:245
-#: includes/Modules/FormStylers/GravityForms.php:370
-#: includes/Modules/FormStylers/NinjaForms.php:281
-#: includes/Modules/FormStylers/WPForms.php:178
+#: includes/Modules/FormStylers/ContactForm7.php:138
+#: includes/Modules/FormStylers/FluentForms.php:244
+#: includes/Modules/FormStylers/GravityForms.php:369
+#: includes/Modules/FormStylers/NinjaForms.php:280
+#: includes/Modules/FormStylers/WPForms.php:177
 msgid "Label"
 msgstr ""
 
@@ -1868,13 +2004,13 @@ msgstr ""
 
 #: includes/Modules/BeforeAfterImageSlider.php:294
 #: includes/Modules/DualButton.php:586
-#: includes/Modules/ImageMask.php:227
+#: includes/Modules/ImageMask.php:240
 msgid "Horizontal"
 msgstr ""
 
 #: includes/Modules/BeforeAfterImageSlider.php:295
 #: includes/Modules/DualButton.php:587
-#: includes/Modules/ImageMask.php:231
+#: includes/Modules/ImageMask.php:244
 msgid "Vertical"
 msgstr ""
 
@@ -1907,11 +2043,11 @@ msgid "Control Starting Point"
 msgstr ""
 
 #: includes/Modules/BeforeAfterImageSlider.php:333
-#: includes/Modules/FlipBox.php:2161
-#: includes/Modules/FlipBox.php:2183
-#: includes/Modules/FlipBox.php:2205
-#: includes/Modules/FlipBox.php:2228
-#: includes/Modules/FlipBox.php:2251
+#: includes/Modules/FlipBox.php:2167
+#: includes/Modules/FlipBox.php:2189
+#: includes/Modules/FlipBox.php:2211
+#: includes/Modules/FlipBox.php:2234
+#: includes/Modules/FlipBox.php:2257
 msgid "Increase the order number to position the item lower."
 msgstr ""
 
@@ -1961,18 +2097,18 @@ msgstr ""
 
 #: includes/Modules/BeforeAfterImageSlider.php:455
 #: includes/Modules/Divider.php:602
-#: includes/Modules/FlipBox.php:1649
-#: includes/Modules/ImageMask.php:110
-#: includes/Modules/PostGridChild.php:607
+#: includes/Modules/FlipBox.php:1655
+#: includes/Modules/ImageMask.php:113
+#: includes/Modules/PostGridChild.php:623
 #: includes/Modules/VideoPopup.php:166
 msgid "Image Alt Text"
 msgstr ""
 
 #: includes/Modules/BeforeAfterImageSlider.php:456
 #: includes/Modules/Divider.php:603
-#: includes/Modules/FlipBox.php:1650
-#: includes/Modules/ImageMask.php:111
-#: includes/Modules/PostGridChild.php:608
+#: includes/Modules/FlipBox.php:1656
+#: includes/Modules/ImageMask.php:114
+#: includes/Modules/PostGridChild.php:624
 msgid "Define the HTML ALT text for your image here."
 msgstr ""
 
@@ -1989,7 +2125,7 @@ msgid "Label Background"
 msgstr ""
 
 #: includes/Modules/BeforeAfterImageSlider.php:492
-#: includes/Modules/FormStylers/FluentForms.php:184
+#: includes/Modules/FormStylers/FluentForms.php:183
 msgid "Label Margin"
 msgstr ""
 
@@ -1998,7 +2134,7 @@ msgid "Here you can define a custom margin size for the before label."
 msgstr ""
 
 #: includes/Modules/BeforeAfterImageSlider.php:509
-#: includes/Modules/FormStylers/FluentForms.php:203
+#: includes/Modules/FormStylers/FluentForms.php:202
 msgid "Label Padding"
 msgstr ""
 
@@ -2029,7 +2165,7 @@ msgstr ""
 
 #: includes/Modules/Breadcrumbs.php:113
 #: includes/Modules/Breadcrumbs.php:143
-#: includes/Modules/PostGridChild.php:455
+#: includes/Modules/PostGridChild.php:384
 #: includes/Modules/TypingText.php:68
 #: includes/Modules/TypingText.php:283
 msgid "Before Text"
@@ -2100,15 +2236,14 @@ msgstr ""
 #: includes/Modules/BusinessHours.php:214
 #: includes/Modules/FlipBox.php:230
 #: includes/Modules/FlipBox.php:258
-#: includes/Modules/FlipBox.php:1488
-#: includes/Modules/FlipBox.php:2293
-#: includes/Modules/FormStylers/GravityForms.php:64
-#: includes/Modules/FormStylers/GravityForms.php:318
-#: includes/Modules/FormStylers/GravityForms.php:454
-#: includes/Modules/FormStylers/NinjaForms.php:242
-#: includes/Modules/FormStylers/NinjaForms.php:383
-#: includes/Modules/FormStylers/NinjaForms.php:702
-#: includes/Modules/PostGrid.php:573
+#: includes/Modules/FlipBox.php:1494
+#: includes/Modules/FlipBox.php:2299
+#: includes/Modules/FormStylers/GravityForms.php:63
+#: includes/Modules/FormStylers/GravityForms.php:317
+#: includes/Modules/FormStylers/GravityForms.php:453
+#: includes/Modules/FormStylers/NinjaForms.php:241
+#: includes/Modules/FormStylers/NinjaForms.php:382
+#: includes/Modules/FormStylers/NinjaForms.php:701
 #: includes/Modules/PostGridChild.php:59
 #: includes/Modules/StarRating.php:67
 #: includes/Modules/StarRating.php:125
@@ -2122,7 +2257,7 @@ msgstr ""
 
 #: includes/Modules/BusinessHours.php:66
 #: includes/Modules/FlipBox.php:114
-#: includes/Modules/FormStylers/GravityForms.php:65
+#: includes/Modules/FormStylers/GravityForms.php:64
 msgid "Title Text"
 msgstr ""
 
@@ -2171,21 +2306,21 @@ msgstr ""
 #: includes/Modules/DualButton.php:203
 #: includes/Modules/FlipBox.php:945
 #: includes/Modules/FlipBox.php:960
-#: includes/Modules/FormStylers/ContactForm7.php:303
-#: includes/Modules/FormStylers/GravityForms.php:575
-#: includes/Modules/FormStylers/NinjaForms.php:484
-#: includes/Modules/FormStylers/WPForms.php:343
-#: includes/Modules/PostGrid.php:329
-#: includes/Modules/PostGrid.php:343
-#: includes/Modules/PostGrid.php:387
-#: includes/Modules/PostGridChild.php:209
+#: includes/Modules/FormStylers/ContactForm7.php:302
+#: includes/Modules/FormStylers/GravityForms.php:574
+#: includes/Modules/FormStylers/NinjaForms.php:483
+#: includes/Modules/FormStylers/WPForms.php:342
+#: includes/Modules/PostGrid.php:341
+#: includes/Modules/PostGrid.php:355
+#: includes/Modules/PostGrid.php:399
+#: includes/Modules/PostGridChild.php:212
 #: includes/Modules/TypingText.php:183
 msgid "Wrapper Box Shadow"
 msgstr ""
 
 #: includes/Modules/BusinessHours.php:188
-#: includes/Modules/FormStylers/GravityForms.php:589
-#: includes/Modules/FormStylers/NinjaForms.php:498
+#: includes/Modules/FormStylers/GravityForms.php:588
+#: includes/Modules/FormStylers/NinjaForms.php:497
 msgid "Title Box Shadow"
 msgstr ""
 
@@ -2202,14 +2337,14 @@ msgid "The title text will appear before at your business hours."
 msgstr ""
 
 #: includes/Modules/BusinessHours.php:261
-#: includes/Modules/FlipBox.php:1521
-#: includes/Modules/PostGridChild.php:329
+#: includes/Modules/FlipBox.php:1527
+#: includes/Modules/PostGridChild.php:438
 #: includes/Modules/StarRating.php:228
 msgid "Title Tag"
 msgstr ""
 
 #: includes/Modules/BusinessHours.php:263
-#: includes/Modules/FlipBox.php:1523
+#: includes/Modules/FlipBox.php:1529
 msgid "Choose a tag to display with your title."
 msgstr ""
 
@@ -2247,8 +2382,8 @@ msgid "Here you can choose whether or not show the separator between day and tim
 msgstr ""
 
 #: includes/Modules/BusinessHours.php:347
-#: includes/Modules/FormStylers/GravityForms.php:189
-#: includes/Modules/FormStylers/NinjaForms.php:91
+#: includes/Modules/FormStylers/GravityForms.php:188
+#: includes/Modules/FormStylers/NinjaForms.php:90
 msgid "Title Background"
 msgstr ""
 
@@ -2270,16 +2405,16 @@ msgstr ""
 
 #: includes/Modules/BusinessHours.php:392
 #: includes/Modules/BusinessHoursChild.php:318
-#: includes/Modules/FlipBox.php:1948
-#: includes/Modules/PostGrid.php:1254
+#: includes/Modules/FlipBox.php:1954
+#: includes/Modules/PostGrid.php:1267
 msgid "Text Alignment"
 msgstr ""
 
 #: includes/Modules/BusinessHours.php:394
 #: includes/Modules/BusinessHoursChild.php:320
-#: includes/Modules/FlipBox.php:1950
-#: includes/Modules/PostGrid.php:1256
-#: includes/Modules/PostGridChild.php:900
+#: includes/Modules/FlipBox.php:1956
+#: includes/Modules/PostGrid.php:1269
+#: includes/Modules/PostGridChild.php:916
 msgid "This controls how your text is aligned within the module."
 msgstr ""
 
@@ -2287,10 +2422,10 @@ msgstr ""
 #: includes/Modules/BusinessHoursChild.php:332
 #: includes/Modules/Divider.php:1110
 #: includes/Modules/DualButton.php:628
-#: includes/Modules/FlipBox.php:1983
-#: includes/Modules/PostGrid.php:1057
-#: includes/Modules/PostGrid.php:1268
-#: includes/Modules/PostGrid.php:1290
+#: includes/Modules/FlipBox.php:1989
+#: includes/Modules/PostGrid.php:1070
+#: includes/Modules/PostGrid.php:1281
+#: includes/Modules/PostGrid.php:1303
 #: includes/Modules/TypingText.php:630
 msgid "Wrapper Margin"
 msgstr ""
@@ -2299,10 +2434,10 @@ msgstr ""
 #: includes/Modules/BusinessHoursChild.php:334
 #: includes/Modules/Divider.php:1112
 #: includes/Modules/DualButton.php:630
-#: includes/Modules/FlipBox.php:1985
-#: includes/Modules/PostGrid.php:1270
-#: includes/Modules/PostGrid.php:1292
-#: includes/Modules/PostGridChild.php:911
+#: includes/Modules/FlipBox.php:1991
+#: includes/Modules/PostGrid.php:1283
+#: includes/Modules/PostGrid.php:1305
+#: includes/Modules/PostGridChild.php:927
 #: includes/Modules/TypingText.php:632
 msgid "Here you can define a custom margin size for the wrapper."
 msgstr ""
@@ -2311,30 +2446,30 @@ msgstr ""
 #: includes/Modules/BusinessHoursChild.php:344
 #: includes/Modules/Divider.php:1119
 #: includes/Modules/DualButton.php:640
-#: includes/Modules/FlipBox.php:1993
-#: includes/Modules/PostGrid.php:1076
-#: includes/Modules/PostGrid.php:1277
-#: includes/Modules/PostGrid.php:1299
+#: includes/Modules/FlipBox.php:1999
+#: includes/Modules/PostGrid.php:1089
+#: includes/Modules/PostGrid.php:1290
+#: includes/Modules/PostGrid.php:1312
 #: includes/Modules/TypingText.php:639
 msgid "Wrapper Padding"
 msgstr ""
 
 #: includes/Modules/BusinessHours.php:429
-#: includes/Modules/FlipBox.php:2009
-#: includes/Modules/FormStylers/GravityForms.php:207
-#: includes/Modules/FormStylers/NinjaForms.php:100
+#: includes/Modules/FlipBox.php:2015
+#: includes/Modules/FormStylers/GravityForms.php:206
+#: includes/Modules/FormStylers/NinjaForms.php:99
 msgid "Title Margin"
 msgstr ""
 
 #: includes/Modules/BusinessHours.php:431
-#: includes/Modules/FlipBox.php:2011
+#: includes/Modules/FlipBox.php:2017
 msgid "Here you can define a custom margin size for the title."
 msgstr ""
 
 #: includes/Modules/BusinessHours.php:445
-#: includes/Modules/FlipBox.php:2027
-#: includes/Modules/FormStylers/GravityForms.php:224
-#: includes/Modules/FormStylers/NinjaForms.php:118
+#: includes/Modules/FlipBox.php:2033
+#: includes/Modules/FormStylers/GravityForms.php:223
+#: includes/Modules/FormStylers/NinjaForms.php:117
 msgid "Title Padding"
 msgstr ""
 
@@ -2416,9 +2551,9 @@ msgstr ""
 
 #: includes/Modules/Divider.php:67
 #: includes/Modules/Divider.php:75
-#: includes/Modules/PostGridChild.php:70
-#: includes/Modules/PostGridChild.php:86
-#: includes/Modules/PostGridChild.php:96
+#: includes/Modules/PostGridChild.php:69
+#: includes/Modules/PostGridChild.php:89
+#: includes/Modules/PostGridChild.php:99
 #: includes/Modules/PostReadingTime.php:66
 #: includes/Modules/PostReadingTime.php:73
 msgid "Divider"
@@ -2450,12 +2585,12 @@ msgstr ""
 
 #: includes/Modules/Divider.php:88
 #: includes/Modules/FlipBox.php:109
-#: includes/Modules/PostGridChild.php:93
+#: includes/Modules/PostGridChild.php:96
 msgid "Icon Text"
 msgstr ""
 
 #: includes/Modules/Divider.php:156
-#: includes/Modules/PostGridChild.php:223
+#: includes/Modules/PostGridChild.php:226
 msgid "Icon Box Shadow"
 msgstr ""
 
@@ -2559,8 +2694,8 @@ msgid "Here you can choose divider right side width."
 msgstr ""
 
 #: includes/Modules/Divider.php:537
-#: includes/Modules/FlipBox.php:1586
-#: includes/Modules/PostGridChild.php:536
+#: includes/Modules/FlipBox.php:1592
+#: includes/Modules/PostGridChild.php:552
 msgid "Icon Type"
 msgstr ""
 
@@ -2638,51 +2773,51 @@ msgid "Here you can choose where to place the element."
 msgstr ""
 
 #: includes/Modules/Divider.php:701
-#: includes/Modules/PostGrid.php:1310
+#: includes/Modules/PostGrid.php:1323
 msgid "Element Margin"
 msgstr ""
 
 #: includes/Modules/Divider.php:711
-#: includes/Modules/PostGrid.php:1326
+#: includes/Modules/PostGrid.php:1339
 msgid "Element Padding"
 msgstr ""
 
 #: includes/Modules/Divider.php:727
-#: includes/Modules/FlipBox.php:1677
-#: includes/Modules/PostGrid.php:946
-#: includes/Modules/PostGridChild.php:673
-#: includes/Modules/PostGridChild.php:691
+#: includes/Modules/FlipBox.php:1683
+#: includes/Modules/PostGrid.php:959
+#: includes/Modules/PostGridChild.php:689
+#: includes/Modules/PostGridChild.php:707
 msgid "Here you can define a custom color for your icon."
 msgstr ""
 
 #: includes/Modules/Divider.php:735
-#: includes/Modules/FlipBox.php:1685
-#: includes/Modules/PostGridChild.php:680
+#: includes/Modules/FlipBox.php:1691
+#: includes/Modules/PostGridChild.php:696
 msgid "Icon Background Color"
 msgstr ""
 
 #: includes/Modules/Divider.php:737
-#: includes/Modules/FlipBox.php:1687
-#: includes/Modules/PostGridChild.php:682
+#: includes/Modules/FlipBox.php:1693
+#: includes/Modules/PostGridChild.php:698
 msgid "Here you can define a custom background color."
 msgstr ""
 
 #: includes/Modules/Divider.php:798
-#: includes/Modules/FlipBox.php:1912
-#: includes/Modules/PostGridChild.php:844
+#: includes/Modules/FlipBox.php:1918
+#: includes/Modules/PostGridChild.php:860
 msgid "Icon Margin"
 msgstr ""
 
 #: includes/Modules/Divider.php:800
-#: includes/Modules/FlipBox.php:1914
-#: includes/Modules/PostGridChild.php:846
-#: includes/Modules/PostGridChild.php:866
+#: includes/Modules/FlipBox.php:1920
+#: includes/Modules/PostGridChild.php:862
+#: includes/Modules/PostGridChild.php:882
 msgid "Here you can define a custom margin size for the icon."
 msgstr ""
 
 #: includes/Modules/Divider.php:808
-#: includes/Modules/FlipBox.php:1923
-#: includes/Modules/PostGridChild.php:854
+#: includes/Modules/FlipBox.php:1929
+#: includes/Modules/PostGridChild.php:870
 msgid "Icon Padding"
 msgstr ""
 
@@ -2944,8 +3079,8 @@ msgstr ""
 #: includes/Modules/DropCapText.php:90
 #: includes/Modules/FlipBox.php:342
 #: includes/Modules/FlipBox.php:391
-#: includes/Modules/FlipBox.php:1510
-#: includes/Modules/FlipBox.php:2309
+#: includes/Modules/FlipBox.php:1516
+#: includes/Modules/FlipBox.php:2315
 msgid "Body"
 msgstr ""
 
@@ -2963,15 +3098,15 @@ msgstr ""
 
 #: includes/Modules/DropCapText.php:158
 #: includes/Modules/DualButton.php:412
-#: includes/Modules/PostGridChild.php:889
-#: includes/Modules/PostGridChild.php:931
+#: includes/Modules/PostGridChild.php:905
+#: includes/Modules/PostGridChild.php:947
 #: includes/Modules/VideoPopup.php:344
 msgid "Background"
 msgstr ""
 
 #: includes/Modules/DropCapText.php:167
-#: includes/Modules/PostGridChild.php:909
-#: includes/Modules/PostGridChild.php:943
+#: includes/Modules/PostGridChild.php:925
+#: includes/Modules/PostGridChild.php:959
 msgid "Margin"
 msgstr ""
 
@@ -2980,8 +3115,8 @@ msgid "Here you can define a custom margin size for the drop cap letter."
 msgstr ""
 
 #: includes/Modules/DropCapText.php:181
-#: includes/Modules/PostGridChild.php:918
-#: includes/Modules/PostGridChild.php:958
+#: includes/Modules/PostGridChild.php:934
+#: includes/Modules/PostGridChild.php:974
 msgid "Padding"
 msgstr ""
 
@@ -3020,12 +3155,12 @@ msgstr ""
 #: includes/Modules/DualButton.php:231
 #: includes/Modules/FlipBox.php:975
 #: includes/Modules/FlipBox.php:992
-#: includes/Modules/FormStylers/ContactForm7.php:331
-#: includes/Modules/FormStylers/FluentForms.php:448
-#: includes/Modules/FormStylers/GravityForms.php:631
-#: includes/Modules/FormStylers/NinjaForms.php:526
-#: includes/Modules/FormStylers/WPForms.php:371
-#: includes/Modules/PostGrid.php:371
+#: includes/Modules/FormStylers/ContactForm7.php:330
+#: includes/Modules/FormStylers/FluentForms.php:447
+#: includes/Modules/FormStylers/GravityForms.php:630
+#: includes/Modules/FormStylers/NinjaForms.php:525
+#: includes/Modules/FormStylers/WPForms.php:370
+#: includes/Modules/PostGrid.php:383
 msgid "Button Box Shadow"
 msgstr ""
 
@@ -3138,7 +3273,7 @@ msgstr ""
 
 #: includes/Modules/DualButton.php:654
 #: includes/Modules/DualButton.php:674
-#: includes/Modules/FlipBox.php:2122
+#: includes/Modules/FlipBox.php:2128
 msgid "If you would like to make your button link, input your destination URL here."
 msgstr ""
 
@@ -3148,20 +3283,8 @@ msgstr ""
 
 #: includes/Modules/DualButton.php:662
 #: includes/Modules/DualButton.php:682
-#: includes/Modules/FlipBox.php:2132
+#: includes/Modules/FlipBox.php:2138
 msgid "Here you can choose whether or not your link opens in a new window"
-msgstr ""
-
-#: includes/Modules/DualButton.php:666
-#: includes/Modules/DualButton.php:686
-#: includes/Modules/FlipBox.php:2136
-msgid "In The Same Window"
-msgstr ""
-
-#: includes/Modules/DualButton.php:667
-#: includes/Modules/DualButton.php:687
-#: includes/Modules/FlipBox.php:2137
-msgid "In The New Tab"
 msgstr ""
 
 #: includes/Modules/DualButton.php:673
@@ -3251,8 +3374,8 @@ msgstr ""
 
 #: includes/Modules/FlipBox.php:286
 #: includes/Modules/FlipBox.php:314
-#: includes/Modules/FlipBox.php:1499
-#: includes/Modules/FlipBox.php:2301
+#: includes/Modules/FlipBox.php:1505
+#: includes/Modules/FlipBox.php:2307
 msgid "Sub Title"
 msgstr ""
 
@@ -3288,7 +3411,7 @@ msgstr ""
 
 #: includes/Modules/FlipBox.php:1061
 #: includes/Modules/FlipBox.php:1081
-#: includes/Modules/PostGrid.php:1211
+#: includes/Modules/PostGrid.php:1224
 msgid "Button Alignment"
 msgstr ""
 
@@ -3329,22 +3452,22 @@ msgid "Align icon to the top, bottom or center."
 msgstr ""
 
 #: includes/Modules/FlipBox.php:1175
-#: includes/Modules/FlipBox.php:1876
-#: includes/Modules/PostGridChild.php:809
+#: includes/Modules/FlipBox.php:1882
+#: includes/Modules/PostGridChild.php:825
 #: includes/Modules/StarRating.php:276
 msgid "Top"
 msgstr ""
 
 #: includes/Modules/FlipBox.php:1176
-#: includes/Modules/FlipBox.php:1216
-#: includes/Modules/FlipBox.php:1877
-#: includes/Modules/PostGridChild.php:810
+#: includes/Modules/FlipBox.php:1222
+#: includes/Modules/FlipBox.php:1883
+#: includes/Modules/PostGridChild.php:826
 msgid "Center"
 msgstr ""
 
 #: includes/Modules/FlipBox.php:1177
-#: includes/Modules/FlipBox.php:1878
-#: includes/Modules/PostGridChild.php:811
+#: includes/Modules/FlipBox.php:1884
+#: includes/Modules/PostGridChild.php:827
 #: includes/Modules/StarRating.php:277
 msgid "Bottom"
 msgstr ""
@@ -3357,470 +3480,470 @@ msgstr ""
 msgid "Here you can choose whether or not the back side view first mode, by default \"first side\"."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1202
+#: includes/Modules/FlipBox.php:1208
 msgid "Rotate"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1203
+#: includes/Modules/FlipBox.php:1209
 msgid "Zoom In"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1204
+#: includes/Modules/FlipBox.php:1210
 msgid "Fade"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1208
+#: includes/Modules/FlipBox.php:1214
 #: includes/Modules/ScrollingText.php:147
 #: includes/Modules/StarRating.php:262
 msgid "Right"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1209
+#: includes/Modules/FlipBox.php:1215
 #: includes/Modules/ScrollingText.php:146
 #: includes/Modules/StarRating.php:261
 msgid "Left"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1212
+#: includes/Modules/FlipBox.php:1218
 msgid "Up"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1213
+#: includes/Modules/FlipBox.php:1219
 msgid "Down"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1220
+#: includes/Modules/FlipBox.php:1226
 msgid "Animation Type"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1222
+#: includes/Modules/FlipBox.php:1228
 msgid "Pick an animation type to enable animations for this element. Once enabled, you will be able to change your animation type further."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1239
-#: includes/Modules/FlipBox.php:1262
-#: includes/Modules/FlipBox.php:1274
-#: includes/Modules/FlipBox.php:1286
+#: includes/Modules/FlipBox.php:1245
+#: includes/Modules/FlipBox.php:1268
+#: includes/Modules/FlipBox.php:1280
+#: includes/Modules/FlipBox.php:1292
 msgid "Animation Direction"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1241
+#: includes/Modules/FlipBox.php:1247
 msgid "Pick from up to four different animation directions, each of which will adjust the starting and ending position of your animated slide."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1264
-#: includes/Modules/FlipBox.php:1276
+#: includes/Modules/FlipBox.php:1270
+#: includes/Modules/FlipBox.php:1282
 msgid "Pick from up to two different animation directions, each of which will adjust the starting and ending position of your animated slide."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1288
+#: includes/Modules/FlipBox.php:1294
 msgid "Pick from up to five different animation directions, each of which will adjust the starting and ending position of your animated slide."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1302
+#: includes/Modules/FlipBox.php:1308
 msgid "Use 3D Content Effect"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1304
+#: includes/Modules/FlipBox.php:1310
 msgid "Here you can choose whether or not use 3D Content Effect for flip box."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1317
+#: includes/Modules/FlipBox.php:1323
 msgid "Move Both Side"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1319
+#: includes/Modules/FlipBox.php:1325
 msgid "Here you can choose whether or not move both slide in slide Effect for flip box."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1328
+#: includes/Modules/FlipBox.php:1334
 msgid "Translate Z"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1330
+#: includes/Modules/FlipBox.php:1336
 msgid "Here you can choose how much the translate z on 3d effect."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1347
+#: includes/Modules/FlipBox.php:1353
 msgid "Scale"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1349
+#: includes/Modules/FlipBox.php:1355
 msgid "Here you can choose how much the scale on 3d effect."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1489
+#: includes/Modules/FlipBox.php:1495
 msgid "The text of your title will appear in with your current side of flip box."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1500
+#: includes/Modules/FlipBox.php:1506
 msgid "The text of your sub title will appear in with your current side of flip box."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1511
+#: includes/Modules/FlipBox.php:1517
 msgid "Input the main text content for your current side of flip box here."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1533
+#: includes/Modules/FlipBox.php:1539
 msgid "Sub Title Tag"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1535
+#: includes/Modules/FlipBox.php:1541
 msgid "Choose a tag to display with your sub title."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1545
+#: includes/Modules/FlipBox.php:1551
 msgid "Show Button"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1547
+#: includes/Modules/FlipBox.php:1553
 msgid "Here you can choose whether or not show the button."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1588
+#: includes/Modules/FlipBox.php:1594
 msgid "Choose an icon type to display with your current side of flip box."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1622
+#: includes/Modules/FlipBox.php:1628
 msgid "Choose an icon to display with your current side of flip box."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1635
+#: includes/Modules/FlipBox.php:1641
 msgid "Upload an image to display at the top of your current side of flip box."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1661
+#: includes/Modules/FlipBox.php:1667
 msgid "The text as icon will appear in your current side of flip box."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1715
+#: includes/Modules/FlipBox.php:1721
 msgid "Image Force Full-Width"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1717
+#: includes/Modules/FlipBox.php:1723
 msgid "Here you can choose whether or not your full width."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1767
-#: includes/Modules/FlipBox.php:1861
-#: includes/Modules/PostGridChild.php:795
+#: includes/Modules/FlipBox.php:1773
+#: includes/Modules/FlipBox.php:1867
+#: includes/Modules/PostGridChild.php:811
 msgid "Icon Horizontal Alignment"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1780
+#: includes/Modules/FlipBox.php:1786
 msgid "Show Icon Outside The Container"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1782
+#: includes/Modules/FlipBox.php:1788
 msgid "Here you can choose whether or not your content will display outside the wrapper."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1817
+#: includes/Modules/FlipBox.php:1823
 msgid "Icon Wrapper Width"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1819
+#: includes/Modules/FlipBox.php:1825
 msgid "Here you can choose icon wrapper width."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1872
-#: includes/Modules/PostGridChild.php:805
+#: includes/Modules/FlipBox.php:1878
+#: includes/Modules/PostGridChild.php:821
 msgid "Icon Vertical Placement"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1890
+#: includes/Modules/FlipBox.php:1896
 msgid "Icon Wrapper Margin"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1892
+#: includes/Modules/FlipBox.php:1898
 msgid "Here you can define a custom margin size for the icon wrapper."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1901
+#: includes/Modules/FlipBox.php:1907
 msgid "Icon Wrapper Padding"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:1962
+#: includes/Modules/FlipBox.php:1968
 msgid "Gap Between Elements"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2045
+#: includes/Modules/FlipBox.php:2051
 msgid "Sub Title Margin"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2047
+#: includes/Modules/FlipBox.php:2053
 msgid "Here you can define a custom margin size for the sub title."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2063
+#: includes/Modules/FlipBox.php:2069
 msgid "Sub Title Padding"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2081
+#: includes/Modules/FlipBox.php:2087
 msgid "Body Margin"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2083
+#: includes/Modules/FlipBox.php:2089
 msgid "Here you can define a custom margin size for the content."
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2099
+#: includes/Modules/FlipBox.php:2105
 msgid "Body Padding"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2121
+#: includes/Modules/FlipBox.php:2127
 msgid "Button Link URL"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2131
+#: includes/Modules/FlipBox.php:2137
 msgid "Button Link Target"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2159
+#: includes/Modules/FlipBox.php:2165
 msgid "Image/Icon Order"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2181
+#: includes/Modules/FlipBox.php:2187
 msgid "Title Order"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2203
+#: includes/Modules/FlipBox.php:2209
 msgid "Sub Title Order"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2226
+#: includes/Modules/FlipBox.php:2232
 msgid "Body Order"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2249
+#: includes/Modules/FlipBox.php:2255
 msgid "Button Order"
 msgstr ""
 
-#: includes/Modules/FlipBox.php:2285
+#: includes/Modules/FlipBox.php:2291
 msgid "Icon/Image"
 msgstr ""
 
-#: includes/Modules/FormStylers/ContactForm7.php:62
-#: includes/Modules/FormStylers/FluentForms.php:61
-#: includes/Modules/FormStylers/GravityForms.php:95
-#: includes/Modules/FormStylers/NinjaForms.php:59
-#: includes/Modules/FormStylers/WPForms.php:70
+#: includes/Modules/FormStylers/ContactForm7.php:61
+#: includes/Modules/FormStylers/FluentForms.php:60
+#: includes/Modules/FormStylers/GravityForms.php:94
+#: includes/Modules/FormStylers/NinjaForms.php:58
+#: includes/Modules/FormStylers/WPForms.php:69
 msgid "Form"
 msgstr ""
 
-#: includes/Modules/FormStylers/ContactForm7.php:64
+#: includes/Modules/FormStylers/ContactForm7.php:63
 msgid "Here you can choose the contact form 7."
 msgstr ""
 
-#: includes/Modules/FormStylers/ContactForm7.php:74
-#: includes/Modules/FormStylers/FluentForms.php:73
-#: includes/Modules/FormStylers/GravityForms.php:167
-#: includes/Modules/FormStylers/NinjaForms.php:71
-#: includes/Modules/FormStylers/WPForms.php:82
+#: includes/Modules/FormStylers/ContactForm7.php:73
+#: includes/Modules/FormStylers/FluentForms.php:72
+#: includes/Modules/FormStylers/GravityForms.php:166
+#: includes/Modules/FormStylers/NinjaForms.php:70
+#: includes/Modules/FormStylers/WPForms.php:81
 msgid "Show Error & Success Messages"
 msgstr ""
 
-#: includes/Modules/FormStylers/ContactForm7.php:76
-#: includes/Modules/FormStylers/FluentForms.php:75
-#: includes/Modules/FormStylers/GravityForms.php:169
-#: includes/Modules/FormStylers/NinjaForms.php:73
-#: includes/Modules/FormStylers/WPForms.php:84
+#: includes/Modules/FormStylers/ContactForm7.php:75
+#: includes/Modules/FormStylers/FluentForms.php:74
+#: includes/Modules/FormStylers/GravityForms.php:168
+#: includes/Modules/FormStylers/NinjaForms.php:72
+#: includes/Modules/FormStylers/WPForms.php:83
 msgid "Here you can choose whether or not show the error and success messages in the visual  builder."
 msgstr ""
 
-#: includes/Modules/FormStylers/ContactForm7.php:151
-#: includes/Modules/FormStylers/FluentForms.php:257
-#: includes/Modules/FormStylers/GravityForms.php:382
-#: includes/Modules/FormStylers/NinjaForms.php:311
-#: includes/Modules/FormStylers/WPForms.php:190
+#: includes/Modules/FormStylers/ContactForm7.php:150
+#: includes/Modules/FormStylers/FluentForms.php:256
+#: includes/Modules/FormStylers/GravityForms.php:381
+#: includes/Modules/FormStylers/NinjaForms.php:310
+#: includes/Modules/FormStylers/WPForms.php:189
 msgid "Placeholder"
 msgstr ""
 
-#: includes/Modules/FormStylers/ContactForm7.php:317
-#: includes/Modules/FormStylers/FluentForms.php:420
-#: includes/Modules/FormStylers/GravityForms.php:617
-#: includes/Modules/FormStylers/NinjaForms.php:512
-#: includes/Modules/FormStylers/WPForms.php:357
+#: includes/Modules/FormStylers/ContactForm7.php:316
+#: includes/Modules/FormStylers/FluentForms.php:419
+#: includes/Modules/FormStylers/GravityForms.php:616
+#: includes/Modules/FormStylers/NinjaForms.php:511
+#: includes/Modules/FormStylers/WPForms.php:356
 msgid "Field Box Shadow"
 msgstr ""
 
-#: includes/Modules/FormStylers/ContactForm7.php:345
-#: includes/Modules/FormStylers/ContactForm7.php:359
-#: includes/Modules/FormStylers/FluentForms.php:462
-#: includes/Modules/FormStylers/FluentForms.php:476
-#: includes/Modules/FormStylers/GravityForms.php:645
-#: includes/Modules/FormStylers/GravityForms.php:659
-#: includes/Modules/FormStylers/NinjaForms.php:540
-#: includes/Modules/FormStylers/NinjaForms.php:554
-#: includes/Modules/FormStylers/WPForms.php:385
-#: includes/Modules/FormStylers/WPForms.php:399
+#: includes/Modules/FormStylers/ContactForm7.php:344
+#: includes/Modules/FormStylers/ContactForm7.php:358
+#: includes/Modules/FormStylers/FluentForms.php:461
+#: includes/Modules/FormStylers/FluentForms.php:475
+#: includes/Modules/FormStylers/GravityForms.php:644
+#: includes/Modules/FormStylers/GravityForms.php:658
+#: includes/Modules/FormStylers/NinjaForms.php:539
+#: includes/Modules/FormStylers/NinjaForms.php:553
+#: includes/Modules/FormStylers/WPForms.php:384
+#: includes/Modules/FormStylers/WPForms.php:398
 msgid "Message Box Shadow"
 msgstr ""
 
-#: includes/Modules/FormStylers/ContactForm7.php:449
-#: includes/Modules/FormStylers/FluentForms.php:620
+#: includes/Modules/FormStylers/ContactForm7.php:448
+#: includes/Modules/FormStylers/FluentForms.php:619
 msgid "File Upload"
 msgstr ""
 
-#: includes/Modules/FormStylers/ContactForm7.php:540
+#: includes/Modules/FormStylers/ContactForm7.php:539
 msgid "Contact Form 7 is not installed"
 msgstr ""
 
-#: includes/Modules/FormStylers/ContactForm7.php:553
-#: includes/Modules/FormStylers/FluentForms.php:696
-#: includes/Modules/FormStylers/GravityForms.php:847
-#: includes/Modules/FormStylers/NinjaForms.php:823
-#: includes/Modules/FormStylers/WPForms.php:558
+#: includes/Modules/FormStylers/ContactForm7.php:552
+#: includes/Modules/FormStylers/FluentForms.php:695
+#: includes/Modules/FormStylers/GravityForms.php:846
+#: includes/Modules/FormStylers/NinjaForms.php:822
+#: includes/Modules/FormStylers/WPForms.php:557
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Please select a form."
 msgstr ""
 
-#: includes/Modules/FormStylers/FluentForms.php:63
+#: includes/Modules/FormStylers/FluentForms.php:62
 msgid "Here you can choose the fluent form."
 msgstr ""
 
-#: includes/Modules/FormStylers/FluentForms.php:82
+#: includes/Modules/FormStylers/FluentForms.php:81
 msgid "Show Conditional Fields"
 msgstr ""
 
-#: includes/Modules/FormStylers/FluentForms.php:84
+#: includes/Modules/FormStylers/FluentForms.php:83
 msgid "Here you can choose whether or not show the conditional hidden fields in the visual  builder."
 msgstr ""
 
-#: includes/Modules/FormStylers/FluentForms.php:101
+#: includes/Modules/FormStylers/FluentForms.php:100
 msgid "Custom HTML Background"
 msgstr ""
 
-#: includes/Modules/FormStylers/FluentForms.php:110
+#: includes/Modules/FormStylers/FluentForms.php:109
 msgid "Custom HTML Margin"
 msgstr ""
 
-#: includes/Modules/FormStylers/FluentForms.php:126
+#: includes/Modules/FormStylers/FluentForms.php:125
 msgid "Custom HTML Padding"
 msgstr ""
 
-#: includes/Modules/FormStylers/FluentForms.php:434
+#: includes/Modules/FormStylers/FluentForms.php:433
 msgid "Custom HTML Box Shadow"
 msgstr ""
 
-#: includes/Modules/FormStylers/FluentForms.php:683
+#: includes/Modules/FormStylers/FluentForms.php:682
 msgid "Fluent Forms is not installed"
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:66
-#: includes/Modules/FormStylers/GravityForms.php:338
-#: includes/Modules/FormStylers/GravityForms.php:474
-#: includes/Modules/FormStylers/NinjaForms.php:296
+#: includes/Modules/FormStylers/GravityForms.php:65
+#: includes/Modules/FormStylers/GravityForms.php:337
+#: includes/Modules/FormStylers/GravityForms.php:473
+#: includes/Modules/FormStylers/NinjaForms.php:295
 #: build/admin/scripts/admin.js:178
 msgid "Description"
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:67
+#: includes/Modules/FormStylers/GravityForms.php:66
 msgid "Description Text"
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:97
+#: includes/Modules/FormStylers/GravityForms.php:96
 msgid "Here you can choose the gravity form."
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:107
+#: includes/Modules/FormStylers/GravityForms.php:106
 msgid "Show Form Title"
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:109
+#: includes/Modules/FormStylers/GravityForms.php:108
 #: includes/Modules/PostReadingTime.php:241
 msgid "Here you can choose whether or not show the form title."
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:131
+#: includes/Modules/FormStylers/GravityForms.php:130
 msgid "Show Form Description"
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:133
+#: includes/Modules/FormStylers/GravityForms.php:132
 msgid "Here you can choose whether or not show the form description."
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:155
+#: includes/Modules/FormStylers/GravityForms.php:154
 msgid "Use AJAX On Submit"
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:157
+#: includes/Modules/FormStylers/GravityForms.php:156
 msgid "Here you can choose whether or not use the ajax on form submission."
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:198
+#: includes/Modules/FormStylers/GravityForms.php:197
 msgid "Description Background"
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:241
+#: includes/Modules/FormStylers/GravityForms.php:240
 msgid "Description Margin"
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:258
+#: includes/Modules/FormStylers/GravityForms.php:257
 msgid "Description Padding"
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:603
+#: includes/Modules/FormStylers/GravityForms.php:602
 msgid "Desription Box Shadow"
 msgstr ""
 
-#: includes/Modules/FormStylers/GravityForms.php:834
+#: includes/Modules/FormStylers/GravityForms.php:833
 msgid "Gravity Forms is not installed"
 msgstr ""
 
-#: includes/Modules/FormStylers/NinjaForms.php:61
+#: includes/Modules/FormStylers/NinjaForms.php:60
 msgid "Here you can choose the ninja form."
 msgstr ""
 
-#: includes/Modules/FormStylers/NinjaForms.php:173
+#: includes/Modules/FormStylers/NinjaForms.php:172
 msgid "General Field Height"
 msgstr ""
 
-#: includes/Modules/FormStylers/NinjaForms.php:175
-#: includes/Modules/FormStylers/NinjaForms.php:193
-#: includes/Modules/FormStylers/NinjaForms.php:212
-#: includes/Modules/PostGrid.php:993
+#: includes/Modules/FormStylers/NinjaForms.php:174
+#: includes/Modules/FormStylers/NinjaForms.php:192
+#: includes/Modules/FormStylers/NinjaForms.php:211
+#: includes/Modules/PostGrid.php:1006
 msgid "Here you can choose gap between pagination elements."
 msgstr ""
 
-#: includes/Modules/FormStylers/NinjaForms.php:191
+#: includes/Modules/FormStylers/NinjaForms.php:190
 msgid "Textarea Field Height"
 msgstr ""
 
-#: includes/Modules/FormStylers/NinjaForms.php:210
+#: includes/Modules/FormStylers/NinjaForms.php:209
 msgid "Button Height"
 msgstr ""
 
-#: includes/Modules/FormStylers/NinjaForms.php:254
+#: includes/Modules/FormStylers/NinjaForms.php:253
 msgid "Form Before"
 msgstr ""
 
-#: includes/Modules/FormStylers/NinjaForms.php:718
+#: includes/Modules/FormStylers/NinjaForms.php:717
 #: includes/Modules/StarRating.php:39
 msgid "Star Ratings"
 msgstr ""
 
-#: includes/Modules/FormStylers/NinjaForms.php:726
+#: includes/Modules/FormStylers/NinjaForms.php:725
 msgid "Fieldset Remove Button"
 msgstr ""
 
-#: includes/Modules/FormStylers/NinjaForms.php:810
+#: includes/Modules/FormStylers/NinjaForms.php:809
 msgid "Ninja Forms is not installed"
 msgstr ""
 
-#: includes/Modules/FormStylers/WPForms.php:72
+#: includes/Modules/FormStylers/WPForms.php:71
 msgid "Here you can choose the wp form."
 msgstr ""
 
-#: includes/Modules/FormStylers/WPForms.php:136
+#: includes/Modules/FormStylers/WPForms.php:135
 msgid "Field Width"
 msgstr ""
 
-#: includes/Modules/FormStylers/WPForms.php:138
+#: includes/Modules/FormStylers/WPForms.php:137
 msgid "Set the width of the form fields."
 msgstr ""
 
-#: includes/Modules/FormStylers/WPForms.php:545
+#: includes/Modules/FormStylers/WPForms.php:544
 msgid "WPForms is not installed"
 msgstr ""
 
@@ -3984,10 +4107,10 @@ msgid "Gallery Settings"
 msgstr ""
 
 #: includes/Modules/ImageGallery.php:77
-#: includes/Modules/ImageMask.php:53
-#: includes/Modules/ImageMask.php:59
-#: includes/Modules/ImageMask.php:82
-#: includes/Modules/ImageMask.php:98
+#: includes/Modules/ImageMask.php:56
+#: includes/Modules/ImageMask.php:62
+#: includes/Modules/ImageMask.php:85
+#: includes/Modules/ImageMask.php:101
 #: includes/Modules/VideoPopup.php:69
 #: includes/Modules/VideoPopup.php:113
 #: includes/Modules/VideoPopup.php:154
@@ -4040,7 +4163,7 @@ msgid "Select an ordering method for the gallery. This controls which gallery it
 msgstr ""
 
 #: includes/Modules/ImageGallery.php:227
-#: includes/Modules/PostGrid.php:576
+#: includes/Modules/PostGrid.php:589
 msgid "Random"
 msgstr ""
 
@@ -4124,147 +4247,147 @@ msgstr ""
 msgid "Image Masks"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:54
+#: includes/Modules/ImageMask.php:57
 msgid "Mask Settings"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:99
+#: includes/Modules/ImageMask.php:102
 msgid "Upload an image to display at the top."
 msgstr ""
 
-#: includes/Modules/ImageMask.php:123
+#: includes/Modules/ImageMask.php:131
 msgid "Mask 01"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:124
+#: includes/Modules/ImageMask.php:132
 msgid "Mask 02"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:125
+#: includes/Modules/ImageMask.php:133
 msgid "Mask 03"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:126
+#: includes/Modules/ImageMask.php:134
 msgid "Mask 04"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:127
+#: includes/Modules/ImageMask.php:135
 msgid "Mask 05"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:128
+#: includes/Modules/ImageMask.php:136
 msgid "Mask 06"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:129
+#: includes/Modules/ImageMask.php:137
 msgid "Mask 07"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:130
+#: includes/Modules/ImageMask.php:138
 msgid "Mask 08"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:131
+#: includes/Modules/ImageMask.php:139
 msgid "Mask 09"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:132
+#: includes/Modules/ImageMask.php:140
 msgid "Mask 10"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:133
+#: includes/Modules/ImageMask.php:141
 msgid "Mask 11"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:134
+#: includes/Modules/ImageMask.php:142
 msgid "Mask 12"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:135
+#: includes/Modules/ImageMask.php:143
 msgid "Mask 13"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:136
+#: includes/Modules/ImageMask.php:144
 msgid "Mask 14"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:137
+#: includes/Modules/ImageMask.php:145
 msgid "Mask 15"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:138
+#: includes/Modules/ImageMask.php:146
 msgid "Mask 16"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:139
+#: includes/Modules/ImageMask.php:147
 msgid "Mask 17"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:140
+#: includes/Modules/ImageMask.php:148
 msgid "Mask 18"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:141
+#: includes/Modules/ImageMask.php:149
 msgid "Mask 19"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:142
+#: includes/Modules/ImageMask.php:150
 msgid "Mask 20"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:150
+#: includes/Modules/ImageMask.php:163
 msgid "Mask Shape"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:152
+#: includes/Modules/ImageMask.php:165
 msgid "Here you can choose mask shape for the image."
 msgstr ""
 
-#: includes/Modules/ImageMask.php:161
+#: includes/Modules/ImageMask.php:174
 msgid "Rotate Mask Shape"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:163
+#: includes/Modules/ImageMask.php:176
 msgid "Here you can choose mask shape rotation."
 msgstr ""
 
-#: includes/Modules/ImageMask.php:181
+#: includes/Modules/ImageMask.php:194
 msgid "Mask Shape Width"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:183
+#: includes/Modules/ImageMask.php:196
 msgid "Here you can choose mask shape width."
 msgstr ""
 
-#: includes/Modules/ImageMask.php:201
+#: includes/Modules/ImageMask.php:214
 msgid "Mask Shape Height"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:203
+#: includes/Modules/ImageMask.php:216
 msgid "Here you can choose mask shape height."
 msgstr ""
 
-#: includes/Modules/ImageMask.php:221
+#: includes/Modules/ImageMask.php:234
 msgid "Flip Mask Shape"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:222
+#: includes/Modules/ImageMask.php:235
 msgid "Flip the mask horizontally or vertically to change the shape and its direction."
 msgstr ""
 
-#: includes/Modules/ImageMask.php:282
+#: includes/Modules/ImageMask.php:295
 msgid "Image Horizontal Position"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:284
+#: includes/Modules/ImageMask.php:297
 msgid "Here you can choose image horizontal position."
 msgstr ""
 
-#: includes/Modules/ImageMask.php:298
+#: includes/Modules/ImageMask.php:311
 msgid "Image Vertical Position"
 msgstr ""
 
-#: includes/Modules/ImageMask.php:300
+#: includes/Modules/ImageMask.php:313
 msgid "Here you can choose image vertical position."
 msgstr ""
 
@@ -4284,402 +4407,403 @@ msgstr ""
 msgid "The title of your list item will appear in bold below your list item image."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:65
+#: includes/Modules/PostGrid.php:77
 msgid "Post Grids"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:83
+#: includes/Modules/PostGrid.php:95
 msgid "Post Settings"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:84
+#: includes/Modules/PostGrid.php:96
 msgid "Layout Settings"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:85
+#: includes/Modules/PostGrid.php:97
 msgid "Pagination Settings"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:86
-#: includes/Modules/PostGrid.php:94
+#: includes/Modules/PostGrid.php:98
+#: includes/Modules/PostGrid.php:106
 msgid "Load More"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:91
-#: includes/Modules/PostGrid.php:448
+#: includes/Modules/PostGrid.php:103
+#: includes/Modules/PostGrid.php:460
 msgid "Post Wrapper"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:92
+#: includes/Modules/PostGrid.php:104
 msgid "Element Wrapper"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:93
-#: includes/Modules/PostGrid.php:221
-#: includes/Modules/PostGridChild.php:84
-#: includes/Modules/PostGridChild.php:94
-#: includes/Modules/PostGridChild.php:128
-#: includes/Modules/PostGridChild.php:191
-#: includes/Modules/PostGridChild.php:280
+#: includes/Modules/PostGrid.php:105
+#: includes/Modules/PostGrid.php:233
+#: includes/Modules/PostGridChild.php:87
+#: includes/Modules/PostGridChild.php:97
+#: includes/Modules/PostGridChild.php:131
+#: includes/Modules/PostGridChild.php:194
+#: includes/Modules/PostGridChild.php:283
 msgid "Element"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:95
+#: includes/Modules/PostGrid.php:107
 msgid "Load More Text"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:96
-#: includes/Modules/PostGrid.php:456
+#: includes/Modules/PostGrid.php:108
+#: includes/Modules/PostGrid.php:468
 msgid "Pagination Wrapper"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:97
-#: includes/Modules/PostGrid.php:132
-#: includes/Modules/PostGrid.php:155
-#: includes/Modules/PostGrid.php:263
-#: includes/Modules/PostGrid.php:305
-#: includes/Modules/PostGrid.php:460
+#: includes/Modules/PostGrid.php:109
+#: includes/Modules/PostGrid.php:144
+#: includes/Modules/PostGrid.php:167
+#: includes/Modules/PostGrid.php:275
+#: includes/Modules/PostGrid.php:317
+#: includes/Modules/PostGrid.php:472
 msgid "Pagination"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:98
+#: includes/Modules/PostGrid.php:110
 msgid "Pagination Text"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:99
-#: includes/Modules/PostGrid.php:464
+#: includes/Modules/PostGrid.php:111
+#: includes/Modules/PostGrid.php:476
 msgid "Active Pagination"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:100
+#: includes/Modules/PostGrid.php:112
 msgid "Active Pagination Text"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:357
-#: includes/Modules/PostGridChild.php:240
+#: includes/Modules/PostGrid.php:369
+#: includes/Modules/PostGridChild.php:243
 msgid "Element Box Shadow"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:403
-#: includes/Modules/PostGrid.php:419
+#: includes/Modules/PostGrid.php:415
+#: includes/Modules/PostGrid.php:431
 msgid "Pagination Box Shadow"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:452
+#: includes/Modules/PostGrid.php:464
 msgid "Load More Button"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:486
+#: includes/Modules/PostGrid.php:498
 msgid "Add New Element"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:498
+#: includes/Modules/PostGrid.php:511
 msgid "Posts For Current Page"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:500
+#: includes/Modules/PostGrid.php:513
 msgid "Display posts for the current page. Useful on all author pages."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:513
+#: includes/Modules/PostGrid.php:526
 msgid "Display By"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:515
+#: includes/Modules/PostGrid.php:528
 msgid "Sort retrieved posts by parameter. Defaults to ‘recent’."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:517
+#: includes/Modules/PostGrid.php:530
 msgid "Recent"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:518
+#: includes/Modules/PostGrid.php:531
 msgid "Category"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:519
+#: includes/Modules/PostGrid.php:532
 msgid "Tag"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:538
+#: includes/Modules/PostGrid.php:551
 msgid "Include Categories"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:541
+#: includes/Modules/PostGrid.php:554
 msgid "All Categories"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:542
+#: includes/Modules/PostGrid.php:555
 msgid "Current Category"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:554
+#: includes/Modules/PostGrid.php:567
 msgid "Include Tags"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:566
+#: includes/Modules/PostGrid.php:579
 msgid "Order By"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:568
+#: includes/Modules/PostGrid.php:581
 msgid "Sort retrieved posts by parameter. Defaults to ‘date’."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:570
+#: includes/Modules/PostGrid.php:583
 msgid "Publish Date"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:571
+#: includes/Modules/PostGrid.php:584
 msgid "Modified Date"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:572
-#: build/admin/scripts/admin.js:175
-msgid "Name"
-msgstr ""
-
-#: includes/Modules/PostGrid.php:574
-#: includes/Modules/PostGridChild.php:62
-#: includes/Modules/StarRating.php:408
-msgid "Author"
-msgstr ""
-
-#: includes/Modules/PostGrid.php:575
-msgid "Comments"
+#: includes/Modules/PostGrid.php:585
+msgid "Post Name"
 msgstr ""
 
 #: includes/Modules/PostGrid.php:586
-msgid "Order"
+msgid "Post Title"
+msgstr ""
+
+#: includes/Modules/PostGrid.php:587
+msgid "Post Author"
 msgstr ""
 
 #: includes/Modules/PostGrid.php:588
+msgid "Comments"
+msgstr ""
+
+#: includes/Modules/PostGrid.php:599
+msgid "Order"
+msgstr ""
+
+#: includes/Modules/PostGrid.php:601
 msgid "Designates the ascending or descending order of the ‘orderby‘ parameter. Defaults to ‘Ascending’.."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:590
+#: includes/Modules/PostGrid.php:603
 msgid "Ascending"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:591
+#: includes/Modules/PostGrid.php:604
 msgid "Descending"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:602
+#: includes/Modules/PostGrid.php:615
 msgid "Post Count"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:604
+#: includes/Modules/PostGrid.php:617
 msgid "Here you can choose how much posts you would like to display per page."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:628
+#: includes/Modules/PostGrid.php:641
 msgid "Post Offset"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:630
+#: includes/Modules/PostGrid.php:643
 msgid "Here you can choose how much post show in the current page."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:653
+#: includes/Modules/PostGrid.php:666
 msgid "Skip Sticky Posts"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:655
+#: includes/Modules/PostGrid.php:668
 msgid " Ignore sticky  posts for the current page."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:665
+#: includes/Modules/PostGrid.php:678
 msgid "Featured Image Size"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:666
-#: includes/Modules/PostGrid.php:678
+#: includes/Modules/PostGrid.php:679
+#: includes/Modules/PostGrid.php:691
 msgid "If you would like to adjust the date format, input the appropriate PHP date format here."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:677
+#: includes/Modules/PostGrid.php:690
 msgid "Date Format"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:707
+#: includes/Modules/PostGrid.php:720
 msgid "Column Numbers"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:709
+#: includes/Modules/PostGrid.php:722
 msgid "Here you can choose list column for grid layout."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:729
+#: includes/Modules/PostGrid.php:742
 msgid "Columns Gap"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:731
+#: includes/Modules/PostGrid.php:744
 msgid "Here you can choose list item gap."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:748
+#: includes/Modules/PostGrid.php:761
 msgid "Show Pagination"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:750
-#: includes/Modules/PostGrid.php:839
-#: includes/Modules/PostGrid.php:850
+#: includes/Modules/PostGrid.php:763
+#: includes/Modules/PostGrid.php:852
+#: includes/Modules/PostGrid.php:863
 msgid "Here you can choose whether or not show the pagination."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:795
+#: includes/Modules/PostGrid.php:808
 msgid "Show Load More Button"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:797
+#: includes/Modules/PostGrid.php:810
 msgid "Here you can choose whether or not load more button."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:824
+#: includes/Modules/PostGrid.php:837
 msgid "Show Load More Spinner"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:826
+#: includes/Modules/PostGrid.php:839
 msgid "Here you can choose whether or not load more spinner at the visual builder."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:837
+#: includes/Modules/PostGrid.php:850
 msgid "Show Numbers"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:848
+#: includes/Modules/PostGrid.php:861
 msgid "Show Icon Only for Older and Next Entries "
 msgstr ""
 
-#: includes/Modules/PostGrid.php:866
+#: includes/Modules/PostGrid.php:879
 msgid "Old Entries Text"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:867
+#: includes/Modules/PostGrid.php:880
 msgid "The text will appear in with your old entries."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:875
+#: includes/Modules/PostGrid.php:888
 msgid "Old Entries Icon"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:876
+#: includes/Modules/PostGrid.php:889
 msgid "Choose an icon to display with your old entries."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:889
+#: includes/Modules/PostGrid.php:902
 msgid "Next Entries Text"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:890
+#: includes/Modules/PostGrid.php:903
 msgid "The text will appear in with your next entries."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:898
+#: includes/Modules/PostGrid.php:911
 msgid "Next Entries Icon"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:899
+#: includes/Modules/PostGrid.php:912
 msgid "Choose an icon to display with your next entries."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:924
-#: includes/Modules/PostGrid.php:934
+#: includes/Modules/PostGrid.php:937
+#: includes/Modules/PostGrid.php:947
 msgid "Pagination Background"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:944
+#: includes/Modules/PostGrid.php:957
 msgid "Entries Icon Color"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:953
+#: includes/Modules/PostGrid.php:966
 msgid "Entries Icon Size"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:971
+#: includes/Modules/PostGrid.php:984
 msgid "Gap Between Entries Icon and Text"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:973
+#: includes/Modules/PostGrid.php:986
 msgid "Here you can choose gap between entries icon and text."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:991
+#: includes/Modules/PostGrid.php:1004
 msgid "Gap Between Pagination Elements"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1011
+#: includes/Modules/PostGrid.php:1024
 msgid "Pagination Alignment"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1023
+#: includes/Modules/PostGrid.php:1036
 msgid "Entries Icon Margin"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1040
+#: includes/Modules/PostGrid.php:1053
 msgid "Entries Icon Padding"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1093
-#: includes/Modules/PostGrid.php:1127
+#: includes/Modules/PostGrid.php:1106
+#: includes/Modules/PostGrid.php:1140
 msgid "Pagination Margin"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1110
-#: includes/Modules/PostGrid.php:1144
+#: includes/Modules/PostGrid.php:1123
+#: includes/Modules/PostGrid.php:1157
 msgid "Pagination Padding"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1170
+#: includes/Modules/PostGrid.php:1183
 msgid "Spinner Primary Color"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1172
-#: includes/Modules/PostGrid.php:1182
+#: includes/Modules/PostGrid.php:1185
+#: includes/Modules/PostGrid.php:1195
 msgid "Here you can define a custom color for load more spinner."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1180
+#: includes/Modules/PostGrid.php:1193
 msgid "Spinner Secondary Color"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1190
+#: includes/Modules/PostGrid.php:1203
 msgid "Spinner Size"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1192
+#: includes/Modules/PostGrid.php:1205
 msgid "Here you can choose the size of load more spinner."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1244
+#: includes/Modules/PostGrid.php:1257
 msgid "Element Background"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1423
+#: includes/Modules/PostGrid.php:1439
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "No elements found. Please add one or more elements to display in the post grid."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:1444
+#: includes/Modules/PostGrid.php:1460
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "No posts found that match the specified criteria."
 msgstr ""
 
-#: includes/Modules/PostGrid.php:2423
+#: includes/Modules/PostGrid.php:2137
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Old Entries"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:2424
+#: includes/Modules/PostGrid.php:2138
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Next Entries"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:2948
+#: includes/Modules/PostGrid.php:2512
 msgid "Read the post"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:2949
+#: includes/Modules/PostGrid.php:2513
 #: includes/Modules/PostGridChild.php:65
 msgid "Read More"
 msgstr ""
@@ -4694,6 +4818,11 @@ msgstr ""
 
 #: includes/Modules/PostGridChild.php:60
 msgid "Featured Image"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:62
+#: includes/Modules/StarRating.php:408
+msgid "Author"
 msgstr ""
 
 #: includes/Modules/PostGridChild.php:63
@@ -4716,235 +4845,247 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:69
-#: includes/Modules/PostGridChild.php:503
+#: includes/Modules/PostGridChild.php:70
+#: includes/Modules/PostGridChild.php:518
 msgid "Custom Text"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:85
+#: includes/Modules/PostGridChild.php:71
+msgid "Custom Icon"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:72
+msgid "Custom Fields"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:73
+msgid "Custom Fields (ACF)"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:88
 msgid "Icon Element"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:95
+#: includes/Modules/PostGridChild.php:98
 msgid "Element Text"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:268
+#: includes/Modules/PostGridChild.php:271
 msgid "Title Icon"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:272
+#: includes/Modules/PostGridChild.php:275
 msgid "Feature Image"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:296
+#: includes/Modules/PostGridChild.php:299
 msgid "Element Type"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:298
+#: includes/Modules/PostGridChild.php:301
 msgid "Choose an element type to display for current post."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:331
-msgid "Choose a tag to display with your title element."
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:340
-msgid "Force Fullwidth"
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:342
-msgid "Here you can choose whether or not the image element is full width."
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:350
+#: includes/Modules/PostGridChild.php:336
 msgid "Show Post Excerpt"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:352
+#: includes/Modules/PostGridChild.php:338
 msgid "Here you can choose whether or not show post excerpt."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:360
+#: includes/Modules/PostGridChild.php:346
 msgid "Enable Text Limit"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:362
+#: includes/Modules/PostGridChild.php:348
 msgid "Here you can choose whether or not custom length for post content or excerpt text limit."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:373
+#: includes/Modules/PostGridChild.php:359
 msgid "Text Limit"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:375
+#: includes/Modules/PostGridChild.php:361
 msgid "Here you can choose how much text you would like to display for post content or excerpt."
 msgstr ""
 
+#: includes/Modules/PostGridChild.php:385
+msgid "The before text of your post comments will appear in with your post element."
+msgstr ""
+
 #: includes/Modules/PostGridChild.php:396
-msgid "Author Name Type"
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:398
-#: includes/Modules/PostGridChild.php:415
-msgid "Choose a author name type to display for current post."
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:400
-msgid "Nickname"
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:401
-msgid "Display Name"
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:402
-msgid "Full Name"
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:403
-msgid "First Name"
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:404
-msgid "Last Name"
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:413
-msgid "Avatar Image Size"
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:429
-msgid "Date Type"
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:431
-msgid "Choose a date type to display for current post."
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:433
-msgid "Publish"
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:434
-msgid "Modified"
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:443
-msgid "Read More Text"
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:444
-msgid "The text will appear in with your read more element."
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:456
-msgid "The before text of your title will appear in with your post element."
-msgstr ""
-
-#: includes/Modules/PostGridChild.php:467
 #: includes/Modules/TypingText.php:73
 #: includes/Modules/TypingText.php:302
 msgid "After Text"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:468
-msgid "The after text of your title will appear in with your post element."
+#: includes/Modules/PostGridChild.php:397
+msgid "The after text of your post comments will appear in with your post element."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:479
+#: includes/Modules/PostGridChild.php:410
 msgid "Categories Separator"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:480
+#: includes/Modules/PostGridChild.php:411
 msgid "The separator text of your categories will appear in with your categories element."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:491
+#: includes/Modules/PostGridChild.php:422
 msgid "Tags Separator"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:492
+#: includes/Modules/PostGridChild.php:423
 msgid "The separator text of your tags will appear in with your tags element."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:504
+#: includes/Modules/PostGridChild.php:440
+msgid "Choose a tag to display with your title element."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:449
+msgid "Force Fullwidth"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:451
+msgid "Here you can choose whether or not the image element is full width."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:459
+msgid "Author Name Type"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:461
+#: includes/Modules/PostGridChild.php:478
+msgid "Choose a author name type to display for current post."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:463
+msgid "Nickname"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:464
+msgid "Display Name"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:465
+msgid "Full Name"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:466
+msgid "First Name"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:467
+msgid "Last Name"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:476
+msgid "Avatar Image Size"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:492
+msgid "Date Type"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:494
+msgid "Choose a date type to display for current post."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:496
+msgid "Publish"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:497
+msgid "Modified"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:506
+msgid "Read More Text"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:507
+msgid "The text will appear in with your read more element."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:519
 msgid "The text will appear in with your custom text element."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:515
+#: includes/Modules/PostGridChild.php:530
 msgid "Show Outside the Container"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:517
+#: includes/Modules/PostGridChild.php:532
 msgid "Here you can choose whether or not show avatar in the outside container."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:538
+#: includes/Modules/PostGridChild.php:554
 msgid "Choose an icon type to display with your post."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:580
+#: includes/Modules/PostGridChild.php:596
 msgid "Choose an icon to display with your post."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:593
+#: includes/Modules/PostGridChild.php:609
 msgid "Upload an image to display at the top of your post."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:618
+#: includes/Modules/PostGridChild.php:634
 msgid "The text of your post will appear in bold as icon."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:627
+#: includes/Modules/PostGridChild.php:643
 msgid "Use Left Icon for Title"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:629
+#: includes/Modules/PostGridChild.php:645
 msgid "Here you can choose whether or not use icon for the post title."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:647
+#: includes/Modules/PostGridChild.php:663
 msgid "Choose an icon to display with your post title."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:657
+#: includes/Modules/PostGridChild.php:673
 msgid "Show Title Icon On Hover"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:659
+#: includes/Modules/PostGridChild.php:675
 msgid "By default, post title icon on hover be displayed. If you would like post title icon is displayed all time, then you can enable this option."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:689
+#: includes/Modules/PostGridChild.php:705
 msgid "Title Icon Color"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:744
+#: includes/Modules/PostGridChild.php:760
 msgid "Title Icon Size"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:759
+#: includes/Modules/PostGridChild.php:775
 msgid "Gap Between Icon and Text"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:823
+#: includes/Modules/PostGridChild.php:839
 msgid "By default, post element icon to always be displayed. If you would like post element icon are displayed on hover, then you can enable this option."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:836
+#: includes/Modules/PostGridChild.php:852
 msgid "By default, icon and text are both move on hover. If you would like post element icon move on hover, then you can enable this option."
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:864
+#: includes/Modules/PostGridChild.php:880
 msgid "Title Icon Margin"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:875
+#: includes/Modules/PostGridChild.php:891
 msgid "Title Icon Padding"
 msgstr ""
 
-#: includes/Modules/PostGridChild.php:898
+#: includes/Modules/PostGridChild.php:914
 msgid "Content Alignment"
 msgstr ""
 
@@ -5977,10 +6118,6 @@ msgid "Download Pro"
 msgstr ""
 
 #: build/admin/scripts/admin.js:175
-msgid "Uncategorized"
-msgstr ""
-
-#: build/admin/scripts/admin.js:175
 msgid "Updated"
 msgstr ""
 
@@ -5994,6 +6131,10 @@ msgstr ""
 
 #: build/admin/scripts/admin.js:175
 msgid "Related third-party plugin required."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Uncategorized"
 msgstr ""
 
 #: build/admin/scripts/admin.js:175
@@ -6174,6 +6315,10 @@ msgstr ""
 
 #: build/admin/scripts/admin.js:175
 msgid "Personal Information"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Name"
 msgstr ""
 
 #: build/admin/scripts/admin.js:175

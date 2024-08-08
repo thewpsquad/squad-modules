@@ -12,7 +12,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
@@ -27,7 +27,7 @@ use function et_pb_process_font_icon;
  * @package DiviSquad\Modules\Breadcrumbs
  * @since   1.4.0
  */
-class Breadcrumbs extends DiviSquad_Module {
+class Breadcrumbs extends Module {
 
 	/**
 	 * Initiate Module.
@@ -256,7 +256,7 @@ class Breadcrumbs extends DiviSquad_Module {
 		}
 
 		// Generating the Breadcrumbs.
-		$breadcrumbs = Utils::get_hansel_and_gretel_breadcrumbs(
+		$breadcrumbs = $this->squad_utils->breadcrumbs->get_hansel_and_gretel(
 			esc_html( $this->props['home_text'] ),
 			esc_html( $this->props['before_text'] ),
 			esc_attr( et_pb_process_font_icon( $this->prop( 'font_icon', '%%24%%' ) ) )

@@ -11,6 +11,7 @@
 namespace DiviSquad\Base;
 
 use DiviSquad\Utils\Divi;
+use DiviSquad\Utils\Media\Filesystem;
 use DiviSquad\Utils\Media\Image;
 use function add_action;
 use function apply_filters;
@@ -30,7 +31,7 @@ use function wp_kses_data;
  * @package DiviSquad
  * @since   1.0.0
  */
-abstract class Core {
+abstract class Core extends Filesystem {
 
 	/**
 	 * The plugin admin menu slug.
@@ -49,8 +50,9 @@ abstract class Core {
 	/**
 	 * The Plugin name.
 	 *
-	 * @var string
 	 * @since 1.0.0
+	 *
+	 * @var string
 	 */
 	protected $name;
 
@@ -64,16 +66,18 @@ abstract class Core {
 	/**
 	 * The Plugin Version.
 	 *
-	 * @var string
 	 * @since 1.4.5
+	 *
+	 * @var string
 	 */
 	protected $version;
 
 	/**
 	 * The plugin option prefix
 	 *
-	 * @var string
 	 * @since 1.0.0
+	 *
+	 * @var string
 	 */
 	protected $opt_prefix;
 
@@ -138,8 +142,9 @@ abstract class Core {
 	/**
 	 * Load all assets.
 	 *
-	 * @return void
 	 * @since 3.0.0
+	 *
+	 * @return void
 	 */
 	protected function load_assets() {}
 
@@ -360,7 +365,7 @@ abstract class Core {
 	 */
 	protected function get_plugin_data( $plugin_file ) {
 		if ( ! function_exists( 'get_plugin_data' ) ) {
-			$plugin_path = divi_squad()->get_wp_path() . 'wp-admin/includes/plugin.php';
+			$plugin_path = $this->get_wp_path() . 'wp-admin/includes/plugin.php';
 
 			if ( file_exists( $plugin_path ) ) {
 				require_once $plugin_path;

@@ -198,7 +198,7 @@ class Copy extends Extension {
 		 *
 		 * @return string[]
 		 */
-		$allowed_screen = apply_filters( 'divi_squad_ext_copy_allowed_screen', array( 'post', 'edit-post', 'page', 'edit-page' ) );
+		$allowed_screen = \apply_filters( 'divi_squad_ext_copy_allowed_screen', array( 'post', 'edit-post', 'page', 'edit-page' ) );
 
 		return $screen instanceof \WP_Screen && in_array( $screen->id, $allowed_screen, true );
 	}
@@ -290,6 +290,8 @@ class Copy extends Extension {
 	 * @return string[]
 	 */
 	public function get_allowed_post_types_for_bulk_actions() {
+		$defaults = array( 'post', 'page', 'project', 'et_pb_layout', 'cuar_private_file', 'cuar_private_page' );
+
 		/**
 		 * Filters the allowed post types for bulk actions.
 		 *
@@ -299,7 +301,7 @@ class Copy extends Extension {
 		 *
 		 * @return string[]
 		 */
-		return apply_filters( 'divi_squad_ext_copy_allowed_post_types_for_bulk_actions', array( 'post', 'page', 'project', 'et_pb_layout', 'cuar_private_file', 'cuar_private_page' ) );
+		return apply_filters( 'divi_squad_ext_copy_allowed_post_types_for_bulk_actions', $defaults );
 	}
 
 	/**
@@ -388,7 +390,17 @@ class Copy extends Extension {
 
 							foreach ( $meta_data as $meta_key => $meta_value ) {
 								// Do not duplicate the following post meta.
-								$excluded_defaults  = array( '_wp_old_slug', '_wp_old_date', '_edit_lock', '_edit_last', '_wp_trash_meta_status', '_wp_trash_meta_time', 'fakerpress_flag' );
+								$excluded_defaults = array( '_wp_old_slug', '_wp_old_date', '_edit_lock', '_edit_last', '_wp_trash_meta_status', '_wp_trash_meta_time', 'fakerpress_flag' );
+
+								/**
+								 * Filters the excluded meta keys for post duplication.
+								 *
+								 * @since 3.0.0
+								 *
+								 * @param string[] $excluded_meta_keys The excluded meta keys.
+								 *
+								 * @return string[]
+								 */
 								$excluded_meta_keys = apply_filters( 'divi_squad_ext_copy_excluded_meta_keys', $excluded_defaults );
 								if ( in_array( $meta_key, $excluded_meta_keys, true ) ) {
 									continue;

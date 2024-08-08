@@ -12,7 +12,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use function esc_attr__;
@@ -27,13 +27,13 @@ use function wp_json_encode;
  * @package DiviSquad
  * @since   1.0.0
  */
-class PostGridChild extends DiviSquad_Module {
+class PostGridChild extends Module {
 	/**
 	 * The list of element types
 	 *
 	 * @var array
 	 */
-	protected $element_types;
+	protected $element_types = array();
 
 	/**
 	 * Initiate Module.
@@ -55,19 +55,22 @@ class PostGridChild extends DiviSquad_Module {
 		$this->child_title_fallback_var = 'admin_label';
 
 		$this->element_types = array(
-			'none'           => esc_html__( 'Choose a type', 'squad-modules-for-divi' ),
-			'title'          => esc_html__( 'Title', 'squad-modules-for-divi' ),
-			'featured_image' => esc_html__( 'Featured Image', 'squad-modules-for-divi' ),
-			'content'        => esc_html__( 'Content', 'squad-modules-for-divi' ),
-			'author'         => esc_html__( 'Author', 'squad-modules-for-divi' ), // nick, display, first, last, username.
-			'gravatar'       => esc_html__( 'Author Avatar', 'squad-modules-for-divi' ),
-			'date'           => esc_html__( 'Date', 'squad-modules-for-divi' ),
-			'read_more'      => esc_html__( 'Read More', 'squad-modules-for-divi' ),
-			'comments'       => esc_html__( 'Comments Count', 'squad-modules-for-divi' ),
-			'categories'     => esc_html__( 'Categories', 'squad-modules-for-divi' ),
-			'tags'           => esc_html__( 'Tags', 'squad-modules-for-divi' ),
-			'custom_text'    => esc_html__( 'Custom Text', 'squad-modules-for-divi' ),
-			'divider'        => esc_html__( 'Divider', 'squad-modules-for-divi' ),
+			'none'                  => esc_html__( 'Choose a type', 'squad-modules-for-divi' ),
+			'title'                 => esc_html__( 'Title', 'squad-modules-for-divi' ),
+			'featured_image'        => esc_html__( 'Featured Image', 'squad-modules-for-divi' ),
+			'content'               => esc_html__( 'Content', 'squad-modules-for-divi' ),
+			'author'                => esc_html__( 'Author', 'squad-modules-for-divi' ), // nick, display, first, last, username.
+			'gravatar'              => esc_html__( 'Author Avatar', 'squad-modules-for-divi' ),
+			'date'                  => esc_html__( 'Date', 'squad-modules-for-divi' ),
+			'read_more'             => esc_html__( 'Read More', 'squad-modules-for-divi' ),
+			'comments'              => esc_html__( 'Comments Count', 'squad-modules-for-divi' ),
+			'categories'            => esc_html__( 'Categories', 'squad-modules-for-divi' ),
+			'tags'                  => esc_html__( 'Tags', 'squad-modules-for-divi' ),
+			'divider'               => esc_html__( 'Divider', 'squad-modules-for-divi' ),
+			'custom_text'           => esc_html__( 'Custom Text', 'squad-modules-for-divi' ),
+			'custom_icon'           => esc_html__( 'Custom Icon', 'squad-modules-for-divi' ),
+			'custom_field'          => esc_html__( 'Custom Fields', 'squad-modules-for-divi' ),
+			'advanced_custom_field' => esc_html__( 'Custom Fields (ACF)', 'squad-modules-for-divi' ),
 		);
 
 		// The icon eligible elements.
@@ -75,7 +78,7 @@ class PostGridChild extends DiviSquad_Module {
 
 		// Connect with utils.
 		$this->squad_utils = Utils::connect( $this );
-		$this->squad_utils->initiate_the_divider_element();
+		$this->squad_utils->divider->initiate_element();
 
 		// Declare settings modal toggles for the module.
 		$this->settings_modal_toggles = array(
@@ -291,8 +294,8 @@ class PostGridChild extends DiviSquad_Module {
 	 */
 	public function get_fields() {
 		// Text fields definitions.
-		$text_fields = array(
-			'element'                         => Utils::add_select_box_field(
+		$element_fields = array(
+			'element' => Utils::add_select_box_field(
 				esc_html__( 'Element Type', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Choose an element type to display for current post.', 'squad-modules-for-divi' ),
@@ -325,28 +328,11 @@ class PostGridChild extends DiviSquad_Module {
 					'toggle_slug'      => 'elements',
 				)
 			),
-			'element_title_tag'               => Utils::add_select_box_field(
-				esc_html__( 'Title Tag', 'squad-modules-for-divi' ),
-				array(
-					'description'     => esc_html__( 'Choose a tag to display with your title element.', 'squad-modules-for-divi' ),
-					'options'         => Utils::get_html_tag_elements(),
-					'default'         => 'span',
-					'depends_show_if' => 'title',
-					'tab_slug'        => 'general',
-					'toggle_slug'     => 'elements',
-				)
-			),
-			'element_image_fullwidth__enable' => Utils::add_yes_no_field(
-				esc_html__( 'Force Fullwidth', 'squad-modules-for-divi' ),
-				array(
-					'description'      => esc_html__( 'Here you can choose whether or not the image element is full width.', 'squad-modules-for-divi' ),
-					'default_on_front' => 'off',
-					'depends_show_if'  => 'featured_image',
-					'tab_slug'         => 'general',
-					'toggle_slug'      => 'elements',
-				)
-			),
-			'element_excerpt__enable'         => Utils::add_yes_no_field(
+		);
+
+		// Others fields for elements toggle.
+		$excerpt_fields    = array(
+			'element_excerpt__enable'       => Utils::add_yes_no_field(
 				esc_html__( 'Show Post Excerpt', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose whether or not show post excerpt.', 'squad-modules-for-divi' ),
@@ -356,7 +342,7 @@ class PostGridChild extends DiviSquad_Module {
 					'toggle_slug'      => 'elements',
 				)
 			),
-			'element_ex_con_length__enable'   => Utils::add_yes_no_field(
+			'element_ex_con_length__enable' => Utils::add_yes_no_field(
 				esc_html__( 'Enable Text Limit', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose whether or not custom length for post content or excerpt text limit.', 'squad-modules-for-divi' ),
@@ -369,7 +355,7 @@ class PostGridChild extends DiviSquad_Module {
 					'toggle_slug'      => 'elements',
 				)
 			),
-			'element_ex_con_length'           => Utils::add_range_field(
+			'element_ex_con_length'         => Utils::add_range_field(
 				esc_html__( 'Text Limit', 'squad-modules-for-divi' ),
 				array(
 					'description'       => esc_html__( 'Here you can choose how much text you would like to display for post content or excerpt.', 'squad-modules-for-divi' ),
@@ -390,6 +376,83 @@ class PostGridChild extends DiviSquad_Module {
 					'depends_show_if'   => 'on',
 					'tab_slug'          => 'general',
 					'toggle_slug'       => 'elements',
+				)
+			),
+		);
+		$comments_fields   = array(
+			'element_comments_before' => array(
+				'label'           => esc_html__( 'Before Text', 'squad-modules-for-divi' ),
+				'description'     => esc_html__( 'The before text of your post comments will appear in with your post element.', 'squad-modules-for-divi' ),
+				'type'            => 'text',
+				'option_category' => 'basic_option',
+				'depends_show_if' => 'comments',
+				'tab_slug'        => 'general',
+				'toggle_slug'     => 'elements',
+				'dynamic_content' => 'text',
+				'hover'           => 'tabs',
+				'mobile_options'  => true,
+			),
+			'element_comments_after'  => array(
+				'label'           => esc_html__( 'After Text', 'squad-modules-for-divi' ),
+				'description'     => esc_html__( 'The after text of your post comments will appear in with your post element.', 'squad-modules-for-divi' ),
+				'type'            => 'text',
+				'option_category' => 'basic_option',
+				'depends_show_if' => 'comments',
+				'tab_slug'        => 'general',
+				'toggle_slug'     => 'elements',
+				'dynamic_content' => 'text',
+				'hover'           => 'tabs',
+				'mobile_options'  => true,
+			),
+		);
+		$taxonomies_fields = array(
+			'element_categories_sepa' => array(
+				'label'           => esc_html__( 'Categories Separator', 'squad-modules-for-divi' ),
+				'description'     => esc_html__( 'The separator text of your categories will appear in with your categories element.', 'squad-modules-for-divi' ),
+				'type'            => 'text',
+				'option_category' => 'basic_option',
+				'depends_show_if' => 'categories',
+				'tab_slug'        => 'general',
+				'toggle_slug'     => 'elements',
+				'dynamic_content' => 'text',
+				'hover'           => 'tabs',
+				'mobile_options'  => true,
+			),
+			'element_tags_sepa'       => array(
+				'label'           => esc_html__( 'Tags Separator', 'squad-modules-for-divi' ),
+				'description'     => esc_html__( 'The separator text of your tags will appear in with your tags element.', 'squad-modules-for-divi' ),
+				'type'            => 'text',
+				'option_category' => 'basic_option',
+				'depends_show_if' => 'tags',
+				'tab_slug'        => 'general',
+				'toggle_slug'     => 'elements',
+				'dynamic_content' => 'text',
+				'hover'           => 'tabs',
+				'mobile_options'  => true,
+			),
+		);
+
+		// Additional fields for elements toggle.
+		$additional_fields = array(
+			'element_title_tag'               => Utils::add_select_box_field(
+				esc_html__( 'Title Tag', 'squad-modules-for-divi' ),
+				array(
+					'description'     => esc_html__( 'Choose a tag to display with your title element.', 'squad-modules-for-divi' ),
+					'options'         => Utils::get_html_tag_elements(),
+					'default'         => 'span',
+					'depends_show_if' => 'title',
+					'tab_slug'        => 'general',
+					'toggle_slug'     => 'elements',
+				)
+			),
+			'element_image_fullwidth__enable' => Utils::add_yes_no_field(
+				esc_html__( 'Force Fullwidth', 'squad-modules-for-divi' ),
+				array(
+					'description'      => esc_html__( 'Here you can choose whether or not the image element is full width.', 'squad-modules-for-divi' ),
+					'default_on_front' => 'off',
+					'depends_show_if'  => 'featured_image',
+					'tab_slug'         => 'general',
+					'toggle_slug'      => 'elements',
 				)
 			),
 			'element_author_name_type'        => Utils::add_select_box_field(
@@ -451,54 +514,6 @@ class PostGridChild extends DiviSquad_Module {
 				'hover'           => 'tabs',
 				'mobile_options'  => true,
 			),
-			'element_comments_before'         => array(
-				'label'           => esc_html__( 'Before Text', 'squad-modules-for-divi' ),
-				'description'     => esc_html__( 'The before text of your title will appear in with your post element.', 'squad-modules-for-divi' ),
-				'type'            => 'text',
-				'option_category' => 'basic_option',
-				'depends_show_if' => 'comments',
-				'tab_slug'        => 'general',
-				'toggle_slug'     => 'elements',
-				'dynamic_content' => 'text',
-				'hover'           => 'tabs',
-				'mobile_options'  => true,
-			),
-			'element_comments_after'          => array(
-				'label'           => esc_html__( 'After Text', 'squad-modules-for-divi' ),
-				'description'     => esc_html__( 'The after text of your title will appear in with your post element.', 'squad-modules-for-divi' ),
-				'type'            => 'text',
-				'option_category' => 'basic_option',
-				'depends_show_if' => 'comments',
-				'tab_slug'        => 'general',
-				'toggle_slug'     => 'elements',
-				'dynamic_content' => 'text',
-				'hover'           => 'tabs',
-				'mobile_options'  => true,
-			),
-			'element_categories_sepa'         => array(
-				'label'           => esc_html__( 'Categories Separator', 'squad-modules-for-divi' ),
-				'description'     => esc_html__( 'The separator text of your categories will appear in with your categories element.', 'squad-modules-for-divi' ),
-				'type'            => 'text',
-				'option_category' => 'basic_option',
-				'depends_show_if' => 'categories',
-				'tab_slug'        => 'general',
-				'toggle_slug'     => 'elements',
-				'dynamic_content' => 'text',
-				'hover'           => 'tabs',
-				'mobile_options'  => true,
-			),
-			'element_tags_sepa'               => array(
-				'label'           => esc_html__( 'Tags Separator', 'squad-modules-for-divi' ),
-				'description'     => esc_html__( 'The separator text of your tags will appear in with your tags element.', 'squad-modules-for-divi' ),
-				'type'            => 'text',
-				'option_category' => 'basic_option',
-				'depends_show_if' => 'tags',
-				'tab_slug'        => 'general',
-				'toggle_slug'     => 'elements',
-				'dynamic_content' => 'text',
-				'hover'           => 'tabs',
-				'mobile_options'  => true,
-			),
 			'element_custom_text'             => array(
 				'label'           => esc_html__( 'Custom Text', 'squad-modules-for-divi' ),
 				'description'     => esc_html__( 'The text will appear in with your custom text element.', 'squad-modules-for-divi' ),
@@ -523,7 +538,8 @@ class PostGridChild extends DiviSquad_Module {
 			),
 		);
 
-		$divider_fields = $this->squad_utils->get_divider_element_fields(
+		// Divider fields.
+		$divider_fields = $this->squad_utils->divider->get_fields(
 			array(
 				'toggle_slug'     => 'element_divider',
 				'depends_show_if' => 'divider',
@@ -983,8 +999,13 @@ class PostGridChild extends DiviSquad_Module {
 			),
 		);
 
-		return array_merge(
-			$text_fields,
+		return array_merge_recursive(
+			$element_fields,
+			$excerpt_fields,
+			$comments_fields,
+			$taxonomies_fields,
+			$this->get_custom_fields(),
+			$additional_fields,
 			$divider_fields,
 			$icon_image_fields_all,
 			$icon_image_associated_fields_all,
@@ -994,6 +1015,19 @@ class PostGridChild extends DiviSquad_Module {
 			$element_associated_fields,
 			Utils::get_general_fields(),
 			$special_fields
+		);
+	}
+
+	/**
+	 * Declare general fields for the module
+	 *
+	 * @return array[]
+	 * @since 3.1.0
+	 */
+	public function get_custom_fields() {
+		return array_merge_recursive(
+			Utils\Elements\CustomFields::get_definitions( 'custom_fields' ),
+			Utils\Elements\CustomFields::get_definitions( 'acf_fields' )
 		);
 	}
 
@@ -1272,223 +1306,225 @@ class PostGridChild extends DiviSquad_Module {
 		$this->props = array_merge( $attrs, $this->props );
 
 		// render icon element for eligible element.
-		$icon_type         = ! empty( $attrs['element_icon_type'] ) ? $attrs['element_icon_type'] : 'icon';
-		$element_type      = ! empty( $attrs['element'] ) ? $attrs['element'] : 'none';
-		$eligible_elements = $this->icon_not_eligible_elements;
+		$icon_type    = ! empty( $attrs['element_icon_type'] ) ? $attrs['element_icon_type'] : 'icon';
+		$element_type = ! empty( $attrs['element'] ) ? $attrs['element'] : 'none';
 
-		if ( 'none' !== $icon_type && ! in_array( $element_type, $eligible_elements, true ) ) {
+		// Skipping style generating for icon when user select advanced custom field and select the image type.
+		if ( ( 'none' === $icon_type ) || in_array( $element_type, $this->icon_not_eligible_elements, true ) ) {
+			return;
+		}
+
+		$this->generate_styles(
+			array(
+				'base_attr_name' => 'element_icon_text_gap',
+				'selector'       => "$this->main_css_element div .post-elements",
+				'css_property'   => 'gap',
+				'render_slug'    => $this->slug,
+				'type'           => 'range',
+				'important'      => true,
+			)
+		);
+
+		$this->generate_styles(
+			array(
+				'base_attr_name' => 'element_icon_placement',
+				'selector'       => "$this->main_css_element div .post-elements",
+				'css_property'   => 'flex-direction',
+				'render_slug'    => $this->slug,
+				'type'           => 'align',
+				'important'      => true,
+			)
+		);
+
+		if ( 'image' !== $icon_type ) {
+			// Set icon background color.
 			$this->generate_styles(
 				array(
-					'base_attr_name' => 'element_icon_text_gap',
-					'selector'       => "$this->main_css_element div .post-elements",
-					'css_property'   => 'gap',
+					'base_attr_name' => 'element_icon_background_color',
+					'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper .icon-element",
+					'hover_selector' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper .icon-element",
+					'css_property'   => 'background-color',
+					'render_slug'    => $this->slug,
+					'type'           => 'color',
+					'important'      => true,
+				)
+			);
+		}
+
+		if ( 'icon' === $icon_type ) {
+			// Load font Awesome css for frontend.
+			Divi::inject_fa_icons( $this->props['element_icon'] );
+
+			// Set font family for Icon.
+			$this->generate_styles(
+				array(
+					'utility_arg'    => 'icon_font_family',
+					'render_slug'    => $this->slug,
+					'base_attr_name' => 'element_icon',
+					'important'      => true,
+					'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper .icon-element .et-pb-icon",
+					'processor'      => array(
+						'ET_Builder_Module_Helper_Style_Processor',
+						'process_extended_icon',
+					),
+				)
+			);
+
+			// Set color for Icon.
+			$this->generate_styles(
+				array(
+					'base_attr_name' => 'element_icon_color',
+					'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper .icon-element .et-pb-icon",
+					'hover_selector' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper .icon-element .et-pb-icon",
+					'css_property'   => 'color',
+					'render_slug'    => $this->slug,
+					'type'           => 'color',
+					'important'      => true,
+				)
+			);
+
+			// Set size for Icon.
+			$this->generate_styles(
+				array(
+					'base_attr_name' => 'element_icon_size',
+					'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper .icon-element .et-pb-icon",
+					'css_property'   => 'font-size',
 					'render_slug'    => $this->slug,
 					'type'           => 'range',
 					'important'      => true,
 				)
 			);
+		}
 
+		if ( 'image' === $icon_type ) {
+			// Set width for Image.
 			$this->generate_styles(
 				array(
-					'base_attr_name' => 'element_icon_placement',
-					'selector'       => "$this->main_css_element div .post-elements",
-					'css_property'   => 'flex-direction',
+					'base_attr_name' => 'element_image_width',
+					'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper img",
+					'hover_selector' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper img",
+					'css_property'   => 'width',
+					'render_slug'    => $this->slug,
+					'type'           => 'range',
+					'important'      => true,
+				)
+			);
+			// Set height for Image.
+			$this->generate_styles(
+				array(
+					'base_attr_name' => 'element_image_height',
+					'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper img",
+					'hover_selector' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper img",
+					'css_property'   => 'height',
+					'render_slug'    => $this->slug,
+					'type'           => 'range',
+					'important'      => true,
+				)
+			);
+		}
+
+		// working with icon styles.
+		$placement         = 'element_icon_placement';
+		$placement_desktop = ! empty( $attrs[ $placement ] ) ? $attrs[ $placement ] : 'row';
+		$placement_tablet  = ! empty( $attrs[ "{$placement}_tablet" ] ) ? $attrs[ "{$placement}_tablet" ] : $placement_desktop;
+		$placement_mobile  = ! empty( $attrs[ "{$placement}_phone" ] ) ? $attrs[ "{$placement}_phone" ] : $placement_tablet;
+
+		// Icon placement with default, responsive, hover.
+		if ( ( 'column' === $placement_desktop ) || ( 'column' === $placement_tablet ) || ( 'column' === $placement_mobile ) ) {
+			$this->generate_styles(
+				array(
+					'base_attr_name' => 'element_icon_horizontal_alignment',
+					'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper",
+					'css_property'   => 'text-align',
 					'render_slug'    => $this->slug,
 					'type'           => 'align',
 					'important'      => true,
 				)
 			);
+		}
 
-			if ( 'image' !== $icon_type ) {
-				// Set icon background color.
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'element_icon_background_color',
-						'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper .icon-element",
-						'hover_selector' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper .icon-element",
-						'css_property'   => 'background-color',
-						'render_slug'    => $this->slug,
-						'type'           => 'color',
-						'important'      => true,
-					)
-				);
-			}
-
-			if ( 'icon' === $icon_type ) {
-				// Load font Awesome css for frontend.
-				Divi::inject_fa_icons( $this->props['element_icon'] );
-
-				// Set font family for Icon.
-				$this->generate_styles(
-					array(
-						'utility_arg'    => 'icon_font_family',
-						'render_slug'    => $this->slug,
-						'base_attr_name' => 'element_icon',
-						'important'      => true,
-						'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper .icon-element .et-pb-icon",
-						'processor'      => array(
-							'ET_Builder_Module_Helper_Style_Processor',
-							'process_extended_icon',
-						),
-					)
-				);
-
-				// Set color for Icon.
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'element_icon_color',
-						'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper .icon-element .et-pb-icon",
-						'hover_selector' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper .icon-element .et-pb-icon",
-						'css_property'   => 'color',
-						'render_slug'    => $this->slug,
-						'type'           => 'color',
-						'important'      => true,
-					)
-				);
-
-				// Set size for Icon.
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'element_icon_size',
-						'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper .icon-element .et-pb-icon",
-						'css_property'   => 'font-size',
-						'render_slug'    => $this->slug,
-						'type'           => 'range',
-						'important'      => true,
-					)
-				);
-			}
-
-			if ( 'image' === $icon_type ) {
-				// Set width for Image.
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'element_image_width',
-						'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper img",
-						'hover_selector' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper img",
-						'css_property'   => 'width',
-						'render_slug'    => $this->slug,
-						'type'           => 'range',
-						'important'      => true,
-					)
-				);
-				// Set height for Image.
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'element_image_height',
-						'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper img",
-						'hover_selector' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper img",
-						'css_property'   => 'height',
-						'render_slug'    => $this->slug,
-						'type'           => 'range',
-						'important'      => true,
-					)
-				);
-			}
-
-			// working with icon styles.
-			$placement         = 'element_icon_placement';
-			$placement_desktop = ! empty( $attrs[ $placement ] ) ? $attrs[ $placement ] : 'row';
-			$placement_tablet  = ! empty( $attrs[ "{$placement}_tablet" ] ) ? $attrs[ "{$placement}_tablet" ] : $placement_desktop;
-			$placement_mobile  = ! empty( $attrs[ "{$placement}_phone" ] ) ? $attrs[ "{$placement}_phone" ] : $placement_tablet;
-
-			// Icon placement with default, responsive, hover.
-			if ( ( 'column' === $placement_desktop ) || ( 'column' === $placement_tablet ) || ( 'column' === $placement_mobile ) ) {
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'element_icon_horizontal_alignment',
-						'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper",
-						'css_property'   => 'text-align',
-						'render_slug'    => $this->slug,
-						'type'           => 'align',
-						'important'      => true,
-					)
-				);
-			}
-
-			if ( ( 'column' !== $placement_desktop ) || ( 'column' !== $placement_tablet ) || ( 'column' !== $placement_mobile ) ) {
-				$this->generate_styles(
-					array(
-						'base_attr_name' => 'element_icon_vertical_alignment',
-						'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper",
-						'css_property'   => 'align-items',
-						'render_slug'    => $this->slug,
-						'type'           => 'align',
-						'important'      => true,
-					)
-				);
-			}
-
-			if ( isset( $attrs['element_icon_on_hover'] ) && 'on' === $attrs['element_icon_on_hover'] ) {
-				$mapping_values = array(
-					'column'      => '0 0 -#px 0',
-					'row'         => '0 -#px 0 0',
-					'row-reverse' => '0 0 0 -#px',
-				);
-
-				if ( 'on' === $attrs['element_icon_hover_move_icon'] ) {
-					$mapping_values = array(
-						'column'      => '#px 0 -#px 0',
-						'row'         => '0 -#px 0 #px',
-						'row-reverse' => '0 #px 0 -#px',
-					);
-				}
-
-				// set icon placement for button image with default, hover, and responsive.
-				$this->squad_utils->generate_show_icon_on_hover_styles(
-					array(
-						'props'          => $this->props,
-						'field'          => 'element_icon_placement',
-						'trigger'        => 'element_icon_type',
-						'depends_on'     => array(
-							'icon'  => 'element_icon_size',
-							'image' => 'element_image_width',
-							'text'  => 'element_icon_text_font_size',
-						),
-						'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper.show-on-hover",
-						'hover'          => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper.show-on-hover",
-						'css_property'   => 'margin',
-						'type'           => 'margin',
-						'mapping_values' => $mapping_values,
-						'defaults'       => array(
-							'icon'       => '16px',
-							'image'      => '16px',
-							'text'       => '16px',
-							'field'      => 'row',
-							'unit_value' => '0',
-						),
-					)
-				);
-			}
-
-			// Icon margin with default, responsive, hover.
-			$this->squad_utils->generate_margin_padding_styles(
+		if ( ( 'column' !== $placement_desktop ) || ( 'column' !== $placement_tablet ) || ( 'column' !== $placement_mobile ) ) {
+			$this->generate_styles(
 				array(
-					'field'          => 'element_icon_margin',
-					'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper .icon-element",
-					'hover_selector' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper .icon-element",
-					'css_property'   => 'margin',
-					'type'           => 'margin',
+					'base_attr_name' => 'element_icon_vertical_alignment',
+					'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper",
+					'css_property'   => 'align-items',
+					'render_slug'    => $this->slug,
+					'type'           => 'align',
 					'important'      => true,
 				)
-			);
-			$this->squad_utils->generate_margin_padding_styles(
-				array(
-					'field'          => 'element_icon_padding',
-					'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper .icon-element",
-					'hover_selector' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper .icon-element",
-					'css_property'   => 'padding',
-					'type'           => 'padding',
-					'important'      => true,
-				)
-			);
-
-			// Images: Add CSS Filters and Mix Blend Mode rules (if set).
-			$this->generate_css_filters(
-				$this->slug,
-				'child_',
-				"$this->main_css_element div .post-elements span.squad-element-icon-wrapper"
 			);
 		}
+
+		if ( isset( $attrs['element_icon_on_hover'] ) && 'on' === $attrs['element_icon_on_hover'] ) {
+			$mapping_values = array(
+				'column'      => '0 0 -#px 0',
+				'row'         => '0 -#px 0 0',
+				'row-reverse' => '0 0 0 -#px',
+			);
+
+			if ( 'on' === $attrs['element_icon_hover_move_icon'] ) {
+				$mapping_values = array(
+					'column'      => '#px 0 -#px 0',
+					'row'         => '0 -#px 0 #px',
+					'row-reverse' => '0 #px 0 -#px',
+				);
+			}
+
+			// set icon placement for button image with default, hover, and responsive.
+			$this->squad_utils->generate_show_icon_on_hover_styles(
+				array(
+					'props'          => $this->props,
+					'field'          => 'element_icon_placement',
+					'trigger'        => 'element_icon_type',
+					'depends_on'     => array(
+						'icon'  => 'element_icon_size',
+						'image' => 'element_image_width',
+						'text'  => 'element_icon_text_font_size',
+					),
+					'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper.show-on-hover",
+					'hover'          => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper.show-on-hover",
+					'css_property'   => 'margin',
+					'type'           => 'margin',
+					'mapping_values' => $mapping_values,
+					'defaults'       => array(
+						'icon'       => '16px',
+						'image'      => '16px',
+						'text'       => '16px',
+						'field'      => 'row',
+						'unit_value' => '0',
+					),
+				)
+			);
+		}
+
+		// Icon margin with default, responsive, hover.
+		$this->squad_utils->generate_margin_padding_styles(
+			array(
+				'field'          => 'element_icon_margin',
+				'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper .icon-element",
+				'hover_selector' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper .icon-element",
+				'css_property'   => 'margin',
+				'type'           => 'margin',
+				'important'      => true,
+			)
+		);
+		$this->squad_utils->generate_margin_padding_styles(
+			array(
+				'field'          => 'element_icon_padding',
+				'selector'       => "$this->main_css_element div .post-elements span.squad-element-icon-wrapper .icon-element",
+				'hover_selector' => "$this->main_css_element div .post-elements:hover span.squad-element-icon-wrapper .icon-element",
+				'css_property'   => 'padding',
+				'type'           => 'padding',
+				'important'      => true,
+			)
+		);
+
+		// Images: Add CSS Filters and Mix Blend Mode rules (if set).
+		$this->generate_css_filters(
+			$this->slug,
+			'child_',
+			"$this->main_css_element div .post-elements span.squad-element-icon-wrapper"
+		);
 	}
 }

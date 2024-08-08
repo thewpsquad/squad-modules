@@ -78,7 +78,7 @@ class Image extends Filesystem {
 	 */
 	public function __construct( $path ) {
 		$this->path  = $path;
-		$this->wp_fs = $this->get_wp_fs();
+		$this->wp_fs = $this->get_wp_filesystem();
 
 		// Validate path.
 		$this->path_validated = $this->validate_path();

@@ -12,7 +12,6 @@ namespace DiviSquad\Base\DiviBuilder;
 use DiviSquad\Utils\Media\Image;
 use function _x;
 use function divi_squad;
-use function is_wp_error;
 
 /**
  * Builder DiviBackend Placeholder class.

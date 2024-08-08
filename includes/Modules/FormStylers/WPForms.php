@@ -12,9 +12,8 @@
 
 namespace DiviSquad\Modules\FormStylers;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Form_Styler as SquadFormStyler;
+use DiviSquad\Base\DiviBuilder\Module\FormStyler;
 use DiviSquad\Base\DiviBuilder\Utils;
-use DiviSquad\Base\DiviBuilder\Utils\Elements\Forms;
 use DiviSquad\Utils\Helper;
 use function do_shortcode;
 use function esc_html__;
@@ -25,7 +24,7 @@ use function esc_html__;
  * @package DiviSquad
  * @since   1.2.0
  */
-class WPForms extends SquadFormStyler {
+class WPForms extends FormStyler {
 
 	/**
 	 * The css selector for the form container.
@@ -70,7 +69,7 @@ class WPForms extends SquadFormStyler {
 				esc_html__( 'Form', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'Here you can choose the wp form.', 'squad-modules-for-divi' ),
-					'options'          => Forms::get_all_forms( 'wpforms' ),
+					'options'          => Utils\Elements\Forms::get_all_forms( 'wpforms' ),
 					'computed_affects' => array(
 						'__forms',
 					),
@@ -437,7 +436,7 @@ class WPForms extends SquadFormStyler {
 	 */
 	protected function get_field_selector_default() {
 		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Forms::get_allowed_fields();
+		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
 
 		$selectors = array();
 		foreach ( $allowed_fields as $allowed_field ) {
@@ -454,7 +453,7 @@ class WPForms extends SquadFormStyler {
 	 */
 	protected function get_field_selector_hover() {
 		$form_selector  = $this->get_form_selector_default();
-		$allowed_fields = Forms::get_allowed_fields();
+		$allowed_fields = Utils\Elements\Forms::get_allowed_fields();
 
 		$selectors = array();
 		foreach ( $allowed_fields as $allowed_field ) {
@@ -570,12 +569,12 @@ class WPForms extends SquadFormStyler {
 	 */
 	public static function squad_form_styler__get_form_html( $attrs, $content = null ) {
 		// Check if the form id is empty or not.
-		if ( empty( $attrs['form_id'] ) || Forms::DEFAULT_FORM_ID === $attrs['form_id'] || ! function_exists( 'wpforms' ) ) {
+		if ( empty( $attrs['form_id'] ) || Utils\Elements\Forms::DEFAULT_FORM_ID === $attrs['form_id'] || ! function_exists( 'wpforms' ) ) {
 			return '';
 		}
 
 		// Collect all from the database.
-		$collection = Forms::get_all_forms( 'wpforms', 'id' );
+		$collection = Utils\Elements\Forms::get_all_forms( 'wpforms', 'id' );
 
 		if ( ! isset( $collection[ $attrs['form_id'] ] ) ) {
 			return '';

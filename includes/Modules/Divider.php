@@ -13,7 +13,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
@@ -36,7 +36,7 @@ use function wp_kses_post;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class Divider extends DiviSquad_Module {
+class Divider extends Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -58,7 +58,7 @@ class Divider extends DiviSquad_Module {
 
 		// Connect with utils.
 		$this->squad_utils = Utils::connect( $this );
-		$this->squad_utils->initiate_the_divider_element();
+		$this->squad_utils->divider->initiate_element();
 
 		// Declare settings modal toggles for the module.
 		$this->settings_modal_toggles = array(
@@ -341,7 +341,7 @@ class Divider extends DiviSquad_Module {
 				esc_html__( 'Customize Divider Side Color', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'This settings turns on and off the divider custom color', 'squad-modules-for-divi' ),
-					'options'          => $this->squad_utils->get_show_divider_options(),
+					'options'          => $this->squad_utils->divider->get_show_options(),
 					'default'          => 'off',
 					'default_on_front' => 'off',
 					'affects'          => array(
@@ -381,7 +381,7 @@ class Divider extends DiviSquad_Module {
 				'option_category' => 'layout',
 				'options'         => et_builder_get_border_styles(),
 				'depends_show_if' => 'on',
-				'default'         => $this->squad_utils->get_divider_default( 'divider_style' ),
+				'default'         => $this->squad_utils->divider->get_default( 'divider_style' ),
 				'tab_slug'        => 'advanced',
 				'toggle_slug'     => 'divider',
 				'mobile_options'  => true,
@@ -397,7 +397,7 @@ class Divider extends DiviSquad_Module {
 					'flex-end'   => et_builder_i18n( 'Bottom' ),
 				),
 				'depends_show_if' => 'on',
-				'default'         => $this->squad_utils->get_divider_default( 'divider_position' ),
+				'default'         => $this->squad_utils->divider->get_default( 'divider_position' ),
 				'tab_slug'        => 'advanced',
 				'toggle_slug'     => 'divider',
 				'mobile_options'  => true,
@@ -417,7 +417,7 @@ class Divider extends DiviSquad_Module {
 				'depends_show_if' => 'on',
 				'allowed_units'   => array( 'em', 'rem', 'px', 'cm', 'mm', 'in', 'pt', 'pc', 'ex', 'vh', 'vw' ),
 				'default_unit'    => 'px',
-				'default'         => $this->squad_utils->get_divider_default( 'divider_weight' ),
+				'default'         => $this->squad_utils->divider->get_default( 'divider_weight' ),
 				'tab_slug'        => 'advanced',
 				'toggle_slug'     => 'divider',
 				'mobile_options'  => true,
@@ -429,7 +429,7 @@ class Divider extends DiviSquad_Module {
 				esc_html__( 'Customize Divider Size', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'This settings turns on and off the divider custom size.', 'squad-modules-for-divi' ),
-					'options'          => $this->squad_utils->get_show_divider_options(),
+					'options'          => $this->squad_utils->divider->get_show_options(),
 					'default'          => 'off',
 					'default_on_front' => 'off',
 					'affects'          => array(

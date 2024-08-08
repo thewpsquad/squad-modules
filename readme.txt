@@ -5,8 +5,8 @@ Tags: divi, divi module, divi theme, divi builder, divi page builder
 Requires at least: 5.0.0
 Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 3.0.1
-License: GPLv3
+Stable tag: 3.1.0
+License: GPL-3.0-only
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
 The Essential Divi plugin, offering 25+ stunning free modules like Advanced Divider, Flip box, and more.
@@ -32,31 +32,30 @@ Squad Modules Lite is a revolutionary free plugin that takes your Divi page buil
 
 **Layout & Content Divi Modules:**
 
-- [Divi Advanced Divider Module](https://squadmodules.com/modules/divi-advanced-divider-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Craft visually appealing dividers with various styles, shapes, and customization options.
-- [Divi Post Grid Module](https://squadmodules.com/modules/divi-post-grid-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Showcase your blog posts in a stylish and organized grid layout.
-- [Divi Drop Cap Text Module](https://squadmodules.com/modules/divi-drop-cap-text-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Add emphasis and style to your text content with beautiful drop caps.
+- Divi Advanced Divider Module: Craft visually appealing dividers with various styles, shapes, and customization options.
+- Divi Post Grid Module (Custom Fields, ACF supported): Showcase your blog posts in a stylish and organized grid layout.
+- Divi Drop Cap Text Module: Add emphasis and style to your text content with beautiful drop caps.
 - [(...and more)](https://squadmodules.com/modules?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink)
 
 **Interactive Divi Modules:**
 
-- [Divi Before After Image Slider Module](https://squadmodules.com/modules/divi-before-after-image-slider-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Engage visitors with interactive image comparisons, showcasing transformations or product variations.
-- [Divi Flip Box Module](https://squadmodules.com/modules/divi-flip-box-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Create captivating elements that reveal additional information or a different design on hover.
-- [Divi Lottie Animation Module](https://squadmodules.com/modules/divi-lottie-animation-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Effortlessly integrate eye-catching animations to enhance your website's visual appeal and user experience.
+- Divi Before After Image Slider Module: Engage visitors with interactive image comparisons, showcasing transformations or product variations.
+- Divi Flip Box Module: Create captivating elements that reveal additional information or a different design on hover.
+- Divi Lottie Animation Module: Effortlessly integrate eye-catching animations to enhance your website's visual appeal and user experience.
 - [(...and more)](https://squadmodules.com/modules?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink)
 
 **Engagement & Social Proof Divi Modules:**
 
-- [Divi Star Rating Module](https://squadmodules.com/modules/divi-star-rating-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Add stylish star rating functionality to your content, allowing visitors to provide feedback and ratings.
-- [Divi Post Reading Time Module](https://squadmodules.com/modules/divi-post-reading-time-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Inform readers of the estimated reading time for your blog posts, helping them plan their time effectively.
-- [Divi Post Reading Progress Module](https://squadmodules.com/modules/divi-post-reading-progress-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Inform readers of the estimated reading progress for your blog posts, helping them plan their time effectively.
+- Divi Star Rating Module: Add stylish star rating functionality to your content, allowing visitors to provide feedback and ratings.
+- Divi Post Reading Time Module: Inform readers of the estimated reading time for your blog posts, helping them plan their time effectively.
 - [(...and more)](https://squadmodules.com/modules?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink)
 
 **Form Styler Divi Modules:**
 
-- [Divi Form Styler: Contact Form 7 Module](https://squadmodules.com/modules/divi-form-styler-contact-form-7-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Effortlessly customize the design of Contact Form 7 forms with color, font, spacing, and CSS options.
-- [Divi Form Styler: WP Forms Module](https://squadmodules.com/modules/divi-form-styler-wp-forms-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Effortlessly customize the design of WP Forms with color, font, spacing, and CSS options.
-- [Divi Form Styler: Gravity Forms Module](https://squadmodules.com/modules/divi-form-styler-gravity-forms-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Effortlessly customize the design of Gravity Forms with color, font, spacing, and CSS options.
-- [Divi Form Styler: Ninja Forms Module](https://squadmodules.com/modules/divi-form-styler-ninja-forms-module?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink): Effortlessly customize the design of Ninja Forms with color, font, spacing, and CSS options.
+- Divi Form Styler: Contact Form 7 Module: Effortlessly customize the design of Contact Form 7 forms with color, font, spacing, and CSS options.
+- Divi Form Styler: WP Forms Module: Effortlessly customize the design of WP Forms with color, font, spacing, and CSS options.
+- Divi Form Styler: Gravity Forms Module: Effortlessly customize the design of Gravity Forms with color, font, spacing, and CSS options.
+- Divi Form Styler: Ninja Forms Module: Effortlessly customize the design of Ninja Forms with color, font, spacing, and CSS options.
 - [(...and more)](https://squadmodules.com/modules?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink)
 
 **Powerful Free Divi Extensions:**
@@ -187,15 +186,37 @@ If you need assistance with Squad Modules Lite, you can reach out to [our suppor
 13. Typing Text Module - This is a module that allows you to create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 
 == Upgrade Notice ==
-= 3.0.1 =
-- Fatal error when activating the pro plugin
+= 3.1.0 =
+- New languages, bugfixing and compatibility with WordPress, Divi Theme, and other thirdparty plugins.
 
 == Changelog ==
-= 3.0.1 (16-07-2024) =
+= 3.1.0 (01-08-2024) =
+
+**New Features:**
+
+- New Elements (custom icon, custom fields, custom fields(acf)) Divi Post Grid Module
+- New support for custom fields including acf with Divi Post Grid Module
+- New languages (Arabic, Dutch, English (UK), French (Canada), French (France), German, German (Austria), Spanish (Peru), Spanish (Spain) ) for Divi Squad Modules Lite plugin
+- Update languages (Bengali (Bangladesh), Portuguese (Brazil)) for Divi Squad Modules Lite plugin
 
 **Bug Fixes:**
 
-- Fix: Fatal error when activating the pro plugin.
+- Fix: Filter by tags is not working in frontend with Divi Post Grid Module
+- Fix: An fatal errors issue when old vesion of Divi Squad Modules Pro is installed with Divi Squad Modules Lite
 
+**Improvements:**
+
+- Improved: Divi Squad Modules Admin UI (More flexible, more user-friendly)
+- Improved: Security issues, Data sanitization and validation for all modules
+- Improved: Squad Copy Extension.
+- Tested for compatibility with WordPress (6.7 beta)
+- Tested for compatibility with WordPress (6.6.1 stable)
+- Tested for compatibility with Divi Theme (4.27.0)
+- Tested for compatibility with Contact Form 7 (5.9.8)
+- Tested for compatibility with Fluent Forms (5.1.20)
+- Tested for compatibility with WPForms (1.8.9.6)
+- Tested for compatibility with Gravity Forms (2.8.15)
+- Tested for compatibility with Ninja Forms (3.8.9)
 
 [Read more](https://squadmodules.com/changelog)
+

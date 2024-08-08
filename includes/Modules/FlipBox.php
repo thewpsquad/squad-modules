@@ -13,7 +13,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
@@ -34,7 +34,7 @@ use function wp_kses_post;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class FlipBox extends DiviSquad_Module {
+class FlipBox extends Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -1195,7 +1195,13 @@ class FlipBox extends DiviSquad_Module {
 			),
 		);
 
-		// The animations fields definitions.
+		/**
+		 * The flip animations fields definitions.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $flip_animation_types The flip animation types.
+		 */
 		$flip_animation_types   = apply_filters(
 			'divi_squad_flip_animation_types',
 			array(

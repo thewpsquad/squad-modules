@@ -1,4 +1,7 @@
 == Upgrade Notice ==
+= 3.1.0 =
+- New languages, bugfixing and compatibility with WordPress, Divi Theme, and other thirdparty plugins.
+
 = 3.0.1 =
 - Fatal error when activating the pro plugin
 

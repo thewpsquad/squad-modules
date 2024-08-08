@@ -24,7 +24,7 @@ class Assets {
 	 * Enqueue scripts for frontend.
 	 *
 	 * @return void
-	 * @deprecated 3.0.1 marked as deprecated.
+	 * @deprecated 3.1.0 marked as deprecated.
 	 */
 	public function enqueue_scripts() {}
 
@@ -32,7 +32,7 @@ class Assets {
 	 * Enqueue scripts for builder.
 	 *
 	 * @return void
-	 * @deprecated 3.0.1 marked as deprecated.
+	 * @deprecated 3.1.0 marked as deprecated.
 	 */
 	public function enqueue_scripts_vb() {}
 
@@ -42,7 +42,7 @@ class Assets {
 	 * @param string $output Exist output.
 	 *
 	 * @return string
-	 * @deprecated 3.0.1 marked as deprecated.
+	 * @deprecated 3.1.0 marked as deprecated.
 	 */
 	public function wp_localize_script_data( $output ) {
 		return $output;

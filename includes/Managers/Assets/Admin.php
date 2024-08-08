@@ -123,7 +123,7 @@ class Admin extends PluginAsset {
 			'assets_url' => divi_squad()->get_asset_url(),
 		);
 
-		return array_merge( $defaults, $exists_data, $admin_rest_routes );
+		return array_merge_recursive( $defaults, $exists_data, $admin_rest_routes );
 	}
 
 	/**
@@ -193,17 +193,10 @@ class Admin extends PluginAsset {
 				'whats_new'  => admin_url( 'admin.php?page=divi_squad_dashboard#/whats-new' ),
 			),
 			'l10n'               => array(
-				'dashboard'               => esc_html__( 'Dashboard', 'squad-modules-for-divi' ),
-				'modules'                 => esc_html__( 'Modules', 'squad-modules-for-divi' ),
-				'extensions'              => esc_html__( 'Extension', 'squad-modules-for-divi' ),
-				'whats_new'               => esc_html__( 'What\'s New', 'squad-modules-for-divi' ),
-				'content-modules'         => esc_html__( 'Content Modules', 'squad-modules-for-divi' ),
-				'creative-modules'        => esc_html__( 'Creative Modules', 'squad-modules-for-divi' ),
-				'dynamic-content-modules' => esc_html__( 'Dynamic Content Modules', 'squad-modules-for-divi' ),
-				'form-styler-modules'     => esc_html__( 'Form Styler Modules', 'squad-modules-for-divi' ),
-				'image-&-media-modules'   => esc_html__( 'Image & Media Modules', 'squad-modules-for-divi' ),
-				'media-upload'            => esc_html__( 'Media Upload', 'squad-modules-for-divi' ),
-				'enhancement'             => esc_html__( 'Enhancement', 'squad-modules-for-divi' ),
+				'dashboard'  => esc_html__( 'Dashboard', 'squad-modules-for-divi' ),
+				'modules'    => esc_html__( 'Modules', 'squad-modules-for-divi' ),
+				'extensions' => esc_html__( 'Extension', 'squad-modules-for-divi' ),
+				'whats_new'  => esc_html__( 'What\'s New', 'squad-modules-for-divi' ),
 			),
 			'plugins'            => WpUtils::get_active_plugins(),
 			'notices'            => array(
@@ -211,6 +204,6 @@ class Admin extends PluginAsset {
 			),
 		);
 
-		return array_merge( $exists_data, $admin_localize );
+		return array_merge_recursive( $exists_data, $admin_localize );
 	}
 }

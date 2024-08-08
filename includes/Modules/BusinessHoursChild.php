@@ -13,7 +13,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use function esc_html__;
 use function et_builder_get_text_orientation_options;
@@ -28,7 +28,7 @@ use function wp_kses_post;
  * @since           1.0.0
  * @package         squad-modules-for-divi
  */
-class BusinessHoursChild extends DiviSquad_Module {
+class BusinessHoursChild extends Module {
 	/**
 	 * Initiate Module.
 	 * Set the module name on init.
@@ -50,7 +50,7 @@ class BusinessHoursChild extends DiviSquad_Module {
 
 		// Connect with utils.
 		$this->squad_utils = Utils::connect( $this );
-		$this->squad_utils->initiate_the_divider_element();
+		$this->squad_utils->divider->initiate_element();
 
 		// Declare settings modal toggles for the module.
 		$this->settings_modal_toggles = array(
@@ -290,7 +290,7 @@ class BusinessHoursChild extends DiviSquad_Module {
 				'mobile_options'  => true,
 			),
 		);
-		$divider_fields = $this->squad_utils->get_divider_element_fields(
+		$divider_fields = $this->squad_utils->divider->get_fields(
 			array(
 				'label'            => esc_html__( 'Show Text Separator', 'squad-modules-for-divi' ),
 				'description'      => esc_html__( 'Here you can choose whether or not show the separator for day text.', 'squad-modules-for-divi' ),

@@ -10,6 +10,7 @@
 
 namespace DiviSquad\Base\DiviBuilder\Utils\Elements;
 
+use DiviSquad\Base\DiviBuilder\Utils;
 use ET_Global_Settings;
 use function esc_html__;
 use function et_builder_accent_color;
@@ -22,15 +23,51 @@ use function et_builder_i18n;
  * @package DiviSquad
  * @since   1.5.0
  */
-trait Divider {
+class Divider {
+
+	/**
+	 * The instance of ET Builder Element.
+	 *
+	 * @var object
+	 */
+	public $module;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param object $module The instance of ET Builder Element.
+	 */
+	public function __construct( $module ) {
+		$this->module = $module;
+	}
+
+	/**
+	 * Get show options for divider.
+	 *
+	 * @return array
+	 */
+	public function get_show_options() {
+		return $this->module->squad_divider_show_options;
+	}
+
+	/**
+	 * Get the default data.
+	 *
+	 * @param string $field The instance of ET Builder Element.
+	 *
+	 * @return string
+	 */
+	public function get_default( $field ) {
+		return ! empty( $this->module->squad_divider_defaults[ $field ] ) ? $this->module->squad_divider_defaults[ $field ] : '';
+	}
 
 	/**
 	 * Get the default data.
 	 *
 	 * @return array
 	 */
-	public function get_divider_defaults() {
-		return $this->element->squad_divider_defaults;
+	public function get_defaults() {
+		return $this->module->squad_divider_defaults;
 	}
 
 	/**
@@ -38,47 +75,49 @@ trait Divider {
 	 *
 	 * @return void The shape
 	 */
-	public function initiate_the_divider_element() {
-		$style_option_name       = sprintf( '%1$s-divider_style', $this->element->slug );
-		$global_divider_style    = ET_Global_Settings::get_value( $style_option_name );
-		$position_option_name    = sprintf( '%1$s-divider_position', $this->element->slug );
-		$global_divider_position = ET_Global_Settings::get_value( $position_option_name );
-		$weight_option_name      = sprintf( '%1$s-divider_weight', $this->element->slug );
-		$global_divider_weight   = ET_Global_Settings::get_value( $weight_option_name );
+	public function initiate_element() {
+		$style_option_name    = sprintf( '%1$s-divider_style', $this->module->slug );
+		$global_divider_style = ET_Global_Settings::get_value( $style_option_name );
 
-		$this->element->squad_divider_defaults = array(
+		$position_option_name    = sprintf( '%1$s-divider_position', $this->module->slug );
+		$global_divider_position = ET_Global_Settings::get_value( $position_option_name );
+
+		$weight_option_name    = sprintf( '%1$s-divider_weight', $this->module->slug );
+		$global_divider_weight = ET_Global_Settings::get_value( $weight_option_name );
+
+		$this->module->squad_divider_defaults = array(
 			'divider_style'    => ! empty( $global_divider_style ) ? $global_divider_style : 'solid',
 			'divider_position' => ! empty( $global_divider_position ) ? $global_divider_position : 'bottom',
 			'divider_weight'   => ! empty( $global_divider_weight ) ? $global_divider_weight : '2px',
 		);
 
 		// Show divider options are modifiable via customizer.
-		$this->element->squad_divider_show_options = array(
+		$this->module->squad_divider_show_options = array(
 			'off' => et_builder_i18n( 'No' ),
 			'on'  => et_builder_i18n( 'Yes' ),
 		);
 	}
 
 	/**
-	 * Get the field for divider element
+	 * Get the field for divider module
 	 *
-	 * @param array $options The options for divider element fields.
+	 * @param array $options The options for divider module fields.
 	 *
 	 * @return array the field
 	 */
-	public function get_divider_element_fields( $options = array() ) {
+	public function get_fields( $options = array() ) {
 		// Collect toggle slug.
 		$toggle_slug     = ! empty( $options['toggle_slug'] ) ? $options['toggle_slug'] : '';
 		$toggle_slug_adv = ! empty( $options['toggle_slug_adv'] ) ? $options['toggle_slug_adv'] : $toggle_slug;
 
-		$main_fields_divider_defaults = array(
+		$main_fields_defaults = array(
 			'label'            => esc_html__( 'Show Divider', 'squad-modules-for-divi' ),
 			'description'      => esc_html__( 'This settings turns on and off the 1px divider line, but does not affect the divider height.', 'squad-modules-for-divi' ),
 			'default'          => 'on',
 			'default_on_front' => 'on',
 			'type'             => 'yes_no_button',
 			'option_category'  => 'configuration',
-			'options'          => $this->get_show_divider_options(),
+			'options'          => $this->get_show_options(),
 			'affects'          => array(
 				'divider_color',
 				'divider_style',
@@ -93,7 +132,7 @@ trait Divider {
 		);
 
 		return array(
-			'show_divider'          => array_merge( $main_fields_divider_defaults, $options ),
+			'show_divider'          => array_merge( $main_fields_defaults, $options ),
 			'divider_color'         => array(
 				'label'            => esc_html__( 'Line Color', 'squad-modules-for-divi' ),
 				'description'      => esc_html__( 'This will adjust the color of the 1px divider line.', 'squad-modules-for-divi' ),
@@ -115,8 +154,8 @@ trait Divider {
 				'depends_show_if'  => 'on',
 				'tab_slug'         => 'advanced',
 				'toggle_slug'      => $toggle_slug_adv,
-				'default'          => $this->get_divider_default( 'divider_style' ),
-				'default_on_front' => $this->get_divider_default( 'divider_style' ),
+				'default'          => $this->get_default( 'divider_style' ),
+				'default_on_front' => $this->get_default( 'divider_style' ),
 				'mobile_options'   => true,
 			),
 			'divider_position'      => array(
@@ -132,8 +171,8 @@ trait Divider {
 				'depends_show_if'  => 'on',
 				'tab_slug'         => 'advanced',
 				'toggle_slug'      => $toggle_slug_adv,
-				'default'          => $this->get_divider_default( 'divider_position' ),
-				'default_on_front' => $this->get_divider_default( 'divider_position' ),
+				'default'          => $this->get_default( 'divider_position' ),
+				'default_on_front' => $this->get_default( 'divider_position' ),
 				'mobile_options'   => true,
 			),
 			'divider_weight'        => array(
@@ -149,14 +188,14 @@ trait Divider {
 				'depends_show_if'  => 'on',
 				'allowed_units'    => array( 'em', 'rem', 'px', 'cm', 'mm', 'in', 'pt', 'pc', 'ex', 'vh', 'vw' ),
 				'default_unit'     => 'px',
-				'default'          => $this->get_divider_default( 'divider_weight' ),
-				'default_on_front' => $this->get_divider_default( 'divider_weight' ),
+				'default'          => $this->get_default( 'divider_weight' ),
+				'default_on_front' => $this->get_default( 'divider_weight' ),
 				'tab_slug'         => 'advanced',
 				'toggle_slug'      => $toggle_slug_adv,
 				'mobile_options'   => true,
 				'sticky'           => true,
 			),
-			'divider_max_width'     => self::add_range_field(
+			'divider_max_width'     => Utils::add_range_field(
 				esc_html__( 'Divider Max Width', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose divider max width.', 'squad-modules-for-divi' ),
@@ -173,7 +212,7 @@ trait Divider {
 					'toggle_slug'     => $toggle_slug_adv,
 				)
 			),
-			'divider_border_radius' => self::add_range_field(
+			'divider_border_radius' => Utils::add_range_field(
 				esc_html__( 'Divider Border Radius', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Here you can choose divider border  radius.', 'squad-modules-for-divi' ),
@@ -191,25 +230,5 @@ trait Divider {
 				)
 			),
 		);
-	}
-
-	/**
-	 * Get show options for divider.
-	 *
-	 * @return array
-	 */
-	public function get_show_divider_options() {
-		return $this->element->squad_divider_show_options;
-	}
-
-	/**
-	 * Get the default data.
-	 *
-	 * @param string $field The instance of ET Builder Element.
-	 *
-	 * @return string
-	 */
-	public function get_divider_default( $field ) {
-		return ! empty( $this->element->squad_divider_defaults[ $field ] ) ? $this->element->squad_divider_defaults[ $field ] : '';
 	}
 }

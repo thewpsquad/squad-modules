@@ -12,7 +12,7 @@
 
 namespace DiviSquad\Modules;
 
-use DiviSquad\Base\DiviBuilder\DiviSquad_Module;
+use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Helper;
 use function esc_attr;
@@ -29,7 +29,7 @@ use function wp_enqueue_script;
  * @package DiviSquad
  * @since   1.4.7
  */
-class GoogleMap extends DiviSquad_Module {
+class GoogleMap extends Module {
 
 	/**
 	 * Initiate Module.

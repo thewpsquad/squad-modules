@@ -9,7 +9,7 @@
 
 namespace DiviSquad\Integrations;
 
-use DiviSquad\Base\DiviBuilder\IntegrationAPI;
+use DiviSquad\Base\DiviBuilder\Integration\ShortcodeAPI;
 
 /**
  * Divi Squad Class.
@@ -17,7 +17,7 @@ use DiviSquad\Base\DiviBuilder\IntegrationAPI;
  * @package DiviSquad
  * @since   1.0.0
  */
-class DiviBuilder extends IntegrationAPI {
+class DiviBuilder extends ShortcodeAPI {
 
 	/**
 	 * Get the plugin version number

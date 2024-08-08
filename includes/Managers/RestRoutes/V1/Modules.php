@@ -47,7 +47,7 @@ class Modules extends Route {
 			return new WP_REST_Response( $response, 403 );
 		}
 
-		return rest_ensure_response( divi_squad()->modules->get_modules_with_extra() );
+		return rest_ensure_response( divi_squad()->modules->get_all_modules_with_locked() );
 	}
 
 	/**
