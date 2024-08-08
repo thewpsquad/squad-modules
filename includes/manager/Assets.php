@@ -59,7 +59,7 @@ class Assets {
 		Asset::register_script( 'module-accordion', Asset::module_asset_path( 'modules/accordion-bundle' ), $core_asset_deps );
 		Asset::register_script( 'module-gallery', Asset::module_asset_path( 'modules/gallery-bundle' ), $core_asset_deps );
 		Asset::register_script( 'module-scrolling-text', Asset::module_asset_path( 'modules/scrolling-text-bundle' ), $core_asset_deps );
-		Asset::register_script( 'module-video-popup', Asset::module_asset_path( 'modules/video-popup-bundle' ), array( 'magnific-popup' ) );
+		Asset::register_script( 'module-video-popup', Asset::module_asset_path( 'modules/video-popup-bundle' ), array( 'jquery', 'magnific-popup' ) );
 	}
 
 	/**

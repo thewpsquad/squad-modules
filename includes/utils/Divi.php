@@ -20,6 +20,10 @@ use function et_get_dynamic_assets_path;
 use function et_pb_maybe_fa_font_icon;
 use function et_use_dynamic_icons;
 use function add_filter;
+use function get_option;
+use function get_template;
+use function wp_get_theme;
+use function wp_get_themes;
 
 /**
  * Divi class.
@@ -105,4 +109,3 @@ class Divi {
 		}
 	}
 }
-

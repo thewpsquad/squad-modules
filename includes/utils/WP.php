@@ -16,6 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
+use function get_option;
+use function get_plugins;
+use function get_site_option;
+use function is_multisite;
+use function wp_localize_script;
+
 /**
  * WP Helper class.
  *
@@ -50,8 +56,8 @@ class WP {
 	 * @return array
 	 */
 	public static function get_active_plugins_info() {
-		$all_plugins        = \get_plugins();
-		$active_plugins     = \get_option( 'active_plugins', array() );
+		$all_plugins        = get_plugins();
+		$active_plugins     = get_option( 'active_plugins', array() );
 		$all_active_plugins = array(); // prepare array for all Active plugins.
 		foreach ( $all_plugins as $plugin => $plugin_info ) {
 			if ( function_exists( '\is_plugin_active' ) && \is_plugin_active( $plugin ) || in_array( $plugin, $active_plugins, true ) ) {
@@ -68,7 +74,7 @@ class WP {
 	 *
 	 * Works only if the script has already been registered.
 	 *
-	 * @param string $handle Script handle the textdomain will be attached to.
+	 * @param string $handle The Script handle the textdomain will be attached to.
 	 * @param string $domain Optional. Text domain. Default 'default'.
 	 * @param string $path   Optional. The full file path to the directory containing translation files.
 	 *
@@ -80,20 +86,5 @@ class WP {
 		}
 
 		return false;
-	}
-
-	/**
-	 * Localizes a script.
-	 *
-	 * Works only if the script has already been registered.
-	 *
-	 * @param string $handle      Script handle the data will be attached to.
-	 * @param string $object_name Name for the JavaScript object. Passed directly, so it should be qualified JS variable.
-	 * @param array  $l10n        The data itself. The data can be either a single or multi-dimensional array.
-	 *
-	 * @return bool True if the script was successfully localized, false otherwise.
-	 */
-	public static function localize_script( $handle, $object_name, $l10n ) {
-		return \wp_localize_script( $handle, $object_name, $l10n );
 	}
 }

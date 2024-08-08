@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-3.0-only.
 msgid ""
 msgstr ""
-"Project-Id-Version: Squad Modules Lite 1.4.8\n"
+"Project-Id-Version: Squad Modules Lite 1.4.9\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/temp\n"
-"POT-Creation-Date: 2024-01-06 19:58:54+00:00\n"
+"POT-Creation-Date: 2024-01-11 14:43:40+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -61,101 +61,101 @@ msgstr ""
 msgid "9"
 msgstr ""
 
-#: admin/Assets.php:202 admin/Menu.php:110
+#: admin/Assets.php:209 admin/Menu.php:110
 msgid "Divi Squad"
 msgstr ""
 
-#: admin/Assets.php:203 admin/Menu.php:135
+#: admin/Assets.php:210 admin/Menu.php:135
 msgid "Dashboard"
 msgstr ""
 
-#: admin/Assets.php:204 admin/Menu.php:140
+#: admin/Assets.php:211 admin/Menu.php:140
 msgid "Modules"
 msgstr ""
 
-#: admin/Assets.php:205 admin/Menu.php:145
+#: admin/Assets.php:212 admin/Menu.php:145
 msgid "Extensions"
 msgstr ""
 
-#: admin/Assets.php:206 admin/Menu.php:150
+#: admin/Assets.php:213 admin/Menu.php:150
 msgid "What's New"
 msgstr ""
 
-#: admin/Assets.php:207
+#: admin/Assets.php:214
 msgid "View All"
 msgstr ""
 
-#: admin/Assets.php:208
+#: admin/Assets.php:215
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: admin/Assets.php:209
+#: admin/Assets.php:216
 msgid "Active License"
 msgstr ""
 
-#: admin/Assets.php:210
+#: admin/Assets.php:217
 msgid "View Documentation"
 msgstr ""
 
-#: admin/Assets.php:211
+#: admin/Assets.php:218
 msgid ""
 "Get started by spending some time with the documentation to get familiar "
 "with Squad Modules."
 msgstr ""
 
-#: admin/Assets.php:212
+#: admin/Assets.php:219
 msgid "Show Your Love"
 msgstr ""
 
-#: admin/Assets.php:213
+#: admin/Assets.php:220
 msgid ""
 "Take your 2 minutes to review the plugin and spread the love to encourage "
 "us to keep it going."
 msgstr ""
 
-#: admin/Assets.php:214
+#: admin/Assets.php:221
 msgid "Need Help?"
 msgstr ""
 
-#: admin/Assets.php:215
+#: admin/Assets.php:222
 msgid "Stuck with something? Get help from live chat or submit a support ticket."
 msgstr ""
 
-#: admin/Assets.php:216
+#: admin/Assets.php:223
 msgid "Join the Community"
 msgstr ""
 
-#: admin/Assets.php:217
+#: admin/Assets.php:224
 msgid "Join the user community and discuss with fellow developers & users."
 msgstr ""
 
-#: admin/Assets.php:218
+#: admin/Assets.php:225
 msgid "Changelog"
 msgstr ""
 
-#: admin/Assets.php:219
+#: admin/Assets.php:226
 msgid "Dive into the Changelog and discover all the magic behind the scenes!"
 msgstr ""
 
-#: admin/Assets.php:220
+#: admin/Assets.php:227
 msgid "View Changelog"
 msgstr ""
 
-#: admin/Assets.php:221
+#: admin/Assets.php:228
 msgid "Supercharge your experience with our game-changing new updates!"
 msgstr ""
 
-#: admin/Assets.php:222
+#: admin/Assets.php:229
 msgid ""
 "Unlock 20+ Advanced PRO Modules to Enhance Your Divi Site Building "
 "Experience"
 msgstr ""
 
-#: admin/Assets.php:223
+#: admin/Assets.php:230
 msgid "Automatic Updates & Priority Support"
 msgstr ""
 
-#: admin/Assets.php:224
+#: admin/Assets.php:231
 msgid ""
 "Get access to automatic updates & keep your website up-to-date with "
 "constantly developing features.Having any trouble? Don’t worry as you can "
@@ -163,130 +163,152 @@ msgid ""
 "tickets."
 msgstr ""
 
-#: admin/Assets.php:225
+#: admin/Assets.php:232
 msgid "Unable to load module list."
 msgstr ""
 
-#: admin/Assets.php:226
+#: admin/Assets.php:233
 msgid "Loading available modules..."
 msgstr ""
 
-#: admin/Assets.php:227
+#: admin/Assets.php:234
 msgid "Unable to load extension list."
 msgstr ""
 
-#: admin/Assets.php:228
+#: admin/Assets.php:235
 msgid "Loading available extensions..."
 msgstr ""
 
-#: admin/Assets.php:229
+#: admin/Assets.php:236
 msgid "Unable to load new changes."
 msgstr ""
 
-#: admin/Assets.php:230
+#: admin/Assets.php:237
 msgid "Loading available what's new changes..."
 msgstr ""
 
-#: admin/Assets.php:231
+#: admin/Assets.php:238
 msgid "Manage Modules"
 msgstr ""
 
-#: admin/Assets.php:232
+#: admin/Assets.php:239
 msgid ""
 "Enjoy seamless module control at your fingertips. The Toggle Button makes "
 "it a breeze to activate or deactivate elements, keeping your workflow "
 "smooth and efficient."
 msgstr ""
 
-#: admin/Assets.php:233 includes/modules/TypingText/TypingText.php:712
+#: admin/Assets.php:240 includes/modules/TypingText/TypingText.php:712
 #: includes/modules/TypingText/TypingText.php:726
 #: includes/modules/TypingText/TypingText.php:740
 msgid "Default"
 msgstr ""
 
-#: admin/Assets.php:234
+#: admin/Assets.php:241
 msgid "Active All"
 msgstr ""
 
-#: admin/Assets.php:235
+#: admin/Assets.php:242
 msgid "Deactivate All"
 msgstr ""
 
-#: admin/Assets.php:236
+#: admin/Assets.php:243
 msgid "Save Changes"
 msgstr ""
 
-#: admin/Assets.php:237
+#: admin/Assets.php:244
 msgid "Manage Extensions"
 msgstr ""
 
-#: admin/Assets.php:238
+#: admin/Assets.php:245
 msgid ""
 "Take charge of your workspace with the Toggle Button. It's your ultimate "
 "tool for managing extensions seamlessly, keeping your focus where it "
 "matters."
 msgstr ""
 
-#: admin/Assets.php:239
+#: admin/Assets.php:246
 msgid "NEW"
 msgstr ""
 
-#: admin/Assets.php:240
+#: admin/Assets.php:247
 msgid "Updated"
 msgstr ""
 
-#: admin/Assets.php:241
+#: admin/Assets.php:248
 msgid "Uncategories"
 msgstr ""
 
-#: admin/Assets.php:242
+#: admin/Assets.php:249
 msgid "Content Modules"
 msgstr ""
 
-#: admin/Assets.php:243
+#: admin/Assets.php:250
 msgid "Creative Modules"
 msgstr ""
 
-#: admin/Assets.php:244
+#: admin/Assets.php:251
 msgid "Dynamic Content Modules"
 msgstr ""
 
-#: admin/Assets.php:245
+#: admin/Assets.php:252
 msgid "Form Styler Modules"
 msgstr ""
 
-#: admin/Assets.php:246
+#: admin/Assets.php:253
 msgid "Image & Media Modules"
 msgstr ""
 
-#: admin/Assets.php:247
+#: admin/Assets.php:254
 msgid "Media Upload"
 msgstr ""
 
-#: admin/Assets.php:248
+#: admin/Assets.php:255
 msgid "Enhancement"
 msgstr ""
 
-#: admin/Assets.php:249
+#: admin/Assets.php:256
 msgid "Preparing"
 msgstr ""
 
-#: admin/Assets.php:250 admin/Assets.php:252
+#: admin/Assets.php:257
 msgid "Enabled modules saved!"
 msgstr ""
 
-#: admin/Assets.php:251 admin/Assets.php:253
+#: admin/Assets.php:258
 msgid "Whoops! Enabled modules not saved. Try again later."
 msgstr ""
 
-#: admin/Assets.php:255
+#: admin/Assets.php:259
+msgid "Enabled extensions saved!"
+msgstr ""
+
+#: admin/Assets.php:260
+msgid "Whoops! Enabled extensions not saved. Try again later."
+msgstr ""
+
+#: admin/Assets.php:262
 msgid ""
 "We are here to assist you with any queries you may have. Feel free to ask "
 "us anything!"
 msgstr ""
 
-#: admin/Assets.php:256
+#: admin/Assets.php:263
 msgid "Hi, how can I help?"
+msgstr ""
+
+#: admin/Assets.php:265
+msgid "Oops, Page not found!"
+msgstr ""
+
+#: admin/Assets.php:266
+msgid ""
+"The page you are looking for might have been removed had its name changed "
+"or is temporarily unavailable."
+msgstr ""
+
+#: admin/Assets.php:267
+msgid "Go Back"
 msgstr ""
 
 #: admin/Menu.php:113
@@ -1165,31 +1187,31 @@ msgstr ""
 msgid "Button Padding"
 msgstr ""
 
-#: includes/extensions/Copy.php:166 includes/extensions/Copy.php:189
+#: includes/extensions/Copy.php:173 includes/extensions/Copy.php:196
 msgid "Copy"
 msgstr ""
 
-#: includes/extensions/Copy.php:167
+#: includes/extensions/Copy.php:174
 msgid "Squad Copy Extension"
 msgstr ""
 
-#: includes/extensions/Copy.php:168
+#: includes/extensions/Copy.php:175
 msgid "Kindly choose a minimum of one row for copying."
 msgstr ""
 
-#: includes/extensions/Copy.php:169
+#: includes/extensions/Copy.php:176
 msgid "Something went wrong!"
 msgstr ""
 
-#: includes/extensions/Copy.php:188
+#: includes/extensions/Copy.php:195
 msgid "Copy this"
 msgstr ""
 
-#: includes/extensions/Copy.php:206
+#: includes/extensions/Copy.php:213
 msgid "Copy "
 msgstr ""
 
-#: includes/extensions/Copy.php:336
+#: includes/extensions/Copy.php:343
 msgid "Kindly choose a minimum of one post for copying."
 msgstr ""
 
@@ -3913,7 +3935,7 @@ msgid "Select how much images are shown in the gallery, by default show all."
 msgstr ""
 
 #: includes/modules/ImageGallery/ImageGallery.php:245
-#: includes/utils/Module.php:104
+#: includes/utils/Module.php:106
 msgid "Custom"
 msgstr ""
 
@@ -5639,7 +5661,7 @@ msgstr ""
 msgid "Image Overlay"
 msgstr ""
 
-#: includes/utils/Module.php:103
+#: includes/utils/Module.php:105
 msgid "Select Module"
 msgstr ""
 

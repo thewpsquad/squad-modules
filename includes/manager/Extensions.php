@@ -89,7 +89,7 @@ class Extensions {
 	}
 
 	/**
-	 * Check current extension is an inactive extension.
+	 * Check the current extension is an inactive extension.
 	 *
 	 * @param array $extension The current extension.
 	 *
@@ -100,7 +100,7 @@ class Extensions {
 	}
 
 	/**
-	 *  Check current extension is an active extension.
+	 *  Check the current extension is an active extension.
 	 *
 	 * @param array $extension The current extension.
 	 *
@@ -121,7 +121,10 @@ class Extensions {
 	protected function get_filtered_extensions( $callback, $extensions ) {
 		$filtered_extensions = array();
 		foreach ( $extensions as $extension ) {
-			$filtered_extensions = call_user_func_array( $callback, array( $extension ) );
+			$filtered_extension = call_user_func_array( $callback, array( $extension ) );
+			if ( is_array( $filtered_extension ) ) {
+				$filtered_extensions[] = $filtered_extension;
+			}
 		}
 
 		return $filtered_extensions;
@@ -148,27 +151,40 @@ class Extensions {
 	/**
 	 * Load enabled extensions
 	 *
-	 * @param string $path              The defined directory.
-	 * @param array  $current_activates The activated extensions.
+	 * @param string $path          The defined directory.
+	 * @param array  $my_extensions The activated extensions.
 	 *
 	 * @return void
 	 */
-	protected function load_extensions_files( $path, $current_activates ) {
-		$active_extensions = $this->get_default_active_extensions();
+	protected function load_extensions_files( $path, $my_extensions ) {
+		$available_extensions = $this->get_available_extensions();
+		$default_extensions   = $this->get_default_active_extensions();
+		$activated_extensions = array();
 
-		if ( is_array( $current_activates ) ) {
-			$active_extensions = $current_activates;
-		}
-
-		foreach ( $active_extensions as $active_extension ) {
-			if ( is_string( $active_extension ) && file_exists( sprintf( '%1$s/extensions/%2$s.php', $path, $active_extension ) ) ) {
-				require_once sprintf( '%1$s/extensions/%2$s.php', $path, $active_extension );
+		if ( is_array( $my_extensions ) && count( $my_extensions ) !== 0 ) {
+			// Get activated extensions names that user activates.
+			$my_extension_names = array();
+			foreach ( $my_extensions as $my_extension ) {
+				if ( ! empty( $my_module['name'] ) ) {
+					$my_extension_names[] = $my_extension['name'];
+				}
 			}
 
-			if ( is_array( $active_extension ) && isset( $active_extension['name'] ) ) {
-				if ( file_exists( sprintf( '%1$s/extensions/%2$s.php', $path, $active_extension['name'] ) ) ) {
-					require_once sprintf( '%1$s/extensions/%2$s.php', $path, $active_extension['name'] );
+			// Get modules details that user activates.
+			foreach ( $available_extensions as $extension ) {
+				if ( in_array( $extension['name'], $my_extension_names, true ) ) {
+					$activated_extensions[] = $extension;
 				}
+			}
+		}
+
+		// Collect all activate extensions.
+		$activated_extensions = array_merge( $default_extensions, $activated_extensions );
+		$activated_extensions = array_unique( $activated_extensions, SORT_REGULAR );
+
+		foreach ( $activated_extensions as $activated_extension ) {
+			if ( file_exists( sprintf( '%1$s/extensions/%2$s.php', $path, $activated_extension['name'] ) ) ) {
+				require_once sprintf( '%1$s/extensions/%2$s.php', $path, $activated_extension['name'] );
 			}
 		}
 	}

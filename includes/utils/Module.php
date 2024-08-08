@@ -16,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
+use function wp_strip_all_tags;
+
 /**
  * Module class.
  *
@@ -195,7 +197,7 @@ class Module {
 	/**
 	 * Get background selectors for main and hover
 	 *
-	 * @param string $main_css_element Main css selector of element.
+	 * @param string $main_css_element Main css selector of an element.
 	 *
 	 * @return array[]
 	 */

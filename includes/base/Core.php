@@ -243,14 +243,13 @@ abstract class Core {
 	 */
 	public function wp_hook_enqueue_admin_scripts() {
 		// Set current required data into variables.
-		$admin_page_id     = 'divi_squad_admin_assets_backend';
 		$logo_fill_colord  = DISQ_DIR_URL . 'build/admin/images/divi-squad-default.png';
 		$logo_fill_default = DISQ_DIR_URL . 'build/admin/images/divi-squad-menu-default.png';
 		$logo_fill_active  = DISQ_DIR_URL . 'build/admin/images/divi-squad-menu-active.png';
 		$logo_fill_focus   = DISQ_DIR_URL . 'build/admin/images/divi-squad-menu-focus.png';
 
 		// Start style tag.
-		printf( '<style id="%1$s">', esc_attr( $admin_page_id ) );
+		printf( '<style id="divi_squad_admin_assets_backend-css" type="text/css">' );
 		// Start class selector.
 		print '#toplevel_page_divi_squad_dashboard div.wp-menu-image:before,.et-fb-settings-options-tab.et-fb-modules-list ul li.et_fb_divi_squad_modules.et_pb_folder {';
 
@@ -276,19 +275,11 @@ abstract class Core {
 	/**
 	 * Set the localize data.
 	 *
-	 * @return array
+	 * @return void
 	 */
 	public function localize_scripts_data() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'wp_hook_enqueue_localize_data' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_hook_enqueue_localize_data' ) );
-
-		return array(
-			'frontend' => array(
-				'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
-				'assetsUrl' => DISQ_ASSET_URL . 'assets/',
-			),
-			'builder'  => array(),
-		);
 	}
 
 	/**
@@ -297,24 +288,22 @@ abstract class Core {
 	 * @return void
 	 */
 	public function wp_hook_enqueue_localize_data() {
+		global $wp_version;
+
 		// Start script tag.
 		printf( '<script id="divi_squad_assets_backend_extra-js" type="application/javascript">' );
 
-		print wp_kses_data(
-			apply_filters(
-				'divi_squad_assets_backend_extra',
-				sprintf(
-					'window.DiviSquadExtra = %1$s;',
-					wp_json_encode(
-						array(
-							'site_type' => is_multisite() ? 'multi' : 'default',
-							'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
-							'assetsUrl' => DISQ_ASSET_URL . 'assets/',
-						)
-					)
-				)
-			)
+		$assets_backend_data_defaults = array(
+			'site_type'  => is_multisite() ? 'multi' : 'default',
+			'ajax_url'   => admin_url( 'admin-ajax.php' ),
+			'assets_url' => DISQ_ASSET_URL . 'assets/',
+			'wp_version' => $wp_version,
 		);
+
+		$assets_backend_data  = apply_filters( 'divi_squad_assets_backend_extra_data', $assets_backend_data_defaults );
+		$assets_backend_extra = apply_filters( 'divi_squad_assets_backend_extra', sprintf( 'window.DiviSquadExtra = %1$s;', wp_json_encode( $assets_backend_data ) ) );
+
+		print wp_kses_data( $assets_backend_extra );
 
 		// End script tag.
 		print '</script>';
@@ -326,7 +315,7 @@ abstract class Core {
 	 * Works only if the script has already been registered.
 	 *
 	 * @param string $object_name Name for the JavaScript object. Passed directly, so it should be qualified JS variable.
-	 * @param array  $l10n        The data itself. The data can be either a single or multi-dimensional array.
+	 * @param array  $l10n        The data itself. The data can be either a single or multidimensional array.
 	 *
 	 * @return string Localizes a script.
 	 */

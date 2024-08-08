@@ -41,11 +41,6 @@ abstract class BuilderIntegrationAPI extends BuilderIntegrationAPIBase {
 	 * Performs initialization tasks.
 	 */
 	protected function initialize() {
-		$this->bundle_dependencies = array(
-			'builder'  => array( 'react-dom', 'react' ),
-			'frontend' => array( 'jquery', et_get_combined_script_handle() ),
-		);
-
 		// Loads custom modules when the builder is ready.
 		add_action( 'et_builder_ready', array( $this, 'hook_et_builder_ready' ), 9 );
 
@@ -82,9 +77,10 @@ abstract class BuilderIntegrationAPI extends BuilderIntegrationAPIBase {
 	public function wp_hook_enqueue_scripts() {
 		// Enqueues non-minified, hot reloaded javascript bundles. (Builder).
 		if ( et_core_is_fb_enabled() ) {
+			$script_asset_deps = array( 'jquery', 'react', 'react-dom' );
 			$script_asset_path = Asset::module_asset_path( 'builder-bundle' );
 			$style_asset_path  = Asset::module_asset_path( 'builder-style', array( 'ext' => 'css' ) );
-			Asset::asset_enqueue( "{$this->name}-builder", $script_asset_path, $this->bundle_dependencies['builder'], true );
+			Asset::asset_enqueue( "{$this->name}-builder", $script_asset_path, $script_asset_deps, true );
 			Asset::style_enqueue( "{$this->name}-builder", $style_asset_path, array(), 'all', true );
 		} else {
 			// Enqueues minified, production javascript bundles. (Frontend).
