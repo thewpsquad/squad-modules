@@ -17,7 +17,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use DiviSquad\Utils\Polyfills\Str;
+use function add_menu_page;
+use function admin_url;
+use function apply_filters;
+use function current_user_can;
 use function DiviSquad\divi_squad;
+use function esc_html__;
+use function load_template;
 
 /**
  * Menu class
@@ -39,7 +45,7 @@ class Menu {
 			$main_menu = $this->get_admin_main_menu();
 			add_menu_page(
 				$main_menu['name'],
-				$main_menu['name'],
+				$main_menu['title'],
 				$main_menu['capability'],
 				$main_menu['slug'],
 				$main_menu['view'],
@@ -51,7 +57,7 @@ class Menu {
 			$all_submenus   = $this->get_admin_sub_menu();
 			$main_menu_slug = $this->get_admin_main_menu_slug();
 			if ( empty( $submenu[ $main_menu_slug ] ) ) {
-				$submenu[$main_menu_slug] = array(); // phpcs:ignore.
+				$submenu[ $main_menu_slug ] = array(); // phpcs:ignore.
 			}
 
 			// Update all submenus to the global submenu list.
@@ -81,13 +87,32 @@ class Menu {
 	}
 
 	/**
+	 * The menu_notice_should_show
+	 *
+	 * Check two flags status (admin_menu_notice and admin_promotion),
+	 * if both true this display menu notice. it'd prevent displaying menu notice multiple time
+	 *
+	 * @return bool
+	 * @since 5.1.0
+	 */
+	public function menu_notice_should_show() {
+		return ( divi_squad()->get_memory()->get( 'admin_menu_notice' ) && divi_squad()->get_memory()->get( 'admin_promotion' ) );
+	}
+
+	/**
 	 * Details about the Main Menu.
 	 *
 	 * @return  array Details about the Main Menu.
 	 */
 	public function get_admin_main_menu() {
+		$menu_notice  = ( $this->menu_notice_should_show() ) ? '<span class="eael-menu-notice">1</span>' : '';
 		$default_menu = array(
 			'name'       => esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
+			'title'      => sprintf(
+			/* translators: Notice */
+				__( 'Divi Squad %s', 'squad-modules-for-divi' ),
+				$menu_notice
+			),
 			'capability' => $this->admin_management_permission(),
 			'slug'       => $this->get_admin_main_menu_slug(),
 			'view'       => array( $this, 'get_template' ),

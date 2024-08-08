@@ -25,7 +25,7 @@ use function DiviSquad\divi_squad;
  * @since       1.0.0
  * @package     squad-modules-for-divi
  */
-class DiviSquad extends BuilderIntegrationAPI {
+class DiviBuilder extends BuilderIntegrationAPI {
 
 	/**
 	 * Get the plugin version number
@@ -42,6 +42,6 @@ class DiviSquad extends BuilderIntegrationAPI {
 	 * @since 1.0.0
 	 */
 	public function hook_et_builder_ready() {
-		divi_squad()->get_modules()->load_divi4_modules( dirname( __DIR__ ) );
+		divi_squad()->get_modules()->load_divi_builder_4_modules( dirname( __DIR__ ) );
 	}
 }

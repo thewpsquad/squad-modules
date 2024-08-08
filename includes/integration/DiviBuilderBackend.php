@@ -1,7 +1,7 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
 /**
- * The Backend integration helper for Divi Builder
+ * The DiviBuilderBackend integration helper for Divi Builder
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
@@ -10,7 +10,7 @@
  * @license     GPL-3.0-only
  */
 
-namespace DiviSquad\Integration\Divi;
+namespace DiviSquad\Integration;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
@@ -26,7 +26,7 @@ use function et_fb_process_shortcode;
  * @since      1.0.0
  * @package    squad-modules-for-divi
  */
-class Backend extends BuilderBackendPlaceholder {
+class DiviBuilderBackend extends BuilderBackendPlaceholder {
 	/**
 	 * Filters backend data passed to the Visual Builder.
 	 * This function is used to add static helpers whose content rarely changes.

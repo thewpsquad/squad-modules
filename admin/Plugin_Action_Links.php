@@ -12,6 +12,9 @@
 
 namespace DiviSquad\Admin;
 
+use function admin_url;
+use function esc_html__;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }

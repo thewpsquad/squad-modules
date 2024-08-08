@@ -2,6 +2,11 @@
 
 namespace DiviSquad\Base;
 
+use function add_action;
+use function esc_attr;
+use function esc_url_raw;
+use function load_plugin_textdomain;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
@@ -292,15 +297,12 @@ abstract class Core {
 	 * @return void
 	 */
 	public function wp_hook_enqueue_localize_data() {
-		// Set current required data into variables.
-		$admin_page_id = 'divi_squad_assets_backend_extra';
-
 		// Start script tag.
-		printf( '<script id="%1$s" type="application/javascript">', esc_attr( $admin_page_id ) );
+		printf( '<script id="divi_squad_assets_backend_extra-js" type="application/javascript">' );
 
 		print wp_kses_data(
 			apply_filters(
-				$admin_page_id,
+				'divi_squad_assets_backend_extra',
 				sprintf(
 					'window.DiviSquadExtra = %1$s;',
 					wp_json_encode(

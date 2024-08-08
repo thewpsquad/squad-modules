@@ -64,13 +64,22 @@ class Extensions {
 				'category'           => 'media-upload',
 			),
 			array(
-				'name'               => 'Divi_Library_Shortcode',
+				'name'               => 'Divi_Layout_Shortcode',
 				'label'              => esc_html__( 'Divi Library Shortcode', 'squad-modules-for-divi' ),
 				'description'        => esc_html__( 'Enable this feature only if you would like add Divi library shortcode feature.', 'squad-modules-for-divi' ),
 				'release_version'    => '1.2.0',
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
-				'category'           => 'divi-enhancement',
+				'category'           => 'enhancement',
+			),
+			array(
+				'name'               => 'Copy',
+				'label'              => esc_html__( 'Copy Post or Page', 'squad-modules-for-divi' ),
+				'description'        => esc_html__( 'Enable this feature only if you would like add Post or Page coping feature.', 'squad-modules-for-divi' ),
+				'release_version'    => '1.4.8',
+				'is_default_active'  => true,
+				'is_premium_feature' => false,
+				'category'           => 'enhancement',
 			),
 		);
 

@@ -17,7 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use DiviSquad\Utils\Helper;
+use function add_action;
+use function add_filter;
 use function DiviSquad\divi_squad;
+use function load_template;
 
 /**
  * Plugin Review Class
@@ -37,8 +40,8 @@ class Plugin_Review {
 	 * Init constructor.
 	 */
 	public function __construct() {
-		add_filter( 'admin_body_class', array( $this, 'admin_classes' ) );
-		add_action( 'admin_notices', array( $this, 'notice' ) );
+		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
+		add_action( 'admin_notices', array( $this, 'admin_notice' ) );
 
 		// Set the initial options for the plugin review.
 		$this->initial_option();
@@ -86,7 +89,7 @@ class Plugin_Review {
 	 * @return string
 	 * @since 1.2.5
 	 */
-	public function admin_classes( $classes ) {
+	public function admin_body_class( $classes ) {
 		// Add a specific class to detect the banner page.
 		if ( $this->can_render_notice() ) {
 			$classes .= ' divi-squad-notice';
@@ -107,7 +110,7 @@ class Plugin_Review {
 	/**
 	 * Show Notice.
 	 */
-	public function notice() {
+	public function admin_notice() {
 		if ( $this->can_render_notice() && file_exists( $this->get_template() ) ) {
 			load_template( $this->get_template() );
 		}

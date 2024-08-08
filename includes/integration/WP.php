@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
+use DiviSquad\Utils\Divi;
 use function version_compare;
 
 /**

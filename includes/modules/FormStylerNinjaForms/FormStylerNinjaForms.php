@@ -20,8 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use DiviSquad\Base\BuilderModule\Squad_Form_Styler_Module;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\Module;
 use function esc_html__;
-use function et_pb_background_options;
 use function wp_json_encode;
 
 /**
@@ -237,8 +237,7 @@ class FormStylerNinjaForms extends Squad_Form_Styler_Module {
 	 * @return array[]
 	 */
 	public function get_advanced_fields_config() {
-		$form_selector         = $this->get_form_selector_default();
-		$default_css_selectors = $this->disq_get_module_default_selectors();
+		$form_selector = $this->get_form_selector_default();
 
 		return array(
 			'fonts'          => array(
@@ -360,16 +359,9 @@ class FormStylerNinjaForms extends Squad_Form_Styler_Module {
 					)
 				),
 			),
-			'background'     => array_merge(
-				$default_css_selectors,
-				array(
-					'settings' => array(
-						'color' => 'alpha',
-					),
-				)
-			),
+			'background'     => Module::selectors_background( $this->main_css_element ),
 			'borders'        => array(
-				'default'         => $default_css_selectors,
+				'default'         => Module::selectors_default( $this->main_css_element ),
 				'wrapper'         => array(
 					'label_prefix' => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
 					'css'          => array(
@@ -490,7 +482,7 @@ class FormStylerNinjaForms extends Squad_Form_Styler_Module {
 				),
 			),
 			'box_shadow'     => array(
-				'default'         => $default_css_selectors,
+				'default'         => Module::selectors_default( $this->main_css_element ),
 				'wrapper'         => array(
 					'label'             => esc_html__( 'Wrapper Box Shadow', 'squad-modules-for-divi' ),
 					'option_category'   => 'layout',
@@ -576,24 +568,9 @@ class FormStylerNinjaForms extends Squad_Form_Styler_Module {
 					'toggle_slug'       => 'message_success',
 				),
 			),
-			'margin_padding' => array(
-				'use_padding' => true,
-				'use_margin'  => true,
-				'css'         => array(
-					'margin'    => $this->main_css_element,
-					'padding'   => $this->main_css_element,
-					'important' => 'all',
-				),
-			),
-			'max_width'      => array_merge(
-				$default_css_selectors,
-				array(
-					'css' => array(
-						'module_alignment' => "$this->main_css_element.et_pb_module",
-					),
-				)
-			),
-			'height'         => $default_css_selectors,
+			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
+			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
+			'height'         => Module::selectors_default( $this->main_css_element ),
 			'image_icon'     => false,
 			'link_options'   => false,
 			'filters'        => false,
@@ -682,7 +659,7 @@ class FormStylerNinjaForms extends Squad_Form_Styler_Module {
 		$form_field_selectors .= ", $this->main_css_element .disq_form_styler_ninja_forms div form .nf-form-content .list-wrap > div div:after";
 		$form_field_selectors .= ", $this->main_css_element .disq_form_styler_ninja_forms div form .nf-form-content .list-select-wrap > div div:after";
 
-		// Line height selectors
+		// Line height selectors.
 		$line_height_selectors  = "$this->main_css_element .disq_form_styler_ninja_forms div form .nf-form-content .list-wrap > div div:after";
 		$line_height_selectors .= ", $this->main_css_element .disq_form_styler_ninja_forms div form .nf-form-content .list-select-wrap > div div:after";
 
@@ -755,6 +732,8 @@ class FormStylerNinjaForms extends Squad_Form_Styler_Module {
 			$ninja_forms = \Ninja_Forms()->form()->get_forms();
 			if ( is_array( $ninja_forms ) && count( $ninja_forms ) ) {
 				/**
+				 * Collect form iad and title based on conditions.
+				 *
 				 * @var \NF_Abstracts_Model[] $ninja_forms
 				 * @var \NF_Abstracts_Model   $form
 				 */
@@ -907,7 +886,7 @@ class FormStylerNinjaForms extends Squad_Form_Styler_Module {
 			'data_type'      => 'range',
 		);
 
-		// all margin, padding type styles.
+		// all margins, padding type styles.
 		$options['title_margin']  = array(
 			'type'           => 'margin',
 			'selector'       => "$this->main_css_element div .nf-form-cont .nf-form-title",
@@ -972,7 +951,7 @@ class FormStylerNinjaForms extends Squad_Form_Styler_Module {
 		$form_selector       = $this->get_form_selector_default();
 		$allowed_form_fields = $this->disq_get_allowed_form_fields();
 
-		// Add new fields
+		// Add new fields.
 		$allowed_form_fields[] = '.listimage-wrap .nf-field-element label';
 
 		$selectors = array();

@@ -1,6 +1,6 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 /**
- * The Backend integration helper for Divi Builder
+ * The DiviBuilderBackend integration helper for Divi Builder
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi
@@ -11,12 +11,14 @@
 
 namespace DiviSquad\Base;
 
+use function _x;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
 /**
- * Builder Backend Placeholder class.
+ * Builder DiviBuilderBackend Placeholder class.
  *
  * @since       1.0.0
  * @package     squad-modules-for-divi

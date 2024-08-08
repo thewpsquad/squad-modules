@@ -66,7 +66,7 @@ trait Breadcrumbs {
 				// Get the post categories.
 				$categories = get_the_category( $post_id );
 				if ( $categories ) {
-					// Lets grab the first category.
+					// Let's grab the first category.
 					$category = $categories[0];
 
 					$category_names       = get_category_parents( $category->term_id );
@@ -113,7 +113,7 @@ trait Breadcrumbs {
 				$parent_string = implode( $delimiter, $parent_links );
 			}
 
-			// Lets build the breadcrumb trail.
+			// Let's build the breadcrumb trail.
 			if ( $parent_string ) {
 				$breadcrumb_trail = $parent_string . $delimiter . $post_link;
 			} else {

@@ -100,17 +100,21 @@ class Str {
 	 * Performs a case-sensitive check indicating if a needle is contained in a haystack.
 	 *
 	 * @param string  $string_content The string.
-	 * @param int     $format Specify the return value of this function. The current supported values are:.
-	 *                        <ul>
-	 *                            <li>0: returns the number of words found</li>
-	 *                            <li>1: returns an array containing all the words found inside the string</li>
-	 *                            <li>2: returns an associative array, where the key is the numeric position of the word inside the string and the value is the actual word itself</li>
-	 *                        </ul>
-	 * @param ?string $characters   The substring to search for in the `$haystack`.
+	 * @param int     $format         Specify the return value of this function, options are: 0, 1, 2.
+	 * @param ?string $characters     The substring to search for in the `$haystack`.
 	 *
 	 * @return array|int True if `$needle` is in `$haystack`, otherwise false.
 	 */
 	public static function word_count( $string_content, $format = 0, $characters = null ) {
+		/*
+		 * The current supported values are:
+		 * <ul>
+		 *  <li>0: returns the number of words found</li>
+		 *  <li>1: returns an array containing all the words found inside the string</li>
+		 *  <li>2: returns an associative array, where the key is the numeric position of the word inside the string and the value is the actual word itself</li>
+		 * </ul>
+		 */
+
 		if ( function_exists( '\str_word_count' ) ) {
 			return \str_word_count( $string_content, $format, $characters );
 		}

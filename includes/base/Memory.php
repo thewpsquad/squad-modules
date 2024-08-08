@@ -43,7 +43,7 @@ class Memory {
 
 		// Load current data.
 		$data_option = sprintf( '%1$s-settings', $prefix );
-		$this->data  = get_option( $data_option, array() );
+		$this->data  = \get_option( $data_option, array() );
 	}
 
 	/**
@@ -158,7 +158,7 @@ class Memory {
 	 */
 	private function save_options( $option_name ) {
 		if ( function_exists( 'update_option' ) ) {
-			update_option( $option_name, $this->data );
+			\update_option( $option_name, $this->data );
 		}
 	}
 }

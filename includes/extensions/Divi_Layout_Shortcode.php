@@ -27,7 +27,7 @@ use DiviSquad\Base\Extensions;
  * @copyright   2023 WP Squad
  * @license     GPL-3.0-only
  */
-class Divi_Library_Shortcode extends Extensions {
+class Divi_Layout_Shortcode extends Extensions {
 
 	/**
 	 * The constructor class.
@@ -132,4 +132,4 @@ class Divi_Library_Shortcode extends Extensions {
 	}
 }
 
-new Divi_Library_Shortcode();
+new Divi_Layout_Shortcode();

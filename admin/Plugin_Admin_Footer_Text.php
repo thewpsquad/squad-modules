@@ -16,6 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
+use function admin_url;
+use function DiviSquad\divi_squad;
+use function esc_attr;
+use function esc_attr__;
+use function esc_html__;
+use function esc_url;
 use function get_current_screen;
 
 /**
@@ -46,14 +52,63 @@ class Plugin_Admin_Footer_Text {
 	public function add_plugin_footer_text( $footer_text ) {
 		$current_screen = get_current_screen();
 		if ( self::get_plugin_screen() === $current_screen->id ) {
+			// Add support url.
 			$footer_text = sprintf(
-			/* translators: 1: Squad Modules Lite 2:: five stars */
-				__( 'If you like %1$s please leave us a %2$s rating. A huge thanks in advance!', 'squad-modules-for-divi' ),
-				sprintf( '<strong>%s</strong>', esc_html__( 'Squad Modules Lite', 'squad-modules-for-divi' ) ),
-				'<a href="https://wordpress.org/support/plugin/squad-modules-for-divi/reviews/?rate=5#new-post" target="_blank" class="disq-rating-link" data-rated="' . esc_attr__( 'Thanks :)', 'squad-modules-for-divi' ) . '">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
+				'<a target="_blank" href="https://wordpress.org/support/plugin/squad-modules-for-divi/#postform">%1$s</a> | ',
+				esc_html__( 'Contact Support', 'squad-modules-for-divi' )
+			);
+
+			// Add rating to the plugin.
+			$footer_text .= str_replace(
+				array( '[stars]', '[wp.org]' ),
+				array(
+					'<a target="_blank" href="http://wordpress.org/support/view/plugin-reviews/squad-modules-for-divi/#postform">&#9733;&#9733;&#9733;&#9733;&#9733;</a>',
+					'<a target="_blank" href="http://wordpress.org/plugins/squad-modules-for-divi/" >wordpress.org</a>',
+				),
+				esc_html__( 'Add your [stars] on [wp.org] to spread the love.', 'squad-modules-for-divi' )
 			);
 		}
 
 		return $footer_text;
+	}
+
+	/**
+	 * Filters the version/update text displayed in the admin footer.
+	 *
+	 * @param string $content The content that will be printed.
+	 *
+	 * @return  string
+	 * @since 1.4.8
+	 */
+	public function add_update_footer_text( $content ) {
+		$current_screen = get_current_screen();
+
+		if ( self::get_plugin_screen() === $current_screen->id ) {
+			// Add sponsor url.
+			$content = sprintf(
+				'<a class="divi-squad-link-footer divi-squad-sponsor-link" href="https://www.buymeacoffee.com/mralaminahamed" title="%2$s" target="_blank" style="margin-right: 5px; text-decoration: none"><span class="dashicons dashicons-money-alt"></span> <span style="text-decoration: underline; text-underline-offset: 4px;">%1$s</span></a> | ',
+				esc_html__( 'Buy me a coffee', 'squad-modules-for-divi' ),
+				esc_attr__( 'Buy me a coffee', 'squad-modules-for-divi' )
+			);
+
+			// Add translate url.
+			$content .= sprintf(
+				'<a class="divi-squad-link-footer divi-squad-translations-link" href="https://translate.wordpress.org/projects/wp-plugins/squad-modules-for-divi" title="%2$s" target="_blank" style="margin-left: 5px; margin-right: 5px; text-decoration: none"><span class="dashicons dashicons-translation"></span> <span style="text-decoration: underline; text-underline-offset: 4px;">%1$s</span></a> | ',
+				esc_html__( 'Translate', 'squad-modules-for-divi' ),
+				esc_attr__( 'Help us with Translations for the Squad Modules project', 'squad-modules-for-divi' )
+			);
+
+			// Add version number.
+			$options  = divi_squad()->get_options();
+			$content .= sprintf(
+				'<a class="divi-squad-link-footer divi-squad-version-link" href="%2$s%4$s" title="%3$s" target="_blank" style="margin-left: 5px; text-decoration: none"><span style="text-decoration: underline; text-underline-offset: 4px;">%1$s%4$s</span></a>',
+				esc_html__( 'Version: ', 'squad-modules-for-divi' ),
+				esc_url( admin_url( 'admin.php?page=divi_squad_dashboard#/whats-new/' ) ),
+				esc_attr__( 'View what changed in this version', 'squad-modules-for-divi' ),
+				esc_attr( $options['Version'] )
+			);
+		}
+
+		return $content;
 	}
 }

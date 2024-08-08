@@ -53,6 +53,9 @@ class Admin {
 
 		// Include admin footer text for the plugin.
 		self::register_plugin_footer_text( $footer_text );
+
+		// Include update footer text for the plugin at admin area.
+		self::register_update_footer_text( $footer_text );
 	}
 
 	/**
@@ -115,5 +118,17 @@ class Admin {
 	 */
 	protected static function register_plugin_footer_text( $footer_text ) {
 		add_filter( 'admin_footer_text', array( $footer_text, 'add_plugin_footer_text' ) );
+	}
+
+	/**
+	 * Include update footer text for the plugin at admin area.
+	 *
+	 * @param \DiviSquad\Admin\Plugin_Admin_Footer_Text $footer_text The instance of the Plugin row meta.
+	 *
+	 * @return void
+	 * @since 1.4.8
+	 */
+	protected static function register_update_footer_text( $footer_text ) {
+		add_filter( 'update_footer', array( $footer_text, 'add_update_footer_text' ), 15 );
 	}
 }

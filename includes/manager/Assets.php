@@ -31,43 +31,85 @@ class Assets {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		$core_asset_deps      = array( 'jquery' );
-		$vendor_asset_options = array( 'path' => 'vendor' );
-		$module_asset_options = array( 'path' => 'divi4/scripts/modules' );
-
-		$lottie_js         = Asset::asset_path( 'lottie', $vendor_asset_options );
-		$typed_js          = Asset::asset_path( 'typed.umd', $vendor_asset_options );
-		$images_loaded_js  = Asset::asset_path( 'imagesloaded.pkgd', $vendor_asset_options );
-		$isotope_js        = Asset::asset_path( 'isotope.pkgd', $vendor_asset_options );
-		$light_gallery_js  = Asset::asset_path( 'lightgallery.umd', array_merge( $vendor_asset_options, array( 'prod_file' => 'lightgallery' ) ) );
-		$scrolling_text_js = Asset::asset_path( 'jquery.marquee', $vendor_asset_options );
+		$version         = divi_squad()->get_version();
+		$footer_args     = Asset::footer_arguments( true );
+		$core_asset_deps = array( 'jquery' );
 
 		// All vendor scripts.
-		Asset::register_scripts( 'vendor-lottie', $lottie_js );
-		Asset::register_scripts( 'vendor-typed', $typed_js );
-		Asset::register_scripts( 'vendor-light-gallery', $light_gallery_js, $core_asset_deps );
-		Asset::register_scripts( 'vendor-images-loaded', $images_loaded_js, $core_asset_deps );
-		Asset::register_scripts( 'vendor-isotope', $isotope_js, $core_asset_deps );
-		Asset::register_scripts( 'vendor-scrolling-text', $scrolling_text_js, $core_asset_deps );
+		Asset::register_script( 'vendor-lottie', Asset::vendor_asset_path( 'lottie' ) );
+		Asset::register_script( 'vendor-typed', Asset::vendor_asset_path( 'typed.umd' ) );
+		Asset::register_script( 'vendor-light-gallery', Asset::vendor_asset_path( 'lightgallery.umd', array( 'prod_file' => 'lightgallery' ) ), $core_asset_deps );
+		Asset::register_script( 'vendor-images-loaded', Asset::vendor_asset_path( 'imagesloaded.pkgd' ), $core_asset_deps );
+		Asset::register_script( 'vendor-scrolling-text', Asset::vendor_asset_path( 'jquery.marquee' ), $core_asset_deps );
 
 		// Re-queue third party scripts.
 		$magnific_popup_script_path = '/includes/builder/feature/dynamic-assets/assets/js/magnific-popup.js';
 		if ( ! wp_script_is( 'magnific-popup', 'registered' ) && file_exists( get_template_directory() . $magnific_popup_script_path ) ) {
-			wp_register_script( 'magnific-popup', get_template_directory_uri() . $magnific_popup_script_path, $core_asset_deps, divi_squad()->get_version(), true );
+			wp_register_script( 'magnific-popup', get_template_directory_uri() . $magnific_popup_script_path, $core_asset_deps, $version, $footer_args );
 		}
 
 		$lottie_asset_deps       = array_merge( $core_asset_deps, array( 'disq-vendor-lottie' ) );
 		$typing_text_module_deps = array_merge( $core_asset_deps, array( 'disq-vendor-typed' ) );
 
 		// All module js.
-		Asset::register_scripts( 'module-divider', Asset::asset_path( 'divider-bundle', $module_asset_options ), $core_asset_deps );
-		Asset::register_scripts( 'module-lottie', Asset::asset_path( 'lottie-bundle', $module_asset_options ), $lottie_asset_deps );
-		Asset::register_scripts( 'module-typing-text', Asset::asset_path( 'typing-text-bundle', $module_asset_options ), $typing_text_module_deps );
-		Asset::register_scripts( 'module-bais', Asset::asset_path( 'bai-slider-bundle', $module_asset_options ), $core_asset_deps );
-		Asset::register_scripts( 'module-accordion', Asset::asset_path( 'accordion-bundle', $module_asset_options ), $core_asset_deps );
-		Asset::register_scripts( 'module-gallery', Asset::asset_path( 'gallery-bundle', $module_asset_options ), $core_asset_deps );
-		Asset::register_scripts( 'module-scrolling-text', Asset::asset_path( 'scrolling-text-bundle', $module_asset_options ), $core_asset_deps );
-		Asset::register_scripts( 'module-video-popup', Asset::asset_path( 'video-popup-bundle', $module_asset_options ), array( 'magnific-popup' ) );
+		Asset::register_script( 'module-divider', Asset::module_asset_path( 'modules/divider-bundle' ), $core_asset_deps );
+		Asset::register_script( 'module-lottie', Asset::module_asset_path( 'modules/lottie-bundle' ), $lottie_asset_deps );
+		Asset::register_script( 'module-typing-text', Asset::module_asset_path( 'modules/typing-text-bundle' ), $typing_text_module_deps );
+		Asset::register_script( 'module-bais', Asset::module_asset_path( 'modules/bai-slider-bundle' ), $core_asset_deps );
+		Asset::register_script( 'module-accordion', Asset::module_asset_path( 'modules/accordion-bundle' ), $core_asset_deps );
+		Asset::register_script( 'module-gallery', Asset::module_asset_path( 'modules/gallery-bundle' ), $core_asset_deps );
+		Asset::register_script( 'module-scrolling-text', Asset::module_asset_path( 'modules/scrolling-text-bundle' ), $core_asset_deps );
+		Asset::register_script( 'module-video-popup', Asset::module_asset_path( 'modules/video-popup-bundle' ), array( 'magnific-popup' ) );
+	}
+
+	/**
+	 * Load requires asset extra in the visual builder by default.
+	 *
+	 * @param string $output Exist output.
+	 *
+	 * @return string
+	 */
+	public function wp_localize_script_data( $output ) {
+		if ( function_exists( 'et_core_is_fb_enabled' ) && et_core_is_fb_enabled() ) {
+			$numbers = array(
+				'num_1' => esc_html__( '1', 'squad-modules-for-divi' ),
+				'num_2' => esc_html__( '2', 'squad-modules-for-divi' ),
+				'num_3' => esc_html__( '3', 'squad-modules-for-divi' ),
+				'num_4' => esc_html__( '4', 'squad-modules-for-divi' ),
+				'num_5' => esc_html__( '5', 'squad-modules-for-divi' ),
+				'num_6' => esc_html__( '6', 'squad-modules-for-divi' ),
+				'num_7' => esc_html__( '7', 'squad-modules-for-divi' ),
+				'num_8' => esc_html__( '8', 'squad-modules-for-divi' ),
+				'num_9' => esc_html__( '9', 'squad-modules-for-divi' ),
+				'dot_3' => esc_html__( '...', 'squad-modules-for-divi' ),
+			);
+
+			// Set all localized data here.
+			$localize = array(
+				'l10n' => array_merge(
+					$numbers,
+					array(
+						'home'              => esc_html__( 'Home', 'squad-modules-for-divi' ),
+						'no_posts'          => esc_html__( 'Posts not available according to your criteria.', 'squad-modules-for-divi' ),
+						'add_post_elements' => esc_html__( 'Add one or more post element(s).', 'squad-modules-for-divi' ),
+						'add_ba_images'     => esc_html__( 'Add <strong>Before</strong> and <strong>After</strong> images from <strong>Image</strong> Toggle under the Content tab. You are see a preview.', 'squad-modules-for-divi' ),
+						'add_business_days' => esc_html__( 'Add one or more business day(s).', 'squad-modules-for-divi' ),
+						'field_is_required' => esc_html__( 'The field is required.', 'squad-modules-for-divi' ),
+						'add_form'          => esc_html__( 'Please select a form.', 'squad-modules-for-divi' ),
+						'form_not_found'    => esc_html__( 'Forms are not available.', 'squad-modules-for-divi' ),
+						'field_error'       => esc_html__( 'One or more fields have an error. Please check and try again.', 'squad-modules-for-divi' ),
+						'message_sent'      => esc_html__( 'Thank you for your message. It has been sent.', 'squad-modules-for-divi' ),
+						'thanks_contact'    => esc_html__( 'Thanks for contacting us! We will be in touch with you shortly.', 'squad-modules-for-divi' ),
+						'empty_map_place'   => esc_html__( 'Enter a place on google map.', 'squad-modules-for-divi' ),
+						'scrolling_text'    => esc_html__( 'Scrolling Placeholder Text Here', 'squad-modules-for-divi' ),
+					)
+				),
+			);
+
+			$output .= sprintf( 'window.DISQBuilderLocalize = %1$s;', wp_json_encode( $localize ) );
+		}
+
+		return $output;
 	}
 
 	/**
@@ -78,7 +120,6 @@ class Assets {
 	public function enqueue_scripts_vb() {
 		if ( function_exists( 'et_core_is_fb_enabled' ) && \et_core_is_fb_enabled() ) {
 			wp_enqueue_script( 'disq-vendor-typed' );
-			wp_enqueue_script( 'disq-vendor-isotope' );
 			wp_enqueue_script( 'disq-vendor-imagesloaded' );
 			wp_enqueue_script( 'disq-vendor-lightgallery' );
 			wp_enqueue_script( 'disq-vendor-scrolling-text' );

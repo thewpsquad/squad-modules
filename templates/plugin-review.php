@@ -21,15 +21,22 @@ defined( 'ABSPATH' ) || die();
 		</svg>
 	</div>
 	<div class="divi-squad-banner-content">
-		<h2><?php esc_html_e( 'Ready to take Squad Modules Lite to the next level?', 'squad-modules-for-divi' ); ?></h2>
-		<p><?php esc_html_e( "Hey there! Long time no Squad Modules Lite, eh? We hope it's been making your website development journey a breeze! If you have a spare minute, your feedback would be like gold dust to us. Leave a rating and let us know what you think! ✨", 'squad-modules-for-divi' ); ?></p>
+		<h2><?php esc_html_e( 'Spread the word of your love', 'squad-modules-for-divi' ); ?></h2>
+		<p><?php esc_html_e( 'Loving Squad Modules Lite? Spread the word with a quick 5-star review on WordPress. It takes seconds, but makes a difference.', 'squad-modules-for-divi' ); ?></p>
 		<div class="divi-squad-notice-action">
 			<div class="divi-squad-notice-action-left">
 				<a href="https://wordpress.org/support/plugin/squad-modules-for-divi/reviews/?rate=5#new-post" target="_blank" class="divi-squad-notice-action-button">
-					<?php esc_html_e( 'Shine Bright ★★★★★', 'squad-modules-for-divi' ); ?>
+					<span style="margin-right: 5px" class="dashicons dashicons-external"></span>
+					<p style="display: inline;"><?php esc_html_e( 'Ok, you deserve it!', 'squad-modules-for-divi' ); ?></p>
 				</a>
-				<a href="#" class="divi-squad-notice-close"><?php esc_html_e( '5-Star Reminder!', 'squad-modules-for-divi' ); ?></a>
-				<a href="#" class="divi-squad-notice-already"><?php esc_html_e( 'No, Thanks', 'squad-modules-for-divi' ); ?></a>
+				<a href="#" class="divi-squad-notice-close" style="text-decoration: none;">
+					<span style="margin-right: 5px" class="dashicons dashicons-calendar-alt"></span>
+					<p style="display: inline; text-decoration: underline;"><?php esc_html_e( 'Maybe Later', 'squad-modules-for-divi' ); ?></p>
+				</a>
+				<a href="#" class="divi-squad-notice-already" style="text-decoration: none;">
+					<span style="margin-right: 5px" class="dashicons dashicons-dismiss"></span>
+					<p style="display: inline; text-decoration: underline;"><?php esc_html_e( 'Never show again', 'squad-modules-for-divi' ); ?></p>
+				</a>
 			</div>
 			<div class="divi-squad-notice-action-right">
 				<a href='https://wordpress.org/support/plugin/squad-modules-for-divi/' target="_blank" class="support">

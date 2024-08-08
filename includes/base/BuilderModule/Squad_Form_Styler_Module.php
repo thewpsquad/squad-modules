@@ -16,9 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
-use function apply_filters;
 use function esc_html__;
 use function et_pb_background_options;
+use function wp_parse_args;
 
 /**
  * Builder Module Helper Class which help to the all module class
@@ -231,37 +231,38 @@ abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 			/* translators: 1: The Element Label */
 			$label_padding = sprintf( esc_html__( '%s Padding', 'squad-modules-for-divi' ), $label );
 
+			// The default attributes for margin and padding field.
+			$field_attributes = array(
+				'range_settings' => array(
+					'min_limit' => '1',
+					'min'       => '1',
+					'max_limit' => '100',
+					'max'       => '100',
+					'step'      => '1',
+				),
+				'tab_slug'       => 'advanced',
+				'toggle_slug'    => $prefix,
+			);
+
 			// Set the margin & padding field for this element.
 			$custom_spacing_fields[ "{$prefix}_margin" ]  = $this->disq_add_margin_padding_field(
 				$label_margin,
-				array(
-					'description'    => esc_html__( 'Here you can define a custom margin size.', 'squad-modules-for-divi' ),
-					'type'           => 'custom_margin',
-					'range_settings' => array(
-						'min_limit' => '1',
-						'min'       => '1',
-						'max_limit' => '100',
-						'max'       => '100',
-						'step'      => '1',
-					),
-					'tab_slug'       => 'advanced',
-					'toggle_slug'    => $prefix,
+				array_merge(
+					$field_attributes,
+					array(
+						'type'        => 'custom_margin',
+						'description' => esc_html__( 'Here you can define a custom margin size.', 'squad-modules-for-divi' ),
+					)
 				)
 			);
 			$custom_spacing_fields[ "{$prefix}_padding" ] = $this->disq_add_margin_padding_field(
 				$label_padding,
-				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
-					'type'           => 'custom_padding',
-					'range_settings' => array(
-						'min_limit' => '1',
-						'min'       => '1',
-						'max_limit' => '100',
-						'max'       => '100',
-						'step'      => '1',
-					),
-					'tab_slug'       => 'advanced',
-					'toggle_slug'    => $prefix,
+				array_merge(
+					$field_attributes,
+					array(
+						'type'        => 'custom_padding',
+						'description' => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
+					)
 				)
 			);
 		}
@@ -334,6 +335,9 @@ abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 
 	/**
 	 * Declare custom css fields for the module
+	 *
+	 * @param array $fields   List of fields.
+	 * @param array $removals List of removable fields.
 	 *
 	 * @return array[]
 	 */
@@ -655,7 +659,7 @@ abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 					);
 					$option   = wp_parse_args( $option, $defaults );
 
-					// Generate responsive + hover + sticky style using the same configuration at once
+					// Generate responsive + hover + sticky style using the same configuration at once.
 					if ( isset( $option['options'] ) && is_array( $option['options'] ) && count( $option['options'] ) > 0 ) {
 						foreach ( $option['options'] as $nested_option ) {
 							$this->generate_styles(

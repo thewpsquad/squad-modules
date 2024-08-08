@@ -19,6 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use DiviSquad\Base\BuilderModule\Squad_Divi_Builder_Module;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\Module;
 use function esc_attr;
 use function esc_html__;
 use function esc_attr__;
@@ -60,43 +61,15 @@ class GoogleMap extends Squad_Divi_Builder_Module {
 			),
 		);
 
-		$default_css_selectors = $this->disq_get_module_default_selectors();
-
 		// Declare advanced fields for the module.
 		$this->advanced_fields = array(
-			'background'     => array_merge(
-				$default_css_selectors,
-				array(
-					'settings' => array(
-						'color' => 'alpha',
-					),
-				)
-			),
-			'borders'        => array(
-				'default' => $default_css_selectors,
-			),
-			'box_shadow'     => array(
-				'default' => $default_css_selectors,
-			),
-			'margin_padding' => array(
-				'use_padding' => true,
-				'use_margin'  => true,
-				'css'         => array(
-					'margin'    => $this->main_css_element,
-					'padding'   => $this->main_css_element,
-					'important' => 'all',
-				),
-			),
-			'max_width'      => array_merge(
-				$default_css_selectors,
-				array(
-					'css' => array(
-						'module_alignment' => "$this->main_css_element.et_pb_module",
-					),
-				)
-			),
+			'background'     => Module::selectors_background( $this->main_css_element ),
+			'borders'        => array( 'default' => Module::selectors_default( $this->main_css_element ) ),
+			'box_shadow'     => array( 'default' => Module::selectors_default( $this->main_css_element ) ),
+			'margin_padding' => Module::selectors_margin_padding( $this->main_css_element ),
+			'max_width'      => Module::selectors_max_width( $this->main_css_element ),
 			'height'         => array_merge(
-				$default_css_selectors,
+				Module::selectors_default( $this->main_css_element ),
 				array(
 					'options' => array(
 						'height' => array(
@@ -136,33 +109,36 @@ class GoogleMap extends Squad_Divi_Builder_Module {
 				'value'       => true,
 				'display_if'  => true,
 				'message'     => esc_html__( 'Google Embed Map API is not required. However, if you encounter any issues with the Embed Google Map, please consider using Google Embed Map API for stability in the future.', 'squad-modules-for-divi' ),
+				'tab_slug'    => 'general',
 				'toggle_slug' => 'main_content',
 			),
 			'google_api_key'            => array(
 				'label'                  => esc_html__( 'Google API Key', 'squad-modules-for-divi' ),
+				'description'            => sprintf(
+					'The module uses the Google Maps API and requires a valid Google API Key to function. Before using the map module, please make sure you have added your API key inside the Divi Theme Options panel. Learn more about how to create your Google API Key <a href="%1$s" target="_blank">here</a>.',
+					esc_url( 'http://www.elegantthemes.com/gallery/divi/documentation/map/#gmaps-api-key' )
+				),
 				'type'                   => 'text',
 				'option_category'        => 'basic_option',
 				'attributes'             => 'readonly',
+				'additional_button_type' => 'change_google_api_key',
 				'additional_button'      => sprintf(
 					' <a href="%2$s" target="_blank" class="et_pb_update_google_key button" data-empty_text="%3$s">%1$s</a>',
 					esc_html__( 'Change API Key', 'squad-modules-for-divi' ),
 					esc_url( et_pb_get_options_page_link() ),
 					esc_attr__( 'Add Your API Key', 'squad-modules-for-divi' )
 				),
-				'additional_button_type' => 'change_google_api_key',
 				'class'                  => array( 'et_pb_google_api_key', 'et-pb-helper-field' ),
-				'description'            => sprintf(
-					'The module uses the Google Maps API and requires a valid Google API Key to function. Before using the map module, please make sure you have added your API key inside the Divi Theme Options panel. Learn more about how to create your Google API Key <a href="%1$s" target="_blank">here</a>.',
-					esc_url( 'http://www.elegantthemes.com/gallery/divi/documentation/map/#gmaps-api-key' )
-				),
+				'tab_slug'               => 'general',
 				'toggle_slug'            => 'main_content',
 			),
 			'address'                   => array(
 				'label'            => esc_html__( 'Address', 'squad-modules-for-divi' ),
+				'description'      => esc_html__( 'Enter the address for the embed Google Map.', 'squad-modules-for-divi' ),
 				'type'             => 'text',
 				'option_category'  => 'basic_option',
-				'description'      => esc_html__( 'Enter the address for the embed Google Map.', 'squad-modules-for-divi' ),
 				'default_on_front' => '1233 Howard St Apt 3A San Francisco, CA 94103-2775',
+				'tab_slug'         => 'general',
 				'toggle_slug'      => 'main_content',
 				'dynamic_content'  => 'text',
 			),
@@ -170,17 +146,18 @@ class GoogleMap extends Squad_Divi_Builder_Module {
 				'label'            => esc_html__( 'Zoom', 'squad-modules-for-divi' ),
 				'type'             => 'range',
 				'option_category'  => 'layout',
-				'toggle_slug'      => 'main_content',
-				'default_unit'     => '',
-				'default'          => '10',
-				'default_on_front' => '10',
-				'unitless'         => true,
-				'allow_empty'      => false,
 				'range_settings'   => array(
 					'min'  => '1',
 					'max'  => '22',
 					'step' => '1',
 				),
+				'default_unit'     => '',
+				'default'          => '10',
+				'default_on_front' => '10',
+				'unitless'         => true,
+				'allow_empty'      => false,
+				'tab_slug'         => 'general',
+				'toggle_slug'      => 'main_content',
 			),
 		);
 	}

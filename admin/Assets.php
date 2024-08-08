@@ -18,7 +18,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use DiviSquad\Utils\Asset;
 use DiviSquad\Utils\WP;
+use function admin_url;
+use function apply_filters;
 use function DiviSquad\divi_squad;
+use function esc_html__;
 use function get_rest_url;
 
 /**
@@ -64,8 +67,8 @@ class Assets {
 	 */
 	public function wp_hook_enqueue_plugin_admin_asset( $hook_suffix ) {
 		// Load plugin asset in the all admin pages.
-		Asset::asset_enqueue( 'admin-common', Asset::asset_path( 'admin-common', array( 'path' => 'admin/scripts', 'ext' => 'js' ) ) ); // phpcs:ignore
-		Asset::style_enqueue( 'admin-common', Asset::asset_path( 'admin-common', array( 'path' => 'admin/styles', 'ext' => 'css' ) ) ); // phpcs:ignore
+		Asset::asset_enqueue( 'admin-common', Asset::admin_asset_path( 'admin-common' ) );
+		Asset::style_enqueue( 'admin-common', Asset::admin_asset_path( 'admin-common', array( 'ext' => 'css' ) ) );
 
 		// Load localize scripts.
 		$admin_localize_scripts = $this->wp_common_localize_script_data();
@@ -74,8 +77,8 @@ class Assets {
 		// Load plugin asset in the allowed admin pages only.
 		if ( in_array( $hook_suffix, self::get_plugin_asset_allowed_pages(), true ) ) {
 			// Load all assets including scripts and stylesheets.
-			Asset::asset_enqueue( 'admin', Asset::asset_path( 'admin', array( 'path' => 'admin/scripts', 'ext' => 'js' ) ) ); // phpcs:ignore
-			Asset::style_enqueue( 'admin', Asset::asset_path( 'admin', array( 'path' => 'admin/styles', 'ext' => 'css' ) ) ); // phpcs:ignore
+			Asset::asset_enqueue( 'admin', Asset::admin_asset_path( 'admin' ) );
+			Asset::style_enqueue( 'admin', Asset::admin_asset_path( 'admin', array( 'ext' => 'css' ) ) );
 
 			// Load localize scripts.
 			$admin_localize_scripts = $this->wp_localize_script_data();
@@ -197,6 +200,11 @@ class Assets {
 			),
 			'l10n'         => array(
 				'divi_squad'                  => esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
+				'menu_dashboard'              => esc_html__( 'Dashboard', 'squad-modules-for-divi' ),
+				'menu_modules'                => esc_html__( 'Modules', 'squad-modules-for-divi' ),
+				'menu_extensions'             => esc_html__( 'Extensions', 'squad-modules-for-divi' ),
+				'menu_whats_new'              => esc_html__( 'What\'s New', 'squad-modules-for-divi' ),
+				'view_all'                    => esc_html__( 'View All', 'squad-modules-for-divi' ),
 				'upgrade'                     => esc_html__( 'Upgrade to Pro', 'squad-modules-for-divi' ),
 				'active'                      => esc_html__( 'Active License', 'squad-modules-for-divi' ),
 				'docs_title'                  => esc_html__( 'View Documentation', 'squad-modules-for-divi' ),
@@ -237,7 +245,12 @@ class Assets {
 				'form-styler-modules'         => esc_html__( 'Form Styler Modules', 'squad-modules-for-divi' ),
 				'image-&-media-modules'       => esc_html__( 'Image & Media Modules', 'squad-modules-for-divi' ),
 				'media-upload'                => esc_html__( 'Media Upload', 'squad-modules-for-divi' ),
-				'divi-enhancement'            => esc_html__( 'Divi Enhancement', 'squad-modules-for-divi' ),
+				'enhancement'                 => esc_html__( 'Enhancement', 'squad-modules-for-divi' ),
+				'preparing'                   => esc_html__( 'Preparing', 'squad-modules-for-divi' ),
+				'modules_saved'               => esc_html__( 'Enabled modules saved!', 'squad-modules-for-divi' ),
+				'modules_saving_failed'       => esc_html__( 'Whoops! Enabled modules not saved. Try again later.', 'squad-modules-for-divi' ),
+				'extensions_saved'            => esc_html__( 'Enabled modules saved!', 'squad-modules-for-divi' ),
+				'extensions_saving_failed'    => esc_html__( 'Whoops! Enabled modules not saved. Try again later.', 'squad-modules-for-divi' ),
 				'support'                     => array(
 					'popup_title'     => esc_html__( 'We are here to assist you with any queries you may have. Feel free to ask us anything!', 'squad-modules-for-divi' ),
 					'message_default' => esc_html__( 'Hi, how can I help?', 'squad-modules-for-divi' ),

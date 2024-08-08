@@ -16,7 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
-use ET_Builder_Element;
+use function esc_html;
+use function et_builder_get_element_style_css;
+use function et_pb_get_responsive_status;
+use function et_pb_hover_options;
+use function et_pb_responsive_options;
+use function wp_parse_args;
 
 /**
  * Field Processor class.
@@ -537,7 +542,7 @@ trait Field_Processor {
 			);
 
 			if ( 'on' === $this->props[ $options['base_attr_name'] . '_bg_clip__enable' ] ) {
-				ET_Builder_Element::set_style(
+				self::set_style(
 					$this->slug,
 					array(
 						'selector'    => $options['selector'],

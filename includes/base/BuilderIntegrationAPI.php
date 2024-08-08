@@ -12,6 +12,8 @@
 
 namespace DiviSquad\Base;
 
+use DiviSquad\Utils\Asset;
+use function add_action;
 use function et_builder_bfb_enabled;
 use function et_builder_is_tb_admin_screen;
 use function et_core_is_fb_enabled;
@@ -65,12 +67,12 @@ abstract class BuilderIntegrationAPI extends BuilderIntegrationAPIBase {
 	 * Enqueues minified (production) or non-minified (hot reloaded) backend styles.
 	 */
 	public function enqueue_backend_styles() {
-		$file_handle = "{$this->name}-backend";
-		$file_path   = "{$this->build_path}styles/backend-style.css";
+		$file_path = "{$this->build_path}styles/backend-style.css";
 
 		// Ensure backend style CSS file exists.
 		if ( file_exists( "{$this->plugin_dir}/{$file_path}" ) ) {
-			wp_enqueue_style( $file_handle, "{$this->plugin_dir_url}{$file_path}", array(), $this->get_version() );
+			$style_asset_path = Asset::module_asset_path( 'backend-style', array( 'ext' => 'css' ) );
+			Asset::style_enqueue( "{$this->name}-backend", $style_asset_path, array(), 'all', true );
 		}
 	}
 
@@ -80,16 +82,14 @@ abstract class BuilderIntegrationAPI extends BuilderIntegrationAPIBase {
 	public function wp_hook_enqueue_scripts() {
 		// Enqueues non-minified, hot reloaded javascript bundles. (Builder).
 		if ( et_core_is_fb_enabled() ) {
-			$builder_styles_url = "{$this->plugin_dir_url}{$this->build_path}styles/builder-style.css";
-			wp_enqueue_style( "{$this->name}-builder", $builder_styles_url, array(), $this->get_version() );
-
-			$bundle_url = "{$this->plugin_dir_url}{$this->build_path}scripts/builder-bundle.js";
-			wp_enqueue_script( "{$this->name}-builder", $bundle_url, $this->bundle_dependencies['builder'], $this->get_version(), true );
+			$script_asset_path = Asset::module_asset_path( 'builder-bundle' );
+			$style_asset_path  = Asset::module_asset_path( 'builder-style', array( 'ext' => 'css' ) );
+			Asset::asset_enqueue( "{$this->name}-builder", $script_asset_path, $this->bundle_dependencies['builder'], true );
+			Asset::style_enqueue( "{$this->name}-builder", $style_asset_path, array(), 'all', true );
 		} else {
 			// Enqueues minified, production javascript bundles. (Frontend).
-			$styles             = et_is_builder_plugin_active() ? 'builder-style-dbp' : 'builder-style';
-			$builder_styles_url = "{$this->plugin_dir_url}{$this->build_path}styles/{$styles}.css";
-			wp_enqueue_style( $this->name, $builder_styles_url, array(), $this->get_version() );
+			$styles = et_is_builder_plugin_active() ? 'builder-style-dbp' : 'builder-style';
+			Asset::style_enqueue( $this->name, Asset::module_asset_path( $styles, array( 'ext' => 'css' ) ), array(), 'all', true );
 		}
 
 		if ( et_core_is_fb_enabled() && ! et_builder_bfb_enabled() ) {
