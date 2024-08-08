@@ -128,7 +128,7 @@ class Modules {
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
 				'type'               => '4',
-			)
+			),
 		);
 
 		$sorts = Helper::array_sort( $available_modules, 'name' );

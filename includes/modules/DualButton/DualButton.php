@@ -927,25 +927,12 @@ class DualButton extends DISQ_Builder_Module {
 		$element_url = isset( $this->props[ "{$element}_url" ] ) ? $this->props[ "{$element}_url" ] : '';
 		// element url target, by default is empty.
 		$element_url_target = isset( $this->props[ "{$element}_url_new_window" ] ) ? $this->props[ "{$element}_url_new_window" ] : '';
-
-		$element_tag  = '' !== $element_url ? 'a' : 'span';
-		$button_attrs = array();
-
-		if ( 'a' === $element_tag ) {
-			$button_attrs['href'] = $element_url;
-
-			if ( 'on' === $element_url_target ) {
-				$button_attrs['target'] = '_blank';
-			} else {
-				$button_attrs['target'] = '_self';
-			}
-		}
+		$url_target         = 'on' === $element_url_target ? '_blank' : '_self';
 
 		$element_text = $multi_view->render_element(
 			array(
-				'tag'            => $element_tag,
 				'content'        => "{{{$element}_text}}",
-				'attrs'          => $button_attrs,
+				'attrs'          => array( 'class' => 'button-text' ),
 				'hover_selector' => "$this->main_css_element div .elements .disq-button.$element",
 			)
 		);
@@ -1123,9 +1110,11 @@ class DualButton extends DISQ_Builder_Module {
 			}
 
 			return sprintf(
-				'<div class="%3$s"><span class="button-text">%1$s</span>%2$s</div>',
+				'<a class="%5$s" href="%3$s" target="%4$s">%1$s%2$s</a>',
 				et_core_esc_previously( $element_text ),
 				et_core_esc_previously( $icon_elements ),
+				esc_url_raw( $element_url ),
+				esc_attr( $url_target ),
 				et_core_esc_previously( implode( ' ', $button_classes ) )
 			);
 		}
