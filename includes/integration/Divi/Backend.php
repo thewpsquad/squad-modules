@@ -322,7 +322,7 @@ class Backend extends BuilderBackendPlaceholder {
 	 */
 	public function asset_definitions( $content ) {
 		return $content . sprintf(
-			';window.DISQBuilderBackend=%1$s; jQuery.extend(true, window.ETBuilderBackend, %1$s);',
+			';window.DISQBuilderBackend=%1$s; if(window.jQuery) {jQuery.extend(true, window.ETBuilderBackend, window.DISQBuilderBackend);}',
 			et_fb_remove_site_url_protocol( wp_json_encode( $this->static_asset_definitions() ) )
 		);
 	}

@@ -5,7 +5,7 @@ Tags: divi, divi module, divi theme, divi builder, divi page builder, divi plugi
 Requires at least: 5.0.0
 Tested up to: 6.5
 Requires PHP: 5.6
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -17,7 +17,12 @@ The Essential Divi plugin you install after Divi or Extra Theme! Packed with 20+
 
 Enhance your Divi page building experience with 20+ creative modules and extensions. Add powers to your page builder using our easy-to-use modules those were designed to make your next WordPress page and posts design easier and prettier than ever before.
 
-Check [Demos](https://squadmodules.com/) and see the difference it can make!
+### Most Helpful Links
+<ul>
+    <li><a href="https://squadmodules.com/?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink" target="_blank" rel="">View Demo</a></li>
+    <li><a href="https://wordpress.org/plugins/squad-modules-for-divi/#developers?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink" target="_blank" rel="">Changelog</a></li>
+    <li><a href="https://www.facebook.com/groups/squadmodules/?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink" target="_blank" rel="">Join Our Community</a></li>
+</ul>
 
 ### Completely Customizable
 Each modules comes with a bunch of options to customize your website in every possible way. You can achieve nearly any design with your imagination.
@@ -54,6 +59,9 @@ Squad Modules Lite includes over 20+ free modules that you can use to create stu
 19. **Divi Form Styler: Contact Form 7 Module**: Effortlessly customize Contact Form 7 design. Adjust colors, fonts, spacing, and add CSS for your desired look.
 20. **Divi Form Styler: WP Forms Module**: Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
 21. **Divi Form Styler: Gravity Forms Module**: Effortlessly customize Gravity Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
+22. **Google Embed Map**: Google Embed Map right into your Divi's site easily without having to worry about anything else.
+23. **Divi Form Styler: Ninja Forms**: Effortlessly customize Ninja Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
+24. **Divi Form Styler: Fluent Forms**: Effortlessly customize Fluent Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look.
 
 == Free Extensions ==
 Squad Modules Lite also includes 4 extensions that can help you take your website to the next level:
@@ -154,6 +162,21 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 13. Typing Text Module - This is a module that allows you to create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 
 == Upgrade Notice ==
+= 1.4.7 =
+* Added: Preview Button support in the WP Plugin Directory
+* Added: Portuguese (Brazil) locales by Gianni Marinho, thanks a lot
+* New: Introduced the Divi Google Map Module
+* New: Introduced the Divi Form Styler: Ninja Forms
+* New: Introduced the Divi Form Styler: Fluent Forms
+* Improvement: Compatibility with Divi 4.23.2
+* Improvement: Squad Admin UI
+* Improvement: Checkbox and radio fields styles support for Contact Form 7, Gravity Forms, WP Froms Modules.
+* Improvement: Simplified locales for all languages.
+* Fixed: translation issue at Video Popup Module
+* Fixed: Ratings does not show in the visual builder at Star Rating Module
+* Improved: Memory uses and loading time
+* Improved: Plugin review actions
+
 = 1.4.1 =
 * New: Introduced the Divi Video Popup Module
 * Improved: Divider module
@@ -208,6 +231,21 @@ If you would like to contribute to the translation efforts for Squad Modules Lit
 * Enjoy the new collection of elegant Divi modules and enhance your website.
 
 == Changelog ==
+= 1.4.7 (21-12-2023 =
+* Added: Preview Button support in the WP Plugin Directory
+* Added: Portuguese (Brazil) locales by Gianni Marinho, thanks a lot
+* New: Introduced the Divi Google Map Module
+* New: Introduced the Divi Form Styler: Ninja Forms
+* New: Introduced the Divi Form Styler: Fluent Forms
+* Improvement: Compatibility with Divi 4.23.2
+* Improvement: Squad Admin UI
+* Improvement: Checkbox and radio fields styles support for Contact Form 7, Gravity Forms, WP Froms Modules.
+* Improvement: Simplified locales for all languages.
+* Fixed: translation issue at Video Popup Module
+* Fixed: Ratings does not show in the visual builder at Star Rating Module
+* Improved: Memory uses and loading time
+* Improved: Plugin review actions
+
 = 1.4.6 (13-11-2023) =
 * Fixed: Squad Dashboard is broken
 * Fixed: PHP Log for the Star Rating Module

@@ -17,7 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use ET_Builder_Element;
-use stdClass;
 
 /**
  * Field Processor class.
@@ -440,17 +439,15 @@ trait Field_Processor {
 
 		// Set size for button icon or image with font-size and width style in responsive mode.
 		if ( et_pb_get_responsive_status( $value_last_edited ) && '' !== implode( '', $value_responsive_values ) ) {
-			$value_responsive_values = array_map(
-				function ( $current_value ) use ( $options ) {
-					return $this->disq_collect_prop_mapping_value( $options, $current_value );
-				},
-				$value_responsive_values
-			);
+			$collected_responsive_values = array();
+			foreach ( $value_responsive_values as $key => $current_value ) {
+				$collected_responsive_values[ $key ] = $this->disq_collect_prop_mapping_value( $options, $current_value );
+			}
 
 			// set styles in responsive mode.
 			$this->disq_process_responsive_styles(
 				array(
-					'responsive_values' => $value_responsive_values,
+					'responsive_values' => $collected_responsive_values,
 					'selector'          => $options['selector'],
 					'type'              => $options['type'],
 					'css_property'      => $options['css_property'],

@@ -71,7 +71,7 @@ abstract class Squad_Divi_Builder_Module extends ET_Builder_Module {
 	 * @var string
 	 * @since 1.0.0
 	 */
-	protected $folder_name = 'et_pb_divi_squad_modules';
+	public $folder_name = 'et_pb_divi_squad_modules';
 
 	/**
 	 * Get default selectors for main and hover in divi module.
@@ -85,5 +85,21 @@ abstract class Squad_Divi_Builder_Module extends ET_Builder_Module {
 				'hover' => "$this->main_css_element:hover",
 			),
 		);
+	}
+
+	/**
+	 * Clean order class name from the class list for current module.
+	 *
+	 * @return string[]
+	 */
+	public function disq_clean_order_class() {
+		$order_classes = array();
+		foreach ( $this->classname as $key => $classname ) {
+			if ( 0 !== strpos( $classname, "{$this->slug}_" ) ) {
+				$order_classes[ $key ] = $classname;
+			}
+		}
+
+		return $order_classes;
 	}
 }

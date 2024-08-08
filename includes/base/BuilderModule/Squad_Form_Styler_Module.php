@@ -1,4 +1,5 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
+
 /**
  * Builder Module Helper Class
  *
@@ -15,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
+use function apply_filters;
 use function esc_html__;
 use function et_pb_background_options;
 
@@ -28,6 +30,23 @@ use function et_pb_background_options;
  * @license     GPL-3.0-only
  */
 abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
+
+	/**
+	 * Get default value for form id.
+	 *
+	 * @var string
+	 */
+	protected static $default_form_id = 'cfcd208495d565ef66e7dff9f98764da';
+
+	/**
+	 * Store all forms and remove redundancy.
+	 *
+	 * @var array The collection of forms.
+	 */
+	public static $forms_collection = array(
+		'id'    => array(),
+		'title' => array(),
+	);
 
 	/**
 	 * Get the stylesheet selector for form tag.
@@ -135,17 +154,23 @@ abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 			),
 			'advanced' => array(
 				'toggles' => array(
-					'wrapper'              => esc_html__( 'Form Wrapper', 'squad-modules-for-divi' ),
-					'field'                => esc_html__( 'Field', 'squad-modules-for-divi' ),
-					'field_text'           => esc_html__( 'Field Text', 'squad-modules-for-divi' ),
-					'field_label_text'     => esc_html__( 'Field Label Text', 'squad-modules-for-divi' ),
-					'placeholder_text'     => esc_html__( 'Field Placeholder Text', 'squad-modules-for-divi' ),
-					'form_button'          => esc_html__( 'Button', 'squad-modules-for-divi' ),
-					'form_button_text'     => esc_html__( 'Button Text', 'squad-modules-for-divi' ),
-					'message_error'        => esc_html__( 'Error Message', 'squad-modules-for-divi' ),
-					'message_error_text'   => esc_html__( 'Error Message Text', 'squad-modules-for-divi' ),
-					'message_success'      => esc_html__( 'Success Message', 'squad-modules-for-divi' ),
-					'message_success_text' => esc_html__( 'Success Message Text', 'squad-modules-for-divi' ),
+					'wrapper'                => esc_html__( 'Form Wrapper', 'squad-modules-for-divi' ),
+					'title'                  => esc_html__( 'Form Title', 'squad-modules-for-divi' ),
+					'title_text'             => esc_html__( 'Form Title Text', 'squad-modules-for-divi' ),
+					'form_before_text'       => esc_html__( 'Form Before Text', 'squad-modules-for-divi' ),
+					'field'                  => esc_html__( 'Field', 'squad-modules-for-divi' ),
+					'field_text'             => esc_html__( 'Field Text', 'squad-modules-for-divi' ),
+					'field_label_text'       => esc_html__( 'Field Label Text', 'squad-modules-for-divi' ),
+					'field_description_text' => esc_html__( 'Field Description Text', 'squad-modules-for-divi' ),
+					'placeholder_text'       => esc_html__( 'Field Placeholder Text', 'squad-modules-for-divi' ),
+					'form_custom_html'       => esc_html__( 'Custom HTML', 'squad-modules-for-divi' ),
+					'form_custom_html_text'  => esc_html__( 'Custom HTML Text', 'squad-modules-for-divi' ),
+					'form_button'            => esc_html__( 'Button', 'squad-modules-for-divi' ),
+					'form_button_text'       => esc_html__( 'Button Text', 'squad-modules-for-divi' ),
+					'message_error'          => esc_html__( 'Error Message', 'squad-modules-for-divi' ),
+					'message_error_text'     => esc_html__( 'Error Message Text', 'squad-modules-for-divi' ),
+					'message_success'        => esc_html__( 'Success Message', 'squad-modules-for-divi' ),
+					'message_success_text'   => esc_html__( 'Success Message Text', 'squad-modules-for-divi' ),
 				),
 			),
 		);
@@ -157,15 +182,6 @@ abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 	 * @return array[]
 	 */
 	public function get_fields() {
-		// Button fields definitions.
-		$form_submit_button = $this->disq_get_button_fields(
-			array(
-				'base_attr_name'  => 'form_button',
-				'toggle_slug'     => 'form_button',
-				'depends_show_if' => 'on',
-			)
-		);
-
 		$wrapper_background_fields         = $this->disq_add_background_field(
 			esc_html__( 'Wrapper Background', 'squad-modules-for-divi' ),
 			array(
@@ -203,17 +219,21 @@ abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 			)
 		);
 
-		$custom_spacing_prefixes = $this->disq_get_custom_spacing_prefixes();
-		$custom_spacing_fields   = array();
+		$custom_spacing_prefixes  = $this->disq_get_custom_spacing_prefixes();
+		$additional_custom_fields = array();
+		$custom_spacing_fields    = array();
 
 		foreach ( $custom_spacing_prefixes as $prefix => $options ) {
-			$label  = ! empty( $options['label'] ) ? $options['label'] : '';
-			$label .= ! empty( $label ) ? ' ' : '';
+			$label = ! empty( $options['label'] ) ? $options['label'] : '';
 
-			// Set the margin field for this element.
-			$custom_spacing_fields[ "{$prefix}_margin" ] = $this->disq_add_margin_padding_field(
 			/* translators: 1: The Element Label */
-				sprintf( esc_html__( '%s Margin', 'squad-modules-for-divi' ), $label ),
+			$label_margin = sprintf( esc_html__( '%s Margin', 'squad-modules-for-divi' ), $label );
+			/* translators: 1: The Element Label */
+			$label_padding = sprintf( esc_html__( '%s Padding', 'squad-modules-for-divi' ), $label );
+
+			// Set the margin & padding field for this element.
+			$custom_spacing_fields[ "{$prefix}_margin" ]  = $this->disq_add_margin_padding_field(
+				$label_margin,
 				array(
 					'description'    => esc_html__( 'Here you can define a custom margin size.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_margin',
@@ -228,11 +248,8 @@ abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 					'toggle_slug'    => $prefix,
 				)
 			);
-
-			// Set the padding field for this element.
 			$custom_spacing_fields[ "{$prefix}_padding" ] = $this->disq_add_margin_padding_field(
-			/* translators: 1: The Element Label */
-				sprintf( esc_html__( '%s Padding', 'squad-modules-for-divi' ), $label ),
+				$label_padding,
 				array(
 					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
@@ -249,13 +266,122 @@ abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 			);
 		}
 
+		if ( method_exists( $this, 'get_form_styler_additional_custom_fields' ) ) {
+			$additional_custom_fields = $this->get_form_styler_additional_custom_fields();
+		}
+
+		$fields_before_margin    = array();
+		$fields_after_background = array();
+		if ( isset( $additional_custom_fields['fields_before_margin'] ) ) {
+			$fields_before_margin = $additional_custom_fields['fields_before_margin'];
+			unset( $additional_custom_fields['fields_before_margin'] );
+		}
+		if ( isset( $additional_custom_fields['fields_after_background'] ) ) {
+			$fields_after_background = $additional_custom_fields['fields_after_background'];
+			unset( $additional_custom_fields['fields_after_background'] );
+		}
+
+		// Checkbox and Radio fields definitions.
+		$checkbox_radio_fields = array(
+			'form_ch_rad_color' => $this->disq_add_color_field(
+				esc_html__( 'Checkbox & Radio Active Color', 'squad-modules-for-divi' ),
+				array(
+					'description' => esc_html__( 'Here you can define a custom color for checkbox and radio fields.', 'squad-modules-for-divi' ),
+					'tab_slug'    => 'advanced',
+					'toggle_slug' => 'field',
+				)
+			),
+			'form_ch_rad_size'  => $this->disq_add_range_field(
+				esc_html__( 'Checkbox & Radio Field Size', 'squad-modules-for-divi' ),
+				array(
+					'description'    => esc_html__( 'Here you can choose size for checkbox and radio fields.', 'squad-modules-for-divi' ),
+					'range_settings' => array(
+						'min_limit' => '1',
+						'min'       => '1',
+						'max_limit' => '200',
+						'max'       => '200',
+						'step'      => '1',
+					),
+					'default_unit'   => 'px',
+					'tab_slug'       => 'advanced',
+					'toggle_slug'    => 'field',
+				)
+			),
+		);
+
+		// Button fields definitions.
+		$form_submit_button = $this->disq_get_button_fields(
+			array(
+				'base_attr_name'          => 'form_button',
+				'fields_after_background' => $fields_after_background,
+				'fields_before_margin'    => $fields_before_margin,
+				'toggle_slug'             => 'form_button',
+				'depends_show_if'         => 'on',
+			)
+		);
+
 		return array_merge_recursive(
 			$form_submit_button,
 			$wrapper_background_fields,
 			$fields_background_fields,
 			$message_error_background_fields,
 			$message_success_background_fields,
+			$checkbox_radio_fields,
+			$additional_custom_fields,
 			$custom_spacing_fields
+		);
+	}
+
+	/**
+	 * Declare custom css fields for the module
+	 *
+	 * @return array[]
+	 */
+	public function disq_remove_pre_assigned_fields( $fields, $removals ) {
+		if ( is_array( $fields ) && count( $fields ) > 1 && is_array( $removals ) && count( $removals ) > 1 ) {
+			foreach ( $removals as $removal ) {
+				unset( $fields[ $removal ] );
+			}
+
+			return $fields;
+		}
+
+		return $fields;
+	}
+
+	/**
+	 * Declare custom css fields for the module
+	 *
+	 * @return array[]
+	 */
+	public function get_custom_css_fields_config() {
+		$form_selector = $this->get_form_selector_default();
+
+		return array(
+			'wrapper'         => array(
+				'label'    => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),
+				'selector' => "$form_selector",
+			),
+			'field'           => array(
+				'label'    => esc_html__( 'Field', 'squad-modules-for-divi' ),
+				'selector' => $this->get_field_selector_default(),
+			),
+			'radio_checkbox'  => array(
+				'label'    => esc_html__( 'Radio Checkbox', 'squad-modules-for-divi' ),
+				'selector' => "$form_selector input[type=checkbox], $form_selector input[type=radio]",
+			),
+			'form_button'     => array(
+				'label'    => esc_html__( 'Button', 'squad-modules-for-divi' ),
+				'selector' => $this->get_submit_button_selector_default(),
+			),
+			'message_error'   => array(
+				'label'    => esc_html__( 'Error Message', 'squad-modules-for-divi' ),
+				'selector' => $this->get_error_message_selector_default(),
+			),
+			'message_success' => array(
+				'label'    => esc_html__( 'Success Message', 'squad-modules-for-divi' ),
+				'selector' => $this->get_success_message_selector_default(),
+			),
 		);
 	}
 
@@ -303,11 +429,26 @@ abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 		// button styles.
 		$fields['form_button_background_color'] = array( 'background' => $this->get_submit_button_selector_default() );
 		$fields['form_button_width']            = array( 'width' => $this->get_submit_button_selector_default() );
+		$fields['form_button_height']           = array( 'height' => $this->get_submit_button_selector_default() );
 		$fields['form_button_margin']           = array( 'margin' => $this->get_submit_button_selector_default() );
 		$fields['form_button_padding']          = array( 'padding' => $this->get_submit_button_selector_default() );
 		$this->disq_fix_fonts_transition( $fields, 'form_button_text', $this->get_submit_button_selector_default() );
 		$this->disq_fix_border_transition( $fields, 'form_button', $this->get_submit_button_selector_default() );
 		$this->disq_fix_box_shadow_transition( $fields, 'form_button', $this->get_submit_button_selector_default() );
+
+		// Get form selector.
+		$form_selector = $this->get_form_selector_default();
+
+		// Generic styles.
+		$this->disq_fix_fonts_transition( $fields, 'field_label_text', "$form_selector label, $form_selector legend" );
+		$this->disq_fix_fonts_transition( $fields, 'placeholder_text', "$form_selector input::placeholder, $form_selector select::placeholder, $form_selector textarea::placeholder" );
+
+		// checkbox and radio style.
+		$fields['form_ch_rad_color'] = array( 'color' => "$this->main_css_element input[type=checkbox], $this->main_css_element input[type=radio]" );
+		$fields['form_ch_rad_size']  = array(
+			'width'  => "$this->main_css_element input[type=checkbox], $this->main_css_element input[type=radio]",
+			'height' => "$this->main_css_element input[type=checkbox], $this->main_css_element input[type=radio]",
+		);
 
 		// Default styles.
 		$fields['background_layout'] = array( 'color' => $this->get_form_selector_default() );
@@ -323,188 +464,245 @@ abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 	 * @return void
 	 */
 	protected function disq_generate_all_styles( $attrs ) {
-		// Fixed: the custom background doesn't work at frontend.
-		$this->props = array_merge( $attrs, $this->props );
+		// Get merge all attributes.
+		$attrs = array_merge( $attrs, $this->props );
 
-		// background with default, responsive, hover.
-		et_pb_background_options()->get_background_style(
-			array(
-				'base_prop_name'         => 'form_wrapper_background',
-				'props'                  => $this->props,
-				'selector'               => $this->get_form_selector_default(),
-				'selector_hover'         => $this->get_form_selector_hover(),
-				'selector_sticky'        => $this->get_form_selector_default(),
-				'function_name'          => $this->slug,
-				'important'              => ' !important',
-				'use_background_video'   => false,
-				'use_background_pattern' => false,
-				'use_background_mask'    => false,
-				'prop_name_aliases'      => array(
-					'use_form_wrapper_background_color_gradient' => 'form_wrapper_background_use_color_gradient',
-					'form_wrapper_background' => 'form_wrapper_background_color',
-				),
-			)
+		// Get stylesheet selectors.
+		$options = $this->disq_get_module_stylesheet_selectors( $attrs );
+
+		// Generate module styles from hook.
+		$this->form_styler_generate_module_styles( $attrs, $options );
+	}
+
+	/**
+	 * Get the stylesheet configuration for generating styles.
+	 *
+	 * @param array $attrs List of unprocessed attributes.
+	 *
+	 * @return array
+	 */
+	protected function disq_get_module_stylesheet_selectors( $attrs ) {
+		$options = array();
+
+		// Get form selector.
+		$form_selector = $this->get_form_selector_default();
+
+		// all background type styles.
+		$options['form_wrapper_background']    = array(
+			'type'           => 'background',
+			'selector'       => $this->get_form_selector_default(),
+			'selector_hover' => $this->get_form_selector_hover(),
 		);
-		et_pb_background_options()->get_background_style(
-			array(
-				'base_prop_name'         => 'fields_background',
-				'props'                  => $this->props,
-				'selector'               => $this->get_field_selector_default(),
-				'selector_hover'         => $this->get_field_selector_hover(),
-				'selector_sticky'        => $this->get_field_selector_default(),
-				'function_name'          => $this->slug,
-				'important'              => ' !important',
-				'use_background_video'   => false,
-				'use_background_pattern' => false,
-				'use_background_mask'    => false,
-				'prop_name_aliases'      => array(
-					'use_fields_background_color_gradient' => 'fields_background_use_color_gradient',
-					'fields_background'                    => 'fields_background_color',
-				),
-			)
+		$options['fields_background']          = array(
+			'type'           => 'background',
+			'selector'       => $this->get_field_selector_default(),
+			'selector_hover' => $this->get_field_selector_hover(),
+		);
+		$options['form_button_background']     = array(
+			'type'           => 'background',
+			'selector'       => $this->get_submit_button_selector_default(),
+			'selector_hover' => $this->get_submit_button_selector_hover(),
+		);
+		$options['message_error_background']   = array(
+			'type'           => 'background',
+			'selector'       => $this->get_error_message_selector_default(),
+			'selector_hover' => $this->get_error_message_selector_hover(),
+		);
+		$options['message_success_background'] = array(
+			'type'           => 'background',
+			'selector'       => $this->get_success_message_selector_default(),
+			'selector_hover' => $this->get_success_message_selector_hover(),
 		);
 
-		// Working for an error message.
-		et_pb_background_options()->get_background_style(
-			array(
-				'base_prop_name'         => 'message_error_background',
-				'props'                  => $this->props,
-				'selector'               => $this->get_error_message_selector_default(),
-				'selector_hover'         => $this->get_error_message_selector_hover(),
-				'selector_sticky'        => $this->get_error_message_selector_default(),
-				'function_name'          => $this->slug,
-				'use_background_video'   => false,
-				'use_background_pattern' => false,
-				'use_background_mask'    => false,
-				'prop_name_aliases'      => array(
-					'use_message_error_background_color_gradient' => 'message_error_background_use_color_gradient',
-					'message_error_background' => 'message_error_background_color',
-				),
-			)
+		// Checkbox and radio fields.
+		$options['form_ch_rad_color'] = array(
+			'type'           => 'default',
+			'selector'       => "$form_selector input[type=checkbox], $form_selector input[type=radio]",
+			'hover_selector' => "$form_selector input[type=checkbox]:hover, $form_selector input[type=radio]:hover",
+			'css_property'   => 'accent-color',
+			'data_type'      => 'text',
 		);
-		et_pb_background_options()->get_background_style(
-			array(
-				'base_prop_name'         => 'message_success_background',
-				'props'                  => $this->props,
-				'selector'               => $this->get_success_message_selector_default(),
-				'selector_hover'         => $this->get_success_message_selector_hover(),
-				'selector_sticky'        => $this->get_success_message_selector_default(),
-				'function_name'          => $this->slug,
-				'use_background_video'   => false,
-				'use_background_pattern' => false,
-				'use_background_mask'    => false,
-				'prop_name_aliases'      => array(
-					'use_message_success_background_color_gradient' => 'message_success_background_use_color_gradient',
-					'message_success_background' => 'message_success_background_color',
+		$options['form_ch_rad_size']  = array(
+			'type'      => 'default',
+			'data_type' => 'range',
+			'options'   => array(
+				array(
+					'selector'       => "$form_selector input[type=checkbox], $form_selector input[type=radio]",
+					'hover_selector' => "$form_selector input[type=checkbox]:hover, $form_selector input[type=radio]:hover",
+					'css_property'   => 'width',
 				),
-			)
-		);
-		et_pb_background_options()->get_background_style(
-			array(
-				'base_prop_name'         => 'form_button_background',
-				'props'                  => $this->props,
-				'selector'               => $this->get_submit_button_selector_default(),
-				'selector_hover'         => $this->get_submit_button_selector_hover(),
-				'selector_sticky'        => $this->get_submit_button_selector_default(),
-				'function_name'          => $this->slug,
-				'important'              => ' !important',
-				'use_background_video'   => false,
-				'use_background_pattern' => false,
-				'use_background_mask'    => false,
-				'prop_name_aliases'      => array(
-					'use_form_button_background_color_gradient' => 'form_button_background_use_color_gradient',
-					'form_button_background' => 'form_button_background_color',
+				array(
+					'selector'       => "$form_selector input[type=checkbox], $form_selector input[type=radio]",
+					'hover_selector' => "$form_selector input[type=checkbox]:hover, $form_selector input[type=radio]:hover",
+					'css_property'   => 'height',
 				),
-			)
+			),
 		);
 
 		// Set width for form button with default, responsive, hover.
-		if ( 'on' === $this->prop( 'form_button_custom_width', 'off' ) ) {
-			$this->generate_styles(
-				array(
-					'base_attr_name' => 'form_button_width',
-					'selector'       => $this->get_submit_button_selector_default(),
-					'hover_selector' => $this->get_submit_button_selector_hover(),
-					'css_property'   => 'width',
-					'render_slug'    => $this->slug,
-					'type'           => 'range',
-				)
+		if ( ! empty( array( 'form_button_custom_width' ) ) && 'on' === $attrs['form_button_custom_width'] ) {
+			$options['form_button_width'] = array(
+				'type'           => 'default',
+				'selector'       => $this->get_submit_button_selector_default(),
+				'hover_selector' => $this->get_submit_button_selector_hover(),
+				'css_property'   => 'width',
+				'data_type'      => 'range',
 			);
 		}
 
-		// margin, padding with default, responsive, hover.
-		$this->disq_process_margin_padding_styles(
-			array(
-				'field'          => 'wrapper_margin',
-				'selector'       => $this->get_form_selector_default(),
-				'hover_selector' => $this->get_form_selector_hover(),
-				'css_property'   => 'margin',
-				'type'           => 'margin',
-			)
+		// all margin, padding type styles.
+		$options['wrapper_margin']          = array(
+			'type'           => 'margin',
+			'selector'       => $this->get_form_selector_default(),
+			'hover_selector' => $this->get_form_selector_hover(),
 		);
-		$this->disq_process_margin_padding_styles(
-			array(
-				'field'          => 'wrapper_padding',
-				'selector'       => $this->get_form_selector_default(),
-				'hover_selector' => $this->get_form_selector_hover(),
-				'css_property'   => 'padding',
-				'type'           => 'padding',
-			)
+		$options['wrapper_padding']         = array(
+			'type'           => 'padding',
+			'selector'       => $this->get_form_selector_default(),
+			'hover_selector' => $this->get_form_selector_hover(),
 		);
-		$this->disq_process_margin_padding_styles(
-			array(
-				'field'          => 'field_margin',
-				'selector'       => $this->get_field_selector_default(),
-				'hover_selector' => $this->get_field_selector_hover(),
-				'css_property'   => 'margin',
-				'type'           => 'margin',
-			)
+		$options['field_margin']            = array(
+			'type'           => 'margin',
+			'selector'       => $this->get_field_selector_default(),
+			'hover_selector' => $this->get_field_selector_hover(),
 		);
-		$this->disq_process_margin_padding_styles(
-			array(
-				'field'          => 'field_padding',
-				'selector'       => $this->get_field_selector_default(),
-				'hover_selector' => $this->get_field_selector_hover(),
-				'css_property'   => 'padding',
-				'type'           => 'padding',
-			)
+		$options['field_padding']           = array(
+			'type'           => 'padding',
+			'selector'       => $this->get_field_selector_default(),
+			'hover_selector' => $this->get_field_selector_hover(),
 		);
-		$this->disq_process_margin_padding_styles(
-			array(
-				'field'          => 'message_error_margin',
-				'selector'       => $this->get_error_message_selector_default(),
-				'hover_selector' => $this->get_error_message_selector_hover(),
-				'css_property'   => 'margin',
-				'type'           => 'margin',
-			)
+		$options['form_button_margin']      = array(
+			'type'           => 'margin',
+			'selector'       => $this->get_submit_button_selector_default(),
+			'hover_selector' => $this->get_submit_button_selector_hover(),
 		);
-		$this->disq_process_margin_padding_styles(
-			array(
-				'field'          => 'message_error_padding',
-				'selector'       => $this->get_error_message_selector_default(),
-				'hover_selector' => $this->get_error_message_selector_hover(),
-				'css_property'   => 'padding',
-				'type'           => 'padding',
-			)
+		$options['form_button_padding']     = array(
+			'type'           => 'padding',
+			'selector'       => $this->get_submit_button_selector_default(),
+			'hover_selector' => $this->get_submit_button_selector_hover(),
 		);
-		$this->disq_process_margin_padding_styles(
-			array(
-				'field'          => 'message_success_margin',
-				'selector'       => $this->get_success_message_selector_default(),
-				'hover_selector' => $this->get_success_message_selector_hover(),
-				'css_property'   => 'margin',
-				'type'           => 'margin',
-			)
+		$options['message_error_margin']    = array(
+			'type'           => 'margin',
+			'selector'       => $this->get_error_message_selector_default(),
+			'hover_selector' => $this->get_error_message_selector_hover(),
 		);
-		$this->disq_process_margin_padding_styles(
-			array(
-				'field'          => 'message_success_padding',
-				'selector'       => $this->get_success_message_selector_default(),
-				'hover_selector' => $this->get_success_message_selector_hover(),
-				'css_property'   => 'padding',
-				'type'           => 'padding',
-			)
+		$options['message_error_padding']   = array(
+			'type'           => 'padding',
+			'selector'       => $this->get_error_message_selector_default(),
+			'hover_selector' => $this->get_error_message_selector_hover(),
 		);
+		$options['message_success_margin']  = array(
+			'type'           => 'margin',
+			'selector'       => $this->get_success_message_selector_default(),
+			'hover_selector' => $this->get_success_message_selector_hover(),
+		);
+		$options['message_success_padding'] = array(
+			'type'           => 'padding',
+			'selector'       => $this->get_success_message_selector_default(),
+			'hover_selector' => $this->get_success_message_selector_hover(),
+		);
+
+		return $options;
+	}
+
+	/**
+	 * Generate styles.
+	 *
+	 * @param array $attrs   List of unprocessed attributes.
+	 * @param array $options Control attributes.
+	 *
+	 * @return void
+	 */
+	protected function form_styler_generate_module_styles( $attrs, $options ) {
+		if ( count( $attrs ) > 1 && count( $options ) > 1 ) {
+			foreach ( $options as $option_key => $option ) {
+				if ( ! empty( $option['type'] ) && 'background' === $option['type'] ) {
+					$defaults = array(
+						'base_prop_name' => '',
+						'selector'       => '',
+						'selector_hover' => '',
+					);
+					$option   = wp_parse_args( $option, $defaults );
+
+					// Set the prop name aliases.
+					$prop_name_aliases = array(
+						"use_{$option_key}_color_gradient" => "{$option_key}_use_color_gradient",
+						$option_key                        => "{$option_key}_color",
+					);
+
+					// Generate background styles with default, responsive, hover.
+					et_pb_background_options()->get_background_style(
+						array(
+							'base_prop_name'         => $option_key,
+							'props'                  => $attrs,
+							'function_name'          => $this->slug,
+							'selector'               => $option['selector'],
+							'selector_hover'         => $option['selector_hover'],
+							'selector_sticky'        => $option['selector'],
+							'important'              => ' !important',
+							'use_background_video'   => false,
+							'use_background_pattern' => false,
+							'use_background_mask'    => false,
+							'prop_name_aliases'      => $prop_name_aliases,
+						)
+					);
+				}
+				if ( ! empty( $option['type'] ) && 'default' === $option['type'] ) {
+					$defaults = array(
+						'selector'       => '',
+						'hover_selector' => '',
+						'css_property'   => '',
+					);
+					$option   = wp_parse_args( $option, $defaults );
+
+					// Generate responsive + hover + sticky style using the same configuration at once
+					if ( isset( $option['options'] ) && is_array( $option['options'] ) && count( $option['options'] ) > 0 ) {
+						foreach ( $option['options'] as $nested_option ) {
+							$this->generate_styles(
+								array(
+									'base_attr_name' => $option_key,
+									'selector'       => $nested_option['selector'],
+									'hover_selector' => ! empty( $nested_option['hover_selector'] ) ? $nested_option['hover_selector'] : '',
+									'css_property'   => $nested_option['css_property'],
+									'render_slug'    => $this->slug,
+									'type'           => $option['data_type'],
+								)
+							);
+						}
+					} else {
+						$this->generate_styles(
+							array(
+								'base_attr_name' => $option_key,
+								'selector'       => $option['selector'],
+								'hover_selector' => ! empty( $nested_option['hover_selector'] ) ? $nested_option['hover_selector'] : '',
+								'css_property'   => $option['css_property'],
+								'render_slug'    => $this->slug,
+								'type'           => $option['data_type'],
+							)
+						);
+					}
+				}
+				if ( ! empty( $option['type'] ) && in_array( $option['type'], array( 'margin', 'padding' ), true ) ) {
+					$defaults = array(
+						'selector'       => '',
+						'hover_selector' => '',
+						'css_property'   => $option['type'],
+					);
+					$option   = wp_parse_args( $option, $defaults );
+
+					// Generate margin and padding for module.
+					$this->generate_styles(
+						array(
+							'base_attr_name' => $option_key,
+							'selector'       => $option['selector'],
+							'hover_selector' => $option['hover_selector'],
+							'css_property'   => $option['type'],
+							'render_slug'    => $this->slug,
+						)
+					);
+				}
+			}
+		}
 	}
 
 	/**
@@ -514,7 +712,7 @@ abstract class Squad_Form_Styler_Module extends Squad_Divi_Builder_Module {
 	 */
 	protected function disq_form_styler__get_all_forms() {
 		return array(
-			'0' => esc_html__( 'Select one', 'squad-modules-for-divi' ),
+			md5( 0 ) => esc_html__( 'Select one', 'squad-modules-for-divi' ),
 		);
 	}
 

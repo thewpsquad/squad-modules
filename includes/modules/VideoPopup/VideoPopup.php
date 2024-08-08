@@ -356,7 +356,7 @@ class VideoPopup extends Squad_Divi_Builder_Module {
 			'icon_color'       => $this->disq_add_color_field(
 				esc_html__( 'Color', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__( 'Here you can define custom color for your icon . ', 'squad-modules-for-divi' ),
+					'description'         => esc_html__( 'Here you can define custom color for your icon.', 'squad-modules-for-divi' ),
 					'default'             => et_builder_accent_color(),
 					'depends_show_if_not' => array( 'text' ),
 					'tab_slug'            => 'advanced',

@@ -719,7 +719,7 @@ trait Fields {
 					esc_html__( 'Icon/Image Margin', 'squad-modules-for-divi' ),
 					array(
 						'description'         => esc_html__(
-							'Here you can define a custom padding size for the icon.',
+							'Here you can define a custom padding size.',
 							'squad-modules-for-divi'
 						),
 						'type'                => 'custom_margin',
@@ -743,10 +743,7 @@ trait Fields {
 				"{$base_name}_padding"     => $this->disq_add_margin_padding_field(
 					esc_html__( 'Button Padding', 'squad-modules-for-divi' ),
 					array(
-						'description' => esc_html__(
-							'Here you can define a custom padding size for the button.',
-							'squad-modules-for-divi'
-						),
+						'description' => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 						'type'        => 'custom_padding',
 						'tab_slug'    => 'advanced',
 						'toggle_slug' => $config['toggle_slug'],

@@ -110,7 +110,12 @@ class Extensions {
 	 * @return array
 	 */
 	protected function get_filtered_extensions( $callback, $extensions ) {
-		return array_values( array_filter( array_map( $callback, $extensions ) ) );
+		$filtered_extensions = array();
+		foreach ( $extensions as $extension ) {
+			$filtered_extensions = call_user_func_array( $callback, array( $extension ) );
+		}
+
+		return $filtered_extensions;
 	}
 
 	/**
@@ -147,11 +152,14 @@ class Extensions {
 		}
 
 		foreach ( $active_extensions as $active_extension ) {
-			$extension_name = is_string( $active_extension ) ? $active_extension : $active_extension['name'];
-			$extension_path = sprintf( '%1$s/extensions/%2$s.php', $path, $extension_name );
+			if ( is_string( $active_extension ) && file_exists( sprintf( '%1$s/extensions/%2$s.php', $path, $active_extension ) ) ) {
+				require_once sprintf( '%1$s/extensions/%2$s.php', $path, $active_extension );
+			}
 
-			if ( file_exists( $extension_path ) ) {
-				require_once $extension_path;
+			if ( is_array( $active_extension ) && isset( $active_extension['name'] ) ) {
+				if ( file_exists( sprintf( '%1$s/extensions/%2$s.php', $path, $active_extension['name'] ) ) ) {
+					require_once sprintf( '%1$s/extensions/%2$s.php', $path, $active_extension['name'] );
+				}
 			}
 		}
 	}

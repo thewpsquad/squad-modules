@@ -551,7 +551,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 				esc_html__( 'Icon/Image Margin', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__(
-						'Here you can define a custom padding size for the icon.',
+						'Here you can define a custom padding size.',
 						'squad-modules-for-divi'
 					),
 					'type'            => 'custom_margin',
@@ -575,10 +575,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 			'separator_padding'        => $this->disq_add_margin_padding_field(
 				esc_html__( 'Separator Padding', 'squad-modules-for-divi' ),
 				array(
-					'description' => esc_html__(
-						'Here you can define a custom padding size for the separator.',
-						'squad-modules-for-divi'
-					),
+					'description' => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'        => 'custom_padding',
 					'tab_slug'    => 'advanced',
 					'toggle_slug' => 'separator_element',
@@ -671,7 +668,7 @@ class DualButton extends Squad_Divi_Builder_Module {
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
 					'description' => esc_html__(
-						'Here you can define a custom padding size for the wrapper.',
+						'Here you can define a custom padding size.',
 						'squad-modules-for-divi'
 					),
 					'type'        => 'custom_padding',

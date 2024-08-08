@@ -653,10 +653,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 			'wrapper_margin'  => $this->disq_add_margin_padding_field(
 				esc_html__( 'Wrapper Margin', 'squad-modules-for-divi' ),
 				array(
-					'description' => esc_html__(
-						'Here you can define a custom margin size for the wrapper.',
-						'squad-modules-for-divi'
-					),
+					'description' => esc_html__( 'Here you can define a custom margin size for the wrapper.', 'squad-modules-for-divi' ),
 					'type'        => 'custom_margin',
 					'tab_slug'    => 'advanced',
 					'toggle_slug' => 'wrapper',
@@ -666,7 +663,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
 					'description' => esc_html__(
-						'Here you can define a custom padding size for the wrapper.',
+						'Here you can define a custom padding size.',
 						'squad-modules-for-divi'
 					),
 					'type'        => 'custom_padding',
@@ -779,10 +776,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 			'prefix_margin'  => $this->disq_add_margin_padding_field(
 				esc_html__( 'Before Margin', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__(
-						'Here you can define a custom margin size for the before text.',
-						'squad-modules-for-divi'
-					),
+					'description'    => esc_html__( 'Here you can define a custom margin size for the before text.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_margin',
 					'range_settings' => array(
 						'min'  => '1',
@@ -796,10 +790,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 			'prefix_padding' => $this->disq_add_margin_padding_field(
 				esc_html__( 'Before Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__(
-						'Here you can define a custom padding size for the before text.',
-						'squad-modules-for-divi'
-					),
+					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min'  => '1',
@@ -813,10 +804,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 			'typed_margin'   => $this->disq_add_margin_padding_field(
 				esc_html__( 'Typed Margin', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__(
-						'Here you can define a custom margin size for the typed text.',
-						'squad-modules-for-divi'
-					),
+					'description'    => esc_html__( 'Here you can define a custom margin size for the typed text.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_margin',
 					'range_settings' => array(
 						'min'  => '1',
@@ -830,10 +818,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 			'typed_padding'  => $this->disq_add_margin_padding_field(
 				esc_html__( 'Typed Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__(
-						'Here you can define a custom padding size for the typed text.',
-						'squad-modules-for-divi'
-					),
+					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min'  => '1',
@@ -864,10 +849,7 @@ class TypingText extends Squad_Divi_Builder_Module {
 			'suffix_padding' => $this->disq_add_margin_padding_field(
 				esc_html__( 'After Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__(
-						'Here you can define a custom padding size for the after text.',
-						'squad-modules-for-divi'
-					),
+					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min'  => '1',

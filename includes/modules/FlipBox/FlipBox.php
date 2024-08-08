@@ -3116,7 +3116,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			"{$side}_icon_wrapper_padding"        => $this->disq_add_margin_padding_field(
 				esc_html__( 'Icon Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__( 'Here you can define a custom padding size for the icon wrapper.', 'squad-modules-for-divi' ),
+					'description'         => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'                => 'custom_padding',
 					'depends_show_if_not' => array( 'none' ),
 					'tab_slug'            => 'advanced',
@@ -3138,7 +3138,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			"{$side}_icon_padding"                => $this->disq_add_margin_padding_field(
 				esc_html__( 'Icon Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__( 'Here you can define a custom padding size for the icon.', 'squad-modules-for-divi' ),
+					'description'         => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'                => 'custom_padding',
 					'depends_show_if_not' => array( 'none' ),
 					'tab_slug'            => 'advanced',
@@ -3208,7 +3208,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			"{$side}_wrapper_padding"     => $this->disq_add_margin_padding_field(
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'      => esc_html__( 'Here you can define a custom padding size for the wrapper.', 'squad-modules-for-divi' ),
+					'description'      => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'             => 'custom_padding',
 					'default'          => '10px|15px|10px|15px|false|false',
 					'default_on_front' => '10px|15px|10px|15px|false|false',
@@ -3242,7 +3242,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			"{$side}_title_padding"     => $this->disq_add_margin_padding_field(
 				esc_html__( 'Title Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size for the title.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min_limit' => '1',
@@ -3278,7 +3278,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			"{$side}_sub_title_padding" => $this->disq_add_margin_padding_field(
 				esc_html__( 'Sub Title Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size for the sub title.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min_limit' => '1',
@@ -3314,7 +3314,7 @@ class FlipBox extends Squad_Divi_Builder_Module {
 			"{$side}_content_padding"   => $this->disq_add_margin_padding_field(
 				esc_html__( 'Body Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'    => esc_html__( 'Here you can define a custom padding size for the content.', 'squad-modules-for-divi' ),
+					'description'    => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'           => 'custom_padding',
 					'range_settings' => array(
 						'min_limit' => '1',

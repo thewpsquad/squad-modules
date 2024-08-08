@@ -366,7 +366,7 @@ class Divider extends Squad_Divi_Builder_Module {
 				esc_html__( 'Customize Divider Side Color', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'This settings turns on and off the divider custom color', 'squad-modules-for-divi' ),
-					'options'          => $this->show_divider_options,
+					'options'          => $this->disq_get_show_divider_options(),
 					'default'          => 'off',
 					'default_on_front' => 'off',
 					'affects'          => array(
@@ -406,7 +406,7 @@ class Divider extends Squad_Divi_Builder_Module {
 				'option_category' => 'layout',
 				'options'         => et_builder_get_border_styles(),
 				'depends_show_if' => 'on',
-				'default'         => $this->defaults['divider_style'],
+				'default'         => $this->disq_get_divider_defaults()['divider_style'],
 				'tab_slug'        => 'advanced',
 				'toggle_slug'     => 'divider',
 				'mobile_options'  => true,
@@ -422,7 +422,7 @@ class Divider extends Squad_Divi_Builder_Module {
 					'flex-end'   => et_builder_i18n( 'Bottom' ),
 				),
 				'depends_show_if' => 'on',
-				'default'         => $this->defaults['divider_position'],
+				'default'         => $this->disq_get_divider_defaults()['divider_position'],
 				'tab_slug'        => 'advanced',
 				'toggle_slug'     => 'divider',
 				'mobile_options'  => true,
@@ -442,7 +442,7 @@ class Divider extends Squad_Divi_Builder_Module {
 				'depends_show_if' => 'on',
 				'allowed_units'   => array( 'em', 'rem', 'px', 'cm', 'mm', 'in', 'pt', 'pc', 'ex', 'vh', 'vw' ),
 				'default_unit'    => 'px',
-				'default'         => $this->defaults['divider_weight'],
+				'default'         => $this->disq_get_divider_defaults()['divider_weight'],
 				'tab_slug'        => 'advanced',
 				'toggle_slug'     => 'divider',
 				'mobile_options'  => true,
@@ -454,7 +454,7 @@ class Divider extends Squad_Divi_Builder_Module {
 				esc_html__( 'Customize Divider Size', 'squad-modules-for-divi' ),
 				array(
 					'description'      => esc_html__( 'This settings turns on and off the divider custom size.', 'squad-modules-for-divi' ),
-					'options'          => $this->show_divider_options,
+					'options'          => $this->disq_get_show_divider_options(),
 					'default'          => 'off',
 					'default_on_front' => 'off',
 					'affects'          => array(
@@ -725,7 +725,7 @@ class Divider extends Squad_Divi_Builder_Module {
 			'divider_element_margin'    => $this->disq_add_margin_padding_field(
 				esc_html__( 'Element Margin', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__( 'Here you can define a custom margin size for the element.', 'squad-modules-for-divi' ),
+					'description'         => esc_html__( 'Here you can define a custom margin size.', 'squad-modules-for-divi' ),
 					'type'                => 'custom_margin',
 					'depends_show_if_not' => array( 'none' ),
 					'tab_slug'            => 'advanced',
@@ -735,7 +735,7 @@ class Divider extends Squad_Divi_Builder_Module {
 			'divider_element_padding'   => $this->disq_add_margin_padding_field(
 				esc_html__( 'Element Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__( 'Here you can define a custom padding size for the element.', 'squad-modules-for-divi' ),
+					'description'         => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'                => 'custom_padding',
 					'depends_show_if_not' => array( 'none' ),
 					'tab_slug'            => 'advanced',
@@ -832,7 +832,7 @@ class Divider extends Squad_Divi_Builder_Module {
 			'divider_icon_padding'                => $this->disq_add_margin_padding_field(
 				esc_html__( 'Icon Padding', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__( 'Here you can define a custom padding size for the icon.', 'squad-modules-for-divi' ),
+					'description'         => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'                => 'custom_padding',
 					'depends_show_if_not' => array( 'none' ),
 					'tab_slug'            => 'advanced',
@@ -1143,7 +1143,7 @@ class Divider extends Squad_Divi_Builder_Module {
 			'wrapper_padding' => $this->disq_add_margin_padding_field(
 				esc_html__( 'Wrapper Padding', 'squad-modules-for-divi' ),
 				array(
-					'description' => esc_html__( 'Here you can define a custom padding size for the wrapper.', 'squad-modules-for-divi' ),
+					'description' => esc_html__( 'Here you can define a custom padding size.', 'squad-modules-for-divi' ),
 					'type'        => 'custom_padding',
 					'tab_slug'    => 'advanced',
 					'toggle_slug' => 'wrapper',
