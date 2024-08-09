@@ -50,9 +50,9 @@ Divi Squad is open-source software licensed under the [GNU General Public Licens
 
 ## Community and Support
 
-- [Official Website](https://example.com/divi-squad)
-- [Documentation](https://example.com/divi-squad/docs)
-- [Support Forum](https://example.com/divi-squad/support)
+- [Official Website](https://squadmodules.com/)
+- [Documentation](https://squadmodules.com/suport)
+- [Support Forum](https://squadmodules.com/support)
 
 ## Acknowledgments
 
