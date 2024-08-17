@@ -28,7 +28,7 @@ final class BrandAsset extends Factory {
 	/**
 	 * Store all branding assets.
 	 *
-	 * @var array<string, BrandAsset\BrandAssetInterface[]>
+	 * @var array<string, BrandAsset\AssetInterface[]>
 	 */
 	private static $registries = array(
 		'plugin_action_links' => array(),
@@ -58,9 +58,12 @@ final class BrandAsset extends Factory {
 	 * @return void
 	 */
 	public function add( $class_name ) {
-		$asset = new $class_name();
+		if ( ! class_exists( $class_name ) ) {
+			return;
+		}
 
-		if ( ! $asset instanceof BrandAsset\BrandAssetInterface ) {
+		$asset = new $class_name();
+		if ( ! $asset instanceof BrandAsset\AssetInterface ) {
 			return;
 		}
 
@@ -91,7 +94,7 @@ final class BrandAsset extends Factory {
 			$allowed_positions = \apply_filters( 'divi_squad_branding_plugin_actions_allowed_positions', array( 'before', 'after' ) );
 
 			foreach ( self::$registries['plugin_action_links'] as $asset ) {
-				if ( ! $asset instanceof BrandAsset\BrandAsset ) {
+				if ( ! $asset instanceof BrandAsset\Asset ) {
 					continue;
 				}
 
@@ -141,7 +144,7 @@ final class BrandAsset extends Factory {
 			$allowed_positions = apply_filters( 'divi_squad_branding_plugin_row_actions_allowed_positions', array( 'before', 'after' ) );
 
 			foreach ( self::$registries['plugin_row_actions'] as $asset ) {
-				if ( ! $asset instanceof BrandAsset\BrandAsset ) {
+				if ( ! $asset instanceof BrandAsset\Asset ) {
 					continue;
 				}
 
@@ -188,7 +191,7 @@ final class BrandAsset extends Factory {
 			 */
 			$allowed_positions = apply_filters( 'divi_squad_branding_admin_footer_text_allowed_positions', array( 'before', 'after', 'replace' ) );
 			foreach ( self::$registries['admin_footer_text'] as $asset ) {
-				if ( ! $asset instanceof BrandAsset\BrandAsset ) {
+				if ( ! $asset instanceof BrandAsset\Asset ) {
 					continue;
 				}
 
@@ -239,7 +242,7 @@ final class BrandAsset extends Factory {
 			 */
 			$allowed_positions = apply_filters( 'divi_squad_branding_update_footer_text_allowed_positions', array( 'before', 'after', 'replace' ) );
 			foreach ( self::$registries['admin_footer_text'] as $asset ) {
-				if ( ! $asset instanceof BrandAsset\BrandAsset ) {
+				if ( ! $asset instanceof BrandAsset\Asset ) {
 					continue;
 				}
 

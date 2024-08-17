@@ -5,10 +5,9 @@
  *
  * This class provides dividers adding functionalities in the visual builder.
  *
- * @since           1.0.0
- * @package         squad-modules-for-divi
- * @author          WP Squad <support@squadmodules.com>
- * @license         GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.0.0
  */
 
 namespace DiviSquad\Modules;
@@ -33,8 +32,8 @@ use function wp_kses_post;
 /**
  * Divider Module Class.
  *
- * @since           1.0.0
- * @package         squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.0.0
  */
 class Divider extends Module {
 	/**

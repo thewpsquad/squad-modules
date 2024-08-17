@@ -5,7 +5,7 @@
  *
  * This class provides breadcrumbs adding functionalities in the visual builder.
  *
- * @package DiviSquad\Modules\Breadcrumbs
+ * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
  * @since   1.4.0
  */
@@ -24,7 +24,7 @@ use function et_pb_process_font_icon;
 /**
  * Breadcrumbs Module Class.
  *
- * @package DiviSquad\Modules\Breadcrumbs
+ * @package DiviSquad
  * @since   1.4.0
  */
 class Breadcrumbs extends Module {

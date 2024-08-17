@@ -20,7 +20,7 @@ msgstr ""
 msgid " ( Page %s )"
 msgstr " الصفحة (%s )"
 
-#: includes/Modules/PostGrid.php:679
+#: includes/Modules/PostGrid.php:680
 msgid " Ignore sticky  posts for the current page."
 msgstr " تجاهل المشاركات مثبت على الصفحة الحالية."
 
@@ -84,34 +84,14 @@ msgid "0 - 5"
 msgstr "0 - 5"
 
 #: build/divi-builder-4/scripts/builder-bundle.js:1
-msgid "1"
-msgstr "1"
-
-#: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "2"
 msgstr "2"
-
-#: build/divi-builder-4/scripts/builder-bundle.js:1
-msgid "3"
-msgstr "3"
-
-#: build/divi-builder-4/scripts/builder-bundle.js:1
-msgid "4"
-msgstr "4"
 
 #: build/admin/scripts/admin.js:2
 msgid "404"
 msgstr "404"
 
-#: build/divi-builder-4/scripts/builder-bundle.js:1
-msgid "5"
-msgstr "5"
-
-#: build/divi-builder-4/scripts/builder-bundle.js:1
-msgid "8"
-msgstr "8"
-
-#: includes/Modules/Divider.php:643
+#: includes/Modules/Divider.php:642
 #: includes/Modules/Lottie.php:135
 msgid "A json file is chosen for lottie."
 msgstr "ملف json هو المختار لوتي."
@@ -120,16 +100,12 @@ msgstr "ملف json هو المختار لوتي."
 msgid "Activate Pro Plugin"
 msgstr "تفعيل برو البرنامج المساعد"
 
-#: build/admin/scripts/admin.js:175
-msgid "Active All"
-msgstr "نشط كل"
-
-#: includes/Modules/PostGrid.php:111
-#: includes/Modules/PostGrid.php:487
+#: includes/Modules/PostGrid.php:112
+#: includes/Modules/PostGrid.php:488
 msgid "Active Pagination"
 msgstr "نشط ترقيم الصفحات"
 
-#: includes/Modules/PostGrid.php:112
+#: includes/Modules/PostGrid.php:113
 msgid "Active Pagination Text"
 msgstr "نشط ترقيم الصفحات النص"
 
@@ -153,11 +129,11 @@ msgstr "إضافة أيقونة"
 msgid "Add dynamic, attention-grabbing text animations to your Divi-powered website."
 msgstr "إضافة ديناميكية تشد الانتباه الرسوم المتحركة النص الخاص بك ديفي-موقع بالطاقة."
 
-#: includes/Modules/BusinessHours.php:238
+#: includes/Modules/BusinessHours.php:237
 msgid "Add New Business Day"
 msgstr "إضافة أعمال جديدة اليوم"
 
-#: includes/Modules/PostGrid.php:509
+#: includes/Modules/PostGrid.php:510
 msgid "Add New Element"
 msgstr "إضافة عنصر جديد"
 
@@ -165,7 +141,7 @@ msgstr "إضافة عنصر جديد"
 msgid "Add one or more business day(s)."
 msgstr "إضافة واحد أو أكثر من يوم عمل(s)."
 
-#: includes/Modules/BusinessHours.php:528
+#: includes/Modules/BusinessHours.php:527
 msgid "Add one or more business day."
 msgstr "إضافة واحد أو أكثر من الأعمال التجارية اليوم."
 
@@ -173,7 +149,7 @@ msgstr "إضافة واحد أو أكثر من الأعمال التجارية �
 msgid "Add one or more image(s)."
 msgstr "إضافة واحد أو أكثر من صورة(ق)."
 
-#: includes/Modules/BusinessHoursChild.php:214
+#: includes/Modules/BusinessHoursChild.php:213
 msgid "Add Start And Time"
 msgstr "إضافة تبدأ الوقت"
 
@@ -181,7 +157,7 @@ msgstr "إضافة تبدأ الوقت"
 msgid "Add stylish star ratings to your content for user feedback and ratings."
 msgstr "إضافة أنيقة النجوم إلى المحتوى الخاص بك عن ردود الفعل المستخدم و التقييم."
 
-#: includes/Managers/Branding/AdminFooterText.php:71
+#: includes/Managers/Branding/AdminFooterText.php:72
 msgid "Add your [stars] on [wp.org] to spread the love."
 msgstr "إضافة [النجوم] على [wp.org] لنشر الحب."
 
@@ -201,11 +177,11 @@ msgstr "ضبط خلفية نمط زر عن طريق تخصيص لون الخلف
 msgid "Adjust the background style of the current field by customizing the background color, gradient, and image."
 msgstr "ضبط نمط الخلفية من الحقل الحالي من خلال تخصيص لون الخلفية التدرج و صورة."
 
-#: includes/Modules/BusinessHours.php:309
+#: includes/Modules/BusinessHours.php:308
 msgid "Adjust the gap between the title and the day wrapper."
 msgstr "ضبط الفجوة بين العنوان و اليوم المجمع."
 
-#: includes/Modules/DualButton.php:611
+#: includes/Modules/DualButton.php:610
 msgid "Adjust the width of the content within the blurb content."
 msgstr "ضبط عرض المحتوى ضمن دعاية المحتوى."
 
@@ -213,15 +189,15 @@ msgstr "ضبط عرض المحتوى ضمن دعاية المحتوى."
 msgid "Adjust the width of the content within the button."
 msgstr "ضبط عرض المحتوى داخل زر."
 
-#: includes/Modules/BusinessHours.php:358
+#: includes/Modules/BusinessHours.php:357
 msgid "Adjust the width of the day text."
 msgstr "ضبط عرض النص اليوم."
 
-#: includes/Modules/DualButton.php:499
+#: includes/Modules/DualButton.php:498
 msgid "Adjust the width of the separator."
 msgstr "ضبط عرض فاصل."
 
-#: includes/Modules/BusinessHours.php:376
+#: includes/Modules/BusinessHours.php:375
 msgid "Adjust the width of the time text."
 msgstr "ضبط عرض النص في الوقت."
 
@@ -234,11 +210,11 @@ msgid "Advanced Blurb"
 msgstr "المتقدمة دعاية مغالى فيها"
 
 #: includes/Managers/Features/Modules.php:133
-#: includes/Modules/Divider.php:48
+#: includes/Modules/Divider.php:47
 msgid "Advanced Divider"
 msgstr "المتقدمة مقسم"
 
-#: includes/Modules/Divider.php:49
+#: includes/Modules/Divider.php:48
 msgid "Advanced Dividers"
 msgstr "المتقدمة فواصل"
 
@@ -255,18 +231,18 @@ msgid "Advanced Slider"
 msgstr "المتقدمة المنزلق"
 
 #: includes/Modules/BeforeAfterImageSlider.php:67
-#: includes/Modules/TypingText.php:72
-#: includes/Modules/TypingText.php:110
-#: includes/Modules/TypingText.php:167
-#: includes/Modules/TypingText.php:259
+#: includes/Modules/TypingText.php:71
+#: includes/Modules/TypingText.php:109
+#: includes/Modules/TypingText.php:166
+#: includes/Modules/TypingText.php:258
 msgid "After"
 msgstr "بعد"
 
-#: includes/Modules/TypingText.php:674
+#: includes/Modules/TypingText.php:673
 msgid "After Background"
 msgstr "بعد الخلفية"
 
-#: includes/Modules/TypingText.php:225
+#: includes/Modules/TypingText.php:224
 msgid "After Box Shadow"
 msgstr "بعد مربع الظل"
 
@@ -287,17 +263,17 @@ msgstr "بعد التسمية"
 msgid "After Label Text"
 msgstr "بعد نص التسمية"
 
-#: includes/Modules/TypingText.php:809
+#: includes/Modules/TypingText.php:808
 msgid "After Margin"
 msgstr "بعد الهامش"
 
-#: includes/Modules/TypingText.php:826
+#: includes/Modules/TypingText.php:825
 msgid "After Padding"
 msgstr "بعد الحشو"
 
-#: includes/Modules/PostGridChild.php:396
-#: includes/Modules/TypingText.php:73
-#: includes/Modules/TypingText.php:302
+#: includes/Modules/PostGridChild.php:401
+#: includes/Modules/TypingText.php:72
+#: includes/Modules/TypingText.php:301
 msgid "After Text"
 msgstr "بعد نص"
 
@@ -307,23 +283,23 @@ msgstr "محاذاة المحتوى إلى اليسار أو اليمين أو �
 
 #: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:221
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:736
-#: includes/Modules/DualButton.php:518
-#: includes/Modules/DualButton.php:575
-#: includes/Modules/DualButton.php:601
-#: includes/Modules/FlipBox.php:1063
-#: includes/Modules/FlipBox.php:1083
-#: includes/Modules/FlipBox.php:1163
-#: includes/Modules/FlipBox.php:1775
-#: includes/Modules/FlipBox.php:1869
-#: includes/Modules/PostGrid.php:1037
-#: includes/Modules/PostGrid.php:1237
-#: includes/Modules/PostGridChild.php:813
+#: includes/Modules/DualButton.php:517
+#: includes/Modules/DualButton.php:574
+#: includes/Modules/DualButton.php:600
+#: includes/Modules/FlipBox.php:1062
+#: includes/Modules/FlipBox.php:1082
+#: includes/Modules/FlipBox.php:1162
+#: includes/Modules/FlipBox.php:1774
+#: includes/Modules/FlipBox.php:1868
+#: includes/Modules/PostGrid.php:1038
+#: includes/Modules/PostGrid.php:1238
+#: includes/Modules/PostGridChild.php:868
 #: includes/Modules/PostReadingTime.php:289
-#: includes/Modules/TypingText.php:602
+#: includes/Modules/TypingText.php:601
 msgid "Align icon to the left, right or center."
 msgstr "محاذاة الرمز إلى اليسار أو اليمين أو الوسط."
 
-#: includes/Modules/FlipBox.php:1173
+#: includes/Modules/FlipBox.php:1172
 msgid "Align icon to the top, bottom or center."
 msgstr "محاذاة الرمز إلى أعلى أو أسفل أو وسط."
 
@@ -331,17 +307,13 @@ msgstr "محاذاة الرمز إلى أعلى أو أسفل أو وسط."
 msgid "Align your Stars to the left, right or center of the module."
 msgstr "Align النجوم الخاص بك إلى اليسار أو اليمين أو الوسط من وحدة."
 
-#: includes/Modules/DualButton.php:516
+#: includes/Modules/DualButton.php:515
 #: includes/Modules/PostReadingTime.php:287
-#: includes/Modules/TypingText.php:600
+#: includes/Modules/TypingText.php:599
 msgid "Alignment"
 msgstr "المحاذاة"
 
-#: build/admin/scripts/admin.js:175
-msgid "All"
-msgstr "كل"
-
-#: includes/Modules/PostGrid.php:565
+#: includes/Modules/PostGrid.php:566
 msgid "All Categories"
 msgstr "جميع الفئات"
 
@@ -349,11 +321,11 @@ msgstr "جميع الفئات"
 msgid "Already did it"
 msgstr "فعلت ذلك بالفعل ، "
 
-#: includes/Modules/Divider.php:283
+#: includes/Modules/Divider.php:282
 msgid "Amount Of Line"
 msgstr "كمية من خط"
 
-#: includes/Modules/Divider.php:915
+#: includes/Modules/Divider.php:914
 #: includes/Modules/Lottie.php:240
 msgid "Amount Of Loops"
 msgstr "كمية من الحلقات"
@@ -367,24 +339,24 @@ msgstr "الرسوم المتحركة موجة اللون"
 msgid "Animation"
 msgstr "الرسوم المتحركة"
 
-#: includes/Modules/FlipBox.php:1245
-#: includes/Modules/FlipBox.php:1268
-#: includes/Modules/FlipBox.php:1280
-#: includes/Modules/FlipBox.php:1292
+#: includes/Modules/FlipBox.php:1244
+#: includes/Modules/FlipBox.php:1267
+#: includes/Modules/FlipBox.php:1279
+#: includes/Modules/FlipBox.php:1291
 msgid "Animation Direction"
 msgstr "الرسوم المتحركة الاتجاه"
 
-#: includes/Modules/Divider.php:822
+#: includes/Modules/Divider.php:821
 #: includes/Modules/Lottie.php:147
 msgid "Animation Interaction"
 msgstr "الرسوم المتحركة التفاعل"
 
-#: includes/Modules/Divider.php:961
+#: includes/Modules/Divider.php:960
 #: includes/Modules/Lottie.php:286
 msgid "Animation Speed"
 msgstr "سرعة الحركة"
 
-#: includes/Modules/FlipBox.php:1226
+#: includes/Modules/FlipBox.php:1225
 msgid "Animation Type"
 msgstr "نوع الرسوم المتحركة"
 
@@ -396,7 +368,7 @@ msgstr "تطبيق مذهل أقنعة الصور الخاصة بك ، إضاف�
 msgid "Approaching closer to unlocking the benefits of the Pro plugin."
 msgstr "تقترب أقرب إلى فتح فوائد برو البرنامج المساعد."
 
-#: includes/Modules/PostGrid.php:614
+#: includes/Modules/PostGrid.php:615
 msgid "Ascending"
 msgstr "تصاعدي"
 
@@ -421,11 +393,11 @@ msgstr "أرشيف الكاتب "
 msgid "Author Avatar"
 msgstr "المؤلف الرمزية"
 
-#: includes/Modules/PostGridChild.php:459
+#: includes/Modules/PostGridChild.php:464
 msgid "Author Name Type"
 msgstr "اسم المؤلف نوع"
 
-#: includes/Modules/PostGridChild.php:476
+#: includes/Modules/PostGridChild.php:481
 msgid "Avatar Image Size"
 msgstr "الصورة الرمزية الحجم"
 
@@ -433,41 +405,41 @@ msgstr "الصورة الرمزية الحجم"
 msgid "Average time is 8 copies per second."
 msgstr "متوسط الوقت هو 8 نسخ في الثانية."
 
-#: includes/Modules/FlipBox.php:65
+#: includes/Modules/FlipBox.php:64
 msgid "Back"
 msgstr "مرة أخرى"
 
-#: includes/Modules/FlipBox.php:139
+#: includes/Modules/FlipBox.php:138
 msgid "Back Body Heading Text"
 msgstr "تعود الجسم نص العنوان"
 
-#: includes/Modules/FlipBox.php:129
+#: includes/Modules/FlipBox.php:128
 msgid "Back Body Text"
 msgstr "تعود الجسم النص"
 
-#: includes/Modules/FlipBox.php:84
-#: includes/Modules/FlipBox.php:144
-#: includes/Modules/FlipBox.php:1026
+#: includes/Modules/FlipBox.php:83
+#: includes/Modules/FlipBox.php:143
+#: includes/Modules/FlipBox.php:1025
 msgid "Back Button"
 msgstr "زر العودة"
 
-#: includes/Modules/FlipBox.php:102
+#: includes/Modules/FlipBox.php:101
 msgid "Back Wrapper"
 msgstr "مرة أخرى المجمع"
 
-#: includes/Modules/DropCapText.php:158
-#: includes/Modules/DualButton.php:412
-#: includes/Modules/PostGridChild.php:905
-#: includes/Modules/PostGridChild.php:947
+#: includes/Modules/DropCapText.php:157
+#: includes/Modules/DualButton.php:411
+#: includes/Modules/PostGridChild.php:960
+#: includes/Modules/PostGridChild.php:1002
 #: includes/Modules/VideoPopup.php:344
 msgid "Background"
 msgstr "الخلفية"
 
 #: includes/Modules/BeforeAfterImageSlider.php:66
-#: includes/Modules/TypingText.php:67
-#: includes/Modules/TypingText.php:82
-#: includes/Modules/TypingText.php:141
-#: includes/Modules/TypingText.php:251
+#: includes/Modules/TypingText.php:66
+#: includes/Modules/TypingText.php:81
+#: includes/Modules/TypingText.php:140
+#: includes/Modules/TypingText.php:250
 #: includes/Modules/VideoPopup.php:81
 msgid "Before"
 msgstr "قبل"
@@ -481,11 +453,11 @@ msgstr "قبل وبعد صورة المتزلج"
 msgid "Before After Image Sliders"
 msgstr "قبل بعد المتزلجون صورة"
 
-#: includes/Modules/TypingText.php:656
+#: includes/Modules/TypingText.php:655
 msgid "Before Background"
 msgstr "قبل أن الخلفية"
 
-#: includes/Modules/TypingText.php:197
+#: includes/Modules/TypingText.php:196
 msgid "Before Box Shadow"
 msgstr "قبل مربع الظل"
 
@@ -506,19 +478,19 @@ msgstr "قبل التسمية"
 msgid "Before Label Text"
 msgstr "قبل نص التسمية"
 
-#: includes/Modules/TypingText.php:753
+#: includes/Modules/TypingText.php:752
 msgid "Before Margin"
 msgstr "قبل الهامش"
 
-#: includes/Modules/TypingText.php:767
+#: includes/Modules/TypingText.php:766
 msgid "Before Padding"
 msgstr "قبل الحشو"
 
 #: includes/Modules/Breadcrumbs.php:113
 #: includes/Modules/Breadcrumbs.php:143
-#: includes/Modules/PostGridChild.php:384
-#: includes/Modules/TypingText.php:68
-#: includes/Modules/TypingText.php:283
+#: includes/Modules/PostGridChild.php:389
+#: includes/Modules/TypingText.php:67
+#: includes/Modules/TypingText.php:282
 msgid "Before Text"
 msgstr "قبل النص"
 
@@ -526,29 +498,29 @@ msgstr "قبل النص"
 msgid "Billing Issue"
 msgstr "قضية الفواتير"
 
-#: includes/Modules/TypingText.php:712
-#: includes/Modules/TypingText.php:726
-#: includes/Modules/TypingText.php:740
+#: includes/Modules/TypingText.php:711
+#: includes/Modules/TypingText.php:725
+#: includes/Modules/TypingText.php:739
 msgid "Block"
 msgstr "كتلة"
 
-#: includes/Modules/DropCapText.php:90
-#: includes/Modules/FlipBox.php:342
-#: includes/Modules/FlipBox.php:391
-#: includes/Modules/FlipBox.php:1516
-#: includes/Modules/FlipBox.php:2315
+#: includes/Modules/DropCapText.php:89
+#: includes/Modules/FlipBox.php:341
+#: includes/Modules/FlipBox.php:390
+#: includes/Modules/FlipBox.php:1515
+#: includes/Modules/FlipBox.php:2314
 msgid "Body"
 msgstr "الجسم"
 
-#: includes/Modules/FlipBox.php:2087
+#: includes/Modules/FlipBox.php:2086
 msgid "Body Margin"
 msgstr "الجسم الهامش"
 
-#: includes/Modules/FlipBox.php:2232
+#: includes/Modules/FlipBox.php:2231
 msgid "Body Order"
 msgstr "الجسم من أجل"
 
-#: includes/Modules/FlipBox.php:2105
+#: includes/Modules/FlipBox.php:2104
 msgid "Body Padding"
 msgstr "الجسم الحشو"
 
@@ -556,9 +528,9 @@ msgstr "الجسم الحشو"
 msgid "Border Radius"
 msgstr "دائرة نصف قطرها الحدود"
 
-#: includes/Modules/FlipBox.php:1177
-#: includes/Modules/FlipBox.php:1884
-#: includes/Modules/PostGridChild.php:827
+#: includes/Modules/FlipBox.php:1176
+#: includes/Modules/FlipBox.php:1883
+#: includes/Modules/PostGridChild.php:882
 #: includes/Modules/StarRating.php:277
 msgid "Bottom"
 msgstr "أسفل"
@@ -575,30 +547,30 @@ msgid "Bug"
 msgstr "علة"
 
 #: includes/Managers/Features/Modules.php:246
-#: includes/Modules/BusinessHoursChild.php:40
+#: includes/Modules/BusinessHoursChild.php:39
 msgid "Business Day"
 msgstr "يوم عمل"
 
-#: includes/Modules/BusinessHoursChild.php:41
+#: includes/Modules/BusinessHoursChild.php:40
 msgid "Business Days"
 msgstr "أيام عمل"
 
 #: includes/Managers/Features/Modules.php:243
+#: includes/Modules/BusinessHours.php:40
 #: includes/Modules/BusinessHours.php:41
-#: includes/Modules/BusinessHours.php:42
 msgid "Business Hours"
 msgstr "ساعات العمل"
 
 #: includes/Base/DiviBuilder/Module/FormStyler.php:62
 #: includes/Base/DiviBuilder/Module/FormStyler.php:272
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:393
-#: includes/Modules/DualButton.php:145
-#: includes/Modules/DualButton.php:166
-#: includes/Modules/FlipBox.php:776
-#: includes/Modules/FlipBox.php:808
-#: includes/Modules/FlipBox.php:895
-#: includes/Modules/FlipBox.php:919
-#: includes/Modules/FlipBox.php:2323
+#: includes/Modules/DualButton.php:144
+#: includes/Modules/DualButton.php:165
+#: includes/Modules/FlipBox.php:775
+#: includes/Modules/FlipBox.php:807
+#: includes/Modules/FlipBox.php:894
+#: includes/Modules/FlipBox.php:918
+#: includes/Modules/FlipBox.php:2322
 #: includes/Modules/FormStylers/ContactForm7.php:162
 #: includes/Modules/FormStylers/ContactForm7.php:244
 #: includes/Modules/FormStylers/ContactForm7.php:585
@@ -612,27 +584,27 @@ msgstr "ساعات العمل"
 #: includes/Modules/FormStylers/NinjaForms.php:620
 #: includes/Modules/FormStylers/WPForms.php:201
 #: includes/Modules/FormStylers/WPForms.php:283
-#: includes/Modules/PostGrid.php:121
-#: includes/Modules/PostGrid.php:257
+#: includes/Modules/PostGrid.php:122
+#: includes/Modules/PostGrid.php:258
 msgid "Button"
 msgstr "زر"
 
-#: includes/Modules/FlipBox.php:1061
-#: includes/Modules/FlipBox.php:1081
-#: includes/Modules/PostGrid.php:1235
+#: includes/Modules/FlipBox.php:1060
+#: includes/Modules/FlipBox.php:1080
+#: includes/Modules/PostGrid.php:1236
 msgid "Button Alignment"
 msgstr "زر المحاذاة"
 
-#: includes/Modules/DualButton.php:217
-#: includes/Modules/DualButton.php:231
-#: includes/Modules/FlipBox.php:975
-#: includes/Modules/FlipBox.php:992
+#: includes/Modules/DualButton.php:216
+#: includes/Modules/DualButton.php:230
+#: includes/Modules/FlipBox.php:974
+#: includes/Modules/FlipBox.php:991
 #: includes/Modules/FormStylers/ContactForm7.php:338
 #: includes/Modules/FormStylers/FluentForms.php:456
 #: includes/Modules/FormStylers/GravityForms.php:639
 #: includes/Modules/FormStylers/NinjaForms.php:533
 #: includes/Modules/FormStylers/WPForms.php:377
-#: includes/Modules/PostGrid.php:394
+#: includes/Modules/PostGrid.php:395
 msgid "Button Box Shadow"
 msgstr "زر مربع الظل"
 
@@ -652,11 +624,11 @@ msgstr "ارتفاع زر"
 msgid "Button Icon Type"
 msgstr "زر رمز نوع"
 
-#: includes/Modules/FlipBox.php:2137
+#: includes/Modules/FlipBox.php:2136
 msgid "Button Link Target"
 msgstr "زر الرابط"
 
-#: includes/Modules/FlipBox.php:2127
+#: includes/Modules/FlipBox.php:2126
 msgid "Button Link URL"
 msgstr "زر الرابط URL"
 
@@ -664,7 +636,7 @@ msgstr "زر الرابط URL"
 msgid "Button Margin"
 msgstr "زر الهامش"
 
-#: includes/Modules/FlipBox.php:2255
+#: includes/Modules/FlipBox.php:2254
 msgid "Button Order"
 msgstr "زر أمر"
 
@@ -672,12 +644,12 @@ msgstr "زر أمر"
 msgid "Button Padding"
 msgstr "زر الحشو"
 
-#: includes/Modules/DualButton.php:582
+#: includes/Modules/DualButton.php:581
 msgid "Button Position"
 msgstr "زر الموقف"
 
 #: includes/Base/DiviBuilder/Module/FormStyler.php:63
-#: includes/Modules/FlipBox.php:146
+#: includes/Modules/FlipBox.php:145
 msgid "Button Text"
 msgstr "نص الزر"
 
@@ -685,7 +657,7 @@ msgstr "نص الزر"
 msgid "Button Width"
 msgstr "زر العرض"
 
-#: includes/Modules/DualButton.php:599
+#: includes/Modules/DualButton.php:598
 msgid "Buttons Alignment"
 msgstr "أزرار المحاذاة"
 
@@ -697,19 +669,19 @@ msgstr "بشكل افتراضي, زر أيقونة أن تكون دائما عر
 msgid "By default, icon and text are both move on hover. If you would like button icon move on hover, then you can enable this option."
 msgstr "بشكل افتراضي ، رمز النص على حد سواء نقل على التحويم. إذا كنت ترغب في زر أيقونة الانتقال تحوم, ثم يمكنك تمكين هذا الخيار."
 
-#: includes/Modules/PostGridChild.php:852
+#: includes/Modules/PostGridChild.php:907
 msgid "By default, icon and text are both move on hover. If you would like post element icon move on hover, then you can enable this option."
 msgstr "بشكل افتراضي ، رمز النص على حد سواء نقل على التحويم. إذا كنت ترغب في وظيفة رمز عنصر الانتقال تحوم, ثم يمكنك تمكين هذا الخيار."
 
-#: includes/Modules/PostGridChild.php:839
+#: includes/Modules/PostGridChild.php:894
 msgid "By default, post element icon to always be displayed. If you would like post element icon are displayed on hover, then you can enable this option."
 msgstr "افتراضي آخر رمز عنصر أن تكون دائما عرضه. إذا كنت ترغب في وظيفة رمز عنصر يتم عرضها على التحويم ، ثم يمكنك تمكين هذا الخيار."
 
-#: includes/Modules/PostGridChild.php:675
+#: includes/Modules/PostGridChild.php:730
 msgid "By default, post title icon on hover be displayed. If you would like post title icon is displayed all time, then you can enable this option."
 msgstr "بشكل افتراضي, عنوان آخر رمز تحوم على أن يتم عرضها. إذا كنت ترغب في عنوان آخر يتم عرض رمز كل وقت ، ثم يمكنك تمكين هذا الخيار."
 
-#: includes/Modules/DualButton.php:337
+#: includes/Modules/DualButton.php:336
 msgid "By default, Separator to always be displayed not as icon. If you would like use icon for separator, then you can enable this option."
 msgstr "بشكل افتراضي, فاصل دائما يتم عرض لا رمز. إذا كنت ترغب في استخدام رمز فاصل ثم يمكنك تمكين هذا الخيار."
 
@@ -717,11 +689,11 @@ msgstr "بشكل افتراضي, فاصل دائما يتم عرض لا رمز. 
 msgid "By default, the button element will be get default width. If you would like resize the button, then you can enable this option."
 msgstr "افتراضي الزر عنصر سوف يكون الحصول على العرض الافتراضي. إذا كنت ترغب في تغيير حجم الزر, ثم يمكنك تمكين هذا الخيار."
 
-#: includes/Modules/DualButton.php:486
+#: includes/Modules/DualButton.php:485
 msgid "By default, the separator element will be get default width. If you would like resize the separator, then you can enable this option."
 msgstr "افتراضي عنصر فاصل سوف يكون الحصول على العرض الافتراضي. إذا كنت ترغب في تغيير حجم فاصل ثم يمكنك تمكين هذا الخيار."
 
-#: includes/Modules/Divider.php:1017
+#: includes/Modules/Divider.php:1016
 #: includes/Modules/Lottie.php:342
 msgid "Canvas"
 msgstr "قماش"
@@ -730,18 +702,18 @@ msgstr "قماش"
 msgid "Categories"
 msgstr "فئات"
 
-#: includes/Modules/PostGridChild.php:410
+#: includes/Modules/PostGridChild.php:415
 msgid "Categories Separator"
 msgstr "فئات فاصل"
 
-#: includes/Modules/PostGrid.php:542
+#: includes/Modules/PostGrid.php:543
 msgid "Category"
 msgstr "الفئة"
 
-#: includes/Modules/FlipBox.php:1176
-#: includes/Modules/FlipBox.php:1222
-#: includes/Modules/FlipBox.php:1883
-#: includes/Modules/PostGridChild.php:826
+#: includes/Modules/FlipBox.php:1175
+#: includes/Modules/FlipBox.php:1221
+#: includes/Modules/FlipBox.php:1882
+#: includes/Modules/PostGridChild.php:881
 msgid "Center"
 msgstr "مركز"
 
@@ -761,8 +733,8 @@ msgstr "مربع & راديو اللون النشط"
 msgid "Checkbox & Radio Field Size"
 msgstr "مربع & راديو حجم الحقل"
 
-#: includes/Modules/PostGridChild.php:461
-#: includes/Modules/PostGridChild.php:478
+#: includes/Modules/PostGridChild.php:466
+#: includes/Modules/PostGridChild.php:483
 msgid "Choose a author name type to display for current post."
 msgstr "اختيار اسم المؤلف نوع العرض الحالية بعد."
 
@@ -779,7 +751,7 @@ msgstr "اختيار حقل مخصص لعرض الحالية بعد."
 msgid "Choose a custom url field target to open new tab or self."
 msgstr "اختيار عنوان url مخصص مجال الهدف من فتح علامة تبويب جديدة أو النفس."
 
-#: includes/Modules/PostGridChild.php:494
+#: includes/Modules/PostGridChild.php:499
 msgid "Choose a date type to display for current post."
 msgstr "اختيار نوع التاريخ إلى عرض الوظيفة الحالية."
 
@@ -795,7 +767,7 @@ msgstr "اختيار تأثير عرض مع خلل النص."
 msgid "Choose a inline display position to display with your title texts."
 msgstr "اختيار مضمنة موضع العرض إلى عرض مع العنوان الخاص بك النصوص."
 
-#: includes/Modules/Divider.php:645
+#: includes/Modules/Divider.php:644
 #: includes/Modules/Lottie.php:137
 msgid "Choose a lottie json file"
 msgstr "اختيار لوتي ملف json"
@@ -804,7 +776,7 @@ msgstr "اختيار لوتي ملف json"
 msgid "Choose a rating scale for ratings."
 msgstr "اختيار تصنيف مقياس التقييم."
 
-#: includes/Modules/Divider.php:614
+#: includes/Modules/Divider.php:613
 #: includes/Modules/Lottie.php:107
 msgid "Choose a source type to display from your lottie."
 msgstr "اختيار نوع المصدر إلى عرض من لوتي."
@@ -821,16 +793,16 @@ msgstr "اختيار الوسم عرض مع خلل النص."
 msgid "Choose a tag to display with your gradient text."
 msgstr "اختيار الوسم عرض مع التدرج النص."
 
-#: includes/Modules/Divider.php:250
+#: includes/Modules/Divider.php:249
 msgid "Choose a tag to display with your icon text."
 msgstr "اختيار الوسم لعرض الخاص بك مع رمز النص."
 
-#: includes/Modules/FlipBox.php:1541
+#: includes/Modules/FlipBox.php:1540
 msgid "Choose a tag to display with your sub title."
 msgstr "اختيار الوسم عرض مع العنوان الفرعي."
 
 #: includes/Modules/ScrollingText.php:129
-#: includes/Modules/TypingText.php:315
+#: includes/Modules/TypingText.php:314
 msgid "Choose a tag to display with your texts."
 msgstr "اختيار الوسم عرض مع النصوص الخاصة بك."
 
@@ -838,7 +810,7 @@ msgstr "اختيار الوسم عرض مع النصوص الخاصة بك."
 msgid "Choose a tag to display with your time text."
 msgstr "اختيار الوسم عرض مع الوقت الخاص بك النص."
 
-#: includes/Modules/PostGridChild.php:440
+#: includes/Modules/PostGridChild.php:445
 msgid "Choose a tag to display with your title element."
 msgstr "اختيار الوسم عرض مع العنوان الخاص بك عنصر."
 
@@ -846,8 +818,8 @@ msgstr "اختيار الوسم عرض مع العنوان الخاص بك عن�
 msgid "Choose a tag to display with your title texts."
 msgstr "اختيار الوسم عرض مع العنوان الخاص بك النصوص."
 
-#: includes/Modules/BusinessHours.php:263
-#: includes/Modules/FlipBox.php:1529
+#: includes/Modules/BusinessHours.php:262
+#: includes/Modules/FlipBox.php:1528
 msgid "Choose a tag to display with your title."
 msgstr "اختيار الوسم عرض مع العنوان الخاص بك."
 
@@ -859,7 +831,7 @@ msgstr "اختيار نوع"
 msgid "Choose a Video MP4 File"
 msgstr "اختيار الفيديو MP4 الملف"
 
-#: includes/Modules/Divider.php:209
+#: includes/Modules/Divider.php:208
 msgid "Choose an divider type to display."
 msgstr "اختيار مقسم نوع العرض."
 
@@ -868,12 +840,12 @@ msgid "Choose an element type to display for current post."
 msgstr "اختر نوع العنصر لعرض الحالية بعد."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:436
-#: includes/Modules/Divider.php:574
-#: includes/Modules/DualButton.php:381
-#: includes/Modules/FlipBox.php:1627
-#: includes/Modules/PostGridChild.php:595
-#: includes/Modules/PostGridChild.php:662
-#: includes/Modules/TypingText.php:516
+#: includes/Modules/Divider.php:573
+#: includes/Modules/DualButton.php:380
+#: includes/Modules/FlipBox.php:1626
+#: includes/Modules/PostGridChild.php:650
+#: includes/Modules/PostGridChild.php:717
+#: includes/Modules/TypingText.php:515
 msgid "Choose an icon"
 msgstr "اختيار أيقونة"
 
@@ -881,31 +853,31 @@ msgstr "اختيار أيقونة"
 msgid "Choose an icon to display with your button."
 msgstr "اختيار أيقونة عرض مع الزر الخاص بك."
 
-#: includes/Modules/FlipBox.php:1628
+#: includes/Modules/FlipBox.php:1627
 msgid "Choose an icon to display with your current side of flip box."
 msgstr "اختر رمز العرض الحالي الخاص بك الجانب من الوجه المربع."
 
-#: includes/Modules/Divider.php:575
+#: includes/Modules/Divider.php:574
 msgid "Choose an icon to display with your divider."
 msgstr "اختيار أيقونة عرض مع مقسم."
 
-#: includes/Modules/PostGrid.php:923
+#: includes/Modules/PostGrid.php:924
 msgid "Choose an icon to display with your next entries."
 msgstr "اختيار أيقونة عرض مع الإدخالات التالية."
 
-#: includes/Modules/PostGrid.php:900
+#: includes/Modules/PostGrid.php:901
 msgid "Choose an icon to display with your old entries."
 msgstr "اختيار أيقونة عرض مع إدخالات القديمة."
 
-#: includes/Modules/PostGridChild.php:663
+#: includes/Modules/PostGridChild.php:718
 msgid "Choose an icon to display with your post title."
 msgstr "اختيار أيقونة لعرض الخاص بك مع عنوان آخر."
 
-#: includes/Modules/PostGridChild.php:596
+#: includes/Modules/PostGridChild.php:651
 msgid "Choose an icon to display with your post."
 msgstr "اختيار أيقونة على الشاشة مع وظيفة الخاص بك."
 
-#: includes/Modules/DualButton.php:382
+#: includes/Modules/DualButton.php:381
 msgid "Choose an icon to display with your separator."
 msgstr "اختيار أيقونة عرض مع فاصل."
 
@@ -913,30 +885,30 @@ msgstr "اختيار أيقونة عرض مع فاصل."
 msgid "Choose an icon type to display with your button."
 msgstr "اختيار رمز نوع العرض مع الزر الخاص بك."
 
-#: includes/Modules/FlipBox.php:1594
+#: includes/Modules/FlipBox.php:1593
 msgid "Choose an icon type to display with your current side of flip box."
 msgstr "اختيار رمز نوع العرض الحالي الخاص بك الجانب من الوجه المربع."
 
-#: includes/Modules/Divider.php:539
+#: includes/Modules/Divider.php:538
 msgid "Choose an icon type to display with your divider."
 msgstr "اختيار رمز نوع العرض مع مقسم."
 
-#: includes/Modules/PostGridChild.php:554
+#: includes/Modules/PostGridChild.php:609
 msgid "Choose an icon type to display with your post."
 msgstr "اختيار رمز نوع الشاشة مع وظيفة الخاص بك."
 
-#: includes/Modules/DualButton.php:361
-#: includes/Modules/DualButton.php:584
+#: includes/Modules/DualButton.php:360
+#: includes/Modules/DualButton.php:583
 msgid "Choose an icon type to display with your separator."
 msgstr "اختيار رمز نوع العرض مع فاصل."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:454
 #: includes/Modules/BeforeAfterImageSlider.php:447
-#: includes/Modules/Divider.php:592
-#: includes/Modules/DualButton.php:399
-#: includes/Modules/FlipBox.php:1645
+#: includes/Modules/Divider.php:591
+#: includes/Modules/DualButton.php:398
+#: includes/Modules/FlipBox.php:1644
 #: includes/Modules/ImageMask.php:106
-#: includes/Modules/PostGridChild.php:613
+#: includes/Modules/PostGridChild.php:668
 #: includes/Modules/VideoPopup.php:159
 msgid "Choose an Image"
 msgstr "اختيار صورة"
@@ -971,14 +943,12 @@ msgid "Choose the speed for your scrolling text in milliseconds."
 msgstr "اختيار سرعة الخاص بك التمرير النص في ميلي ثانية."
 
 #. translators: %s: class name.
-#: includes/Base/Factories/Migration.php:36
-#: includes/Base/Factories/SettingsMigration.php:36
+#: includes/Base/Factories/ModuleMigration.php:36
 msgid "Class '%s' does not exist."
 msgstr "فئة '%s' غير موجود."
 
 #. translators: %s: class name.
-#: includes/Base/Factories/Migration.php:46
-#: includes/Base/Factories/SettingsMigration.php:46
+#: includes/Base/Factories/ModuleMigration.php:46
 msgid "Class '%s' is not an instance of AbstractMigration."
 msgstr "فئة '%s' لا مثيل AbstractMigration."
 
@@ -994,15 +964,15 @@ msgstr "دعم وثيقة منبثقة"
 msgid "Color"
 msgstr "اللون"
 
-#: includes/Modules/PostGrid.php:731
+#: includes/Modules/PostGrid.php:732
 msgid "Column Numbers"
 msgstr "عمود الأرقام"
 
-#: includes/Modules/PostGrid.php:753
+#: includes/Modules/PostGrid.php:754
 msgid "Columns Gap"
 msgstr "الأعمدة الفجوة"
 
-#: includes/Modules/PostGrid.php:599
+#: includes/Modules/PostGrid.php:600
 msgid "Comments"
 msgstr "تعليقات"
 
@@ -1020,25 +990,25 @@ msgstr "نموذج الاتصال 7"
 msgid "Contact Form 7 is not installed"
 msgstr "نموذج الاتصال 7 لم يتم تثبيت"
 
-#: includes/Managers/Branding/AdminFooterText.php:59
+#: includes/Managers/Branding/AdminFooterText.php:60
 msgid "Contact Support"
 msgstr "الاتصال بالدعم"
 
-#: includes/Modules/TypingText.php:313
+#: includes/Modules/TypingText.php:312
 msgid "Container Tag"
 msgstr "حاوية الوسم"
 
-#: includes/Modules/DropCapText.php:59
-#: includes/Modules/FlipBox.php:74
+#: includes/Modules/DropCapText.php:58
+#: includes/Modules/FlipBox.php:73
 #: includes/Modules/PostGridChild.php:61
 #: includes/Modules/PostReadingTime.php:64
 #: includes/Modules/ScrollingText.php:54
-#: includes/Modules/TypingText.php:60
+#: includes/Modules/TypingText.php:59
 #: includes/Modules/VideoPopup.php:63
 msgid "Content"
 msgstr "المحتوى"
 
-#: includes/Modules/PostGridChild.php:914
+#: includes/Modules/PostGridChild.php:969
 msgid "Content Alignment"
 msgstr "محاذاة المحتوى"
 
@@ -1048,7 +1018,7 @@ msgstr "محاذاة المحتوى"
 msgid "Content Modules"
 msgstr "وحدات المحتوى"
 
-#: includes/Modules/DropCapText.php:66
+#: includes/Modules/DropCapText.php:65
 msgid "Content Text"
 msgstr "محتوى النص"
 
@@ -1145,7 +1115,7 @@ msgstr "معرف CSS"
 msgid "Current"
 msgstr "الحالي"
 
-#: includes/Modules/PostGrid.php:566
+#: includes/Modules/PostGrid.php:567
 msgid "Current Category"
 msgstr "الفئة الحالية"
 
@@ -1153,11 +1123,11 @@ msgstr "الفئة الحالية"
 msgid "Current Text Color"
 msgstr "الحالية لون النص"
 
-#: includes/Modules/TypingText.php:491
+#: includes/Modules/TypingText.php:490
 msgid "Cursor Character"
 msgstr "المؤشر حرف"
 
-#: includes/Modules/TypingText.php:267
+#: includes/Modules/TypingText.php:266
 msgid "Cursor Icon"
 msgstr "رمز المؤشر"
 
@@ -1200,7 +1170,7 @@ msgstr "الحقول المخصصة (ACF)"
 msgid "Custom Fonts Upload Support"
 msgstr "الخطوط المخصصة لدعم تحميل"
 
-#: includes/Modules/FlipBox.php:1142
+#: includes/Modules/FlipBox.php:1141
 msgid "Custom Height"
 msgstr "ارتفاع مخصص"
 
@@ -1238,12 +1208,12 @@ msgstr "رمز مخصص"
 msgid "Custom Image Width"
 msgstr "العرف صورة العرض"
 
-#: includes/Modules/FlipBox.php:151
+#: includes/Modules/FlipBox.php:150
 msgid "Custom Spacing"
 msgstr "تباعد مخصص"
 
 #: includes/Modules/PostGridChild.php:70
-#: includes/Modules/PostGridChild.php:518
+#: includes/Modules/PostGridChild.php:523
 msgid "Custom Text"
 msgstr "نص مخصص"
 
@@ -1263,11 +1233,11 @@ msgstr "URL مخصص النص"
 msgid "Customization"
 msgstr "التخصيص"
 
-#: includes/Modules/Divider.php:341
+#: includes/Modules/Divider.php:340
 msgid "Customize Divider Side Color"
 msgstr "تخصيص مقسم جانب اللون"
 
-#: includes/Modules/Divider.php:429
+#: includes/Modules/Divider.php:428
 msgid "Customize Divider Size"
 msgstr "تخصيص مقسم حجم"
 
@@ -1280,61 +1250,56 @@ msgstr "لوحة القيادة"
 msgid "Date"
 msgstr "تاريخ"
 
-#: includes/Modules/PostGrid.php:701
+#: includes/Modules/PostGrid.php:702
 msgid "Date Format"
 msgstr "تنسيق التاريخ"
 
-#: includes/Modules/PostGridChild.php:492
+#: includes/Modules/PostGridChild.php:497
 msgid "Date Type"
 msgstr "نوع تاريخ"
 
-#: includes/Modules/BusinessHours.php:73
-#: includes/Modules/BusinessHours.php:105
-#: includes/Modules/BusinessHours.php:218
-#: includes/Modules/BusinessHoursChild.php:71
-#: includes/Modules/BusinessHoursChild.php:86
-#: includes/Modules/BusinessHoursChild.php:167
-#: includes/Modules/BusinessHoursChild.php:191
+#: includes/Modules/BusinessHours.php:72
+#: includes/Modules/BusinessHours.php:104
+#: includes/Modules/BusinessHours.php:217
+#: includes/Modules/BusinessHoursChild.php:70
+#: includes/Modules/BusinessHoursChild.php:85
+#: includes/Modules/BusinessHoursChild.php:166
+#: includes/Modules/BusinessHoursChild.php:190
 msgid "Day"
 msgstr "اليوم"
 
-#: includes/Modules/BusinessHoursChild.php:59
+#: includes/Modules/BusinessHoursChild.php:58
 msgid "Day & Time"
 msgstr "اليوم والوقت"
 
-#: includes/Modules/BusinessHours.php:69
-#: includes/Modules/BusinessHoursChild.php:67
+#: includes/Modules/BusinessHours.php:68
+#: includes/Modules/BusinessHoursChild.php:66
 msgid "Day & Time Text"
 msgstr "يوم و نص الوقت"
 
-#: includes/Modules/BusinessHours.php:64
+#: includes/Modules/BusinessHours.php:63
 msgid "Day & Time Wrapper"
 msgstr "اليوم والوقت المجمع"
 
-#: includes/Modules/BusinessHours.php:356
+#: includes/Modules/BusinessHours.php:355
 msgid "Day Text Width"
 msgstr "اليوم نص العرض"
 
-#: includes/Modules/BusinessHours.php:226
+#: includes/Modules/BusinessHours.php:225
 msgid "Day Wrapper"
 msgstr "اليوم المجمع"
 
-#: build/admin/scripts/admin.js:175
-msgid "Deactivate All"
-msgstr "قم بإلغاء تنشيط جميع"
-
-#: includes/Modules/TypingText.php:711
-#: includes/Modules/TypingText.php:725
-#: includes/Modules/TypingText.php:739
-#: build/admin/scripts/admin.js:175
+#: includes/Modules/TypingText.php:710
+#: includes/Modules/TypingText.php:724
+#: includes/Modules/TypingText.php:738
 msgid "Default"
 msgstr "الافتراضي"
 
 #: includes/Modules/BeforeAfterImageSlider.php:456
-#: includes/Modules/Divider.php:603
-#: includes/Modules/FlipBox.php:1656
+#: includes/Modules/Divider.php:602
+#: includes/Modules/FlipBox.php:1655
 #: includes/Modules/ImageMask.php:114
-#: includes/Modules/PostGridChild.php:624
+#: includes/Modules/PostGridChild.php:679
 msgid "Define the HTML ALT text for your image here."
 msgstr "تعريف HTML النص البديل للصورة الخاصة بك هنا."
 
@@ -1358,25 +1323,25 @@ msgstr "تعريف الزناد النص الخاص بك المنبثقة."
 msgid "Define video type for the popup."
 msgstr "تحديد نوع الفيديو منبثقة."
 
-#: includes/Modules/Divider.php:938
+#: includes/Modules/Divider.php:937
 #: includes/Modules/Lottie.php:263
 msgid "Delay"
 msgstr "تأخير"
 
-#: includes/Modules/Divider.php:940
+#: includes/Modules/Divider.php:939
 #: includes/Modules/Lottie.php:265
 msgid "Delay the lottie animation (in ms)."
 msgstr "تأخير لوتي الرسوم المتحركة (في مللي ثانية)."
 
-#: includes/Modules/TypingText.php:396
+#: includes/Modules/TypingText.php:395
 msgid "Delete Delay (ms)"
 msgstr "حذف تأخير (ms)"
 
-#: includes/Modules/TypingText.php:372
+#: includes/Modules/TypingText.php:371
 msgid "Delete Speed (ms)"
 msgstr "حذف السرعة (ms)"
 
-#: includes/Modules/PostGrid.php:615
+#: includes/Modules/PostGrid.php:616
 msgid "Descending"
 msgstr "تنازلي"
 
@@ -1408,7 +1373,7 @@ msgstr "وصف الحشو"
 msgid "Description Text"
 msgstr "وصف النص"
 
-#: includes/Modules/PostGrid.php:612
+#: includes/Modules/PostGrid.php:613
 msgid "Designates the ascending or descending order of the ‘orderby‘ parameter. Defaults to ‘Ascending’.."
 msgstr "يعين ترتيب تصاعدي أو تنازلي من \"orderby\" المعلمة. الافتراضي 'تصاعدي'.."
 
@@ -1417,7 +1382,7 @@ msgid "Desription Box Shadow"
 msgstr "Desription مربع الظل"
 
 #: includes/Modules/BeforeAfterImageSlider.php:290
-#: includes/Modules/Divider.php:998
+#: includes/Modules/Divider.php:997
 #: includes/Modules/Lottie.php:323
 msgid "Direction"
 msgstr "الاتجاه"
@@ -1426,7 +1391,7 @@ msgstr "الاتجاه"
 msgid "Dismiss this notice."
 msgstr "رفض هذا الإشعار."
 
-#: includes/Modules/PostGrid.php:537
+#: includes/Modules/PostGrid.php:538
 msgid "Display By"
 msgstr "عرض من قبل"
 
@@ -1434,17 +1399,17 @@ msgstr "عرض من قبل"
 msgid "Display content on one side, then on hover, flip to reveal more info or a different design."
 msgstr "عرض المحتوى على جانب واحد ، ثم على التحويم ، والوجه أن تكشف عن مزيد من المعلومات أو تصميم مختلف."
 
-#: includes/Modules/PostGridChild.php:464
+#: includes/Modules/PostGridChild.php:469
 msgid "Display Name"
 msgstr "اسم العرض"
 
-#: includes/Modules/PostGrid.php:524
+#: includes/Modules/PostGrid.php:525
 msgid "Display posts for the current page. Useful on all author pages."
 msgstr "عرض المشاركات على الصفحة الحالية. مفيدة على جميع صفحات المؤلف."
 
-#: includes/Modules/TypingText.php:707
-#: includes/Modules/TypingText.php:721
-#: includes/Modules/TypingText.php:735
+#: includes/Modules/TypingText.php:706
+#: includes/Modules/TypingText.php:720
+#: includes/Modules/TypingText.php:734
 msgid "Display Type"
 msgstr "نوع العرض"
 
@@ -1457,7 +1422,7 @@ msgid "Display your business hours in a clear and organized manner."
 msgstr "عرض ساعات العمل الخاصة بك بشكل واضح ومنظم."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:43
-#: includes/Modules/Divider.php:260
+#: includes/Modules/Divider.php:259
 msgid "DIV tag"
 msgstr "DIV"
 
@@ -1482,8 +1447,8 @@ msgstr "ديفي فرقة"
 msgid "Divi Squad Pro"
 msgstr "ديفي فرقة برو"
 
-#: includes/Modules/Divider.php:67
-#: includes/Modules/Divider.php:75
+#: includes/Modules/Divider.php:66
+#: includes/Modules/Divider.php:74
 #: includes/Modules/PostGridChild.php:69
 #: includes/Modules/PostGridChild.php:89
 #: includes/Modules/PostGridChild.php:99
@@ -1493,37 +1458,37 @@ msgid "Divider"
 msgstr "مقسم"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:216
-#: includes/Modules/Divider.php:504
+#: includes/Modules/Divider.php:503
 msgid "Divider Border Radius"
 msgstr "مقسم دائرة نصف قطرها الحدود"
 
-#: includes/Modules/Divider.php:76
+#: includes/Modules/Divider.php:75
 msgid "Divider Elements"
 msgstr "مقسم العناصر"
 
-#: includes/Modules/Divider.php:445
+#: includes/Modules/Divider.php:444
 msgid "Divider Left Side Width"
 msgstr "مقسم الجانب الأيسر العرض"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:199
-#: includes/Modules/Divider.php:485
+#: includes/Modules/Divider.php:484
 msgid "Divider Max Width"
 msgstr "مقسم عرض ماكس"
 
-#: includes/Modules/Divider.php:464
+#: includes/Modules/Divider.php:463
 msgid "Divider Right Side Width"
 msgstr "مقسم الجانب الأيمن العرض"
 
-#: includes/Modules/Divider.php:78
+#: includes/Modules/Divider.php:77
 msgid "Divider Text"
 msgstr "مقسم النص"
 
-#: includes/Modules/Divider.php:207
+#: includes/Modules/Divider.php:206
 msgid "Divider Type"
 msgstr "مقسم نوع"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:179
-#: includes/Modules/Divider.php:406
+#: includes/Modules/Divider.php:405
 msgid "Divider Weight"
 msgstr "مقسم الوزن"
 
@@ -1531,11 +1496,11 @@ msgstr "مقسم الوزن"
 msgid "Documentation"
 msgstr "الوثائق"
 
-#: includes/Managers/Branding/AdminFooterText.php:88
+#: includes/Managers/Branding/AdminFooterText.php:90
 msgid "Donate"
 msgstr "التبرع"
 
-#: includes/Modules/FlipBox.php:1219
+#: includes/Modules/FlipBox.php:1218
 msgid "Down"
 msgstr "أسفل"
 
@@ -1547,34 +1512,34 @@ msgstr "تحميل برو"
 msgid "Drag"
 msgstr "السحب"
 
-#: includes/Modules/DropCapText.php:64
-#: includes/Modules/DropCapText.php:123
+#: includes/Modules/DropCapText.php:63
+#: includes/Modules/DropCapText.php:122
 msgid "Drop Cap Letter"
 msgstr "وانخفاض سقف الرسالة"
 
-#: includes/Modules/DropCapText.php:139
+#: includes/Modules/DropCapText.php:138
 msgid "Drop cap letter"
 msgstr "وانخفاض سقف الرسالة"
 
-#: includes/Modules/DropCapText.php:65
+#: includes/Modules/DropCapText.php:64
 msgid "Drop Cap Letter Text"
 msgstr "وانخفاض سقف رسالة نصية"
 
 #: includes/Managers/Features/Modules.php:429
-#: includes/Modules/DropCapText.php:41
+#: includes/Modules/DropCapText.php:40
 msgid "Drop Cap Text"
 msgstr "وانخفاض سقف النص"
 
-#: includes/Modules/DropCapText.php:42
+#: includes/Modules/DropCapText.php:41
 msgid "Drop Cap Texts"
 msgstr "وانخفاض سقف النصوص"
 
 #: includes/Managers/Features/Modules.php:148
-#: includes/Modules/DualButton.php:45
+#: includes/Modules/DualButton.php:44
 msgid "Dual Button"
 msgstr "المزدوج على زر"
 
-#: includes/Modules/DualButton.php:46
+#: includes/Modules/DualButton.php:45
 msgid "Dual Buttons"
 msgstr "المزدوج أزرار"
 
@@ -1635,8 +1600,8 @@ msgstr "جهد تخصيص أشكال النينجا التصميم. ضبط ال�
 msgid "Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "جهد تخصيص WP تصميم نماذج. ضبط الألوان والخطوط والمسافات إضافة CSS الخاص بك نظرة المرجوة."
 
-#: includes/Modules/PostGrid.php:105
-#: includes/Modules/PostGrid.php:236
+#: includes/Modules/PostGrid.php:106
+#: includes/Modules/PostGrid.php:237
 #: includes/Modules/PostGridChild.php:87
 #: includes/Modules/PostGridChild.php:97
 #: includes/Modules/PostGridChild.php:131
@@ -1645,26 +1610,26 @@ msgstr "جهد تخصيص WP تصميم نماذج. ضبط الألوان وال
 msgid "Element"
 msgstr "عنصر"
 
-#: includes/Modules/PostGrid.php:1268
+#: includes/Modules/PostGrid.php:1269
 msgid "Element Background"
 msgstr "عنصر الخلفية"
 
-#: includes/Modules/PostGrid.php:380
+#: includes/Modules/PostGrid.php:381
 #: includes/Modules/PostGridChild.php:243
 msgid "Element Box Shadow"
 msgstr "عنصر مربع الظل"
 
-#: includes/Modules/Divider.php:701
-#: includes/Modules/PostGrid.php:1334
+#: includes/Modules/Divider.php:700
+#: includes/Modules/PostGrid.php:1335
 msgid "Element Margin"
 msgstr "عنصر الهامش"
 
-#: includes/Modules/Divider.php:711
-#: includes/Modules/PostGrid.php:1350
+#: includes/Modules/Divider.php:710
+#: includes/Modules/PostGrid.php:1351
 msgid "Element Padding"
 msgstr "عنصر الحشو"
 
-#: includes/Modules/Divider.php:686
+#: includes/Modules/Divider.php:685
 msgid "Element Placement"
 msgstr "وضع عناصر"
 
@@ -1676,15 +1641,15 @@ msgstr "عنصر النص"
 msgid "Element Type"
 msgstr "نوع العنصر"
 
-#: includes/Modules/PostGrid.php:104
+#: includes/Modules/PostGrid.php:105
 msgid "Element Wrapper"
 msgstr "عنصر المجمع"
 
-#: includes/Modules/FlipBox.php:1161
+#: includes/Modules/FlipBox.php:1160
 msgid "Elements Horizontal Alignment"
 msgstr "عناصر المحاذاة الأفقية"
 
-#: includes/Modules/FlipBox.php:1171
+#: includes/Modules/FlipBox.php:1170
 msgid "Elements Vertical Alignment"
 msgstr "عناصر المحاذاة العمودية"
 
@@ -1720,15 +1685,15 @@ msgstr "تمكين كليب"
 msgid "Enable Control Smoothness"
 msgstr "تمكين التحكم في نعومة"
 
-#: includes/Modules/TypingText.php:502
+#: includes/Modules/TypingText.php:501
 msgid "Enable Cursor Icon"
 msgstr "تمكين رمز المؤشر"
 
-#: includes/Modules/TypingText.php:438
+#: includes/Modules/TypingText.php:437
 msgid "Enable Fade Out"
 msgstr "تمكين تتلاشى"
 
-#: includes/Modules/TypingText.php:420
+#: includes/Modules/TypingText.php:419
 msgid "Enable Loop"
 msgstr "تمكين حلقة"
 
@@ -1744,11 +1709,11 @@ msgstr "تمكين التمرير نص العريضة"
 msgid "Enable Scrolling Text Outline for better look."
 msgstr "تمكين التمرير النص مخطط تبدو أفضل."
 
-#: includes/Modules/TypingText.php:429
+#: includes/Modules/TypingText.php:428
 msgid "Enable Shuffle"
 msgstr "تمكين المراوغة"
 
-#: includes/Modules/PostGridChild.php:346
+#: includes/Modules/PostGridChild.php:351
 msgid "Enable Text Limit"
 msgstr "تمكين نص الحد"
 
@@ -1776,11 +1741,7 @@ msgstr "تمكين هذه الميزة فقط إذا كنت ترغب في الس
 msgid "Enabled extensions saved!"
 msgstr "تمكين ملحقات حفظها!"
 
-#: build/admin/scripts/admin.js:175
-msgid "Enabled modules saved!"
-msgstr "تمكين وحدات حفظ!"
-
-#: includes/Modules/BusinessHoursChild.php:243
+#: includes/Modules/BusinessHoursChild.php:242
 msgid "End Time"
 msgstr "نهاية الوقت"
 
@@ -1801,10 +1762,6 @@ msgstr "تعزيز الملاحة مع مسار واضح للمستخدمين ت
 msgid "Enhancement"
 msgstr "تعزيز"
 
-#: build/admin/scripts/admin.js:175
-msgid "Enjoy seamless module control at your fingertips. The Toggle Button makes it a breeze to activate or deactivate elements, keeping your workflow smooth and efficient."
-msgstr "تتمتع سلسة وحدة التحكم في متناول يدك. زر التبديل يجعل من نسيم إلى تنشيط أو إلغاء تنشيط عناصر حفظ العمل الخاص بك على نحو سلس وفعال."
-
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Enter a place on google map."
 msgstr "تدخل مكانا على خريطة جوجل."
@@ -1813,24 +1770,24 @@ msgstr "تدخل مكانا على خريطة جوجل."
 msgid "Enter the address for the embed Google Map."
 msgstr "أدخل عنوان تضمين خريطة جوجل."
 
-#: includes/Modules/Divider.php:882
+#: includes/Modules/Divider.php:881
 #: includes/Modules/Lottie.php:207
 msgid "Entire page"
 msgstr "الصفحة بأكملها"
 
-#: includes/Modules/PostGrid.php:968
+#: includes/Modules/PostGrid.php:969
 msgid "Entries Icon Color"
 msgstr "إدخالات رمز اللون"
 
-#: includes/Modules/PostGrid.php:1047
+#: includes/Modules/PostGrid.php:1048
 msgid "Entries Icon Margin"
 msgstr "إدخالات رمز الهامش"
 
-#: includes/Modules/PostGrid.php:1064
+#: includes/Modules/PostGrid.php:1065
 msgid "Entries Icon Padding"
 msgstr "إدخالات رمز الحشو"
 
-#: includes/Modules/PostGrid.php:977
+#: includes/Modules/PostGrid.php:978
 msgid "Entries Icon Size"
 msgstr "إدخالات حجم الرمز"
 
@@ -1867,16 +1824,16 @@ msgstr "امتداد"
 msgid "Extensions Management"
 msgstr "ملحقات إدارة"
 
-#: includes/Modules/Divider.php:616
+#: includes/Modules/Divider.php:615
 #: includes/Modules/Lottie.php:109
 msgid "External URL"
 msgstr "الخارجية URL"
 
-#: includes/Modules/FlipBox.php:1210
+#: includes/Modules/FlipBox.php:1209
 msgid "Fade"
 msgstr "تتلاشى"
 
-#: includes/Modules/TypingText.php:452
+#: includes/Modules/TypingText.php:451
 msgid "Fade Out Delay (ms)"
 msgstr "تتلاشى تأخير (ms)"
 
@@ -1892,7 +1849,7 @@ msgstr "طلب ميزة"
 msgid "Featured Image"
 msgstr "صورة مميزة"
 
-#: includes/Modules/PostGrid.php:689
+#: includes/Modules/PostGrid.php:690
 msgid "Featured Image Size"
 msgstr "صورة مميزة الحجم"
 
@@ -1956,14 +1913,6 @@ msgstr "عرض الحقل"
 msgid "Fieldset Remove Button"
 msgstr "حقول إزالة زر"
 
-#: includes/Managers/RestRoutes/V1/WhatsNew/Changelog.php:68
-msgid "File is empty."
-msgstr "الملف فارغ."
-
-#: includes/Managers/RestRoutes/V1/WhatsNew/Changelog.php:60
-msgid "File not found."
-msgstr "لم يتم العثور على الملف."
-
 #: includes/Modules/FormStylers/ContactForm7.php:581
 #: includes/Modules/FormStylers/FluentForms.php:531
 msgid "File Upload"
@@ -1973,20 +1922,20 @@ msgstr "تحميل الملف"
 msgid "Fill Color"
 msgstr "لون التعبئة"
 
-#: includes/Modules/PostGridChild.php:466
+#: includes/Modules/PostGridChild.php:471
 msgid "First Name"
 msgstr "الاسم الأول"
 
-#: includes/Modules/FlipBox.php:86
+#: includes/Modules/FlipBox.php:85
 msgid "Flip Animation"
 msgstr "الوجه الرسوم المتحركة"
 
 #: includes/Managers/Features/Modules.php:227
-#: includes/Modules/FlipBox.php:46
+#: includes/Modules/FlipBox.php:45
 msgid "Flip Box"
 msgstr "الوجه المربع"
 
-#: includes/Modules/FlipBox.php:47
+#: includes/Modules/FlipBox.php:46
 msgid "Flip Boxes"
 msgstr "الوجه مربعات"
 
@@ -1994,7 +1943,7 @@ msgstr "الوجه مربعات"
 msgid "Flip Mask Shape"
 msgstr "شكل قناع الوجه"
 
-#: includes/Modules/FlipBox.php:85
+#: includes/Modules/FlipBox.php:84
 msgid "Flip Settings"
 msgstr "الوجه الإعدادات"
 
@@ -2012,7 +1961,7 @@ msgstr "طلاقة الأشكال"
 msgid "Fluent Forms is not installed"
 msgstr "طلاقة الأشكال غير مثبت"
 
-#: includes/Modules/PostGridChild.php:449
+#: includes/Modules/PostGridChild.php:454
 msgid "Force Fullwidth"
 msgstr "قوة مكتملة العرض"
 
@@ -2070,34 +2019,30 @@ msgstr "أشكال غير متوفرة."
 msgid "Forms Settings"
 msgstr "أشكال الإعدادات"
 
-#: build/admin/scripts/admin.js:175
-msgid "Free"
-msgstr "مجانا"
-
-#: includes/Modules/Divider.php:830
+#: includes/Modules/Divider.php:829
 #: includes/Modules/Lottie.php:155
 msgid "Freeze on click"
 msgstr "تجميد انقر"
 
-#: includes/Modules/FlipBox.php:62
+#: includes/Modules/FlipBox.php:61
 msgid "Front"
 msgstr "الجبهة"
 
-#: includes/Modules/FlipBox.php:134
+#: includes/Modules/FlipBox.php:133
 msgid "Front Body Heading Text"
 msgstr "أمام هيئة نص العنوان"
 
-#: includes/Modules/FlipBox.php:124
+#: includes/Modules/FlipBox.php:123
 msgid "Front Body Text"
 msgstr "أمام هيئة نص"
 
-#: includes/Modules/FlipBox.php:83
-#: includes/Modules/FlipBox.php:143
-#: includes/Modules/FlipBox.php:1022
+#: includes/Modules/FlipBox.php:82
+#: includes/Modules/FlipBox.php:142
+#: includes/Modules/FlipBox.php:1021
 msgid "Front Button"
 msgstr "زر الجبهة"
 
-#: includes/Modules/FlipBox.php:101
+#: includes/Modules/FlipBox.php:100
 msgid "Front Wrapper"
 msgstr "أمام المجمع"
 
@@ -2121,7 +2066,7 @@ msgstr "FTP"
 msgid "FTP Username"
 msgstr "FTP Username"
 
-#: includes/Modules/PostGridChild.php:465
+#: includes/Modules/PostGridChild.php:470
 msgid "Full Name"
 msgstr "الاسم الكامل"
 
@@ -2133,53 +2078,53 @@ msgstr "معرض الإعدادات"
 msgid "Gap"
 msgstr "الفجوة"
 
-#: includes/Modules/DualButton.php:609
+#: includes/Modules/DualButton.php:608
 msgid "Gap Between Buttons"
 msgstr "الفجوة بين الأزرار"
 
-#: includes/Modules/TypingText.php:570
+#: includes/Modules/TypingText.php:569
 msgid "Gap Between Cursor Icon and Text"
 msgstr "الفجوة بين المؤشر رمز النص"
 
-#: includes/Modules/BusinessHours.php:287
+#: includes/Modules/BusinessHours.php:286
 msgid "Gap Between Days"
 msgstr "الفجوة بين الأيام"
 
-#: includes/Modules/Divider.php:666
+#: includes/Modules/Divider.php:665
 msgid "Gap Between Element and Divider"
 msgstr "الفجوة بين العنصر و مقسم"
 
-#: includes/Modules/FlipBox.php:1968
+#: includes/Modules/FlipBox.php:1967
 msgid "Gap Between Elements"
 msgstr "الفجوة بين العناصر"
 
-#: includes/Modules/PostGrid.php:995
+#: includes/Modules/PostGrid.php:996
 msgid "Gap Between Entries Icon and Text"
 msgstr "الفجوة بين الإدخالات رمز النص"
 
-#: includes/Modules/PostGridChild.php:775
+#: includes/Modules/PostGridChild.php:830
 msgid "Gap Between Icon and Text"
 msgstr "الفجوة بين الرمز و نص"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:644
-#: includes/Modules/FlipBox.php:1801
+#: includes/Modules/FlipBox.php:1800
 msgid "Gap Between Icon/Image and Text"
 msgstr "الفجوة بين أيقونة/صورة النص"
 
-#: includes/Modules/Divider.php:307
+#: includes/Modules/Divider.php:306
 msgid "Gap Between Multiple Line"
 msgstr "الفجوة بين خط متعددة"
 
-#: includes/Modules/PostGrid.php:1015
+#: includes/Modules/PostGrid.php:1016
 msgid "Gap Between Pagination Elements"
 msgstr "الفجوة بين عناصر ترقيم الصفحات"
 
 #: includes/Modules/PostReadingTime.php:296
-#: includes/Modules/TypingText.php:609
+#: includes/Modules/TypingText.php:608
 msgid "Gap Between Texts"
 msgstr "الفجوة بين النصوص"
 
-#: includes/Modules/BusinessHours.php:307
+#: includes/Modules/BusinessHours.php:306
 msgid "Gap between Title and Day Wrapper"
 msgstr "الفجوة بين العنوان و اليوم المجمع"
 
@@ -2192,7 +2137,7 @@ msgid "General Field Height"
 msgstr "الميدان العام ارتفاع"
 
 #: includes/Modules/BeforeAfterImageSlider.php:70
-#: includes/Modules/BusinessHours.php:59
+#: includes/Modules/BusinessHours.php:58
 msgid "General Settings"
 msgstr "الإعدادات العامة"
 
@@ -2284,32 +2229,32 @@ msgid "Gravity Forms is not installed"
 msgstr "أشكال الجاذبية لم يتم تثبيت"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:35
-#: includes/Modules/Divider.php:252
+#: includes/Modules/Divider.php:251
 msgid "H1 tag"
 msgstr "H1"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:36
-#: includes/Modules/Divider.php:253
+#: includes/Modules/Divider.php:252
 msgid "H2 tag"
 msgstr "H2 الوسم"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:37
-#: includes/Modules/Divider.php:254
+#: includes/Modules/Divider.php:253
 msgid "H3 tag"
 msgstr "H3 الوسم"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:38
-#: includes/Modules/Divider.php:255
+#: includes/Modules/Divider.php:254
 msgid "H4 tag"
 msgstr "H4 الوسم"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:39
-#: includes/Modules/Divider.php:256
+#: includes/Modules/Divider.php:255
 msgid "H5 tag"
 msgstr "H5 الوسم"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:40
-#: includes/Modules/Divider.php:257
+#: includes/Modules/Divider.php:256
 msgid "H6 tag"
 msgstr "H6 الوسم"
 
@@ -2317,33 +2262,33 @@ msgstr "H6 الوسم"
 msgid "Have questions? We're happy to help!"
 msgstr "لديك أسئلة ؟ نحن سعداء للمساعدة!"
 
-#: includes/Modules/FlipBox.php:440
-#: includes/Modules/FlipBox.php:468
+#: includes/Modules/FlipBox.php:439
+#: includes/Modules/FlipBox.php:467
 msgid "Heading 1"
 msgstr "البند 1"
 
-#: includes/Modules/FlipBox.php:496
-#: includes/Modules/FlipBox.php:524
+#: includes/Modules/FlipBox.php:495
+#: includes/Modules/FlipBox.php:523
 msgid "Heading 2"
 msgstr "البند 2"
 
-#: includes/Modules/FlipBox.php:552
-#: includes/Modules/FlipBox.php:580
+#: includes/Modules/FlipBox.php:551
+#: includes/Modules/FlipBox.php:579
 msgid "Heading 3"
 msgstr "البند 3"
 
-#: includes/Modules/FlipBox.php:608
-#: includes/Modules/FlipBox.php:636
+#: includes/Modules/FlipBox.php:607
+#: includes/Modules/FlipBox.php:635
 msgid "Heading 4"
 msgstr "البند 4"
 
-#: includes/Modules/FlipBox.php:664
-#: includes/Modules/FlipBox.php:692
+#: includes/Modules/FlipBox.php:663
+#: includes/Modules/FlipBox.php:691
 msgid "Heading 5"
 msgstr "البند 5"
 
-#: includes/Modules/FlipBox.php:720
-#: includes/Modules/FlipBox.php:748
+#: includes/Modules/FlipBox.php:719
+#: includes/Modules/FlipBox.php:747
 msgid "Heading 6"
 msgstr "البند 6"
 
@@ -2359,42 +2304,42 @@ msgstr "مرحبا صديق"
 msgid "Help Needed? Create a Issue"
 msgstr "تحتاج لمساعدة ؟ إنشاء المشكلة"
 
-#: includes/Managers/Branding/AdminFooterText.php:118
+#: includes/Managers/Branding/AdminFooterText.php:120
 msgid "Help us with Translations for the Squad Modules project"
 msgstr "تساعدنا في ترجمة فرقة وحدات المشروع"
 
-#: includes/Modules/TypingText.php:398
+#: includes/Modules/TypingText.php:397
 msgid "Here you  can choose how much delay to delete the typing text."
 msgstr "هنا يمكنك اختيار كم تأخير حذف كتابة النص."
 
-#: includes/Modules/TypingText.php:454
+#: includes/Modules/TypingText.php:453
 msgid "Here you  can choose how much delay to fade out the typing text."
 msgstr "هنا يمكنك اختيار كم تأخير تتلاشى كتابة النص."
 
-#: includes/Modules/TypingText.php:353
+#: includes/Modules/TypingText.php:352
 msgid "Here you  can choose how much delay to start the typing text."
 msgstr "هنا يمكنك اختيار كم تأخير لبدء كتابة النص."
 
-#: includes/Modules/TypingText.php:374
+#: includes/Modules/TypingText.php:373
 msgid "Here you  can choose how much speed to delete the typing text."
 msgstr "هنا يمكنك اختيار مدى سرعة حذف كتابة النص."
 
-#: includes/Modules/Divider.php:880
+#: includes/Modules/Divider.php:879
 #: includes/Modules/Lottie.php:205
 msgid "Here you can choose a relation when scroll event with your Lottie animation."
 msgstr "هنا يمكنك اختيار العلاقة عندما انتقل الحدث مع لوتي الرسوم المتحركة."
 
-#: includes/Modules/Divider.php:866
+#: includes/Modules/Divider.php:865
 #: includes/Modules/Lottie.php:191
 msgid "Here you can choose an action when click with your Lottie animation."
 msgstr "هنا يمكنك اختيار العمل عندما انقر مع لوتي الرسوم المتحركة."
 
-#: includes/Modules/Divider.php:850
+#: includes/Modules/Divider.php:849
 #: includes/Modules/Lottie.php:175
 msgid "Here you can choose an action when mouse out with your Lottie animation."
 msgstr "هنا يمكنك اختيار العمل عندما الماوس مع لوتي الرسوم المتحركة."
 
-#: includes/Modules/TypingText.php:556
+#: includes/Modules/TypingText.php:555
 msgid "Here you can choose cursor icon size."
 msgstr "هنا يمكنك اختيار المؤشر حجم الرمز."
 
@@ -2403,20 +2348,20 @@ msgid "Here you can choose custom image width will appear in with your post elem
 msgstr "هنا يمكنك اختيار صورة مخصصة العرض سوف يظهر في آخر عنصر."
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:218
-#: includes/Modules/Divider.php:506
+#: includes/Modules/Divider.php:505
 msgid "Here you can choose divider border  radius."
 msgstr "هنا يمكنك اختيار مقسم دائرة نصف قطرها الحدود."
 
-#: includes/Modules/Divider.php:447
+#: includes/Modules/Divider.php:446
 msgid "Here you can choose divider left side width."
 msgstr "هنا يمكنك اختيار مقسم الجانب الأيسر العرض."
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:201
-#: includes/Modules/Divider.php:487
+#: includes/Modules/Divider.php:486
 msgid "Here you can choose divider max width."
 msgstr "هنا يمكنك اختيار مقسم ماكس العرض."
 
-#: includes/Modules/Divider.php:466
+#: includes/Modules/Divider.php:465
 msgid "Here you can choose divider right side width."
 msgstr "هنا يمكنك اختيار مقسم الجانب الأيمن العرض."
 
@@ -2424,19 +2369,19 @@ msgstr "هنا يمكنك اختيار مقسم الجانب الأيمن الع
 msgid "Here you can choose gap between each stars."
 msgstr "هنا يمكنك الاختيار من بين كل النجوم."
 
-#: includes/Modules/Divider.php:668
+#: includes/Modules/Divider.php:667
 msgid "Here you can choose gap between element and divider."
 msgstr "هنا يمكنك اختيار الفجوة بين العنصر و مقسم."
 
-#: includes/Modules/PostGrid.php:997
+#: includes/Modules/PostGrid.php:998
 msgid "Here you can choose gap between entries icon and text."
 msgstr "هنا يمكنك اختيار الفجوة بين الإدخالات رمز النص."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:646
-#: includes/Modules/FlipBox.php:1803
-#: includes/Modules/FlipBox.php:1970
-#: includes/Modules/PostGridChild.php:777
-#: includes/Modules/TypingText.php:572
+#: includes/Modules/FlipBox.php:1802
+#: includes/Modules/FlipBox.php:1969
+#: includes/Modules/PostGridChild.php:832
+#: includes/Modules/TypingText.php:571
 msgid "Here you can choose gap between icon and text."
 msgstr "هنا يمكنك اختيار الفجوة بين الرمز والنص."
 
@@ -2444,19 +2389,19 @@ msgstr "هنا يمكنك اختيار الفجوة بين الرمز والنص
 msgid "Here you can choose gap between images."
 msgstr "هنا يمكنك اختيار الفجوة بين الصور."
 
-#: includes/Modules/Divider.php:309
+#: includes/Modules/Divider.php:308
 msgid "Here you can choose gap between multiple line."
 msgstr "هنا يمكنك اختيار الفجوة بين خط متعددة."
 
 #: includes/Modules/FormStylers/NinjaForms.php:174
 #: includes/Modules/FormStylers/NinjaForms.php:192
 #: includes/Modules/FormStylers/NinjaForms.php:211
-#: includes/Modules/PostGrid.php:1017
+#: includes/Modules/PostGrid.php:1018
 msgid "Here you can choose gap between pagination elements."
 msgstr "هنا يمكنك اختيار الفجوة بين ترقيم الصفحات العناصر."
 
 #: includes/Modules/PostReadingTime.php:298
-#: includes/Modules/TypingText.php:611
+#: includes/Modules/TypingText.php:610
 msgid "Here you can choose gap between texts."
 msgstr "هنا يمكنك اختيار الفجوة بين النصوص."
 
@@ -2464,27 +2409,27 @@ msgstr "هنا يمكنك اختيار الفجوة بين النصوص."
 msgid "Here you can choose how much images you would like to count in a minute."
 msgstr "هنا يمكنك اختيار كم الصور التي ترغب في الاعتماد في دقيقة واحدة."
 
-#: includes/Modules/PostGrid.php:654
+#: includes/Modules/PostGrid.php:655
 msgid "Here you can choose how much post show in the current page."
 msgstr "هنا يمكنك اختيار مقدار ما بعد تظهر في الصفحة الحالية."
 
-#: includes/Modules/PostGrid.php:628
+#: includes/Modules/PostGrid.php:629
 msgid "Here you can choose how much posts you would like to display per page."
 msgstr "هنا يمكنك اختيار مقدار الوظائف التي ترغب في عرضها في كل صفحة."
 
-#: includes/Modules/TypingText.php:330
+#: includes/Modules/TypingText.php:329
 msgid "Here you can choose how much speed in the typing text."
 msgstr "هنا يمكنك اختيار مدى سرعة في كتابة النص."
 
-#: includes/Modules/PostGridChild.php:361
+#: includes/Modules/PostGridChild.php:366
 msgid "Here you can choose how much text you would like to display for post content or excerpt."
 msgstr "هنا يمكنك اختيار مقدار النص الذي ترغب في عرض محتوى آخر أو مقتطفات."
 
-#: includes/Modules/FlipBox.php:1355
+#: includes/Modules/FlipBox.php:1354
 msgid "Here you can choose how much the scale on 3d effect."
 msgstr "هنا يمكنك اختيار كم المقياس على تأثير 3d."
 
-#: includes/Modules/FlipBox.php:1336
+#: includes/Modules/FlipBox.php:1335
 msgid "Here you can choose how much the translate z on 3d effect."
 msgstr "هنا يمكنك اختيار مقدار ترجمة z على تأثير 3d."
 
@@ -2493,24 +2438,24 @@ msgid "Here you can choose how much words you would like to count in a minute."
 msgstr "هنا يمكنك اختيار الطريقة الكثير من الكلمات التي ترغب في الاعتماد في دقيقة واحدة."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:600
-#: includes/Modules/Divider.php:746
-#: includes/Modules/FlipBox.php:1703
-#: includes/Modules/PostGrid.php:979
-#: includes/Modules/PostGridChild.php:716
-#: includes/Modules/PostGridChild.php:762
+#: includes/Modules/Divider.php:745
+#: includes/Modules/FlipBox.php:1702
+#: includes/Modules/PostGrid.php:980
+#: includes/Modules/PostGridChild.php:771
+#: includes/Modules/PostGridChild.php:817
 msgid "Here you can choose icon size."
 msgstr "هنا يمكنك اختيار حجم الرمز."
 
-#: includes/Modules/FlipBox.php:1825
+#: includes/Modules/FlipBox.php:1824
 msgid "Here you can choose icon wrapper width."
 msgstr "هنا يمكنك اختيار أيقونة المجمع العرض."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:631
-#: includes/Modules/Divider.php:782
-#: includes/Modules/DualButton.php:468
-#: includes/Modules/FlipBox.php:1756
+#: includes/Modules/Divider.php:781
+#: includes/Modules/DualButton.php:467
+#: includes/Modules/FlipBox.php:1755
 #: includes/Modules/ImageMask.php:280
-#: includes/Modules/PostGridChild.php:747
+#: includes/Modules/PostGridChild.php:802
 msgid "Here you can choose image height."
 msgstr "هنا يمكنك اختيار ارتفاع الصورة."
 
@@ -2523,33 +2468,33 @@ msgid "Here you can choose image vertical position."
 msgstr "هنا يمكنك اختيار صورة الوضع العمودي."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:616
-#: includes/Modules/Divider.php:764
-#: includes/Modules/DualButton.php:450
-#: includes/Modules/FlipBox.php:1737
+#: includes/Modules/Divider.php:763
+#: includes/Modules/DualButton.php:449
+#: includes/Modules/FlipBox.php:1736
 #: includes/Modules/ImageMask.php:261
-#: includes/Modules/PostGridChild.php:732
+#: includes/Modules/PostGridChild.php:787
 msgid "Here you can choose image width."
 msgstr "هنا يمكنك اختيار عرض الصورة."
 
-#: includes/Modules/Divider.php:824
+#: includes/Modules/Divider.php:823
 #: includes/Modules/Lottie.php:149
 msgid "Here you can choose interactivity with your Lottie animation."
 msgstr "هنا يمكنك اختيار التفاعل مع لوتي الرسوم المتحركة."
 
-#: includes/Modules/PostGrid.php:733
+#: includes/Modules/PostGrid.php:734
 msgid "Here you can choose list column for grid layout."
 msgstr "هنا يمكنك اختيار قائمة عمود تخطيط الشبكة."
 
-#: includes/Modules/PostGrid.php:755
+#: includes/Modules/PostGrid.php:756
 msgid "Here you can choose list item gap."
 msgstr "هنا يمكنك اختيار قائمة البند الفجوة."
 
-#: includes/Modules/Divider.php:1079
+#: includes/Modules/Divider.php:1078
 #: includes/Modules/Lottie.php:385
 msgid "Here you can choose lottie height."
 msgstr "هنا يمكنك اختيار لوتي الارتفاع."
 
-#: includes/Modules/Divider.php:1059
+#: includes/Modules/Divider.php:1058
 #: includes/Modules/Lottie.php:367
 msgid "Here you can choose lottie width."
 msgstr "هنا يمكنك اختيار لوتي العرض."
@@ -2570,22 +2515,22 @@ msgstr "هنا يمكنك اختيار شكل قناع التناوب."
 msgid "Here you can choose mask shape width."
 msgstr "هنا يمكنك اختيار شكل قناع العرض."
 
-#: includes/Modules/Divider.php:1000
+#: includes/Modules/Divider.php:999
 #: includes/Modules/Lottie.php:325
 msgid "Here you can choose play direction for your Lottie animation."
 msgstr "هنا يمكنك اختيار اللعب الاتجاه الخاص بك لوتي الرسوم المتحركة."
 
-#: includes/Modules/Divider.php:987
+#: includes/Modules/Divider.php:986
 #: includes/Modules/Lottie.php:312
 msgid "Here you can choose play mode for your Lottie animation."
 msgstr "هنا يمكنك اختيار طريقة اللعب الخاص بك لوتي الرسوم المتحركة."
 
-#: includes/Modules/Divider.php:1014
+#: includes/Modules/Divider.php:1013
 #: includes/Modules/Lottie.php:339
 msgid "Here you can choose renderer for your Lottie animation."
 msgstr "هنا يمكنك اختيار العارض الخاص بك لوتي الرسوم المتحركة."
 
-#: includes/Modules/DualButton.php:432
+#: includes/Modules/DualButton.php:431
 msgid "Here you can choose separator icon size."
 msgstr "هنا يمكنك اختيار فاصل حجم الرمز."
 
@@ -2605,7 +2550,7 @@ msgstr "هنا يمكنك اختيار عرض السكتة الدماغية."
 msgid "Here you can choose the contact form 7."
 msgstr "هنا يمكنك اختيار نموذج الاتصال 7."
 
-#: includes/Modules/FlipBox.php:1144
+#: includes/Modules/FlipBox.php:1143
 msgid "Here you can choose the custom height for flip box."
 msgstr "هنا يمكنك اختيار ارتفاع مخصص للوجه المربع."
 
@@ -2613,7 +2558,7 @@ msgstr "هنا يمكنك اختيار ارتفاع مخصص للوجه المر
 msgid "Here you can choose the fluent form."
 msgstr "هنا يمكنك اختيار بطلاقة شكل."
 
-#: includes/Modules/BusinessHours.php:289
+#: includes/Modules/BusinessHours.php:288
 msgid "Here you can choose the gap between days."
 msgstr "هنا يمكنك اختيار الفجوة بين أيام."
 
@@ -2625,7 +2570,7 @@ msgstr "هنا يمكنك اختيار شكل خطورة."
 msgid "Here you can choose the ninja form."
 msgstr "هنا يمكنك اختيار نموذج النينجا."
 
-#: includes/Modules/PostGrid.php:1216
+#: includes/Modules/PostGrid.php:1217
 msgid "Here you can choose the size of load more spinner."
 msgstr "هنا يمكنك اختيار حجم من تحميل المزيد من الدوار."
 
@@ -2633,17 +2578,17 @@ msgstr "هنا يمكنك اختيار حجم من تحميل المزيد من 
 msgid "Here you can choose the wp form."
 msgstr "هنا يمكنك اختيار نموذج الفسفور الابيض."
 
-#: includes/Modules/Divider.php:688
+#: includes/Modules/Divider.php:687
 msgid "Here you can choose where to place the element."
 msgstr "هنا يمكنك اختيار مكان وضع عنصر."
 
 #: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:159
 #: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:196
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:667
-#: includes/Modules/FlipBox.php:1847
-#: includes/Modules/FlipBox.php:1880
-#: includes/Modules/PostGridChild.php:794
-#: includes/Modules/PostGridChild.php:823
+#: includes/Modules/FlipBox.php:1846
+#: includes/Modules/FlipBox.php:1879
+#: includes/Modules/PostGridChild.php:849
+#: includes/Modules/PostGridChild.php:878
 msgid "Here you can choose where to place the icon."
 msgstr "هنا يمكنك اختيار مكان وضع الرمز."
 
@@ -2659,7 +2604,7 @@ msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن طم�
 msgid "Here you can choose whether or not circle slide control."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن دائرة السيطرة الشرائح."
 
-#: includes/Modules/PostGridChild.php:348
+#: includes/Modules/PostGridChild.php:353
 msgid "Here you can choose whether or not custom length for post content or excerpt text limit."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا طول مخصصة محتوى آخر أو مقتطفات النص المحدد."
 
@@ -2667,11 +2612,11 @@ msgstr "هنا يمكنك اختيار ما إذا كان أو لا طول مخ�
 msgid "Here you can choose whether or not display the rating number after the stars."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا يتم عرض تصنيف رقم بعد النجوم."
 
-#: includes/Modules/TypingText.php:440
+#: includes/Modules/TypingText.php:439
 msgid "Here you can choose whether or not enable fade out instead of backspace effect."
 msgstr "هنا يمكنك اختيار ما إذا كان أو عدم تمكين تتلاشى بدلا من backspace تأثير."
 
-#: includes/Modules/TypingText.php:422
+#: includes/Modules/TypingText.php:421
 msgid "Here you can choose whether or not enable loop for the typing effect."
 msgstr "هنا يمكنك اختيار ما إذا كان أو عدم تمكين حلقة عن كتابة المفعول."
 
@@ -2679,7 +2624,7 @@ msgstr "هنا يمكنك اختيار ما إذا كان أو عدم تمكين
 msgid "Here you can choose whether or not enable Schema Support."
 msgstr "هنا يمكنك اختيار ما إذا كان أو عدم تمكين دعم مخطط."
 
-#: includes/Modules/TypingText.php:431
+#: includes/Modules/TypingText.php:430
 msgid "Here you can choose whether or not enable shuffle the string effect."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تمكن من خلط سلسلة تأثير."
 
@@ -2687,31 +2632,27 @@ msgstr "هنا يمكنك اختيار ما إذا كان أو لا تمكن م�
 msgid "Here you can choose whether or not include comments in reading time."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تشمل التعليقات في وقت القراءة."
 
-#: includes/Modules/PostGrid.php:821
+#: includes/Modules/PostGrid.php:822
 msgid "Here you can choose whether or not load more button."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا يتم تحميل المزيد من زر."
 
-#: includes/Modules/PostGrid.php:850
+#: includes/Modules/PostGrid.php:851
 msgid "Here you can choose whether or not load more spinner at the visual builder."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا يتم تحميل المزيد من الدوار في باني البصرية."
 
-#: includes/Modules/BusinessHoursChild.php:269
+#: includes/Modules/BusinessHoursChild.php:268
 msgid "Here you can choose whether or not mark as a off day."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن علامة قبالة اليوم."
 
-#: includes/Modules/FlipBox.php:1325
+#: includes/Modules/FlipBox.php:1324
 msgid "Here you can choose whether or not move both slide in slide Effect for flip box."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم نقل كل الشرائح في تأثير الشريحة على الوجه مربع."
 
-#: includes/Modules/TypingText.php:530
+#: includes/Modules/TypingText.php:529
 msgid "Here you can choose whether or not remove the cursor after completed the typing effect."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن إزالة المؤشر بعد الانتهاء من كتابة المفعول."
 
-#: includes/Modules/PostGridChild.php:532
-msgid "Here you can choose whether or not show avatar in the outside container."
-msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر الصورة الرمزية في خارج الحاوية."
-
-#: includes/Modules/PostGridChild.php:338
+#: includes/Modules/PostGridChild.php:343
 msgid "Here you can choose whether or not show post excerpt."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر مقتطف آخر."
 
@@ -2719,7 +2660,7 @@ msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر م�
 msgid "Here you can choose whether or not show shadow for slide control."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر الظل الشريحة التحكم."
 
-#: includes/Modules/FlipBox.php:1553
+#: includes/Modules/FlipBox.php:1552
 msgid "Here you can choose whether or not show the button."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر على زر."
 
@@ -2727,7 +2668,7 @@ msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر ع�
 msgid "Here you can choose whether or not show the conditional hidden fields in the visual  builder."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر المشروط الحقول المخفية في باني البصرية."
 
-#: includes/Modules/TypingText.php:476
+#: includes/Modules/TypingText.php:475
 msgid "Here you can choose whether or not show the cursor for the typing effect."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر المؤشر على كتابة المفعول."
 
@@ -2748,7 +2689,7 @@ msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر ع�
 msgid "Here you can choose whether or not show the form title."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر على شكل عنوان."
 
-#: includes/Modules/TypingText.php:504
+#: includes/Modules/TypingText.php:503
 msgid "Here you can choose whether or not show the icon with cursor for the typing effect."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر أيقونة مع المؤشر عن كتابة المفعول."
 
@@ -2756,25 +2697,25 @@ msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر أ�
 msgid "Here you can choose whether or not show the label on hover effect."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر التسمية على تأثير تحوم."
 
-#: includes/Modules/PostGrid.php:774
-#: includes/Modules/PostGrid.php:863
-#: includes/Modules/PostGrid.php:874
+#: includes/Modules/PostGrid.php:775
+#: includes/Modules/PostGrid.php:864
+#: includes/Modules/PostGrid.php:875
 msgid "Here you can choose whether or not show the pagination."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر ترقيم الصفحات."
 
-#: includes/Modules/BusinessHours.php:331
+#: includes/Modules/BusinessHours.php:330
 msgid "Here you can choose whether or not show the separator between day and time text."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر فاصل بين اليوم والوقت النص."
 
-#: includes/Modules/BusinessHoursChild.php:296
+#: includes/Modules/BusinessHoursChild.php:295
 msgid "Here you can choose whether or not show the separator for day text."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر على فاصل النص اليوم."
 
-#: includes/Modules/BusinessHoursChild.php:216
+#: includes/Modules/BusinessHoursChild.php:215
 msgid "Here you can choose whether or not show the start and end time."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر بداية ونهاية الوقت."
 
-#: includes/Modules/BusinessHours.php:276
+#: includes/Modules/BusinessHours.php:275
 msgid "Here you can choose whether or not show the title text."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر عنوان النص."
 
@@ -2782,11 +2723,11 @@ msgstr "هنا يمكنك اختيار ما إذا كان أو لا تظهر ع�
 msgid "Here you can choose whether or not smoothness for slide control."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن نعومة على الشريحة التحكم."
 
-#: includes/Modules/FlipBox.php:1189
+#: includes/Modules/FlipBox.php:1188
 msgid "Here you can choose whether or not the back side view first mode, by default \"first side\"."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن الجانب الخلفي عرض الوضع الأول ، افتراضيا \"الجانب الأول\"."
 
-#: includes/Modules/PostGridChild.php:451
+#: includes/Modules/PostGridChild.php:456
 msgid "Here you can choose whether or not the image element is full width."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن عنصر الصورة هو العرض الكامل."
 
@@ -2794,7 +2735,7 @@ msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن عن�
 msgid "Here you can choose whether or not the image should open in Lightbox. Note: if you select to open the image in Lightbox, url options below will be ignored."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن صورة يجب أن تفتح في العلبة الخفيفة. ملاحظة: إذا قمت بتحديد فتح الصورة في العلبة الخفيفة, url الخيارات أدناه سيتم تجاهلها."
 
-#: includes/Modules/FlipBox.php:1310
+#: includes/Modules/FlipBox.php:1309
 msgid "Here you can choose whether or not use 3D Content Effect for flip box."
 msgstr "هنا يمكنك اختيار ما إذا كان أو عدم استخدام محتوى 3D تأثير الوجه المربع."
 
@@ -2806,11 +2747,11 @@ msgstr "هنا يمكنك اختيار ما إذا كان أو عدم استخد
 msgid "Here you can choose whether or not use clip for the text."
 msgstr "هنا يمكنك اختيار ما إذا كان أو عدم استخدام كليب عن النص."
 
-#: includes/Modules/FlipBox.php:1131
+#: includes/Modules/FlipBox.php:1130
 msgid "Here you can choose whether or not use custom height for flip box."
 msgstr "هنا يمكنك اختيار ما إذا كان أو عدم استخدام ارتفاع مخصص للوجه المربع."
 
-#: includes/Modules/PostGridChild.php:645
+#: includes/Modules/PostGridChild.php:700
 msgid "Here you can choose whether or not use icon for the post title."
 msgstr "هنا يمكنك اختيار ما إذا كان أو عدم استخدام رمز عنوان آخر."
 
@@ -2822,26 +2763,26 @@ msgstr "هنا يمكنك اختيار ما إذا كان أو عدم استخد
 msgid "Here you can choose whether or not use the ajax on form submission."
 msgstr "هنا يمكنك اختيار ما إذا كان أو عدم استخدام اياكس على تقديم النموذج."
 
-#: includes/Modules/FlipBox.php:1788
+#: includes/Modules/FlipBox.php:1787
 msgid "Here you can choose whether or not your content will display outside the wrapper."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن المحتوى الخاص بك سيتم عرض خارج المجمع."
 
-#: includes/Modules/FlipBox.php:1723
+#: includes/Modules/FlipBox.php:1722
 msgid "Here you can choose whether or not your full width."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن العرض الكامل."
 
-#: includes/Modules/DualButton.php:662
-#: includes/Modules/DualButton.php:682
-#: includes/Modules/FlipBox.php:2138
+#: includes/Modules/DualButton.php:661
+#: includes/Modules/DualButton.php:681
+#: includes/Modules/FlipBox.php:2137
 msgid "Here you can choose whether or not your link opens in a new window"
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن يفتح الرابط في نافذة جديدة"
 
-#: includes/Modules/Divider.php:904
+#: includes/Modules/Divider.php:903
 #: includes/Modules/Lottie.php:229
 msgid "Here you can choose whether or not your Lottie will animate in loop."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن لوتي تحريك في الحلقة."
 
-#: includes/Modules/Divider.php:894
+#: includes/Modules/Divider.php:893
 #: includes/Modules/Lottie.php:219
 msgid "Here you can choose whether or not your Lottie will animate on hover."
 msgstr "هنا يمكنك اختيار ما إذا كان أو لم يكن لوتي تحريك على التحويم."
@@ -2855,13 +2796,13 @@ msgstr "هنا يمكنك اختيار ما إذا تراكب الصورة ين�
 msgid "Here you can control element position on the z axis. Elements with higher z-index values will sit atop elements with lower z-index values."
 msgstr "هنا يمكنك التحكم في عناصر الموقف على المحور z. العناصر مع أعلى z-index القيم الجلوس على قمة العناصر مع انخفاض z-index القيم."
 
-#: includes/Modules/Divider.php:1035
+#: includes/Modules/Divider.php:1034
 msgid "Here you can define a custom background color for lottie image."
 msgstr "هنا يمكنك تحديد لون خلفية مخصصة ل لوتي الصورة."
 
-#: includes/Modules/Divider.php:737
-#: includes/Modules/FlipBox.php:1693
-#: includes/Modules/PostGridChild.php:698
+#: includes/Modules/Divider.php:736
+#: includes/Modules/FlipBox.php:1692
+#: includes/Modules/PostGridChild.php:753
 msgid "Here you can define a custom background color."
 msgstr "هنا يمكنك تحديد لون خلفية مخصصة."
 
@@ -2869,12 +2810,12 @@ msgstr "هنا يمكنك تحديد لون خلفية مخصصة."
 msgid "Here you can define a custom color for checkbox and radio fields."
 msgstr "هنا يمكنك تحديد لون مخصص ل مربع و راديو المجالات."
 
-#: includes/Modules/PostGrid.php:1196
-#: includes/Modules/PostGrid.php:1206
+#: includes/Modules/PostGrid.php:1197
+#: includes/Modules/PostGrid.php:1207
 msgid "Here you can define a custom color for load more spinner."
 msgstr "هنا يمكنك تحديد لون مخصص لتحميل المزيد من الدوار."
 
-#: includes/Modules/Divider.php:1047
+#: includes/Modules/Divider.php:1046
 #: includes/Modules/Lottie.php:358
 msgid "Here you can define a custom color for lottie image."
 msgstr "هنا يمكنك تحديد لون مخصص من أجل لوتي الصورة."
@@ -2907,7 +2848,7 @@ msgstr "هنا يمكنك تحديد لون مخصص للحصول على أيق�
 msgid "Here you can define a custom color for your button icon."
 msgstr "هنا يمكنك تحديد لون مخصص الخاص بك زر رمز."
 
-#: includes/Modules/TypingText.php:547
+#: includes/Modules/TypingText.php:546
 msgid "Here you can define a custom color for your cursor icon."
 msgstr "هنا يمكنك تحديد لون مخصص الخاص بك رمز المؤشر."
 
@@ -2924,15 +2865,15 @@ msgstr "هنا يمكنك تحديد لون مخصص الخاص بك رمز ال
 msgid "Here you can define a custom color for your glitch text."
 msgstr "هنا يمكنك تحديد لون مخصص الخاص بك خلل النص."
 
-#: includes/Modules/Divider.php:727
-#: includes/Modules/FlipBox.php:1683
-#: includes/Modules/PostGrid.php:970
-#: includes/Modules/PostGridChild.php:689
-#: includes/Modules/PostGridChild.php:707
+#: includes/Modules/Divider.php:726
+#: includes/Modules/FlipBox.php:1682
+#: includes/Modules/PostGrid.php:971
+#: includes/Modules/PostGridChild.php:744
+#: includes/Modules/PostGridChild.php:762
 msgid "Here you can define a custom color for your icon."
 msgstr "هنا يمكنك تحديد لون مخصص للحصول على الرمز الخاص بك."
 
-#: includes/Modules/DualButton.php:423
+#: includes/Modules/DualButton.php:422
 msgid "Here you can define a custom color for your separator icon."
 msgstr "هنا يمكنك تحديد لون مخصص الخاص بك فاصل رمز."
 
@@ -2944,7 +2885,7 @@ msgstr "هنا يمكنك تحديد لون مخصص للحصول على الش�
 msgid "Here you can define a custom icon for the overlay"
 msgstr "هنا يمكنك تحديد رمز مخصص ل تراكب"
 
-#: includes/Modules/TypingText.php:811
+#: includes/Modules/TypingText.php:810
 msgid "Here you can define a custom margin size for the after text."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش بعد النص."
 
@@ -2952,7 +2893,7 @@ msgstr "هنا يمكنك تحديد مخصص حجم الهامش بعد الن�
 msgid "Here you can define a custom margin size for the before label."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش عن قبل التسمية."
 
-#: includes/Modules/TypingText.php:755
+#: includes/Modules/TypingText.php:754
 msgid "Here you can define a custom margin size for the before text."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش عن قبل النص."
 
@@ -2960,30 +2901,30 @@ msgstr "هنا يمكنك تحديد مخصص حجم الهامش عن قبل ا
 msgid "Here you can define a custom margin size for the button."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش على زر."
 
-#: includes/Modules/FlipBox.php:2089
+#: includes/Modules/FlipBox.php:2088
 msgid "Here you can define a custom margin size for the content."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش عن المحتوى."
 
-#: includes/Modules/DropCapText.php:169
+#: includes/Modules/DropCapText.php:168
 msgid "Here you can define a custom margin size for the drop cap letter."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش من أجل إسقاط غطاء الرسالة."
 
-#: includes/Modules/FlipBox.php:1898
+#: includes/Modules/FlipBox.php:1897
 msgid "Here you can define a custom margin size for the icon wrapper."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش الرمز المجمع."
 
-#: includes/Modules/Divider.php:800
-#: includes/Modules/FlipBox.php:1920
-#: includes/Modules/PostGridChild.php:862
-#: includes/Modules/PostGridChild.php:882
+#: includes/Modules/Divider.php:799
+#: includes/Modules/FlipBox.php:1919
+#: includes/Modules/PostGridChild.php:917
+#: includes/Modules/PostGridChild.php:937
 msgid "Here you can define a custom margin size for the icon."
 msgstr "هنا يمكنك تحديد مخصص هامش حجم الرمز."
 
-#: includes/Modules/DualButton.php:541
+#: includes/Modules/DualButton.php:540
 msgid "Here you can define a custom margin size for the separator."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش من أجل فاصل."
 
-#: includes/Modules/FlipBox.php:2053
+#: includes/Modules/FlipBox.php:2052
 msgid "Here you can define a custom margin size for the sub title."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش عن العنوان الفرعي."
 
@@ -2991,40 +2932,40 @@ msgstr "هنا يمكنك تحديد مخصص حجم الهامش عن العن�
 msgid "Here you can define a custom margin size for the time."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش الوقت."
 
-#: includes/Modules/BusinessHours.php:431
-#: includes/Modules/FlipBox.php:2017
+#: includes/Modules/BusinessHours.php:430
+#: includes/Modules/FlipBox.php:2016
 msgid "Here you can define a custom margin size for the title."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش على اللقب."
 
-#: includes/Modules/TypingText.php:783
+#: includes/Modules/TypingText.php:782
 msgid "Here you can define a custom margin size for the typed text."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش عن النص المكتوب."
 
-#: includes/Modules/BusinessHours.php:409
-#: includes/Modules/BusinessHoursChild.php:334
-#: includes/Modules/Divider.php:1112
-#: includes/Modules/DualButton.php:630
-#: includes/Modules/FlipBox.php:1991
-#: includes/Modules/PostGrid.php:1294
-#: includes/Modules/PostGrid.php:1316
-#: includes/Modules/PostGridChild.php:927
-#: includes/Modules/TypingText.php:632
+#: includes/Modules/BusinessHours.php:408
+#: includes/Modules/BusinessHoursChild.php:333
+#: includes/Modules/Divider.php:1111
+#: includes/Modules/DualButton.php:629
+#: includes/Modules/FlipBox.php:1990
+#: includes/Modules/PostGrid.php:1295
+#: includes/Modules/PostGrid.php:1317
+#: includes/Modules/PostGridChild.php:982
+#: includes/Modules/TypingText.php:631
 msgid "Here you can define a custom margin size for the wrapper."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش عن المجمع."
 
 #: includes/Base/DiviBuilder/Module/FormStyler.php:148
-#: includes/Modules/Divider.php:703
+#: includes/Modules/Divider.php:702
 #: includes/Modules/FormStylers/FluentForms.php:111
 #: includes/Modules/FormStylers/FluentForms.php:185
 #: includes/Modules/FormStylers/GravityForms.php:208
 #: includes/Modules/FormStylers/GravityForms.php:242
 #: includes/Modules/FormStylers/NinjaForms.php:101
-#: includes/Modules/PostGrid.php:1049
-#: includes/Modules/PostGrid.php:1083
-#: includes/Modules/PostGrid.php:1119
-#: includes/Modules/PostGrid.php:1153
-#: includes/Modules/PostGrid.php:1336
-#: includes/Modules/PostGridChild.php:961
+#: includes/Modules/PostGrid.php:1050
+#: includes/Modules/PostGrid.php:1084
+#: includes/Modules/PostGrid.php:1120
+#: includes/Modules/PostGrid.php:1154
+#: includes/Modules/PostGrid.php:1337
+#: includes/Modules/PostGridChild.php:1016
 msgid "Here you can define a custom margin size."
 msgstr "هنا يمكنك تحديد مخصص حجم الهامش."
 
@@ -3033,43 +2974,43 @@ msgstr "هنا يمكنك تحديد مخصص حجم الهامش."
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:750
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:775
 #: includes/Modules/BeforeAfterImageSlider.php:511
-#: includes/Modules/BusinessHours.php:418
-#: includes/Modules/BusinessHours.php:447
-#: includes/Modules/BusinessHoursChild.php:346
-#: includes/Modules/Divider.php:713
-#: includes/Modules/Divider.php:810
-#: includes/Modules/Divider.php:1121
-#: includes/Modules/DropCapText.php:183
-#: includes/Modules/DualButton.php:528
-#: includes/Modules/DualButton.php:553
-#: includes/Modules/DualButton.php:642
-#: includes/Modules/FlipBox.php:1909
-#: includes/Modules/FlipBox.php:1931
-#: includes/Modules/FlipBox.php:2001
-#: includes/Modules/FlipBox.php:2035
-#: includes/Modules/FlipBox.php:2071
-#: includes/Modules/FlipBox.php:2107
+#: includes/Modules/BusinessHours.php:417
+#: includes/Modules/BusinessHours.php:446
+#: includes/Modules/BusinessHoursChild.php:345
+#: includes/Modules/Divider.php:712
+#: includes/Modules/Divider.php:809
+#: includes/Modules/Divider.php:1120
+#: includes/Modules/DropCapText.php:182
+#: includes/Modules/DualButton.php:527
+#: includes/Modules/DualButton.php:552
+#: includes/Modules/DualButton.php:641
+#: includes/Modules/FlipBox.php:1908
+#: includes/Modules/FlipBox.php:1930
+#: includes/Modules/FlipBox.php:2000
+#: includes/Modules/FlipBox.php:2034
+#: includes/Modules/FlipBox.php:2070
+#: includes/Modules/FlipBox.php:2106
 #: includes/Modules/FormStylers/FluentForms.php:127
 #: includes/Modules/FormStylers/FluentForms.php:204
 #: includes/Modules/FormStylers/GravityForms.php:225
 #: includes/Modules/FormStylers/GravityForms.php:259
 #: includes/Modules/FormStylers/NinjaForms.php:119
-#: includes/Modules/PostGrid.php:1066
-#: includes/Modules/PostGrid.php:1102
-#: includes/Modules/PostGrid.php:1136
-#: includes/Modules/PostGrid.php:1170
-#: includes/Modules/PostGrid.php:1303
-#: includes/Modules/PostGrid.php:1325
-#: includes/Modules/PostGrid.php:1352
-#: includes/Modules/PostGridChild.php:872
-#: includes/Modules/PostGridChild.php:893
-#: includes/Modules/PostGridChild.php:936
-#: includes/Modules/PostGridChild.php:976
+#: includes/Modules/PostGrid.php:1067
+#: includes/Modules/PostGrid.php:1103
+#: includes/Modules/PostGrid.php:1137
+#: includes/Modules/PostGrid.php:1171
+#: includes/Modules/PostGrid.php:1304
+#: includes/Modules/PostGrid.php:1326
+#: includes/Modules/PostGrid.php:1353
+#: includes/Modules/PostGridChild.php:927
+#: includes/Modules/PostGridChild.php:948
+#: includes/Modules/PostGridChild.php:991
+#: includes/Modules/PostGridChild.php:1031
 #: includes/Modules/PostReadingTime.php:331
-#: includes/Modules/TypingText.php:641
-#: includes/Modules/TypingText.php:769
-#: includes/Modules/TypingText.php:797
-#: includes/Modules/TypingText.php:828
+#: includes/Modules/TypingText.php:640
+#: includes/Modules/TypingText.php:768
+#: includes/Modules/TypingText.php:796
+#: includes/Modules/TypingText.php:827
 msgid "Here you can define a custom padding size."
 msgstr "هنا يمكنك تحديد مخصص الحشو الحجم."
 
@@ -3153,7 +3094,7 @@ msgstr "هنا يمكنك اختيار زر عنصر الفيديو المنبث
 msgid "Here you can select different type of play icon from the video."
 msgstr "هنا يمكنك اختيار نوع مختلف من اللعب رمز من الفيديو."
 
-#: includes/Modules/BusinessHoursChild.php:256
+#: includes/Modules/BusinessHoursChild.php:255
 msgid "Here you can set the separator between the start time and end time."
 msgstr "هنا يمكنك تعيين الفاصل بين بداية ونهاية الوقت."
 
@@ -3176,7 +3117,7 @@ msgid "Home Text"
 msgstr "المنزل النص"
 
 #: includes/Modules/BeforeAfterImageSlider.php:294
-#: includes/Modules/DualButton.php:586
+#: includes/Modules/DualButton.php:585
 #: includes/Modules/ImageMask.php:240
 msgid "Horizontal"
 msgstr "أفقي"
@@ -3196,23 +3137,23 @@ msgid "https://squadmodules.com/"
 msgstr ""
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:413
-#: includes/Modules/Divider.php:124
-#: includes/Modules/Divider.php:541
-#: includes/Modules/DualButton.php:363
-#: includes/Modules/FlipBox.php:164
-#: includes/Modules/FlipBox.php:197
-#: includes/Modules/FlipBox.php:1596
+#: includes/Modules/Divider.php:123
+#: includes/Modules/Divider.php:540
+#: includes/Modules/DualButton.php:362
+#: includes/Modules/FlipBox.php:163
+#: includes/Modules/FlipBox.php:196
+#: includes/Modules/FlipBox.php:1595
 #: includes/Modules/PostGridChild.php:95
 #: includes/Modules/PostGridChild.php:108
-#: includes/Modules/PostGridChild.php:556
+#: includes/Modules/PostGridChild.php:611
 #: includes/Modules/VideoPopup.php:70
 #: includes/Modules/VideoPopup.php:121
 #: includes/Modules/VideoPopup.php:178
 msgid "Icon"
 msgstr "رمز"
 
-#: includes/Modules/Divider.php:68
-#: includes/Modules/Divider.php:77
+#: includes/Modules/Divider.php:67
+#: includes/Modules/Divider.php:76
 msgid "Icon & Image"
 msgstr "رمز و صورة"
 
@@ -3244,23 +3185,23 @@ msgstr "أيقونة 5"
 msgid "Icon 6"
 msgstr "رمز 6"
 
-#: includes/Modules/Divider.php:735
-#: includes/Modules/FlipBox.php:1691
-#: includes/Modules/PostGridChild.php:696
+#: includes/Modules/Divider.php:734
+#: includes/Modules/FlipBox.php:1690
+#: includes/Modules/PostGridChild.php:751
 msgid "Icon Background Color"
 msgstr "رمز لون الخلفية"
 
-#: includes/Modules/Divider.php:156
+#: includes/Modules/Divider.php:155
 #: includes/Modules/PostGridChild.php:226
 msgid "Icon Box Shadow"
 msgstr "رمز مربع الظل"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:586
-#: includes/Modules/Divider.php:725
-#: includes/Modules/DualButton.php:421
-#: includes/Modules/FlipBox.php:1681
-#: includes/Modules/PostGridChild.php:687
-#: includes/Modules/TypingText.php:545
+#: includes/Modules/Divider.php:724
+#: includes/Modules/DualButton.php:420
+#: includes/Modules/FlipBox.php:1680
+#: includes/Modules/PostGridChild.php:742
+#: includes/Modules/TypingText.php:544
 msgid "Icon Color"
 msgstr "رمز اللون"
 
@@ -3268,57 +3209,57 @@ msgstr "رمز اللون"
 msgid "Icon Element"
 msgstr "رمز العنصر"
 
-#: includes/Modules/FlipBox.php:1773
-#: includes/Modules/FlipBox.php:1867
-#: includes/Modules/PostGridChild.php:811
+#: includes/Modules/FlipBox.php:1772
+#: includes/Modules/FlipBox.php:1866
+#: includes/Modules/PostGridChild.php:866
 msgid "Icon Horizontal Alignment"
 msgstr "رمز المحاذاة الأفقية"
 
-#: includes/Modules/Divider.php:798
-#: includes/Modules/FlipBox.php:1918
-#: includes/Modules/PostGridChild.php:860
+#: includes/Modules/Divider.php:797
+#: includes/Modules/FlipBox.php:1917
+#: includes/Modules/PostGridChild.php:915
 msgid "Icon Margin"
 msgstr "رمز الهامش"
 
-#: includes/Modules/Divider.php:808
-#: includes/Modules/FlipBox.php:1929
-#: includes/Modules/PostGridChild.php:870
+#: includes/Modules/Divider.php:807
+#: includes/Modules/FlipBox.php:1928
+#: includes/Modules/PostGridChild.php:925
 msgid "Icon Padding"
 msgstr "رمز الحشو"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:665
-#: includes/Modules/FlipBox.php:1845
-#: includes/Modules/PostGridChild.php:792
+#: includes/Modules/FlipBox.php:1844
+#: includes/Modules/PostGridChild.php:847
 msgid "Icon Placement"
 msgstr "رمز التنسيب"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:598
-#: includes/Modules/Divider.php:744
-#: includes/Modules/DualButton.php:430
-#: includes/Modules/FlipBox.php:1701
-#: includes/Modules/PostGridChild.php:714
-#: includes/Modules/TypingText.php:554
+#: includes/Modules/Divider.php:743
+#: includes/Modules/DualButton.php:429
+#: includes/Modules/FlipBox.php:1700
+#: includes/Modules/PostGridChild.php:769
+#: includes/Modules/TypingText.php:553
 msgid "Icon Size"
 msgstr "حجم الرمز"
 
-#: includes/Modules/Divider.php:88
-#: includes/Modules/FlipBox.php:109
+#: includes/Modules/Divider.php:87
+#: includes/Modules/FlipBox.php:108
 #: includes/Modules/PostGridChild.php:96
 msgid "Icon Text"
 msgstr "رمز النص"
 
-#: includes/Modules/Divider.php:248
+#: includes/Modules/Divider.php:247
 msgid "Icon Text Tag"
 msgstr "نص رمز الوسم"
 
-#: includes/Modules/Divider.php:537
-#: includes/Modules/FlipBox.php:1592
-#: includes/Modules/PostGridChild.php:552
+#: includes/Modules/Divider.php:536
+#: includes/Modules/FlipBox.php:1591
+#: includes/Modules/PostGridChild.php:607
 msgid "Icon Type"
 msgstr "رمز نوع"
 
-#: includes/Modules/FlipBox.php:1878
-#: includes/Modules/PostGridChild.php:821
+#: includes/Modules/FlipBox.php:1877
+#: includes/Modules/PostGridChild.php:876
 msgid "Icon Vertical Placement"
 msgstr "رمز عمودي"
 
@@ -3326,24 +3267,24 @@ msgstr "رمز عمودي"
 msgid "Icon Wrapper"
 msgstr "رمز المجمع"
 
-#: includes/Modules/FlipBox.php:1896
+#: includes/Modules/FlipBox.php:1895
 msgid "Icon Wrapper Margin"
 msgstr "رمز المجمع الهامش"
 
-#: includes/Modules/FlipBox.php:1907
+#: includes/Modules/FlipBox.php:1906
 msgid "Icon Wrapper Padding"
 msgstr "رمز المجمع الحشو"
 
-#: includes/Modules/FlipBox.php:1823
+#: includes/Modules/FlipBox.php:1822
 msgid "Icon Wrapper Width"
 msgstr "رمز المجمع العرض"
 
-#: includes/Modules/FlipBox.php:2291
+#: includes/Modules/FlipBox.php:2290
 msgid "Icon/Image"
 msgstr "أيقونة/صورة"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:748
-#: includes/Modules/DualButton.php:526
+#: includes/Modules/DualButton.php:525
 msgid "Icon/Image Margin"
 msgstr "أيقونة/صورة الهامش"
 
@@ -3359,14 +3300,14 @@ msgstr "إذا كان عن صفحة معينة على موقع الويب الخ
 msgid "If this option appears to have no effect, you might need to"
 msgstr "إذا كان هذا الخيار يبدو أن ليس لها أي تأثير ، قد تحتاج إلى"
 
-#: includes/Modules/PostGrid.php:690
-#: includes/Modules/PostGrid.php:702
+#: includes/Modules/PostGrid.php:691
+#: includes/Modules/PostGrid.php:703
 msgid "If you would like to adjust the date format, input the appropriate PHP date format here."
 msgstr "إذا كنت ترغب في ضبط تنسيق التاريخ ، الإدخال المناسبة PHP تنسيق التاريخ هنا."
 
-#: includes/Modules/DualButton.php:654
-#: includes/Modules/DualButton.php:674
-#: includes/Modules/FlipBox.php:2128
+#: includes/Modules/DualButton.php:653
+#: includes/Modules/DualButton.php:673
+#: includes/Modules/FlipBox.php:2127
 msgid "If you would like to make your button link, input your destination URL here."
 msgstr "إذا كنت ترغب في جعل الخاصة بك زر الرابط إدخال عنوان URL المقصود هنا."
 
@@ -3390,8 +3331,8 @@ msgstr "iFrame"
 msgid "Image"
 msgstr "صورة"
 
-#: includes/Modules/FlipBox.php:79
-#: includes/Modules/FlipBox.php:104
+#: includes/Modules/FlipBox.php:78
+#: includes/Modules/FlipBox.php:103
 msgid "Image & Icon"
 msgstr "صورة و أيقونة"
 
@@ -3404,10 +3345,10 @@ msgid "Image & Media Modules"
 msgstr "صورة والإعلام وحدات"
 
 #: includes/Modules/BeforeAfterImageSlider.php:455
-#: includes/Modules/Divider.php:602
-#: includes/Modules/FlipBox.php:1655
+#: includes/Modules/Divider.php:601
+#: includes/Modules/FlipBox.php:1654
 #: includes/Modules/ImageMask.php:113
-#: includes/Modules/PostGridChild.php:623
+#: includes/Modules/PostGridChild.php:678
 #: includes/Modules/VideoPopup.php:166
 msgid "Image Alt Text"
 msgstr "صورة النص البديل"
@@ -3434,7 +3375,7 @@ msgstr "ملف صورة (%s) لا يمكن أن تكون ولدت."
 msgid "Image file (%s) does not exist."
 msgstr "ملف صورة (%s) غير موجود."
 
-#: includes/Modules/FlipBox.php:1721
+#: includes/Modules/FlipBox.php:1720
 msgid "Image Force Full-Width"
 msgstr "صورة القوة العرض الكامل"
 
@@ -3448,11 +3389,11 @@ msgid "Image Gallery"
 msgstr "معرض الصور"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:629
-#: includes/Modules/Divider.php:780
-#: includes/Modules/DualButton.php:466
-#: includes/Modules/FlipBox.php:1754
+#: includes/Modules/Divider.php:779
+#: includes/Modules/DualButton.php:465
+#: includes/Modules/FlipBox.php:1753
 #: includes/Modules/ImageMask.php:278
-#: includes/Modules/PostGridChild.php:745
+#: includes/Modules/PostGridChild.php:800
 #: includes/Modules/VideoPopup.php:317
 msgid "Image Height"
 msgstr "ارتفاع الصورة"
@@ -3506,15 +3447,15 @@ msgid "Image Vertical Position"
 msgstr "صورة الوضع العمودي"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:614
-#: includes/Modules/Divider.php:762
-#: includes/Modules/DualButton.php:448
-#: includes/Modules/FlipBox.php:1735
+#: includes/Modules/Divider.php:761
+#: includes/Modules/DualButton.php:447
+#: includes/Modules/FlipBox.php:1734
 #: includes/Modules/ImageMask.php:259
-#: includes/Modules/PostGridChild.php:730
+#: includes/Modules/PostGridChild.php:785
 msgid "Image Width"
 msgstr "صورة العرض"
 
-#: includes/Modules/FlipBox.php:2165
+#: includes/Modules/FlipBox.php:2164
 msgid "Image/Icon Order"
 msgstr "صورة/رمز النظام"
 
@@ -3534,20 +3475,20 @@ msgid "Images Gap"
 msgstr "الصور الفجوة"
 
 #: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:163
-#: includes/Modules/DualButton.php:667
-#: includes/Modules/DualButton.php:687
-#: includes/Modules/FlipBox.php:2143
+#: includes/Modules/DualButton.php:666
+#: includes/Modules/DualButton.php:686
+#: includes/Modules/FlipBox.php:2142
 msgid "In The New Tab"
 msgstr "في علامة تبويب جديدة"
 
 #: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:162
-#: includes/Modules/DualButton.php:666
-#: includes/Modules/DualButton.php:686
-#: includes/Modules/FlipBox.php:2142
+#: includes/Modules/DualButton.php:665
+#: includes/Modules/DualButton.php:685
+#: includes/Modules/FlipBox.php:2141
 msgid "In The Same Window"
 msgstr "في نفس النافذة"
 
-#: includes/Modules/PostGrid.php:562
+#: includes/Modules/PostGrid.php:563
 msgid "Include Categories"
 msgstr "وتشمل فئات"
 
@@ -3559,16 +3500,16 @@ msgstr "وتشمل تعليقات"
 msgid "Include Images"
 msgstr "تشمل الصور"
 
-#: includes/Modules/PostGrid.php:578
+#: includes/Modules/PostGrid.php:579
 msgid "Include Tags"
 msgstr "وتشمل العلامات"
 
 #: includes/Modules/BeforeAfterImageSlider.php:333
-#: includes/Modules/FlipBox.php:2167
-#: includes/Modules/FlipBox.php:2189
-#: includes/Modules/FlipBox.php:2211
-#: includes/Modules/FlipBox.php:2234
-#: includes/Modules/FlipBox.php:2257
+#: includes/Modules/FlipBox.php:2166
+#: includes/Modules/FlipBox.php:2188
+#: includes/Modules/FlipBox.php:2210
+#: includes/Modules/FlipBox.php:2233
+#: includes/Modules/FlipBox.php:2256
 msgid "Increase the order number to position the item lower."
 msgstr "زيادة عدد بأمر من وضع هذا البند أقل."
 
@@ -3577,22 +3518,22 @@ msgid "Increase the slide control smoothing."
 msgstr "زيادة الشريحة التحكم تجانس."
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:180
-#: includes/Modules/Divider.php:407
+#: includes/Modules/Divider.php:406
 msgid "Increasing the divider weight will increase the thickness of the dividing line."
 msgstr "زيادة مقسم الوزن سوف تزيد من سماكة الخط الفاصل."
 
 #: includes/Modules/StarRating.php:243
-#: includes/Modules/TypingText.php:713
-#: includes/Modules/TypingText.php:727
-#: includes/Modules/TypingText.php:741
+#: includes/Modules/TypingText.php:712
+#: includes/Modules/TypingText.php:726
+#: includes/Modules/TypingText.php:740
 msgid "Inline"
 msgstr "مضمنة"
 
-#: includes/Modules/FlipBox.php:1517
+#: includes/Modules/FlipBox.php:1516
 msgid "Input the main text content for your current side of flip box here."
 msgstr "إدخال النص الرئيسي المحتوى الخاص بك الحالي الجانبية من الوجه المربع هنا."
 
-#: includes/Modules/DropCapText.php:147
+#: includes/Modules/DropCapText.php:146
 msgid "Input the main text content for your module here."
 msgstr "إدخال النص الرئيسي محتوى الوحدة النمطية الخاص بك هنا."
 
@@ -3612,11 +3553,11 @@ msgstr "بدلا من توفير الأساسي الخاص بك حساب FTP ج�
 msgid "It allows you to display two buttons side by side with customizable styles and text."
 msgstr "فإنه يسمح لك لعرض أزرار اثنين جنبا إلى جنب مع تخصيص أنماط النص."
 
-#: includes/Modules/FlipBox.php:88
+#: includes/Modules/FlipBox.php:87
 msgid "Item Order"
 msgstr "البند النظام"
 
-#: includes/Modules/FlipBox.php:93
+#: includes/Modules/FlipBox.php:92
 msgid "Item Z Index"
 msgstr "البند ض مؤشر"
 
@@ -3676,71 +3617,71 @@ msgstr "التسمية الحشو"
 msgid "Landscape"
 msgstr "المناظر الطبيعية"
 
-#: includes/Modules/PostGridChild.php:467
+#: includes/Modules/PostGridChild.php:472
 msgid "Last Name"
 msgstr "الاسم الأخير"
 
-#: includes/Modules/PostGrid.php:96
+#: includes/Modules/PostGrid.php:97
 msgid "Layout Settings"
 msgstr "إعدادات تخطيط"
 
-#: includes/Modules/FlipBox.php:1215
+#: includes/Modules/FlipBox.php:1214
 #: includes/Modules/ScrollingText.php:146
 #: includes/Modules/StarRating.php:261
 msgid "Left"
 msgstr "اليسار"
 
-#: includes/Modules/DualButton.php:63
-#: includes/Modules/DualButton.php:71
-#: includes/Modules/DualButton.php:85
-#: includes/Modules/DualButton.php:271
+#: includes/Modules/DualButton.php:62
+#: includes/Modules/DualButton.php:70
+#: includes/Modules/DualButton.php:84
+#: includes/Modules/DualButton.php:270
 msgid "Left Button"
 msgstr "الزر الأيسر"
 
-#: includes/Modules/DualButton.php:275
+#: includes/Modules/DualButton.php:274
 msgid "Left Button Icon"
 msgstr "الزر الأيسر رمز"
 
-#: includes/Modules/DualButton.php:661
+#: includes/Modules/DualButton.php:660
 msgid "Left Button Link Target"
 msgstr "الزر الأيسر رابط الهدف"
 
-#: includes/Modules/DualButton.php:653
+#: includes/Modules/DualButton.php:652
 msgid "Left Button Link URL"
 msgstr "الزر الأيسر رابط URL"
 
-#: includes/Modules/DualButton.php:72
+#: includes/Modules/DualButton.php:71
 msgid "Left Button Text"
 msgstr "الزر الأيسر النص"
 
-#: includes/Modules/Divider.php:360
+#: includes/Modules/Divider.php:359
 msgid "Left Side"
 msgstr "الجانب الأيسر"
 
-#: includes/Modules/DropCapText.php:75
+#: includes/Modules/DropCapText.php:74
 msgid "Letter"
 msgstr "الرسالة"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:137
-#: includes/Modules/Divider.php:327
+#: includes/Modules/Divider.php:326
 msgid "Line Color"
 msgstr "لون الخط"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:162
-#: includes/Modules/Divider.php:390
+#: includes/Modules/Divider.php:389
 msgid "Line Position"
 msgstr "موقف خط"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:149
-#: includes/Modules/Divider.php:378
+#: includes/Modules/Divider.php:377
 msgid "Line Style"
 msgstr "نمط الخط"
 
-#: includes/Modules/Divider.php:212
+#: includes/Modules/Divider.php:211
 msgid "Line With Text"
 msgstr "خط النص"
 
-#: includes/Modules/Divider.php:213
+#: includes/Modules/Divider.php:212
 msgid "Liner With Icon"
 msgstr "بطانة مع رمز"
 
@@ -3756,57 +3697,49 @@ msgstr "لايت تثبيت تاريخ"
 msgid "Lite Version"
 msgstr "الإصدار لايت"
 
-#: includes/Modules/PostGrid.php:98
-#: includes/Modules/PostGrid.php:106
+#: includes/Modules/PostGrid.php:99
+#: includes/Modules/PostGrid.php:107
 msgid "Load More"
 msgstr "تحميل المزيد من"
 
-#: includes/Modules/PostGrid.php:475
+#: includes/Modules/PostGrid.php:476
 msgid "Load More Button"
 msgstr "تحميل المزيد من زر"
 
-#: includes/Modules/PostGrid.php:107
+#: includes/Modules/PostGrid.php:108
 msgid "Load More Text"
 msgstr "تحميل أكثر من نص"
-
-#: build/admin/scripts/admin.js:175
-msgid "Loading available extensions…"
-msgstr "تحميل ملحقات المتاحة..."
-
-#: build/admin/scripts/admin.js:175
-msgid "Loading available modules…"
-msgstr "تحميل الوحدات المتاحة..."
 
 #: build/admin/scripts/admin.js:175
 msgid "Loading available what's new changes…"
 msgstr "التحميل المتاحة ما هي التغييرات الجديدة..."
 
-#: includes/Modules/Divider.php:869
+#: includes/Modules/Divider.php:868
 #: includes/Modules/Lottie.php:194
 msgid "Lock animation"
 msgstr "قفل الرسوم المتحركة"
 
-#: includes/Modules/Divider.php:902
+#: includes/Modules/Divider.php:901
 #: includes/Modules/Lottie.php:227
 msgid "Loop"
 msgstr "حلقة"
 
-#: includes/Modules/Divider.php:79
-#: includes/Modules/Divider.php:543
+#: includes/Modules/Divider.php:78
+#: includes/Modules/Divider.php:542
 #: includes/Modules/Lottie.php:56
 #: includes/Modules/Lottie.php:62
 msgid "Lottie"
 msgstr "لوتي"
 
-#: includes/Modules/Divider.php:69
+#: includes/Modules/Divider.php:68
 msgid "Lottie Animation"
 msgstr "لوتي الرسوم المتحركة"
 
-#: includes/Modules/Divider.php:1033
+#: includes/Modules/Divider.php:1032
 msgid "Lottie Background Color"
 msgstr "لوتي لون الخلفية"
 
-#: includes/Modules/Divider.php:1045
+#: includes/Modules/Divider.php:1044
 #: includes/Modules/Lottie.php:356
 msgid "Lottie Color"
 msgstr "لوتي اللون"
@@ -3815,7 +3748,7 @@ msgstr "لوتي اللون"
 msgid "Lottie Container"
 msgstr "لوتي الحاويات"
 
-#: includes/Modules/Divider.php:1077
+#: includes/Modules/Divider.php:1076
 #: includes/Modules/Lottie.php:383
 msgid "Lottie Height"
 msgstr "لوتي ارتفاع"
@@ -3829,7 +3762,7 @@ msgstr "لوتي صورة"
 msgid "Lottie Images"
 msgstr "لوتي الصور"
 
-#: includes/Modules/Divider.php:1057
+#: includes/Modules/Divider.php:1056
 #: includes/Modules/Lottie.php:365
 msgid "Lottie Width"
 msgstr "لوتي العرض"
@@ -3859,13 +3792,13 @@ msgstr "إدارة"
 msgid "Map Configuration"
 msgstr "خريطة التكوين"
 
-#: includes/Modules/DropCapText.php:167
-#: includes/Modules/PostGridChild.php:925
-#: includes/Modules/PostGridChild.php:959
+#: includes/Modules/DropCapText.php:166
+#: includes/Modules/PostGridChild.php:980
+#: includes/Modules/PostGridChild.php:1014
 msgid "Margin"
 msgstr "الهامش"
 
-#: includes/Modules/BusinessHoursChild.php:267
+#: includes/Modules/BusinessHoursChild.php:266
 msgid "Mark as Off Day"
 msgstr "علامة قبالة اليوم"
 
@@ -4018,11 +3951,11 @@ msgstr "رسالة الخلفية"
 msgid "Message Box Shadow"
 msgstr "الرسالة مربع الظل"
 
-#: includes/Modules/PostGridChild.php:497
+#: includes/Modules/PostGridChild.php:502
 msgid "Modified"
 msgstr "تعديل"
 
-#: includes/Modules/PostGrid.php:595
+#: includes/Modules/PostGrid.php:596
 msgid "Modified Date"
 msgstr "تاريخ التعديل"
 
@@ -4217,12 +4150,12 @@ msgstr "العنوان الخاص بك يذهب هنا"
 msgid "Modules Management"
 msgstr "وحدات إدارة"
 
-#: includes/Modules/FlipBox.php:1323
+#: includes/Modules/FlipBox.php:1322
 msgid "Move Both Side"
 msgstr "تحرك جانبي"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:692
-#: includes/Modules/PostGridChild.php:850
+#: includes/Modules/PostGridChild.php:905
 msgid "Move Icon On Hover Only"
 msgstr "أيقونة نقل على تحوم فقط"
 
@@ -4246,20 +4179,20 @@ msgstr "تحتاج إلى مساعدة ؟ "
 msgid "NEW"
 msgstr "جديد"
 
-#: includes/Modules/PostGrid.php:2149
+#: includes/Modules/PostGrid.php:2187
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Next Entries"
 msgstr "الإدخالات التالية"
 
-#: includes/Modules/PostGrid.php:922
+#: includes/Modules/PostGrid.php:923
 msgid "Next Entries Icon"
 msgstr "الإدخالات التالية رمز"
 
-#: includes/Modules/PostGrid.php:913
+#: includes/Modules/PostGrid.php:914
 msgid "Next Entries Text"
 msgstr "التالية إدخالات النص"
 
-#: includes/Modules/PostGridChild.php:463
+#: includes/Modules/PostGridChild.php:468
 msgid "Nickname"
 msgstr "لقب"
 
@@ -4282,25 +4215,18 @@ msgstr "أشكال النينجا لم يتم تثبيت"
 msgid "No"
 msgstr "لا"
 
-#: includes/Modules/Divider.php:854
-#: includes/Modules/Divider.php:868
+#: includes/Modules/Divider.php:853
+#: includes/Modules/Divider.php:867
 #: includes/Modules/Lottie.php:179
 #: includes/Modules/Lottie.php:193
 msgid "No action"
 msgstr "لا العمل"
 
-#: includes/Managers/RestRoutes/V1/Modules/PostGrid.php:84
-msgid "No data found."
-msgstr "لا توجد بيانات."
-
-#: includes/Managers/RestRoutes/V1/Extensions.php:135
-#: includes/Managers/RestRoutes/V1/Extensions/Copy.php:56
-#: includes/Managers/RestRoutes/V1/Modules.php:135
-#: includes/Managers/RestRoutes/V1/Modules/PostGrid.php:51
+#: includes/Managers/RestRoutes/Version1/Extensions/Copy.php:82
 msgid "No data provided."
 msgstr "لا توجد بيانات المقدمة."
 
-#: includes/Modules/PostGrid.php:1450
+#: includes/Modules/PostGrid.php:1451
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "No elements found. Please add one or more elements to display in the post grid."
 msgstr "أي العناصر التي وجدت. يرجى إضافة واحد أو أكثر من العناصر التي تريد عرضها في ما بعد الشبكة."
@@ -4309,21 +4235,21 @@ msgstr "أي العناصر التي وجدت. يرجى إضافة واحد أو
 msgid "No options found"
 msgstr "لا خيارات وجدت"
 
-#: includes/Modules/PostGrid.php:1471
+#: includes/Modules/PostGrid.php:1472
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "No posts found that match the specified criteria."
 msgstr "لا وظائف وجدت أن تطابق المعايير المحددة."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:415
-#: includes/Modules/Divider.php:831
-#: includes/Modules/FlipBox.php:1599
+#: includes/Modules/Divider.php:830
+#: includes/Modules/FlipBox.php:1598
 #: includes/Modules/Lottie.php:156
-#: includes/Modules/PostGridChild.php:559
+#: includes/Modules/PostGridChild.php:614
 msgid "None"
 msgstr "لا شيء"
 
-#: includes/Modules/Divider.php:989
-#: includes/Modules/Divider.php:1002
+#: includes/Modules/Divider.php:988
+#: includes/Modules/Divider.php:1001
 #: includes/Modules/Lottie.php:314
 #: includes/Modules/Lottie.php:327
 msgid "Normal"
@@ -4342,7 +4268,7 @@ msgstr "ملاحظة"
 msgid "Number of Rating"
 msgstr "رقم التصنيف"
 
-#: includes/Modules/BusinessHoursChild.php:281
+#: includes/Modules/BusinessHoursChild.php:280
 msgid "Off Day Label"
 msgstr "اليوم قبالة التسمية"
 
@@ -4350,25 +4276,25 @@ msgstr "اليوم قبالة التسمية"
 msgid "Ok, you deserve it!"
 msgstr "حسنا, أنت تستحق ذلك!"
 
-#: includes/Modules/PostGrid.php:2148
+#: includes/Modules/PostGrid.php:2186
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Old Entries"
 msgstr "إدخالات القديمة"
 
-#: includes/Modules/PostGrid.php:899
+#: includes/Modules/PostGrid.php:900
 msgid "Old Entries Icon"
 msgstr "إدخالات القديمة رمز"
 
-#: includes/Modules/PostGrid.php:890
+#: includes/Modules/PostGrid.php:891
 msgid "Old Entries Text"
 msgstr "القديمة إدخالات النص"
 
-#: includes/Modules/Divider.php:864
+#: includes/Modules/Divider.php:863
 #: includes/Modules/Lottie.php:189
 msgid "On Click Action"
 msgstr "انقر فوق العمل"
 
-#: includes/Modules/Divider.php:848
+#: includes/Modules/Divider.php:847
 #: includes/Modules/Lottie.php:173
 msgid "On Mouseout Action"
 msgstr "على Mouseout العمل"
@@ -4377,7 +4303,7 @@ msgstr "على Mouseout العمل"
 msgid "One or more fields have an error. Please check and try again."
 msgstr "واحد أو أكثر من المجالات خطأ. يرجى التحقق وحاول مرة أخرى."
 
-#: includes/Modules/Divider.php:211
+#: includes/Modules/Divider.php:210
 msgid "Only Line"
 msgstr "فقط الخط"
 
@@ -4393,11 +4319,11 @@ msgstr "التعتيم"
 msgid "Open in Lightbox"
 msgstr "فتح في العلبة الخفيفة"
 
-#: includes/Modules/PostGrid.php:610
+#: includes/Modules/PostGrid.php:611
 msgid "Order"
 msgstr "النظام"
 
-#: includes/Modules/PostGrid.php:590
+#: includes/Modules/PostGrid.php:591
 msgid "Order By"
 msgstr "النظام"
 
@@ -4418,59 +4344,59 @@ msgid "Overlay Icon Color"
 msgstr "تراكب رمز اللون"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:41
-#: includes/Modules/Divider.php:258
+#: includes/Modules/Divider.php:257
 msgid "P tag"
 msgstr "العلامة P"
 
-#: includes/Modules/DropCapText.php:181
-#: includes/Modules/PostGridChild.php:934
-#: includes/Modules/PostGridChild.php:974
+#: includes/Modules/DropCapText.php:180
+#: includes/Modules/PostGridChild.php:989
+#: includes/Modules/PostGridChild.php:1029
 msgid "Padding"
 msgstr "الحشو"
 
-#: includes/Modules/PostGrid.php:109
-#: includes/Modules/PostGrid.php:144
-#: includes/Modules/PostGrid.php:167
-#: includes/Modules/PostGrid.php:280
-#: includes/Modules/PostGrid.php:326
-#: includes/Modules/PostGrid.php:483
+#: includes/Modules/PostGrid.php:110
+#: includes/Modules/PostGrid.php:145
+#: includes/Modules/PostGrid.php:168
+#: includes/Modules/PostGrid.php:281
+#: includes/Modules/PostGrid.php:327
+#: includes/Modules/PostGrid.php:484
 msgid "Pagination"
 msgstr "ترقيم الصفحات"
 
-#: includes/Modules/PostGrid.php:1035
+#: includes/Modules/PostGrid.php:1036
 msgid "Pagination Alignment"
 msgstr "ترقيم الصفحات المحاذاة"
 
-#: includes/Modules/PostGrid.php:948
-#: includes/Modules/PostGrid.php:958
+#: includes/Modules/PostGrid.php:949
+#: includes/Modules/PostGrid.php:959
 msgid "Pagination Background"
 msgstr "ترقيم الصفحات الخلفية"
 
-#: includes/Modules/PostGrid.php:426
-#: includes/Modules/PostGrid.php:442
+#: includes/Modules/PostGrid.php:427
+#: includes/Modules/PostGrid.php:443
 msgid "Pagination Box Shadow"
 msgstr "ترقيم الصفحات مربع الظل"
 
-#: includes/Modules/PostGrid.php:1117
-#: includes/Modules/PostGrid.php:1151
+#: includes/Modules/PostGrid.php:1118
+#: includes/Modules/PostGrid.php:1152
 msgid "Pagination Margin"
 msgstr "ترقيم الصفحات الهامش"
 
-#: includes/Modules/PostGrid.php:1134
-#: includes/Modules/PostGrid.php:1168
+#: includes/Modules/PostGrid.php:1135
+#: includes/Modules/PostGrid.php:1169
 msgid "Pagination Padding"
 msgstr "ترقيم الصفحات الحشو"
 
-#: includes/Modules/PostGrid.php:97
+#: includes/Modules/PostGrid.php:98
 msgid "Pagination Settings"
 msgstr "ترقيم الصفحات الإعدادات"
 
-#: includes/Modules/PostGrid.php:110
+#: includes/Modules/PostGrid.php:111
 msgid "Pagination Text"
 msgstr "ترقيم الصفحات النص"
 
-#: includes/Modules/PostGrid.php:108
-#: includes/Modules/PostGrid.php:479
+#: includes/Modules/PostGrid.php:109
+#: includes/Modules/PostGrid.php:480
 msgid "Pagination Wrapper"
 msgstr "ترقيم الصفحات المجمع"
 
@@ -4495,20 +4421,20 @@ msgstr "PHP الإصدار"
 msgid "Pick a color to use."
 msgstr "اختيار لون لاستخدامها."
 
-#: includes/Modules/FlipBox.php:1228
+#: includes/Modules/FlipBox.php:1227
 msgid "Pick an animation type to enable animations for this element. Once enabled, you will be able to change your animation type further."
 msgstr "اختيار نوع الرسوم المتحركة لتمكين الرسوم المتحركة لهذا العنصر. بمجرد تمكين سوف تكون قادرة على تغيير الرسوم المتحركة الخاصة بك نوع آخر."
 
-#: includes/Modules/FlipBox.php:1294
+#: includes/Modules/FlipBox.php:1293
 msgid "Pick from up to five different animation directions, each of which will adjust the starting and ending position of your animated slide."
 msgstr "اختيار من خمسة الرسوم المتحركة مختلفة الاتجاهات ، كل منها ضبط بداية ونهاية الموقف من الشرائح المتحركة."
 
-#: includes/Modules/FlipBox.php:1247
+#: includes/Modules/FlipBox.php:1246
 msgid "Pick from up to four different animation directions, each of which will adjust the starting and ending position of your animated slide."
 msgstr "اختيار من أربع الرسوم المتحركة مختلفة الاتجاهات ، كل منها ضبط بداية ونهاية الموقف من الشرائح المتحركة."
 
-#: includes/Modules/FlipBox.php:1270
-#: includes/Modules/FlipBox.php:1282
+#: includes/Modules/FlipBox.php:1269
+#: includes/Modules/FlipBox.php:1281
 msgid "Pick from up to two different animation directions, each of which will adjust the starting and ending position of your animated slide."
 msgstr "من اختيار ما يصل الى اثنين من الرسوم المتحركة مختلفة الاتجاهات ، كل منها ضبط بداية ونهاية الموقف من الشرائح المتحركة."
 
@@ -4520,32 +4446,32 @@ msgstr "من اختيار ما يصل الى اثنين من الرسوم الم
 msgid "Placeholder"
 msgstr "نائبا"
 
-#: includes/Modules/Divider.php:985
+#: includes/Modules/Divider.php:984
 #: includes/Modules/Lottie.php:310
 msgid "Play Mode"
 msgstr "طريقة اللعب"
 
-#: includes/Modules/Divider.php:827
+#: includes/Modules/Divider.php:826
 #: includes/Modules/Lottie.php:152
 msgid "Play on click"
 msgstr "اللعب على فوق"
 
-#: includes/Modules/Divider.php:892
+#: includes/Modules/Divider.php:891
 #: includes/Modules/Lottie.php:217
 msgid "Play On Hover"
 msgstr "اللعب على التحويم"
 
-#: includes/Modules/Divider.php:826
+#: includes/Modules/Divider.php:825
 #: includes/Modules/Lottie.php:151
 msgid "Play on hover/mouse over"
 msgstr "اللعب على مؤشر الفأرة/الماوس فوق"
 
-#: includes/Modules/Divider.php:828
+#: includes/Modules/Divider.php:827
 #: includes/Modules/Lottie.php:153
 msgid "Play on scroll"
 msgstr "اللعب على التمرير"
 
-#: includes/Modules/Divider.php:829
+#: includes/Modules/Divider.php:828
 #: includes/Modules/Lottie.php:154
 msgid "Play when container is visible"
 msgstr "اللعب عند حاوية مرئيا"
@@ -4603,11 +4529,11 @@ msgstr "ميناء"
 msgid "Portrait"
 msgstr "صورة"
 
-#: includes/Modules/PostGrid.php:598
+#: includes/Modules/PostGrid.php:599
 msgid "Post Author"
 msgstr "بعد البلاغ"
 
-#: includes/Modules/PostGrid.php:626
+#: includes/Modules/PostGrid.php:627
 msgid "Post Count"
 msgstr "بعد العد"
 
@@ -4621,19 +4547,19 @@ msgid "Post Elements"
 msgstr "العناصر آخر"
 
 #: includes/Managers/Features/Modules.php:179
-#: includes/Modules/PostGrid.php:76
+#: includes/Modules/PostGrid.php:77
 msgid "Post Grid"
 msgstr "وظيفة الشبكة"
 
-#: includes/Modules/PostGrid.php:77
+#: includes/Modules/PostGrid.php:78
 msgid "Post Grids"
 msgstr "بعد شبكات"
 
-#: includes/Modules/PostGrid.php:596
+#: includes/Modules/PostGrid.php:597
 msgid "Post Name"
 msgstr "اسم آخر"
 
-#: includes/Modules/PostGrid.php:652
+#: includes/Modules/PostGrid.php:653
 msgid "Post Offset"
 msgstr "بعد إزاحة"
 
@@ -4646,20 +4572,20 @@ msgstr "بعد وقت القراءة"
 msgid "Post Reading Times"
 msgstr "بعد القراءة مرات"
 
-#: includes/Modules/PostGrid.php:95
+#: includes/Modules/PostGrid.php:96
 msgid "Post Settings"
 msgstr "إعدادات المشاركة"
 
-#: includes/Modules/PostGrid.php:597
+#: includes/Modules/PostGrid.php:598
 msgid "Post Title"
 msgstr "عنوان آخر"
 
-#: includes/Modules/PostGrid.php:103
-#: includes/Modules/PostGrid.php:471
+#: includes/Modules/PostGrid.php:104
+#: includes/Modules/PostGrid.php:472
 msgid "Post Wrapper"
 msgstr "بعد المجمع"
 
-#: includes/Managers/RestRoutes/V1/Extensions/Copy.php:78
+#: includes/Managers/RestRoutes/Version1/Extensions/Copy.php:95
 msgid "Post(s) duplicated successfully."
 msgstr "بعد(s) تكرار بنجاح."
 
@@ -4667,7 +4593,7 @@ msgstr "بعد(s) تكرار بنجاح."
 msgid "Post(s) duplication failed."
 msgstr "بعد(s) الازدواجية فشلت."
 
-#: includes/Modules/PostGrid.php:522
+#: includes/Modules/PostGrid.php:523
 msgid "Posts For Current Page"
 msgstr "وظائف الصفحة الحالية"
 
@@ -4720,11 +4646,11 @@ msgstr "برو"
 msgid "Product Name"
 msgstr "اسم المنتج"
 
-#: includes/Modules/PostGridChild.php:496
+#: includes/Modules/PostGridChild.php:501
 msgid "Publish"
 msgstr "نشر"
 
-#: includes/Modules/PostGrid.php:594
+#: includes/Modules/PostGrid.php:595
 msgid "Publish Date"
 msgstr "تاريخ النشر"
 
@@ -4736,7 +4662,7 @@ msgid "Radio Checkbox"
 msgstr "راديو مربع"
 
 #: includes/Modules/ImageGallery.php:227
-#: includes/Modules/PostGrid.php:600
+#: includes/Modules/PostGrid.php:601
 msgid "Random"
 msgstr "عشوائية"
 
@@ -4759,16 +4685,16 @@ msgstr "تصنيف عدد"
 msgid "Rating Scale"
 msgstr "مقياس التصنيف"
 
-#: includes/Modules/PostGrid.php:2524
+#: includes/Modules/PostGrid.php:2791
 #: includes/Modules/PostGridChild.php:65
 msgid "Read More"
 msgstr "قراءة المزيد"
 
-#: includes/Modules/PostGridChild.php:506
+#: includes/Modules/PostGridChild.php:511
 msgid "Read More Text"
 msgstr "قراءة أكثر من نص"
 
-#: includes/Modules/PostGrid.php:2523
+#: includes/Modules/PostGrid.php:2790
 msgid "Read the post"
 msgstr "بعد قراءة"
 
@@ -4776,7 +4702,7 @@ msgstr "بعد قراءة"
 msgid "Reading Settings"
 msgstr "إعدادات القراءة"
 
-#: includes/Modules/PostGrid.php:541
+#: includes/Modules/PostGrid.php:542
 msgid "Recent"
 msgstr "الأخيرة"
 
@@ -4788,7 +4714,7 @@ msgstr "تجديد الصور المصغرة الخاصة بك"
 msgid "Related third-party plugin required."
 msgstr "ذات الصلة المساعد طرف ثالث المطلوبة."
 
-#: includes/Modules/Divider.php:878
+#: includes/Modules/Divider.php:877
 #: includes/Modules/Lottie.php:203
 msgid "Relative To"
 msgstr "نسبة إلى"
@@ -4798,11 +4724,11 @@ msgstr "نسبة إلى"
 msgid "Relevant page on your site (E.g. %s)"
 msgstr "الصفحة ذات الصلة على موقع الويب الخاص بك (على سبيل المثال. %s)"
 
-#: includes/Modules/TypingText.php:528
+#: includes/Modules/TypingText.php:527
 msgid "Remove Cursor After Completed"
 msgstr "إزالة المؤشر بعد الانتهاء"
 
-#: includes/Modules/Divider.php:1012
+#: includes/Modules/Divider.php:1011
 #: includes/Modules/Lottie.php:337
 msgid "Render"
 msgstr "تقديم"
@@ -4819,48 +4745,48 @@ msgstr "رد إلى %1$s ..."
 msgid "Resize Button"
 msgstr "تغيير حجم زر"
 
-#: includes/Modules/DualButton.php:484
+#: includes/Modules/DualButton.php:483
 msgid "Resize Separator"
 msgstr "تغيير حجم فاصل"
 
-#: includes/Modules/Divider.php:855
-#: includes/Modules/Divider.php:1003
+#: includes/Modules/Divider.php:854
+#: includes/Modules/Divider.php:1002
 #: includes/Modules/Lottie.php:180
 #: includes/Modules/Lottie.php:328
 msgid "Reverse"
 msgstr "عكس"
 
-#: includes/Modules/Divider.php:990
+#: includes/Modules/Divider.php:989
 #: includes/Modules/Lottie.php:315
 msgid "Reverse on complete"
 msgstr "على عكس كاملة"
 
-#: includes/Modules/FlipBox.php:1214
+#: includes/Modules/FlipBox.php:1213
 #: includes/Modules/ScrollingText.php:147
 #: includes/Modules/StarRating.php:262
 msgid "Right"
 msgstr "صحيح"
 
-#: includes/Modules/DualButton.php:64
-#: includes/Modules/DualButton.php:73
-#: includes/Modules/DualButton.php:97
-#: includes/Modules/DualButton.php:279
+#: includes/Modules/DualButton.php:63
+#: includes/Modules/DualButton.php:72
+#: includes/Modules/DualButton.php:96
+#: includes/Modules/DualButton.php:278
 msgid "Right Button"
 msgstr "الزر الأيمن"
 
-#: includes/Modules/DualButton.php:283
+#: includes/Modules/DualButton.php:282
 msgid "Right Button Icon"
 msgstr "الزر الأيمن على أيقونة"
 
-#: includes/Modules/DualButton.php:681
+#: includes/Modules/DualButton.php:680
 msgid "Right Button Link Target"
 msgstr "الزر الأيمن رابط الهدف"
 
-#: includes/Modules/DualButton.php:673
+#: includes/Modules/DualButton.php:672
 msgid "Right Button Link URL"
 msgstr "الزر الأيمن رابط URL"
 
-#: includes/Modules/DualButton.php:74
+#: includes/Modules/DualButton.php:73
 msgid "Right Button Text"
 msgstr "الزر الأيمن النص"
 
@@ -4868,11 +4794,11 @@ msgstr "الزر الأيمن النص"
 msgid "Right into your Divi's site easily without having to worry about anything else."
 msgstr "في ديفي الموقع بسهولة من دون الحاجة إلى القلق بشأن أي شيء آخر."
 
-#: includes/Modules/Divider.php:369
+#: includes/Modules/Divider.php:368
 msgid "Right Side"
 msgstr "الجانب الأيمن"
 
-#: includes/Modules/FlipBox.php:1208
+#: includes/Modules/FlipBox.php:1207
 msgid "Rotate"
 msgstr "تدوير"
 
@@ -4880,11 +4806,7 @@ msgstr "تدوير"
 msgid "Rotate Mask Shape"
 msgstr "تدوير شكل قناع"
 
-#: build/admin/scripts/admin.js:175
-msgid "Save Changes"
-msgstr "حفظ التغييرات"
-
-#: includes/Modules/FlipBox.php:1353
+#: includes/Modules/FlipBox.php:1352
 msgid "Scale"
 msgstr "مقياس"
 
@@ -4955,7 +4877,7 @@ msgid "Select Play Icon"
 msgstr "حدد أيقونة اللعب"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:150
-#: includes/Modules/Divider.php:379
+#: includes/Modules/Divider.php:378
 msgid "Select the shape of the dividing line used for the divider."
 msgstr "تحديد شكل الخط الفاصل المستخدمة في المفرق."
 
@@ -4963,17 +4885,17 @@ msgstr "تحديد شكل الخط الفاصل المستخدمة في المف
 msgid "Send message"
 msgstr "إرسال رسالة"
 
-#: includes/Modules/BusinessHours.php:67
-#: includes/Modules/BusinessHoursChild.php:65
-#: includes/Modules/DualButton.php:65
-#: includes/Modules/DualButton.php:75
-#: includes/Modules/DualButton.php:109
-#: includes/Modules/DualButton.php:187
-#: includes/Modules/DualButton.php:287
+#: includes/Modules/BusinessHours.php:66
+#: includes/Modules/BusinessHoursChild.php:64
+#: includes/Modules/DualButton.php:64
+#: includes/Modules/DualButton.php:74
+#: includes/Modules/DualButton.php:108
+#: includes/Modules/DualButton.php:186
+#: includes/Modules/DualButton.php:286
 msgid "Separator"
 msgstr "فاصل"
 
-#: includes/Modules/DualButton.php:245
+#: includes/Modules/DualButton.php:244
 msgid "Separator Box Shadow"
 msgstr "فاصل مربع الظل"
 
@@ -4986,39 +4908,39 @@ msgstr "فاصل اللون"
 msgid "Separator Icon"
 msgstr "فاصل رمز"
 
-#: includes/Modules/DualButton.php:359
+#: includes/Modules/DualButton.php:358
 msgid "Separator Icon Type"
 msgstr "فاصل رمز نوع"
 
-#: includes/Modules/DualButton.php:539
+#: includes/Modules/DualButton.php:538
 msgid "Separator Margin"
 msgstr "فاصل الهامش"
 
-#: includes/Modules/DualButton.php:551
+#: includes/Modules/DualButton.php:550
 msgid "Separator Padding"
 msgstr "فاصل الحشو"
 
-#: includes/Modules/DualButton.php:76
-#: includes/Modules/DualButton.php:323
+#: includes/Modules/DualButton.php:75
+#: includes/Modules/DualButton.php:322
 msgid "Separator Text"
 msgstr "نص فاصل"
 
-#: includes/Modules/DualButton.php:497
+#: includes/Modules/DualButton.php:496
 msgid "Separator Width"
 msgstr "فاصل العرض"
 
-#: includes/Modules/Divider.php:646
+#: includes/Modules/Divider.php:645
 #: includes/Modules/Lottie.php:138
 msgid "Set As a lottie json"
 msgstr "تعيين لوتي سلمان"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:455
 #: includes/Modules/BeforeAfterImageSlider.php:448
-#: includes/Modules/Divider.php:593
-#: includes/Modules/DualButton.php:400
-#: includes/Modules/FlipBox.php:1646
+#: includes/Modules/Divider.php:592
+#: includes/Modules/DualButton.php:399
+#: includes/Modules/FlipBox.php:1645
 #: includes/Modules/ImageMask.php:107
-#: includes/Modules/PostGridChild.php:614
+#: includes/Modules/PostGridChild.php:669
 #: includes/Modules/VideoPopup.php:160
 msgid "Set As Image"
 msgstr "تعيين كصورة"
@@ -5027,7 +4949,7 @@ msgstr "تعيين كصورة"
 msgid "Set As Video"
 msgstr "مجموعة الفيديو"
 
-#: includes/Modules/FlipBox.php:1129
+#: includes/Modules/FlipBox.php:1128
 msgid "Set Custom Height"
 msgstr "تعيين ارتفاع مخصص"
 
@@ -5043,7 +4965,7 @@ msgstr "الإعدادات"
 msgid "Shortcode"
 msgstr "رمز قصير"
 
-#: includes/Modules/FlipBox.php:1551
+#: includes/Modules/FlipBox.php:1550
 msgid "Show Button"
 msgstr "إظهار زر"
 
@@ -5055,7 +4977,7 @@ msgstr "تظهر المجالات الشرطية"
 msgid "Show Control Shadow"
 msgstr "إظهار التحكم في الظل"
 
-#: includes/Modules/TypingText.php:474
+#: includes/Modules/TypingText.php:473
 msgid "Show Cursor"
 msgstr "عرض المؤشر"
 
@@ -5084,15 +5006,15 @@ msgid "Show how long it takes to read your blog posts. Useful for readers planni
 msgstr "تظهر كم من الوقت يستغرق قراءة بلوق وظيفة الخاص بك. مفيدة للقراء تخطيط الوقت."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:679
-#: includes/Modules/PostGridChild.php:837
+#: includes/Modules/PostGridChild.php:892
 msgid "Show Icon On Hover"
 msgstr "تظهر أيقونة على التحويم"
 
-#: includes/Modules/PostGrid.php:872
+#: includes/Modules/PostGrid.php:873
 msgid "Show Icon Only for Older and Next Entries "
 msgstr "تظهر أيقونة فقط لكبار السن و الإدخالات التالية "
 
-#: includes/Modules/FlipBox.php:1786
+#: includes/Modules/FlipBox.php:1785
 msgid "Show Icon Outside The Container"
 msgstr "تظهر أيقونة خارج الحاوية"
 
@@ -5104,27 +5026,27 @@ msgstr "تظهر التسمية"
 msgid "Show Label On Hover"
 msgstr "تظهر التسمية على التحويم"
 
-#: includes/Modules/PostGrid.php:819
+#: includes/Modules/PostGrid.php:820
 msgid "Show Load More Button"
 msgstr "اظهار زر تحميل المزيد من"
 
-#: includes/Modules/PostGrid.php:848
+#: includes/Modules/PostGrid.php:849
 msgid "Show Load More Spinner"
 msgstr "عرض تحميل المزيد من الدوار"
 
-#: includes/Modules/PostGrid.php:861
+#: includes/Modules/PostGrid.php:862
 msgid "Show Numbers"
 msgstr "تظهر الأرقام"
 
-#: includes/Modules/PostGridChild.php:530
+#: includes/Modules/PostGridChild.php:585
 msgid "Show Outside the Container"
 msgstr "تظهر خارج الحاوية"
 
-#: includes/Modules/PostGrid.php:772
+#: includes/Modules/PostGrid.php:773
 msgid "Show Pagination"
 msgstr "تظهر ترقيم الصفحات"
 
-#: includes/Modules/PostGridChild.php:336
+#: includes/Modules/PostGridChild.php:341
 msgid "Show Post Excerpt"
 msgstr "عرض مقتطف آخر"
 
@@ -5132,20 +5054,20 @@ msgstr "عرض مقتطف آخر"
 msgid "Show Rating Number"
 msgstr "عرض تصنيف عدد"
 
-#: includes/Modules/BusinessHours.php:330
-#: includes/Modules/BusinessHoursChild.php:295
+#: includes/Modules/BusinessHours.php:329
+#: includes/Modules/BusinessHoursChild.php:294
 msgid "Show Text Separator"
 msgstr "عرض نص فاصل"
 
-#: includes/Modules/FlipBox.php:1187
+#: includes/Modules/FlipBox.php:1186
 msgid "Show The Back First"
 msgstr "تظهر مرة أخرى أولا"
 
-#: includes/Modules/BusinessHours.php:274
+#: includes/Modules/BusinessHours.php:273
 msgid "Show Title"
 msgstr "عرض العنوان"
 
-#: includes/Modules/PostGridChild.php:673
+#: includes/Modules/PostGridChild.php:728
 msgid "Show Title Icon On Hover"
 msgstr "العنوان إظهار أيقونة على التحويم"
 
@@ -5170,7 +5092,7 @@ msgstr "عنوان الموقع"
 msgid "Size"
 msgstr "حجم"
 
-#: includes/Modules/PostGrid.php:677
+#: includes/Modules/PostGrid.php:678
 msgid "Skip Sticky Posts"
 msgstr "تخطي المشاركات زجة"
 
@@ -5178,39 +5100,19 @@ msgstr "تخطي المشاركات زجة"
 msgid "Slide image to the vertical or horizontal."
 msgstr "صورة الشريحة إلى عمودي أو أفقي."
 
-#: includes/Managers/RestRoutes/V1/Extensions.php:41
-#: includes/Managers/RestRoutes/V1/Extensions.php:63
-#: includes/Managers/RestRoutes/V1/Extensions.php:92
-#: includes/Managers/RestRoutes/V1/Extensions.php:123
-#: includes/Managers/RestRoutes/V1/Extensions/Copy.php:44
-#: includes/Managers/RestRoutes/V1/Modules.php:41
-#: includes/Managers/RestRoutes/V1/Modules.php:63
-#: includes/Managers/RestRoutes/V1/Modules.php:92
-#: includes/Managers/RestRoutes/V1/Modules.php:123
-#: includes/Managers/RestRoutes/V1/Modules/PostGrid.php:45
-#: includes/Managers/RestRoutes/V1/Notices/Discount.php:40
-#: includes/Managers/RestRoutes/V1/Notices/ProActivation.php:40
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:47
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:83
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:119
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:149
-#: includes/Managers/RestRoutes/V1/WhatsNew/Changelog.php:42
-msgid "Something went wrong"
-msgstr "شيء ذهب على نحو خاطئ"
-
 #: includes/Extensions/Copy.php:226
 msgid "Something went wrong!"
 msgstr "شيء ذهب على نحو خاطئ!"
 
-#: includes/Modules/PostGrid.php:592
+#: includes/Modules/PostGrid.php:593
 msgid "Sort retrieved posts by parameter. Defaults to ‘date’."
 msgstr "فرز المشاركات استردادها من قبل المعلمة. الافتراضي 'التاريخ'."
 
-#: includes/Modules/PostGrid.php:539
+#: includes/Modules/PostGrid.php:540
 msgid "Sort retrieved posts by parameter. Defaults to ‘recent’."
 msgstr "فرز المشاركات استردادها من قبل المعلمة. الافتراضي 'مؤخرا'."
 
-#: includes/Modules/Divider.php:612
+#: includes/Modules/Divider.php:611
 #: includes/Modules/Lottie.php:105
 msgid "Source Type"
 msgstr "نوع المصدر"
@@ -5220,19 +5122,19 @@ msgid "Spacing Between Icon and Text"
 msgstr "تباعد بين الرمز و نص"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:42
-#: includes/Modules/Divider.php:259
+#: includes/Modules/Divider.php:258
 msgid "SPAN tag"
 msgstr "SPAN الوسم"
 
-#: includes/Modules/PostGrid.php:1194
+#: includes/Modules/PostGrid.php:1195
 msgid "Spinner Primary Color"
 msgstr "غزل اللون الأساسي"
 
-#: includes/Modules/PostGrid.php:1204
+#: includes/Modules/PostGrid.php:1205
 msgid "Spinner Secondary Color"
 msgstr "غزل اللون الثانوي"
 
-#: includes/Modules/PostGrid.php:1214
+#: includes/Modules/PostGrid.php:1215
 msgid "Spinner Size"
 msgstr "غزل حجم"
 
@@ -5286,11 +5188,11 @@ msgstr "نجوم اللون"
 msgid "Stars Display Type"
 msgstr "النجوم نوع العرض"
 
-#: includes/Modules/TypingText.php:351
+#: includes/Modules/TypingText.php:350
 msgid "Start Delay (ms)"
 msgstr "تأخير بدء التشغيل (ms)"
 
-#: includes/Modules/BusinessHoursChild.php:231
+#: includes/Modules/BusinessHoursChild.php:230
 msgid "Start Time"
 msgstr "وقت البدء"
 
@@ -5306,30 +5208,30 @@ msgstr "عرض السكتة الدماغية"
 msgid "Stuck with something? Get help from live chat or submit a support ticket."
 msgstr "عالقة مع شيء ؟ الحصول على مساعدة من الدردشة الحية أو إرسال تذكرة دعم."
 
-#: includes/Modules/FlipBox.php:286
-#: includes/Modules/FlipBox.php:314
-#: includes/Modules/FlipBox.php:1505
-#: includes/Modules/FlipBox.php:2307
+#: includes/Modules/FlipBox.php:285
+#: includes/Modules/FlipBox.php:313
+#: includes/Modules/FlipBox.php:1504
+#: includes/Modules/FlipBox.php:2306
 msgid "Sub Title"
 msgstr "العنوان الفرعي"
 
-#: includes/Modules/FlipBox.php:2051
+#: includes/Modules/FlipBox.php:2050
 msgid "Sub Title Margin"
 msgstr "العنوان الفرعي الهامش"
 
-#: includes/Modules/FlipBox.php:2209
+#: includes/Modules/FlipBox.php:2208
 msgid "Sub Title Order"
 msgstr "العنوان الفرعي النظام"
 
-#: includes/Modules/FlipBox.php:2069
+#: includes/Modules/FlipBox.php:2068
 msgid "Sub Title Padding"
 msgstr "العنوان الفرعي الحشو"
 
-#: includes/Modules/FlipBox.php:1539
+#: includes/Modules/FlipBox.php:1538
 msgid "Sub Title Tag"
 msgstr "العنوان الفرعي الوسم"
 
-#: includes/Modules/FlipBox.php:119
+#: includes/Modules/FlipBox.php:118
 msgid "Sub Title Text"
 msgstr "العنوان الفرعي النص"
 
@@ -5369,7 +5271,7 @@ msgstr "دعم الاستعلام"
 msgid "Support Type"
 msgstr "نوع الدعم"
 
-#: includes/Modules/Divider.php:1016
+#: includes/Modules/Divider.php:1015
 #: includes/Modules/Lottie.php:341
 msgid "SVG"
 msgstr "SVG"
@@ -5378,7 +5280,7 @@ msgstr "SVG"
 msgid "SVG Image Upload Support"
 msgstr "SVG تحميل صورة الدعم"
 
-#: includes/Modules/PostGrid.php:543
+#: includes/Modules/PostGrid.php:544
 msgid "Tag"
 msgstr "الوسم"
 
@@ -5386,13 +5288,9 @@ msgstr "الوسم"
 msgid "Tags"
 msgstr "Tags"
 
-#: includes/Modules/PostGridChild.php:422
+#: includes/Modules/PostGridChild.php:427
 msgid "Tags Separator"
 msgstr "العلامات فاصل"
-
-#: build/admin/scripts/admin.js:175
-msgid "Take charge of your workspace with the Toggle Button. It's your ultimate tool for managing extensions seamlessly, keeping your focus where it matters."
-msgstr "تحمل المسؤولية من مساحة العمل الخاصة بك مع زر تبديل. انها في نهاية المطاف أداة لإدارة امتداد بسلاسة ، الحفاظ على التركيز الخاص بك حيث لا يهم."
 
 #: build/admin/scripts/admin.js:175
 msgid "Take your 2 minutes to review the plugin and spread the love to encourage us to keep it going."
@@ -5413,10 +5311,10 @@ msgstr "الدعم الفني"
 msgid "Text"
 msgstr "النص"
 
-#: includes/Modules/BusinessHours.php:392
-#: includes/Modules/BusinessHoursChild.php:318
-#: includes/Modules/FlipBox.php:1954
-#: includes/Modules/PostGrid.php:1278
+#: includes/Modules/BusinessHours.php:391
+#: includes/Modules/BusinessHoursChild.php:317
+#: includes/Modules/FlipBox.php:1953
+#: includes/Modules/PostGrid.php:1279
 msgid "Text Alignment"
 msgstr "محاذاة النص"
 
@@ -5440,7 +5338,7 @@ msgstr "مربع نص العرض"
 msgid "Text Colors"
 msgstr "ألوان النص"
 
-#: includes/Modules/PostGridChild.php:359
+#: includes/Modules/PostGridChild.php:364
 msgid "Text Limit"
 msgstr "الحد نص"
 
@@ -5483,11 +5381,11 @@ msgstr "بعد نص حقل مخصص النص سوف تظهر في آخر عنص�
 msgid "The after text of your custom url field text will appear in with your post element."
 msgstr "بعد نص عنوان url مخصص حقل النص سوف تظهر في آخر عنصر."
 
-#: includes/Modules/PostGridChild.php:397
+#: includes/Modules/PostGridChild.php:402
 msgid "The after text of your post comments will appear in with your post element."
 msgstr "بعد نص التعليقات سوف تظهر في آخر عنصر."
 
-#: includes/Modules/TypingText.php:303
+#: includes/Modules/TypingText.php:302
 msgid "The after text will appear in with your texts."
 msgstr "بعد النص سوف تظهر في النصوص."
 
@@ -5500,20 +5398,20 @@ msgstr "صاحب المنتج لهذا التصنيف."
 msgid "The before text of your custom field text will appear in with your post element."
 msgstr "قبل نص حقل مخصص النص سوف تظهر في آخر عنصر."
 
-#: includes/Modules/PostGridChild.php:385
+#: includes/Modules/PostGridChild.php:390
 msgid "The before text of your post comments will appear in with your post element."
 msgstr "قبل نص التعليقات سوف تظهر في آخر عنصر."
 
-#: includes/Modules/TypingText.php:284
+#: includes/Modules/TypingText.php:283
 msgid "The before text will appear in with your texts."
 msgstr "قبل النص سوف تظهر في النصوص."
 
-#: includes/Modules/TypingText.php:492
-#: includes/Modules/TypingText.php:517
+#: includes/Modules/TypingText.php:491
+#: includes/Modules/TypingText.php:516
 msgid "The cursor character will appear in the cursor pointer."
 msgstr "المؤشر حرف سوف تظهر في المؤشر المؤشر."
 
-#: includes/Modules/BusinessHoursChild.php:192
+#: includes/Modules/BusinessHoursChild.php:191
 msgid "The day name will appear in with your day element."
 msgstr "اليوم سوف يظهر اسم في اليوم عنصر."
 
@@ -5521,13 +5419,13 @@ msgstr "اليوم سوف يظهر اسم في اليوم عنصر."
 msgid "The default Home text in the Breadcrumbs"
 msgstr "الرئيسية الافتراضية النص في فتات الخبز"
 
-#: includes/Managers/RestRoutes/V1/Notices/Discount.php:51
+#: includes/Managers/RestRoutes/Version1/Notices/Discount.php:77
 msgid "The discount is not available."
 msgstr "الخصم غير متوفر."
 
-#: includes/Modules/TypingText.php:709
-#: includes/Modules/TypingText.php:723
-#: includes/Modules/TypingText.php:737
+#: includes/Modules/TypingText.php:708
+#: includes/Modules/TypingText.php:722
+#: includes/Modules/TypingText.php:736
 msgid "The display CSS property sets whether an element is treated as a block or inline box."
 msgstr "عرض خاصية CSS يحدد ما إذا كان عنصر يتم التعامل مع كتلة أو مضمنة مربع."
 
@@ -5536,11 +5434,11 @@ msgid "The Divi Squad plugin stores some data in the database."
 msgstr "على ديفي فرقة المساعد بتخزين بعض البيانات في قاعدة البيانات."
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:163
-#: includes/Modules/Divider.php:391
+#: includes/Modules/Divider.php:390
 msgid "The dividing line can be placed either above, below or in the center of the module."
 msgstr "الخط الفاصل يمكن وضعها إما أعلى أو أقل أو في مركز الوحدة."
 
-#: includes/Modules/BusinessHoursChild.php:244
+#: includes/Modules/BusinessHoursChild.php:243
 msgid "The end time text will appear in with your time element."
 msgstr "نهاية الوقت سوف يظهر النص في عنصر الوقت."
 
@@ -5569,46 +5467,37 @@ msgstr "آخر النص سوف تظهر في الوقت النص."
 msgid "The lightbox feature will be work in the frontend."
 msgstr "العلبة الخفيفة الميزة سوف يكون العمل في الواجهة."
 
-#: includes/Managers/RestRoutes/V1/Extensions.php:162
-msgid "The list of active extensions are updated."
-msgstr "قائمة نشطة امتداد يتم تحديثها."
-
-#: includes/Managers/RestRoutes/V1/Modules.php:162
-msgid "The list of active modules are updated."
-msgstr "قائمة وحدات النشطة يتم تحديثها."
-
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
 #: includes/Modules/GoogleMap.php:114
 msgid "The module uses the Google Maps API and requires a valid Google API Key to function. Before using the map module, please make sure you have added your API key inside the Divi Theme Options panel. Learn more about how to create your Google API Key %1$shere%2$s."
 msgstr "وحدة يستخدم خرائط جوجل API و يتطلب صالح جوجل API مفتاح وظيفة. قبل استخدام خريطة وحدة من فضلك تأكد من أن قمت بإضافة مفتاح API الخاص بك داخل ديفي لوحة خيارات الموضوع. معرفة المزيد حول كيفية إنشاء مفتاح API جوجل %1$شير%2$s."
 
-#: includes/Managers/RestRoutes/V1/Notices/ProActivation.php:51
+#: includes/Managers/RestRoutes/Version1/Notices/ProActivation.php:77
 msgid "The notice is not available."
 msgstr "إشعار غير متوفر."
 
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:58
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:94
+#: includes/Managers/RestRoutes/Version1/Notices/Review.php:104
 msgid "The review is not available."
 msgstr "استعراض غير متوفر."
 
-#: includes/Modules/PostGridChild.php:411
+#: includes/Modules/PostGridChild.php:416
 msgid "The separator text of your categories will appear in with your categories element."
 msgstr "فاصل نص الفئات الخاصة بك سوف تظهر في فئات العنصر."
 
-#: includes/Modules/PostGridChild.php:423
+#: includes/Modules/PostGridChild.php:428
 msgid "The separator text of your tags will appear in with your tags element."
 msgstr "فاصل نص العلامات الخاصة بك سوف تظهر في فئة عنصر."
 
-#: includes/Modules/Divider.php:963
+#: includes/Modules/Divider.php:962
 #: includes/Modules/Lottie.php:288
 msgid "The speed of the animation."
 msgstr "سرعة الحركة."
 
-#: includes/Modules/BusinessHoursChild.php:232
+#: includes/Modules/BusinessHoursChild.php:231
 msgid "The start time text will appear in with your time element."
 msgstr "وقت البدء سوف يظهر النص في عنصر الوقت."
 
-#: includes/Modules/FlipBox.php:1667
+#: includes/Modules/FlipBox.php:1666
 msgid "The text as icon will appear in your current side of flip box."
 msgstr "النص سوف تظهر أيقونة في هذا الجانب من الوجه المربع."
 
@@ -5620,23 +5509,23 @@ msgstr "النص قبل فتات الخبز"
 msgid "The text of your button will appear in with the module."
 msgstr "نص الزر الخاص بك سوف تظهر في وحدة."
 
-#: includes/Modules/PostGridChild.php:634
+#: includes/Modules/PostGridChild.php:689
 msgid "The text of your post will appear in bold as icon."
 msgstr "نص وظيفة الخاص بك سوف تظهر في جريئة كرمز."
 
-#: includes/Modules/DualButton.php:324
+#: includes/Modules/DualButton.php:323
 msgid "The text of your separator will appear in with your button separator."
 msgstr "نص فاصل سوف تظهر في زر فاصل."
 
-#: includes/Modules/FlipBox.php:1506
+#: includes/Modules/FlipBox.php:1505
 msgid "The text of your sub title will appear in with your current side of flip box."
 msgstr "نص العنوان الفرعي سوف تظهر في هذه الجانب من الوجه المربع."
 
-#: includes/Modules/FlipBox.php:1495
+#: includes/Modules/FlipBox.php:1494
 msgid "The text of your title will appear in with your current side of flip box."
 msgstr "نص العنوان الخاص بك سوف تظهر في هذه الجانب من الوجه المربع."
 
-#: includes/Modules/PostGridChild.php:519
+#: includes/Modules/PostGridChild.php:524
 msgid "The text will appear in with your custom text element."
 msgstr "سوف يظهر النص في نص مخصص عنصر."
 
@@ -5648,15 +5537,15 @@ msgstr "النص سوف تظهر في خلل النص."
 msgid "The text will appear in with your gradient texts."
 msgstr "النص سوف تظهر في التدرج النصوص."
 
-#: includes/Modules/PostGrid.php:914
+#: includes/Modules/PostGrid.php:915
 msgid "The text will appear in with your next entries."
 msgstr "سوف يظهر النص في التالي الإدخالات."
 
-#: includes/Modules/PostGrid.php:891
+#: includes/Modules/PostGrid.php:892
 msgid "The text will appear in with your old entries."
 msgstr "سوف يظهر النص في القديم الخاص بك إدخالات."
 
-#: includes/Modules/PostGridChild.php:507
+#: includes/Modules/PostGridChild.php:512
 msgid "The text will appear in with your read more element."
 msgstr "سوف يظهر النص في قراءة أكثر من عنصر."
 
@@ -5668,12 +5557,12 @@ msgstr "النص سوف تظهر في النص التمرير."
 msgid "The text will appear in with your star rating."
 msgstr "النص سوف تظهر في النجوم."
 
-#: includes/Modules/BusinessHoursChild.php:203
+#: includes/Modules/BusinessHoursChild.php:202
 msgid "The time text will appear in with your time element."
 msgstr "الوقت سوف يظهر النص في عنصر الوقت."
 
-#: includes/Modules/Divider.php:239
-#: includes/Modules/Divider.php:631
+#: includes/Modules/Divider.php:238
+#: includes/Modules/Divider.php:630
 msgid "The title of your divider will appear in bold below your divider image."
 msgstr "عنوان مقسم سوف تظهر بالخط العريض تحت مقسم الصورة."
 
@@ -5681,11 +5570,11 @@ msgstr "عنوان مقسم سوف تظهر بالخط العريض تحت مق�
 msgid "The title of your list item will appear in bold below your list item image."
 msgstr "عنوان عنصر القائمة سوف تظهر بالخط العريض تحت البند قائمة الصورة."
 
-#: includes/Modules/BusinessHoursChild.php:282
+#: includes/Modules/BusinessHoursChild.php:281
 msgid "The title of your list item will appear in with your list item."
 msgstr "عنوان عنصر القائمة سوف تظهر في قائمة البند."
 
-#: includes/Modules/BusinessHours.php:251
+#: includes/Modules/BusinessHours.php:250
 msgid "The title text will appear before at your business hours."
 msgstr "عنوان النص سوف تظهر في ساعات العمل الخاصة بك."
 
@@ -5693,15 +5582,15 @@ msgstr "عنوان النص سوف تظهر في ساعات العمل الخا�
 msgid "The total number of ratings based on the rating given."
 msgstr "إجمالي عدد التقييم على أساس تصنيف معين."
 
-#: includes/Modules/TypingText.php:295
+#: includes/Modules/TypingText.php:294
 msgid "The typing text will appear in with your texts."
 msgstr "كتابة النص سوف تظهر في النصوص."
 
-#: includes/Modules/BusinessHours.php:394
-#: includes/Modules/BusinessHoursChild.php:320
-#: includes/Modules/FlipBox.php:1956
-#: includes/Modules/PostGrid.php:1280
-#: includes/Modules/PostGridChild.php:916
+#: includes/Modules/BusinessHours.php:393
+#: includes/Modules/BusinessHoursChild.php:319
+#: includes/Modules/FlipBox.php:1955
+#: includes/Modules/PostGrid.php:1281
+#: includes/Modules/PostGridChild.php:971
 msgid "This controls how your text is aligned within the module."
 msgstr "هذا يتحكم في كيفية النص الخاص بك هو الانحياز داخل الوحدة."
 
@@ -5721,8 +5610,8 @@ msgstr "هذا يتحكم في سرعة انتقال منحنى الرسوم ا�
 msgid "This field is required."
 msgstr "هذا الحقل مطلوب."
 
-#: includes/Modules/Divider.php:285
-#: includes/Modules/Divider.php:917
+#: includes/Modules/Divider.php:284
+#: includes/Modules/Divider.php:916
 #: includes/Modules/Lottie.php:242
 msgid "This option is only available if Yes is selected for Loop. Enter the number of times you wish to have the animation loop before stopping."
 msgstr "يتوفر هذا الخيار فقط إذا كان الجواب نعم هو المحدد للحلقة. أدخل عدد من المرات كنت ترغب في الحصول على الرسوم المتحركة حلقة قبل التوقف."
@@ -5731,15 +5620,15 @@ msgstr "يتوفر هذا الخيار فقط إذا كان الجواب نعم 
 msgid "This settings turns on and off the 1px divider line, but does not affect the divider height."
 msgstr "هذه إعدادات تشغيل وإيقاف 1px مقسم خط, ولكن لا يؤثر على مقسم الارتفاع."
 
-#: includes/Modules/Divider.php:343
+#: includes/Modules/Divider.php:342
 msgid "This settings turns on and off the divider custom color"
 msgstr "هذه إعدادات تشغيل وإيقاف مقسم لون مخصص"
 
-#: includes/Modules/Divider.php:431
+#: includes/Modules/Divider.php:430
 msgid "This settings turns on and off the divider custom size."
 msgstr "هذه إعدادات تشغيل وإيقاف مقسم حجم مخصص."
 
-#: includes/Modules/Divider.php:271
+#: includes/Modules/Divider.php:270
 msgid "This settings turns on and off the multiple divider line."
 msgstr "هذه إعدادات تشغيل وإيقاف متعددة مقسم خط."
 
@@ -5748,7 +5637,7 @@ msgid "this site"
 msgstr "هذا الموقع"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:138
-#: includes/Modules/Divider.php:329
+#: includes/Modules/Divider.php:328
 msgid "This will adjust the color of the 1px divider line."
 msgstr "هذا ضبط لون 1px مقسم خط."
 
@@ -5756,13 +5645,13 @@ msgstr "هذا ضبط لون 1px مقسم خط."
 msgid "This will change the label of the module in the builder for easy identification."
 msgstr "سيؤدي ذلك إلى تغيير تسمية وحدة في البناء لسهولة تحديد."
 
-#: includes/Modules/BusinessHours.php:76
-#: includes/Modules/BusinessHours.php:123
-#: includes/Modules/BusinessHours.php:222
-#: includes/Modules/BusinessHoursChild.php:74
-#: includes/Modules/BusinessHoursChild.php:104
-#: includes/Modules/BusinessHoursChild.php:171
-#: includes/Modules/BusinessHoursChild.php:202
+#: includes/Modules/BusinessHours.php:75
+#: includes/Modules/BusinessHours.php:122
+#: includes/Modules/BusinessHours.php:221
+#: includes/Modules/BusinessHoursChild.php:73
+#: includes/Modules/BusinessHoursChild.php:103
+#: includes/Modules/BusinessHoursChild.php:170
+#: includes/Modules/BusinessHoursChild.php:201
 #: includes/Modules/PostReadingTime.php:71
 #: includes/Modules/PostReadingTime.php:82
 #: includes/Modules/PostReadingTime.php:95
@@ -5794,7 +5683,7 @@ msgstr "الوقت البادئة"
 msgid "Time Prefix Text"
 msgstr "الوقت البادئة النص"
 
-#: includes/Modules/BusinessHoursChild.php:255
+#: includes/Modules/BusinessHoursChild.php:254
 msgid "Time Separator"
 msgstr "فاصل الوقت"
 
@@ -5819,18 +5708,18 @@ msgstr "الوقت نص"
 msgid "Time Text Tag"
 msgstr "الوقت نص الوسم"
 
-#: includes/Modules/BusinessHours.php:374
+#: includes/Modules/BusinessHours.php:373
 msgid "Time Text Width"
 msgstr "وقت عرض النص"
 
-#: includes/Modules/BusinessHours.php:58
-#: includes/Modules/BusinessHours.php:65
-#: includes/Modules/BusinessHours.php:88
-#: includes/Modules/BusinessHours.php:214
-#: includes/Modules/FlipBox.php:230
-#: includes/Modules/FlipBox.php:258
-#: includes/Modules/FlipBox.php:1494
-#: includes/Modules/FlipBox.php:2299
+#: includes/Modules/BusinessHours.php:57
+#: includes/Modules/BusinessHours.php:64
+#: includes/Modules/BusinessHours.php:87
+#: includes/Modules/BusinessHours.php:213
+#: includes/Modules/FlipBox.php:229
+#: includes/Modules/FlipBox.php:257
+#: includes/Modules/FlipBox.php:1493
+#: includes/Modules/FlipBox.php:2298
 #: includes/Modules/FormStylers/GravityForms.php:63
 #: includes/Modules/FormStylers/GravityForms.php:317
 #: includes/Modules/FormStylers/GravityForms.php:454
@@ -5845,13 +5734,13 @@ msgstr "وقت عرض النص"
 msgid "Title"
 msgstr "العنوان"
 
-#: includes/Modules/BusinessHours.php:347
+#: includes/Modules/BusinessHours.php:346
 #: includes/Modules/FormStylers/GravityForms.php:188
 #: includes/Modules/FormStylers/NinjaForms.php:90
 msgid "Title Background"
 msgstr "العنوان الخلفية"
 
-#: includes/Modules/BusinessHours.php:188
+#: includes/Modules/BusinessHours.php:187
 #: includes/Modules/FormStylers/GravityForms.php:597
 #: includes/Modules/FormStylers/NinjaForms.php:505
 msgid "Title Box Shadow"
@@ -5861,19 +5750,19 @@ msgstr "عنوان مربع الظل"
 msgid "Title Icon"
 msgstr "العنوان الرمز"
 
-#: includes/Modules/PostGridChild.php:705
+#: includes/Modules/PostGridChild.php:760
 msgid "Title Icon Color"
 msgstr "العنوان رمز اللون"
 
-#: includes/Modules/PostGridChild.php:880
+#: includes/Modules/PostGridChild.php:935
 msgid "Title Icon Margin"
 msgstr "العنوان رمز الهامش"
 
-#: includes/Modules/PostGridChild.php:891
+#: includes/Modules/PostGridChild.php:946
 msgid "Title Icon Padding"
 msgstr "العنوان رمز الحشو"
 
-#: includes/Modules/PostGridChild.php:760
+#: includes/Modules/PostGridChild.php:815
 msgid "Title Icon Size"
 msgstr "العنوان حجم الرمز"
 
@@ -5881,19 +5770,19 @@ msgstr "العنوان حجم الرمز"
 msgid "Title Inline Position"
 msgstr "العنوان مضمنة الموقف"
 
-#: includes/Modules/BusinessHours.php:429
-#: includes/Modules/FlipBox.php:2015
+#: includes/Modules/BusinessHours.php:428
+#: includes/Modules/FlipBox.php:2014
 #: includes/Modules/FormStylers/GravityForms.php:206
 #: includes/Modules/FormStylers/NinjaForms.php:99
 msgid "Title Margin"
 msgstr "العنوان الهامش"
 
-#: includes/Modules/FlipBox.php:2187
+#: includes/Modules/FlipBox.php:2186
 msgid "Title Order"
 msgstr "أجل اللقب"
 
-#: includes/Modules/BusinessHours.php:445
-#: includes/Modules/FlipBox.php:2033
+#: includes/Modules/BusinessHours.php:444
+#: includes/Modules/FlipBox.php:2032
 #: includes/Modules/FormStylers/GravityForms.php:223
 #: includes/Modules/FormStylers/NinjaForms.php:117
 msgid "Title Padding"
@@ -5903,15 +5792,15 @@ msgstr "العنوان الحشو"
 msgid "Title Stacked Position"
 msgstr "العنوان مكدسة الموقف"
 
-#: includes/Modules/BusinessHours.php:261
-#: includes/Modules/FlipBox.php:1527
-#: includes/Modules/PostGridChild.php:438
+#: includes/Modules/BusinessHours.php:260
+#: includes/Modules/FlipBox.php:1526
+#: includes/Modules/PostGridChild.php:443
 #: includes/Modules/StarRating.php:228
 msgid "Title Tag"
 msgstr "عنوان الوسم"
 
-#: includes/Modules/BusinessHours.php:66
-#: includes/Modules/FlipBox.php:114
+#: includes/Modules/BusinessHours.php:65
+#: includes/Modules/FlipBox.php:113
 #: includes/Modules/FormStylers/GravityForms.php:64
 msgid "Title Text"
 msgstr "عنوان النص"
@@ -5920,9 +5809,9 @@ msgstr "عنوان النص"
 msgid "to"
 msgstr "إلى"
 
-#: includes/Modules/FlipBox.php:1175
-#: includes/Modules/FlipBox.php:1882
-#: includes/Modules/PostGridChild.php:825
+#: includes/Modules/FlipBox.php:1174
+#: includes/Modules/FlipBox.php:1881
+#: includes/Modules/PostGridChild.php:880
 #: includes/Modules/StarRating.php:276
 msgid "Top"
 msgstr "أعلى"
@@ -5943,11 +5832,11 @@ msgstr "المدة الانتقالية"
 msgid "Transition Speed Curve"
 msgstr "سرعة انتقال منحنى"
 
-#: includes/Managers/Branding/AdminFooterText.php:110
+#: includes/Managers/Branding/AdminFooterText.php:112
 msgid "Translate"
 msgstr "ترجمة"
 
-#: includes/Modules/FlipBox.php:1334
+#: includes/Modules/FlipBox.php:1333
 msgid "Translate Z"
 msgstr "ترجمة Z"
 
@@ -5959,62 +5848,54 @@ msgstr "تحريك النص"
 msgid "Type youtube or vimeo video url which you would like to display in the popup."
 msgstr "نوع يوتيوب أو فيميو الفيديو url الذي ترغب في عرضها في النافذة المنبثقة."
 
-#: includes/Modules/TypingText.php:69
-#: includes/Modules/TypingText.php:96
-#: includes/Modules/TypingText.php:154
-#: includes/Modules/TypingText.php:255
+#: includes/Modules/TypingText.php:68
+#: includes/Modules/TypingText.php:95
+#: includes/Modules/TypingText.php:153
+#: includes/Modules/TypingText.php:254
 msgid "Typed"
 msgstr "كتبته"
 
-#: includes/Modules/TypingText.php:665
+#: includes/Modules/TypingText.php:664
 msgid "Typed Background"
 msgstr "كتبته الخلفية"
 
-#: includes/Modules/TypingText.php:211
+#: includes/Modules/TypingText.php:210
 msgid "Typed Box Shadow"
 msgstr "كتبته مربع الظل"
 
-#: includes/Modules/TypingText.php:71
+#: includes/Modules/TypingText.php:70
 msgid "Typed Cursor"
 msgstr "كتبته المؤشر"
 
-#: includes/Modules/TypingText.php:781
+#: includes/Modules/TypingText.php:780
 msgid "Typed Margin"
 msgstr "كتبته الهامش"
 
-#: includes/Modules/TypingText.php:795
+#: includes/Modules/TypingText.php:794
 msgid "Typed Padding"
 msgstr "كتبته الحشو"
 
-#: includes/Modules/TypingText.php:70
+#: includes/Modules/TypingText.php:69
 msgid "Typed Text"
 msgstr "النص المكتوب"
 
-#: includes/Modules/TypingText.php:61
+#: includes/Modules/TypingText.php:60
 msgid "Typing Settings"
 msgstr "كتابة الإعدادات"
 
-#: includes/Modules/TypingText.php:328
+#: includes/Modules/TypingText.php:327
 msgid "Typing Speed (ms)"
 msgstr "سرعة الطباعة (ms)"
 
 #: includes/Managers/Features/Modules.php:197
-#: includes/Modules/TypingText.php:42
-#: includes/Modules/TypingText.php:294
+#: includes/Modules/TypingText.php:41
+#: includes/Modules/TypingText.php:293
 msgid "Typing Text"
 msgstr "كتابة نص"
 
-#: includes/Modules/TypingText.php:43
+#: includes/Modules/TypingText.php:42
 msgid "Typing Texts"
 msgstr "كتابة النصوص"
-
-#: build/admin/scripts/admin.js:175
-msgid "Unable to load extension list."
-msgstr "غير قادر على تحميل قائمة ملحق."
-
-#: build/admin/scripts/admin.js:175
-msgid "Unable to load module list."
-msgstr "غير قادر على تحميل قائمة وحدة."
 
 #: build/admin/scripts/admin.js:175
 msgid "Unable to load new changes."
@@ -6034,7 +5915,7 @@ msgid "Unlock 30+ powerful modules to build awesome websites."
 msgstr "فتح 30+ وحدات قوية لبناء المواقع رهيبة."
 
 #. translators: %s: The unsupported field type
-#: includes/Base/DiviBuilder/Utils/Elements/CustomFields.php:185
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields.php:187
 msgid "Unsupported field type: %s"
 msgstr "غير معتمد نوع الحقل: %s"
 
@@ -6043,11 +5924,11 @@ msgid "Unsupported form type."
 msgstr "غير معتمد نوع النموذج."
 
 #. translators: %s: The unsupported storage type
-#: includes/Base/DiviBuilder/Utils/Elements/CustomFields.php:197
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields.php:199
 msgid "Unsupported storage type: %s"
 msgstr "غير معتمد نوع التخزين: %s"
 
-#: includes/Modules/FlipBox.php:1218
+#: includes/Modules/FlipBox.php:1217
 msgid "Up"
 msgstr "حتى"
 
@@ -6067,17 +5948,17 @@ msgstr "الترقية الآن"
 msgid "Upgrade to pro"
 msgstr "الترقية إلى برو"
 
-#: includes/Modules/Divider.php:617
+#: includes/Modules/Divider.php:616
 #: includes/Modules/Lottie.php:110
 msgid "Upload"
 msgstr "تحميل"
 
-#: includes/Modules/Divider.php:640
+#: includes/Modules/Divider.php:639
 #: includes/Modules/Lottie.php:132
 msgid "Upload a Lottie json"
 msgstr "تحميل لوتي سلمان"
 
-#: includes/Modules/Divider.php:644
+#: includes/Modules/Divider.php:643
 #: includes/Modules/Lottie.php:136
 msgid "Upload a lottie json file"
 msgstr "تحميل لوتي ملف json"
@@ -6094,19 +5975,19 @@ msgstr "تحميل صورة"
 msgid "Upload an image to display at the top of your button."
 msgstr "تحميل صورة عرض في الجزء العلوي من الزر الخاص بك."
 
-#: includes/Modules/FlipBox.php:1641
+#: includes/Modules/FlipBox.php:1640
 msgid "Upload an image to display at the top of your current side of flip box."
 msgstr "تحميل صورة عرض في الجزء العلوي من جانبي الوجه المربع."
 
-#: includes/Modules/Divider.php:588
+#: includes/Modules/Divider.php:587
 msgid "Upload an image to display at the top of your divider."
 msgstr "تحميل صورة عرض في الجزء العلوي من مقسم."
 
-#: includes/Modules/PostGridChild.php:609
+#: includes/Modules/PostGridChild.php:664
 msgid "Upload an image to display at the top of your post."
 msgstr "تحميل صورة عرض في الجزء العلوي من وظيفة الخاص بك."
 
-#: includes/Modules/DualButton.php:395
+#: includes/Modules/DualButton.php:394
 msgid "Upload an image to display at the top of your separator."
 msgstr "تحميل صورة عرض في الجزء العلوي من الفاصل."
 
@@ -6122,7 +6003,7 @@ msgstr "تحميل صورة إلى العرض."
 msgid "Upload your desired video in .MP4 format, or type in the URL to the video you would like to display"
 msgstr "تحميل الفيديو المطلوب في .صيغة MP4 أو اكتب في عنوان URL الفيديو التي ترغب في عرضها"
 
-#: includes/Modules/FlipBox.php:1308
+#: includes/Modules/FlipBox.php:1307
 msgid "Use 3D Content Effect"
 msgstr "استخدام محتوى 3D تأثير"
 
@@ -6138,11 +6019,11 @@ msgstr "استخدام الرسوم المتحركة رمز"
 msgid "Use animated wave for your icon. For better experience please set icon background color from icon design toggle."
 msgstr "استخدام الرسوم المتحركة موجة على الرمز الخاص بك. لتجربة أفضل يرجى وضع رمز لون الخلفية من تصميم رمز تبديل."
 
-#: includes/Modules/PostGridChild.php:643
+#: includes/Modules/PostGridChild.php:698
 msgid "Use Left Icon for Title"
 msgstr "استخدام اليسار رمز العنوان"
 
-#: includes/Modules/Divider.php:269
+#: includes/Modules/Divider.php:268
 msgid "Use Multiple Line"
 msgstr "استخدام خط متعددة"
 
@@ -6150,7 +6031,7 @@ msgstr "استخدام خط متعددة"
 msgid "Use Overlay Image"
 msgstr "استخدام تراكب الصورة"
 
-#: includes/Modules/DualButton.php:335
+#: includes/Modules/DualButton.php:334
 msgid "Use Separator Icon"
 msgstr "استخدام فاصل رمز"
 
@@ -6170,18 +6051,18 @@ msgstr "المستخدم غير موجود."
 msgid "Username"
 msgstr "اسم المستخدم"
 
-#: includes/Managers/Branding/AdminFooterText.php:124
+#: includes/Managers/Branding/AdminFooterText.php:126
 msgid "Version"
 msgstr "الإصدار"
 
 #: includes/Modules/BeforeAfterImageSlider.php:295
-#: includes/Modules/DualButton.php:587
+#: includes/Modules/DualButton.php:586
 #: includes/Modules/ImageMask.php:244
 msgid "Vertical"
 msgstr "العمودي"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:168
-#: includes/Modules/Divider.php:396
+#: includes/Modules/Divider.php:395
 msgid "Vertically Centered"
 msgstr "محورها عموديا"
 
@@ -6218,7 +6099,7 @@ msgstr "مشاهدة التغيير"
 msgid "View Documentation"
 msgstr "عرض الوثائق"
 
-#: includes/Managers/Branding/AdminFooterText.php:133
+#: includes/Managers/Branding/AdminFooterText.php:135
 msgid "View what changed in this version"
 msgstr "عرض ما تغير في هذا الإصدار"
 
@@ -6227,7 +6108,7 @@ msgid "Vimeo"
 msgstr "فيميو"
 
 #: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:151
-#: includes/Modules/PostGrid.php:2637
+#: includes/Modules/PostGrid.php:3071
 msgid "Visit the link"
 msgstr "زيارة الرابط"
 
@@ -6260,15 +6141,11 @@ msgstr "ما هو الجديد"
 msgid "Whoops! Enabled extensions not saved. Try again later."
 msgstr "يصيح! تمكين ملحقات لم يتم حفظها. حاول مرة أخرى في وقت لاحق."
 
-#: build/admin/scripts/admin.js:175
-msgid "Whoops! Enabled modules not saved. Try again later."
-msgstr "يصيح! تمكين الوحدات لم يتم حفظها. حاول مرة أخرى في وقت لاحق."
-
 #: includes/Modules/VideoPopup.php:406
 msgid "Width"
 msgstr "العرض"
 
-#: includes/Modules/Divider.php:883
+#: includes/Modules/Divider.php:882
 #: includes/Modules/Lottie.php:208
 msgid "Within this section/row"
 msgstr "في هذا القسم/الصف"
@@ -6277,7 +6154,7 @@ msgstr "في هذا القسم/الصف"
 msgid "WordPress Login Credentials"
 msgstr "وورد تسجيل الدخول"
 
-#: includes/Managers/Branding/AdminFooterText.php:69
+#: includes/Managers/Branding/AdminFooterText.php:70
 msgid "WordPress.org"
 msgstr "WordPress.org"
 
@@ -6310,16 +6187,16 @@ msgstr "WPForms لم يتم تثبيت"
 
 #: includes/Base/DiviBuilder/Module/FormStyler.php:260
 #: includes/Base/DiviBuilder/Utils/Elements/Forms.php:82
-#: includes/Modules/BusinessHours.php:145
-#: includes/Modules/BusinessHoursChild.php:64
-#: includes/Modules/BusinessHoursChild.php:175
-#: includes/Modules/Divider.php:74
-#: includes/Modules/Divider.php:111
-#: includes/Modules/DualButton.php:70
-#: includes/Modules/DualButton.php:291
-#: includes/Modules/FlipBox.php:835
-#: includes/Modules/FlipBox.php:848
-#: includes/Modules/FlipBox.php:1030
+#: includes/Modules/BusinessHours.php:144
+#: includes/Modules/BusinessHoursChild.php:63
+#: includes/Modules/BusinessHoursChild.php:174
+#: includes/Modules/Divider.php:73
+#: includes/Modules/Divider.php:110
+#: includes/Modules/DualButton.php:69
+#: includes/Modules/DualButton.php:290
+#: includes/Modules/FlipBox.php:834
+#: includes/Modules/FlipBox.php:847
+#: includes/Modules/FlipBox.php:1029
 #: includes/Modules/FormStylers/ContactForm7.php:202
 #: includes/Modules/FormStylers/ContactForm7.php:569
 #: includes/Modules/FormStylers/FluentForms.php:519
@@ -6327,74 +6204,74 @@ msgstr "WPForms لم يتم تثبيت"
 #: includes/Modules/FormStylers/NinjaForms.php:362
 #: includes/Modules/FormStylers/NinjaForms.php:596
 #: includes/Modules/FormStylers/WPForms.php:241
-#: includes/Modules/PostGrid.php:194
-#: includes/Modules/PostGrid.php:215
-#: includes/Modules/PostGrid.php:303
+#: includes/Modules/PostGrid.php:195
+#: includes/Modules/PostGrid.php:216
+#: includes/Modules/PostGrid.php:304
 #: includes/Modules/PostGridChild.php:94
 #: includes/Modules/PostGridChild.php:279
-#: includes/Modules/TypingText.php:66
-#: includes/Modules/TypingText.php:128
-#: includes/Modules/TypingText.php:263
+#: includes/Modules/TypingText.php:65
+#: includes/Modules/TypingText.php:127
+#: includes/Modules/TypingText.php:262
 msgid "Wrapper"
 msgstr "المجمع"
 
-#: includes/Modules/DualButton.php:573
+#: includes/Modules/DualButton.php:572
 msgid "Wrapper Alignment"
 msgstr "المجمع المحاذاة"
 
 #: includes/Base/DiviBuilder/Module/FormStyler.php:81
-#: includes/Modules/BusinessHours.php:338
-#: includes/Modules/BusinessHoursChild.php:309
-#: includes/Modules/Divider.php:1101
-#: includes/Modules/DualButton.php:564
-#: includes/Modules/FlipBox.php:1387
-#: includes/Modules/FlipBox.php:1396
-#: includes/Modules/PostGrid.php:938
-#: includes/Modules/PostGrid.php:1250
-#: includes/Modules/PostGrid.php:1259
-#: includes/Modules/TypingText.php:591
+#: includes/Modules/BusinessHours.php:337
+#: includes/Modules/BusinessHoursChild.php:308
+#: includes/Modules/Divider.php:1100
+#: includes/Modules/DualButton.php:563
+#: includes/Modules/FlipBox.php:1386
+#: includes/Modules/FlipBox.php:1395
+#: includes/Modules/PostGrid.php:939
+#: includes/Modules/PostGrid.php:1251
+#: includes/Modules/PostGrid.php:1260
+#: includes/Modules/TypingText.php:590
 msgid "Wrapper Background"
 msgstr "المجمع الخلفية"
 
-#: includes/Modules/BusinessHours.php:174
-#: includes/Modules/BusinessHoursChild.php:142
-#: includes/Modules/Divider.php:142
-#: includes/Modules/DualButton.php:203
-#: includes/Modules/FlipBox.php:945
-#: includes/Modules/FlipBox.php:960
+#: includes/Modules/BusinessHours.php:173
+#: includes/Modules/BusinessHoursChild.php:141
+#: includes/Modules/Divider.php:141
+#: includes/Modules/DualButton.php:202
+#: includes/Modules/FlipBox.php:944
+#: includes/Modules/FlipBox.php:959
 #: includes/Modules/FormStylers/ContactForm7.php:310
 #: includes/Modules/FormStylers/GravityForms.php:583
 #: includes/Modules/FormStylers/NinjaForms.php:491
 #: includes/Modules/FormStylers/WPForms.php:349
-#: includes/Modules/PostGrid.php:352
-#: includes/Modules/PostGrid.php:366
-#: includes/Modules/PostGrid.php:410
+#: includes/Modules/PostGrid.php:353
+#: includes/Modules/PostGrid.php:367
+#: includes/Modules/PostGrid.php:411
 #: includes/Modules/PostGridChild.php:212
-#: includes/Modules/TypingText.php:183
+#: includes/Modules/TypingText.php:182
 msgid "Wrapper Box Shadow"
 msgstr "المجمع مربع الظل"
 
-#: includes/Modules/BusinessHours.php:407
-#: includes/Modules/BusinessHoursChild.php:332
-#: includes/Modules/Divider.php:1110
-#: includes/Modules/DualButton.php:628
-#: includes/Modules/FlipBox.php:1989
-#: includes/Modules/PostGrid.php:1081
-#: includes/Modules/PostGrid.php:1292
-#: includes/Modules/PostGrid.php:1314
-#: includes/Modules/TypingText.php:630
+#: includes/Modules/BusinessHours.php:406
+#: includes/Modules/BusinessHoursChild.php:331
+#: includes/Modules/Divider.php:1109
+#: includes/Modules/DualButton.php:627
+#: includes/Modules/FlipBox.php:1988
+#: includes/Modules/PostGrid.php:1082
+#: includes/Modules/PostGrid.php:1293
+#: includes/Modules/PostGrid.php:1315
+#: includes/Modules/TypingText.php:629
 msgid "Wrapper Margin"
 msgstr "المجمع الهامش"
 
-#: includes/Modules/BusinessHours.php:416
-#: includes/Modules/BusinessHoursChild.php:344
-#: includes/Modules/Divider.php:1119
-#: includes/Modules/DualButton.php:640
-#: includes/Modules/FlipBox.php:1999
-#: includes/Modules/PostGrid.php:1100
-#: includes/Modules/PostGrid.php:1301
-#: includes/Modules/PostGrid.php:1323
-#: includes/Modules/TypingText.php:639
+#: includes/Modules/BusinessHours.php:415
+#: includes/Modules/BusinessHoursChild.php:343
+#: includes/Modules/Divider.php:1118
+#: includes/Modules/DualButton.php:639
+#: includes/Modules/FlipBox.php:1998
+#: includes/Modules/PostGrid.php:1101
+#: includes/Modules/PostGrid.php:1302
+#: includes/Modules/PostGrid.php:1324
+#: includes/Modules/TypingText.php:638
 msgid "Wrapper Padding"
 msgstr "المجمع الحشو"
 
@@ -6411,34 +6288,10 @@ msgid "You can pause Scrolling on Hover by enabling this option."
 msgstr "يمكنك إيقاف التمرير على تحوم من خلال تمكين هذا الخيار."
 
 #: includes/Extensions/Copy.php:336
-#: includes/Managers/RestRoutes/V1/Extensions/Copy.php:49
-#: includes/Managers/RestRoutes/V1/Extensions/Copy.php:64
-#: includes/Managers/RestRoutes/V1/Modules/PostGrid.php:59
 msgid "You do not have permission to access this endpoint."
 msgstr "ليس لديك إذن للوصول إلى هذه النهاية."
 
-#: includes/Managers/RestRoutes/V1/WhatsNew/Changelog.php:47
-msgid "You do not have permission to access this endpoint.."
-msgstr "ليس لديك إذن للوصول إلى هذه النهاية.."
-
-#: includes/Managers/RestRoutes/V1/Extensions.php:46
-#: includes/Managers/RestRoutes/V1/Extensions.php:68
-#: includes/Managers/RestRoutes/V1/Extensions.php:97
-#: includes/Managers/RestRoutes/V1/Extensions.php:128
-#: includes/Managers/RestRoutes/V1/Modules.php:46
-#: includes/Managers/RestRoutes/V1/Modules.php:68
-#: includes/Managers/RestRoutes/V1/Modules.php:97
-#: includes/Managers/RestRoutes/V1/Modules.php:128
-#: includes/Managers/RestRoutes/V1/Notices/Discount.php:45
-#: includes/Managers/RestRoutes/V1/Notices/ProActivation.php:45
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:52
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:88
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:124
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:154
-msgid "You do not have permission to process current action."
-msgstr "ليس لديك الإذن عملية العمل الحالية."
-
-#: includes/Modules/FlipBox.php:1100
+#: includes/Modules/FlipBox.php:1099
 msgid "You need to enable front back button from content > show the button in the content tab to see typogprahy fields."
 msgstr "تحتاج إلى تمكين الجبهة الزر مرة أخرى من المحتوى > إظهار زر في علامة التبويب \"محتوى\" لمعرفة typogprahy المجالات."
 
@@ -6446,7 +6299,7 @@ msgstr "تحتاج إلى تمكين الجبهة الزر مرة أخرى من 
 msgid "You need to enable install ACF plugin to see advanced custom fields."
 msgstr "تحتاج إلى تمكين تثبيت ACF المساعد لرؤية متقدمة الحقول المخصصة."
 
-#: includes/Modules/FlipBox.php:1113
+#: includes/Modules/FlipBox.php:1112
 msgid "You need to enable the back button from content > show the button in the content tab to see typogprahy fields."
 msgstr "تحتاج إلى تمكين الزر مرة أخرى من المحتوى > إظهار زر في علامة التبويب \"محتوى\" لمعرفة typogprahy المجالات."
 
@@ -6480,7 +6333,7 @@ msgstr "عنوان موقع الويب الخاص بك (على سبيل المث
 msgid "Your site is running an %1$s of PHP that is no longer supported. Please contact your web hosting provider to update your PHP version."
 msgstr "موقع الويب الخاص بك تشغيل %1$s PHP التي لم تعد معتمدة. يرجى الاتصال موفر استضافة الويب الخاص بك لتحديث الإصدار الخاص بي."
 
-#: includes/Modules/DropCapText.php:142
+#: includes/Modules/DropCapText.php:141
 msgid "Your Title Goes Here"
 msgstr "العنوان الخاص بك يذهب هنا"
 
@@ -6496,7 +6349,7 @@ msgstr "ض مؤشر"
 msgid "Zoom"
 msgstr "التكبير"
 
-#: includes/Modules/FlipBox.php:1209
+#: includes/Modules/FlipBox.php:1208
 msgid "Zoom In"
 msgstr "التكبير في"
 
@@ -6509,6 +6362,127 @@ msgstr ""
 msgid "Activate %s"
 msgstr ""
 
+#: includes/Managers/RestRoutes/Version1/Extensions.php:106
+#: includes/Managers/RestRoutes/Version1/Modules.php:106
+#: includes/Managers/RestRoutes/Version1/Notices/Discount.php:60
+#: includes/Managers/RestRoutes/Version1/Notices/ProActivation.php:60
+#: includes/Managers/RestRoutes/Version1/Notices/Review.php:87
+msgid "You do not have permissions to perform this action."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Extensions.php:190
+msgid "Invalid parameter: active_extensions must be an array of strings."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Extensions.php:205
+msgid "The list of active extensions has been updated."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Extensions/Copy.php:62
+msgid "You do not have permissions to duplicate posts."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Modules.php:192
+msgid "Invalid parameter: active_modules must be an array of strings."
+msgstr ""
+
+#. translators: %s: comma-separated list of invalid module names
+#: includes/Managers/RestRoutes/Version1/Modules.php:207
+msgid "Invalid module names provided: %s"
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Modules.php:221
+msgid "The list of active modules has been updated."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Modules/PostGrid.php:65
+msgid "Invalid or missing parameters."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Modules/PostGrid.php:81
+msgid "No posts found."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Notices/Review.php:130
+msgid "The review reminder is already set."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/WhatsNew/Changelog.php:61
+msgid "You do not have permissions to access this endpoint."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/WhatsNew/Changelog.php:102
+msgid "Unable to initialize filesystem."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/WhatsNew/Changelog.php:112
+msgid "Changelog file not found."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/WhatsNew/Changelog.php:122
+msgid "Changelog file is empty."
+msgstr ""
+
+#. Translators: %s is the author name.
+#: includes/Modules/PostGrid.php:2667
+#: includes/Modules/PostGrid.php:2737
+msgid "Posts by %s"
+msgstr ""
+
+#. Translators: %s is the category name.
+#: includes/Modules/PostGrid.php:2854
+msgid "View all posts in %s"
+msgstr ""
+
+#. Translators: %s is the tag name.
+#: includes/Modules/PostGrid.php:2898
+msgid "View all posts tagged %s"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:535
+msgid "Make Title a Link"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:537
+msgid "Turn the title into a clickable link. Your readers can jump straight to the full post with one click!"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:545
+msgid "Link Author Name"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:547
+msgid "Make the author's name clickable. It'll take curious readers to a page with all of that author's posts."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:555
+msgid "Link Author Gravatar"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:557
+msgid "Make the author's gravatar clickable. It'll take curious readers to a page with all of that author's posts."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:565
+msgid "Link Categories"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:567
+msgid "Turn category names into links. Readers can explore more posts in the same category with a simple click."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:575
+msgid "Link Tags"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:577
+msgid "Make tags clickable. Help your readers discover more content with the same tag effortlessly."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:587
+msgid "Here you can choose whether or not show element in the outside container."
+msgstr ""
+
 #: templates/admin/subscription.php:63
 msgid "current"
 msgstr ""
@@ -6516,6 +6490,74 @@ msgstr ""
 #: templates/admin/subscription.php:68
 #: build/admin/scripts/admin.js:175
 msgid "Lite"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Preparing to save your module settings…"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Success! Your enabled modules have been saved. The changes will take effect immediately."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Oops! We encountered an issue while saving your enabled modules. Please try again in a few moments. If the problem persists, contact support."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Effortlessly control your Divi modules with our intuitive management system. Use the toggle switches to instantly activate or deactivate modules, streamlining your design process and enhancing website performance."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Reset to Default"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Enable All"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Disable All"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "All Modules"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Free Only"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Pro Only"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Apply and Save"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Oops! We couldn't load the module list. Please refresh the page or try again later."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Discovering available modules… Please wait."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Streamline your workspace with our intuitive Toggle Button. Effortlessly manage your extensions, allowing you to focus on what truly matters - creating stunning designs."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "All Extensions"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Oops! We couldn't load the extension list. Please refresh the page or try again later."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Discovering available extensions… Please wait."
 msgstr ""
 
 #: build/admin/scripts/admin.js:175

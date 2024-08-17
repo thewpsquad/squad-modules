@@ -1,7 +1,11 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
 /**
- * Abstract class representing the Route.
+ * Abstract Route Class for Divi Squad REST API
+ *
+ * This file contains the abstract Route class which provides a base
+ * implementation for all specific Route classes in the Divi Squad
+ * plugin's REST API.
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
@@ -9,6 +13,8 @@
  */
 
 namespace DiviSquad\Base\Factories\RestRoute;
+
+use function divi_squad;
 
 /**
  * Abstract class representing the Route.
@@ -18,7 +24,12 @@ namespace DiviSquad\Base\Factories\RestRoute;
  */
 abstract class Route implements RouteInterface {
 
-	const VERSION = 'v1';
+	/**
+	 * API Version
+	 *
+	 * @var string
+	 */
+	protected $version = 'v1';
 
 	/**
 	 * The route namespace
@@ -26,7 +37,7 @@ abstract class Route implements RouteInterface {
 	 * @return string
 	 */
 	public function get_namespace() {
-		return sprintf( '%1$s/%2$s', $this->get_name(), self::VERSION );
+		return sprintf( '%1$s/%2$s', $this->get_name(), $this->get_version() );
 	}
 
 	/**
@@ -36,6 +47,15 @@ abstract class Route implements RouteInterface {
 	 */
 	public function get_name() {
 		return divi_squad()->get_name();
+	}
+
+	/**
+	 * The route name
+	 *
+	 * @return string
+	 */
+	public function get_version() {
+		return $this->version;
 	}
 
 	/**

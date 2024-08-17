@@ -76,7 +76,29 @@ class Memory {
 	}
 
 	/**
-	 * Load data from cache or database.
+	 * Migrate legacy options from 'name-settings' to 'name_settings' format.
+	 *
+	 * @return void
+	 */
+	public function migrate_legacy_options() {
+		$legacy_option_name = str_replace( '_', '-', $this->option_name );
+		$legacy_data        = get_option( $legacy_option_name );
+
+		if ( false !== $legacy_data ) {
+			// Legacy data exists, migrate it
+			$this->data        = array_merge( $this->data, $legacy_data );
+			$this->is_modified = true;
+
+			// Save the migrated data
+			$this->sync_data();
+
+			// Delete the legacy option
+			delete_option( $legacy_option_name );
+		}
+	}
+
+	/**
+	 * Load data from cache or database, including migration check.
 	 *
 	 * @return void
 	 */
@@ -86,6 +108,9 @@ class Memory {
 		if ( false === $this->data ) {
 			$this->data = get_option( $this->option_name, array() );
 			wp_cache_set( $this->option_name, $this->data, $this->option_group );
+
+			// Check for legacy data and migrate if necessary
+			$this->migrate_legacy_options();
 		}
 	}
 

@@ -10,9 +10,9 @@
 
 namespace DiviSquad\Managers\Assets;
 
-use DiviSquad\Base\Factories\PluginAsset\PluginAsset;
-use DiviSquad\Utils\Asset;
-use DiviSquad\Utils\Divi;
+use DiviSquad\Base\Factories\PluginAsset\Asset;
+use DiviSquad\Utils\Asset as AssetUtil;
+use DiviSquad\Utils\Divi as DiviUtil;
 use function apply_filters;
 use function divi_squad;
 use function esc_js;
@@ -33,7 +33,7 @@ use function wp_script_is;
  * @package DiviSquad
  * @since   3.0.0
  */
-class Modules extends PluginAsset {
+class Modules extends Asset {
 
 	/**
 	 * Enqueue scripts, styles, and other assets in the WordPress frontend and admin area.
@@ -63,7 +63,7 @@ class Modules extends PluginAsset {
 	 * @return string|array
 	 */
 	public function get_localize_data( $type = 'raw', $data = array() ) {
-		if ( 'output' === $type && Divi::is_fb_enabled() ) {
+		if ( 'output' === $type && DiviUtil::is_fb_enabled() ) {
 			/**
 			 * Filters the extra data to localize for the builder.
 			 *
@@ -84,21 +84,21 @@ class Modules extends PluginAsset {
 	 * @return void
 	 */
 	public function enqueue_frontend_scripts() {
-		$version         = divi_squad()->get_version();
-		$footer_args     = Asset::footer_arguments( true );
+		$plugin_version  = divi_squad()->get_version();
+		$footer_args     = AssetUtil::footer_arguments( true );
 		$core_asset_deps = array( 'jquery' );
 
 		// All vendor scripts.
-		Asset::register_script( 'vendor-lottie', Asset::vendor_asset_path( 'lottie' ) );
-		Asset::register_script( 'vendor-typed', Asset::vendor_asset_path( 'typed.umd' ) );
-		Asset::register_script( 'vendor-light-gallery', Asset::vendor_asset_path( 'lightgallery.umd', array( 'prod_file' => 'lightgallery' ) ), $core_asset_deps );
-		Asset::register_script( 'vendor-images-loaded', Asset::vendor_asset_path( 'imagesloaded.pkgd' ), $core_asset_deps );
-		Asset::register_script( 'vendor-scrolling-text', Asset::vendor_asset_path( 'jquery.marquee' ), $core_asset_deps );
+		AssetUtil::register_script( 'vendor-lottie', AssetUtil::vendor_asset_path( 'lottie' ), $core_asset_deps );
+		AssetUtil::register_script( 'vendor-typed', AssetUtil::vendor_asset_path( 'typed.umd' ), $core_asset_deps );
+		AssetUtil::register_script( 'vendor-light-gallery', AssetUtil::vendor_asset_path( 'lightgallery.umd', array( 'prod_file' => 'lightgallery' ) ), $core_asset_deps );
+		AssetUtil::register_script( 'vendor-images-loaded', AssetUtil::vendor_asset_path( 'imagesloaded.pkgd' ), $core_asset_deps );
+		AssetUtil::register_script( 'vendor-scrolling-text', AssetUtil::vendor_asset_path( 'jquery.marquee' ), $core_asset_deps );
 
 		// Re-queue third party scripts.
 		$magnific_popup_script_path = '/includes/builder/feature/dynamic-assets/assets/js/magnific-popup.js';
-		if ( ! wp_script_is( 'magnific-popup', 'registered' ) && file_exists( get_template_directory() . $magnific_popup_script_path ) ) {
-			wp_register_script( 'magnific-popup', get_template_directory_uri() . $magnific_popup_script_path, $core_asset_deps, $version, $footer_args );
+		if ( ! DiviUtil::is_fb_enabled() && ! wp_script_is( 'magnific-popup', 'registered' ) && file_exists( get_template_directory() . $magnific_popup_script_path ) ) {
+			wp_register_script( 'magnific-popup', get_template_directory_uri() . $magnific_popup_script_path, $core_asset_deps, $plugin_version, $footer_args );
 		}
 
 		// All module js dependencies.
@@ -108,15 +108,15 @@ class Modules extends PluginAsset {
 		$video_popup_deps  = array_merge( $core_asset_deps, array( 'magnific-popup' ) );
 
 		// Register all module scripts.
-		Asset::register_script( 'module-divider', Asset::module_asset_path( 'modules/divider-bundle' ), $core_asset_deps );
-		Asset::register_script( 'module-lottie', Asset::module_asset_path( 'modules/lottie-bundle' ), $lottie_asset_deps );
-		Asset::register_script( 'module-typing-text', Asset::module_asset_path( 'modules/typing-text-bundle' ), $typing_text_deps );
-		Asset::register_script( 'module-bais', Asset::module_asset_path( 'modules/bai-slider-bundle' ), $core_asset_deps );
-		Asset::register_script( 'module-accordion', Asset::module_asset_path( 'modules/accordion-bundle' ), $core_asset_deps );
-		Asset::register_script( 'module-gallery', Asset::module_asset_path( 'modules/gallery-bundle' ), $core_asset_deps );
-		Asset::register_script( 'module-scrolling-text', Asset::module_asset_path( 'modules/scrolling-text-bundle' ), $core_asset_deps );
-		Asset::register_script( 'module-video-popup', Asset::module_asset_path( 'modules/video-popup-bundle' ), $video_popup_deps );
-		Asset::register_script( 'module-post-grid', Asset::module_asset_path( 'modules/post-grid-bundle' ), $post_grid_deps );
+		AssetUtil::register_script( 'module-divider', AssetUtil::module_asset_path( 'modules/divider-bundle' ), $core_asset_deps );
+		AssetUtil::register_script( 'module-lottie', AssetUtil::module_asset_path( 'modules/lottie-bundle' ), $lottie_asset_deps );
+		AssetUtil::register_script( 'module-typing-text', AssetUtil::module_asset_path( 'modules/typing-text-bundle' ), $typing_text_deps );
+		AssetUtil::register_script( 'module-ba-image-slider', AssetUtil::module_asset_path( 'modules/bai-slider-bundle' ), $core_asset_deps );
+		AssetUtil::register_script( 'module-accordion', AssetUtil::module_asset_path( 'modules/accordion-bundle' ), $core_asset_deps );
+		AssetUtil::register_script( 'module-gallery', AssetUtil::module_asset_path( 'modules/gallery-bundle' ), $core_asset_deps );
+		AssetUtil::register_script( 'module-scrolling-text', AssetUtil::module_asset_path( 'modules/scrolling-text-bundle' ), $core_asset_deps );
+		AssetUtil::register_script( 'module-video-popup', AssetUtil::module_asset_path( 'modules/video-popup-bundle' ), $video_popup_deps );
+		AssetUtil::register_script( 'module-post-grid', AssetUtil::module_asset_path( 'modules/post-grid-bundle' ), $post_grid_deps );
 	}
 
 	/**
@@ -125,7 +125,7 @@ class Modules extends PluginAsset {
 	 * @return void
 	 */
 	public function enqueue_builder_scripts() {
-		if ( Divi::is_fb_enabled() ) {
+		if ( DiviUtil::is_fb_enabled() ) {
 			wp_enqueue_script( 'squad-vendor-typed' );
 			wp_enqueue_script( 'squad-vendor-imagesloaded' );
 			wp_enqueue_script( 'squad-vendor-lightgallery' );
@@ -138,7 +138,7 @@ class Modules extends PluginAsset {
 			}
 
 			// WP Form default style.
-			if ( function_exists( '\wpforms' ) && function_exists( '\wpforms_get_render_engine' ) && function_exists( '\wpforms_setting' ) && function_exists( '\wpforms_get_min_suffix' ) ) {
+			if ( function_exists( '\wpforms' ) ) {
 				$min         = \wpforms_get_min_suffix();
 				$wp_forms_re = \wpforms_get_render_engine();
 				$disable_css = absint( \wpforms_setting( 'disable-css', '1' ) );
@@ -160,7 +160,7 @@ class Modules extends PluginAsset {
 			}
 
 			// Gravity form default style.
-			if ( function_exists( 'gravity_form' ) ) {
+			if ( function_exists( '\gravity_form' ) ) {
 				wp_enqueue_style( 'gform_basic' );
 				wp_enqueue_style( 'gform_theme' );
 			}
@@ -199,7 +199,7 @@ class Modules extends PluginAsset {
 			}
 
 			// Fluent Forms default style.
-			if ( function_exists( '\wpFluentForm' ) && function_exists( '\fluentFormMix' ) ) {
+			if ( function_exists( '\wpFluentForm' ) ) {
 				$fluent_form_public_css         = \fluentFormMix( 'css/fluent-forms-public.css' );
 				$fluent_form_public_default_css = \fluentFormMix( 'css/fluentform-public-default.css' );
 

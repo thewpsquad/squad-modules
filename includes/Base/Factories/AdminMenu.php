@@ -50,8 +50,11 @@ final class AdminMenu extends Factory {
 	 * @return void
 	 */
 	public function add( $class_name ) {
-		$menu = new $class_name();
+		if ( ! class_exists( $class_name ) ) {
+			return;
+		}
 
+		$menu = new $class_name();
 		if ( ! $menu instanceof AdminMenu\MenuInterface ) {
 			return;
 		}

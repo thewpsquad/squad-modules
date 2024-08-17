@@ -16,4 +16,4 @@ namespace DiviSquad\Base\Factories\PluginAsset;
  * @package DiviSquad
  * @since   3.0.0
  */
-abstract class PluginAsset implements PluginAssetInterface {}
+abstract class Asset implements AssetInterface {}

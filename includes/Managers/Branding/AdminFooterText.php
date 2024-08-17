@@ -9,7 +9,7 @@
 
 namespace DiviSquad\Managers\Branding;
 
-use DiviSquad\Base\Factories\BrandAsset\BrandAsset;
+use DiviSquad\Base\Factories\BrandAsset\Asset;
 use DiviSquad\Managers\Links;
 use function admin_url;
 use function esc_attr;
@@ -23,7 +23,7 @@ use function esc_url;
  * @package DiviSquad
  * @since   1.0.0
  */
-class AdminFooterText extends BrandAsset {
+class AdminFooterText extends Asset {
 
 	/**
 	 * The branding type.
@@ -48,6 +48,7 @@ class AdminFooterText extends BrandAsset {
 	 *
 	 * @return  string
 	 * @since 1.3.2
+	 * @throws \Exception When the Freemius SDK is not loaded.
 	 */
 	public function get_plugin_footer_text() {
 		$footer_text = '';
@@ -79,6 +80,7 @@ class AdminFooterText extends BrandAsset {
 	 *
 	 * @return  string
 	 * @since 1.4.8
+	 * @throws \Exception When the Freemius SDK is not loaded.
 	 */
 	public function get_update_footer_text() {
 		$content = '';

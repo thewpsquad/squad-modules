@@ -53,8 +53,11 @@ final class AdminNotice extends Factory {
 	 * @return void
 	 */
 	public function add( $class_name ) {
-		$notice = new $class_name();
+		if ( ! class_exists( $class_name ) ) {
+			return;
+		}
 
+		$notice = new $class_name();
 		if ( ! $notice instanceof AdminNotice\NoticeInterface ) {
 			return;
 		}

@@ -101,8 +101,8 @@ class Extensions extends ManagerBase {
 	public function get_default_registries() {
 		return $this->get_filtered_registries(
 			$this->get_registered_list(),
-			function ( $module ) {
-				return $module['is_default_active'];
+			function ( $extension ) {
+				return $extension['is_default_active'];
 			}
 		);
 	}
@@ -115,8 +115,8 @@ class Extensions extends ManagerBase {
 	public function get_inactive_registries() {
 		return $this->get_filtered_registries(
 			$this->get_registered_list(),
-			function ( $module ) {
-				return ! $module['is_default_active'];
+			function ( $extension ) {
+				return ! $extension['is_default_active'];
 			}
 		);
 	}

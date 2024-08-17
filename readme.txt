@@ -5,7 +5,7 @@ Tags: divi, divi module, divi theme, divi builder, divi page builder
 Requires at least: 5.0.0
 Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 3.1.3
+Stable tag: 3.1.4
 License: GPLv3-only
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -186,15 +186,14 @@ If you need assistance with Squad Modules Lite, you can reach out to [our suppor
 13. Typing Text Module - This is a module that allows you to create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 
 == Upgrade Notice ==
-= 3.1.3 =
-- Bug fixing with advanced fields and others
+= 3.1.4 =
+- New features and compatibility with RankMath SEO plugin
 
 == Changelog ==
-= 3.1.3 (05-08-2024) =
+= 3.1.4 (15-08-2024) =
 
-**Fixing:**
-- Fix: Issues with advanced fields(border) in the latest Divi theme version
-- Fix: An issue with custom fields for Divi Post Grid Module and Divi CPT Grid Module
-- Fix: An issue with Pro plugin compatibility with the latest version of the Lite plugin
+**New Features:**
+- feat: linking option added to title, author, avatar, categories and tags in Divi Post Grid Module
+- New: Added compatibility with RankMath SEO plugin
 
 [Read more](https://squadmodules.com/changelog)

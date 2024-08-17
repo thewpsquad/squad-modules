@@ -4,7 +4,7 @@
  *
  * This class provides comprehension image adding functionalities for comparable slider in the visual builder.
  *
- * @package DiviSquad\Modules\BeforeAfterImageSlider
+ * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
  * @since   1.0.0
  */
@@ -29,7 +29,7 @@ use function wp_kses_post;
 /**
  * Before After Image Slider Module Class.
  *
- * @package DiviSquad\Modules\BeforeAfterImageSlider
+ * @package DiviSquad
  * @since   1.0.0
  */
 class BeforeAfterImageSlider extends Module {

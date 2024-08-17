@@ -318,6 +318,11 @@ class PostGridChild extends Module {
 						'element_tags_sepa',
 						'element_custom_text',
 						'show_divider',
+						'link_to_post__enable',
+						'link_to_author__enable',
+						'link_to_gravatar__enable',
+						'link_to_categories__enable',
+						'link_to_tags__enable',
 						'element_outside__enable',
 						'element_icon_type',
 						'element_icon_on_hover',
@@ -526,10 +531,60 @@ class PostGridChild extends Module {
 				'hover'           => 'tabs',
 				'mobile_options'  => true,
 			),
+			'link_to_post__enable'            => Utils::add_yes_no_field(
+				esc_html__( 'Make Title a Link', 'squad-modules-for-divi' ),
+				array(
+					'description'      => esc_html__( 'Turn the title into a clickable link. Your readers can jump straight to the full post with one click!', 'squad-modules-for-divi' ),
+					'default_on_front' => 'off',
+					'depends_show_if'  => 'title',
+					'tab_slug'         => 'general',
+					'toggle_slug'      => 'elements',
+				)
+			),
+			'link_to_author__enable'          => Utils::add_yes_no_field(
+				esc_html__( 'Link Author Name', 'squad-modules-for-divi' ),
+				array(
+					'description'      => esc_html__( 'Make the author\'s name clickable. It\'ll take curious readers to a page with all of that author\'s posts.', 'squad-modules-for-divi' ),
+					'default_on_front' => 'off',
+					'depends_show_if'  => 'author',
+					'tab_slug'         => 'general',
+					'toggle_slug'      => 'elements',
+				)
+			),
+			'link_to_gravatar__enable'        => Utils::add_yes_no_field(
+				esc_html__( 'Link Author Gravatar', 'squad-modules-for-divi' ),
+				array(
+					'description'      => esc_html__( 'Make the author\'s gravatar clickable. It\'ll take curious readers to a page with all of that author\'s posts.', 'squad-modules-for-divi' ),
+					'default_on_front' => 'off',
+					'depends_show_if'  => 'gravatar',
+					'tab_slug'         => 'general',
+					'toggle_slug'      => 'elements',
+				)
+			),
+			'link_to_categories__enable'      => Utils::add_yes_no_field(
+				esc_html__( 'Link Categories', 'squad-modules-for-divi' ),
+				array(
+					'description'      => esc_html__( 'Turn category names into links. Readers can explore more posts in the same category with a simple click.', 'squad-modules-for-divi' ),
+					'default_on_front' => 'off',
+					'depends_show_if'  => 'categories',
+					'tab_slug'         => 'general',
+					'toggle_slug'      => 'elements',
+				)
+			),
+			'link_to_tags__enable'            => Utils::add_yes_no_field(
+				esc_html__( 'Link Tags', 'squad-modules-for-divi' ),
+				array(
+					'description'      => esc_html__( 'Make tags clickable. Help your readers discover more content with the same tag effortlessly.', 'squad-modules-for-divi' ),
+					'default_on_front' => 'off',
+					'depends_show_if'  => 'tags',
+					'tab_slug'         => 'general',
+					'toggle_slug'      => 'elements',
+				)
+			),
 			'element_outside__enable'         => Utils::add_yes_no_field(
 				esc_html__( 'Show Outside the Container', 'squad-modules-for-divi' ),
 				array(
-					'description'         => esc_html__( 'Here you can choose whether or not show avatar in the outside container.', 'squad-modules-for-divi' ),
+					'description'         => esc_html__( 'Here you can choose whether or not show element in the outside container.', 'squad-modules-for-divi' ),
 					'default_on_front'    => 'off',
 					'depends_show_if_not' => array( 'none' ),
 					'tab_slug'            => 'general',

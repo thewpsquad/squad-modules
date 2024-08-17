@@ -5,10 +5,9 @@
  *
  * This class provides drop cap adding functionalities in the visual builder.
  *
- * @since           1.4.0
- * @package         squad-modules-for-divi
- * @author          WP Squad <support@squadmodules.com>
- * @license         GPL-3.0-only
+ * @package DiviSquad
+ * @author  WP Squad <support@squadmodules.com>
+ * @since   1.4.0
  */
 
 namespace DiviSquad\Modules;
@@ -25,8 +24,8 @@ use function wp_kses_post;
 /**
  * The Drop Cap Module Class.
  *
- * @since       1.4.0
- * @package     squad-modules-for-divi
+ * @package DiviSquad
+ * @since   1.4.0
  */
 class DropCapText extends Module {
 

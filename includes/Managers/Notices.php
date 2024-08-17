@@ -26,7 +26,6 @@ class Notices {
 	 * @return void
 	 */
 	public static function load() {
-		// Load available notices.
 		$notice = AdminNoticeFactory::get_instance();
 		if ( $notice instanceof AdminNoticeFactory ) {
 			$notice->add( Notices\Review::class );

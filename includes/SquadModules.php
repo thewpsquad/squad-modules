@@ -60,7 +60,7 @@ final class SquadModules extends Integrations\Core {
 		$this->register_hooks();
 
 		// Ensure the compatibility with the premium version (older).
-		$this->load_deprecated_class_compatibility();
+		$this->init_deprecated_class_loader();
 	}
 
 	/**
@@ -126,6 +126,15 @@ final class SquadModules extends Integrations\Core {
 	}
 
 	/**
+	 * Get the plugin base name.
+	 *
+	 * @return string
+	 */
+	public function get_basename() {
+		return plugin_basename( DIVI_SQUAD__FILE__ );
+	}
+
+	/**
 	 * Get the plugin directory path.
 	 *
 	 * @param  string $path The path to append.
@@ -133,15 +142,6 @@ final class SquadModules extends Integrations\Core {
 	 */
 	public function get_path( $path = '' ) {
 		return wp_normalize_path( dirname( DIVI_SQUAD__FILE__ ) . $path );
-	}
-
-	/**
-	 * Get the plugin base name.
-	 *
-	 * @return string
-	 */
-	public function get_basename() {
-		return plugin_basename( DIVI_SQUAD__FILE__ );
 	}
 
 	/**
@@ -264,7 +264,7 @@ final class SquadModules extends Integrations\Core {
 			/**
 			 * Fires after the plugin is loaded.
 			 *
-			 * @since 1.0.0
+			 * @since 3.1.0
 			 *
 			 * @param SquadModules $instance The SquadModules instance.
 			 */
@@ -320,11 +320,36 @@ final class SquadModules extends Integrations\Core {
 	}
 
 	/**
-	 * Check if debug mode is enabled.
+	 * Get the list of deprecated classes and their configurations.
 	 *
-	 * @return bool
+	 * @return array
 	 */
-	public function is_debug_mode() {
-		return defined( '\WP_DEBUG' ) && \WP_DEBUG;
+	protected function get_deprecated_classes_list() {
+		return array(
+			'DiviSquad\Admin\Assets'                      => array(),
+			'DiviSquad\Admin\Plugin\AdminFooterText'      => array(),
+			'DiviSquad\Admin\Plugin\ActionLinks'          => array(),
+			'DiviSquad\Admin\Plugin\RowMeta'              => array(),
+			'DiviSquad\Base\DiviBuilder\DiviSquad_Module' => array(
+				'action' => array(
+					'name'     => 'divi_extensions_init',
+					'priority' => 9,
+				),
+			),
+			'DiviSquad\Base\DiviBuilder\IntegrationAPIBase' => array(),
+			'DiviSquad\Base\DiviBuilder\IntegrationAPI'   => array(),
+			'DiviSquad\Base\DiviBuilder\Utils\UtilsInterface' => array(),
+			'DiviSquad\Base\Factories\AdminMenu\MenuCore' => array(),
+			'DiviSquad\Integrations\Admin'                => array(),
+			'DiviSquad\Managers\Assets'                   => array(),
+			'DiviSquad\Managers\Extensions'               => array(),
+			'DiviSquad\Managers\Modules'                  => array(),
+			'DiviSquad\Modules\PostGridChild\PostGridChild' => array(
+				'action' => array(
+					'name'     => 'divi_extensions_init',
+					'priority' => 9,
+				),
+			),
+		);
 	}
 }

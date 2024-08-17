@@ -16,7 +16,7 @@ namespace DiviSquad\Base\Factories\PluginAsset;
  * @package DiviSquad
  * @since   3.0.0
  */
-interface PluginAssetInterface {
+interface AssetInterface {
 
 	/**
 	 * Enqueue scripts, styles, and other assets in the WordPress frontend and admin area.

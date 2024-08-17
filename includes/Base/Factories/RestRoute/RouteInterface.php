@@ -1,13 +1,15 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
 /**
- * Interface for the Route class.
+ * RouteInterface for Divi Squad REST API
+ *
+ * This file contains the RouteInterface which defines the contract
+ * for all Route classes in the Divi Squad plugin's REST API.
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
  * @since   2.0.0
  */
-
 
 namespace DiviSquad\Base\Factories\RestRoute;
 
@@ -20,18 +22,18 @@ namespace DiviSquad\Base\Factories\RestRoute;
 interface RouteInterface {
 
 	/**
-	 * The route name
-	 *
-	 * @return string
-	 */
-	public function get_name();
-
-	/**
 	 * The route namespace
 	 *
 	 * @return string
 	 */
 	public function get_namespace();
+
+	/**
+	 * The route name
+	 *
+	 * @return string
+	 */
+	public function get_name();
 
 	/**
 	 * Available routes for current Rest Route

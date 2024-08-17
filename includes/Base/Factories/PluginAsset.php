@@ -11,6 +11,7 @@
 namespace DiviSquad\Base\Factories;
 
 use DiviSquad\Base\Factories\FactoryBase\Factory;
+use DiviSquad\Utils\Polyfills\Constant;
 use DiviSquad\Utils\Singleton;
 
 /**
@@ -26,7 +27,7 @@ final class PluginAsset extends FactoryBase\Factory {
 	/**
 	 * The list of registries.
 	 *
-	 * @var PluginAsset\PluginAssetInterface[]
+	 * @var PluginAsset\AssetInterface[]
 	 */
 	private static $registries = array();
 
@@ -36,8 +37,8 @@ final class PluginAsset extends FactoryBase\Factory {
 	 * @return void
 	 */
 	protected function init_hooks() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'add_enqueue_scripts' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'add_admin_enqueue_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'add_enqueue_scripts' ), Constant::PHP_INT_MAX );
+		add_action( 'admin_enqueue_scripts', array( $this, 'add_admin_enqueue_scripts' ), Constant::PHP_INT_MAX );
 		add_filter( 'divi_squad_assets_backend_extra_data', array( $this, 'add_localize_backend_extra_data' ) );
 		add_filter( 'divi_squad_assets_backend_extra', array( $this, 'add_localize_backend_extra' ) );
 	}
@@ -50,9 +51,12 @@ final class PluginAsset extends FactoryBase\Factory {
 	 * @return void
 	 */
 	public function add( $class_name ) {
-		$asset = new $class_name();
+		if ( ! class_exists( $class_name ) ) {
+			return;
+		}
 
-		if ( ! $asset instanceof PluginAsset\PluginAssetInterface ) {
+		$asset = new $class_name();
+		if ( ! $asset instanceof PluginAsset\AssetInterface ) {
 			return;
 		}
 

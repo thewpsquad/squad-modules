@@ -181,7 +181,7 @@ class Modules extends ManagerBase {
 				'child_name'         => 'PostGridChild',
 				'child_label'        => esc_html__( 'Post Element', 'squad-modules-for-divi' ),
 				'release_version'    => '1.0.0',
-				'last_modified'      => array( '1.0.2', '1.0.4', '1.1.0', '1.2.0', '1.2.2', '1.2.3', '1.4.4', '1.4.8', '1.4.10', '1.4.11', '3.0.0', '3.1.0' ),
+				'last_modified'      => array( '1.0.2', '1.0.4', '1.1.0', '1.2.0', '1.2.2', '1.2.3', '1.4.4', '1.4.8', '1.4.10', '1.4.11', '3.0.0', '3.1.0', '3.1.4' ),
 				'is_default_active'  => true,
 				'is_premium_feature' => false,
 				'type'               => 'D4',

@@ -4,18 +4,20 @@
 SVN_REPO_URL="https://plugins.svn.wordpress.org/squad-modules-for-divi/"
 GITHUB_REPO_URL="https://github.com/thewpsquad/squad-modules"
 WORK_DIR="./../../"
-LATEST_VERSION=$(svn ls $SVN_REPO_URL/tags | sort -V | tail -n 1 | sed 's/\///g')
 
 # Create working directory
 mkdir -p $WORK_DIR
 cd $WORK_DIR
 
-# Clone the GitHub repository
-git clone $GITHUB_REPO_URL ./
+# Clone the GitHub repository if it doesn't exist
+if [ ! -d ".git" ]; then
+    git clone $GITHUB_REPO_URL ./
+fi
 
 # Function to copy a specific version from SVN to Git
 copy_version() {
     VERSION=$1
+    echo "Copying version $VERSION"
 
     # Delete all files and folders except specified ones
     find . -mindepth 1 -maxdepth 1 \
@@ -34,19 +36,27 @@ copy_version() {
     git tag $VERSION
 }
 
-# Copy versions from 1.0.0 to latest
-VERSIONS=$(svn ls $SVN_REPO_URL/tags | sort -V)
-for VERSION in $VERSIONS
+# Get all SVN tags, excluding trunk
+SVN_TAGS=$(svn ls $SVN_REPO_URL/tags | grep -v '^trunk/' | sort -V)
+
+# Get all Git tags
+GIT_TAGS=$(git tag | sort -V)
+
+# Compare and sync new tags
+for SVN_TAG in $SVN_TAGS
 do
-    VERSION=${VERSION%/}
-    if [[ "$VERSION" > "1.0.0" || "$VERSION" == "1.0.0" ]]
+    SVN_TAG=${SVN_TAG%/}
+    if [[ "$SVN_TAG" > "1.0.0" || "$SVN_TAG" == "1.0.0" ]]
     then
-        echo "Copying version $VERSION"
-        copy_version $VERSION
+        if ! echo "$GIT_TAGS" | grep -q "^${SVN_TAG}$"; then
+            copy_version $SVN_TAG
+        else
+            echo "Skipping existing tag $SVN_TAG"
+        fi
     fi
 done
 
 # Push changes to GitHub
 git push origin main --tags
 
-echo "Migration completed successfully!"
+echo "Sync completed successfully!"

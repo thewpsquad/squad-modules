@@ -25,7 +25,6 @@ class Menus {
 	 * @return void
 	 */
 	public static function load() {
-		// Register admin menu.
 		$menu = AdminMenuFactory::get_instance();
 		if ( $menu instanceof AdminMenuFactory ) {
 			$menu->add( Menus\AdminMenu::class );

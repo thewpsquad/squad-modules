@@ -26,7 +26,6 @@ class Branding {
 	 * @return void
 	 */
 	public static function load() {
-		// Load available branding.
 		$branding = BrandingFactory::get_instance();
 		if ( $branding instanceof BrandingFactory ) {
 			$branding->add( Branding\AdminFooterText::class );

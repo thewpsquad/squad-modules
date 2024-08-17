@@ -1,7 +1,10 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
 /**
- * Class RestRoute
+ * RestRoute Factory Class
+ *
+ * This class manages the registration and handling of REST API routes
+ * for the Divi Squad plugin.
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
@@ -11,6 +14,7 @@
 namespace DiviSquad\Base\Factories;
 
 use DiviSquad\Base\Factories\FactoryBase\Factory;
+use DiviSquad\Base\Factories\RestRoute\RouteInterface;
 use DiviSquad\Utils\Singleton;
 
 /**
@@ -24,9 +28,9 @@ final class RestRoute extends Factory {
 	use Singleton;
 
 	/**
-	 * Store all registry
+	 * Store all registered routes
 	 *
-	 * @var RestRoute\RouteInterface[]
+	 * @var array
 	 */
 	private static $registries = array();
 
@@ -42,22 +46,23 @@ final class RestRoute extends Factory {
 	/**
 	 * Add a new route to the list of routes.
 	 *
-	 * @param string $route_class The class name of the route to add to the list. The class must implement the RouteInterface.
-	 *
-	 * @return bool
+	 * @param string $class_name The class name of the route to add. Must implement RouteInterface.
+	 * @return void
 	 */
-	public function add( $route_class ) {
-		$route = new $route_class();
+	public function add( $class_name ) {
+		if ( ! class_exists( $class_name ) ) {
+			return;
+		}
 
-		if ( ! $route instanceof RestRoute\RouteInterface ) {
-			return false;
+		$route = new $class_name();
+		if ( ! $route instanceof RouteInterface ) {
+			return;
 		}
 
 		$product_name   = $route->get_name();
 		$rest_namespace = $route->get_namespace();
 		$rest_routes    = $route->get_routes();
 
-		// Add namespace.
 		if ( ! isset( self::$registries[ $product_name ] ) ) {
 			self::$registries[ $product_name ] = array(
 				'namespace' => $rest_namespace,
@@ -65,85 +70,83 @@ final class RestRoute extends Factory {
 			);
 		}
 
-		// Add routes.
-		if ( count( $rest_routes ) > 0 ) {
-			foreach ( $rest_routes as $route => $args ) {
-				self::$registries[ $product_name ]['routes'][ $route ] = $args;
-			}
+		foreach ( $rest_routes as $route => $args ) {
+			self::$registries[ $product_name ]['routes'][ $route ] = $args;
 		}
-
-		return true;
 	}
 
 	/**
-	 * Registered all namespace.
+	 * Get the namespace for a given product name.
 	 *
 	 * @param string $name Current product name.
-	 *
 	 * @return string
 	 */
 	public function get_namespace( $name ) {
-		if ( ! empty( self::$registries ) && isset( self::$registries[ $name ] ) && ! empty( self::$registries[ $name ]['namespace'] ) ) {
-			return self::$registries[ $name ]['namespace'];
-		}
-
-		return '';
+		return isset( self::$registries[ $name ]['namespace'] ) ? self::$registries[ $name ]['namespace'] : '';
 	}
 
 	/**
-	 * We register our routes for our endpoints.
+	 * Register all routes for our endpoints.
 	 *
 	 * @return void
 	 */
 	public function register_routes() {
-		if ( ! empty( self::$registries ) ) {
-			foreach ( self::$registries as $router ) {
-				$namespace = $router['namespace'];
-				$routes    = $router['routes'];
+		foreach ( self::$registries as $router ) {
+			$namespace = $router['namespace'];
+			$routes    = $router['routes'];
 
-				if ( ! empty( $routes ) ) {
-					foreach ( $routes as $route => $args ) {
-						foreach ( $args as $key => $single_route ) {
-							if ( is_array( $single_route ) && ! isset( $single_route['permission_callback'] ) ) {
-								$args[ $key ]['permission_callback'] = 'is_user_logged_in';
-							}
-						}
-
-						// register route with its arguments.
-						register_rest_route( $namespace, $route, $args );
-					}
-				}
+			foreach ( $routes as $route => $args ) {
+				$args = $this->ensure_permission_callback( $args );
+				register_rest_route( $namespace, $route, $args );
 			}
 		}
 	}
 
 	/**
-	 * Registered all routes.
+	 * Ensure each route has a permission callback.
+	 *
+	 * @param array $args Route arguments.
+	 * @return array
+	 */
+	private function ensure_permission_callback( $args ) {
+		foreach ( $args as $key => $single_route ) {
+			if ( is_array( $single_route ) && ! isset( $single_route['permission_callback'] ) ) {
+				$args[ $key ]['permission_callback'] = 'is_user_logged_in';
+			}
+		}
+		return $args;
+	}
+
+	/**
+	 * Get all registered routes for a given product name.
 	 *
 	 * @param string $name Current product name.
-	 *
 	 * @return array
 	 */
 	public function get_registered_routes( $name ) {
-		// Set initial value.
 		$results = array();
+		$routes  = isset( self::$registries[ $name ]['routes'] ) ? self::$registries[ $name ]['routes'] : array();
 
-		if ( ! empty( self::$registries ) && isset( self::$registries[ $name ] ) && ! empty( self::$registries[ $name ]['routes'] ) ) {
-			$routes = self::$registries[ $name ]['routes'];
-
-			foreach ( $routes as $route => $args ) {
-				$route_name = str_replace( array( '_', '-' ), '/', $route );
-				$route_name = explode( '/', $route_name );
-				$route_name = array_map( 'ucfirst', $route_name );
-				$route_name = implode( '', $route_name );
-
-				$results[ $route_name ] = array(
-					'root'    => $route,
-					'methods' => array_column( $args, 'methods' ),
-				);
-			}
+		foreach ( $routes as $route => $args ) {
+			$route_name             = $this->format_route_name( $route );
+			$results[ $route_name ] = array(
+				'root'    => $route,
+				'methods' => array_column( $args, 'methods' ),
+			);
 		}
 
 		return $results;
+	}
+
+	/**
+	 * Format the route name for readability.
+	 *
+	 * @param string $route Original route string.
+	 * @return string
+	 */
+	private function format_route_name( $route ) {
+		$route_parts = explode( '/', str_replace( array( '_', '-' ), '/', $route ) );
+		$route_parts = array_map( 'ucfirst', $route_parts );
+		return implode( '', $route_parts );
 	}
 }

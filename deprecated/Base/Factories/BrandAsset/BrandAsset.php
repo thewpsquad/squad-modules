@@ -1,34 +1,21 @@
 <?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName, WordPress.Files.FileName.NotHyphenatedLowercase
 
 /**
- * Interface for the Branding.
+ * Abstract class representing the Branding.
  *
  * @package DiviSquad
  * @author  WP Squad <support@squadmodules.com>
  * @since   3.0.0
+ * @deprecated 3.1.4
  */
 
 namespace DiviSquad\Base\Factories\BrandAsset;
 
 /**
- * Branding Asset Interface.
+ * Abstract class representing the Branding.
  *
  * @package DiviSquad
  * @since   3.0.0
+ * @deprecated 3.1.4
  */
-interface BrandAssetInterface {
-
-	/**
-	 * The branding asset type.
-	 *
-	 * @return string
-	 */
-	public function get_type();
-
-	/**
-	 * The branding asset position.
-	 *
-	 * @return string
-	 */
-	public function get_position();
-}
+abstract class BrandAsset extends \DiviSquad\Base\Factories\BrandAsset\Asset {}

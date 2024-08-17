@@ -20,7 +20,7 @@ use DiviSquad\Base\Factories\PluginAsset as AssetFactory;
  * @since   1.0.0
  * @since   3.0.0 Updated class name.
  */
-class PluginAssets {
+class Assets {
 
 	/**
 	 * Load all the branding.
@@ -28,7 +28,6 @@ class PluginAssets {
 	 * @return void
 	 */
 	public static function load() {
-		// Load available branding.
 		$asset = AssetFactory::get_instance();
 		if ( $asset instanceof AssetFactory ) {
 			$asset->add( Assets\Admin::class );

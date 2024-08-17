@@ -9,7 +9,7 @@
 
 namespace DiviSquad\Managers\Branding;
 
-use DiviSquad\Base\Factories\BrandAsset\BrandAsset;
+use DiviSquad\Base\Factories\BrandAsset\Asset;
 use DiviSquad\Managers\Links;
 use function esc_html__;
 use function esc_url;
@@ -20,7 +20,7 @@ use function esc_url;
  * @package DiviSquad
  * @since   1.0.0
  */
-class PluginRowActions extends BrandAsset {
+class PluginRowActions extends Asset {
 
 	/**
 	 * The branding type.

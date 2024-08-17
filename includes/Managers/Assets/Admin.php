@@ -11,12 +11,12 @@
 namespace DiviSquad\Managers\Assets;
 
 use DiviSquad\Base\Factories\AdminMenu as AdminMenuFactory;
-use DiviSquad\Base\Factories\PluginAsset\PluginAsset;
+use DiviSquad\Base\Factories\PluginAsset\Asset;
 use DiviSquad\Base\Factories\RestRoute as RestRouteFactory;
 use DiviSquad\Managers\Notices\Discount;
-use DiviSquad\Utils\Asset;
-use DiviSquad\Utils\Helper;
-use DiviSquad\Utils\WP as WpUtils;
+use DiviSquad\Utils\Asset as AssetUtil;
+use DiviSquad\Utils\Helper as HelperUtil;
+use DiviSquad\Utils\WP as WpUtil;
 use function admin_url;
 use function divi_squad;
 use function esc_html__;
@@ -28,7 +28,7 @@ use function home_url;
  * @package DiviSquad
  * @since   3.0.0
  */
-class Admin extends PluginAsset {
+class Admin extends Asset {
 
 	/**
 	 * Enqueue scripts, styles, and other assets in the WordPress frontend and admin area.
@@ -73,21 +73,21 @@ class Admin extends PluginAsset {
 	 */
 	public function enqueue_admin_scripts( $hook_suffix ) {
 		// Load plugin asset in the all admin pages.
-		Asset::enqueue_script( 'admin-common', Asset::admin_asset_path( 'admin-common' ), array( 'jquery', 'wp-api-fetch' ) );
-		Asset::enqueue_style( 'admin-common', Asset::admin_asset_path( 'admin-common', array( 'ext' => 'css' ) ) );
+		AssetUtil::enqueue_script( 'admin-common', AssetUtil::admin_asset_path( 'admin-common' ), array( 'jquery', 'wp-api-fetch' ) );
+		AssetUtil::enqueue_style( 'admin-common', AssetUtil::admin_asset_path( 'admin-common', array( 'ext' => 'css' ) ) );
 
 		// Load plugin asset in the allowed admin pages only.
-		if ( Helper::is_squad_page( $hook_suffix ) ) {
+		if ( HelperUtil::is_squad_page( $hook_suffix ) ) {
 			// List of script dependencies.
 			$admin_deps = array( 'lodash', 'react', 'react-dom', 'react-jsx-runtime', 'wp-api-fetch', 'wp-components', 'wp-dom-ready', 'wp-element', 'wp-i18n' );
 
 			// Load all assets including scripts and stylesheets.
-			Asset::enqueue_style( 'admin-components', Asset::admin_asset_path( 'admin-components', array( 'ext' => 'css' ) ) );
-			Asset::enqueue_script( 'admin', Asset::admin_asset_path( 'admin' ), $admin_deps );
-			Asset::enqueue_style( 'admin', Asset::admin_asset_path( 'admin', array( 'ext' => 'css' ) ) );
+			AssetUtil::enqueue_style( 'admin-components', AssetUtil::admin_asset_path( 'admin-components', array( 'ext' => 'css' ) ) );
+			AssetUtil::enqueue_script( 'admin', AssetUtil::admin_asset_path( 'admin' ), $admin_deps );
+			AssetUtil::enqueue_style( 'admin', AssetUtil::admin_asset_path( 'admin', array( 'ext' => 'css' ) ) );
 
 			// Load script translations.
-			WpUtils::set_script_translations( 'squad-admin', divi_squad()->get_name() );
+			WpUtil::set_script_translations( 'squad-admin', divi_squad()->get_name() );
 		}
 	}
 
@@ -145,7 +145,7 @@ class Admin extends PluginAsset {
 		}
 
 		// Check if the current page is not a squad page.
-		if ( ! Helper::is_squad_page( $screen->id ) ) {
+		if ( ! HelperUtil::is_squad_page( $screen->id ) ) {
 			return $exists_data;
 		}
 
@@ -198,7 +198,7 @@ class Admin extends PluginAsset {
 				'extensions' => esc_html__( 'Extension', 'squad-modules-for-divi' ),
 				'whats_new'  => esc_html__( 'What\'s New', 'squad-modules-for-divi' ),
 			),
-			'plugins'            => WpUtils::get_active_plugins(),
+			'plugins'            => WpUtil::get_active_plugins(),
 			'notices'            => array(
 				'has_welcome' => ( new Discount() )->can_render_it(),
 			),

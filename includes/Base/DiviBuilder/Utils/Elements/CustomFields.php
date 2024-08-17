@@ -125,12 +125,14 @@ class CustomFields {
 						continue;
 					}
 
-					$default_fields = array_merge_recursive( $default_fields, $definitions->get_default_fields( $post_type, $options ) );
+					$new_fields     = $definitions->get_default_fields( $post_type, $options );
+					$default_fields = array_merge_recursive( $default_fields, $new_fields );
 				}
 
 				// Verify and set default fields.
 				$empty_fields      = $definitions->get_empty_fields();
-				$associated_fields = $definitions->get_associated_fields( $fields->get_formatted_fields_types() );
+				$field_types       = $fields->get_formatted_fields_types();
+				$associated_fields = $definitions->get_associated_fields( $field_types );
 			} else {
 				$not_eligible_fields = $definitions->get_not_eligible_fields();
 			}

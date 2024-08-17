@@ -47,7 +47,7 @@ abstract class Core extends \DiviSquad\Base\Core {
 	 */
 	protected function load_assets() {
 		// Load all plugin assets.
-		\DiviSquad\Managers\PluginAssets::load();
+		\DiviSquad\Managers\Assets::load();
 	}
 
 	/**

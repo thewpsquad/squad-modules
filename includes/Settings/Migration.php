@@ -12,7 +12,7 @@
 namespace DiviSquad\Settings;
 
 use DiviSquad\Base\Factories\ModuleMigration\MigrationInterface;
-use DiviSquad\Base\Factories\SettingsMigration as MigrationFactory;
+use DiviSquad\Base\Factories\ModuleMigration as MigrationFactory;
 use ET_Builder_Element;
 
 /**
@@ -69,6 +69,8 @@ abstract class Migration implements MigrationInterface {
 	public static $migrated = array();
 	/**
 	 * Array of migrations in format( [ 'version' => 'name of migration script' ] ).
+	 *
+	 * @see Migration\PostElement::class
 	 *
 	 * @var string[]
 	 */

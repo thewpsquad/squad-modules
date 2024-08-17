@@ -194,18 +194,52 @@ class Asset {
 		// Enqueue the JSX Runtime script for WordPress 6.6 and above.
 		if ( ! empty( $dependencies ) && in_array( 'react-jsx-runtime', $dependencies, true ) ) {
 			if ( ! wp_script_is( 'react-jsx-runtime', 'registered' ) ) {
-				unset( $dependencies[ array_search( 'react-jsx-runtime', $dependencies, true ) ] );
+				$dependency_index = array_search( 'react-jsx-runtime', $dependencies, true );
+				unset( $dependencies[ $dependency_index ] );
 
-				$jsx_runtime = self::asset_path( 'react-jsx-runtime', array( 'path' => 'compat' ) );
-				self::asset_enqueue( 'react-jsx-runtime', $jsx_runtime, array( 'react' ) );
+				$jsx_runtime = static::asset_path( 'react-jsx-runtime', array( 'path' => 'compat' ) );
+				static::enqueue_script( 'react-jsx-runtime', $jsx_runtime, array( 'react' ) );
 			}
 		}
 
-		return array(
+		/**
+		 * Action hook to add more dependencies for the asset.
+		 *
+		 * @since 3.1.4
+		 *
+		 * @param array  $dependencies The asset dependencies.
+		 * @param string $path         The asset path.
+		 * @param string $full_path    The full asset path.
+		 */
+		do_action( 'divi_squad_asset_dependencies', $dependencies, $path, $full_path );
+
+		/**
+		 * Filter the asset dependencies.
+		 *
+		 * @since 3.1.4
+		 *
+		 * @param array  $dependencies The asset dependencies.
+		 * @param string $path         The asset path.
+		 * @param string $full_path    The full asset path.
+		 */
+		$dependencies = apply_filters( 'divi_squad_asset_dependencies', $dependencies, $path, $full_path );
+
+		$asset_data = array(
 			'path'         => $full_path,
 			'version'      => $version,
 			'dependencies' => $dependencies,
 		);
+
+		/**
+		 * Filter the asset data.
+		 *
+		 * @since 3.1.4
+		 *
+		 * @param array  $asset_data The asset data.
+		 * @param string $path       The asset path.
+		 * @param string $full_path  The full asset path.
+		 */
+		return apply_filters( 'divi_squad_asset_data', $asset_data, $path, $full_path );
 	}
 
 	/**
@@ -294,7 +328,7 @@ class Asset {
 	}
 
 	/**
-	 * Enqueue styles.
+	 * Enqueue styles (deprecated).
 	 *
 	 * @since 1.0.0
 	 *
@@ -312,7 +346,7 @@ class Asset {
 	}
 
 	/**
-	 * Enqueue javascript.
+	 * Enqueue javascript (deprecated).
 	 *
 	 * @since 1.0.0
 	 *

@@ -5,7 +5,7 @@
  *
  * @package DiviSquad\Settings
  * @author  WP Squad <support@squadmodules.com>
- * @since   3.1.2
+ * @since   3.0.0
  */
 
 namespace DiviSquad\Base\Factories;
@@ -17,14 +17,14 @@ use InvalidArgumentException;
  * Factory for creating migration instances.
  *
  * @package DiviSquad\Settings
- * @since   3.1.2
+ * @since   3.0.0
  */
-class Migration {
+class ModuleMigration {
 
 	/**
 	 * Creates a migration instance based on the migration name.
 	 *
-	 * @param string $class_name The name of the migration class to instantiate.
+	 * @param string $class_name The name of the migration class to instantiate. The class must exist and be an instance of AbstractMigration.
 	 * @return AbstractMigration The migration instance.
 	 * @throws InvalidArgumentException If the class does not exist or is not an instance of AbstractMigration.
 	 */

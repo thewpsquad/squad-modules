@@ -16,6 +16,7 @@ use DiviSquad\Base\DiviBuilder\Module;
 use DiviSquad\Base\DiviBuilder\Utils;
 use DiviSquad\Utils\Divi;
 use DiviSquad\Utils\Helper;
+use DiviSquad\Utils\LRCart;
 use DiviSquad\Utils\Polyfills\Str;
 use ET_Builder_Module_Helper_MultiViewOptions;
 use WP_Post;
@@ -1534,6 +1535,52 @@ class PostGrid extends Module {
 	}
 
 	/**
+	 * Collect all posts from the database.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array                                     $attrs      List of unprocessed attributes.
+	 * @param string|array|null                         $content    Content being processed.
+	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view Multiview object instance.
+	 *
+	 * @return string the html output for the post-grid.
+	 */
+	public static function squad_get_posts_html( $attrs, $content = null, $multi_view = null ) {
+		// Set the default values.
+		$is_rest_query = ! empty( $attrs['is_rest_query'] ) ? $attrs['is_rest_query'] : 'off';
+
+		$query_args = static::squad_build_post_query_args( $attrs, $content );
+		$post_query = new WP_Query( $query_args );
+
+		if ( ! $post_query->have_posts() ) {
+			return '';
+		}
+
+		ob_start();
+
+		if ( 'off' === $is_rest_query ) {
+			print '<ul class="squad-post-container" style="list-style-type: none;">';
+		}
+
+		while ( $post_query->have_posts() ) {
+			$post_query->the_post();
+			static::squad_render_current_post( get_post(), $attrs, $content );
+		}
+
+		if ( 'off' === $is_rest_query ) {
+			print '</ul>';
+		}
+
+		static::squad_maybe_render_pagination( $post_query, $attrs, $content, $multi_view );
+		static::squad_maybe_render_load_more_button( $post_query, $attrs, $content, $multi_view );
+
+		/* Restore original Post Data */
+		wp_reset_postdata();
+
+		return ob_get_clean();
+	}
+
+	/**
 	 * Render a post element based on its properties.
 	 *
 	 * @param WP_Post $post           The current post.
@@ -1542,7 +1589,7 @@ class PostGrid extends Module {
 	 *
 	 * @return string
 	 */
-	private function squad_render_post_element( $post, $child_prop, $expected_state ) {
+	protected function squad_render_post_element( $post, $child_prop, $expected_state ) {
 		$outside_enable = isset( $child_prop['element_outside__enable'] ) ? $child_prop['element_outside__enable'] : 'off';
 
 		if ( $outside_enable !== $expected_state ) {
@@ -1589,7 +1636,7 @@ class PostGrid extends Module {
 	 *
 	 * @return string
 	 */
-	public function squad_generate_props_content( $post, $content, $callback ) {
+	protected function squad_generate_props_content( $post, $content, $callback ) {
 		ob_start();
 
 		// Collect all child modules from Html content.
@@ -1619,52 +1666,6 @@ class PostGrid extends Module {
 				}
 			}
 		}
-
-		return ob_get_clean();
-	}
-
-	/**
-	 * Collect all posts from the database.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param array                                     $attrs      List of unprocessed attributes.
-	 * @param string|array|null                         $content    Content being processed.
-	 * @param ET_Builder_Module_Helper_MultiViewOptions $multi_view Multiview object instance.
-	 *
-	 * @return string the html output for the post-grid.
-	 */
-	public static function squad_get_posts_html( $attrs, $content = null, $multi_view = null ) {
-		// Set the default values.
-		$is_rest_query = ! empty( $attrs['is_rest_query'] ) ? $attrs['is_rest_query'] : 'off';
-
-		$query_args = static::squad_build_post_query_args( $attrs, $content );
-		$post_query = new WP_Query( $query_args );
-
-		if ( ! $post_query->have_posts() ) {
-			return '';
-		}
-
-		ob_start();
-
-		if ( 'off' === $is_rest_query ) {
-			print '<ul class="squad-post-container" style="list-style-type: none;">';
-		}
-
-		while ( $post_query->have_posts() ) {
-			$post_query->the_post();
-			static::squad_render_current_post( get_post(), $attrs, $content );
-		}
-
-		if ( 'off' === $is_rest_query ) {
-			print '</ul>';
-		}
-
-		static::squad_maybe_render_pagination( $post_query, $attrs, $content, $multi_view );
-		static::squad_maybe_render_load_more_button( $post_query, $attrs, $content, $multi_view );
-
-		/* Restore original Post Data */
-		wp_reset_postdata();
 
 		return ob_get_clean();
 	}
@@ -1968,33 +1969,70 @@ class PostGrid extends Module {
 	 * @return array
 	 */
 	protected static function squad_prepare_post_data( $post, $author, $date_replacement ) {
-		return array(
-			'id'             => $post->ID,
-			'title'          => $post->post_title,
-			'excerpt'        => $post->post_excerpt,
-			'comments'       => $post->comment_count,
-			'date'           => $post->post_date,
-			'modified'       => $post->post_modified,
-			'author'         => array(
+		// Get categories with permalinks
+		$categories      = wp_get_post_categories( $post->ID, array( 'fields' => 'all' ) );
+		$categories      = ! $categories instanceof \WP_Error ? $categories : array();
+		$categories_data = array();
+		foreach ( $categories as $key => $category ) {
+			$categories_data[ $key ] = array(
+				'name'      => $category->name,
+				'permalink' => get_category_link( $category->term_id ),
+			);
+		}
+
+		// Get tags with permalinks
+		$tags      = wp_get_post_tags( $post->ID, array( 'fields' => 'all' ) );
+		$tags      = ! $tags instanceof \WP_Error ? $tags : array();
+		$tags_data = array();
+		foreach ( $tags as $key => $tag ) {
+			$tags_data[ $key ] = array(
+				'name'      => $tag->name,
+				'permalink' => get_tag_link( $tag->term_id ),
+			);
+		}
+
+		$post_data = array(
+			'id'               => $post->ID,
+			'title'            => $post->post_title,
+			'excerpt'          => $post->post_excerpt,
+			'comments'         => $post->comment_count,
+			'date'             => $post->post_date,
+			'modified'         => $post->post_modified,
+			'author'           => array(
 				'nickname'     => $author->user_nicename,
 				'display-name' => $author->display_name,
 				'full-name'    => sprintf( '%1$s %2$s', $author->first_name, $author->last_name ),
 				'first-name'   => $author->first_name,
 				'last-name'    => $author->last_name,
 			),
-			'content'        => wp_strip_all_tags( $post->post_content ),
-			'featured_image' => get_the_post_thumbnail( $post->ID, 'full' ),
-			'categories'     => wp_get_post_categories( $post->ID, array( 'fields' => 'names' ) ),
-			'tags'           => wp_get_post_tags( $post->ID, array( 'fields' => 'names' ) ),
-			'permalink'      => get_permalink( $post->ID ),
-			'gravatar'       => get_avatar( $post->post_author, 40 ),
-			'formatted'      => array(
+			'content'          => wp_strip_all_tags( $post->post_content ),
+			'featured_image'   => get_the_post_thumbnail( $post->ID, 'full' ),
+			'categories'       => $categories_data,
+			'tags'             => $tags_data,
+			'permalink'        => get_permalink( $post->ID ),
+			'gravatar'         => get_avatar( $post->post_author, 40 ),
+			'author_posts_url' => get_author_posts_url( $post->post_author ),
+			'formatted'        => array(
 				'publish'  => wp_date( $date_replacement, strtotime( $post->post_date ) ),
 				'modified' => wp_date( $date_replacement, strtotime( $post->post_modified ) ),
 			),
-			'custom_fields'  => Utils\Elements\CustomFields::get_fields( 'custom_fields', $post->ID ),
-			'acf_fields'     => Utils\Elements\CustomFields::get_fields( 'acf_fields', $post->ID ),
+			'custom_fields'    => Utils\Elements\CustomFields::get_fields( 'custom_fields', $post->ID ),
+			'acf_fields'       => Utils\Elements\CustomFields::get_fields( 'acf_fields', $post->ID ),
 		);
+
+		/**
+		 * Filters the post data for the frontend.
+		 *
+		 * This filter allows you to modify or extend the post data that will be
+		 * available in the frontend for each rendered post.
+		 *
+		 * @since 3.1.4
+		 *
+		 * @param array   $post_data The prepared post data.
+		 * @param WP_Post $post      The current post object.
+		 * @param WP_User $author    The post author object.
+		 */
+		return apply_filters( 'divi_squad_prepare_post_data', $post_data, $post, $author );
 	}
 
 	/**
@@ -2366,306 +2404,683 @@ class PostGrid extends Module {
 	/**
 	 * Render element body.
 	 *
+	 * @since 1.0.0
+	 *
 	 * @param array         $attrs List of attributes.
-	 * @param false|WP_POST $post  The current post-object.
+	 * @param false|WP_Post $post  The current post object.
 	 *
 	 * @return string
 	 */
 	protected function squad_render_post_element_body( $attrs, $post ) {
-		$element    = ! empty( $attrs['element'] ) ? $attrs['element'] : 'none';
-		$class_name = sprintf( 'et_pb_with_background squad-post-element squad-post-element__%1$s', $element );
-		$post_title = $post->post_title;
+		$element    = isset( $attrs['element'] ) ? $attrs['element'] : 'none';
+		$class_name = sprintf( 'et_pb_with_background squad-post-element squad-post-element__%s', esc_attr( $element ) );
 		$post_id    = $post->ID;
-
-		// Add new body class when user set advanced custom field image class.
-		$acf_field_type = 'text';
-		if ( 'advanced_custom_field' === $element ) {
-			$acf_field_type = ! empty( $attrs['element_advanced_custom_field_type'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_type'] ) : 'text';
-			$class_name    .= sprintf( ' advanced_custom_field__%1$s', $acf_field_type );
-		}
-
-		$post_excerpt__enable = ! empty( $attrs['element_excerpt__enable'] ) ? sanitize_text_field( $attrs['element_excerpt__enable'] ) : 'off';
-		$post_content         = ( 'on' === $post_excerpt__enable ) ? $post->post_excerpt : wp_strip_all_tags( $post->post_content );
-
-		$categories = wp_get_post_categories( $post_id, array( 'fields' => 'names' ) );
-		$tags       = wp_get_post_tags( $post_id, array( 'fields' => 'names' ) );
-
-		// Get the custom text and date format from the parent module.
-		$custom_text  = ! empty( $attrs['element_custom_text'] ) ? sanitize_text_field( $attrs['element_custom_text'] ) : '';
-		$parent_props = ! empty( $attrs['parent_prop_date_format'] ) ? json_decode( sanitize_text_field( $attrs['parent_prop_date_format'] ), false ) : new \stdClass();
 
 		$output = '';
 
-		if ( 'title' === $element && ! empty( $post_title ) ) {
-			$title_tag = ! empty( $attrs['element_title_tag'] ) ? sanitize_text_field( $attrs['element_title_tag'] ) : 'span';
-			$content   = sprintf( '<span class="element-text">%1$s</span>', ucfirst( $post_title ) );
-
-			if ( 'on' === $attrs['element_title_icon__enable'] && '' !== $attrs['element_title_icon'] ) {
-				$title_icon = $this->squad_render_post_title_font_icon( $attrs );
-			} else {
-				$title_icon = '';
-			}
-
-			$output = sprintf(
-				'<div class="%1$s"><%3$s class="element-text">%2$s</%3$s>%4$s</div>',
-				esc_attr( $class_name ),
-				wp_kses_post( $content ),
-				esc_attr( $title_tag ),
-				wp_kses_post( $title_icon )
-			);
+		switch ( $element ) {
+			case 'title':
+				$output = $this->squad_render_title_element( $attrs, $post, $class_name );
+				break;
+			case 'image':
+			case 'featured_image':
+				$output = $this->squad_render_image_element( $post_id, $class_name );
+				break;
+			case 'content':
+				$output = $this->squad_render_content_element( $attrs, $post, $class_name );
+				break;
+			case 'author':
+				$output = $this->squad_render_author_element( $attrs, $post, $class_name );
+				break;
+			case 'gravatar':
+				$output = $this->squad_render_gravatar_element( $attrs, $post, $class_name );
+				break;
+			case 'date':
+				$output = $this->squad_render_date_element( $attrs, $post, $class_name );
+				break;
+			case 'read_more':
+				$output = $this->squad_render_read_more_element( $attrs, $post_id, $class_name );
+				break;
+			case 'comments':
+				$output = $this->squad_render_comments_element( $attrs, $post, $class_name );
+				break;
+			case 'categories':
+				$output = $this->squad_render_categories_element( $attrs, $post_id, $class_name );
+				break;
+			case 'tags':
+				$output = $this->squad_render_tags_element( $attrs, $post_id, $class_name );
+				break;
+			case 'divider':
+				$output = $this->squad_render_divider_element( $attrs, $class_name );
+				break;
+			case 'custom_text':
+				$output = $this->squad_render_custom_text_element( $attrs, $class_name );
+				break;
+			case 'custom_field':
+				$output = $this->squad_render_custom_field_element( $attrs, $post_id, $class_name );
+				break;
+			case 'advanced_custom_field':
+				$output = $this->squad_render_advanced_custom_field_element( $attrs, $post_id, $class_name );
+				break;
 		}
 
-		if ( in_array( $element, array( 'image', 'featured_image' ), true ) ) {
-			$post_image = get_the_post_thumbnail( $post_id, 'full' );
-			if ( ! empty( $post_image ) ) {
-				$output = sprintf(
-					'<div class="%1$s">%2$s</div>',
-					esc_attr( $class_name ),
-					wp_kses_post( $post_image )
-				);
-			}
+		return $output;
+	}
+
+	/**
+	 * Render title element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array  $attrs      List of attributes.
+	 * @param WP_Post $post      The post object.
+	 * @param string $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_title_element( $attrs, $post, $class_name ) {
+		$post_title = $post->post_title;
+		if ( empty( $post_title ) ) {
+			return '';
 		}
 
-		if ( 'content' === $element && ! empty( $post_content ) ) {
-			$post_content_length__enable = ! empty( $attrs['element_ex_con_length__enable'] ) ? sanitize_text_field( $attrs['element_ex_con_length__enable'] ) : 'off';
-			$post_content_length         = ! empty( $attrs['element_ex_con_length'] ) ? absint( sanitize_text_field( $attrs['element_ex_con_length'] ) ) : 20;
+		$title_tag = isset( $attrs['element_title_tag'] ) ? sanitize_text_field( $attrs['element_title_tag'] ) : 'span';
+		$content   = sprintf( '<span class="element-text">%s</span>', ucfirst( $post_title ) );
 
-			// Ref: https://en.wikipedia.org/wiki/Wikipedia:Language_recognition_chart .
-			$character_map  = 'äëïöüÄËÏÖÜáǽćéíĺńóŕśúźÁǼĆÉÍĹŃÓŔŚÚŹ';
-			$character_map .= 'àèìòùÀÈÌÒÙãẽĩõñũÃẼĨÕÑŨâêîôûÂÊÎÔÛăĕğĭŏœ̆ŭĂĔĞĬŎŒ̆Ŭ';
-			$character_map .= 'āēīōūĀĒĪŌŪőűŐŰąęįųĄĘĮŲåůÅŮæÆøØýÝÿŸþÞẞßđĐıIœŒ';
-			$character_map .= 'čďěľňřšťžČĎĚĽŇŘŠŤŽƒƑðÐłŁçģķļșțÇĢĶĻȘȚħĦċėġżĊĖĠŻʒƷǯǮŋŊŧŦ';
-			$character_map .= ':~^!?';
-
-			/**
-			 * Filter the character map for the post content.
-			 *
-			 * @param string $character_map The character map.
-			 *
-			 * @return string
-			 */
-			$character_map = apply_filters( 'divi_squad_post_query_content_character_map', $character_map );
-
-			$post_content_words = Str::word_count( $post_content, 2, $character_map );
-			if ( 'on' === $post_content_length__enable && count( $post_content_words ) > $post_content_length ) {
-				$content = implode( ' ', array_slice( $post_content_words, 0, $post_content_length ) );
-
-				return sprintf(
-					'<div class="%1$s"><span>%2$s</span></div>',
-					esc_attr( $class_name ),
-					wp_kses_post( $content )
-				);
-			}
-
-			$output = sprintf(
-				'<div class="%1$s"><span>%2$s</span></div>',
-				esc_attr( $class_name ),
-				wp_kses_post( $post_content )
-			);
+		$title_icon = '';
+		if ( isset( $attrs['element_title_icon__enable'] ) && 'on' === $attrs['element_title_icon__enable'] && ! empty( $attrs['element_title_icon'] ) ) {
+			$title_icon = $this->squad_render_post_title_font_icon( $attrs );
 		}
 
-		if ( 'author' === $element ) {
-			$author            = get_userdata( absint( $post->post_author ) );
-			$default_name_type = 'nickname';
-			$author_name_type  = ! empty( $attrs['element_author_name_type'] ) ? sanitize_text_field( $attrs['element_author_name_type'] ) : $default_name_type;
+		$output = sprintf( '<%1$s class="element-text">%2$s</%1$s>%3$s', esc_attr( $title_tag ), $content, wp_kses_post( $title_icon ) );
 
-			switch ( $author_name_type ) {
-				case 'nickname':
-					$content = $author->nickname;
-					break;
-				case 'first-name':
-					$content = $author->first_name;
-					break;
-				case 'last-name':
-					$content = $author->last_name;
-					break;
-				case 'full-name':
-					$content = sprintf( '%1$s %2$s', $author->first_name, $author->last_name );
-					break;
-				default:
-					$content = $author->display_name;
-			}
+		if ( isset( $attrs['link_to_post__enable'] ) && 'on' === $attrs['link_to_post__enable'] ) {
+			$output = sprintf( '<a href="%s" title="%s">%s</a>', esc_url( get_permalink( $post->ID ) ), esc_attr( $post_title ), $output );
+		}
 
-			$output = sprintf(
-				'<div class="%1$s"><span>%2$s</span></div>',
-				esc_attr( $class_name ),
+		return sprintf( '<div class="%s">%s</div>', esc_attr( $class_name ), $output );
+	}
+
+	/**
+	 * Render image element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int    $post_id    The post ID.
+	 * @param string $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_image_element( $post_id, $class_name ) {
+		$post_image = get_the_post_thumbnail( $post_id, 'full' );
+		if ( empty( $post_image ) ) {
+			return '';
+		}
+
+		return sprintf(
+			'<div class="%s">%s</div>',
+			esc_attr( $class_name ),
+			wp_kses_post( $post_image )
+		);
+	}
+
+	/**
+	 * Render content element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array     $attrs      List of attributes.
+	 * @param WP_Post   $post       The post object.
+	 * @param string    $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_content_element( $attrs, $post, $class_name ) {
+		$post_excerpt__enable = isset( $attrs['element_excerpt__enable'] ) ? sanitize_text_field( $attrs['element_excerpt__enable'] ) : 'off';
+		$post_content         = ( 'on' === $post_excerpt__enable ) ? $post->post_excerpt : wp_strip_all_tags( $post->post_content );
+
+		if ( empty( $post_content ) ) {
+			return '';
+		}
+
+		$post_content_length__enable = isset( $attrs['element_ex_con_length__enable'] ) ? sanitize_text_field( $attrs['element_ex_con_length__enable'] ) : 'off';
+		$post_content_length         = isset( $attrs['element_ex_con_length'] ) ? absint( $attrs['element_ex_con_length'] ) : 20;
+
+		if ( 'on' === $post_content_length__enable ) {
+			$post_content = $this->squad_truncate_content( $post_content, $post_content_length );
+		}
+
+		return sprintf(
+			'<div class="%s"><span>%s</span></div>',
+			esc_attr( $class_name ),
+			wp_kses_post( $post_content )
+		);
+	}
+
+	/**
+	 * Get the expanded character map for content truncation.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string
+	 */
+	protected function squad_get_expanded_character_map() {
+		$character_map = array(
+			// Latin-1 Supplement and Latin Extended-A
+			'äëïöüÄËÏÖÜáéíóúýÁÉÍÓÚÝàèìòùÀÈÌÒÙãñõÃÑÕâêîôûÂÊÎÔÛçÇ',
+			// Latin Extended-A
+			'āēīōūĀĒĪŌŪąęįųĄĘĮŲćłńśźżĆŁŃŚŹŻđĐǄǅǆǇǈǉǊǋǌǍǎǏǐǑǒǓǔǕǖǗǘǙǚǛǜ',
+			// Latin Extended-B
+			'ǝǞǟǠǡǢǣǤǥǦǧǨǩǪǫǬǭǮǯǰǱǲǳǴǵǶǷǸǹǺǻǼǽǾǿȀȁȂȃȄȅȆȇȈȉȊȋȌȍȎȏȐȑȒȓȔȕȖȗȘșȚț',
+			// Greek and Coptic
+			'ͰͱͲͳʹ͵Ͷͷͺͻͼͽ;Ϳ΄΅Ά·ΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώϏϐϑϒϓϔϕϖϗϘϙϚϛϜϝϞϟϠϡϢϣϤϥϦϧϨϩϪϫϬϭϮϯ',
+			// Cyrillic
+			'ЀЁЂЃЄЅІЇЈЉЊЋЌЍЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяѐёђѓєѕіїјљњћќѝўџѠѡѢѣѤѥѦѧѨѩѪѫѬѭѮѯѰѱѲѳѴѵѶѷѸѹѺѻѼѽѾѿҀҁ',
+			// Common punctuation and symbols
+			'""\'\'©®™§¶†‡•❧☙―‐‒–—―‖‗\'\'‚‛""„‟•‣․‥…‧‰‱′″‴‵‶‷‸‹›※‼‽‾⁀⁁⁂⁃⁄⁅⁆⁇⁈⁉⁊⁋⁌⁍⁎⁏⁐⁑⁒⁓⁔⁕⁖⁗⁘⁙⁚⁛⁜⁝⁞',
+			// Currencies
+			'₠₡₢₣₤₥₦₧₨₩₪₫€₭₮₯₰₱₲₳₴₵₶₷₸₹₺₻₼₽₾₿',
+			// Arrows
+			'←↑→↓↔↕↖↗↘↙↚↛↜↝↞↟↠↡↢↣↤↥↦↧↨↩↪↫↬↭↮↯↰↱↲↳↴↵↶↷↸↹↺↻↼↽↾↿⇀⇁⇂⇃⇄⇅⇆⇇⇈⇉⇊⇋⇌⇍⇎⇏⇐⇑⇒⇓⇔⇕⇖⇗⇘⇙⇚⇛⇜⇝⇞⇟⇠⇡⇢⇣⇤⇥⇦⇧⇨⇩⇪',
+			// Mathematical symbols
+			'∀∁∂∃∄∅∆∇∈∉∊∋∌∍∎∏∐∑−∓∔∕∖∗∘∙√∛∜∝∞∟∠∡∢∣∤∥∦∧∨∩∪∫∬∭∮∯∰∱∲∳∴∵∶∷∸∹∺∻∼∽∾∿≀≁≂≃≄≅≆≇≈≉≊≋≌≍≎≏≐≑≒≓≔≕≖≗≘≙≚≛≜≝≞≟≠≡≢≣≤≥≦≧≨≩≪≫≬≭≮≯≰≱≲≳≴≵≶≷≸≹≺≻≼≽≾≿',
+		);
+
+		/**
+		 * Filter the character map for the post content.
+		 *
+		 * @since 3.1.4
+		 *
+		 * @param string $character_map The character map.
+		 *
+		 * @return string
+		 */
+		$character_map = apply_filters( 'divi_squad_post_query_content_character_map', $character_map );
+
+		return implode( '', $character_map );
+	}
+
+	/**
+	 * Truncate content to a specified number of words, supporting an expanded set of special characters.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $content The content to truncate.
+	 * @param int    $length  The number of words to keep.
+	 *
+	 * @return string
+	 */
+	protected function squad_truncate_content( $content, $length ) {
+		$character_map = LRCart::get_character_map();
+
+		/**
+		 * Filter the character map for the post content.
+		 *
+		 * @since 3.1.4
+		 *
+		 * @param string $character_map The character map.
+		 *
+		 * @return string
+		 */
+		$character_map = apply_filters( 'divi_squad_post_query_content_character_map', $character_map );
+
+		// Use Str::word_count with the character map
+		$words = Str::word_count( $content, 2, $character_map );
+
+		if ( count( $words ) > $length ) {
+			$truncated_words   = array_slice( $words, 0, $length, true );
+			$last_word_pos     = array_key_last( $truncated_words );
+			$truncated_content = mb_substr( $content, 0, $last_word_pos + mb_strlen( $truncated_words[ $last_word_pos ] ) );
+			return $truncated_content . '...';
+		}
+
+		return $content;
+	}
+
+	/**
+	 * Render author element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array     $attrs      List of attributes.
+	 * @param WP_Post   $post       The post object.
+	 * @param string    $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_author_element( $attrs, $post, $class_name ) {
+		$author = get_userdata( absint( $post->post_author ) );
+		if ( ! $author ) {
+			return '';
+		}
+
+		$default_name_type = 'nickname';
+		$author_name_type  = isset( $attrs['element_author_name_type'] ) ? sanitize_text_field( $attrs['element_author_name_type'] ) : $default_name_type;
+
+		$content = $this->squad_get_author_name( $author, $author_name_type );
+
+		if ( isset( $attrs['link_to_author__enable'] ) && 'on' === $attrs['link_to_author__enable'] ) {
+			$content = sprintf(
+				'<a href="%s" title="%s">%s</a>',
+				esc_url( get_author_posts_url( $author->ID ) ),
+				// Translators: %s is the author name.
+				esc_attr( sprintf( esc_html__( 'Posts by %s', 'squad-modules-for-divi' ), $content ) ),
 				esc_html( $content )
 			);
+		} else {
+			$content = esc_html( $content );
 		}
 
-		if ( 'gravatar' === $element ) {
-			$gravatar_size = ! empty( $attrs['element_gravatar_size'] ) ? absint( $attrs['element_gravatar_size'] ) : 40;
-			$gravatar      = get_avatar( $post->post_author, $gravatar_size );
+		return sprintf(
+			'<div class="%s"><span>%s</span></div>',
+			esc_attr( $class_name ),
+			$content
+		);
+	}
 
-			$output = sprintf(
-				'<div class="%1$s">%2$s</div>',
-				esc_attr( $class_name ),
-				wp_kses_post( $gravatar )
-			);
+	/**
+	 * Get author name based on the specified type.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param WP_User $author           The author object.
+	 * @param string  $author_name_type The type of author name to return.
+	 *
+	 * @return string
+	 */
+	protected function squad_get_author_name( $author, $author_name_type ) {
+		switch ( $author_name_type ) {
+			case 'nickname':
+				return $author->nickname;
+			case 'first-name':
+				return $author->first_name;
+			case 'last-name':
+				return $author->last_name;
+			case 'full-name':
+				return sprintf( '%s %s', $author->first_name, $author->last_name );
+			default:
+				return $author->display_name;
+		}
+	}
+
+	/**
+	 * Render gravatar element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array     $attrs      List of attributes.
+	 * @param WP_Post   $post       The post object.
+	 * @param string    $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_gravatar_element( $attrs, $post, $class_name ) {
+		$gravatar_size = isset( $attrs['element_gravatar_size'] ) ? absint( $attrs['element_gravatar_size'] ) : 40;
+		$gravatar      = get_avatar( $post->post_author, $gravatar_size );
+
+		if ( empty( $gravatar ) ) {
+			return '';
 		}
 
-		if ( 'date' === $element ) {
-			$element_date_type = ! empty( $attrs['element_date_type'] ) ? sanitize_text_field( $attrs['element_date_type'] ) : 'publish';
-			$date_format       = ! empty( $parent_props->date_format ) ? $parent_props->date_format : 'M j, Y';
-			$date              = 'modified' === $element_date_type ? $post->post_modified : $post->post_date;
-			$date_modified     = str_replace( '\\\\', '\\', $date_format );
+		$output = $gravatar;
 
-			$output = sprintf(
-				'<div class="%1$s"><time datetime="%3$s">%2$s</time></div>',
-				esc_attr( $class_name ),
-				wp_date( $date_modified, strtotime( $date ) ),
-				esc_attr( $date )
-			);
+		// Check if linking to gravatar is enabled
+		if ( isset( $attrs['link_to_gravatar__enable'] ) && 'on' === $attrs['link_to_gravatar__enable'] ) {
+			$author = get_userdata( $post->post_author );
+			if ( $author ) {
+				$author_url  = get_author_posts_url( $author->ID );
+				$author_name = $author->display_name;
+				$output      = sprintf(
+					'<a href="%s" title="%s">%s</a>',
+					esc_url( $author_url ),
+					// Translators: %s is the author name.
+					esc_attr( sprintf( esc_html__( 'Posts by %s', 'squad-modules-for-divi' ), $author_name ) ),
+					$gravatar
+				);
+			}
 		}
 
-		if ( 'read_more' === $element ) {
-			$permalink_url   = get_permalink( $post_id );
-			$read_more_title = esc_html__( 'Read the post', 'squad-modules-for-divi' );
-			$default_text    = esc_html__( 'Read More', 'squad-modules-for-divi' );
-			$read_more_text  = ! empty( $attrs['element_read_more_text'] ) ? sanitize_text_field( $attrs['element_read_more_text'] ) : $default_text;
+		return sprintf(
+			'<div class="%s">%s</div>',
+			esc_attr( $class_name ),
+			wp_kses_post( $output )
+		);
+	}
 
-			$output = sprintf(
-				'<div class="%1$s"><a href="%2$s" title="%4$s">%3$s</a></div>',
-				esc_attr( $class_name ),
-				esc_url( $permalink_url ),
-				esc_html( $read_more_text ),
-				esc_attr( $read_more_title )
-			);
+	/**
+	 * Render date element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array     $attrs      List of attributes.
+	 * @param WP_Post   $post       The post object.
+	 * @param string    $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_date_element( $attrs, $post, $class_name ) {
+		$element_date_type = isset( $attrs['element_date_type'] ) ? sanitize_text_field( $attrs['element_date_type'] ) : 'publish';
+		$date_format       = isset( $attrs['parent_prop_date_format'] ) ? json_decode( sanitize_text_field( $attrs['parent_prop_date_format'] ), true ) : array( 'date_format' => 'M j, Y' );
+		$date_format       = isset( $date_format['date_format'] ) ? $date_format['date_format'] : 'M j, Y';
+
+		$date          = 'modified' === $element_date_type ? $post->post_modified : $post->post_date;
+		$date_modified = str_replace( '\\\\', '\\', $date_format );
+
+		return sprintf(
+			'<div class="%s"><time datetime="%s">%s</time></div>',
+			esc_attr( $class_name ),
+			esc_attr( $date ),
+			esc_html( wp_date( $date_modified, strtotime( $date ) ) )
+		);
+	}
+
+	/**
+	 * Render read more element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array  $attrs      List of attributes.
+	 * @param int    $post_id    The post ID.
+	 * @param string $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_read_more_element( $attrs, $post_id, $class_name ) {
+		$permalink_url   = get_permalink( $post_id );
+		$read_more_title = esc_html__( 'Read the post', 'squad-modules-for-divi' );
+		$default_text    = esc_html__( 'Read More', 'squad-modules-for-divi' );
+		$read_more_text  = isset( $attrs['element_read_more_text'] ) ? sanitize_text_field( $attrs['element_read_more_text'] ) : $default_text;
+
+		return sprintf(
+			'<div class="%s"><a href="%s" title="%s">%s</a></div>',
+			esc_attr( $class_name ),
+			esc_url( $permalink_url ),
+			esc_attr( $read_more_title ),
+			esc_html( $read_more_text )
+		);
+	}
+
+	/**
+	 * Render comments element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array     $attrs      List of attributes.
+	 * @param WP_Post   $post       The post object.
+	 * @param string    $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_comments_element( $attrs, $post, $class_name ) {
+		$comment_before_text = isset( $attrs['element_comment_before'] ) ? sanitize_text_field( $attrs['element_comment_before'] ) : '';
+		$comment_after_text  = isset( $attrs['element_comments_after'] ) ? sanitize_text_field( $attrs['element_comments_after'] ) : '';
+
+		return sprintf(
+			'<div class="%s"><span class="element-text">%s%s%s</span></div>',
+			esc_attr( $class_name ),
+			esc_html( $comment_before_text ),
+			esc_html( $post->comment_count ),
+			esc_html( $comment_after_text )
+		);
+	}
+
+	/**
+	 * Render categories element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array  $attrs      List of attributes.
+	 * @param int    $post_id    The post ID.
+	 * @param string $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_categories_element( $attrs, $post_id, $class_name ) {
+		$categories = wp_get_post_categories( $post_id, array( 'fields' => 'all' ) );
+		if ( empty( $categories ) ) {
+			return '';
 		}
 
-		if ( 'comments' === $element ) {
-			$comment_before_text = ! empty( $attrs['element_comment_before'] ) ? sanitize_text_field( $attrs['element_comment_before'] ) : '';
-			$comment_after_text  = ! empty( $attrs['element_comments_after'] ) ? sanitize_text_field( $attrs['element_comments_after'] ) : '';
+		$categories_separator = isset( $attrs['element_categories_sepa'] ) ? $attrs['element_categories_sepa'] : '';
+		$link_enabled         = isset( $attrs['link_to_categories__enable'] ) && 'on' === $attrs['link_to_categories__enable'];
 
-			$output = sprintf(
-				'<div class="%1$s"><span class="element-text">%3$s%2$s%4$s</span></div>',
-				esc_attr( $class_name ),
-				esc_html( $post->comment_count ),
-				esc_html( $comment_before_text ),
-				esc_html( $comment_after_text )
-			);
+		$category_links = array();
+		foreach ( $categories as $category ) {
+			if ( $link_enabled ) {
+				$category_links[] = sprintf(
+					'<a href="%s" title="%s">%s</a>',
+					esc_url( get_category_link( $category->term_id ) ),
+					// Translators: %s is the category name.
+					esc_attr( sprintf( esc_html__( 'View all posts in %s', 'squad-modules-for-divi' ), $category->name ) ),
+					esc_html( $category->name )
+				);
+			} else {
+				$category_links[] = esc_html( $category->name );
+			}
 		}
 
-		if ( 'categories' === $element && count( $categories ) ) {
-			$categories_separator = ! empty( $attrs['element_categories_sepa'] ) ? $attrs['element_categories_sepa'] : '';
+		$content = implode( "$categories_separator ", $category_links );
 
-			$output = sprintf(
-				'<div class="%1$s"><span class="element-text">%2$s</span></div>',
-				esc_attr( $class_name ),
-				esc_attr( implode( $categories_separator, $categories ) )
-			);
+		return sprintf(
+			'<div class="%s"><span class="element-text">%s</span></div>',
+			esc_attr( $class_name ),
+			$content
+		);
+	}
+
+	/**
+	 * Render tags element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array  $attrs      List of attributes.
+	 * @param int    $post_id    The post ID.
+	 * @param string $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_tags_element( $attrs, $post_id, $class_name ) {
+		$tags = wp_get_post_tags( $post_id, array( 'fields' => 'all' ) );
+		if ( empty( $tags ) ) {
+			return '';
 		}
 
-		if ( 'tags' === $element && count( $tags ) ) {
-			$tags_separator = ! empty( $attrs['element_tags_sepa'] ) ? $attrs['element_tags_sepa'] : '';
+		$tags_separator = isset( $attrs['element_tags_sepa'] ) ? $attrs['element_tags_sepa'] : '';
+		$link_enabled   = isset( $attrs['link_to_tags__enable'] ) && 'on' === $attrs['link_to_tags__enable'];
 
-			$output = sprintf(
-				'<div class="%1$s"><span class="element-text">%2$s</span></div>',
-				esc_attr( $class_name ),
-				esc_attr( implode( $tags_separator, $tags ) )
-			);
+		$tag_links = array();
+		foreach ( $tags as $tag ) {
+			if ( $link_enabled ) {
+				$tag_links[] = sprintf(
+					'<a href="%s" title="%s">%s</a>',
+					esc_url( get_tag_link( $tag->term_id ) ),
+					// Translators: %s is the tag name.
+					esc_attr( sprintf( esc_html__( 'View all posts tagged %s', 'squad-modules-for-divi' ), $tag->name ) ),
+					esc_html( $tag->name )
+				);
+			} else {
+				$tag_links[] = esc_html( $tag->name );
+			}
 		}
 
-		if ( 'divider' === $element && ( 'off' !== $attrs['show_divider'] ) ) {
-			$divider_position = ! empty( $attrs['divider_position'] ) ? sanitize_text_field( $attrs['divider_position'] ) : 'bottom';
+		$content = implode( "$tags_separator ", $tag_links );
+
+		return sprintf(
+			'<div class="%s"><span class="element-text">%s</span></div>',
+			esc_attr( $class_name ),
+			$content
+		);
+	}
+
+	/**
+	 * Render divider element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array  $attrs      List of attributes.
+	 * @param string $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_divider_element( $attrs, $class_name ) {
+		if ( isset( $attrs['show_divider'] ) && 'on' === $attrs['show_divider'] ) {
+			$divider_position = isset( $attrs['divider_position'] ) ? sanitize_text_field( $attrs['divider_position'] ) : 'bottom';
 			$divider_classes  = implode( ' ', array( 'divider-element', $divider_position ) );
 
-			$output = sprintf(
-				'<div class="%1$s"><span class="%2$s">%2$s</span></div>',
+			return sprintf(
+				'<div class="%s"><span class="%s"></span></div>',
 				esc_attr( $class_name ),
 				esc_attr( $divider_classes )
 			);
 		}
 
-		if ( 'custom_text' === $element && ! empty( $custom_text ) ) {
-			$output = sprintf(
-				'<div class="%1$s"><span class="element-text">%2$s</span></div>',
-				esc_attr( $class_name ),
-				esc_html( $custom_text )
-			);
+		return '';
+	}
+
+	/**
+	 * Render custom text element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array  $attrs      List of attributes.
+	 * @param string $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_custom_text_element( $attrs, $class_name ) {
+		if ( empty( $attrs['element_custom_text'] ) ) {
+			return '';
 		}
 
-		if ( 'custom_field' === $element ) {
-			if ( empty( $attrs['element_custom_field_post'] ) ) {
-				return '';
-			}
+		$custom_text = sanitize_text_field( $attrs['element_custom_text'] );
 
-			$custom_field_key = $attrs['element_custom_field_post'];
-			$custom_field     = Utils\Elements\CustomFields::get( 'custom_fields' );
-			if ( ! $custom_field->has_field( $post_id, $custom_field_key ) ) {
-				return '';
-			}
+		return sprintf(
+			'<div class="%s"><span class="element-text">%s</span></div>',
+			esc_attr( $class_name ),
+			esc_html( $custom_text )
+		);
+	}
 
-			$custom_field_value = $custom_field->get_field_value( $post_id, $custom_field_key );
-			if ( empty( $custom_field_value ) ) {
-				return '';
-			}
-
-			$comment_before_text = ! empty( $attrs['element_custom_field_before'] ) ? sanitize_text_field( $attrs['element_custom_field_before'] ) : '';
-			$comment_after_text  = ! empty( $attrs['element_custom_field_after'] ) ? sanitize_text_field( $attrs['element_custom_field_after'] ) : '';
-
-			$output = sprintf(
-				'<div class="%1$s"><span class="element-text">%3$s%2$s%4$s</span></div>',
-				esc_attr( $class_name ),
-				esc_html( $custom_field_value ),
-				esc_html( $comment_before_text ),
-				esc_html( $comment_after_text )
-			);
+	/**
+	 * Render custom field element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array  $attrs      List of attributes.
+	 * @param int    $post_id    The post ID.
+	 * @param string $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_custom_field_element( $attrs, $post_id, $class_name ) {
+		if ( empty( $attrs['element_custom_field_post'] ) ) {
+			return '';
 		}
 
-		if ( 'advanced_custom_field' === $element ) {
-			if ( empty( $attrs['element_advanced_custom_field_post'] ) ) {
-				return '';
-			}
+		$custom_field_key = $attrs['element_custom_field_post'];
+		$custom_field     = Utils\Elements\CustomFields::get( 'custom_fields' );
+		if ( ! $custom_field->has_field( $post_id, $custom_field_key ) ) {
+			return '';
+		}
 
-			$acf_field_key = $attrs['element_advanced_custom_field_post'];
-			$acf_fields    = Utils\Elements\CustomFields::get( 'acf_fields' );
-			if ( ! $acf_fields->has_field( $post_id, $acf_field_key ) ) {
-				return '';
-			}
+		$custom_field_value = $custom_field->get_field_value( $post_id, $custom_field_key );
+		if ( empty( $custom_field_value ) ) {
+			return '';
+		}
 
-			$acf_field_value = $acf_fields->get_field_value( $post_id, $acf_field_key );
-			if ( empty( $acf_field_value ) ) {
-				return '';
-			}
+		$comment_before_text = isset( $attrs['element_custom_field_before'] ) ? sanitize_text_field( $attrs['element_custom_field_before'] ) : '';
+		$comment_after_text  = isset( $attrs['element_custom_field_after'] ) ? sanitize_text_field( $attrs['element_custom_field_after'] ) : '';
 
-			if ( 'email' === $acf_field_type ) {
-				$acf_email_text  = ! empty( $attrs['element_advanced_custom_field_email_text'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_email_text'] ) : $acf_field_value;
-				$acf_field_value = sprintf( '<a href="mailto:%1$s" target="_blank">%2$s</a>', esc_attr( $acf_field_value ), esc_html( $acf_email_text ) );
-			}
-			if ( 'url' === $acf_field_type ) {
-				$acf_url_text    = ! empty( $attrs['element_advanced_custom_field_url_text'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_url_text'] ) : esc_html__( 'Visit the link', 'squad-modules-for-divi' );
-				$acf_url_target  = ! empty( $attrs['element_advanced_custom_field_url_target'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_url_target'] ) : '_self';
-				$acf_field_value = sprintf( '<a href="%1$s" target="%3$s">%2$s</a>', esc_url( $acf_field_value ), esc_html( $acf_url_text ), esc_attr( $acf_url_target ) );
-			}
-			if ( 'image' === $acf_field_type ) {
-				$acf_image_width = ! empty( $attrs['element_advanced_custom_field_image_width'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_image_width'] ) : '100px';
+		return sprintf(
+			'<div class="%s"><span class="element-text">%s%s%s</span></div>',
+			esc_attr( $class_name ),
+			esc_html( $comment_before_text ),
+			esc_html( $custom_field_value ),
+			esc_html( $comment_after_text )
+		);
+	}
 
+	/**
+	 * Render advanced custom field element.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $attrs      List of attributes.
+	 * @param int   $post_id    The post ID.
+	 * @param string $class_name The class name for the element.
+	 *
+	 * @return string
+	 */
+	protected function squad_render_advanced_custom_field_element( $attrs, $post_id, $class_name ) {
+		if ( empty( $attrs['element_advanced_custom_field_post'] ) ) {
+			return '';
+		}
+
+		$acf_field_key  = $attrs['element_advanced_custom_field_post'];
+		$acf_fields     = Utils\Elements\CustomFields::get( 'acf_fields' );
+		$acf_field_type = isset( $attrs['element_advanced_custom_field_type'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_type'] ) : 'text';
+
+		// Add new body class when user set advanced custom field image class.
+		$class_name .= sprintf( ' advanced_custom_field__%1$s', $acf_field_type );
+
+		if ( ! $acf_fields->has_field( $post_id, $acf_field_key ) ) {
+			return '';
+		}
+
+		$acf_field_value = $acf_fields->get_field_value( $post_id, $acf_field_key );
+		if ( empty( $acf_field_value ) ) {
+			return '';
+		}
+
+		$acf_field_value = $this->squad_format_acf_field_value( $attrs, $acf_field_value, $acf_field_type );
+
+		$acf_before_text = '';
+		$acf_after_text  = '';
+		if ( 'text' === $acf_field_type ) {
+			$acf_before_text = isset( $attrs['element_advanced_custom_field_before'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_before'] ) : '';
+			$acf_after_text  = isset( $attrs['element_advanced_custom_field_after'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_after'] ) : '';
+		}
+
+		return sprintf(
+			'<div class="%s"><span class="element-text">%s%s%s</span></div>',
+			esc_attr( $class_name ),
+			esc_html( $acf_before_text ),
+			wp_kses_post( $acf_field_value ),
+			esc_html( $acf_after_text )
+		);
+	}
+
+	/**
+	 * Format ACF field value based on field type.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array  $attrs           List of attributes.
+	 * @param mixed  $acf_field_value The ACF field value.
+	 * @param string $acf_field_type  The ACF field type.
+	 *
+	 * @return string
+	 */
+	protected function squad_format_acf_field_value( $attrs, $acf_field_value, $acf_field_type ) {
+		switch ( $acf_field_type ) {
+			case 'email':
+				$acf_email_text = isset( $attrs['element_advanced_custom_field_email_text'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_email_text'] ) : $acf_field_value;
+				return sprintf( '<a href="mailto:%s" target="_blank">%s</a>', esc_attr( $acf_field_value ), esc_html( $acf_email_text ) );
+
+			case 'url':
+				$acf_url_text   = isset( $attrs['element_advanced_custom_field_url_text'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_url_text'] ) : esc_html__( 'Visit the link', 'squad-modules-for-divi' );
+				$acf_url_target = isset( $attrs['element_advanced_custom_field_url_target'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_url_target'] ) : '_self';
+				return sprintf( '<a href="%s" target="%s">%s</a>', esc_url( $acf_field_value ), esc_attr( $acf_url_target ), esc_html( $acf_url_text ) );
+
+			case 'image':
+				$acf_image_width = isset( $attrs['element_advanced_custom_field_image_width'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_image_width'] ) : '100px';
 				$acf_image_sizes = array( absint( $acf_image_width ), 'full' );
-				$acf_image_attr  = array(
-					'width' => $acf_image_width,
-				);
+				$acf_image_attr  = array( 'width' => $acf_image_width );
+				return wp_get_attachment_image( (int) $acf_field_value, $acf_image_sizes, false, $acf_image_attr );
 
-				$acf_field_value = wp_get_attachment_image( (int) $acf_field_value, $acf_image_sizes, false, $acf_image_attr ); // @phpstan-ignore-line
-			}
-
-			$acf_before_text = '';
-			$acf_after_text  = '';
-			if ( in_array( $acf_field_type, array( 'text' ), true ) ) {
-				$acf_before_text = ! empty( $attrs['element_advanced_custom_field_before'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_before'] ) : '';
-				$acf_after_text  = ! empty( $attrs['element_advanced_custom_field_after'] ) ? sanitize_text_field( $attrs['element_advanced_custom_field_after'] ) : '';
-			}
-
-			$output = sprintf(
-				'<div class="%1$s"><span class="element-text">%3$s%2$s%4$s</span></div>',
-				esc_attr( $class_name ),
-				wp_kses_post( $acf_field_value ),
-				esc_html( $acf_before_text ),
-				esc_html( $acf_after_text )
-			);
+			default:
+				return $acf_field_value;
 		}
-
-		return $output;
 	}
 
 	/**

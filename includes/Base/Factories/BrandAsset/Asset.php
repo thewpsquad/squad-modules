@@ -16,7 +16,7 @@ namespace DiviSquad\Base\Factories\BrandAsset;
  * @package DiviSquad
  * @since   3.0.0
  */
-abstract class BrandAsset implements BrandAssetInterface {
+abstract class Asset implements AssetInterface {
 
 	/**
 	 * The plugin base.

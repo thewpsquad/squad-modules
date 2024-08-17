@@ -18,7 +18,7 @@ msgstr ""
 msgid " ( Page %s )"
 msgstr " ( Pagina %s )"
 
-#: includes/Modules/PostGrid.php:679
+#: includes/Modules/PostGrid.php:680
 msgid " Ignore sticky  posts for the current page."
 msgstr " Negeren sticky posts voor de huidige pagina."
 
@@ -82,34 +82,14 @@ msgid "0 - 5"
 msgstr "0 - 5"
 
 #: build/divi-builder-4/scripts/builder-bundle.js:1
-msgid "1"
-msgstr "1"
-
-#: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "2"
 msgstr "2"
-
-#: build/divi-builder-4/scripts/builder-bundle.js:1
-msgid "3"
-msgstr "3"
-
-#: build/divi-builder-4/scripts/builder-bundle.js:1
-msgid "4"
-msgstr "4"
 
 #: build/admin/scripts/admin.js:2
 msgid "404"
 msgstr "404"
 
-#: build/divi-builder-4/scripts/builder-bundle.js:1
-msgid "5"
-msgstr "5"
-
-#: build/divi-builder-4/scripts/builder-bundle.js:1
-msgid "8"
-msgstr "8"
-
-#: includes/Modules/Divider.php:643
+#: includes/Modules/Divider.php:642
 #: includes/Modules/Lottie.php:135
 msgid "A json file is chosen for lottie."
 msgstr "Een json-bestand is gekozen voor lottie."
@@ -118,16 +98,12 @@ msgstr "Een json-bestand is gekozen voor lottie."
 msgid "Activate Pro Plugin"
 msgstr "Het Activeren Van Pro Plugin"
 
-#: build/admin/scripts/admin.js:175
-msgid "Active All"
-msgstr "Alle activeren"
-
-#: includes/Modules/PostGrid.php:111
-#: includes/Modules/PostGrid.php:487
+#: includes/Modules/PostGrid.php:112
+#: includes/Modules/PostGrid.php:488
 msgid "Active Pagination"
 msgstr "Actieve Pagination"
 
-#: includes/Modules/PostGrid.php:112
+#: includes/Modules/PostGrid.php:113
 msgid "Active Pagination Text"
 msgstr "Actieve Paginering Tekst"
 
@@ -151,11 +127,11 @@ msgstr "Toevoegen Voordat Pictogram"
 msgid "Add dynamic, attention-grabbing text animations to your Divi-powered website."
 msgstr "Voeg dynamische, aandachttrekkende en tekst animaties Divi-powered website."
 
-#: includes/Modules/BusinessHours.php:238
+#: includes/Modules/BusinessHours.php:237
 msgid "Add New Business Day"
 msgstr "Nieuw Bedrijf Toevoegen Dag"
 
-#: includes/Modules/PostGrid.php:509
+#: includes/Modules/PostGrid.php:510
 msgid "Add New Element"
 msgstr "Het Toevoegen Van Nieuwe Element"
 
@@ -163,7 +139,7 @@ msgstr "Het Toevoegen Van Nieuwe Element"
 msgid "Add one or more business day(s)."
 msgstr "Het toevoegen van een of meer werkdag(en)."
 
-#: includes/Modules/BusinessHours.php:528
+#: includes/Modules/BusinessHours.php:527
 msgid "Add one or more business day."
 msgstr "Het toevoegen van een of meer werkdag."
 
@@ -171,7 +147,7 @@ msgstr "Het toevoegen van een of meer werkdag."
 msgid "Add one or more image(s)."
 msgstr "Het toevoegen van een of meer afbeelding(en)."
 
-#: includes/Modules/BusinessHoursChild.php:214
+#: includes/Modules/BusinessHoursChild.php:213
 msgid "Add Start And Time"
 msgstr "Voeg Start En Tijd"
 
@@ -179,7 +155,7 @@ msgstr "Voeg Start En Tijd"
 msgid "Add stylish star ratings to your content for user feedback and ratings."
 msgstr "Voeg stijlvolle sterren om je content voor de gebruiker feedback en beoordelingen."
 
-#: includes/Managers/Branding/AdminFooterText.php:71
+#: includes/Managers/Branding/AdminFooterText.php:72
 msgid "Add your [stars] on [wp.org] to spread the love."
 msgstr "Het toevoegen van uw [sterren] op [wp.org] om de liefde."
 
@@ -199,11 +175,11 @@ msgstr "Pas de stijl van de achtergrond van de knop door het aanpassen van de ac
 msgid "Adjust the background style of the current field by customizing the background color, gradient, and image."
 msgstr "Pas de stijl van de achtergrond van het huidige veld door het aanpassen van de achtergrond kleur, verloop en beeld."
 
-#: includes/Modules/BusinessHours.php:309
+#: includes/Modules/BusinessHours.php:308
 msgid "Adjust the gap between the title and the day wrapper."
 msgstr "Pas de kloof tussen de titel en de dag van de wrapper."
 
-#: includes/Modules/DualButton.php:611
+#: includes/Modules/DualButton.php:610
 msgid "Adjust the width of the content within the blurb content."
 msgstr "Pas de breedte van de inhoud in de blurb inhoud."
 
@@ -211,15 +187,15 @@ msgstr "Pas de breedte van de inhoud in de blurb inhoud."
 msgid "Adjust the width of the content within the button."
 msgstr "Pas de breedte van de inhoud in de knop."
 
-#: includes/Modules/BusinessHours.php:358
+#: includes/Modules/BusinessHours.php:357
 msgid "Adjust the width of the day text."
 msgstr "Pas de breedte van de dag de tekst."
 
-#: includes/Modules/DualButton.php:499
+#: includes/Modules/DualButton.php:498
 msgid "Adjust the width of the separator."
 msgstr "Pas de breedte van de separator."
 
-#: includes/Modules/BusinessHours.php:376
+#: includes/Modules/BusinessHours.php:375
 msgid "Adjust the width of the time text."
 msgstr "Pas de breedte van de tekst \"time\"."
 
@@ -232,11 +208,11 @@ msgid "Advanced Blurb"
 msgstr "Geavanceerde Blurb"
 
 #: includes/Managers/Features/Modules.php:133
-#: includes/Modules/Divider.php:48
+#: includes/Modules/Divider.php:47
 msgid "Advanced Divider"
 msgstr "Geavanceerde Divider"
 
-#: includes/Modules/Divider.php:49
+#: includes/Modules/Divider.php:48
 msgid "Advanced Dividers"
 msgstr "Geavanceerde Glazen Ladeschotjes"
 
@@ -253,18 +229,18 @@ msgid "Advanced Slider"
 msgstr "Geavanceerde Slider"
 
 #: includes/Modules/BeforeAfterImageSlider.php:67
-#: includes/Modules/TypingText.php:72
-#: includes/Modules/TypingText.php:110
-#: includes/Modules/TypingText.php:167
-#: includes/Modules/TypingText.php:259
+#: includes/Modules/TypingText.php:71
+#: includes/Modules/TypingText.php:109
+#: includes/Modules/TypingText.php:166
+#: includes/Modules/TypingText.php:258
 msgid "After"
 msgstr "Na"
 
-#: includes/Modules/TypingText.php:674
+#: includes/Modules/TypingText.php:673
 msgid "After Background"
 msgstr "Na De Achtergrond"
 
-#: includes/Modules/TypingText.php:225
+#: includes/Modules/TypingText.php:224
 msgid "After Box Shadow"
 msgstr "Na Het Vakje Schaduw"
 
@@ -285,17 +261,17 @@ msgstr "Na Etiket"
 msgid "After Label Text"
 msgstr "Na Het Tekst Label"
 
-#: includes/Modules/TypingText.php:809
+#: includes/Modules/TypingText.php:808
 msgid "After Margin"
 msgstr "Na Marge"
 
-#: includes/Modules/TypingText.php:826
+#: includes/Modules/TypingText.php:825
 msgid "After Padding"
 msgstr "Na Het Opvullen"
 
-#: includes/Modules/PostGridChild.php:396
-#: includes/Modules/TypingText.php:73
-#: includes/Modules/TypingText.php:302
+#: includes/Modules/PostGridChild.php:401
+#: includes/Modules/TypingText.php:72
+#: includes/Modules/TypingText.php:301
 msgid "After Text"
 msgstr "Na De Tekst"
 
@@ -305,23 +281,23 @@ msgstr "Uitlijnen content naar links, rechts of midden."
 
 #: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:221
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:736
-#: includes/Modules/DualButton.php:518
-#: includes/Modules/DualButton.php:575
-#: includes/Modules/DualButton.php:601
-#: includes/Modules/FlipBox.php:1063
-#: includes/Modules/FlipBox.php:1083
-#: includes/Modules/FlipBox.php:1163
-#: includes/Modules/FlipBox.php:1775
-#: includes/Modules/FlipBox.php:1869
-#: includes/Modules/PostGrid.php:1037
-#: includes/Modules/PostGrid.php:1237
-#: includes/Modules/PostGridChild.php:813
+#: includes/Modules/DualButton.php:517
+#: includes/Modules/DualButton.php:574
+#: includes/Modules/DualButton.php:600
+#: includes/Modules/FlipBox.php:1062
+#: includes/Modules/FlipBox.php:1082
+#: includes/Modules/FlipBox.php:1162
+#: includes/Modules/FlipBox.php:1774
+#: includes/Modules/FlipBox.php:1868
+#: includes/Modules/PostGrid.php:1038
+#: includes/Modules/PostGrid.php:1238
+#: includes/Modules/PostGridChild.php:868
 #: includes/Modules/PostReadingTime.php:289
-#: includes/Modules/TypingText.php:602
+#: includes/Modules/TypingText.php:601
 msgid "Align icon to the left, right or center."
 msgstr "Icoon uitlijnen naar links, rechts of midden."
 
-#: includes/Modules/FlipBox.php:1173
+#: includes/Modules/FlipBox.php:1172
 msgid "Align icon to the top, bottom or center."
 msgstr "Uitlijnen pictogram aan de bovenkant, onderkant of center."
 
@@ -329,17 +305,13 @@ msgstr "Uitlijnen pictogram aan de bovenkant, onderkant of center."
 msgid "Align your Stars to the left, right or center of the module."
 msgstr "Het uitlijnen van Sterren naar links, rechts of het midden van de module."
 
-#: includes/Modules/DualButton.php:516
+#: includes/Modules/DualButton.php:515
 #: includes/Modules/PostReadingTime.php:287
-#: includes/Modules/TypingText.php:600
+#: includes/Modules/TypingText.php:599
 msgid "Alignment"
 msgstr "Uitlijning"
 
-#: build/admin/scripts/admin.js:175
-msgid "All"
-msgstr "Alle"
-
-#: includes/Modules/PostGrid.php:565
+#: includes/Modules/PostGrid.php:566
 msgid "All Categories"
 msgstr "Alle Categorieën"
 
@@ -347,11 +319,11 @@ msgstr "Alle Categorieën"
 msgid "Already did it"
 msgstr "Al deed"
 
-#: includes/Modules/Divider.php:283
+#: includes/Modules/Divider.php:282
 msgid "Amount Of Line"
 msgstr "Bedrag Van De Lijn"
 
-#: includes/Modules/Divider.php:915
+#: includes/Modules/Divider.php:914
 #: includes/Modules/Lottie.php:240
 msgid "Amount Of Loops"
 msgstr "Bedrag Van Lussen"
@@ -365,24 +337,24 @@ msgstr "Geanimeerde Wave Kleur"
 msgid "Animation"
 msgstr "Animatie"
 
-#: includes/Modules/FlipBox.php:1245
-#: includes/Modules/FlipBox.php:1268
-#: includes/Modules/FlipBox.php:1280
-#: includes/Modules/FlipBox.php:1292
+#: includes/Modules/FlipBox.php:1244
+#: includes/Modules/FlipBox.php:1267
+#: includes/Modules/FlipBox.php:1279
+#: includes/Modules/FlipBox.php:1291
 msgid "Animation Direction"
 msgstr "Animatie-Richting"
 
-#: includes/Modules/Divider.php:822
+#: includes/Modules/Divider.php:821
 #: includes/Modules/Lottie.php:147
 msgid "Animation Interaction"
 msgstr "Animatie Interactie"
 
-#: includes/Modules/Divider.php:961
+#: includes/Modules/Divider.php:960
 #: includes/Modules/Lottie.php:286
 msgid "Animation Speed"
 msgstr "Animatie Snelheid"
 
-#: includes/Modules/FlipBox.php:1226
+#: includes/Modules/FlipBox.php:1225
 msgid "Animation Type"
 msgstr "Animatie type"
 
@@ -394,7 +366,7 @@ msgstr "Toepassing prachtige maskers om uw afbeeldingen, het toevoegen van creat
 msgid "Approaching closer to unlocking the benefits of the Pro plugin."
 msgstr "Het naderen dichter bij het ontsluiten van de voordelen van de Pro plugin."
 
-#: includes/Modules/PostGrid.php:614
+#: includes/Modules/PostGrid.php:615
 msgid "Ascending"
 msgstr "Oplopend"
 
@@ -419,11 +391,11 @@ msgstr "Auteur archief voor "
 msgid "Author Avatar"
 msgstr "Auteur Avatar"
 
-#: includes/Modules/PostGridChild.php:459
+#: includes/Modules/PostGridChild.php:464
 msgid "Author Name Type"
 msgstr "De Naam Van De Auteur Van Het Type"
 
-#: includes/Modules/PostGridChild.php:476
+#: includes/Modules/PostGridChild.php:481
 msgid "Avatar Image Size"
 msgstr "Avatar Afbeelding Formaat"
 
@@ -431,41 +403,41 @@ msgstr "Avatar Afbeelding Formaat"
 msgid "Average time is 8 copies per second."
 msgstr "Gemiddelde tijd is 8 exemplaren per seconde."
 
-#: includes/Modules/FlipBox.php:65
+#: includes/Modules/FlipBox.php:64
 msgid "Back"
 msgstr "Terug"
 
-#: includes/Modules/FlipBox.php:139
+#: includes/Modules/FlipBox.php:138
 msgid "Back Body Heading Text"
 msgstr "Terug Lichaam Kop Tekst"
 
-#: includes/Modules/FlipBox.php:129
+#: includes/Modules/FlipBox.php:128
 msgid "Back Body Text"
 msgstr "Terug Body Tekst"
 
-#: includes/Modules/FlipBox.php:84
-#: includes/Modules/FlipBox.php:144
-#: includes/Modules/FlipBox.php:1026
+#: includes/Modules/FlipBox.php:83
+#: includes/Modules/FlipBox.php:143
+#: includes/Modules/FlipBox.php:1025
 msgid "Back Button"
 msgstr "Terug Knop"
 
-#: includes/Modules/FlipBox.php:102
+#: includes/Modules/FlipBox.php:101
 msgid "Back Wrapper"
 msgstr "Terug Wrapper"
 
-#: includes/Modules/DropCapText.php:158
-#: includes/Modules/DualButton.php:412
-#: includes/Modules/PostGridChild.php:905
-#: includes/Modules/PostGridChild.php:947
+#: includes/Modules/DropCapText.php:157
+#: includes/Modules/DualButton.php:411
+#: includes/Modules/PostGridChild.php:960
+#: includes/Modules/PostGridChild.php:1002
 #: includes/Modules/VideoPopup.php:344
 msgid "Background"
 msgstr "Achtergrond"
 
 #: includes/Modules/BeforeAfterImageSlider.php:66
-#: includes/Modules/TypingText.php:67
-#: includes/Modules/TypingText.php:82
-#: includes/Modules/TypingText.php:141
-#: includes/Modules/TypingText.php:251
+#: includes/Modules/TypingText.php:66
+#: includes/Modules/TypingText.php:81
+#: includes/Modules/TypingText.php:140
+#: includes/Modules/TypingText.php:250
 #: includes/Modules/VideoPopup.php:81
 msgid "Before"
 msgstr "Voor"
@@ -479,11 +451,11 @@ msgstr "Voor Na Image Slider"
 msgid "Before After Image Sliders"
 msgstr "Voor Na Image Sliders"
 
-#: includes/Modules/TypingText.php:656
+#: includes/Modules/TypingText.php:655
 msgid "Before Background"
 msgstr "Voordat Achtergrond"
 
-#: includes/Modules/TypingText.php:197
+#: includes/Modules/TypingText.php:196
 msgid "Before Box Shadow"
 msgstr "Voordat Vak Schaduw"
 
@@ -504,19 +476,19 @@ msgstr "Voordat Label"
 msgid "Before Label Text"
 msgstr "Voordat De Tekst Label"
 
-#: includes/Modules/TypingText.php:753
+#: includes/Modules/TypingText.php:752
 msgid "Before Margin"
 msgstr "Voordat Marge"
 
-#: includes/Modules/TypingText.php:767
+#: includes/Modules/TypingText.php:766
 msgid "Before Padding"
 msgstr "Voordat Padding"
 
 #: includes/Modules/Breadcrumbs.php:113
 #: includes/Modules/Breadcrumbs.php:143
-#: includes/Modules/PostGridChild.php:384
-#: includes/Modules/TypingText.php:68
-#: includes/Modules/TypingText.php:283
+#: includes/Modules/PostGridChild.php:389
+#: includes/Modules/TypingText.php:67
+#: includes/Modules/TypingText.php:282
 msgid "Before Text"
 msgstr "Voordat Tekst"
 
@@ -524,29 +496,29 @@ msgstr "Voordat Tekst"
 msgid "Billing Issue"
 msgstr "Facturering Probleem"
 
-#: includes/Modules/TypingText.php:712
-#: includes/Modules/TypingText.php:726
-#: includes/Modules/TypingText.php:740
+#: includes/Modules/TypingText.php:711
+#: includes/Modules/TypingText.php:725
+#: includes/Modules/TypingText.php:739
 msgid "Block"
 msgstr "Blok"
 
-#: includes/Modules/DropCapText.php:90
-#: includes/Modules/FlipBox.php:342
-#: includes/Modules/FlipBox.php:391
-#: includes/Modules/FlipBox.php:1516
-#: includes/Modules/FlipBox.php:2315
+#: includes/Modules/DropCapText.php:89
+#: includes/Modules/FlipBox.php:341
+#: includes/Modules/FlipBox.php:390
+#: includes/Modules/FlipBox.php:1515
+#: includes/Modules/FlipBox.php:2314
 msgid "Body"
 msgstr "Body"
 
-#: includes/Modules/FlipBox.php:2087
+#: includes/Modules/FlipBox.php:2086
 msgid "Body Margin"
 msgstr "Lichaam Marge"
 
-#: includes/Modules/FlipBox.php:2232
+#: includes/Modules/FlipBox.php:2231
 msgid "Body Order"
 msgstr "Lichaam Om"
 
-#: includes/Modules/FlipBox.php:2105
+#: includes/Modules/FlipBox.php:2104
 msgid "Body Padding"
 msgstr "Body padding"
 
@@ -554,9 +526,9 @@ msgstr "Body padding"
 msgid "Border Radius"
 msgstr "Border Radius"
 
-#: includes/Modules/FlipBox.php:1177
-#: includes/Modules/FlipBox.php:1884
-#: includes/Modules/PostGridChild.php:827
+#: includes/Modules/FlipBox.php:1176
+#: includes/Modules/FlipBox.php:1883
+#: includes/Modules/PostGridChild.php:882
 #: includes/Modules/StarRating.php:277
 msgid "Bottom"
 msgstr "Onderkant"
@@ -573,30 +545,30 @@ msgid "Bug"
 msgstr "Bug"
 
 #: includes/Managers/Features/Modules.php:246
-#: includes/Modules/BusinessHoursChild.php:40
+#: includes/Modules/BusinessHoursChild.php:39
 msgid "Business Day"
 msgstr "Werkdag"
 
-#: includes/Modules/BusinessHoursChild.php:41
+#: includes/Modules/BusinessHoursChild.php:40
 msgid "Business Days"
 msgstr "Werkdagen"
 
 #: includes/Managers/Features/Modules.php:243
+#: includes/Modules/BusinessHours.php:40
 #: includes/Modules/BusinessHours.php:41
-#: includes/Modules/BusinessHours.php:42
 msgid "Business Hours"
 msgstr "Openingstijden"
 
 #: includes/Base/DiviBuilder/Module/FormStyler.php:62
 #: includes/Base/DiviBuilder/Module/FormStyler.php:272
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:393
-#: includes/Modules/DualButton.php:145
-#: includes/Modules/DualButton.php:166
-#: includes/Modules/FlipBox.php:776
-#: includes/Modules/FlipBox.php:808
-#: includes/Modules/FlipBox.php:895
-#: includes/Modules/FlipBox.php:919
-#: includes/Modules/FlipBox.php:2323
+#: includes/Modules/DualButton.php:144
+#: includes/Modules/DualButton.php:165
+#: includes/Modules/FlipBox.php:775
+#: includes/Modules/FlipBox.php:807
+#: includes/Modules/FlipBox.php:894
+#: includes/Modules/FlipBox.php:918
+#: includes/Modules/FlipBox.php:2322
 #: includes/Modules/FormStylers/ContactForm7.php:162
 #: includes/Modules/FormStylers/ContactForm7.php:244
 #: includes/Modules/FormStylers/ContactForm7.php:585
@@ -610,27 +582,27 @@ msgstr "Openingstijden"
 #: includes/Modules/FormStylers/NinjaForms.php:620
 #: includes/Modules/FormStylers/WPForms.php:201
 #: includes/Modules/FormStylers/WPForms.php:283
-#: includes/Modules/PostGrid.php:121
-#: includes/Modules/PostGrid.php:257
+#: includes/Modules/PostGrid.php:122
+#: includes/Modules/PostGrid.php:258
 msgid "Button"
 msgstr "Knop"
 
-#: includes/Modules/FlipBox.php:1061
-#: includes/Modules/FlipBox.php:1081
-#: includes/Modules/PostGrid.php:1235
+#: includes/Modules/FlipBox.php:1060
+#: includes/Modules/FlipBox.php:1080
+#: includes/Modules/PostGrid.php:1236
 msgid "Button Alignment"
 msgstr "Knop Uitlijnen"
 
-#: includes/Modules/DualButton.php:217
-#: includes/Modules/DualButton.php:231
-#: includes/Modules/FlipBox.php:975
-#: includes/Modules/FlipBox.php:992
+#: includes/Modules/DualButton.php:216
+#: includes/Modules/DualButton.php:230
+#: includes/Modules/FlipBox.php:974
+#: includes/Modules/FlipBox.php:991
 #: includes/Modules/FormStylers/ContactForm7.php:338
 #: includes/Modules/FormStylers/FluentForms.php:456
 #: includes/Modules/FormStylers/GravityForms.php:639
 #: includes/Modules/FormStylers/NinjaForms.php:533
 #: includes/Modules/FormStylers/WPForms.php:377
-#: includes/Modules/PostGrid.php:394
+#: includes/Modules/PostGrid.php:395
 msgid "Button Box Shadow"
 msgstr "Button Box Shadow"
 
@@ -650,11 +622,11 @@ msgstr "Toets Hoogte"
 msgid "Button Icon Type"
 msgstr "Pictogram Van De Knop Type"
 
-#: includes/Modules/FlipBox.php:2137
+#: includes/Modules/FlipBox.php:2136
 msgid "Button Link Target"
 msgstr "Knop Doel Van Koppeling"
 
-#: includes/Modules/FlipBox.php:2127
+#: includes/Modules/FlipBox.php:2126
 msgid "Button Link URL"
 msgstr "Knop Link van de URL"
 
@@ -662,7 +634,7 @@ msgstr "Knop Link van de URL"
 msgid "Button Margin"
 msgstr "Knop Marge"
 
-#: includes/Modules/FlipBox.php:2255
+#: includes/Modules/FlipBox.php:2254
 msgid "Button Order"
 msgstr "De Knop Om"
 
@@ -670,12 +642,12 @@ msgstr "De Knop Om"
 msgid "Button Padding"
 msgstr "Knop Padding"
 
-#: includes/Modules/DualButton.php:582
+#: includes/Modules/DualButton.php:581
 msgid "Button Position"
 msgstr "- Knop Plaats"
 
 #: includes/Base/DiviBuilder/Module/FormStyler.php:63
-#: includes/Modules/FlipBox.php:146
+#: includes/Modules/FlipBox.php:145
 msgid "Button Text"
 msgstr "Knoptekst"
 
@@ -683,7 +655,7 @@ msgstr "Knoptekst"
 msgid "Button Width"
 msgstr "Knop Breedte"
 
-#: includes/Modules/DualButton.php:599
+#: includes/Modules/DualButton.php:598
 msgid "Buttons Alignment"
 msgstr "Knoppen Uitlijning"
 
@@ -695,19 +667,19 @@ msgstr "Standaard pictogram van de knop om altijd worden weergegeven. Als u wilt
 msgid "By default, icon and text are both move on hover. If you would like button icon move on hover, then you can enable this option."
 msgstr "Standaard pictogram en tekst zijn zowel op beweeg. Als u wilt knop pictogram verplaatsen op beweeg, dan kunt u deze optie inschakelen."
 
-#: includes/Modules/PostGridChild.php:852
+#: includes/Modules/PostGridChild.php:907
 msgid "By default, icon and text are both move on hover. If you would like post element icon move on hover, then you can enable this option."
 msgstr "Standaard pictogram en tekst zijn zowel op beweeg. Als u wilt post element pictogram verplaatsen op beweeg, dan kunt u deze optie inschakelen."
 
-#: includes/Modules/PostGridChild.php:839
+#: includes/Modules/PostGridChild.php:894
 msgid "By default, post element icon to always be displayed. If you would like post element icon are displayed on hover, then you can enable this option."
 msgstr "Standaard post element pictogram om altijd worden weergegeven. Als u wilt post element pictogram worden weergegeven op beweeg, dan kunt u deze optie inschakelen."
 
-#: includes/Modules/PostGridChild.php:675
+#: includes/Modules/PostGridChild.php:730
 msgid "By default, post title icon on hover be displayed. If you would like post title icon is displayed all time, then you can enable this option."
 msgstr "Standaard post titel pictogram op beweeg worden weergegeven. Als u wilt de post titel pictogram wordt weergegeven, alle tijd, dan kunt u deze optie inschakelen."
 
-#: includes/Modules/DualButton.php:337
+#: includes/Modules/DualButton.php:336
 msgid "By default, Separator to always be displayed not as icon. If you would like use icon for separator, then you can enable this option."
 msgstr "Standaard Scheidingsteken u moet altijd worden niet weergegeven als pictogram. Indien u gebruik wenst te maken van het pictogram voor separator, dan kunt u deze optie inschakelen."
 
@@ -715,11 +687,11 @@ msgstr "Standaard Scheidingsteken u moet altijd worden niet weergegeven als pict
 msgid "By default, the button element will be get default width. If you would like resize the button, then you can enable this option."
 msgstr "Standaard de knop element zal worden standaard breedte. Als u wilt de grootte van de knop, dan kunt u deze optie inschakelen."
 
-#: includes/Modules/DualButton.php:486
+#: includes/Modules/DualButton.php:485
 msgid "By default, the separator element will be get default width. If you would like resize the separator, then you can enable this option."
 msgstr "Standaard wordt de afscheider element zal worden standaard breedte. Als u wilt de grootte van de afscheider, dan kunt u deze optie inschakelen."
 
-#: includes/Modules/Divider.php:1017
+#: includes/Modules/Divider.php:1016
 #: includes/Modules/Lottie.php:342
 msgid "Canvas"
 msgstr "Canvas"
@@ -728,18 +700,18 @@ msgstr "Canvas"
 msgid "Categories"
 msgstr "Categorieën"
 
-#: includes/Modules/PostGridChild.php:410
+#: includes/Modules/PostGridChild.php:415
 msgid "Categories Separator"
 msgstr "Categorieën Separator"
 
-#: includes/Modules/PostGrid.php:542
+#: includes/Modules/PostGrid.php:543
 msgid "Category"
 msgstr "Categorie"
 
-#: includes/Modules/FlipBox.php:1176
-#: includes/Modules/FlipBox.php:1222
-#: includes/Modules/FlipBox.php:1883
-#: includes/Modules/PostGridChild.php:826
+#: includes/Modules/FlipBox.php:1175
+#: includes/Modules/FlipBox.php:1221
+#: includes/Modules/FlipBox.php:1882
+#: includes/Modules/PostGridChild.php:881
 msgid "Center"
 msgstr "Midden"
 
@@ -759,8 +731,8 @@ msgstr "Checkbox En Radio Actieve Kleur"
 msgid "Checkbox & Radio Field Size"
 msgstr "Checkbox En Radio In Het Veld Grootte"
 
-#: includes/Modules/PostGridChild.php:461
-#: includes/Modules/PostGridChild.php:478
+#: includes/Modules/PostGridChild.php:466
+#: includes/Modules/PostGridChild.php:483
 msgid "Choose a author name type to display for current post."
 msgstr "Kies een naam van de auteur van het type te-display voor huidige post."
 
@@ -769,7 +741,7 @@ msgstr "Kies een naam van de auteur van het type te-display voor huidige post."
 msgid "Choose a custom field to display for current post."
 msgstr "Kies een aangepast veld dat u wilt weergeven voor de huidige post."
 
-#: includes/Modules/PostGridChild.php:494
+#: includes/Modules/PostGridChild.php:499
 msgid "Choose a date type to display for current post."
 msgstr "Kies een datum type display voor huidige post."
 
@@ -785,7 +757,7 @@ msgstr "Kies een effect weergegeven met uw glitch tekst."
 msgid "Choose a inline display position to display with your title texts."
 msgstr "Kies een inline-display positie weer te geven met de titel van uw website teksten."
 
-#: includes/Modules/Divider.php:645
+#: includes/Modules/Divider.php:644
 #: includes/Modules/Lottie.php:137
 msgid "Choose a lottie json file"
 msgstr "Kies een lottie json-bestand"
@@ -794,7 +766,7 @@ msgstr "Kies een lottie json-bestand"
 msgid "Choose a rating scale for ratings."
 msgstr "Kies een beoordelingsschaal voor de ratings."
 
-#: includes/Modules/Divider.php:614
+#: includes/Modules/Divider.php:613
 #: includes/Modules/Lottie.php:107
 msgid "Choose a source type to display from your lottie."
 msgstr "Kies een type gegevensbron dat u wilt weergeven in uw lottie."
@@ -811,16 +783,16 @@ msgstr "Kies een label om het scherm met uw glitch tekst."
 msgid "Choose a tag to display with your gradient text."
 msgstr "Kies een label om het scherm met je verloop tekst."
 
-#: includes/Modules/Divider.php:250
+#: includes/Modules/Divider.php:249
 msgid "Choose a tag to display with your icon text."
 msgstr "Kies een label weergegeven met het pictogram van uw tekst."
 
-#: includes/Modules/FlipBox.php:1541
+#: includes/Modules/FlipBox.php:1540
 msgid "Choose a tag to display with your sub title."
 msgstr "Kies een label om het scherm met uw sub-titel."
 
 #: includes/Modules/ScrollingText.php:129
-#: includes/Modules/TypingText.php:315
+#: includes/Modules/TypingText.php:314
 msgid "Choose a tag to display with your texts."
 msgstr "Kies een label om het scherm met uw teksten."
 
@@ -828,7 +800,7 @@ msgstr "Kies een label om het scherm met uw teksten."
 msgid "Choose a tag to display with your time text."
 msgstr "Kies een label om het scherm met de tekst \"time\"."
 
-#: includes/Modules/PostGridChild.php:440
+#: includes/Modules/PostGridChild.php:445
 msgid "Choose a tag to display with your title element."
 msgstr "Kies een label om het scherm met uw title-element."
 
@@ -836,8 +808,8 @@ msgstr "Kies een label om het scherm met uw title-element."
 msgid "Choose a tag to display with your title texts."
 msgstr "Kies een label om het scherm met de titel teksten."
 
-#: includes/Modules/BusinessHours.php:263
-#: includes/Modules/FlipBox.php:1529
+#: includes/Modules/BusinessHours.php:262
+#: includes/Modules/FlipBox.php:1528
 msgid "Choose a tag to display with your title."
 msgstr "Kies een label om het scherm met uw titel."
 
@@ -849,7 +821,7 @@ msgstr "Kies een type"
 msgid "Choose a Video MP4 File"
 msgstr "Kies een Video-MP4-Bestand"
 
-#: includes/Modules/Divider.php:209
+#: includes/Modules/Divider.php:208
 msgid "Choose an divider type to display."
 msgstr "Kies een verdeler type weer te geven."
 
@@ -858,12 +830,12 @@ msgid "Choose an element type to display for current post."
 msgstr "Kies een type element dat u wilt weergeven voor de huidige post."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:436
-#: includes/Modules/Divider.php:574
-#: includes/Modules/DualButton.php:381
-#: includes/Modules/FlipBox.php:1627
-#: includes/Modules/PostGridChild.php:595
-#: includes/Modules/PostGridChild.php:662
-#: includes/Modules/TypingText.php:516
+#: includes/Modules/Divider.php:573
+#: includes/Modules/DualButton.php:380
+#: includes/Modules/FlipBox.php:1626
+#: includes/Modules/PostGridChild.php:650
+#: includes/Modules/PostGridChild.php:717
+#: includes/Modules/TypingText.php:515
 msgid "Choose an icon"
 msgstr "Kies een icoon"
 
@@ -871,31 +843,31 @@ msgstr "Kies een icoon"
 msgid "Choose an icon to display with your button."
 msgstr "Kies een pictogram om het scherm met de knop."
 
-#: includes/Modules/FlipBox.php:1628
+#: includes/Modules/FlipBox.php:1627
 msgid "Choose an icon to display with your current side of flip box."
 msgstr "Kies een pictogram om het scherm met uw huidige zijde van de klep vak."
 
-#: includes/Modules/Divider.php:575
+#: includes/Modules/Divider.php:574
 msgid "Choose an icon to display with your divider."
 msgstr "Kies een pictogram weergegeven met uw verdeler."
 
-#: includes/Modules/PostGrid.php:923
+#: includes/Modules/PostGrid.php:924
 msgid "Choose an icon to display with your next entries."
 msgstr "Kies een pictogram weergegeven met uw volgende items."
 
-#: includes/Modules/PostGrid.php:900
+#: includes/Modules/PostGrid.php:901
 msgid "Choose an icon to display with your old entries."
 msgstr "Kies een pictogram weergegeven met uw oude regels."
 
-#: includes/Modules/PostGridChild.php:663
+#: includes/Modules/PostGridChild.php:718
 msgid "Choose an icon to display with your post title."
 msgstr "Kies een pictogram weergegeven met uw post titel."
 
-#: includes/Modules/PostGridChild.php:596
+#: includes/Modules/PostGridChild.php:651
 msgid "Choose an icon to display with your post."
 msgstr "Kies een pictogram weergegeven met het bericht."
 
-#: includes/Modules/DualButton.php:382
+#: includes/Modules/DualButton.php:381
 msgid "Choose an icon to display with your separator."
 msgstr "Kies een pictogram weergegeven met uw scheidingsteken."
 
@@ -903,30 +875,30 @@ msgstr "Kies een pictogram weergegeven met uw scheidingsteken."
 msgid "Choose an icon type to display with your button."
 msgstr "Kies een icoon type scherm met de knop."
 
-#: includes/Modules/FlipBox.php:1594
+#: includes/Modules/FlipBox.php:1593
 msgid "Choose an icon type to display with your current side of flip box."
 msgstr "Kies een type pictogram om het scherm met uw huidige zijde van de klep vak."
 
-#: includes/Modules/Divider.php:539
+#: includes/Modules/Divider.php:538
 msgid "Choose an icon type to display with your divider."
 msgstr "Kies een icoon type weer te geven met uw verdeler."
 
-#: includes/Modules/PostGridChild.php:554
+#: includes/Modules/PostGridChild.php:609
 msgid "Choose an icon type to display with your post."
 msgstr "Kies een icoon type, om met je post."
 
-#: includes/Modules/DualButton.php:361
-#: includes/Modules/DualButton.php:584
+#: includes/Modules/DualButton.php:360
+#: includes/Modules/DualButton.php:583
 msgid "Choose an icon type to display with your separator."
 msgstr "Kies een icoon type scherm met de separator."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:454
 #: includes/Modules/BeforeAfterImageSlider.php:447
-#: includes/Modules/Divider.php:592
-#: includes/Modules/DualButton.php:399
-#: includes/Modules/FlipBox.php:1645
+#: includes/Modules/Divider.php:591
+#: includes/Modules/DualButton.php:398
+#: includes/Modules/FlipBox.php:1644
 #: includes/Modules/ImageMask.php:106
-#: includes/Modules/PostGridChild.php:613
+#: includes/Modules/PostGridChild.php:668
 #: includes/Modules/VideoPopup.php:159
 msgid "Choose an Image"
 msgstr "Kies een Afbeelding"
@@ -961,14 +933,12 @@ msgid "Choose the speed for your scrolling text in milliseconds."
 msgstr "Kies de snelheid voor uw scrolling tekst in milliseconden."
 
 #. translators: %s: class name.
-#: includes/Base/Factories/Migration.php:36
-#: includes/Base/Factories/SettingsMigration.php:36
+#: includes/Base/Factories/ModuleMigration.php:36
 msgid "Class '%s' does not exist."
 msgstr "Klasse '%s' bestaat niet."
 
 #. translators: %s: class name.
-#: includes/Base/Factories/Migration.php:46
-#: includes/Base/Factories/SettingsMigration.php:46
+#: includes/Base/Factories/ModuleMigration.php:46
 msgid "Class '%s' is not an instance of AbstractMigration."
 msgstr "Klasse '%s' is niet een exemplaar van AbstractMigration."
 
@@ -984,15 +954,15 @@ msgstr "Sluit pop-ondersteuning"
 msgid "Color"
 msgstr "Kleur"
 
-#: includes/Modules/PostGrid.php:731
+#: includes/Modules/PostGrid.php:732
 msgid "Column Numbers"
 msgstr "Kolom Nummers"
 
-#: includes/Modules/PostGrid.php:753
+#: includes/Modules/PostGrid.php:754
 msgid "Columns Gap"
 msgstr "Kolommen Kloof"
 
-#: includes/Modules/PostGrid.php:599
+#: includes/Modules/PostGrid.php:600
 msgid "Comments"
 msgstr "Opmerkingen"
 
@@ -1010,25 +980,25 @@ msgstr "Contact Form 7"
 msgid "Contact Form 7 is not installed"
 msgstr "Contact Form 7 is niet geïnstalleerd"
 
-#: includes/Managers/Branding/AdminFooterText.php:59
+#: includes/Managers/Branding/AdminFooterText.php:60
 msgid "Contact Support"
 msgstr "Contact Opnemen Met Ondersteuning"
 
-#: includes/Modules/TypingText.php:313
+#: includes/Modules/TypingText.php:312
 msgid "Container Tag"
 msgstr "Container Tag"
 
-#: includes/Modules/DropCapText.php:59
-#: includes/Modules/FlipBox.php:74
+#: includes/Modules/DropCapText.php:58
+#: includes/Modules/FlipBox.php:73
 #: includes/Modules/PostGridChild.php:61
 #: includes/Modules/PostReadingTime.php:64
 #: includes/Modules/ScrollingText.php:54
-#: includes/Modules/TypingText.php:60
+#: includes/Modules/TypingText.php:59
 #: includes/Modules/VideoPopup.php:63
 msgid "Content"
 msgstr "Inhoud"
 
-#: includes/Modules/PostGridChild.php:914
+#: includes/Modules/PostGridChild.php:969
 msgid "Content Alignment"
 msgstr "Inhoud Uitlijning"
 
@@ -1038,7 +1008,7 @@ msgstr "Inhoud Uitlijning"
 msgid "Content Modules"
 msgstr "Inhoud Modules"
 
-#: includes/Modules/DropCapText.php:66
+#: includes/Modules/DropCapText.php:65
 msgid "Content Text"
 msgstr "Inhoud Tekst"
 
@@ -1135,7 +1105,7 @@ msgstr "CSS-ID"
 msgid "Current"
 msgstr "Huidige"
 
-#: includes/Modules/PostGrid.php:566
+#: includes/Modules/PostGrid.php:567
 msgid "Current Category"
 msgstr "Huidige Categorie"
 
@@ -1143,11 +1113,11 @@ msgstr "Huidige Categorie"
 msgid "Current Text Color"
 msgstr "Huidige Tekst Kleur"
 
-#: includes/Modules/TypingText.php:491
+#: includes/Modules/TypingText.php:490
 msgid "Cursor Character"
 msgstr "Cursor Karakter"
 
-#: includes/Modules/TypingText.php:267
+#: includes/Modules/TypingText.php:266
 msgid "Cursor Icon"
 msgstr "Cursor"
 
@@ -1174,7 +1144,7 @@ msgstr "Aangepast Veld Voor Tekst"
 msgid "Custom Fonts Upload Support"
 msgstr "Aangepaste Lettertypen Upload Ondersteuning"
 
-#: includes/Modules/FlipBox.php:1142
+#: includes/Modules/FlipBox.php:1141
 msgid "Custom Height"
 msgstr "Aangepaste Hoogte"
 
@@ -1204,12 +1174,12 @@ msgstr "Aangepaste HTML-Padding"
 msgid "Custom HTML Text"
 msgstr "Aangepaste HTML-Tekst"
 
-#: includes/Modules/FlipBox.php:151
+#: includes/Modules/FlipBox.php:150
 msgid "Custom Spacing"
 msgstr "Aangepaste Afstand"
 
 #: includes/Modules/PostGridChild.php:70
-#: includes/Modules/PostGridChild.php:518
+#: includes/Modules/PostGridChild.php:523
 msgid "Custom Text"
 msgstr "Aangepaste Tekst"
 
@@ -1221,11 +1191,11 @@ msgstr "Aangepaste Uploaden"
 msgid "Customization"
 msgstr "Maatwerk"
 
-#: includes/Modules/Divider.php:341
+#: includes/Modules/Divider.php:340
 msgid "Customize Divider Side Color"
 msgstr "Aanpassen Divider Kant Kleur"
 
-#: includes/Modules/Divider.php:429
+#: includes/Modules/Divider.php:428
 msgid "Customize Divider Size"
 msgstr "Aanpassen Divider Grootte"
 
@@ -1238,61 +1208,56 @@ msgstr "Dashboard"
 msgid "Date"
 msgstr "Datum"
 
-#: includes/Modules/PostGrid.php:701
+#: includes/Modules/PostGrid.php:702
 msgid "Date Format"
 msgstr "Datum Formaat"
 
-#: includes/Modules/PostGridChild.php:492
+#: includes/Modules/PostGridChild.php:497
 msgid "Date Type"
 msgstr "Type Datum"
 
-#: includes/Modules/BusinessHours.php:73
-#: includes/Modules/BusinessHours.php:105
-#: includes/Modules/BusinessHours.php:218
-#: includes/Modules/BusinessHoursChild.php:71
-#: includes/Modules/BusinessHoursChild.php:86
-#: includes/Modules/BusinessHoursChild.php:167
-#: includes/Modules/BusinessHoursChild.php:191
+#: includes/Modules/BusinessHours.php:72
+#: includes/Modules/BusinessHours.php:104
+#: includes/Modules/BusinessHours.php:217
+#: includes/Modules/BusinessHoursChild.php:70
+#: includes/Modules/BusinessHoursChild.php:85
+#: includes/Modules/BusinessHoursChild.php:166
+#: includes/Modules/BusinessHoursChild.php:190
 msgid "Day"
 msgstr "Dag"
 
-#: includes/Modules/BusinessHoursChild.php:59
+#: includes/Modules/BusinessHoursChild.php:58
 msgid "Day & Time"
 msgstr "Dag & Tijd"
 
-#: includes/Modules/BusinessHours.php:69
-#: includes/Modules/BusinessHoursChild.php:67
+#: includes/Modules/BusinessHours.php:68
+#: includes/Modules/BusinessHoursChild.php:66
 msgid "Day & Time Text"
 msgstr "Dag & Tijd Tekst"
 
-#: includes/Modules/BusinessHours.php:64
+#: includes/Modules/BusinessHours.php:63
 msgid "Day & Time Wrapper"
 msgstr "Dag & Tijd Wrapper"
 
-#: includes/Modules/BusinessHours.php:356
+#: includes/Modules/BusinessHours.php:355
 msgid "Day Text Width"
 msgstr "Dag Tekst Breedte"
 
-#: includes/Modules/BusinessHours.php:226
+#: includes/Modules/BusinessHours.php:225
 msgid "Day Wrapper"
 msgstr "Dag Wrapper"
 
-#: build/admin/scripts/admin.js:175
-msgid "Deactivate All"
-msgstr "Deactiveer alle"
-
-#: includes/Modules/TypingText.php:711
-#: includes/Modules/TypingText.php:725
-#: includes/Modules/TypingText.php:739
-#: build/admin/scripts/admin.js:175
+#: includes/Modules/TypingText.php:710
+#: includes/Modules/TypingText.php:724
+#: includes/Modules/TypingText.php:738
 msgid "Default"
 msgstr "Standaard"
 
 #: includes/Modules/BeforeAfterImageSlider.php:456
-#: includes/Modules/Divider.php:603
-#: includes/Modules/FlipBox.php:1656
+#: includes/Modules/Divider.php:602
+#: includes/Modules/FlipBox.php:1655
 #: includes/Modules/ImageMask.php:114
-#: includes/Modules/PostGridChild.php:624
+#: includes/Modules/PostGridChild.php:679
 msgid "Define the HTML ALT text for your image here."
 msgstr "Het definiëren van de HTML-ALT-tekst voor de afbeelding hier."
 
@@ -1316,25 +1281,25 @@ msgstr "Het definiëren van de trigger tekst voor uw pop-up."
 msgid "Define video type for the popup."
 msgstr "Het definiëren van een video voor de pop-up."
 
-#: includes/Modules/Divider.php:938
+#: includes/Modules/Divider.php:937
 #: includes/Modules/Lottie.php:263
 msgid "Delay"
 msgstr "Vertraging"
 
-#: includes/Modules/Divider.php:940
+#: includes/Modules/Divider.php:939
 #: includes/Modules/Lottie.php:265
 msgid "Delay the lottie animation (in ms)."
 msgstr "Vertraging de lottie animatie (in ms)."
 
-#: includes/Modules/TypingText.php:396
+#: includes/Modules/TypingText.php:395
 msgid "Delete Delay (ms)"
 msgstr "Verwijderen Vertraging (ms)"
 
-#: includes/Modules/TypingText.php:372
+#: includes/Modules/TypingText.php:371
 msgid "Delete Speed (ms)"
 msgstr "Verwijderen Snelheid (ms)"
 
-#: includes/Modules/PostGrid.php:615
+#: includes/Modules/PostGrid.php:616
 msgid "Descending"
 msgstr "Aflopend"
 
@@ -1366,7 +1331,7 @@ msgstr "Beschrijving Padding"
 msgid "Description Text"
 msgstr "Beschrijving"
 
-#: includes/Modules/PostGrid.php:612
+#: includes/Modules/PostGrid.php:613
 msgid "Designates the ascending or descending order of the ‘orderby‘ parameter. Defaults to ‘Ascending’.."
 msgstr "Wijst de oplopende of aflopende volgorde van de 'orderby' parameter. Standaard 'Oplopend'.."
 
@@ -1375,7 +1340,7 @@ msgid "Desription Box Shadow"
 msgstr "Beschrijving Doos Schaduw"
 
 #: includes/Modules/BeforeAfterImageSlider.php:290
-#: includes/Modules/Divider.php:998
+#: includes/Modules/Divider.php:997
 #: includes/Modules/Lottie.php:323
 msgid "Direction"
 msgstr "Richting"
@@ -1384,7 +1349,7 @@ msgstr "Richting"
 msgid "Dismiss this notice."
 msgstr "Ontslaan deze kennisgeving."
 
-#: includes/Modules/PostGrid.php:537
+#: includes/Modules/PostGrid.php:538
 msgid "Display By"
 msgstr "Display"
 
@@ -1392,17 +1357,17 @@ msgstr "Display"
 msgid "Display content on one side, then on hover, flip to reveal more info or a different design."
 msgstr "Inhoud weergeven op de ene kant, dan aan zweven, spiegelen aan te onthullen meer info of een ander ontwerp."
 
-#: includes/Modules/PostGridChild.php:464
+#: includes/Modules/PostGridChild.php:469
 msgid "Display Name"
 msgstr "Display Naam"
 
-#: includes/Modules/PostGrid.php:524
+#: includes/Modules/PostGrid.php:525
 msgid "Display posts for the current page. Useful on all author pages."
 msgstr "Berichten voor de huidige pagina. Bruikbaar op alle pagina ' s auteur."
 
-#: includes/Modules/TypingText.php:707
-#: includes/Modules/TypingText.php:721
-#: includes/Modules/TypingText.php:735
+#: includes/Modules/TypingText.php:706
+#: includes/Modules/TypingText.php:720
+#: includes/Modules/TypingText.php:734
 msgid "Display Type"
 msgstr "Weergavetype"
 
@@ -1415,7 +1380,7 @@ msgid "Display your business hours in a clear and organized manner."
 msgstr "Uw bedrijf weergeven uur in een duidelijke en overzichtelijke manier."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:43
-#: includes/Modules/Divider.php:260
+#: includes/Modules/Divider.php:259
 msgid "DIV tag"
 msgstr "DIV-tag"
 
@@ -1440,8 +1405,8 @@ msgstr "Divi Squad"
 msgid "Divi Squad Pro"
 msgstr "Divi Team Pro"
 
-#: includes/Modules/Divider.php:67
-#: includes/Modules/Divider.php:75
+#: includes/Modules/Divider.php:66
+#: includes/Modules/Divider.php:74
 #: includes/Modules/PostGridChild.php:69
 #: includes/Modules/PostGridChild.php:89
 #: includes/Modules/PostGridChild.php:99
@@ -1451,37 +1416,37 @@ msgid "Divider"
 msgstr "Scheidingsteken"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:216
-#: includes/Modules/Divider.php:504
+#: includes/Modules/Divider.php:503
 msgid "Divider Border Radius"
 msgstr "Divider Border Radius"
 
-#: includes/Modules/Divider.php:76
+#: includes/Modules/Divider.php:75
 msgid "Divider Elements"
 msgstr "Divider Elementen"
 
-#: includes/Modules/Divider.php:445
+#: includes/Modules/Divider.php:444
 msgid "Divider Left Side Width"
 msgstr "Het Tussenschot Links Breedte"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:199
-#: includes/Modules/Divider.php:485
+#: includes/Modules/Divider.php:484
 msgid "Divider Max Width"
 msgstr "Divider Max Breedte"
 
-#: includes/Modules/Divider.php:464
+#: includes/Modules/Divider.php:463
 msgid "Divider Right Side Width"
 msgstr "Het Tussenschot Rechts Breedte"
 
-#: includes/Modules/Divider.php:78
+#: includes/Modules/Divider.php:77
 msgid "Divider Text"
 msgstr "Divider Tekst"
 
-#: includes/Modules/Divider.php:207
+#: includes/Modules/Divider.php:206
 msgid "Divider Type"
 msgstr "Verdeler Type"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:179
-#: includes/Modules/Divider.php:406
+#: includes/Modules/Divider.php:405
 msgid "Divider Weight"
 msgstr "Divider Gewicht"
 
@@ -1489,11 +1454,11 @@ msgstr "Divider Gewicht"
 msgid "Documentation"
 msgstr "Documentatie"
 
-#: includes/Managers/Branding/AdminFooterText.php:88
+#: includes/Managers/Branding/AdminFooterText.php:90
 msgid "Donate"
 msgstr "Doneren"
 
-#: includes/Modules/FlipBox.php:1219
+#: includes/Modules/FlipBox.php:1218
 msgid "Down"
 msgstr "Naar beneden"
 
@@ -1505,34 +1470,34 @@ msgstr "Download Pro"
 msgid "Drag"
 msgstr "Sleep"
 
-#: includes/Modules/DropCapText.php:64
-#: includes/Modules/DropCapText.php:123
+#: includes/Modules/DropCapText.php:63
+#: includes/Modules/DropCapText.php:122
 msgid "Drop Cap Letter"
 msgstr "Drop Cap Brief"
 
-#: includes/Modules/DropCapText.php:139
+#: includes/Modules/DropCapText.php:138
 msgid "Drop cap letter"
 msgstr "Drop cap brief"
 
-#: includes/Modules/DropCapText.php:65
+#: includes/Modules/DropCapText.php:64
 msgid "Drop Cap Letter Text"
 msgstr "Drop Cap Brief Tekst"
 
 #: includes/Managers/Features/Modules.php:429
-#: includes/Modules/DropCapText.php:41
+#: includes/Modules/DropCapText.php:40
 msgid "Drop Cap Text"
 msgstr "Drop Cap Tekst"
 
-#: includes/Modules/DropCapText.php:42
+#: includes/Modules/DropCapText.php:41
 msgid "Drop Cap Texts"
 msgstr "Drop Cap Teksten"
 
 #: includes/Managers/Features/Modules.php:148
-#: includes/Modules/DualButton.php:45
+#: includes/Modules/DualButton.php:44
 msgid "Dual Button"
 msgstr "Dual Knop"
 
-#: includes/Modules/DualButton.php:46
+#: includes/Modules/DualButton.php:45
 msgid "Dual Buttons"
 msgstr "Dubbele Knoppen"
 
@@ -1593,8 +1558,8 @@ msgstr "Moeiteloos aan te passen Ninja Formulieren ontwerpen. Pas de kleuren, le
 msgid "Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "Moeiteloos aan te passen WP Formulieren ontwerpen. Pas de kleuren, lettertypen, opmaak en voeg CSS voor uw gewenste look."
 
-#: includes/Modules/PostGrid.php:105
-#: includes/Modules/PostGrid.php:236
+#: includes/Modules/PostGrid.php:106
+#: includes/Modules/PostGrid.php:237
 #: includes/Modules/PostGridChild.php:87
 #: includes/Modules/PostGridChild.php:97
 #: includes/Modules/PostGridChild.php:131
@@ -1603,26 +1568,26 @@ msgstr "Moeiteloos aan te passen WP Formulieren ontwerpen. Pas de kleuren, lette
 msgid "Element"
 msgstr "Element"
 
-#: includes/Modules/PostGrid.php:1268
+#: includes/Modules/PostGrid.php:1269
 msgid "Element Background"
 msgstr "Element Achtergrond"
 
-#: includes/Modules/PostGrid.php:380
+#: includes/Modules/PostGrid.php:381
 #: includes/Modules/PostGridChild.php:243
 msgid "Element Box Shadow"
 msgstr "Element Doos Schaduw"
 
-#: includes/Modules/Divider.php:701
-#: includes/Modules/PostGrid.php:1334
+#: includes/Modules/Divider.php:700
+#: includes/Modules/PostGrid.php:1335
 msgid "Element Margin"
 msgstr "Element Marge"
 
-#: includes/Modules/Divider.php:711
-#: includes/Modules/PostGrid.php:1350
+#: includes/Modules/Divider.php:710
+#: includes/Modules/PostGrid.php:1351
 msgid "Element Padding"
 msgstr "Element Padding"
 
-#: includes/Modules/Divider.php:686
+#: includes/Modules/Divider.php:685
 msgid "Element Placement"
 msgstr "Element Plaatsing"
 
@@ -1634,15 +1599,15 @@ msgstr "Element Tekst"
 msgid "Element Type"
 msgstr "Soort Onderdeel"
 
-#: includes/Modules/PostGrid.php:104
+#: includes/Modules/PostGrid.php:105
 msgid "Element Wrapper"
 msgstr "Element Wrapper"
 
-#: includes/Modules/FlipBox.php:1161
+#: includes/Modules/FlipBox.php:1160
 msgid "Elements Horizontal Alignment"
 msgstr "Elementen Horizontale Uitlijning"
 
-#: includes/Modules/FlipBox.php:1171
+#: includes/Modules/FlipBox.php:1170
 msgid "Elements Vertical Alignment"
 msgstr "Elementen Verticale Uitlijning"
 
@@ -1678,15 +1643,15 @@ msgstr "Inschakelen Clip"
 msgid "Enable Control Smoothness"
 msgstr "Het Inschakelen Van Controle Gladheid"
 
-#: includes/Modules/TypingText.php:502
+#: includes/Modules/TypingText.php:501
 msgid "Enable Cursor Icon"
 msgstr "Het Inschakelen Van Cursor"
 
-#: includes/Modules/TypingText.php:438
+#: includes/Modules/TypingText.php:437
 msgid "Enable Fade Out"
 msgstr "Inschakelen 'Fade Out'"
 
-#: includes/Modules/TypingText.php:420
+#: includes/Modules/TypingText.php:419
 msgid "Enable Loop"
 msgstr "Inschakelen Loop"
 
@@ -1702,11 +1667,11 @@ msgstr "Enable Scrolling Tekst Overzicht"
 msgid "Enable Scrolling Text Outline for better look."
 msgstr "Enable Scrolling Tekst Schets voor een betere look."
 
-#: includes/Modules/TypingText.php:429
+#: includes/Modules/TypingText.php:428
 msgid "Enable Shuffle"
 msgstr "Het Inschakelen Van De Shuffle"
 
-#: includes/Modules/PostGridChild.php:346
+#: includes/Modules/PostGridChild.php:351
 msgid "Enable Text Limit"
 msgstr "Inschakelen Tekst Limiet"
 
@@ -1734,11 +1699,7 @@ msgstr "Schakel deze functie alleen als u wilt toestaan svg-bestand via WordPres
 msgid "Enabled extensions saved!"
 msgstr "Extensies ingeschakeld opgeslagen!"
 
-#: build/admin/scripts/admin.js:175
-msgid "Enabled modules saved!"
-msgstr "Ingeschakeld modules opgeslagen!"
-
-#: includes/Modules/BusinessHoursChild.php:243
+#: includes/Modules/BusinessHoursChild.php:242
 msgid "End Time"
 msgstr "Eind Tijd"
 
@@ -1754,10 +1715,6 @@ msgstr "Betrek uw bezoekers met interactief beeld van vergelijkingen."
 msgid "Enhance navigation with a clear path for users to trace their steps through your website."
 msgstr "Het verbeteren van de navigatie met een duidelijk pad voor gebruikers om te traceren van hun werk door middel van uw website."
 
-#: build/admin/scripts/admin.js:175
-msgid "Enjoy seamless module control at your fingertips. The Toggle Button makes it a breeze to activate or deactivate elements, keeping your workflow smooth and efficient."
-msgstr "Geniet van naadloze module controle aan uw vingertoppen. De Schakelknop maakt het een koud kunstje om deze te activeren of te deactiveren elementen, het houden van uw werkstroom soepel en efficiënt."
-
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Enter a place on google map."
 msgstr "Voer een plaats op de google map."
@@ -1766,24 +1723,24 @@ msgstr "Voer een plaats op de google map."
 msgid "Enter the address for the embed Google Map."
 msgstr "Voer het adres in voor de Google Map insluiten."
 
-#: includes/Modules/Divider.php:882
+#: includes/Modules/Divider.php:881
 #: includes/Modules/Lottie.php:207
 msgid "Entire page"
 msgstr "Hele pagina"
 
-#: includes/Modules/PostGrid.php:968
+#: includes/Modules/PostGrid.php:969
 msgid "Entries Icon Color"
 msgstr "Vermeldingen Pictogram Kleur"
 
-#: includes/Modules/PostGrid.php:1047
+#: includes/Modules/PostGrid.php:1048
 msgid "Entries Icon Margin"
 msgstr "Vermeldingen Pictogram Marge"
 
-#: includes/Modules/PostGrid.php:1064
+#: includes/Modules/PostGrid.php:1065
 msgid "Entries Icon Padding"
 msgstr "Vermeldingen Pictogram Padding"
 
-#: includes/Modules/PostGrid.php:977
+#: includes/Modules/PostGrid.php:978
 msgid "Entries Icon Size"
 msgstr "Vermeldingen Grootte Van Het Pictogram"
 
@@ -1820,16 +1777,16 @@ msgstr "Extensies"
 msgid "Extensions Management"
 msgstr "Extensies Management"
 
-#: includes/Modules/Divider.php:616
+#: includes/Modules/Divider.php:615
 #: includes/Modules/Lottie.php:109
 msgid "External URL"
 msgstr "Externe URL"
 
-#: includes/Modules/FlipBox.php:1210
+#: includes/Modules/FlipBox.php:1209
 msgid "Fade"
 msgstr "Vervagen"
 
-#: includes/Modules/TypingText.php:452
+#: includes/Modules/TypingText.php:451
 msgid "Fade Out Delay (ms)"
 msgstr "Fade-Out Delay (ms)"
 
@@ -1845,7 +1802,7 @@ msgstr "Feature Request"
 msgid "Featured Image"
 msgstr "Aanbevolen Afbeelding"
 
-#: includes/Modules/PostGrid.php:689
+#: includes/Modules/PostGrid.php:690
 msgid "Featured Image Size"
 msgstr "Aanbevolen Grootte Afbeelding"
 
@@ -1909,14 +1866,6 @@ msgstr "Breedte Van Het Veld"
 msgid "Fieldset Remove Button"
 msgstr "Fieldset U Op De Knop Verwijderen"
 
-#: includes/Managers/RestRoutes/V1/WhatsNew/Changelog.php:68
-msgid "File is empty."
-msgstr "Het bestand is leeg."
-
-#: includes/Managers/RestRoutes/V1/WhatsNew/Changelog.php:60
-msgid "File not found."
-msgstr "Het bestand is niet gevonden."
-
 #: includes/Modules/FormStylers/ContactForm7.php:581
 #: includes/Modules/FormStylers/FluentForms.php:531
 msgid "File Upload"
@@ -1926,20 +1875,20 @@ msgstr "Bestand Uploaden"
 msgid "Fill Color"
 msgstr "Vul Kleur"
 
-#: includes/Modules/PostGridChild.php:466
+#: includes/Modules/PostGridChild.php:471
 msgid "First Name"
 msgstr "Voornaam"
 
-#: includes/Modules/FlipBox.php:86
+#: includes/Modules/FlipBox.php:85
 msgid "Flip Animation"
 msgstr "Flip Animatie"
 
 #: includes/Managers/Features/Modules.php:227
-#: includes/Modules/FlipBox.php:46
+#: includes/Modules/FlipBox.php:45
 msgid "Flip Box"
 msgstr "Flip Doos"
 
-#: includes/Modules/FlipBox.php:47
+#: includes/Modules/FlipBox.php:46
 msgid "Flip Boxes"
 msgstr "Flip Dozen"
 
@@ -1947,7 +1896,7 @@ msgstr "Flip Dozen"
 msgid "Flip Mask Shape"
 msgstr "Flip Masker Vorm"
 
-#: includes/Modules/FlipBox.php:85
+#: includes/Modules/FlipBox.php:84
 msgid "Flip Settings"
 msgstr "Flip-Instellingen"
 
@@ -1965,7 +1914,7 @@ msgstr "Vloeiende Vormen"
 msgid "Fluent Forms is not installed"
 msgstr "Vloeiende Vormen niet is geïnstalleerd"
 
-#: includes/Modules/PostGridChild.php:449
+#: includes/Modules/PostGridChild.php:454
 msgid "Force Fullwidth"
 msgstr "Kracht Fullwidth"
 
@@ -2023,34 +1972,30 @@ msgstr "Formulieren zijn niet beschikbaar."
 msgid "Forms Settings"
 msgstr "Formulieren Instellingen"
 
-#: build/admin/scripts/admin.js:175
-msgid "Free"
-msgstr "Gratis"
-
-#: includes/Modules/Divider.php:830
+#: includes/Modules/Divider.php:829
 #: includes/Modules/Lottie.php:155
 msgid "Freeze on click"
 msgstr "Bevriezen op klik op"
 
-#: includes/Modules/FlipBox.php:62
+#: includes/Modules/FlipBox.php:61
 msgid "Front"
 msgstr "Voorzijde"
 
-#: includes/Modules/FlipBox.php:134
+#: includes/Modules/FlipBox.php:133
 msgid "Front Body Heading Text"
 msgstr "Voorkant Van De Behuizing Kop Tekst"
 
-#: includes/Modules/FlipBox.php:124
+#: includes/Modules/FlipBox.php:123
 msgid "Front Body Text"
 msgstr "Voorzijde Tekst"
 
-#: includes/Modules/FlipBox.php:83
-#: includes/Modules/FlipBox.php:143
-#: includes/Modules/FlipBox.php:1022
+#: includes/Modules/FlipBox.php:82
+#: includes/Modules/FlipBox.php:142
+#: includes/Modules/FlipBox.php:1021
 msgid "Front Button"
 msgstr "Front-Knop"
 
-#: includes/Modules/FlipBox.php:101
+#: includes/Modules/FlipBox.php:100
 msgid "Front Wrapper"
 msgstr "Front Wrapper"
 
@@ -2074,7 +2019,7 @@ msgstr "FTP Poort"
 msgid "FTP Username"
 msgstr "FTP Gebruikersnaam"
 
-#: includes/Modules/PostGridChild.php:465
+#: includes/Modules/PostGridChild.php:470
 msgid "Full Name"
 msgstr "Volledige Naam"
 
@@ -2086,53 +2031,53 @@ msgstr "Galerie-Instellingen"
 msgid "Gap"
 msgstr "Gap"
 
-#: includes/Modules/DualButton.php:609
+#: includes/Modules/DualButton.php:608
 msgid "Gap Between Buttons"
 msgstr "Kloof Tussen Knoppen"
 
-#: includes/Modules/TypingText.php:570
+#: includes/Modules/TypingText.php:569
 msgid "Gap Between Cursor Icon and Text"
 msgstr "Kloof Tussen Cursor Pictogram en Tekst"
 
-#: includes/Modules/BusinessHours.php:287
+#: includes/Modules/BusinessHours.php:286
 msgid "Gap Between Days"
 msgstr "Kloof Tussen Dagen"
 
-#: includes/Modules/Divider.php:666
+#: includes/Modules/Divider.php:665
 msgid "Gap Between Element and Divider"
 msgstr "Kloof Tussen het Element en het Tussenschot"
 
-#: includes/Modules/FlipBox.php:1968
+#: includes/Modules/FlipBox.php:1967
 msgid "Gap Between Elements"
 msgstr "Kloof Tussen Elementen"
 
-#: includes/Modules/PostGrid.php:995
+#: includes/Modules/PostGrid.php:996
 msgid "Gap Between Entries Icon and Text"
 msgstr "Kloof Tussen Items Pictogram en Tekst"
 
-#: includes/Modules/PostGridChild.php:775
+#: includes/Modules/PostGridChild.php:830
 msgid "Gap Between Icon and Text"
 msgstr "Kloof Tussen het Pictogram en de Tekst"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:644
-#: includes/Modules/FlipBox.php:1801
+#: includes/Modules/FlipBox.php:1800
 msgid "Gap Between Icon/Image and Text"
 msgstr "Kloof Tussen Pictogram/Beeld en Tekst"
 
-#: includes/Modules/Divider.php:307
+#: includes/Modules/Divider.php:306
 msgid "Gap Between Multiple Line"
 msgstr "Kloof Tussen Meerdere Lijn"
 
-#: includes/Modules/PostGrid.php:1015
+#: includes/Modules/PostGrid.php:1016
 msgid "Gap Between Pagination Elements"
 msgstr "De Kloof Tussen De Paginering Elementen"
 
 #: includes/Modules/PostReadingTime.php:296
-#: includes/Modules/TypingText.php:609
+#: includes/Modules/TypingText.php:608
 msgid "Gap Between Texts"
 msgstr "Kloof Tussen Teksten"
 
-#: includes/Modules/BusinessHours.php:307
+#: includes/Modules/BusinessHours.php:306
 msgid "Gap between Title and Day Wrapper"
 msgstr "Kloof tussen Titel en Dag Wrapper"
 
@@ -2145,7 +2090,7 @@ msgid "General Field Height"
 msgstr "Algemene Veld Hoogte"
 
 #: includes/Modules/BeforeAfterImageSlider.php:70
-#: includes/Modules/BusinessHours.php:59
+#: includes/Modules/BusinessHours.php:58
 msgid "General Settings"
 msgstr "Algemene instellingen"
 
@@ -2237,32 +2182,32 @@ msgid "Gravity Forms is not installed"
 msgstr "Gravity Forms is niet geïnstalleerd"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:35
-#: includes/Modules/Divider.php:252
+#: includes/Modules/Divider.php:251
 msgid "H1 tag"
 msgstr "H1 tag"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:36
-#: includes/Modules/Divider.php:253
+#: includes/Modules/Divider.php:252
 msgid "H2 tag"
 msgstr "H2-tag"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:37
-#: includes/Modules/Divider.php:254
+#: includes/Modules/Divider.php:253
 msgid "H3 tag"
 msgstr "H3-tag"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:38
-#: includes/Modules/Divider.php:255
+#: includes/Modules/Divider.php:254
 msgid "H4 tag"
 msgstr "H4-tag"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:39
-#: includes/Modules/Divider.php:256
+#: includes/Modules/Divider.php:255
 msgid "H5 tag"
 msgstr "H5-tag"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:40
-#: includes/Modules/Divider.php:257
+#: includes/Modules/Divider.php:256
 msgid "H6 tag"
 msgstr "H6-tag"
 
@@ -2270,33 +2215,33 @@ msgstr "H6-tag"
 msgid "Have questions? We're happy to help!"
 msgstr "Heeft u vragen? We helpen je graag verder!"
 
-#: includes/Modules/FlipBox.php:440
-#: includes/Modules/FlipBox.php:468
+#: includes/Modules/FlipBox.php:439
+#: includes/Modules/FlipBox.php:467
 msgid "Heading 1"
 msgstr "Koptekst 1"
 
-#: includes/Modules/FlipBox.php:496
-#: includes/Modules/FlipBox.php:524
+#: includes/Modules/FlipBox.php:495
+#: includes/Modules/FlipBox.php:523
 msgid "Heading 2"
 msgstr "Koptekst 2"
 
-#: includes/Modules/FlipBox.php:552
-#: includes/Modules/FlipBox.php:580
+#: includes/Modules/FlipBox.php:551
+#: includes/Modules/FlipBox.php:579
 msgid "Heading 3"
 msgstr "Koptekst 3"
 
-#: includes/Modules/FlipBox.php:608
-#: includes/Modules/FlipBox.php:636
+#: includes/Modules/FlipBox.php:607
+#: includes/Modules/FlipBox.php:635
 msgid "Heading 4"
 msgstr "Koptekst 4"
 
-#: includes/Modules/FlipBox.php:664
-#: includes/Modules/FlipBox.php:692
+#: includes/Modules/FlipBox.php:663
+#: includes/Modules/FlipBox.php:691
 msgid "Heading 5"
 msgstr "Koptekst 5"
 
-#: includes/Modules/FlipBox.php:720
-#: includes/Modules/FlipBox.php:748
+#: includes/Modules/FlipBox.php:719
+#: includes/Modules/FlipBox.php:747
 msgid "Heading 6"
 msgstr "Koptekst 6"
 
@@ -2312,60 +2257,60 @@ msgstr "Hallo Vriend"
 msgid "Help Needed? Create a Issue"
 msgstr "Hulp Nodig? Maak een Probleem"
 
-#: includes/Managers/Branding/AdminFooterText.php:118
+#: includes/Managers/Branding/AdminFooterText.php:120
 msgid "Help us with Translations for the Squad Modules project"
 msgstr "Ons helpen met de vertaling voor de Ploeg Modules project"
 
-#: includes/Modules/TypingText.php:398
+#: includes/Modules/TypingText.php:397
 msgid "Here you  can choose how much delay to delete the typing text."
 msgstr "Hier kunt u kiezen hoeveel vertraging te verwijderen, het typen van tekst."
 
-#: includes/Modules/TypingText.php:454
+#: includes/Modules/TypingText.php:453
 msgid "Here you  can choose how much delay to fade out the typing text."
 msgstr "Hier kunt u kiezen hoeveel vertraging fade-out van het typen van tekst."
 
-#: includes/Modules/TypingText.php:353
+#: includes/Modules/TypingText.php:352
 msgid "Here you  can choose how much delay to start the typing text."
 msgstr "Hier kunt u kiezen hoe veel vertraging om te beginnen met het typen van tekst."
 
-#: includes/Modules/TypingText.php:374
+#: includes/Modules/TypingText.php:373
 msgid "Here you  can choose how much speed to delete the typing text."
 msgstr "Hier kunt u kiezen hoe veel snelheid te verwijderen, het typen van tekst."
 
-#: includes/Modules/Divider.php:880
+#: includes/Modules/Divider.php:879
 #: includes/Modules/Lottie.php:205
 msgid "Here you can choose a relation when scroll event with your Lottie animation."
 msgstr "Hier kunt u kiezen voor een relatie wanneer ga evenement met uw Lottie animatie."
 
-#: includes/Modules/Divider.php:866
+#: includes/Modules/Divider.php:865
 #: includes/Modules/Lottie.php:191
 msgid "Here you can choose an action when click with your Lottie animation."
 msgstr "Hier kunt u kiezen voor een actie wanneer u klikt met uw Lottie animatie."
 
-#: includes/Modules/Divider.php:850
+#: includes/Modules/Divider.php:849
 #: includes/Modules/Lottie.php:175
 msgid "Here you can choose an action when mouse out with your Lottie animation."
 msgstr "Hier kunt u kiezen voor een actie als de muis uit met uw Lottie animatie."
 
-#: includes/Modules/TypingText.php:556
+#: includes/Modules/TypingText.php:555
 msgid "Here you can choose cursor icon size."
 msgstr "Hier kunt u kiezen cursor grootte van het pictogram."
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:218
-#: includes/Modules/Divider.php:506
+#: includes/Modules/Divider.php:505
 msgid "Here you can choose divider border  radius."
 msgstr "Hier kunt u kiezen divider border radius."
 
-#: includes/Modules/Divider.php:447
+#: includes/Modules/Divider.php:446
 msgid "Here you can choose divider left side width."
 msgstr "Hier kunt u kiezen tussenschot links in de breedte."
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:201
-#: includes/Modules/Divider.php:487
+#: includes/Modules/Divider.php:486
 msgid "Here you can choose divider max width."
 msgstr "Hier kunt u kiezen divider max breedte."
 
-#: includes/Modules/Divider.php:466
+#: includes/Modules/Divider.php:465
 msgid "Here you can choose divider right side width."
 msgstr "Hier kunt u kiezen tussenschot rechts breedte."
 
@@ -2373,19 +2318,19 @@ msgstr "Hier kunt u kiezen tussenschot rechts breedte."
 msgid "Here you can choose gap between each stars."
 msgstr "Hier kunt u kiezen kloof tussen de sterren."
 
-#: includes/Modules/Divider.php:668
+#: includes/Modules/Divider.php:667
 msgid "Here you can choose gap between element and divider."
 msgstr "Hier kunt u kiezen kloof tussen het element en het tussenschot."
 
-#: includes/Modules/PostGrid.php:997
+#: includes/Modules/PostGrid.php:998
 msgid "Here you can choose gap between entries icon and text."
 msgstr "Hier kunt u kiezen kloof tussen items pictogram en tekst."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:646
-#: includes/Modules/FlipBox.php:1803
-#: includes/Modules/FlipBox.php:1970
-#: includes/Modules/PostGridChild.php:777
-#: includes/Modules/TypingText.php:572
+#: includes/Modules/FlipBox.php:1802
+#: includes/Modules/FlipBox.php:1969
+#: includes/Modules/PostGridChild.php:832
+#: includes/Modules/TypingText.php:571
 msgid "Here you can choose gap between icon and text."
 msgstr "Hier kunt u kiezen kloof tussen het pictogram en de tekst."
 
@@ -2393,19 +2338,19 @@ msgstr "Hier kunt u kiezen kloof tussen het pictogram en de tekst."
 msgid "Here you can choose gap between images."
 msgstr "Hier kunt u kiezen kloof tussen beelden."
 
-#: includes/Modules/Divider.php:309
+#: includes/Modules/Divider.php:308
 msgid "Here you can choose gap between multiple line."
 msgstr "Hier kunt u kiezen kloof tussen meerdere lijn."
 
 #: includes/Modules/FormStylers/NinjaForms.php:174
 #: includes/Modules/FormStylers/NinjaForms.php:192
 #: includes/Modules/FormStylers/NinjaForms.php:211
-#: includes/Modules/PostGrid.php:1017
+#: includes/Modules/PostGrid.php:1018
 msgid "Here you can choose gap between pagination elements."
 msgstr "Hier kunt u kiezen kloof tussen de paginering elementen."
 
 #: includes/Modules/PostReadingTime.php:298
-#: includes/Modules/TypingText.php:611
+#: includes/Modules/TypingText.php:610
 msgid "Here you can choose gap between texts."
 msgstr "Hier kunt u kiezen kloof tussen de teksten."
 
@@ -2413,27 +2358,27 @@ msgstr "Hier kunt u kiezen kloof tussen de teksten."
 msgid "Here you can choose how much images you would like to count in a minute."
 msgstr "Hier kunt u kiezen hoeveel afbeeldingen u wilt tellen in een minuut."
 
-#: includes/Modules/PostGrid.php:654
+#: includes/Modules/PostGrid.php:655
 msgid "Here you can choose how much post show in the current page."
 msgstr "Hier kunt u kiezen hoeveel post show in de huidige pagina."
 
-#: includes/Modules/PostGrid.php:628
+#: includes/Modules/PostGrid.php:629
 msgid "Here you can choose how much posts you would like to display per page."
 msgstr "Hier kunt u kiezen hoeveel berichten je wilt zien per pagina."
 
-#: includes/Modules/TypingText.php:330
+#: includes/Modules/TypingText.php:329
 msgid "Here you can choose how much speed in the typing text."
 msgstr "Hier kunt u kiezen hoe veel snelheid in het typen van tekst."
 
-#: includes/Modules/PostGridChild.php:361
+#: includes/Modules/PostGridChild.php:366
 msgid "Here you can choose how much text you would like to display for post content or excerpt."
 msgstr "Hier kunt u kiezen hoeveel tekst die u wilt weergeven voor de inhoud post of uittreksel."
 
-#: includes/Modules/FlipBox.php:1355
+#: includes/Modules/FlipBox.php:1354
 msgid "Here you can choose how much the scale on 3d effect."
 msgstr "Hier kunt u kiezen hoeveel van de schaal op het 3d-effect."
 
-#: includes/Modules/FlipBox.php:1336
+#: includes/Modules/FlipBox.php:1335
 msgid "Here you can choose how much the translate z on 3d effect."
 msgstr "Hier kunt u kiezen hoeveel het vertalen z op 3d-effect."
 
@@ -2442,24 +2387,24 @@ msgid "Here you can choose how much words you would like to count in a minute."
 msgstr "Hier kunt u kiezen hoeveel woorden je wilt tellen in een minuut."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:600
-#: includes/Modules/Divider.php:746
-#: includes/Modules/FlipBox.php:1703
-#: includes/Modules/PostGrid.php:979
-#: includes/Modules/PostGridChild.php:716
-#: includes/Modules/PostGridChild.php:762
+#: includes/Modules/Divider.php:745
+#: includes/Modules/FlipBox.php:1702
+#: includes/Modules/PostGrid.php:980
+#: includes/Modules/PostGridChild.php:771
+#: includes/Modules/PostGridChild.php:817
 msgid "Here you can choose icon size."
 msgstr "Hier kunt u kiezen grootte van het pictogram."
 
-#: includes/Modules/FlipBox.php:1825
+#: includes/Modules/FlipBox.php:1824
 msgid "Here you can choose icon wrapper width."
 msgstr "Hier kunt u kiezen pictogram wrapper breedte."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:631
-#: includes/Modules/Divider.php:782
-#: includes/Modules/DualButton.php:468
-#: includes/Modules/FlipBox.php:1756
+#: includes/Modules/Divider.php:781
+#: includes/Modules/DualButton.php:467
+#: includes/Modules/FlipBox.php:1755
 #: includes/Modules/ImageMask.php:280
-#: includes/Modules/PostGridChild.php:747
+#: includes/Modules/PostGridChild.php:802
 msgid "Here you can choose image height."
 msgstr "Hier kunt u kiezen beeldhoogte."
 
@@ -2472,33 +2417,33 @@ msgid "Here you can choose image vertical position."
 msgstr "Hier kunt u kiezen beeld in verticale positie."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:616
-#: includes/Modules/Divider.php:764
-#: includes/Modules/DualButton.php:450
-#: includes/Modules/FlipBox.php:1737
+#: includes/Modules/Divider.php:763
+#: includes/Modules/DualButton.php:449
+#: includes/Modules/FlipBox.php:1736
 #: includes/Modules/ImageMask.php:261
-#: includes/Modules/PostGridChild.php:732
+#: includes/Modules/PostGridChild.php:787
 msgid "Here you can choose image width."
 msgstr "Hier kunt u kiezen breedte van de afbeelding."
 
-#: includes/Modules/Divider.php:824
+#: includes/Modules/Divider.php:823
 #: includes/Modules/Lottie.php:149
 msgid "Here you can choose interactivity with your Lottie animation."
 msgstr "Hier kunt u kiezen interactiviteit met uw Lottie animatie."
 
-#: includes/Modules/PostGrid.php:733
+#: includes/Modules/PostGrid.php:734
 msgid "Here you can choose list column for grid layout."
 msgstr "Hier kunt u kiezen lijst kolom voor grid lay-out."
 
-#: includes/Modules/PostGrid.php:755
+#: includes/Modules/PostGrid.php:756
 msgid "Here you can choose list item gap."
 msgstr "Hier kunt u kiezen item in de lijst kloof."
 
-#: includes/Modules/Divider.php:1079
+#: includes/Modules/Divider.php:1078
 #: includes/Modules/Lottie.php:385
 msgid "Here you can choose lottie height."
 msgstr "Hier kunt u kiezen lottie hoogte."
 
-#: includes/Modules/Divider.php:1059
+#: includes/Modules/Divider.php:1058
 #: includes/Modules/Lottie.php:367
 msgid "Here you can choose lottie width."
 msgstr "Hier kunt u kiezen lottie breedte."
@@ -2519,22 +2464,22 @@ msgstr "Hier kunt u kiezen masker vorm van rotatie."
 msgid "Here you can choose mask shape width."
 msgstr "Hier kunt u kiezen masker vorm breedte."
 
-#: includes/Modules/Divider.php:1000
+#: includes/Modules/Divider.php:999
 #: includes/Modules/Lottie.php:325
 msgid "Here you can choose play direction for your Lottie animation."
 msgstr "Hier kunt u kiezen spelen richting voor uw Lottie animatie."
 
-#: includes/Modules/Divider.php:987
+#: includes/Modules/Divider.php:986
 #: includes/Modules/Lottie.php:312
 msgid "Here you can choose play mode for your Lottie animation."
 msgstr "Hier kunt u kiezen play mode voor uw Lottie animatie."
 
-#: includes/Modules/Divider.php:1014
+#: includes/Modules/Divider.php:1013
 #: includes/Modules/Lottie.php:339
 msgid "Here you can choose renderer for your Lottie animation."
 msgstr "Hier kunt u kiezen renderer voor uw Lottie animatie."
 
-#: includes/Modules/DualButton.php:432
+#: includes/Modules/DualButton.php:431
 msgid "Here you can choose separator icon size."
 msgstr "Hier kunt u kiezen scheidingsteken grootte van het pictogram."
 
@@ -2554,7 +2499,7 @@ msgstr "Hier kunt u kiezen beroerte breedte."
 msgid "Here you can choose the contact form 7."
 msgstr "Hier kunt u kiezen voor de contact form 7."
 
-#: includes/Modules/FlipBox.php:1144
+#: includes/Modules/FlipBox.php:1143
 msgid "Here you can choose the custom height for flip box."
 msgstr "Hier kunt u kiezen voor de aangepaste hoogte voor flip vak."
 
@@ -2562,7 +2507,7 @@ msgstr "Hier kunt u kiezen voor de aangepaste hoogte voor flip vak."
 msgid "Here you can choose the fluent form."
 msgstr "Hier kunt u kiezen voor de vloeiende vorm."
 
-#: includes/Modules/BusinessHours.php:289
+#: includes/Modules/BusinessHours.php:288
 msgid "Here you can choose the gap between days."
 msgstr "Hier kunt u kiezen voor de kloof tussen de dagen."
 
@@ -2574,7 +2519,7 @@ msgstr "Hier kunt u kiezen voor de zwaartekracht vorm."
 msgid "Here you can choose the ninja form."
 msgstr "Hier kunt u kiezen voor de ninja vorm."
 
-#: includes/Modules/PostGrid.php:1216
+#: includes/Modules/PostGrid.php:1217
 msgid "Here you can choose the size of load more spinner."
 msgstr "Hier kunt u kiezen uit de grootte van de belasting meer spinner."
 
@@ -2582,17 +2527,17 @@ msgstr "Hier kunt u kiezen uit de grootte van de belasting meer spinner."
 msgid "Here you can choose the wp form."
 msgstr "Hier kunt u kiezen voor de wp vorm."
 
-#: includes/Modules/Divider.php:688
+#: includes/Modules/Divider.php:687
 msgid "Here you can choose where to place the element."
 msgstr "Hier kunt u kiezen waar u plaats het element."
 
 #: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:159
 #: includes/Base/DiviBuilder/Utils/Fields/DefinitionTrait.php:196
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:667
-#: includes/Modules/FlipBox.php:1847
-#: includes/Modules/FlipBox.php:1880
-#: includes/Modules/PostGridChild.php:794
-#: includes/Modules/PostGridChild.php:823
+#: includes/Modules/FlipBox.php:1846
+#: includes/Modules/FlipBox.php:1879
+#: includes/Modules/PostGridChild.php:849
+#: includes/Modules/PostGridChild.php:878
 msgid "Here you can choose where to place the icon."
 msgstr "Hier kunt u kiezen waar u het pictogram."
 
@@ -2608,7 +2553,7 @@ msgstr "Hier kunt u kiezen of vervagen voor een cirkel slide control."
 msgid "Here you can choose whether or not circle slide control."
 msgstr "Hier kunt u kiezen of cirkel slide control."
 
-#: includes/Modules/PostGridChild.php:348
+#: includes/Modules/PostGridChild.php:353
 msgid "Here you can choose whether or not custom length for post content or excerpt text limit."
 msgstr "Hier kunt u kiezen of aangepaste lengte voor de inhoud post of uittreksel tekst te beperken."
 
@@ -2616,11 +2561,11 @@ msgstr "Hier kunt u kiezen of aangepaste lengte voor de inhoud post of uittrekse
 msgid "Here you can choose whether or not display the rating number after the stars."
 msgstr "Hier kunt u kiezen of het display de beoordeling cijfer achter de sterren."
 
-#: includes/Modules/TypingText.php:440
+#: includes/Modules/TypingText.php:439
 msgid "Here you can choose whether or not enable fade out instead of backspace effect."
 msgstr "Hier kunt u kiezen of het wel of niet inschakelen fade-out in plaats van de backspace-effect."
 
-#: includes/Modules/TypingText.php:422
+#: includes/Modules/TypingText.php:421
 msgid "Here you can choose whether or not enable loop for the typing effect."
 msgstr "Hier kunt u kiezen of het wel of niet inschakelen lus voor de typen effect."
 
@@ -2628,7 +2573,7 @@ msgstr "Hier kunt u kiezen of het wel of niet inschakelen lus voor de typen effe
 msgid "Here you can choose whether or not enable Schema Support."
 msgstr "Hier kunt u kiezen of het wel of niet inschakelen Schema Ondersteuning."
 
-#: includes/Modules/TypingText.php:431
+#: includes/Modules/TypingText.php:430
 msgid "Here you can choose whether or not enable shuffle the string effect."
 msgstr "Hier kunt u kiezen of het wel of niet inschakelen van de shuffle string effect."
 
@@ -2636,31 +2581,27 @@ msgstr "Hier kunt u kiezen of het wel of niet inschakelen van de shuffle string 
 msgid "Here you can choose whether or not include comments in reading time."
 msgstr "Hier kunt u kiezen of zij wel of geen opmerkingen in die tijd lezen."
 
-#: includes/Modules/PostGrid.php:821
+#: includes/Modules/PostGrid.php:822
 msgid "Here you can choose whether or not load more button."
 msgstr "Hier kunt u kiezen of niet meer laden-knop."
 
-#: includes/Modules/PostGrid.php:850
+#: includes/Modules/PostGrid.php:851
 msgid "Here you can choose whether or not load more spinner at the visual builder."
 msgstr "Hier kunt u kiezen om wel of geen belasting meer spinner op de visuele builder."
 
-#: includes/Modules/BusinessHoursChild.php:269
+#: includes/Modules/BusinessHoursChild.php:268
 msgid "Here you can choose whether or not mark as a off day."
 msgstr "Hier kunt u kiezen of markeren als een off dag."
 
-#: includes/Modules/FlipBox.php:1325
+#: includes/Modules/FlipBox.php:1324
 msgid "Here you can choose whether or not move both slide in slide Effect for flip box."
 msgstr "Hier kunt u kiezen of het wel of niet verplaatsen van zowel dia dia-Effect voor omslaan vak."
 
-#: includes/Modules/TypingText.php:530
+#: includes/Modules/TypingText.php:529
 msgid "Here you can choose whether or not remove the cursor after completed the typing effect."
 msgstr "Hier kunt u kiezen of verwijderen de cursor na het typen effect."
 
-#: includes/Modules/PostGridChild.php:532
-msgid "Here you can choose whether or not show avatar in the outside container."
-msgstr "Hier kunt u kiezen of het wel of niet laten zien van avatar in de container buiten."
-
-#: includes/Modules/PostGridChild.php:338
+#: includes/Modules/PostGridChild.php:343
 msgid "Here you can choose whether or not show post excerpt."
 msgstr "Hier kunt u kiezen of het wel of niet tonen post uittreksel."
 
@@ -2668,7 +2609,7 @@ msgstr "Hier kunt u kiezen of het wel of niet tonen post uittreksel."
 msgid "Here you can choose whether or not show shadow for slide control."
 msgstr "Hier kunt u kiezen of het wel of niet tonen schaduw voor de slide control."
 
-#: includes/Modules/FlipBox.php:1553
+#: includes/Modules/FlipBox.php:1552
 msgid "Here you can choose whether or not show the button."
 msgstr "Hier kunt u kiezen of het wel of niet tonen van de knop."
 
@@ -2676,7 +2617,7 @@ msgstr "Hier kunt u kiezen of het wel of niet tonen van de knop."
 msgid "Here you can choose whether or not show the conditional hidden fields in the visual  builder."
 msgstr "Hier kunt u kiezen of het wel of niet tonen van de voorwaardelijke verborgen velden in de visual builder."
 
-#: includes/Modules/TypingText.php:476
+#: includes/Modules/TypingText.php:475
 msgid "Here you can choose whether or not show the cursor for the typing effect."
 msgstr "Hier kunt u kiezen of het wel of niet tonen van de cursor voor het typen effect."
 
@@ -2697,7 +2638,7 @@ msgstr "Hier kunt u kiezen of het wel of niet tonen van de beschrijving van form
 msgid "Here you can choose whether or not show the form title."
 msgstr "Hier kunt u kiezen of het wel of niet tonen van het formulier titel."
 
-#: includes/Modules/TypingText.php:504
+#: includes/Modules/TypingText.php:503
 msgid "Here you can choose whether or not show the icon with cursor for the typing effect."
 msgstr "Hier kunt u kiezen of het pictogram met de cursor voor het typen effect."
 
@@ -2705,25 +2646,25 @@ msgstr "Hier kunt u kiezen of het pictogram met de cursor voor het typen effect.
 msgid "Here you can choose whether or not show the label on hover effect."
 msgstr "Hier kunt u kiezen of het etiket tonen op hover effect."
 
-#: includes/Modules/PostGrid.php:774
-#: includes/Modules/PostGrid.php:863
-#: includes/Modules/PostGrid.php:874
+#: includes/Modules/PostGrid.php:775
+#: includes/Modules/PostGrid.php:864
+#: includes/Modules/PostGrid.php:875
 msgid "Here you can choose whether or not show the pagination."
 msgstr "Hier kunt u kiezen of het wel of niet tonen van de paginering."
 
-#: includes/Modules/BusinessHours.php:331
+#: includes/Modules/BusinessHours.php:330
 msgid "Here you can choose whether or not show the separator between day and time text."
 msgstr "Hier kunt u kiezen of het wel of niet weergeven van het scheidingsteken tussen de dag en de tijd tekst."
 
-#: includes/Modules/BusinessHoursChild.php:296
+#: includes/Modules/BusinessHoursChild.php:295
 msgid "Here you can choose whether or not show the separator for day text."
 msgstr "Hier kunt u kiezen of het wel of niet weergeven van het scheidingsteken voor de dag van tekst."
 
-#: includes/Modules/BusinessHoursChild.php:216
+#: includes/Modules/BusinessHoursChild.php:215
 msgid "Here you can choose whether or not show the start and end time."
 msgstr "Hier kunt u kiezen of het wel of niet tonen van de start-en eindtijd."
 
-#: includes/Modules/BusinessHours.php:276
+#: includes/Modules/BusinessHours.php:275
 msgid "Here you can choose whether or not show the title text."
 msgstr "Hier kunt u kiezen of het wel of niet tonen van de tekst voor de titel."
 
@@ -2731,11 +2672,11 @@ msgstr "Hier kunt u kiezen of het wel of niet tonen van de tekst voor de titel."
 msgid "Here you can choose whether or not smoothness for slide control."
 msgstr "Hier kunt u kiezen of gladheid voor slide control."
 
-#: includes/Modules/FlipBox.php:1189
+#: includes/Modules/FlipBox.php:1188
 msgid "Here you can choose whether or not the back side view first mode, by default \"first side\"."
 msgstr "Hier kunt u kiezen of de achterzijde uitzicht op eerste modus standaard \"eerste zijde\"."
 
-#: includes/Modules/PostGridChild.php:451
+#: includes/Modules/PostGridChild.php:456
 msgid "Here you can choose whether or not the image element is full width."
 msgstr "Hier kunt u kiezen of het element in de afbeelding wordt de volledige breedte."
 
@@ -2743,7 +2684,7 @@ msgstr "Hier kunt u kiezen of het element in de afbeelding wordt de volledige br
 msgid "Here you can choose whether or not the image should open in Lightbox. Note: if you select to open the image in Lightbox, url options below will be ignored."
 msgstr "Hier kunt u kiezen of u de afbeelding openen in een Lightbox. Opmerking: als u ervoor kiest om de afbeelding te openen in een Lightbox, url opties hieronder zal worden genegeerd."
 
-#: includes/Modules/FlipBox.php:1310
+#: includes/Modules/FlipBox.php:1309
 msgid "Here you can choose whether or not use 3D Content Effect for flip box."
 msgstr "Hier kunt u kiezen of het gebruik van 3D-Inhoud Effect voor omslaan vak."
 
@@ -2755,11 +2696,11 @@ msgstr "Hier kunt u kiezen of zij wel of niet gebruik maken van achtergrond clip
 msgid "Here you can choose whether or not use clip for the text."
 msgstr "Hier kunt u kiezen of zij wel of niet gebruik maken van clip voor de tekst."
 
-#: includes/Modules/FlipBox.php:1131
+#: includes/Modules/FlipBox.php:1130
 msgid "Here you can choose whether or not use custom height for flip box."
 msgstr "Hier kunt u kiezen of het gebruik van aangepaste hoogte voor flip vak."
 
-#: includes/Modules/PostGridChild.php:645
+#: includes/Modules/PostGridChild.php:700
 msgid "Here you can choose whether or not use icon for the post title."
 msgstr "Hier kunt u kiezen of gebruik het pictogram voor de titel van de post."
 
@@ -2771,26 +2712,26 @@ msgstr "Hier kunt u kiezen of zij wel of niet gebruik maken van een label voor d
 msgid "Here you can choose whether or not use the ajax on form submission."
 msgstr "Hier kunt u kiezen of zij wel of niet gebruik maken van de ajax op het indienen van formulieren."
 
-#: includes/Modules/FlipBox.php:1788
+#: includes/Modules/FlipBox.php:1787
 msgid "Here you can choose whether or not your content will display outside the wrapper."
 msgstr "Hier kunt u kiezen of uw inhoud wordt weergegeven buiten de wrapper."
 
-#: includes/Modules/FlipBox.php:1723
+#: includes/Modules/FlipBox.php:1722
 msgid "Here you can choose whether or not your full width."
 msgstr "Hier kunt u kiezen of uw volledige breedte."
 
-#: includes/Modules/DualButton.php:662
-#: includes/Modules/DualButton.php:682
-#: includes/Modules/FlipBox.php:2138
+#: includes/Modules/DualButton.php:661
+#: includes/Modules/DualButton.php:681
+#: includes/Modules/FlipBox.php:2137
 msgid "Here you can choose whether or not your link opens in a new window"
 msgstr "Hier kunt u kiezen of uw link wordt geopend in een nieuw venster"
 
-#: includes/Modules/Divider.php:904
+#: includes/Modules/Divider.php:903
 #: includes/Modules/Lottie.php:229
 msgid "Here you can choose whether or not your Lottie will animate in loop."
 msgstr "Hier kunt u kiezen of uw Lottie zal animeren in een loop."
 
-#: includes/Modules/Divider.php:894
+#: includes/Modules/Divider.php:893
 #: includes/Modules/Lottie.php:219
 msgid "Here you can choose whether or not your Lottie will animate on hover."
 msgstr "Hier kunt u kiezen of uw Lottie zal animeren op beweeg."
@@ -2804,13 +2745,13 @@ msgstr "Hier kunt u kiezen of overlay-afbeelding moet worden gebruikt."
 msgid "Here you can control element position on the z axis. Elements with higher z-index values will sit atop elements with lower z-index values."
 msgstr "Hier kunt u het besturingselement positie van de z-as. Elementen met een hogere z-index waarden zitten boven op de elementen met een lagere z-index waarden."
 
-#: includes/Modules/Divider.php:1035
+#: includes/Modules/Divider.php:1034
 msgid "Here you can define a custom background color for lottie image."
 msgstr "Hier kunt u een aangepaste achtergrond kleur voor lottie beeld."
 
-#: includes/Modules/Divider.php:737
-#: includes/Modules/FlipBox.php:1693
-#: includes/Modules/PostGridChild.php:698
+#: includes/Modules/Divider.php:736
+#: includes/Modules/FlipBox.php:1692
+#: includes/Modules/PostGridChild.php:753
 msgid "Here you can define a custom background color."
 msgstr "Hier kunt u een aangepaste achtergrond kleur."
 
@@ -2818,12 +2759,12 @@ msgstr "Hier kunt u een aangepaste achtergrond kleur."
 msgid "Here you can define a custom color for checkbox and radio fields."
 msgstr "Hier kunt u een aangepaste kleur voor checkbox en radio-velden."
 
-#: includes/Modules/PostGrid.php:1196
-#: includes/Modules/PostGrid.php:1206
+#: includes/Modules/PostGrid.php:1197
+#: includes/Modules/PostGrid.php:1207
 msgid "Here you can define a custom color for load more spinner."
 msgstr "Hier kunt u een aangepaste kleur voor belasting meer spinner."
 
-#: includes/Modules/Divider.php:1047
+#: includes/Modules/Divider.php:1046
 #: includes/Modules/Lottie.php:358
 msgid "Here you can define a custom color for lottie image."
 msgstr "Hier kunt u een aangepaste kleur voor lottie beeld."
@@ -2856,7 +2797,7 @@ msgstr "Hier kunt u een aangepaste kleur voor het pictogram zoomen."
 msgid "Here you can define a custom color for your button icon."
 msgstr "Hier kunt u een aangepaste kleur voor uw button-pictogram."
 
-#: includes/Modules/TypingText.php:547
+#: includes/Modules/TypingText.php:546
 msgid "Here you can define a custom color for your cursor icon."
 msgstr "Hier kunt u een aangepaste kleur voor uw cursor pictogram."
 
@@ -2873,15 +2814,15 @@ msgstr "Hier kunt u een aangepaste kleur voor uw cursor pictogram."
 msgid "Here you can define a custom color for your glitch text."
 msgstr "Hier kunt u een aangepaste kleur voor uw glitch tekst."
 
-#: includes/Modules/Divider.php:727
-#: includes/Modules/FlipBox.php:1683
-#: includes/Modules/PostGrid.php:970
-#: includes/Modules/PostGridChild.php:689
-#: includes/Modules/PostGridChild.php:707
+#: includes/Modules/Divider.php:726
+#: includes/Modules/FlipBox.php:1682
+#: includes/Modules/PostGrid.php:971
+#: includes/Modules/PostGridChild.php:744
+#: includes/Modules/PostGridChild.php:762
 msgid "Here you can define a custom color for your icon."
 msgstr "Hier kunt u een aangepaste kleur voor uw pictogram."
 
-#: includes/Modules/DualButton.php:423
+#: includes/Modules/DualButton.php:422
 msgid "Here you can define a custom color for your separator icon."
 msgstr "Hier kunt u een aangepaste kleur voor uw scheidingsteken pictogram."
 
@@ -2893,7 +2834,7 @@ msgstr "Hier kunt u een aangepaste kleur voor uw dia controle."
 msgid "Here you can define a custom icon for the overlay"
 msgstr "Hier kunt u een aangepast pictogram voor de overlay"
 
-#: includes/Modules/TypingText.php:811
+#: includes/Modules/TypingText.php:810
 msgid "Here you can define a custom margin size for the after text."
 msgstr "Hier kunt u een aangepaste marge van de tekst."
 
@@ -2901,7 +2842,7 @@ msgstr "Hier kunt u een aangepaste marge van de tekst."
 msgid "Here you can define a custom margin size for the before label."
 msgstr "Hier kunt u een aangepaste marge voor de voor-label."
 
-#: includes/Modules/TypingText.php:755
+#: includes/Modules/TypingText.php:754
 msgid "Here you can define a custom margin size for the before text."
 msgstr "Hier kunt u een aangepaste marge voor de voor tekst."
 
@@ -2909,30 +2850,30 @@ msgstr "Hier kunt u een aangepaste marge voor de voor tekst."
 msgid "Here you can define a custom margin size for the button."
 msgstr "Hier kunt u een aangepaste marge voor de knop."
 
-#: includes/Modules/FlipBox.php:2089
+#: includes/Modules/FlipBox.php:2088
 msgid "Here you can define a custom margin size for the content."
 msgstr "Hier kunt u een aangepaste marge voor de inhoud."
 
-#: includes/Modules/DropCapText.php:169
+#: includes/Modules/DropCapText.php:168
 msgid "Here you can define a custom margin size for the drop cap letter."
 msgstr "Hier kunt u een aangepaste marge voor de drop cap brief."
 
-#: includes/Modules/FlipBox.php:1898
+#: includes/Modules/FlipBox.php:1897
 msgid "Here you can define a custom margin size for the icon wrapper."
 msgstr "Hier kunt u een aangepaste marge voor het pictogram van de wrapper."
 
-#: includes/Modules/Divider.php:800
-#: includes/Modules/FlipBox.php:1920
-#: includes/Modules/PostGridChild.php:862
-#: includes/Modules/PostGridChild.php:882
+#: includes/Modules/Divider.php:799
+#: includes/Modules/FlipBox.php:1919
+#: includes/Modules/PostGridChild.php:917
+#: includes/Modules/PostGridChild.php:937
 msgid "Here you can define a custom margin size for the icon."
 msgstr "Hier kunt u een aangepaste marge grootte van het pictogram."
 
-#: includes/Modules/DualButton.php:541
+#: includes/Modules/DualButton.php:540
 msgid "Here you can define a custom margin size for the separator."
 msgstr "Hier kunt u een aangepaste marge grootte van de separator."
 
-#: includes/Modules/FlipBox.php:2053
+#: includes/Modules/FlipBox.php:2052
 msgid "Here you can define a custom margin size for the sub title."
 msgstr "Hier kunt u een aangepaste marge voor de sub-titel."
 
@@ -2940,40 +2881,40 @@ msgstr "Hier kunt u een aangepaste marge voor de sub-titel."
 msgid "Here you can define a custom margin size for the time."
 msgstr "Hier kunt u een aangepaste marge voor de tijd."
 
-#: includes/Modules/BusinessHours.php:431
-#: includes/Modules/FlipBox.php:2017
+#: includes/Modules/BusinessHours.php:430
+#: includes/Modules/FlipBox.php:2016
 msgid "Here you can define a custom margin size for the title."
 msgstr "Hier kunt u een aangepaste marge voor de titel."
 
-#: includes/Modules/TypingText.php:783
+#: includes/Modules/TypingText.php:782
 msgid "Here you can define a custom margin size for the typed text."
 msgstr "Hier kunt u een aangepaste marge voor de getypte tekst."
 
-#: includes/Modules/BusinessHours.php:409
-#: includes/Modules/BusinessHoursChild.php:334
-#: includes/Modules/Divider.php:1112
-#: includes/Modules/DualButton.php:630
-#: includes/Modules/FlipBox.php:1991
-#: includes/Modules/PostGrid.php:1294
-#: includes/Modules/PostGrid.php:1316
-#: includes/Modules/PostGridChild.php:927
-#: includes/Modules/TypingText.php:632
+#: includes/Modules/BusinessHours.php:408
+#: includes/Modules/BusinessHoursChild.php:333
+#: includes/Modules/Divider.php:1111
+#: includes/Modules/DualButton.php:629
+#: includes/Modules/FlipBox.php:1990
+#: includes/Modules/PostGrid.php:1295
+#: includes/Modules/PostGrid.php:1317
+#: includes/Modules/PostGridChild.php:982
+#: includes/Modules/TypingText.php:631
 msgid "Here you can define a custom margin size for the wrapper."
 msgstr "Hier kunt u een aangepaste marge voor de wrapper."
 
 #: includes/Base/DiviBuilder/Module/FormStyler.php:148
-#: includes/Modules/Divider.php:703
+#: includes/Modules/Divider.php:702
 #: includes/Modules/FormStylers/FluentForms.php:111
 #: includes/Modules/FormStylers/FluentForms.php:185
 #: includes/Modules/FormStylers/GravityForms.php:208
 #: includes/Modules/FormStylers/GravityForms.php:242
 #: includes/Modules/FormStylers/NinjaForms.php:101
-#: includes/Modules/PostGrid.php:1049
-#: includes/Modules/PostGrid.php:1083
-#: includes/Modules/PostGrid.php:1119
-#: includes/Modules/PostGrid.php:1153
-#: includes/Modules/PostGrid.php:1336
-#: includes/Modules/PostGridChild.php:961
+#: includes/Modules/PostGrid.php:1050
+#: includes/Modules/PostGrid.php:1084
+#: includes/Modules/PostGrid.php:1120
+#: includes/Modules/PostGrid.php:1154
+#: includes/Modules/PostGrid.php:1337
+#: includes/Modules/PostGridChild.php:1016
 msgid "Here you can define a custom margin size."
 msgstr "Hier kunt u een aangepaste marge."
 
@@ -2982,43 +2923,43 @@ msgstr "Hier kunt u een aangepaste marge."
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:750
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:775
 #: includes/Modules/BeforeAfterImageSlider.php:511
-#: includes/Modules/BusinessHours.php:418
-#: includes/Modules/BusinessHours.php:447
-#: includes/Modules/BusinessHoursChild.php:346
-#: includes/Modules/Divider.php:713
-#: includes/Modules/Divider.php:810
-#: includes/Modules/Divider.php:1121
-#: includes/Modules/DropCapText.php:183
-#: includes/Modules/DualButton.php:528
-#: includes/Modules/DualButton.php:553
-#: includes/Modules/DualButton.php:642
-#: includes/Modules/FlipBox.php:1909
-#: includes/Modules/FlipBox.php:1931
-#: includes/Modules/FlipBox.php:2001
-#: includes/Modules/FlipBox.php:2035
-#: includes/Modules/FlipBox.php:2071
-#: includes/Modules/FlipBox.php:2107
+#: includes/Modules/BusinessHours.php:417
+#: includes/Modules/BusinessHours.php:446
+#: includes/Modules/BusinessHoursChild.php:345
+#: includes/Modules/Divider.php:712
+#: includes/Modules/Divider.php:809
+#: includes/Modules/Divider.php:1120
+#: includes/Modules/DropCapText.php:182
+#: includes/Modules/DualButton.php:527
+#: includes/Modules/DualButton.php:552
+#: includes/Modules/DualButton.php:641
+#: includes/Modules/FlipBox.php:1908
+#: includes/Modules/FlipBox.php:1930
+#: includes/Modules/FlipBox.php:2000
+#: includes/Modules/FlipBox.php:2034
+#: includes/Modules/FlipBox.php:2070
+#: includes/Modules/FlipBox.php:2106
 #: includes/Modules/FormStylers/FluentForms.php:127
 #: includes/Modules/FormStylers/FluentForms.php:204
 #: includes/Modules/FormStylers/GravityForms.php:225
 #: includes/Modules/FormStylers/GravityForms.php:259
 #: includes/Modules/FormStylers/NinjaForms.php:119
-#: includes/Modules/PostGrid.php:1066
-#: includes/Modules/PostGrid.php:1102
-#: includes/Modules/PostGrid.php:1136
-#: includes/Modules/PostGrid.php:1170
-#: includes/Modules/PostGrid.php:1303
-#: includes/Modules/PostGrid.php:1325
-#: includes/Modules/PostGrid.php:1352
-#: includes/Modules/PostGridChild.php:872
-#: includes/Modules/PostGridChild.php:893
-#: includes/Modules/PostGridChild.php:936
-#: includes/Modules/PostGridChild.php:976
+#: includes/Modules/PostGrid.php:1067
+#: includes/Modules/PostGrid.php:1103
+#: includes/Modules/PostGrid.php:1137
+#: includes/Modules/PostGrid.php:1171
+#: includes/Modules/PostGrid.php:1304
+#: includes/Modules/PostGrid.php:1326
+#: includes/Modules/PostGrid.php:1353
+#: includes/Modules/PostGridChild.php:927
+#: includes/Modules/PostGridChild.php:948
+#: includes/Modules/PostGridChild.php:991
+#: includes/Modules/PostGridChild.php:1031
 #: includes/Modules/PostReadingTime.php:331
-#: includes/Modules/TypingText.php:641
-#: includes/Modules/TypingText.php:769
-#: includes/Modules/TypingText.php:797
-#: includes/Modules/TypingText.php:828
+#: includes/Modules/TypingText.php:640
+#: includes/Modules/TypingText.php:768
+#: includes/Modules/TypingText.php:796
+#: includes/Modules/TypingText.php:827
 msgid "Here you can define a custom padding size."
 msgstr "Hier kunt u een aangepaste vulling grootte."
 
@@ -3102,7 +3043,7 @@ msgstr "Hier kunt u de knop element voor de video in popup-venster."
 msgid "Here you can select different type of play icon from the video."
 msgstr "Hier kunt u kiezen uit verschillende type pictogram afspelen van de video."
 
-#: includes/Modules/BusinessHoursChild.php:256
+#: includes/Modules/BusinessHoursChild.php:255
 msgid "Here you can set the separator between the start time and end time."
 msgstr "Hier kunt u het scheidingsteken tussen de begin-en eindtijd."
 
@@ -3125,7 +3066,7 @@ msgid "Home Text"
 msgstr "Thuis Tekst"
 
 #: includes/Modules/BeforeAfterImageSlider.php:294
-#: includes/Modules/DualButton.php:586
+#: includes/Modules/DualButton.php:585
 #: includes/Modules/ImageMask.php:240
 msgid "Horizontal"
 msgstr "Horizontaal"
@@ -3145,23 +3086,23 @@ msgid "https://squadmodules.com/"
 msgstr "https://squadmodules.com/"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:413
-#: includes/Modules/Divider.php:124
-#: includes/Modules/Divider.php:541
-#: includes/Modules/DualButton.php:363
-#: includes/Modules/FlipBox.php:164
-#: includes/Modules/FlipBox.php:197
-#: includes/Modules/FlipBox.php:1596
+#: includes/Modules/Divider.php:123
+#: includes/Modules/Divider.php:540
+#: includes/Modules/DualButton.php:362
+#: includes/Modules/FlipBox.php:163
+#: includes/Modules/FlipBox.php:196
+#: includes/Modules/FlipBox.php:1595
 #: includes/Modules/PostGridChild.php:95
 #: includes/Modules/PostGridChild.php:108
-#: includes/Modules/PostGridChild.php:556
+#: includes/Modules/PostGridChild.php:611
 #: includes/Modules/VideoPopup.php:70
 #: includes/Modules/VideoPopup.php:121
 #: includes/Modules/VideoPopup.php:178
 msgid "Icon"
 msgstr "Pictogram"
 
-#: includes/Modules/Divider.php:68
-#: includes/Modules/Divider.php:77
+#: includes/Modules/Divider.php:67
+#: includes/Modules/Divider.php:76
 msgid "Icon & Image"
 msgstr "Pictogram & Beeld"
 
@@ -3193,23 +3134,23 @@ msgstr "Pictogram 5"
 msgid "Icon 6"
 msgstr "Icoon 6"
 
-#: includes/Modules/Divider.php:735
-#: includes/Modules/FlipBox.php:1691
-#: includes/Modules/PostGridChild.php:696
+#: includes/Modules/Divider.php:734
+#: includes/Modules/FlipBox.php:1690
+#: includes/Modules/PostGridChild.php:751
 msgid "Icon Background Color"
 msgstr "Pictogram Achtergrond Kleur"
 
-#: includes/Modules/Divider.php:156
+#: includes/Modules/Divider.php:155
 #: includes/Modules/PostGridChild.php:226
 msgid "Icon Box Shadow"
 msgstr "Pictogram Schaduw"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:586
-#: includes/Modules/Divider.php:725
-#: includes/Modules/DualButton.php:421
-#: includes/Modules/FlipBox.php:1681
-#: includes/Modules/PostGridChild.php:687
-#: includes/Modules/TypingText.php:545
+#: includes/Modules/Divider.php:724
+#: includes/Modules/DualButton.php:420
+#: includes/Modules/FlipBox.php:1680
+#: includes/Modules/PostGridChild.php:742
+#: includes/Modules/TypingText.php:544
 msgid "Icon Color"
 msgstr "Pictogram Kleur"
 
@@ -3217,57 +3158,57 @@ msgstr "Pictogram Kleur"
 msgid "Icon Element"
 msgstr "Icon-Element"
 
-#: includes/Modules/FlipBox.php:1773
-#: includes/Modules/FlipBox.php:1867
-#: includes/Modules/PostGridChild.php:811
+#: includes/Modules/FlipBox.php:1772
+#: includes/Modules/FlipBox.php:1866
+#: includes/Modules/PostGridChild.php:866
 msgid "Icon Horizontal Alignment"
 msgstr "Pictogram Horizontale Uitlijning"
 
-#: includes/Modules/Divider.php:798
-#: includes/Modules/FlipBox.php:1918
-#: includes/Modules/PostGridChild.php:860
+#: includes/Modules/Divider.php:797
+#: includes/Modules/FlipBox.php:1917
+#: includes/Modules/PostGridChild.php:915
 msgid "Icon Margin"
 msgstr "Pictogram Marge"
 
-#: includes/Modules/Divider.php:808
-#: includes/Modules/FlipBox.php:1929
-#: includes/Modules/PostGridChild.php:870
+#: includes/Modules/Divider.php:807
+#: includes/Modules/FlipBox.php:1928
+#: includes/Modules/PostGridChild.php:925
 msgid "Icon Padding"
 msgstr "Pictogram Padding"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:665
-#: includes/Modules/FlipBox.php:1845
-#: includes/Modules/PostGridChild.php:792
+#: includes/Modules/FlipBox.php:1844
+#: includes/Modules/PostGridChild.php:847
 msgid "Icon Placement"
 msgstr "Pictogram Plaatsing"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:598
-#: includes/Modules/Divider.php:744
-#: includes/Modules/DualButton.php:430
-#: includes/Modules/FlipBox.php:1701
-#: includes/Modules/PostGridChild.php:714
-#: includes/Modules/TypingText.php:554
+#: includes/Modules/Divider.php:743
+#: includes/Modules/DualButton.php:429
+#: includes/Modules/FlipBox.php:1700
+#: includes/Modules/PostGridChild.php:769
+#: includes/Modules/TypingText.php:553
 msgid "Icon Size"
 msgstr "Pictogram grootte"
 
-#: includes/Modules/Divider.php:88
-#: includes/Modules/FlipBox.php:109
+#: includes/Modules/Divider.php:87
+#: includes/Modules/FlipBox.php:108
 #: includes/Modules/PostGridChild.php:96
 msgid "Icon Text"
 msgstr "Pictogram Tekst"
 
-#: includes/Modules/Divider.php:248
+#: includes/Modules/Divider.php:247
 msgid "Icon Text Tag"
 msgstr "Pictogram Tekst Label"
 
-#: includes/Modules/Divider.php:537
-#: includes/Modules/FlipBox.php:1592
-#: includes/Modules/PostGridChild.php:552
+#: includes/Modules/Divider.php:536
+#: includes/Modules/FlipBox.php:1591
+#: includes/Modules/PostGridChild.php:607
 msgid "Icon Type"
 msgstr "Pictogram Type"
 
-#: includes/Modules/FlipBox.php:1878
-#: includes/Modules/PostGridChild.php:821
+#: includes/Modules/FlipBox.php:1877
+#: includes/Modules/PostGridChild.php:876
 msgid "Icon Vertical Placement"
 msgstr "Pictogram Verticale Plaatsing"
 
@@ -3275,24 +3216,24 @@ msgstr "Pictogram Verticale Plaatsing"
 msgid "Icon Wrapper"
 msgstr "Pictogram-Wrapper"
 
-#: includes/Modules/FlipBox.php:1896
+#: includes/Modules/FlipBox.php:1895
 msgid "Icon Wrapper Margin"
 msgstr "Pictogram-Wrapper-Marge"
 
-#: includes/Modules/FlipBox.php:1907
+#: includes/Modules/FlipBox.php:1906
 msgid "Icon Wrapper Padding"
 msgstr "Pictogram-Wrapper Padding"
 
-#: includes/Modules/FlipBox.php:1823
+#: includes/Modules/FlipBox.php:1822
 msgid "Icon Wrapper Width"
 msgstr "Pictogram-Wrapper Breedte"
 
-#: includes/Modules/FlipBox.php:2291
+#: includes/Modules/FlipBox.php:2290
 msgid "Icon/Image"
 msgstr "Pictogram/Afbeelding"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:748
-#: includes/Modules/DualButton.php:526
+#: includes/Modules/DualButton.php:525
 msgid "Icon/Image Margin"
 msgstr "Pictogram/Image Marge"
 
@@ -3308,14 +3249,14 @@ msgstr "Als het over een specifieke pagina op uw site, gelieve te voegen de betr
 msgid "If this option appears to have no effect, you might need to"
 msgstr "Als deze optie geen effect te hebben, moet u mogelijk"
 
-#: includes/Modules/PostGrid.php:690
-#: includes/Modules/PostGrid.php:702
+#: includes/Modules/PostGrid.php:691
+#: includes/Modules/PostGrid.php:703
 msgid "If you would like to adjust the date format, input the appropriate PHP date format here."
 msgstr "Als u wilt aanpassen van de datum ingang van de juiste PHP datum-formaat hier."
 
-#: includes/Modules/DualButton.php:654
-#: includes/Modules/DualButton.php:674
-#: includes/Modules/FlipBox.php:2128
+#: includes/Modules/DualButton.php:653
+#: includes/Modules/DualButton.php:673
+#: includes/Modules/FlipBox.php:2127
 msgid "If you would like to make your button link, input your destination URL here."
 msgstr "Als u wilt maken van de knop-link-ingang van uw bestemmings-URL hier."
 
@@ -3339,8 +3280,8 @@ msgstr "iFrame"
 msgid "Image"
 msgstr "Afbeelding"
 
-#: includes/Modules/FlipBox.php:79
-#: includes/Modules/FlipBox.php:104
+#: includes/Modules/FlipBox.php:78
+#: includes/Modules/FlipBox.php:103
 msgid "Image & Icon"
 msgstr "Beeld & Icon"
 
@@ -3353,10 +3294,10 @@ msgid "Image & Media Modules"
 msgstr "Beeld & Media-Modules"
 
 #: includes/Modules/BeforeAfterImageSlider.php:455
-#: includes/Modules/Divider.php:602
-#: includes/Modules/FlipBox.php:1655
+#: includes/Modules/Divider.php:601
+#: includes/Modules/FlipBox.php:1654
 #: includes/Modules/ImageMask.php:113
-#: includes/Modules/PostGridChild.php:623
+#: includes/Modules/PostGridChild.php:678
 #: includes/Modules/VideoPopup.php:166
 msgid "Image Alt Text"
 msgstr "Afbeelding Alt Teksten"
@@ -3383,7 +3324,7 @@ msgstr "Image-bestand (%s) kan niet worden gegenereerd."
 msgid "Image file (%s) does not exist."
 msgstr "Image-bestand (%s) niet bestaat."
 
-#: includes/Modules/FlipBox.php:1721
+#: includes/Modules/FlipBox.php:1720
 msgid "Image Force Full-Width"
 msgstr "Afbeelding Kracht Full-Breedte"
 
@@ -3397,11 +3338,11 @@ msgid "Image Gallery"
 msgstr "Afbeelding Galerij"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:629
-#: includes/Modules/Divider.php:780
-#: includes/Modules/DualButton.php:466
-#: includes/Modules/FlipBox.php:1754
+#: includes/Modules/Divider.php:779
+#: includes/Modules/DualButton.php:465
+#: includes/Modules/FlipBox.php:1753
 #: includes/Modules/ImageMask.php:278
-#: includes/Modules/PostGridChild.php:745
+#: includes/Modules/PostGridChild.php:800
 #: includes/Modules/VideoPopup.php:317
 msgid "Image Height"
 msgstr "Afbeelding hoogte"
@@ -3455,15 +3396,15 @@ msgid "Image Vertical Position"
 msgstr "Afbeelding Verticale Positie"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:614
-#: includes/Modules/Divider.php:762
-#: includes/Modules/DualButton.php:448
-#: includes/Modules/FlipBox.php:1735
+#: includes/Modules/Divider.php:761
+#: includes/Modules/DualButton.php:447
+#: includes/Modules/FlipBox.php:1734
 #: includes/Modules/ImageMask.php:259
-#: includes/Modules/PostGridChild.php:730
+#: includes/Modules/PostGridChild.php:785
 msgid "Image Width"
 msgstr "Breedte Van De Afbeelding"
 
-#: includes/Modules/FlipBox.php:2165
+#: includes/Modules/FlipBox.php:2164
 msgid "Image/Icon Order"
 msgstr "Beeld/Icoon Om"
 
@@ -3483,20 +3424,20 @@ msgid "Images Gap"
 msgstr "Beelden Kloof"
 
 #: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:163
-#: includes/Modules/DualButton.php:667
-#: includes/Modules/DualButton.php:687
-#: includes/Modules/FlipBox.php:2143
+#: includes/Modules/DualButton.php:666
+#: includes/Modules/DualButton.php:686
+#: includes/Modules/FlipBox.php:2142
 msgid "In The New Tab"
 msgstr "In De Nieuw Tabblad"
 
 #: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:162
-#: includes/Modules/DualButton.php:666
-#: includes/Modules/DualButton.php:686
-#: includes/Modules/FlipBox.php:2142
+#: includes/Modules/DualButton.php:665
+#: includes/Modules/DualButton.php:685
+#: includes/Modules/FlipBox.php:2141
 msgid "In The Same Window"
 msgstr "In Hetzelfde Venster"
 
-#: includes/Modules/PostGrid.php:562
+#: includes/Modules/PostGrid.php:563
 msgid "Include Categories"
 msgstr "Categorieën"
 
@@ -3508,16 +3449,16 @@ msgstr "Opmerkingen"
 msgid "Include Images"
 msgstr "Afbeeldingen Opnemen"
 
-#: includes/Modules/PostGrid.php:578
+#: includes/Modules/PostGrid.php:579
 msgid "Include Tags"
 msgstr "Zijn Tags"
 
 #: includes/Modules/BeforeAfterImageSlider.php:333
-#: includes/Modules/FlipBox.php:2167
-#: includes/Modules/FlipBox.php:2189
-#: includes/Modules/FlipBox.php:2211
-#: includes/Modules/FlipBox.php:2234
-#: includes/Modules/FlipBox.php:2257
+#: includes/Modules/FlipBox.php:2166
+#: includes/Modules/FlipBox.php:2188
+#: includes/Modules/FlipBox.php:2210
+#: includes/Modules/FlipBox.php:2233
+#: includes/Modules/FlipBox.php:2256
 msgid "Increase the order number to position the item lower."
 msgstr "Verhoging van het ordernummer om de positie van het item lager."
 
@@ -3526,22 +3467,22 @@ msgid "Increase the slide control smoothing."
 msgstr "Verhoging van de dia-smoothing."
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:180
-#: includes/Modules/Divider.php:407
+#: includes/Modules/Divider.php:406
 msgid "Increasing the divider weight will increase the thickness of the dividing line."
 msgstr "Het verhogen van de divider gewicht zal verhogen van de dikte van de scheidslijn."
 
 #: includes/Modules/StarRating.php:243
-#: includes/Modules/TypingText.php:713
-#: includes/Modules/TypingText.php:727
-#: includes/Modules/TypingText.php:741
+#: includes/Modules/TypingText.php:712
+#: includes/Modules/TypingText.php:726
+#: includes/Modules/TypingText.php:740
 msgid "Inline"
 msgstr "Inline"
 
-#: includes/Modules/FlipBox.php:1517
+#: includes/Modules/FlipBox.php:1516
 msgid "Input the main text content for your current side of flip box here."
 msgstr "Input de belangrijkste tekst voor uw huidige side flip-box hier."
 
-#: includes/Modules/DropCapText.php:147
+#: includes/Modules/DropCapText.php:146
 msgid "Input the main text content for your module here."
 msgstr "Input de belangrijkste tekst voor uw module."
 
@@ -3561,11 +3502,11 @@ msgstr "In plaats van het verstrekken van uw primaire FTP account, maak een nieu
 msgid "It allows you to display two buttons side by side with customizable styles and text."
 msgstr "Het laat je toe om twee knoppen aan de rechterzijde aanpasbare stijlen en tekst."
 
-#: includes/Modules/FlipBox.php:88
+#: includes/Modules/FlipBox.php:87
 msgid "Item Order"
 msgstr "Item Bestellen"
 
-#: includes/Modules/FlipBox.php:93
+#: includes/Modules/FlipBox.php:92
 msgid "Item Z Index"
 msgstr "Item Z Index"
 
@@ -3625,71 +3566,71 @@ msgstr "Label Padding"
 msgid "Landscape"
 msgstr "Landschap"
 
-#: includes/Modules/PostGridChild.php:467
+#: includes/Modules/PostGridChild.php:472
 msgid "Last Name"
 msgstr "Achternaam"
 
-#: includes/Modules/PostGrid.php:96
+#: includes/Modules/PostGrid.php:97
 msgid "Layout Settings"
 msgstr "Lay-out instellingen"
 
-#: includes/Modules/FlipBox.php:1215
+#: includes/Modules/FlipBox.php:1214
 #: includes/Modules/ScrollingText.php:146
 #: includes/Modules/StarRating.php:261
 msgid "Left"
 msgstr "Links"
 
-#: includes/Modules/DualButton.php:63
-#: includes/Modules/DualButton.php:71
-#: includes/Modules/DualButton.php:85
-#: includes/Modules/DualButton.php:271
+#: includes/Modules/DualButton.php:62
+#: includes/Modules/DualButton.php:70
+#: includes/Modules/DualButton.php:84
+#: includes/Modules/DualButton.php:270
 msgid "Left Button"
 msgstr "Linker Knop"
 
-#: includes/Modules/DualButton.php:275
+#: includes/Modules/DualButton.php:274
 msgid "Left Button Icon"
 msgstr "Linker Knop Pictogram"
 
-#: includes/Modules/DualButton.php:661
+#: includes/Modules/DualButton.php:660
 msgid "Left Button Link Target"
 msgstr "Linker Knop Doel Van Koppeling"
 
-#: includes/Modules/DualButton.php:653
+#: includes/Modules/DualButton.php:652
 msgid "Left Button Link URL"
 msgstr "Linker Knop Link van de URL"
 
-#: includes/Modules/DualButton.php:72
+#: includes/Modules/DualButton.php:71
 msgid "Left Button Text"
 msgstr "Linker Knop Tekst"
 
-#: includes/Modules/Divider.php:360
+#: includes/Modules/Divider.php:359
 msgid "Left Side"
 msgstr "Links"
 
-#: includes/Modules/DropCapText.php:75
+#: includes/Modules/DropCapText.php:74
 msgid "Letter"
 msgstr "Brief"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:137
-#: includes/Modules/Divider.php:327
+#: includes/Modules/Divider.php:326
 msgid "Line Color"
 msgstr "Lijn Kleur"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:162
-#: includes/Modules/Divider.php:390
+#: includes/Modules/Divider.php:389
 msgid "Line Position"
 msgstr "Lijn Positie"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:149
-#: includes/Modules/Divider.php:378
+#: includes/Modules/Divider.php:377
 msgid "Line Style"
 msgstr "Stijl"
 
-#: includes/Modules/Divider.php:212
+#: includes/Modules/Divider.php:211
 msgid "Line With Text"
 msgstr "De Regel Met Tekst"
 
-#: includes/Modules/Divider.php:213
+#: includes/Modules/Divider.php:212
 msgid "Liner With Icon"
 msgstr "Voering Met Pictogram"
 
@@ -3705,58 +3646,49 @@ msgstr "Lite installeren datum"
 msgid "Lite Version"
 msgstr "De Lite-Versie"
 
-#: includes/Modules/PostGrid.php:98
-#: includes/Modules/PostGrid.php:106
+#: includes/Modules/PostGrid.php:99
+#: includes/Modules/PostGrid.php:107
 msgid "Load More"
 msgstr "Meer laden"
 
-#: includes/Modules/PostGrid.php:475
+#: includes/Modules/PostGrid.php:476
 msgid "Load More Button"
 msgstr "Laad meer knop"
 
-#: includes/Modules/PostGrid.php:107
+#: includes/Modules/PostGrid.php:108
 msgid "Load More Text"
 msgstr "Laad Meer Tekst"
-
-#: build/admin/scripts/admin.js:175
-msgid "Loading available extensions…"
-msgstr "Het laden van de beschikbare extensies..."
-
-#: build/admin/scripts/admin.js:175
-#, fuzzy
-msgid "Loading available modules…"
-msgstr "Laden van beschikbare modules..."
 
 #: build/admin/scripts/admin.js:175
 msgid "Loading available what's new changes…"
 msgstr "Beschikbare nieuw veranderingen..."
 
-#: includes/Modules/Divider.php:869
+#: includes/Modules/Divider.php:868
 #: includes/Modules/Lottie.php:194
 msgid "Lock animation"
 msgstr "Lock animatie"
 
-#: includes/Modules/Divider.php:902
+#: includes/Modules/Divider.php:901
 #: includes/Modules/Lottie.php:227
 msgid "Loop"
 msgstr "Loop"
 
-#: includes/Modules/Divider.php:79
-#: includes/Modules/Divider.php:543
+#: includes/Modules/Divider.php:78
+#: includes/Modules/Divider.php:542
 #: includes/Modules/Lottie.php:56
 #: includes/Modules/Lottie.php:62
 msgid "Lottie"
 msgstr "Lottie"
 
-#: includes/Modules/Divider.php:69
+#: includes/Modules/Divider.php:68
 msgid "Lottie Animation"
 msgstr "Lottie Animatie"
 
-#: includes/Modules/Divider.php:1033
+#: includes/Modules/Divider.php:1032
 msgid "Lottie Background Color"
 msgstr "Lottie Achtergrond Kleur"
 
-#: includes/Modules/Divider.php:1045
+#: includes/Modules/Divider.php:1044
 #: includes/Modules/Lottie.php:356
 msgid "Lottie Color"
 msgstr "Lottie Kleur"
@@ -3765,7 +3697,7 @@ msgstr "Lottie Kleur"
 msgid "Lottie Container"
 msgstr "Lottie Container"
 
-#: includes/Modules/Divider.php:1077
+#: includes/Modules/Divider.php:1076
 #: includes/Modules/Lottie.php:383
 msgid "Lottie Height"
 msgstr "Lottie Hoogte"
@@ -3779,7 +3711,7 @@ msgstr "Lottie Afbeelding"
 msgid "Lottie Images"
 msgstr "Lottie Beelden"
 
-#: includes/Modules/Divider.php:1057
+#: includes/Modules/Divider.php:1056
 #: includes/Modules/Lottie.php:365
 msgid "Lottie Width"
 msgstr "Lottie Breedte"
@@ -3809,13 +3741,13 @@ msgstr "Beheren"
 msgid "Map Configuration"
 msgstr "Kaart Configuratie"
 
-#: includes/Modules/DropCapText.php:167
-#: includes/Modules/PostGridChild.php:925
-#: includes/Modules/PostGridChild.php:959
+#: includes/Modules/DropCapText.php:166
+#: includes/Modules/PostGridChild.php:980
+#: includes/Modules/PostGridChild.php:1014
 msgid "Margin"
 msgstr "Marge"
 
-#: includes/Modules/BusinessHoursChild.php:267
+#: includes/Modules/BusinessHoursChild.php:266
 msgid "Mark as Off Day"
 msgstr "Mark Off Dag"
 
@@ -3962,11 +3894,11 @@ msgstr "Bericht Achtergrond"
 msgid "Message Box Shadow"
 msgstr "Bericht Schaduw"
 
-#: includes/Modules/PostGridChild.php:497
+#: includes/Modules/PostGridChild.php:502
 msgid "Modified"
 msgstr "Aangepast"
 
-#: includes/Modules/PostGrid.php:595
+#: includes/Modules/PostGrid.php:596
 msgid "Modified Date"
 msgstr "Gemodificeerde Datum"
 
@@ -4161,12 +4093,12 @@ msgstr "Uw Titel Gaat Hier"
 msgid "Modules Management"
 msgstr "De Modules Management"
 
-#: includes/Modules/FlipBox.php:1323
+#: includes/Modules/FlipBox.php:1322
 msgid "Move Both Side"
 msgstr "Beweeg Beide Zijde"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:692
-#: includes/Modules/PostGridChild.php:850
+#: includes/Modules/PostGridChild.php:905
 msgid "Move Icon On Hover Only"
 msgstr "Pictogram Verplaatsen Op Beweeg Alleen"
 
@@ -4190,20 +4122,20 @@ msgstr "Hulp nodig?"
 msgid "NEW"
 msgstr "NIEUW"
 
-#: includes/Modules/PostGrid.php:2149
+#: includes/Modules/PostGrid.php:2187
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Next Entries"
 msgstr "Volgende Vermeldingen"
 
-#: includes/Modules/PostGrid.php:922
+#: includes/Modules/PostGrid.php:923
 msgid "Next Entries Icon"
 msgstr "Volgende Vermeldingen Pictogram"
 
-#: includes/Modules/PostGrid.php:913
+#: includes/Modules/PostGrid.php:914
 msgid "Next Entries Text"
 msgstr "Volgende Vermeldingen Tekst"
 
-#: includes/Modules/PostGridChild.php:463
+#: includes/Modules/PostGridChild.php:468
 msgid "Nickname"
 msgstr "Bijnaam"
 
@@ -4226,25 +4158,18 @@ msgstr "Ninja Vormen niet is geïnstalleerd"
 msgid "No"
 msgstr "Nee"
 
-#: includes/Modules/Divider.php:854
-#: includes/Modules/Divider.php:868
+#: includes/Modules/Divider.php:853
+#: includes/Modules/Divider.php:867
 #: includes/Modules/Lottie.php:179
 #: includes/Modules/Lottie.php:193
 msgid "No action"
 msgstr "Geen actie"
 
-#: includes/Managers/RestRoutes/V1/Modules/PostGrid.php:84
-msgid "No data found."
-msgstr "Geen gegevens gevonden."
-
-#: includes/Managers/RestRoutes/V1/Extensions.php:135
-#: includes/Managers/RestRoutes/V1/Extensions/Copy.php:56
-#: includes/Managers/RestRoutes/V1/Modules.php:135
-#: includes/Managers/RestRoutes/V1/Modules/PostGrid.php:51
+#: includes/Managers/RestRoutes/Version1/Extensions/Copy.php:82
 msgid "No data provided."
 msgstr "Geen gegevens beschikbaar."
 
-#: includes/Modules/PostGrid.php:1450
+#: includes/Modules/PostGrid.php:1451
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "No elements found. Please add one or more elements to display in the post grid."
 msgstr "Er zijn geen elementen gevonden. Voeg een of meer elementen weer te geven in de post-raster."
@@ -4253,21 +4178,21 @@ msgstr "Er zijn geen elementen gevonden. Voeg een of meer elementen weer te geve
 msgid "No options found"
 msgstr "Geen opties"
 
-#: includes/Modules/PostGrid.php:1471
+#: includes/Modules/PostGrid.php:1472
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "No posts found that match the specified criteria."
 msgstr "Geen berichten gevonden die overeenkomen met de opgegeven criteria."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:415
-#: includes/Modules/Divider.php:831
-#: includes/Modules/FlipBox.php:1599
+#: includes/Modules/Divider.php:830
+#: includes/Modules/FlipBox.php:1598
 #: includes/Modules/Lottie.php:156
-#: includes/Modules/PostGridChild.php:559
+#: includes/Modules/PostGridChild.php:614
 msgid "None"
 msgstr "Geen"
 
-#: includes/Modules/Divider.php:989
-#: includes/Modules/Divider.php:1002
+#: includes/Modules/Divider.php:988
+#: includes/Modules/Divider.php:1001
 #: includes/Modules/Lottie.php:314
 #: includes/Modules/Lottie.php:327
 msgid "Normal"
@@ -4286,7 +4211,7 @@ msgstr "Opmerking"
 msgid "Number of Rating"
 msgstr "Aantal Rating"
 
-#: includes/Modules/BusinessHoursChild.php:281
+#: includes/Modules/BusinessHoursChild.php:280
 msgid "Off Day Label"
 msgstr "Off Label Dag"
 
@@ -4294,25 +4219,25 @@ msgstr "Off Label Dag"
 msgid "Ok, you deserve it!"
 msgstr "Ok, je verdient het!"
 
-#: includes/Modules/PostGrid.php:2148
+#: includes/Modules/PostGrid.php:2186
 #: build/divi-builder-4/scripts/builder-bundle.js:1
 msgid "Old Entries"
 msgstr "Oude Vermeldingen"
 
-#: includes/Modules/PostGrid.php:899
+#: includes/Modules/PostGrid.php:900
 msgid "Old Entries Icon"
 msgstr "Oude Vermeldingen Pictogram"
 
-#: includes/Modules/PostGrid.php:890
+#: includes/Modules/PostGrid.php:891
 msgid "Old Entries Text"
 msgstr "Oude Regels Tekst"
 
-#: includes/Modules/Divider.php:864
+#: includes/Modules/Divider.php:863
 #: includes/Modules/Lottie.php:189
 msgid "On Click Action"
 msgstr "Op Klik Op Actie"
 
-#: includes/Modules/Divider.php:848
+#: includes/Modules/Divider.php:847
 #: includes/Modules/Lottie.php:173
 msgid "On Mouseout Action"
 msgstr "Op Mouseout Actie"
@@ -4321,7 +4246,7 @@ msgstr "Op Mouseout Actie"
 msgid "One or more fields have an error. Please check and try again."
 msgstr "Een of meer velden een fout. Controleer en probeer opnieuw."
 
-#: includes/Modules/Divider.php:211
+#: includes/Modules/Divider.php:210
 msgid "Only Line"
 msgstr "Alleen Lijn"
 
@@ -4337,11 +4262,11 @@ msgstr "Dekking"
 msgid "Open in Lightbox"
 msgstr "Openen in een Lightbox"
 
-#: includes/Modules/PostGrid.php:610
+#: includes/Modules/PostGrid.php:611
 msgid "Order"
 msgstr "Bestelling"
 
-#: includes/Modules/PostGrid.php:590
+#: includes/Modules/PostGrid.php:591
 msgid "Order By"
 msgstr "Om De Door"
 
@@ -4362,59 +4287,59 @@ msgid "Overlay Icon Color"
 msgstr "Overlay Icoon Kleur"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:41
-#: includes/Modules/Divider.php:258
+#: includes/Modules/Divider.php:257
 msgid "P tag"
 msgstr "P-tag"
 
-#: includes/Modules/DropCapText.php:181
-#: includes/Modules/PostGridChild.php:934
-#: includes/Modules/PostGridChild.php:974
+#: includes/Modules/DropCapText.php:180
+#: includes/Modules/PostGridChild.php:989
+#: includes/Modules/PostGridChild.php:1029
 msgid "Padding"
 msgstr "Padding"
 
-#: includes/Modules/PostGrid.php:109
-#: includes/Modules/PostGrid.php:144
-#: includes/Modules/PostGrid.php:167
-#: includes/Modules/PostGrid.php:280
-#: includes/Modules/PostGrid.php:326
-#: includes/Modules/PostGrid.php:483
+#: includes/Modules/PostGrid.php:110
+#: includes/Modules/PostGrid.php:145
+#: includes/Modules/PostGrid.php:168
+#: includes/Modules/PostGrid.php:281
+#: includes/Modules/PostGrid.php:327
+#: includes/Modules/PostGrid.php:484
 msgid "Pagination"
 msgstr "Paginering"
 
-#: includes/Modules/PostGrid.php:1035
+#: includes/Modules/PostGrid.php:1036
 msgid "Pagination Alignment"
 msgstr "Paginering Uitlijning"
 
-#: includes/Modules/PostGrid.php:948
-#: includes/Modules/PostGrid.php:958
+#: includes/Modules/PostGrid.php:949
+#: includes/Modules/PostGrid.php:959
 msgid "Pagination Background"
 msgstr "Paginering Achtergrond"
 
-#: includes/Modules/PostGrid.php:426
-#: includes/Modules/PostGrid.php:442
+#: includes/Modules/PostGrid.php:427
+#: includes/Modules/PostGrid.php:443
 msgid "Pagination Box Shadow"
 msgstr "De Paginering Van Een Vak Schaduw"
 
-#: includes/Modules/PostGrid.php:1117
-#: includes/Modules/PostGrid.php:1151
+#: includes/Modules/PostGrid.php:1118
+#: includes/Modules/PostGrid.php:1152
 msgid "Pagination Margin"
 msgstr "Paginering-Marge"
 
-#: includes/Modules/PostGrid.php:1134
-#: includes/Modules/PostGrid.php:1168
+#: includes/Modules/PostGrid.php:1135
+#: includes/Modules/PostGrid.php:1169
 msgid "Pagination Padding"
 msgstr "De Paginering Van Een Vulling"
 
-#: includes/Modules/PostGrid.php:97
+#: includes/Modules/PostGrid.php:98
 msgid "Pagination Settings"
 msgstr "Instellingen paginatie"
 
-#: includes/Modules/PostGrid.php:110
+#: includes/Modules/PostGrid.php:111
 msgid "Pagination Text"
 msgstr "De Paginering Van Een Tekst"
 
-#: includes/Modules/PostGrid.php:108
-#: includes/Modules/PostGrid.php:479
+#: includes/Modules/PostGrid.php:109
+#: includes/Modules/PostGrid.php:480
 msgid "Pagination Wrapper"
 msgstr "De Paginering Van Een Wrapper"
 
@@ -4439,20 +4364,20 @@ msgstr "PHP Versie"
 msgid "Pick a color to use."
 msgstr "Kies een kleur om te gebruiken."
 
-#: includes/Modules/FlipBox.php:1228
+#: includes/Modules/FlipBox.php:1227
 msgid "Pick an animation type to enable animations for this element. Once enabled, you will be able to change your animation type further."
 msgstr "Kies een animatie type animaties inschakelen voor dit element. Eenmaal ingeschakeld, zult u in staat om te veranderen van je animatie type verder."
 
-#: includes/Modules/FlipBox.php:1294
+#: includes/Modules/FlipBox.php:1293
 msgid "Pick from up to five different animation directions, each of which will adjust the starting and ending position of your animated slide."
 msgstr "Kies uit vijf verschillende animatie routebeschrijvingen, elk van die zal pas de begin-en eindpositie van de animatie van de dia."
 
-#: includes/Modules/FlipBox.php:1247
+#: includes/Modules/FlipBox.php:1246
 msgid "Pick from up to four different animation directions, each of which will adjust the starting and ending position of your animated slide."
 msgstr "Kies uit vier verschillende animatie routebeschrijvingen, elk van die zal pas de begin-en eindpositie van de animatie van de dia."
 
-#: includes/Modules/FlipBox.php:1270
-#: includes/Modules/FlipBox.php:1282
+#: includes/Modules/FlipBox.php:1269
+#: includes/Modules/FlipBox.php:1281
 msgid "Pick from up to two different animation directions, each of which will adjust the starting and ending position of your animated slide."
 msgstr "Kies uit twee verschillende animatie routebeschrijvingen, elk van die zal pas de begin-en eindpositie van de animatie van de dia."
 
@@ -4464,32 +4389,32 @@ msgstr "Kies uit twee verschillende animatie routebeschrijvingen, elk van die za
 msgid "Placeholder"
 msgstr "Tijdelijke aanduiding"
 
-#: includes/Modules/Divider.php:985
+#: includes/Modules/Divider.php:984
 #: includes/Modules/Lottie.php:310
 msgid "Play Mode"
 msgstr "Play Mode"
 
-#: includes/Modules/Divider.php:827
+#: includes/Modules/Divider.php:826
 #: includes/Modules/Lottie.php:152
 msgid "Play on click"
 msgstr "Spelen op klik op"
 
-#: includes/Modules/Divider.php:892
+#: includes/Modules/Divider.php:891
 #: includes/Modules/Lottie.php:217
 msgid "Play On Hover"
 msgstr "Spelen Op Zweven"
 
-#: includes/Modules/Divider.php:826
+#: includes/Modules/Divider.php:825
 #: includes/Modules/Lottie.php:151
 msgid "Play on hover/mouse over"
 msgstr "Spelen onder cursor/muis over"
 
-#: includes/Modules/Divider.php:828
+#: includes/Modules/Divider.php:827
 #: includes/Modules/Lottie.php:153
 msgid "Play on scroll"
 msgstr "Spelen op ga"
 
-#: includes/Modules/Divider.php:829
+#: includes/Modules/Divider.php:828
 #: includes/Modules/Lottie.php:154
 msgid "Play when container is visible"
 msgstr "Spelen wanneer de container zichtbaar"
@@ -4547,7 +4472,7 @@ msgstr "Poort"
 msgid "Portrait"
 msgstr "Portret"
 
-#: includes/Modules/PostGrid.php:626
+#: includes/Modules/PostGrid.php:627
 msgid "Post Count"
 msgstr "Post Count"
 
@@ -4561,15 +4486,15 @@ msgid "Post Elements"
 msgstr "Post-Elementen"
 
 #: includes/Managers/Features/Modules.php:179
-#: includes/Modules/PostGrid.php:76
+#: includes/Modules/PostGrid.php:77
 msgid "Post Grid"
 msgstr "Post Grid"
 
-#: includes/Modules/PostGrid.php:77
+#: includes/Modules/PostGrid.php:78
 msgid "Post Grids"
 msgstr "Post Grids"
 
-#: includes/Modules/PostGrid.php:652
+#: includes/Modules/PostGrid.php:653
 msgid "Post Offset"
 msgstr "Post Offset"
 
@@ -4582,16 +4507,16 @@ msgstr "Post Het Lezen Van De Tijd"
 msgid "Post Reading Times"
 msgstr "Post Je Leest"
 
-#: includes/Modules/PostGrid.php:95
+#: includes/Modules/PostGrid.php:96
 msgid "Post Settings"
 msgstr "Berichtinstellingen"
 
-#: includes/Modules/PostGrid.php:103
-#: includes/Modules/PostGrid.php:471
+#: includes/Modules/PostGrid.php:104
+#: includes/Modules/PostGrid.php:472
 msgid "Post Wrapper"
 msgstr "Post Wrapper"
 
-#: includes/Managers/RestRoutes/V1/Extensions/Copy.php:78
+#: includes/Managers/RestRoutes/Version1/Extensions/Copy.php:95
 msgid "Post(s) duplicated successfully."
 msgstr "Post(s) gedupliceerd met succes."
 
@@ -4599,7 +4524,7 @@ msgstr "Post(s) gedupliceerd met succes."
 msgid "Post(s) duplication failed."
 msgstr "Post(s) duplicatie is mislukt."
 
-#: includes/Modules/PostGrid.php:522
+#: includes/Modules/PostGrid.php:523
 msgid "Posts For Current Page"
 msgstr "Berichten Voor De Huidige Pagina"
 
@@ -4641,11 +4566,11 @@ msgstr "Pro"
 msgid "Product Name"
 msgstr "Naam Van Het Product"
 
-#: includes/Modules/PostGridChild.php:496
+#: includes/Modules/PostGridChild.php:501
 msgid "Publish"
 msgstr "Publiceren"
 
-#: includes/Modules/PostGrid.php:594
+#: includes/Modules/PostGrid.php:595
 msgid "Publish Date"
 msgstr "Publiceren Datum"
 
@@ -4657,7 +4582,7 @@ msgid "Radio Checkbox"
 msgstr "Radio Aankruisvak"
 
 #: includes/Modules/ImageGallery.php:227
-#: includes/Modules/PostGrid.php:600
+#: includes/Modules/PostGrid.php:601
 msgid "Random"
 msgstr "Willekeurig"
 
@@ -4680,16 +4605,16 @@ msgstr "Waardering Aantal"
 msgid "Rating Scale"
 msgstr "Rating Schaal"
 
-#: includes/Modules/PostGrid.php:2524
+#: includes/Modules/PostGrid.php:2791
 #: includes/Modules/PostGridChild.php:65
 msgid "Read More"
 msgstr "Lees meer"
 
-#: includes/Modules/PostGridChild.php:506
+#: includes/Modules/PostGridChild.php:511
 msgid "Read More Text"
 msgstr "Lees meer tekst"
 
-#: includes/Modules/PostGrid.php:2523
+#: includes/Modules/PostGrid.php:2790
 msgid "Read the post"
 msgstr "Lees de post"
 
@@ -4697,7 +4622,7 @@ msgstr "Lees de post"
 msgid "Reading Settings"
 msgstr "Het Lezen Van Instellingen"
 
-#: includes/Modules/PostGrid.php:541
+#: includes/Modules/PostGrid.php:542
 msgid "Recent"
 msgstr "Recent"
 
@@ -4709,7 +4634,7 @@ msgstr "regenereren uw miniaturen"
 msgid "Related third-party plugin required."
 msgstr "Verwante derde partijen plug-in vereist."
 
-#: includes/Modules/Divider.php:878
+#: includes/Modules/Divider.php:877
 #: includes/Modules/Lottie.php:203
 msgid "Relative To"
 msgstr "In Vergelijking Met"
@@ -4719,11 +4644,11 @@ msgstr "In Vergelijking Met"
 msgid "Relevant page on your site (E.g. %s)"
 msgstr "Relevante pagina op uw website (E. g. %s)"
 
-#: includes/Modules/TypingText.php:528
+#: includes/Modules/TypingText.php:527
 msgid "Remove Cursor After Completed"
 msgstr "Verwijder Cursor Na Voltooid"
 
-#: includes/Modules/Divider.php:1012
+#: includes/Modules/Divider.php:1011
 #: includes/Modules/Lottie.php:337
 msgid "Render"
 msgstr "Render"
@@ -4740,48 +4665,48 @@ msgstr "Antwoord op %1$s ..."
 msgid "Resize Button"
 msgstr "Resize-Toets"
 
-#: includes/Modules/DualButton.php:484
+#: includes/Modules/DualButton.php:483
 msgid "Resize Separator"
 msgstr "Het Formaat Van De Separator"
 
-#: includes/Modules/Divider.php:855
-#: includes/Modules/Divider.php:1003
+#: includes/Modules/Divider.php:854
+#: includes/Modules/Divider.php:1002
 #: includes/Modules/Lottie.php:180
 #: includes/Modules/Lottie.php:328
 msgid "Reverse"
 msgstr "Omgekeerde"
 
-#: includes/Modules/Divider.php:990
+#: includes/Modules/Divider.php:989
 #: includes/Modules/Lottie.php:315
 msgid "Reverse on complete"
 msgstr "Reverse op voltooien"
 
-#: includes/Modules/FlipBox.php:1214
+#: includes/Modules/FlipBox.php:1213
 #: includes/Modules/ScrollingText.php:147
 #: includes/Modules/StarRating.php:262
 msgid "Right"
 msgstr "Rechts"
 
-#: includes/Modules/DualButton.php:64
-#: includes/Modules/DualButton.php:73
-#: includes/Modules/DualButton.php:97
-#: includes/Modules/DualButton.php:279
+#: includes/Modules/DualButton.php:63
+#: includes/Modules/DualButton.php:72
+#: includes/Modules/DualButton.php:96
+#: includes/Modules/DualButton.php:278
 msgid "Right Button"
 msgstr "Rechter Knop"
 
-#: includes/Modules/DualButton.php:283
+#: includes/Modules/DualButton.php:282
 msgid "Right Button Icon"
 msgstr "Rechter Knop Pictogram"
 
-#: includes/Modules/DualButton.php:681
+#: includes/Modules/DualButton.php:680
 msgid "Right Button Link Target"
 msgstr "Rechts Van De Knop Doel Van Koppeling"
 
-#: includes/Modules/DualButton.php:673
+#: includes/Modules/DualButton.php:672
 msgid "Right Button Link URL"
 msgstr "Rechts van de Knop Link van de URL"
 
-#: includes/Modules/DualButton.php:74
+#: includes/Modules/DualButton.php:73
 msgid "Right Button Text"
 msgstr "Rechts Van De Knop Tekst"
 
@@ -4789,11 +4714,11 @@ msgstr "Rechts Van De Knop Tekst"
 msgid "Right into your Divi's site easily without having to worry about anything else."
 msgstr "Recht in je Divi de site gemakkelijk zonder zich zorgen te maken over iets anders."
 
-#: includes/Modules/Divider.php:369
+#: includes/Modules/Divider.php:368
 msgid "Right Side"
 msgstr "Rechts"
 
-#: includes/Modules/FlipBox.php:1208
+#: includes/Modules/FlipBox.php:1207
 msgid "Rotate"
 msgstr "Draaien"
 
@@ -4801,11 +4726,7 @@ msgstr "Draaien"
 msgid "Rotate Mask Shape"
 msgstr "Draai Masker Vorm"
 
-#: build/admin/scripts/admin.js:175
-msgid "Save Changes"
-msgstr "Wijzigingen opslaan"
-
-#: includes/Modules/FlipBox.php:1353
+#: includes/Modules/FlipBox.php:1352
 msgid "Scale"
 msgstr "Schaal"
 
@@ -4876,7 +4797,7 @@ msgid "Select Play Icon"
 msgstr "Selecteer Pictogram Afspelen"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:150
-#: includes/Modules/Divider.php:379
+#: includes/Modules/Divider.php:378
 msgid "Select the shape of the dividing line used for the divider."
 msgstr "Selecteer de vorm van de scheidingslijn gebruikt voor de scheiding."
 
@@ -4884,17 +4805,17 @@ msgstr "Selecteer de vorm van de scheidingslijn gebruikt voor de scheiding."
 msgid "Send message"
 msgstr "Bericht verzenden"
 
-#: includes/Modules/BusinessHours.php:67
-#: includes/Modules/BusinessHoursChild.php:65
-#: includes/Modules/DualButton.php:65
-#: includes/Modules/DualButton.php:75
-#: includes/Modules/DualButton.php:109
-#: includes/Modules/DualButton.php:187
-#: includes/Modules/DualButton.php:287
+#: includes/Modules/BusinessHours.php:66
+#: includes/Modules/BusinessHoursChild.php:64
+#: includes/Modules/DualButton.php:64
+#: includes/Modules/DualButton.php:74
+#: includes/Modules/DualButton.php:108
+#: includes/Modules/DualButton.php:186
+#: includes/Modules/DualButton.php:286
 msgid "Separator"
 msgstr "Scheidingsteken"
 
-#: includes/Modules/DualButton.php:245
+#: includes/Modules/DualButton.php:244
 msgid "Separator Box Shadow"
 msgstr "Scheidingsteken Vak Schaduw"
 
@@ -4907,39 +4828,39 @@ msgstr "Scheidingsteken Kleur"
 msgid "Separator Icon"
 msgstr "Scheidingsteken Pictogram"
 
-#: includes/Modules/DualButton.php:359
+#: includes/Modules/DualButton.php:358
 msgid "Separator Icon Type"
 msgstr "Scheidingsteken Pictogram Type"
 
-#: includes/Modules/DualButton.php:539
+#: includes/Modules/DualButton.php:538
 msgid "Separator Margin"
 msgstr "Scheidingsteken Marge"
 
-#: includes/Modules/DualButton.php:551
+#: includes/Modules/DualButton.php:550
 msgid "Separator Padding"
 msgstr "Scheidingsteken Padding"
 
-#: includes/Modules/DualButton.php:76
-#: includes/Modules/DualButton.php:323
+#: includes/Modules/DualButton.php:75
+#: includes/Modules/DualButton.php:322
 msgid "Separator Text"
 msgstr "Tekst"
 
-#: includes/Modules/DualButton.php:497
+#: includes/Modules/DualButton.php:496
 msgid "Separator Width"
 msgstr "Scheidingsteken Breedte"
 
-#: includes/Modules/Divider.php:646
+#: includes/Modules/Divider.php:645
 #: includes/Modules/Lottie.php:138
 msgid "Set As a lottie json"
 msgstr "Instellen Als een lottie json"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:455
 #: includes/Modules/BeforeAfterImageSlider.php:448
-#: includes/Modules/Divider.php:593
-#: includes/Modules/DualButton.php:400
-#: includes/Modules/FlipBox.php:1646
+#: includes/Modules/Divider.php:592
+#: includes/Modules/DualButton.php:399
+#: includes/Modules/FlipBox.php:1645
 #: includes/Modules/ImageMask.php:107
-#: includes/Modules/PostGridChild.php:614
+#: includes/Modules/PostGridChild.php:669
 #: includes/Modules/VideoPopup.php:160
 msgid "Set As Image"
 msgstr "Instellen Als Afbeelding"
@@ -4948,7 +4869,7 @@ msgstr "Instellen Als Afbeelding"
 msgid "Set As Video"
 msgstr "Instellen Als Video"
 
-#: includes/Modules/FlipBox.php:1129
+#: includes/Modules/FlipBox.php:1128
 msgid "Set Custom Height"
 msgstr "Het Instellen Van Een Aangepaste Hoogte"
 
@@ -4964,7 +4885,7 @@ msgstr "Instellingen"
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: includes/Modules/FlipBox.php:1551
+#: includes/Modules/FlipBox.php:1550
 msgid "Show Button"
 msgstr "Laat De Knop"
 
@@ -4976,7 +4897,7 @@ msgstr "Toon Voorwaardelijke Velden"
 msgid "Show Control Shadow"
 msgstr "Toon Controle Schaduw"
 
-#: includes/Modules/TypingText.php:474
+#: includes/Modules/TypingText.php:473
 msgid "Show Cursor"
 msgstr "Toon cursor"
 
@@ -5005,15 +4926,15 @@ msgid "Show how long it takes to read your blog posts. Useful for readers planni
 msgstr "Toont hoe lang het duurt om te lezen van uw blog posts. Handig voor de lezers de planning van hun tijd."
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:679
-#: includes/Modules/PostGridChild.php:837
+#: includes/Modules/PostGridChild.php:892
 msgid "Show Icon On Hover"
 msgstr "Pictogram Weergeven In Hover"
 
-#: includes/Modules/PostGrid.php:872
+#: includes/Modules/PostGrid.php:873
 msgid "Show Icon Only for Older and Next Entries "
 msgstr "Pictogram weergeven Alleen voor Oudere en Volgende Vermeldingen "
 
-#: includes/Modules/FlipBox.php:1786
+#: includes/Modules/FlipBox.php:1785
 msgid "Show Icon Outside The Container"
 msgstr "Toon Pictogram Buiten De Container"
 
@@ -5025,27 +4946,27 @@ msgstr "Toon label"
 msgid "Show Label On Hover"
 msgstr "Show-Label Op Zweven"
 
-#: includes/Modules/PostGrid.php:819
+#: includes/Modules/PostGrid.php:820
 msgid "Show Load More Button"
 msgstr "Toon Meer Laden Knop"
 
-#: includes/Modules/PostGrid.php:848
+#: includes/Modules/PostGrid.php:849
 msgid "Show Load More Spinner"
 msgstr "Toon Meer Laden Spinner"
 
-#: includes/Modules/PostGrid.php:861
+#: includes/Modules/PostGrid.php:862
 msgid "Show Numbers"
 msgstr "Getallen Weergeven"
 
-#: includes/Modules/PostGridChild.php:530
+#: includes/Modules/PostGridChild.php:585
 msgid "Show Outside the Container"
 msgstr "Toon Buiten de Container"
 
-#: includes/Modules/PostGrid.php:772
+#: includes/Modules/PostGrid.php:773
 msgid "Show Pagination"
 msgstr "Toon Pagination"
 
-#: includes/Modules/PostGridChild.php:336
+#: includes/Modules/PostGridChild.php:341
 msgid "Show Post Excerpt"
 msgstr "Toon Bericht Uittreksel"
 
@@ -5053,20 +4974,20 @@ msgstr "Toon Bericht Uittreksel"
 msgid "Show Rating Number"
 msgstr "Toon Waardering Aantal"
 
-#: includes/Modules/BusinessHours.php:330
-#: includes/Modules/BusinessHoursChild.php:295
+#: includes/Modules/BusinessHours.php:329
+#: includes/Modules/BusinessHoursChild.php:294
 msgid "Show Text Separator"
 msgstr "Toon Tekst Separator"
 
-#: includes/Modules/FlipBox.php:1187
+#: includes/Modules/FlipBox.php:1186
 msgid "Show The Back First"
 msgstr "Toon Het Eerst Terug"
 
-#: includes/Modules/BusinessHours.php:274
+#: includes/Modules/BusinessHours.php:273
 msgid "Show Title"
 msgstr "Toon titel"
 
-#: includes/Modules/PostGridChild.php:673
+#: includes/Modules/PostGridChild.php:728
 msgid "Show Title Icon On Hover"
 msgstr "Toon Titel Pictogram Op Zweven"
 
@@ -5091,7 +5012,7 @@ msgstr "Website Adres"
 msgid "Size"
 msgstr "Grootte"
 
-#: includes/Modules/PostGrid.php:677
+#: includes/Modules/PostGrid.php:678
 msgid "Skip Sticky Posts"
 msgstr "Overslaan Sticky Posts"
 
@@ -5099,39 +5020,19 @@ msgstr "Overslaan Sticky Posts"
 msgid "Slide image to the vertical or horizontal."
 msgstr "Schuif de afbeelding om de verticale of horizontale."
 
-#: includes/Managers/RestRoutes/V1/Extensions.php:41
-#: includes/Managers/RestRoutes/V1/Extensions.php:63
-#: includes/Managers/RestRoutes/V1/Extensions.php:92
-#: includes/Managers/RestRoutes/V1/Extensions.php:123
-#: includes/Managers/RestRoutes/V1/Extensions/Copy.php:44
-#: includes/Managers/RestRoutes/V1/Modules.php:41
-#: includes/Managers/RestRoutes/V1/Modules.php:63
-#: includes/Managers/RestRoutes/V1/Modules.php:92
-#: includes/Managers/RestRoutes/V1/Modules.php:123
-#: includes/Managers/RestRoutes/V1/Modules/PostGrid.php:45
-#: includes/Managers/RestRoutes/V1/Notices/Discount.php:40
-#: includes/Managers/RestRoutes/V1/Notices/ProActivation.php:40
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:47
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:83
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:119
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:149
-#: includes/Managers/RestRoutes/V1/WhatsNew/Changelog.php:42
-msgid "Something went wrong"
-msgstr "Er ging iets mis"
-
 #: includes/Extensions/Copy.php:226
 msgid "Something went wrong!"
 msgstr "Er ging iets mis!"
 
-#: includes/Modules/PostGrid.php:592
+#: includes/Modules/PostGrid.php:593
 msgid "Sort retrieved posts by parameter. Defaults to ‘date’."
 msgstr "Sorteren opgehaalde berichten per parameter. Standaard ingesteld op 'datum'."
 
-#: includes/Modules/PostGrid.php:539
+#: includes/Modules/PostGrid.php:540
 msgid "Sort retrieved posts by parameter. Defaults to ‘recent’."
 msgstr "Sorteren opgehaalde berichten per parameter. Standaard is 'recent'."
 
-#: includes/Modules/Divider.php:612
+#: includes/Modules/Divider.php:611
 #: includes/Modules/Lottie.php:105
 msgid "Source Type"
 msgstr "Bron Type"
@@ -5141,19 +5042,19 @@ msgid "Spacing Between Icon and Text"
 msgstr "Afstand Tussen het Pictogram en de Tekst"
 
 #: includes/Base/DiviBuilder/Utils/FieldsTrait.php:42
-#: includes/Modules/Divider.php:259
+#: includes/Modules/Divider.php:258
 msgid "SPAN tag"
 msgstr "SPAN-tag"
 
-#: includes/Modules/PostGrid.php:1194
+#: includes/Modules/PostGrid.php:1195
 msgid "Spinner Primary Color"
 msgstr "Spinner Primaire Kleur"
 
-#: includes/Modules/PostGrid.php:1204
+#: includes/Modules/PostGrid.php:1205
 msgid "Spinner Secondary Color"
 msgstr "Spinner Secundaire Kleur"
 
-#: includes/Modules/PostGrid.php:1214
+#: includes/Modules/PostGrid.php:1215
 msgid "Spinner Size"
 msgstr "Spinner Maat"
 
@@ -5207,11 +5108,11 @@ msgstr "Sterren Kleur"
 msgid "Stars Display Type"
 msgstr "Sterren Display Type"
 
-#: includes/Modules/TypingText.php:351
+#: includes/Modules/TypingText.php:350
 msgid "Start Delay (ms)"
 msgstr "Start Delay (ms)"
 
-#: includes/Modules/BusinessHoursChild.php:231
+#: includes/Modules/BusinessHoursChild.php:230
 msgid "Start Time"
 msgstr "Start Tijd"
 
@@ -5227,30 +5128,30 @@ msgstr "Streek Breedte"
 msgid "Stuck with something? Get help from live chat or submit a support ticket."
 msgstr "Zit je ergens mee? Vraag hulp via live chat of dien een ondersteuning ticket in."
 
-#: includes/Modules/FlipBox.php:286
-#: includes/Modules/FlipBox.php:314
-#: includes/Modules/FlipBox.php:1505
-#: includes/Modules/FlipBox.php:2307
+#: includes/Modules/FlipBox.php:285
+#: includes/Modules/FlipBox.php:313
+#: includes/Modules/FlipBox.php:1504
+#: includes/Modules/FlipBox.php:2306
 msgid "Sub Title"
 msgstr "Subtitel"
 
-#: includes/Modules/FlipBox.php:2051
+#: includes/Modules/FlipBox.php:2050
 msgid "Sub Title Margin"
 msgstr "Sub Titel Marge"
 
-#: includes/Modules/FlipBox.php:2209
+#: includes/Modules/FlipBox.php:2208
 msgid "Sub Title Order"
 msgstr "Sub Titel Bestelling"
 
-#: includes/Modules/FlipBox.php:2069
+#: includes/Modules/FlipBox.php:2068
 msgid "Sub Title Padding"
 msgstr "Sub Titel Padding"
 
-#: includes/Modules/FlipBox.php:1539
+#: includes/Modules/FlipBox.php:1538
 msgid "Sub Title Tag"
 msgstr "Sub-Title-Tag"
 
-#: includes/Modules/FlipBox.php:119
+#: includes/Modules/FlipBox.php:118
 msgid "Sub Title Text"
 msgstr "Sub Titel Tekst"
 
@@ -5290,7 +5191,7 @@ msgstr "Ondersteuning Query"
 msgid "Support Type"
 msgstr "Type Ondersteuning"
 
-#: includes/Modules/Divider.php:1016
+#: includes/Modules/Divider.php:1015
 #: includes/Modules/Lottie.php:341
 msgid "SVG"
 msgstr "SVG -"
@@ -5299,7 +5200,7 @@ msgstr "SVG -"
 msgid "SVG Image Upload Support"
 msgstr "SVG-afbeeldingen te Uploaden Ondersteuning"
 
-#: includes/Modules/PostGrid.php:543
+#: includes/Modules/PostGrid.php:544
 msgid "Tag"
 msgstr "Tag"
 
@@ -5307,13 +5208,9 @@ msgstr "Tag"
 msgid "Tags"
 msgstr "Tags"
 
-#: includes/Modules/PostGridChild.php:422
+#: includes/Modules/PostGridChild.php:427
 msgid "Tags Separator"
 msgstr "Tags Separator"
-
-#: build/admin/scripts/admin.js:175
-msgid "Take charge of your workspace with the Toggle Button. It's your ultimate tool for managing extensions seamlessly, keeping your focus where it matters."
-msgstr "Overname van uw werkruimte met de Toggle-Toets. Het is de ultieme tool voor het beheer van extensies naadloos, zodat uw focus waar het er toe doet."
 
 #: build/admin/scripts/admin.js:175
 msgid "Take your 2 minutes to review the plugin and spread the love to encourage us to keep it going."
@@ -5334,10 +5231,10 @@ msgstr "Technische Ondersteuning"
 msgid "Text"
 msgstr "Tekst"
 
-#: includes/Modules/BusinessHours.php:392
-#: includes/Modules/BusinessHoursChild.php:318
-#: includes/Modules/FlipBox.php:1954
-#: includes/Modules/PostGrid.php:1278
+#: includes/Modules/BusinessHours.php:391
+#: includes/Modules/BusinessHoursChild.php:317
+#: includes/Modules/FlipBox.php:1953
+#: includes/Modules/PostGrid.php:1279
 msgid "Text Alignment"
 msgstr "Tekst uitlijning"
 
@@ -5361,7 +5258,7 @@ msgstr "Tekstvak Breedte"
 msgid "Text Colors"
 msgstr "Tekst Kleuren"
 
-#: includes/Modules/PostGridChild.php:359
+#: includes/Modules/PostGridChild.php:364
 msgid "Text Limit"
 msgstr "Tekst Limiet"
 
@@ -5396,11 +5293,11 @@ msgstr "De Geavanceerde Divi plugin installeert u na het Divi of Extra Thema!"
 msgid "The after text of your custom field text will appear in with your post element."
 msgstr "Na de tekst van het aangepaste veld tekst zal verschijnen in met uw post element."
 
-#: includes/Modules/PostGridChild.php:397
+#: includes/Modules/PostGridChild.php:402
 msgid "The after text of your post comments will appear in with your post element."
 msgstr "Na de tekst van je post commentaar zal verschijnen in met uw post element."
 
-#: includes/Modules/TypingText.php:303
+#: includes/Modules/TypingText.php:302
 msgid "The after text will appear in with your texts."
 msgstr "Na de tekst zal verschijnen in uw teksten."
 
@@ -5413,20 +5310,20 @@ msgstr "De auteur van het product voor deze kwalificatie."
 msgid "The before text of your custom field text will appear in with your post element."
 msgstr "Alvorens de tekst van het aangepaste veld tekst zal verschijnen in met uw post element."
 
-#: includes/Modules/PostGridChild.php:385
+#: includes/Modules/PostGridChild.php:390
 msgid "The before text of your post comments will appear in with your post element."
 msgstr "Alvorens de tekst van je post commentaar zal verschijnen in met uw post element."
 
-#: includes/Modules/TypingText.php:284
+#: includes/Modules/TypingText.php:283
 msgid "The before text will appear in with your texts."
 msgstr "De voor tekst zal verschijnen in uw teksten."
 
-#: includes/Modules/TypingText.php:492
-#: includes/Modules/TypingText.php:517
+#: includes/Modules/TypingText.php:491
+#: includes/Modules/TypingText.php:516
 msgid "The cursor character will appear in the cursor pointer."
 msgstr "De cursor teken zal verschijnen in de muisaanwijzer."
 
-#: includes/Modules/BusinessHoursChild.php:192
+#: includes/Modules/BusinessHoursChild.php:191
 msgid "The day name will appear in with your day element."
 msgstr "De naam van de dag zal verschijnen in met uw dag element."
 
@@ -5434,13 +5331,13 @@ msgstr "De naam van de dag zal verschijnen in met uw dag element."
 msgid "The default Home text in the Breadcrumbs"
 msgstr "De standaard persoonlijke tekst in de Broodkruimels"
 
-#: includes/Managers/RestRoutes/V1/Notices/Discount.php:51
+#: includes/Managers/RestRoutes/Version1/Notices/Discount.php:77
 msgid "The discount is not available."
 msgstr "De korting is niet beschikbaar."
 
-#: includes/Modules/TypingText.php:709
-#: includes/Modules/TypingText.php:723
-#: includes/Modules/TypingText.php:737
+#: includes/Modules/TypingText.php:708
+#: includes/Modules/TypingText.php:722
+#: includes/Modules/TypingText.php:736
 msgid "The display CSS property sets whether an element is treated as a block or inline box."
 msgstr "Het display CSS eigenschap bepaalt of een element wordt behandeld als een blok of een inline box."
 
@@ -5449,11 +5346,11 @@ msgid "The Divi Squad plugin stores some data in the database."
 msgstr "De Divi Squad plugin slaat een aantal gegevens in de database."
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:163
-#: includes/Modules/Divider.php:391
+#: includes/Modules/Divider.php:390
 msgid "The dividing line can be placed either above, below or in the center of the module."
 msgstr "De scheidslijn kan geplaatst worden boven, onder of in het midden van de module."
 
-#: includes/Modules/BusinessHoursChild.php:244
+#: includes/Modules/BusinessHoursChild.php:243
 msgid "The end time text will appear in with your time element."
 msgstr "De eindtijd tekst zal verschijnen in met uw element tijd."
 
@@ -5482,46 +5379,37 @@ msgstr "De laatste tekst verschijnen in met uw tijd tekst."
 msgid "The lightbox feature will be work in the frontend."
 msgstr "De lightbox functie werk in de frontend."
 
-#: includes/Managers/RestRoutes/V1/Extensions.php:162
-msgid "The list of active extensions are updated."
-msgstr "De lijst van actieve extensies zijn bijgewerkt."
-
-#: includes/Managers/RestRoutes/V1/Modules.php:162
-msgid "The list of active modules are updated."
-msgstr "De lijst van de actieve modules zijn bijgewerkt."
-
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
 #: includes/Modules/GoogleMap.php:114
 msgid "The module uses the Google Maps API and requires a valid Google API Key to function. Before using the map module, please make sure you have added your API key inside the Divi Theme Options panel. Learn more about how to create your Google API Key %1$shere%2$s."
 msgstr "De module maakt gebruik van de Google Maps API en vereist een geldig Google-API-Sleutel nodig om te functioneren. Voordat u de module plaatsbepaling, zorg ervoor dat u hebt toegevoegd aan uw API key in het Divi Thema Opties paneel. Meer informatie over het maken van uw Google API Key ' %1$shier%2$s."
 
-#: includes/Managers/RestRoutes/V1/Notices/ProActivation.php:51
+#: includes/Managers/RestRoutes/Version1/Notices/ProActivation.php:77
 msgid "The notice is not available."
 msgstr "De kennisgeving is niet beschikbaar."
 
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:58
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:94
+#: includes/Managers/RestRoutes/Version1/Notices/Review.php:104
 msgid "The review is not available."
 msgstr "De review is niet beschikbaar."
 
-#: includes/Modules/PostGridChild.php:411
+#: includes/Modules/PostGridChild.php:416
 msgid "The separator text of your categories will appear in with your categories element."
 msgstr "De tekst van uw categorieën worden weergegeven in uw categorieën element."
 
-#: includes/Modules/PostGridChild.php:423
+#: includes/Modules/PostGridChild.php:428
 msgid "The separator text of your tags will appear in with your tags element."
 msgstr "De tekst van uw tags zullen worden weergegeven in uw tags element."
 
-#: includes/Modules/Divider.php:963
+#: includes/Modules/Divider.php:962
 #: includes/Modules/Lottie.php:288
 msgid "The speed of the animation."
 msgstr "De snelheid van de animatie."
 
-#: includes/Modules/BusinessHoursChild.php:232
+#: includes/Modules/BusinessHoursChild.php:231
 msgid "The start time text will appear in with your time element."
 msgstr "De starttijd tekst zal verschijnen in met uw element tijd."
 
-#: includes/Modules/FlipBox.php:1667
+#: includes/Modules/FlipBox.php:1666
 msgid "The text as icon will appear in your current side of flip box."
 msgstr "De tekst als pictogram weergegeven in uw huidige zijde van de klep vak."
 
@@ -5533,23 +5421,23 @@ msgstr "De tekst voor de Broodkruimels"
 msgid "The text of your button will appear in with the module."
 msgstr "De tekst van de knop zal verschijnen in de module."
 
-#: includes/Modules/PostGridChild.php:634
+#: includes/Modules/PostGridChild.php:689
 msgid "The text of your post will appear in bold as icon."
 msgstr "De tekst van uw bericht worden vetgedrukt weergegeven als pictogram."
 
-#: includes/Modules/DualButton.php:324
+#: includes/Modules/DualButton.php:323
 msgid "The text of your separator will appear in with your button separator."
 msgstr "De tekst van het scheidingsteken weergegeven in met de knop-separator."
 
-#: includes/Modules/FlipBox.php:1506
+#: includes/Modules/FlipBox.php:1505
 msgid "The text of your sub title will appear in with your current side of flip box."
 msgstr "De tekst van de sub-titel zal verschijnen in met uw huidige zijde van de klep vak."
 
-#: includes/Modules/FlipBox.php:1495
+#: includes/Modules/FlipBox.php:1494
 msgid "The text of your title will appear in with your current side of flip box."
 msgstr "De tekst van de titel zal verschijnen in met uw huidige zijde van de klep vak."
 
-#: includes/Modules/PostGridChild.php:519
+#: includes/Modules/PostGridChild.php:524
 msgid "The text will appear in with your custom text element."
 msgstr "De tekst zal verschijnen in met uw eigen tekst element."
 
@@ -5561,15 +5449,15 @@ msgstr "De tekst zal verschijnen in met uw glitch tekst."
 msgid "The text will appear in with your gradient texts."
 msgstr "De tekst zal verschijnen in met je verloop teksten."
 
-#: includes/Modules/PostGrid.php:914
+#: includes/Modules/PostGrid.php:915
 msgid "The text will appear in with your next entries."
 msgstr "De tekst zal verschijnen in met uw volgende items."
 
-#: includes/Modules/PostGrid.php:891
+#: includes/Modules/PostGrid.php:892
 msgid "The text will appear in with your old entries."
 msgstr "De tekst zal verschijnen in met uw oude regels."
 
-#: includes/Modules/PostGridChild.php:507
+#: includes/Modules/PostGridChild.php:512
 msgid "The text will appear in with your read more element."
 msgstr "De tekst zal verschijnen in met uw lees meer element."
 
@@ -5581,12 +5469,12 @@ msgstr "De tekst zal verschijnen in met uw scrolling tekst."
 msgid "The text will appear in with your star rating."
 msgstr "De tekst zal verschijnen in met uw star rating."
 
-#: includes/Modules/BusinessHoursChild.php:203
+#: includes/Modules/BusinessHoursChild.php:202
 msgid "The time text will appear in with your time element."
 msgstr "De tijd dat tekst wordt weergegeven in de tijd-element."
 
-#: includes/Modules/Divider.php:239
-#: includes/Modules/Divider.php:631
+#: includes/Modules/Divider.php:238
+#: includes/Modules/Divider.php:630
 msgid "The title of your divider will appear in bold below your divider image."
 msgstr "De titel van uw verdeler wordt vetgedrukt weergegeven onder uw verdeler beeld."
 
@@ -5594,11 +5482,11 @@ msgstr "De titel van uw verdeler wordt vetgedrukt weergegeven onder uw verdeler 
 msgid "The title of your list item will appear in bold below your list item image."
 msgstr "De titel van uw item in de lijst wordt vetgedrukt weergegeven onder de lijst-item beeld."
 
-#: includes/Modules/BusinessHoursChild.php:282
+#: includes/Modules/BusinessHoursChild.php:281
 msgid "The title of your list item will appear in with your list item."
 msgstr "De titel van uw item in de lijst wordt weergegeven in uw lijst item."
 
-#: includes/Modules/BusinessHours.php:251
+#: includes/Modules/BusinessHours.php:250
 msgid "The title text will appear before at your business hours."
 msgstr "De titel zal verschijnen voor uw zakelijke uur."
 
@@ -5606,15 +5494,15 @@ msgstr "De titel zal verschijnen voor uw zakelijke uur."
 msgid "The total number of ratings based on the rating given."
 msgstr "Het totaal aantal ratings gebaseerd op de beoordeling gegeven."
 
-#: includes/Modules/TypingText.php:295
+#: includes/Modules/TypingText.php:294
 msgid "The typing text will appear in with your texts."
 msgstr "De in te typen tekst zal verschijnen in uw teksten."
 
-#: includes/Modules/BusinessHours.php:394
-#: includes/Modules/BusinessHoursChild.php:320
-#: includes/Modules/FlipBox.php:1956
-#: includes/Modules/PostGrid.php:1280
-#: includes/Modules/PostGridChild.php:916
+#: includes/Modules/BusinessHours.php:393
+#: includes/Modules/BusinessHoursChild.php:319
+#: includes/Modules/FlipBox.php:1955
+#: includes/Modules/PostGrid.php:1281
+#: includes/Modules/PostGridChild.php:971
 msgid "This controls how your text is aligned within the module."
 msgstr "Dit bepaalt hoe de tekst wordt uitgelijnd binnen de module."
 
@@ -5634,8 +5522,8 @@ msgstr "Deze regelt de overgang van de snelheid curve van de animatie."
 msgid "This field is required."
 msgstr "Dit is een verplicht veld."
 
-#: includes/Modules/Divider.php:285
-#: includes/Modules/Divider.php:917
+#: includes/Modules/Divider.php:284
+#: includes/Modules/Divider.php:916
 #: includes/Modules/Lottie.php:242
 msgid "This option is only available if Yes is selected for Loop. Enter the number of times you wish to have the animation loop before stopping."
 msgstr "Deze optie is alleen beschikbaar wanneer Ja is geselecteerd voor Loop. Voer het aantal keren dat u wilt dat de animatie loop alvorens te stoppen."
@@ -5644,15 +5532,15 @@ msgstr "Deze optie is alleen beschikbaar wanneer Ja is geselecteerd voor Loop. V
 msgid "This settings turns on and off the 1px divider line, but does not affect the divider height."
 msgstr "Deze instellingen in-en uitgeschakeld op de 1px scheidingslijn, maar heeft geen invloed op de scheidingslijn op de hoogte."
 
-#: includes/Modules/Divider.php:343
+#: includes/Modules/Divider.php:342
 msgid "This settings turns on and off the divider custom color"
 msgstr "Deze instellingen in-en uitgeschakeld op de scheidingslijn aangepaste kleur"
 
-#: includes/Modules/Divider.php:431
+#: includes/Modules/Divider.php:430
 msgid "This settings turns on and off the divider custom size."
 msgstr "Deze instellingen in-en uitgeschakeld op het scherm aangepast formaat."
 
-#: includes/Modules/Divider.php:271
+#: includes/Modules/Divider.php:270
 msgid "This settings turns on and off the multiple divider line."
 msgstr "Deze instellingen aan en uit zet de meerdere scheidingslijn."
 
@@ -5661,7 +5549,7 @@ msgid "this site"
 msgstr "deze site"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:138
-#: includes/Modules/Divider.php:329
+#: includes/Modules/Divider.php:328
 msgid "This will adjust the color of the 1px divider line."
 msgstr "Dit zal pas de kleur van de 1px scheidingslijn."
 
@@ -5669,13 +5557,13 @@ msgstr "Dit zal pas de kleur van de 1px scheidingslijn."
 msgid "This will change the label of the module in the builder for easy identification."
 msgstr "Dit zal veranderen op het etiket van de module in de opbouwfunctie voor eenvoudige identificatie."
 
-#: includes/Modules/BusinessHours.php:76
-#: includes/Modules/BusinessHours.php:123
-#: includes/Modules/BusinessHours.php:222
-#: includes/Modules/BusinessHoursChild.php:74
-#: includes/Modules/BusinessHoursChild.php:104
-#: includes/Modules/BusinessHoursChild.php:171
-#: includes/Modules/BusinessHoursChild.php:202
+#: includes/Modules/BusinessHours.php:75
+#: includes/Modules/BusinessHours.php:122
+#: includes/Modules/BusinessHours.php:221
+#: includes/Modules/BusinessHoursChild.php:73
+#: includes/Modules/BusinessHoursChild.php:103
+#: includes/Modules/BusinessHoursChild.php:170
+#: includes/Modules/BusinessHoursChild.php:201
 #: includes/Modules/PostReadingTime.php:71
 #: includes/Modules/PostReadingTime.php:82
 #: includes/Modules/PostReadingTime.php:95
@@ -5707,7 +5595,7 @@ msgstr "Tijd Voorvoegsel"
 msgid "Time Prefix Text"
 msgstr "Tijd Voorvoegsel Tekst"
 
-#: includes/Modules/BusinessHoursChild.php:255
+#: includes/Modules/BusinessHoursChild.php:254
 msgid "Time Separator"
 msgstr "Tijdscheidingteken"
 
@@ -5732,18 +5620,18 @@ msgstr "Tijd Tekst"
 msgid "Time Text Tag"
 msgstr "Tijd Tekst Label"
 
-#: includes/Modules/BusinessHours.php:374
+#: includes/Modules/BusinessHours.php:373
 msgid "Time Text Width"
 msgstr "Tijd Tekst Breedte"
 
-#: includes/Modules/BusinessHours.php:58
-#: includes/Modules/BusinessHours.php:65
-#: includes/Modules/BusinessHours.php:88
-#: includes/Modules/BusinessHours.php:214
-#: includes/Modules/FlipBox.php:230
-#: includes/Modules/FlipBox.php:258
-#: includes/Modules/FlipBox.php:1494
-#: includes/Modules/FlipBox.php:2299
+#: includes/Modules/BusinessHours.php:57
+#: includes/Modules/BusinessHours.php:64
+#: includes/Modules/BusinessHours.php:87
+#: includes/Modules/BusinessHours.php:213
+#: includes/Modules/FlipBox.php:229
+#: includes/Modules/FlipBox.php:257
+#: includes/Modules/FlipBox.php:1493
+#: includes/Modules/FlipBox.php:2298
 #: includes/Modules/FormStylers/GravityForms.php:63
 #: includes/Modules/FormStylers/GravityForms.php:317
 #: includes/Modules/FormStylers/GravityForms.php:454
@@ -5758,13 +5646,13 @@ msgstr "Tijd Tekst Breedte"
 msgid "Title"
 msgstr "Titel"
 
-#: includes/Modules/BusinessHours.php:347
+#: includes/Modules/BusinessHours.php:346
 #: includes/Modules/FormStylers/GravityForms.php:188
 #: includes/Modules/FormStylers/NinjaForms.php:90
 msgid "Title Background"
 msgstr "Titel Achtergrond"
 
-#: includes/Modules/BusinessHours.php:188
+#: includes/Modules/BusinessHours.php:187
 #: includes/Modules/FormStylers/GravityForms.php:597
 #: includes/Modules/FormStylers/NinjaForms.php:505
 msgid "Title Box Shadow"
@@ -5774,19 +5662,19 @@ msgstr "Vak Titel Schaduw"
 msgid "Title Icon"
 msgstr "Titel Pictogram"
 
-#: includes/Modules/PostGridChild.php:705
+#: includes/Modules/PostGridChild.php:760
 msgid "Title Icon Color"
 msgstr "Titel Pictogram Kleur"
 
-#: includes/Modules/PostGridChild.php:880
+#: includes/Modules/PostGridChild.php:935
 msgid "Title Icon Margin"
 msgstr "Titel Pictogram Marge"
 
-#: includes/Modules/PostGridChild.php:891
+#: includes/Modules/PostGridChild.php:946
 msgid "Title Icon Padding"
 msgstr "Titel Pictogram Padding"
 
-#: includes/Modules/PostGridChild.php:760
+#: includes/Modules/PostGridChild.php:815
 msgid "Title Icon Size"
 msgstr "Titel Grootte Van Het Pictogram"
 
@@ -5794,19 +5682,19 @@ msgstr "Titel Grootte Van Het Pictogram"
 msgid "Title Inline Position"
 msgstr "Titel Inline Positie"
 
-#: includes/Modules/BusinessHours.php:429
-#: includes/Modules/FlipBox.php:2015
+#: includes/Modules/BusinessHours.php:428
+#: includes/Modules/FlipBox.php:2014
 #: includes/Modules/FormStylers/GravityForms.php:206
 #: includes/Modules/FormStylers/NinjaForms.php:99
 msgid "Title Margin"
 msgstr "Titel Marge"
 
-#: includes/Modules/FlipBox.php:2187
+#: includes/Modules/FlipBox.php:2186
 msgid "Title Order"
 msgstr "Titel Bestelling"
 
-#: includes/Modules/BusinessHours.php:445
-#: includes/Modules/FlipBox.php:2033
+#: includes/Modules/BusinessHours.php:444
+#: includes/Modules/FlipBox.php:2032
 #: includes/Modules/FormStylers/GravityForms.php:223
 #: includes/Modules/FormStylers/NinjaForms.php:117
 msgid "Title Padding"
@@ -5816,15 +5704,15 @@ msgstr "Titel Padding"
 msgid "Title Stacked Position"
 msgstr "Titel Gestapeld Positie"
 
-#: includes/Modules/BusinessHours.php:261
-#: includes/Modules/FlipBox.php:1527
-#: includes/Modules/PostGridChild.php:438
+#: includes/Modules/BusinessHours.php:260
+#: includes/Modules/FlipBox.php:1526
+#: includes/Modules/PostGridChild.php:443
 #: includes/Modules/StarRating.php:228
 msgid "Title Tag"
 msgstr "Titel Tag"
 
-#: includes/Modules/BusinessHours.php:66
-#: includes/Modules/FlipBox.php:114
+#: includes/Modules/BusinessHours.php:65
+#: includes/Modules/FlipBox.php:113
 #: includes/Modules/FormStylers/GravityForms.php:64
 msgid "Title Text"
 msgstr "Titel Tekst"
@@ -5833,9 +5721,9 @@ msgstr "Titel Tekst"
 msgid "to"
 msgstr "naar"
 
-#: includes/Modules/FlipBox.php:1175
-#: includes/Modules/FlipBox.php:1882
-#: includes/Modules/PostGridChild.php:825
+#: includes/Modules/FlipBox.php:1174
+#: includes/Modules/FlipBox.php:1881
+#: includes/Modules/PostGridChild.php:880
 #: includes/Modules/StarRating.php:276
 msgid "Top"
 msgstr "Bovenkant"
@@ -5856,11 +5744,11 @@ msgstr "Overgang Duur"
 msgid "Transition Speed Curve"
 msgstr "Overgang Snelheidscurve"
 
-#: includes/Managers/Branding/AdminFooterText.php:110
+#: includes/Managers/Branding/AdminFooterText.php:112
 msgid "Translate"
 msgstr "Vertalen"
 
-#: includes/Modules/FlipBox.php:1334
+#: includes/Modules/FlipBox.php:1333
 msgid "Translate Z"
 msgstr "Vertalen Z"
 
@@ -5872,62 +5760,54 @@ msgstr "Trigger Tekst"
 msgid "Type youtube or vimeo video url which you would like to display in the popup."
 msgstr "Type youtube of vimeo video-url in die u wilt weergeven in het pop-up."
 
-#: includes/Modules/TypingText.php:69
-#: includes/Modules/TypingText.php:96
-#: includes/Modules/TypingText.php:154
-#: includes/Modules/TypingText.php:255
+#: includes/Modules/TypingText.php:68
+#: includes/Modules/TypingText.php:95
+#: includes/Modules/TypingText.php:153
+#: includes/Modules/TypingText.php:254
 msgid "Typed"
 msgstr "Getyped"
 
-#: includes/Modules/TypingText.php:665
+#: includes/Modules/TypingText.php:664
 msgid "Typed Background"
 msgstr "Getypt Achtergrond"
 
-#: includes/Modules/TypingText.php:211
+#: includes/Modules/TypingText.php:210
 msgid "Typed Box Shadow"
 msgstr "Getypt Vak Schaduw"
 
-#: includes/Modules/TypingText.php:71
+#: includes/Modules/TypingText.php:70
 msgid "Typed Cursor"
 msgstr "Getypt Cursor"
 
-#: includes/Modules/TypingText.php:781
+#: includes/Modules/TypingText.php:780
 msgid "Typed Margin"
 msgstr "Getypt Marge"
 
-#: includes/Modules/TypingText.php:795
+#: includes/Modules/TypingText.php:794
 msgid "Typed Padding"
 msgstr "Getypt Padding"
 
-#: includes/Modules/TypingText.php:70
+#: includes/Modules/TypingText.php:69
 msgid "Typed Text"
 msgstr "Getypte Tekst"
 
-#: includes/Modules/TypingText.php:61
+#: includes/Modules/TypingText.php:60
 msgid "Typing Settings"
 msgstr "Typen Instellingen"
 
-#: includes/Modules/TypingText.php:328
+#: includes/Modules/TypingText.php:327
 msgid "Typing Speed (ms)"
 msgstr "Het typen Snelheid (ms)"
 
 #: includes/Managers/Features/Modules.php:197
-#: includes/Modules/TypingText.php:42
-#: includes/Modules/TypingText.php:294
+#: includes/Modules/TypingText.php:41
+#: includes/Modules/TypingText.php:293
 msgid "Typing Text"
 msgstr "Het Typen Van Tekst"
 
-#: includes/Modules/TypingText.php:43
+#: includes/Modules/TypingText.php:42
 msgid "Typing Texts"
 msgstr "Het Typen Van Teksten"
-
-#: build/admin/scripts/admin.js:175
-msgid "Unable to load extension list."
-msgstr "Kan het laden van de extensielijst."
-
-#: build/admin/scripts/admin.js:175
-msgid "Unable to load module list."
-msgstr "Unable to load module lijst."
 
 #: build/admin/scripts/admin.js:175
 msgid "Unable to load new changes."
@@ -5950,7 +5830,7 @@ msgstr "Ontgrendelen 30+ krachtige modules te bouwen ontzagwekkende websites."
 msgid "Unsupported form type."
 msgstr "Niet-ondersteunde optie form type."
 
-#: includes/Modules/FlipBox.php:1218
+#: includes/Modules/FlipBox.php:1217
 msgid "Up"
 msgstr "Tot"
 
@@ -5970,17 +5850,17 @@ msgstr "Upgrade Nu"
 msgid "Upgrade to pro"
 msgstr "Upgrade naar pro"
 
-#: includes/Modules/Divider.php:617
+#: includes/Modules/Divider.php:616
 #: includes/Modules/Lottie.php:110
 msgid "Upload"
 msgstr "Upload"
 
-#: includes/Modules/Divider.php:640
+#: includes/Modules/Divider.php:639
 #: includes/Modules/Lottie.php:132
 msgid "Upload a Lottie json"
 msgstr "Upload een Lottie json"
 
-#: includes/Modules/Divider.php:644
+#: includes/Modules/Divider.php:643
 #: includes/Modules/Lottie.php:136
 msgid "Upload a lottie json file"
 msgstr "Upload een lottie json-bestand"
@@ -5997,19 +5877,19 @@ msgstr "Upload een afbeelding"
 msgid "Upload an image to display at the top of your button."
 msgstr "Upload een afbeelding weer te geven op de top van de knop."
 
-#: includes/Modules/FlipBox.php:1641
+#: includes/Modules/FlipBox.php:1640
 msgid "Upload an image to display at the top of your current side of flip box."
 msgstr "Upload een afbeelding weer te geven op de top van uw huidige zijde van de klep vak."
 
-#: includes/Modules/Divider.php:588
+#: includes/Modules/Divider.php:587
 msgid "Upload an image to display at the top of your divider."
 msgstr "Upload een afbeelding weer te geven op de top van uw verdeler."
 
-#: includes/Modules/PostGridChild.php:609
+#: includes/Modules/PostGridChild.php:664
 msgid "Upload an image to display at the top of your post."
 msgstr "Upload een afbeelding weer te geven op de top van uw post."
 
-#: includes/Modules/DualButton.php:395
+#: includes/Modules/DualButton.php:394
 msgid "Upload an image to display at the top of your separator."
 msgstr "Upload een afbeelding weer te geven op de top van uw scheidingsteken."
 
@@ -6025,7 +5905,7 @@ msgstr "Upload een afbeelding weer te geven."
 msgid "Upload your desired video in .MP4 format, or type in the URL to the video you would like to display"
 msgstr "Upload uw gewenste video in .MP4-formaat, of type in de URL naar de video die u wilt weergeven"
 
-#: includes/Modules/FlipBox.php:1308
+#: includes/Modules/FlipBox.php:1307
 msgid "Use 3D Content Effect"
 msgstr "Het gebruik van 3D-Inhoud Effect"
 
@@ -6041,11 +5921,11 @@ msgstr "Gebruik Geanimeerd Pictogram"
 msgid "Use animated wave for your icon. For better experience please set icon background color from icon design toggle."
 msgstr "U bewegende golf voor uw pictogram. Voor een betere ervaring stel pictogram achtergrond kleur van het pictogram van het ontwerp-en uitschakelen."
 
-#: includes/Modules/PostGridChild.php:643
+#: includes/Modules/PostGridChild.php:698
 msgid "Use Left Icon for Title"
 msgstr "Gebruik de Linker Icoontje voor de Titel"
 
-#: includes/Modules/Divider.php:269
+#: includes/Modules/Divider.php:268
 msgid "Use Multiple Line"
 msgstr "Het Gebruik Van Meerdere Lijn"
 
@@ -6053,7 +5933,7 @@ msgstr "Het Gebruik Van Meerdere Lijn"
 msgid "Use Overlay Image"
 msgstr "Gebruik Overlay-Beeld"
 
-#: includes/Modules/DualButton.php:335
+#: includes/Modules/DualButton.php:334
 msgid "Use Separator Icon"
 msgstr "Gebruik Scheidingsteken Pictogram"
 
@@ -6073,18 +5953,18 @@ msgstr "Gebruiker niet gevonden."
 msgid "Username"
 msgstr "Gebruikersnaam"
 
-#: includes/Managers/Branding/AdminFooterText.php:124
+#: includes/Managers/Branding/AdminFooterText.php:126
 msgid "Version"
 msgstr "Versie"
 
 #: includes/Modules/BeforeAfterImageSlider.php:295
-#: includes/Modules/DualButton.php:587
+#: includes/Modules/DualButton.php:586
 #: includes/Modules/ImageMask.php:244
 msgid "Vertical"
 msgstr "Verticaal"
 
 #: includes/Base/DiviBuilder/Utils/Elements/Divider.php:168
-#: includes/Modules/Divider.php:396
+#: includes/Modules/Divider.php:395
 msgid "Vertically Centered"
 msgstr "Verticaal Gecentreerd"
 
@@ -6121,7 +6001,7 @@ msgstr "Bekijk wijzigingslog"
 msgid "View Documentation"
 msgstr "Bekijk documentatie"
 
-#: includes/Managers/Branding/AdminFooterText.php:133
+#: includes/Managers/Branding/AdminFooterText.php:135
 msgid "View what changed in this version"
 msgstr "Bekijk wat er veranderd is in deze versie"
 
@@ -6158,15 +6038,11 @@ msgstr "Wat is er Nieuw"
 msgid "Whoops! Enabled extensions not saved. Try again later."
 msgstr "Oeps! Ingeschakelde extensies niet opgeslagen. Probeer het later opnieuw."
 
-#: build/admin/scripts/admin.js:175
-msgid "Whoops! Enabled modules not saved. Try again later."
-msgstr "Oeps! Ingeschakeld modules niet opgeslagen. Probeer het later opnieuw."
-
 #: includes/Modules/VideoPopup.php:406
 msgid "Width"
 msgstr "Breedte"
 
-#: includes/Modules/Divider.php:883
+#: includes/Modules/Divider.php:882
 #: includes/Modules/Lottie.php:208
 msgid "Within this section/row"
 msgstr "In deze sectie/rij"
@@ -6175,7 +6051,7 @@ msgstr "In deze sectie/rij"
 msgid "WordPress Login Credentials"
 msgstr "WordPress Login Referenties"
 
-#: includes/Managers/Branding/AdminFooterText.php:69
+#: includes/Managers/Branding/AdminFooterText.php:70
 msgid "WordPress.org"
 msgstr "WordPress.org"
 
@@ -6208,16 +6084,16 @@ msgstr "WPForms niet is geïnstalleerd"
 
 #: includes/Base/DiviBuilder/Module/FormStyler.php:260
 #: includes/Base/DiviBuilder/Utils/Elements/Forms.php:82
-#: includes/Modules/BusinessHours.php:145
-#: includes/Modules/BusinessHoursChild.php:64
-#: includes/Modules/BusinessHoursChild.php:175
-#: includes/Modules/Divider.php:74
-#: includes/Modules/Divider.php:111
-#: includes/Modules/DualButton.php:70
-#: includes/Modules/DualButton.php:291
-#: includes/Modules/FlipBox.php:835
-#: includes/Modules/FlipBox.php:848
-#: includes/Modules/FlipBox.php:1030
+#: includes/Modules/BusinessHours.php:144
+#: includes/Modules/BusinessHoursChild.php:63
+#: includes/Modules/BusinessHoursChild.php:174
+#: includes/Modules/Divider.php:73
+#: includes/Modules/Divider.php:110
+#: includes/Modules/DualButton.php:69
+#: includes/Modules/DualButton.php:290
+#: includes/Modules/FlipBox.php:834
+#: includes/Modules/FlipBox.php:847
+#: includes/Modules/FlipBox.php:1029
 #: includes/Modules/FormStylers/ContactForm7.php:202
 #: includes/Modules/FormStylers/ContactForm7.php:569
 #: includes/Modules/FormStylers/FluentForms.php:519
@@ -6225,74 +6101,74 @@ msgstr "WPForms niet is geïnstalleerd"
 #: includes/Modules/FormStylers/NinjaForms.php:362
 #: includes/Modules/FormStylers/NinjaForms.php:596
 #: includes/Modules/FormStylers/WPForms.php:241
-#: includes/Modules/PostGrid.php:194
-#: includes/Modules/PostGrid.php:215
-#: includes/Modules/PostGrid.php:303
+#: includes/Modules/PostGrid.php:195
+#: includes/Modules/PostGrid.php:216
+#: includes/Modules/PostGrid.php:304
 #: includes/Modules/PostGridChild.php:94
 #: includes/Modules/PostGridChild.php:279
-#: includes/Modules/TypingText.php:66
-#: includes/Modules/TypingText.php:128
-#: includes/Modules/TypingText.php:263
+#: includes/Modules/TypingText.php:65
+#: includes/Modules/TypingText.php:127
+#: includes/Modules/TypingText.php:262
 msgid "Wrapper"
 msgstr "Wrapper"
 
-#: includes/Modules/DualButton.php:573
+#: includes/Modules/DualButton.php:572
 msgid "Wrapper Alignment"
 msgstr "Wrapper Uitlijning"
 
 #: includes/Base/DiviBuilder/Module/FormStyler.php:81
-#: includes/Modules/BusinessHours.php:338
-#: includes/Modules/BusinessHoursChild.php:309
-#: includes/Modules/Divider.php:1101
-#: includes/Modules/DualButton.php:564
-#: includes/Modules/FlipBox.php:1387
-#: includes/Modules/FlipBox.php:1396
-#: includes/Modules/PostGrid.php:938
-#: includes/Modules/PostGrid.php:1250
-#: includes/Modules/PostGrid.php:1259
-#: includes/Modules/TypingText.php:591
+#: includes/Modules/BusinessHours.php:337
+#: includes/Modules/BusinessHoursChild.php:308
+#: includes/Modules/Divider.php:1100
+#: includes/Modules/DualButton.php:563
+#: includes/Modules/FlipBox.php:1386
+#: includes/Modules/FlipBox.php:1395
+#: includes/Modules/PostGrid.php:939
+#: includes/Modules/PostGrid.php:1251
+#: includes/Modules/PostGrid.php:1260
+#: includes/Modules/TypingText.php:590
 msgid "Wrapper Background"
 msgstr "Wrapper Achtergrond"
 
-#: includes/Modules/BusinessHours.php:174
-#: includes/Modules/BusinessHoursChild.php:142
-#: includes/Modules/Divider.php:142
-#: includes/Modules/DualButton.php:203
-#: includes/Modules/FlipBox.php:945
-#: includes/Modules/FlipBox.php:960
+#: includes/Modules/BusinessHours.php:173
+#: includes/Modules/BusinessHoursChild.php:141
+#: includes/Modules/Divider.php:141
+#: includes/Modules/DualButton.php:202
+#: includes/Modules/FlipBox.php:944
+#: includes/Modules/FlipBox.php:959
 #: includes/Modules/FormStylers/ContactForm7.php:310
 #: includes/Modules/FormStylers/GravityForms.php:583
 #: includes/Modules/FormStylers/NinjaForms.php:491
 #: includes/Modules/FormStylers/WPForms.php:349
-#: includes/Modules/PostGrid.php:352
-#: includes/Modules/PostGrid.php:366
-#: includes/Modules/PostGrid.php:410
+#: includes/Modules/PostGrid.php:353
+#: includes/Modules/PostGrid.php:367
+#: includes/Modules/PostGrid.php:411
 #: includes/Modules/PostGridChild.php:212
-#: includes/Modules/TypingText.php:183
+#: includes/Modules/TypingText.php:182
 msgid "Wrapper Box Shadow"
 msgstr "Wrapper Vak Schaduw"
 
-#: includes/Modules/BusinessHours.php:407
-#: includes/Modules/BusinessHoursChild.php:332
-#: includes/Modules/Divider.php:1110
-#: includes/Modules/DualButton.php:628
-#: includes/Modules/FlipBox.php:1989
-#: includes/Modules/PostGrid.php:1081
-#: includes/Modules/PostGrid.php:1292
-#: includes/Modules/PostGrid.php:1314
-#: includes/Modules/TypingText.php:630
+#: includes/Modules/BusinessHours.php:406
+#: includes/Modules/BusinessHoursChild.php:331
+#: includes/Modules/Divider.php:1109
+#: includes/Modules/DualButton.php:627
+#: includes/Modules/FlipBox.php:1988
+#: includes/Modules/PostGrid.php:1082
+#: includes/Modules/PostGrid.php:1293
+#: includes/Modules/PostGrid.php:1315
+#: includes/Modules/TypingText.php:629
 msgid "Wrapper Margin"
 msgstr "Wrapper Marge"
 
-#: includes/Modules/BusinessHours.php:416
-#: includes/Modules/BusinessHoursChild.php:344
-#: includes/Modules/Divider.php:1119
-#: includes/Modules/DualButton.php:640
-#: includes/Modules/FlipBox.php:1999
-#: includes/Modules/PostGrid.php:1100
-#: includes/Modules/PostGrid.php:1301
-#: includes/Modules/PostGrid.php:1323
-#: includes/Modules/TypingText.php:639
+#: includes/Modules/BusinessHours.php:415
+#: includes/Modules/BusinessHoursChild.php:343
+#: includes/Modules/Divider.php:1118
+#: includes/Modules/DualButton.php:639
+#: includes/Modules/FlipBox.php:1998
+#: includes/Modules/PostGrid.php:1101
+#: includes/Modules/PostGrid.php:1302
+#: includes/Modules/PostGrid.php:1324
+#: includes/Modules/TypingText.php:638
 msgid "Wrapper Padding"
 msgstr "Wrapper Padding"
 
@@ -6309,38 +6185,14 @@ msgid "You can pause Scrolling on Hover by enabling this option."
 msgstr "U kunt pauzeren Scrollen op Zweven door het inschakelen van deze optie."
 
 #: includes/Extensions/Copy.php:336
-#: includes/Managers/RestRoutes/V1/Extensions/Copy.php:49
-#: includes/Managers/RestRoutes/V1/Extensions/Copy.php:64
-#: includes/Managers/RestRoutes/V1/Modules/PostGrid.php:59
 msgid "You do not have permission to access this endpoint."
 msgstr "U hebt niet de toestemming om toegang te krijgen tot dit eindpunt."
 
-#: includes/Managers/RestRoutes/V1/WhatsNew/Changelog.php:47
-msgid "You do not have permission to access this endpoint.."
-msgstr "U hebt niet de toestemming om toegang te krijgen tot dit eindpunt.."
-
-#: includes/Managers/RestRoutes/V1/Extensions.php:46
-#: includes/Managers/RestRoutes/V1/Extensions.php:68
-#: includes/Managers/RestRoutes/V1/Extensions.php:97
-#: includes/Managers/RestRoutes/V1/Extensions.php:128
-#: includes/Managers/RestRoutes/V1/Modules.php:46
-#: includes/Managers/RestRoutes/V1/Modules.php:68
-#: includes/Managers/RestRoutes/V1/Modules.php:97
-#: includes/Managers/RestRoutes/V1/Modules.php:128
-#: includes/Managers/RestRoutes/V1/Notices/Discount.php:45
-#: includes/Managers/RestRoutes/V1/Notices/ProActivation.php:45
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:52
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:88
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:124
-#: includes/Managers/RestRoutes/V1/Notices/Review.php:154
-msgid "You do not have permission to process current action."
-msgstr "U hebt geen toestemming voor het verwerken van de huidige actie."
-
-#: includes/Modules/FlipBox.php:1100
+#: includes/Modules/FlipBox.php:1099
 msgid "You need to enable front back button from content > show the button in the content tab to see typogprahy fields."
 msgstr "Je nodig hebt om de voorzijde terug-knop van content > toon de knop in het tabblad inhoud om te zien typogprahy velden."
 
-#: includes/Modules/FlipBox.php:1113
+#: includes/Modules/FlipBox.php:1112
 msgid "You need to enable the back button from content > show the button in the content tab to see typogprahy fields."
 msgstr "Je nodig hebt om de back-knop van content > toon de knop in het tabblad inhoud om te zien typogprahy velden."
 
@@ -6374,7 +6226,7 @@ msgstr "Uw site-adres (E. g %1$s)"
 msgid "Your site is running an %1$s of PHP that is no longer supported. Please contact your web hosting provider to update your PHP version."
 msgstr "Uw site is het uitvoeren van een %1$s van PHP dat wordt niet langer ondersteund. Neem contact op met uw web hosting provider voor het bijwerken van uw PHP-versie."
 
-#: includes/Modules/DropCapText.php:142
+#: includes/Modules/DropCapText.php:141
 msgid "Your Title Goes Here"
 msgstr "Uw Titel Gaat Hier"
 
@@ -6390,17 +6242,17 @@ msgstr "Z-Index"
 msgid "Zoom"
 msgstr "Zoom"
 
-#: includes/Modules/FlipBox.php:1209
+#: includes/Modules/FlipBox.php:1208
 msgid "Zoom In"
 msgstr "Zoom In"
 
 #. translators: %s: The unsupported field type
-#: includes/Base/DiviBuilder/Utils/Elements/CustomFields.php:185
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields.php:187
 msgid "Unsupported field type: %s"
 msgstr ""
 
 #. translators: %s: The unsupported storage type
-#: includes/Base/DiviBuilder/Utils/Elements/CustomFields.php:197
+#: includes/Base/DiviBuilder/Utils/Elements/CustomFields.php:199
 msgid "Unsupported storage type: %s"
 msgstr ""
 
@@ -6425,7 +6277,7 @@ msgid "The after text of your custom url field text will appear in with your pos
 msgstr ""
 
 #: includes/Base/DiviBuilder/Utils/Elements/CustomFields/Definitions/Advanced.php:151
-#: includes/Modules/PostGrid.php:2637
+#: includes/Modules/PostGrid.php:3071
 msgid "Visit the link"
 msgstr ""
 
@@ -6484,16 +6336,93 @@ msgstr ""
 msgid "Premium Modules"
 msgstr ""
 
-#: includes/Modules/PostGrid.php:596
-msgid "Post Name"
+#: includes/Managers/RestRoutes/Version1/Extensions.php:106
+#: includes/Managers/RestRoutes/Version1/Modules.php:106
+#: includes/Managers/RestRoutes/Version1/Notices/Discount.php:60
+#: includes/Managers/RestRoutes/Version1/Notices/ProActivation.php:60
+#: includes/Managers/RestRoutes/Version1/Notices/Review.php:87
+msgid "You do not have permissions to perform this action."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Extensions.php:190
+msgid "Invalid parameter: active_extensions must be an array of strings."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Extensions.php:205
+msgid "The list of active extensions has been updated."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Extensions/Copy.php:62
+msgid "You do not have permissions to duplicate posts."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Modules.php:192
+msgid "Invalid parameter: active_modules must be an array of strings."
+msgstr ""
+
+#. translators: %s: comma-separated list of invalid module names
+#: includes/Managers/RestRoutes/Version1/Modules.php:207
+msgid "Invalid module names provided: %s"
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Modules.php:221
+msgid "The list of active modules has been updated."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Modules/PostGrid.php:65
+msgid "Invalid or missing parameters."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Modules/PostGrid.php:81
+msgid "No posts found."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Notices/Review.php:130
+msgid "The review reminder is already set."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/WhatsNew/Changelog.php:61
+msgid "You do not have permissions to access this endpoint."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/WhatsNew/Changelog.php:102
+msgid "Unable to initialize filesystem."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/WhatsNew/Changelog.php:112
+msgid "Changelog file not found."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/WhatsNew/Changelog.php:122
+msgid "Changelog file is empty."
 msgstr ""
 
 #: includes/Modules/PostGrid.php:597
-msgid "Post Title"
+msgid "Post Name"
 msgstr ""
 
 #: includes/Modules/PostGrid.php:598
+msgid "Post Title"
+msgstr ""
+
+#: includes/Modules/PostGrid.php:599
 msgid "Post Author"
+msgstr ""
+
+#. Translators: %s is the author name.
+#: includes/Modules/PostGrid.php:2667
+#: includes/Modules/PostGrid.php:2737
+msgid "Posts by %s"
+msgstr ""
+
+#. Translators: %s is the category name.
+#: includes/Modules/PostGrid.php:2854
+msgid "View all posts in %s"
+msgstr ""
+
+#. Translators: %s is the tag name.
+#: includes/Modules/PostGrid.php:2898
+msgid "View all posts tagged %s"
 msgstr ""
 
 #: includes/Modules/PostGridChild.php:71
@@ -6508,6 +6437,50 @@ msgstr ""
 msgid "Custom Fields (ACF)"
 msgstr ""
 
+#: includes/Modules/PostGridChild.php:535
+msgid "Make Title a Link"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:537
+msgid "Turn the title into a clickable link. Your readers can jump straight to the full post with one click!"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:545
+msgid "Link Author Name"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:547
+msgid "Make the author's name clickable. It'll take curious readers to a page with all of that author's posts."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:555
+msgid "Link Author Gravatar"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:557
+msgid "Make the author's gravatar clickable. It'll take curious readers to a page with all of that author's posts."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:565
+msgid "Link Categories"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:567
+msgid "Turn category names into links. Readers can explore more posts in the same category with a simple click."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:575
+msgid "Link Tags"
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:577
+msgid "Make tags clickable. Help your readers discover more content with the same tag effortlessly."
+msgstr ""
+
+#: includes/Modules/PostGridChild.php:587
+msgid "Here you can choose whether or not show element in the outside container."
+msgstr ""
+
 #: templates/admin/subscription.php:63
 msgid "current"
 msgstr ""
@@ -6515,6 +6488,74 @@ msgstr ""
 #: templates/admin/subscription.php:68
 #: build/admin/scripts/admin.js:175
 msgid "Lite"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Preparing to save your module settings…"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Success! Your enabled modules have been saved. The changes will take effect immediately."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Oops! We encountered an issue while saving your enabled modules. Please try again in a few moments. If the problem persists, contact support."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Effortlessly control your Divi modules with our intuitive management system. Use the toggle switches to instantly activate or deactivate modules, streamlining your design process and enhancing website performance."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Reset to Default"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Enable All"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Disable All"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "All Modules"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Free Only"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Pro Only"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Apply and Save"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Oops! We couldn't load the module list. Please refresh the page or try again later."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Discovering available modules… Please wait."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Streamline your workspace with our intuitive Toggle Button. Effortlessly manage your extensions, allowing you to focus on what truly matters - creating stunning designs."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "All Extensions"
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Oops! We couldn't load the extension list. Please refresh the page or try again later."
+msgstr ""
+
+#: build/admin/scripts/admin.js:175
+msgid "Discovering available extensions… Please wait."
 msgstr ""
 
 #: build/admin/scripts/admin.js:175

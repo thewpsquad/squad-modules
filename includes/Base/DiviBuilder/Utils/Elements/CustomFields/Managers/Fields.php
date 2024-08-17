@@ -152,7 +152,7 @@ class Fields extends Manager {
 			divi_squad()->memory->set( 'custom_fields_table_version', $this->table_version );
 		}
 
-		add_action( 'shutdown', array( $this, 'populate_summary_table' ) );
+		add_action( 'shutdown', array( $this, 'populate_summary_table' ), 0 );
 	}
 
 	/**
