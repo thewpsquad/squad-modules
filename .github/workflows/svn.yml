@@ -5,6 +5,10 @@ on:
     - cron: '0 */6 * * *'  # Runs every 6 hours
   workflow_dispatch:  # Allows manual triggering
 
+env:
+  SVN_REPO_URL: https://plugins.svn.wordpress.org/squad-modules-for-divi/
+  GITHUB_REPO: thewpsquad/squad-modules
+
 jobs:
   sync-svn-to-github:
     runs-on: ubuntu-latest
@@ -13,32 +17,57 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          token: ${{ secrets.PERSONAL_TOKEN }}  # Use PAT for checkout
 
       - name: Install SVN
         run: sudo apt-get install subversion
 
+      - name: Check if upgrade is needed
+        id: check_upgrade
+        run: |
+          # Get latest SVN tag
+          LATEST_SVN_TAG=$(svn ls ${{ env.SVN_REPO_URL }}/tags | grep -v '^trunk/' | sort -V | tail -n 1 | sed 's/\///g')
+          echo "Latest SVN tag: $LATEST_SVN_TAG"
+          
+          # Get latest Git tag
+          LATEST_GIT_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+          echo "Latest Git tag: $LATEST_GIT_TAG"
+          
+          # Compare tags
+          if [ "$LATEST_SVN_TAG" != "$LATEST_GIT_TAG" ]; then
+            echo "UPGRADE_NEEDED=true" >> $GITHUB_OUTPUT
+            echo "Upgrade needed"
+          else
+            echo "UPGRADE_NEEDED=false" >> $GITHUB_OUTPUT
+            echo "No upgrade needed"
+          fi
+
       - name: Make import.sh executable
-        run: chmod +x ./.github/tools/import.sh
+        if: steps.check_upgrade.outputs.UPGRADE_NEEDED == 'true'
+        run: chmod +x ./import.sh
 
       - name: Sync SVN to GitHub
+        if: steps.check_upgrade.outputs.UPGRADE_NEEDED == 'true'
         run: |
-          cd ./.github/tools
-          ./import.sh
+          ./import.sh ${{ env.SVN_REPO_URL }} ${{ env.GITHUB_REPO }}
 
       - name: Configure Git
+        if: steps.check_upgrade.outputs.UPGRADE_NEEDED == 'true'
         run: |
           git config user.name "GitHub Action"
           git config user.email "action@github.com"
 
       - name: Push changes
+        if: steps.check_upgrade.outputs.UPGRADE_NEEDED == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           git push origin main --tags
 
       - name: Create Releases
+        if: steps.check_upgrade.outputs.UPGRADE_NEEDED == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           NEW_TAGS=$(git tag --points-at HEAD)
           for TAG in $NEW_TAGS
