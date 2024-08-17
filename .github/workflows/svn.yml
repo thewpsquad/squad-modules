@@ -5,10 +5,6 @@ on:
     - cron: '0 */6 * * *'  # Runs every 6 hours
   workflow_dispatch:  # Allows manual triggering
 
-env:
-  SVN_REPO_URL: https://plugins.svn.wordpress.org/squad-modules-for-divi/
-  GITHUB_REPO: thewpsquad/squad-modules
-
 jobs:
   sync-svn-to-github:
     runs-on: ubuntu-latest
@@ -21,53 +17,13 @@ jobs:
       - name: Install SVN
         run: sudo apt-get install subversion
 
+      - name: Make import.sh executable
+        run: chmod +x ./.github/tools/import.sh
+
       - name: Sync SVN to GitHub
         run: |
-          # Function to copy a specific version from SVN to Git
-          copy_version() {
-            VERSION=$1
-            echo "Copying version $VERSION"
-          
-            # Create a working directory for this version
-            WORK_DIR="work_${VERSION}"
-            mkdir -p "$WORK_DIR"
-          
-            # Export the SVN tag to the working directory
-            svn export "${{ env.SVN_REPO_URL }}/tags/$VERSION" "$WORK_DIR"
-          
-            # Remove files that should not be overwritten
-            rm -rf "$WORK_DIR/.git" "$WORK_DIR/.github" "$WORK_DIR/README.md" "$WORK_DIR/LICENSE" "$WORK_DIR/CODE_OF_CONDUCT.md"
-          
-            # Copy files from working directory to main directory
-            rsync -av --delete --exclude='.git' --exclude='.github' --exclude='README.md' --exclude='LICENSE' --exclude='CODE_OF_CONDUCT.md' "$WORK_DIR/" ./
-          
-            # Remove working directory
-            rm -rf "$WORK_DIR"
-          
-            git add .
-            git commit -m "Import version $VERSION from SVN"
-            git tag "$VERSION"
-          }
-
-          # Get all SVN tags, excluding trunk
-          SVN_TAGS=$(svn ls "${{ env.SVN_REPO_URL }}/tags" | grep -v '^trunk/' | sort -V)
-
-          # Get all Git tags
-          GIT_TAGS=$(git tag | sort -V)
-
-          # Compare and sync new tags
-          for SVN_TAG in $SVN_TAGS
-          do
-            SVN_TAG=${SVN_TAG%/}
-            if [[ "$SVN_TAG" > "1.0.0" || "$SVN_TAG" == "1.0.0" ]]
-            then
-              if ! echo "$GIT_TAGS" | grep -q "^${SVN_TAG}$"; then
-                copy_version "$SVN_TAG"
-              else
-                echo "Skipping existing tag $SVN_TAG"
-              fi
-            fi
-          done
+          cd ./.github/tools
+          ./import.sh
 
       - name: Push changes
         run: |
