@@ -22,7 +22,7 @@ This GitHub repository serves several purposes:
 We're excited to welcome contributions from the community! Here's how you can get involved:
 
 1. **Fork the Repository**: Click the 'Fork' button at the top right of this page.
-2. **Clone Your Fork**: `git clone https://github.com/your-username/divi-squad.git`
+2. **Clone Your Fork**: `git clone https://github.com/your-username/squad-modules.git`
 3. **Create a Branch**: `git checkout -b feature/your-feature-name`
 4. **Make Your Changes**: Implement your feature or bug fix.
 5. **Commit Your Changes**: `git commit -am 'Add some feature'`
