@@ -44,12 +44,13 @@ jobs:
 
       - name: Make import.sh executable
         if: steps.check_upgrade.outputs.UPGRADE_NEEDED == 'true'
-        run: chmod +x ./import.sh
+        run: chmod +x ./.github/tools/import.sh
 
       - name: Sync SVN to GitHub
         if: steps.check_upgrade.outputs.UPGRADE_NEEDED == 'true'
         run: |
-          ./import.sh ${{ env.SVN_REPO_URL }} ${{ env.GITHUB_REPO }}
+          cd ./.github/tools
+          ./import.sh
 
       - name: Configure Git
         if: steps.check_upgrade.outputs.UPGRADE_NEEDED == 'true'
