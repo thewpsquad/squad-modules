@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -28,34 +28,29 @@ jobs:
             VERSION=$1
             echo "Copying version $VERSION"
           
-            # Create a temporary directory for SVN export
-            TEMP_DIR=$(mktemp -d)
+            # Create a working directory for this version
+            WORK_DIR="work_${VERSION}"
+            mkdir -p "$WORK_DIR"
           
-            # Export the SVN tag to the temporary directory
-            svn export ${{ env.SVN_REPO_URL }}/tags/$VERSION $TEMP_DIR
+            # Export the SVN tag to the working directory
+            svn export "${{ env.SVN_REPO_URL }}/tags/$VERSION" "$WORK_DIR"
           
-            # Delete all files and folders in the current directory except specified ones
-            find . -mindepth 1 -maxdepth 1 \
-              ! -name '.git' \
-              ! -name '.github' \
-              ! -name 'README.md' \
-              ! -name 'LICENSE' \
-              ! -name 'CODE_OF_CONDUCT.md' \
-              -exec rm -rf {} +
+            # Remove files that should not be overwritten
+            rm -rf "$WORK_DIR/.git" "$WORK_DIR/.github" "$WORK_DIR/README.md" "$WORK_DIR/LICENSE" "$WORK_DIR/CODE_OF_CONDUCT.md"
           
-            # Copy files from the temporary directory to the current directory
-            rsync -av --exclude='.svn' $TEMP_DIR/ ./
+            # Copy files from working directory to main directory
+            rsync -av --delete --exclude='.git' --exclude='.github' --exclude='README.md' --exclude='LICENSE' --exclude='CODE_OF_CONDUCT.md' "$WORK_DIR/" ./
           
-            # Remove the temporary directory
-            rm -rf $TEMP_DIR
+            # Remove working directory
+            rm -rf "$WORK_DIR"
           
             git add .
             git commit -m "Import version $VERSION from SVN"
-            git tag $VERSION
+            git tag "$VERSION"
           }
 
           # Get all SVN tags, excluding trunk
-          SVN_TAGS=$(svn ls ${{ env.SVN_REPO_URL }}/tags | grep -v '^trunk/' | sort -V)
+          SVN_TAGS=$(svn ls "${{ env.SVN_REPO_URL }}/tags" | grep -v '^trunk/' | sort -V)
 
           # Get all Git tags
           GIT_TAGS=$(git tag | sort -V)
@@ -67,7 +62,7 @@ jobs:
             if [[ "$SVN_TAG" > "1.0.0" || "$SVN_TAG" == "1.0.0" ]]
             then
               if ! echo "$GIT_TAGS" | grep -q "^${SVN_TAG}$"; then
-                copy_version $SVN_TAG
+                copy_version "$SVN_TAG"
               else
                 echo "Skipping existing tag $SVN_TAG"
               fi
@@ -87,7 +82,7 @@ jobs:
           NEW_TAGS=$(git tag --points-at HEAD)
           for TAG in $NEW_TAGS
           do
-            gh release create $TAG \
+            gh release create "$TAG" \
               --title "Release $TAG" \
               --notes "This is an automatic release created from SVN tag $TAG" \
               --generate-notes
