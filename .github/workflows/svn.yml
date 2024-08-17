@@ -1,4 +1,4 @@
-name: Sync SVN to GitHub on Release
+name: Sync SVN to GitHub
 
 on:
   schedule:
@@ -14,73 +14,81 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.4'
 
       - name: Install SVN
         run: sudo apt-get install subversion
 
-      - name: Get latest SVN version
-        id: svn_version
-        run: |
-          LATEST_VERSION=$(svn ls ${{ env.SVN_REPO_URL }}/tags | sort -V | tail -n 1 | sed 's/\///g')
-          echo "LATEST_VERSION=${LATEST_VERSION}" >> $GITHUB_OUTPUT
-
-      - name: Check if update is needed
-        id: check_update
-        run: |
-          LATEST_GIT_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
-          if [ "${{ steps.svn_version.outputs.LATEST_VERSION }}" != "$LATEST_GIT_TAG" ]; then
-            echo "UPDATE_NEEDED=true" >> $GITHUB_OUTPUT
-          else
-            echo "UPDATE_NEEDED=false" >> $GITHUB_OUTPUT
-          fi
-
       - name: Sync SVN to GitHub
-        if: steps.check_update.outputs.UPDATE_NEEDED == 'true'
         run: |
-          VERSION=${{ steps.svn_version.outputs.LATEST_VERSION }}
+          # Function to copy a specific version from SVN to Git
+          copy_version() {
+            VERSION=$1
+            echo "Copying version $VERSION"
           
-          # Delete all files and folders except specified ones
-          find . -mindepth 1 -maxdepth 1 \
-            ! -name '.git' \
-            ! -name '.github' \
-            ! -name 'readme.md' \
-            ! -name 'LICENSE' \
-            ! -name 'CODE_OF_CONDUCT.md' \
-            -exec rm -rf {} +
+            # Create a temporary directory for SVN export
+            TEMP_DIR=$(mktemp -d)
           
-          # Export the new version from SVN
-          svn export ${{ env.SVN_REPO_URL }}/tags/${VERSION} .
+            # Export the SVN tag to the temporary directory
+            svn export ${{ env.SVN_REPO_URL }}/tags/$VERSION $TEMP_DIR
           
-          # Stage changes
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "Import version ${VERSION} from SVN"
-          git tag ${VERSION}
+            # Delete all files and folders in the current directory except specified ones
+            find . -mindepth 1 -maxdepth 1 \
+              ! -name '.git' \
+              ! -name '.github' \
+              ! -name 'README.md' \
+              ! -name 'LICENSE' \
+              ! -name 'CODE_OF_CONDUCT.md' \
+              -exec rm -rf {} +
+          
+            # Copy files from the temporary directory to the current directory
+            rsync -av --exclude='.svn' $TEMP_DIR/ ./
+          
+            # Remove the temporary directory
+            rm -rf $TEMP_DIR
+          
+            git add .
+            git commit -m "Import version $VERSION from SVN"
+            git tag $VERSION
+          }
+
+          # Get all SVN tags, excluding trunk
+          SVN_TAGS=$(svn ls ${{ env.SVN_REPO_URL }}/tags | grep -v '^trunk/' | sort -V)
+
+          # Get all Git tags
+          GIT_TAGS=$(git tag | sort -V)
+
+          # Compare and sync new tags
+          for SVN_TAG in $SVN_TAGS
+          do
+            SVN_TAG=${SVN_TAG%/}
+            if [[ "$SVN_TAG" > "1.0.0" || "$SVN_TAG" == "1.0.0" ]]
+            then
+              if ! echo "$GIT_TAGS" | grep -q "^${SVN_TAG}$"; then
+                copy_version $SVN_TAG
+              else
+                echo "Skipping existing tag $SVN_TAG"
+              fi
+            fi
+          done
 
       - name: Push changes
-        if: steps.check_update.outputs.UPDATE_NEEDED == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-          tags: true
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git push origin main --tags
 
-      - name: Create Release
-        if: steps.check_update.outputs.UPDATE_NEEDED == 'true'
-        uses: actions/create-release@v1
+      - name: Create Releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.svn_version.outputs.LATEST_VERSION }}
-          release_name: Release ${{ steps.svn_version.outputs.LATEST_VERSION }}
-          draft: false
-          prerelease: false
+        run: |
+          NEW_TAGS=$(git tag --points-at HEAD)
+          for TAG in $NEW_TAGS
+          do
+            gh release create $TAG \
+              --title "Release $TAG" \
+              --notes "This is an automatic release created from SVN tag $TAG" \
+              --generate-notes
+          done
