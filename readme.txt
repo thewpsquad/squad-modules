@@ -5,7 +5,7 @@ Tags: divi, divi module, divi theme, divi builder, divi page builder
 Requires at least: 5.0.0
 Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 3.1.5
+Stable tag: 3.1.6
 License: GPLv3-only
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -186,13 +186,13 @@ If you need assistance with Squad Modules Lite, you can reach out to [our suppor
 13. Typing Text Module - This is a module that allows you to create eye-catching animated text that simulates a typing effect with the Typing Text module. Grab your visitors' attention and deliver your message in a unique and engaging way.
 
 == Upgrade Notice ==
-= 3.1.5 =
+= 3.1.6 =
 Compatibility with pro plugin
 
 == Changelog ==
-= 3.1.5 (18-08-2024) =
+= 3.1.6 (18-08-2024) =
 
-**fix:**
+**Fixing:**
 - Compatibility with pro plugin
 
 [Read more](https://squadmodules.com/changelog)

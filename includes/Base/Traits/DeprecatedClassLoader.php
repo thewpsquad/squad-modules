@@ -114,6 +114,10 @@ trait DeprecatedClassLoader {
 			return;
 		}
 
+		if ( interface_exists( $class_name ) ) {
+			return;
+		}
+
 		$file_path = $this->get_deprecated_class_path( $class_name );
 
 		if ( ! file_exists( $file_path ) ) {

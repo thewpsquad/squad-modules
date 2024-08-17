@@ -1,7 +1,12 @@
 == Changelog ==
+= 3.1.6 (18-08-2024) =
+
+**Fixing:**
+- Compatibility with pro plugin
+
 = 3.1.5 (18-08-2024) =
 
-**fix:**
+**Fixing:**
 - Compatibility with pro plugin
 
 = 3.1.4 (15-08-2024) =
