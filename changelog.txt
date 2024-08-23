@@ -1,4 +1,9 @@
 == Changelog ==
+= 3.1.7 (23-08-2024) =
+
+**Fixing:**
+- Fix an issue to save enable modules
+
 = 3.1.6 (18-08-2024) =
 
 **Fixing:**

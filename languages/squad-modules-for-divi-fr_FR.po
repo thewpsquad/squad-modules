@@ -125,7 +125,7 @@ msgstr "Ajouter des images avant et après pour la compréhension. Vous êtes en
 msgid "Add Before Icon"
 msgstr "Ajouter Avant De L'Icône"
 
-#: includes/Managers/Features/Modules.php:385
+#: includes/Managers/Features/Modules.php:386
 msgid "Add dynamic, attention-grabbing text animations to your Divi-powered website."
 msgstr "Ajouter de la dynamique, qui attire l'attention des animations de texte à votre Divi-alimenté site web."
 
@@ -153,7 +153,7 @@ msgstr "Ajouter une ou plusieurs image(s)."
 msgid "Add Start And Time"
 msgstr "Ajouter De Départ Et Le Temps"
 
-#: includes/Managers/Features/Modules.php:400
+#: includes/Managers/Features/Modules.php:401
 msgid "Add stylish star ratings to your content for user feedback and ratings."
 msgstr "Ajouter élégant étoiles à votre contenu de l'utilisateur des commentaires et des notes."
 
@@ -201,15 +201,15 @@ msgstr "Réglez la largeur du séparateur."
 msgid "Adjust the width of the time text."
 msgstr "Réglez la largeur du texte en temps."
 
-#: includes/Managers/Features/Modules.php:105
+#: includes/Managers/Features/Modules.php:106
 msgid "Advanced Accordion"
 msgstr "Avancée De L'Accordéon"
 
-#: includes/Managers/Features/Modules.php:51
+#: includes/Managers/Features/Modules.php:52
 msgid "Advanced Blurb"
 msgstr "Avancé Blurb"
 
-#: includes/Managers/Features/Modules.php:133
+#: includes/Managers/Features/Modules.php:134
 #: includes/Modules/Divider.php:47
 msgid "Advanced Divider"
 msgstr "Avancé Diviseur"
@@ -218,15 +218,15 @@ msgstr "Avancé Diviseur"
 msgid "Advanced Dividers"
 msgstr "Avancée Des Diviseurs"
 
-#: includes/Managers/Features/Modules.php:69
+#: includes/Managers/Features/Modules.php:70
 msgid "Advanced Heading"
 msgstr "Avancée De La Rubrique"
 
-#: includes/Managers/Features/Modules.php:42
+#: includes/Managers/Features/Modules.php:43
 msgid "Advanced List"
 msgstr "Avancée De La Liste"
 
-#: includes/Managers/Features/Modules.php:78
+#: includes/Managers/Features/Modules.php:79
 msgid "Advanced Slider"
 msgstr "Avancé Curseur"
 
@@ -360,7 +360,7 @@ msgstr "La Vitesse D'Animation"
 msgid "Animation Type"
 msgstr "Type De L'Animation"
 
-#: includes/Managers/Features/Modules.php:213
+#: includes/Managers/Features/Modules.php:214
 msgid "Apply stunning masks to your images, adding creativity and visual appeal to your website."
 msgstr "L'étourdissement des masques pour vos images, l'ajout de la créativité et de l'attrait visuel de votre site web."
 
@@ -444,7 +444,7 @@ msgstr "Arrière-plan"
 msgid "Before"
 msgstr "Avant"
 
-#: includes/Managers/Features/Modules.php:260
+#: includes/Managers/Features/Modules.php:261
 #: includes/Modules/BeforeAfterImageSlider.php:44
 msgid "Before After Image Slider"
 msgstr "Avant Après Curseur Sur L'Image"
@@ -535,7 +535,7 @@ msgstr "Rayon Des Frontières"
 msgid "Bottom"
 msgstr "Bas"
 
-#: includes/Managers/Features/Modules.php:414
+#: includes/Managers/Features/Modules.php:415
 #: includes/Modules/Breadcrumbs.php:40
 #: includes/Modules/Breadcrumbs.php:41
 #: includes/Modules/Breadcrumbs.php:58
@@ -546,7 +546,7 @@ msgstr "De la chapelure"
 msgid "Bug"
 msgstr "Bug"
 
-#: includes/Managers/Features/Modules.php:246
+#: includes/Managers/Features/Modules.php:247
 #: includes/Modules/BusinessHoursChild.php:39
 msgid "Business Day"
 msgstr "Jour Ouvrable"
@@ -555,7 +555,7 @@ msgstr "Jour Ouvrable"
 msgid "Business Days"
 msgstr "Jours Ouvrables"
 
-#: includes/Managers/Features/Modules.php:243
+#: includes/Managers/Features/Modules.php:244
 #: includes/Modules/BusinessHours.php:40
 #: includes/Modules/BusinessHours.php:41
 msgid "Business Hours"
@@ -980,7 +980,7 @@ msgstr "Commentaires"
 msgid "Comments Count"
 msgstr "Commentaires Comte"
 
-#: includes/Managers/Features/Modules.php:290
+#: includes/Managers/Features/Modules.php:291
 #: includes/Modules/FormStylers/ContactForm7.php:36
 #: includes/Modules/FormStylers/ContactForm7.php:37
 msgid "Contact Form 7"
@@ -1012,9 +1012,9 @@ msgstr "Contenu"
 msgid "Content Alignment"
 msgstr "Contenu De L'Alignement"
 
-#: includes/Managers/Features/Modules.php:235
-#: includes/Managers/Features/Modules.php:253
-#: includes/Managers/Features/Modules.php:467
+#: includes/Managers/Features/Modules.php:236
+#: includes/Managers/Features/Modules.php:254
+#: includes/Managers/Features/Modules.php:468
 msgid "Content Modules"
 msgstr "Les Modules De Contenu"
 
@@ -1051,7 +1051,7 @@ msgstr "Copie dès maintenant!"
 msgid "Copy Options"
 msgstr "Options De Copie"
 
-#: includes/Managers/Features/Extensions.php:82
+#: includes/Managers/Features/Extensions.php:83
 msgid "Copy Post or Page"
 msgstr "Copie Poste ou la Page"
 
@@ -1063,43 +1063,43 @@ msgstr "Copie de cette"
 msgid "copy(s)"
 msgstr "copie(s)"
 
-#: includes/Managers/Features/Modules.php:96
+#: includes/Managers/Features/Modules.php:97
 msgid "CPT Grid"
 msgstr "CPT Grille"
 
-#: includes/Managers/Features/Modules.php:52
+#: includes/Managers/Features/Modules.php:53
 msgid "Craft engaging and informative content with advanced styling and layout options for a standout user experience."
 msgstr "Métier intéressant et instructif de contenu avancé de style et les options de mise en page pour un exemple remarquable de l'expérience utilisateur."
 
-#: includes/Managers/Features/Modules.php:198
+#: includes/Managers/Features/Modules.php:199
 msgid "Create eye-catching animated title or heading text that simulates a typing effect."
 msgstr "Créer accrocheur titre animé ou le texte d'en-tête qui simule un saisissant effet."
 
-#: includes/Managers/Features/Modules.php:356
+#: includes/Managers/Features/Modules.php:357
 msgid "Create eye-catching headlines and captions with a mesmerizing glitch effect."
 msgstr "Créer des titres accrocheurs et des légendes avec une fascinante glitch effet."
 
-#: includes/Managers/Features/Modules.php:371
+#: includes/Managers/Features/Modules.php:372
 msgid "Create eye-catching headlines, captions, and more with this versatile and dynamic module."
 msgstr "Créer des titres accrocheurs, des légendes, et de plus avec ce polyvalent et dynamique module."
 
-#: includes/Managers/Features/Modules.php:134
+#: includes/Managers/Features/Modules.php:135
 msgid "Create visually appealing dividers with various styles, shapes, and customization options."
 msgstr "Créer visuellement attrayant diviseurs avec différents styles, formes, et des options de personnalisation."
 
-#: includes/Managers/Features/Modules.php:430
+#: includes/Managers/Features/Modules.php:431
 msgid "Create visually appealing drop caps to add emphasis and style to your text content."
 msgstr "Créer visuellement attrayant lettrines pour ajouter de l'emphase et de style à votre contenu de texte."
 
-#: includes/Managers/Features/Modules.php:141
-#: includes/Managers/Features/Modules.php:156
-#: includes/Managers/Features/Modules.php:205
-#: includes/Managers/Features/Modules.php:363
-#: includes/Managers/Features/Modules.php:377
-#: includes/Managers/Features/Modules.php:392
-#: includes/Managers/Features/Modules.php:407
-#: includes/Managers/Features/Modules.php:422
-#: includes/Managers/Features/Modules.php:437
+#: includes/Managers/Features/Modules.php:142
+#: includes/Managers/Features/Modules.php:157
+#: includes/Managers/Features/Modules.php:206
+#: includes/Managers/Features/Modules.php:364
+#: includes/Managers/Features/Modules.php:378
+#: includes/Managers/Features/Modules.php:393
+#: includes/Managers/Features/Modules.php:408
+#: includes/Managers/Features/Modules.php:423
+#: includes/Managers/Features/Modules.php:438
 msgid "Creative Modules"
 msgstr "Creative Modules"
 
@@ -1166,7 +1166,7 @@ msgstr "Champs Personnalisés"
 msgid "Custom Fields (ACF)"
 msgstr "Champs personnalisés (ACF)"
 
-#: includes/Managers/Features/Extensions.php:60
+#: includes/Managers/Features/Extensions.php:61
 msgid "Custom Fonts Upload Support"
 msgstr "Polices Personnalisées En Charge Du Téléchargement"
 
@@ -1241,7 +1241,7 @@ msgstr "Personnaliser Diviseur Côté Couleur"
 msgid "Customize Divider Size"
 msgstr "Personnaliser Diviseur De Taille"
 
-#: includes/Managers/Assets/Admin.php:196
+#: includes/Managers/Assets/Admin.php:211
 #: includes/Managers/Menus/AdminMenu.php:68
 msgid "Dashboard"
 msgstr "Tableau de bord"
@@ -1395,7 +1395,7 @@ msgstr "Avis de rejeter le présent avis."
 msgid "Display By"
 msgstr "Affichage Par"
 
-#: includes/Managers/Features/Modules.php:228
+#: includes/Managers/Features/Modules.php:229
 msgid "Display content on one side, then on hover, flip to reveal more info or a different design."
 msgstr "Afficher le contenu sur un côté, puis sur le vol stationnaire, flip révéler plus d'info ou un design différent."
 
@@ -1413,11 +1413,11 @@ msgstr "Affichez les messages de la page actuelle. Utile sur toutes les pages d'
 msgid "Display Type"
 msgstr "Type D'Affichage"
 
-#: includes/Managers/Features/Modules.php:180
+#: includes/Managers/Features/Modules.php:181
 msgid "Display your blog posts in a stylish and organized grid layout."
 msgstr "Affichage de votre blog dans un élégant et organisé de la grille de mise en page."
 
-#: includes/Managers/Features/Modules.php:244
+#: includes/Managers/Features/Modules.php:245
 msgid "Display your business hours in a clear and organized manner."
 msgstr "Affichage de vos heures d'ouverture dans une claire et organisée."
 
@@ -1430,7 +1430,7 @@ msgstr "Balise DIV"
 msgid "Dive into the Changelog and discover all the magic behind the scenes!"
 msgstr "Plongée dans le Changelog et découvrir toute la magie derrière les coulisses!"
 
-#: includes/Managers/Features/Extensions.php:71
+#: includes/Managers/Features/Extensions.php:72
 msgid "Divi Library Shortcode"
 msgstr "Divi Bibliothèque Shortcode"
 
@@ -1525,7 +1525,7 @@ msgstr "Lettrine lettre"
 msgid "Drop Cap Letter Text"
 msgstr "Lettrine Lettre Du Texte"
 
-#: includes/Managers/Features/Modules.php:429
+#: includes/Managers/Features/Modules.php:430
 #: includes/Modules/DropCapText.php:40
 msgid "Drop Cap Text"
 msgstr "Lettrine Texte"
@@ -1534,7 +1534,7 @@ msgstr "Lettrine Texte"
 msgid "Drop Cap Texts"
 msgstr "Lettrine Textes"
 
-#: includes/Managers/Features/Modules.php:148
+#: includes/Managers/Features/Modules.php:149
 #: includes/Modules/DualButton.php:44
 msgid "Dual Button"
 msgstr "Double Bouton"
@@ -1543,12 +1543,12 @@ msgstr "Double Bouton"
 msgid "Dual Buttons"
 msgstr "Double Boutons"
 
-#: includes/Managers/Features/Modules.php:190
-#: includes/Managers/Features/Modules.php:348
+#: includes/Managers/Features/Modules.php:191
+#: includes/Managers/Features/Modules.php:349
 msgid "Dynamic Content Modules"
 msgstr "Dynamique Des Modules De Contenu"
 
-#: includes/Managers/Features/Modules.php:88
+#: includes/Managers/Features/Modules.php:89
 msgid "Easily organize and display your taxonomy enhancing user experience."
 msgstr "Facilement organiser et afficher vos taxonomie en améliorant l'expérience utilisateur."
 
@@ -1572,31 +1572,31 @@ msgstr "Effet 04"
 msgid "Effect 05"
 msgstr "Effet 05"
 
-#: includes/Managers/Features/Modules.php:164
+#: includes/Managers/Features/Modules.php:165
 msgid "Effortlessly add animated elements for a more engaging website experience"
 msgstr "Sans effort d'ajouter des éléments animés pour une plus engageant expérience sur le site web"
 
-#: includes/Managers/Features/Modules.php:276
+#: includes/Managers/Features/Modules.php:277
 msgid "Effortlessly create stunning galleries to engage and captivate your audience."
 msgstr "Sans effort créer de superbes galeries de s'engager et de captiver votre auditoire."
 
-#: includes/Managers/Features/Modules.php:291
+#: includes/Managers/Features/Modules.php:292
 msgid "Effortlessly customize Contact Form 7 design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "Sans effort de personnaliser le Formulaire de Contact 7 de la conception. Ajuster les couleurs, polices de caractères, l'espacement, et ajouter le CSS pour l'apparence désirée."
 
-#: includes/Managers/Features/Modules.php:493
+#: includes/Managers/Features/Modules.php:494
 msgid "Effortlessly customize Fluent Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "Sans effort de personnaliser Couramment les Formes de conception. Ajuster les couleurs, polices de caractères, l'espacement, et ajouter le CSS pour l'apparence désirée."
 
-#: includes/Managers/Features/Modules.php:323
+#: includes/Managers/Features/Modules.php:324
 msgid "Effortlessly customize Gravity Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "Sans effort de personnaliser les Formes de Gravité de la conception. Ajuster les couleurs, polices de caractères, l'espacement, et ajouter le CSS pour l'apparence désirée."
 
-#: includes/Managers/Features/Modules.php:475
+#: includes/Managers/Features/Modules.php:476
 msgid "Effortlessly customize Ninja Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "Sans effort de personnaliser Ninja de conception de Formulaires. Ajuster les couleurs, polices de caractères, l'espacement, et ajouter le CSS pour l'apparence désirée."
 
-#: includes/Managers/Features/Modules.php:307
+#: includes/Managers/Features/Modules.php:308
 msgid "Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "Sans effort de personnaliser WP Formes de conception. Ajuster les couleurs, polices de caractères, l'espacement, et ajouter le CSS pour l'apparence désirée."
 
@@ -1653,11 +1653,11 @@ msgstr "Éléments D'Alignement Horizontal"
 msgid "Elements Vertical Alignment"
 msgstr "Éléments D'Alignement Vertical"
 
-#: includes/Managers/Features/Modules.php:43
+#: includes/Managers/Features/Modules.php:44
 msgid "Elevate your content presentation providing versatile and stylish list formats for a captivating user experience."
 msgstr "Élever votre présentation du contenu fournissant polyvalent et élégant formats de liste pour une captivante expérience de l'utilisateur."
 
-#: includes/Managers/Features/Modules.php:106
+#: includes/Managers/Features/Modules.php:107
 msgid "Elevate your website bringing a sleek and interactive touch to content presentation."
 msgstr "Propulsez votre site en apportant un design épuré et tactile interactif de présentation de contenu."
 
@@ -1717,23 +1717,23 @@ msgstr "Activer La Lecture Aléatoire"
 msgid "Enable Text Limit"
 msgstr "Activer La Limite De Texte"
 
-#: includes/Managers/Features/Extensions.php:72
+#: includes/Managers/Features/Extensions.php:73
 msgid "Enable this feature only if you would like add Divi library shortcode feature."
 msgstr "Activer cette fonctionnalité que si vous souhaitez ajouter des Divi bibliothèque shortcode fonctionnalité."
 
-#: includes/Managers/Features/Extensions.php:83
+#: includes/Managers/Features/Extensions.php:84
 msgid "Enable this feature only if you would like add Post or Page coping feature."
 msgstr "Activer cette fonctionnalité que si vous souhaitez ajouter un Post ou une Page d'adaptation de la fonctionnalité."
 
-#: includes/Managers/Features/Extensions.php:61
+#: includes/Managers/Features/Extensions.php:62
 msgid "Enable this feature only if you would like allow Font file through WordPress Media Uploader."
 msgstr "Activer cette fonctionnalité que si vous souhaitez autoriser fichier de Police par le biais de WordPress Media Uploader."
 
-#: includes/Managers/Features/Extensions.php:39
+#: includes/Managers/Features/Extensions.php:40
 msgid "Enable this feature only if you would like allow JSON file through WordPress Media Uploader."
 msgstr "Activer cette fonctionnalité que si vous souhaitez autoriser fichier JSON par WordPress Media Uploader."
 
-#: includes/Managers/Features/Extensions.php:50
+#: includes/Managers/Features/Extensions.php:51
 msgid "Enable this feature only if you would like allow svg file through WordPress Media Uploader."
 msgstr "Activer cette fonctionnalité que si vous souhaitez autoriser fichier svg par WordPress Media Uploader."
 
@@ -1745,20 +1745,20 @@ msgstr "Activé les extensions de sauvé!"
 msgid "End Time"
 msgstr "Heure De Fin"
 
-#: includes/Managers/Features/Modules.php:445
+#: includes/Managers/Features/Modules.php:446
 msgid "Engage visitors with customizable video popups for YouTube and Vimeo."
 msgstr "Engager le visiteur vidéo personnalisable fenêtres pop-up pour YouTube et Vimeo."
 
-#: includes/Managers/Features/Modules.php:261
+#: includes/Managers/Features/Modules.php:262
 msgid "Engage your visitors with interactive image comparisons."
 msgstr "S'engager à vos visiteurs d'image interactif des comparaisons."
 
-#: includes/Managers/Features/Modules.php:415
+#: includes/Managers/Features/Modules.php:416
 msgid "Enhance navigation with a clear path for users to trace their steps through your website."
 msgstr "Améliorer la navigation avec un chemin clair pour les utilisateurs à la trace de leurs pas à travers votre site web."
 
-#: includes/Managers/Features/Extensions.php:77
-#: includes/Managers/Features/Extensions.php:89
+#: includes/Managers/Features/Extensions.php:78
+#: includes/Managers/Features/Extensions.php:90
 msgid "Enhancement"
 msgstr "Amélioration de la"
 
@@ -1812,7 +1812,7 @@ msgctxt "et_builder"
 msgid "<p>Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content in the module Design settings and even apply custom CSS to this text in the module Advanced settings.</p>"
 msgstr ""
 
-#: includes/Managers/Assets/Admin.php:198
+#: includes/Managers/Assets/Admin.php:213
 msgid "Extension"
 msgstr "Extension"
 
@@ -1930,7 +1930,7 @@ msgstr "Prénom"
 msgid "Flip Animation"
 msgstr "Flip Animation"
 
-#: includes/Managers/Features/Modules.php:227
+#: includes/Managers/Features/Modules.php:228
 #: includes/Modules/FlipBox.php:45
 msgid "Flip Box"
 msgstr "Flip Case"
@@ -1951,7 +1951,7 @@ msgstr "Flip Paramètres"
 msgid "Flip the mask horizontally or vertically to change the shape and its direction."
 msgstr "Flip le masque horizontalement ou verticalement pour modifier la forme et son orientation."
 
-#: includes/Managers/Features/Modules.php:492
+#: includes/Managers/Features/Modules.php:493
 #: includes/Modules/FormStylers/FluentForms.php:38
 #: includes/Modules/FormStylers/FluentForms.php:39
 msgid "Fluent Forms"
@@ -1989,11 +1989,11 @@ msgstr "Formulaire de config données non disponibles."
 msgid "Form has not been submitted, please see the errors below."
 msgstr "Le formulaire n'a pas été soumis, veuillez voir les erreurs ci-dessous."
 
-#: includes/Managers/Features/Modules.php:301
-#: includes/Managers/Features/Modules.php:315
-#: includes/Managers/Features/Modules.php:333
-#: includes/Managers/Features/Modules.php:485
-#: includes/Managers/Features/Modules.php:503
+#: includes/Managers/Features/Modules.php:302
+#: includes/Managers/Features/Modules.php:316
+#: includes/Managers/Features/Modules.php:334
+#: includes/Managers/Features/Modules.php:486
+#: includes/Managers/Features/Modules.php:504
 msgid "Form Styler Modules"
 msgstr "Formulaire De Styler Les Modules"
 
@@ -2153,7 +2153,7 @@ msgstr "Glitch Effet"
 msgid "Glitch Settings"
 msgstr "Glitch Paramètres"
 
-#: includes/Managers/Features/Modules.php:355
+#: includes/Managers/Features/Modules.php:356
 #: includes/Modules/GlitchText.php:38
 #: includes/Modules/GlitchText.php:59
 #: includes/Modules/GlitchText.php:95
@@ -2181,7 +2181,7 @@ msgstr "Aller Plugins"
 msgid "Google API Key"
 msgstr "Clé API Google"
 
-#: includes/Managers/Features/Modules.php:459
+#: includes/Managers/Features/Modules.php:460
 #: includes/Modules/GoogleMap.php:42
 msgid "Google Embed Map"
 msgstr "Google Intégrer La Carte"
@@ -2202,7 +2202,7 @@ msgstr "Dégradé"
 msgid "Gradient Colors"
 msgstr "Un Dégradé De Couleurs"
 
-#: includes/Managers/Features/Modules.php:370
+#: includes/Managers/Features/Modules.php:371
 #: includes/Modules/GradientText.php:38
 #: includes/Modules/GradientText.php:62
 #: includes/Modules/GradientText.php:108
@@ -2218,7 +2218,7 @@ msgstr "Gradient De Balise De Texte"
 msgid "Gradient Texts"
 msgstr "Gradient De Textes"
 
-#: includes/Managers/Features/Modules.php:322
+#: includes/Managers/Features/Modules.php:323
 #: includes/Modules/FormStylers/GravityForms.php:35
 #: includes/Modules/FormStylers/GravityForms.php:36
 msgid "Gravity Forms"
@@ -3336,11 +3336,11 @@ msgstr "Image"
 msgid "Image & Icon"
 msgstr "Image & Icône"
 
-#: includes/Managers/Features/Modules.php:171
-#: includes/Managers/Features/Modules.php:220
-#: includes/Managers/Features/Modules.php:268
-#: includes/Managers/Features/Modules.php:283
-#: includes/Managers/Features/Modules.php:452
+#: includes/Managers/Features/Modules.php:172
+#: includes/Managers/Features/Modules.php:221
+#: includes/Managers/Features/Modules.php:269
+#: includes/Managers/Features/Modules.php:284
+#: includes/Managers/Features/Modules.php:453
 msgid "Image & Media Modules"
 msgstr "Image & Médias Modules"
 
@@ -3383,7 +3383,7 @@ msgstr "Force Image Pleine Largeur"
 msgid "Image Galleries"
 msgstr "Des Galeries D'Images"
 
-#: includes/Managers/Features/Modules.php:275
+#: includes/Managers/Features/Modules.php:276
 #: includes/Modules/ImageGallery.php:55
 msgid "Image Gallery"
 msgstr "Galerie D'Images"
@@ -3406,7 +3406,7 @@ msgstr "La Position Horizontale De L'Image"
 msgid "Image Label Text"
 msgstr "Image Le Texte De L'Étiquette"
 
-#: includes/Managers/Features/Modules.php:212
+#: includes/Managers/Features/Modules.php:213
 #: includes/Modules/ImageMask.php:38
 msgid "Image Mask"
 msgstr "Le Masque De L'Image"
@@ -3549,7 +3549,7 @@ msgstr "Au lieu de fournir votre principal compte admin, créer un nouvel admin 
 msgid "Instead of providing your primary FTP account, create a new FTP user that can be disabled when the support case is closed."
 msgstr "Au lieu de fournir votre principal compte FTP, créez un nouvel utilisateur FTP qui peut être désactivée lorsque le support est fermé."
 
-#: includes/Managers/Features/Modules.php:149
+#: includes/Managers/Features/Modules.php:150
 msgid "It allows you to display two buttons side by side with customizable styles and text."
 msgstr "Il vous permet d'afficher deux boutons côte à côte avec des styles de texte et de."
 
@@ -3569,7 +3569,7 @@ msgstr "Rejoignez la Communauté"
 msgid "Join the user community and discuss with fellow developers & users."
 msgstr "Rejoignez la communauté des utilisateurs et de discuter avec les autres développeurs et utilisateurs."
 
-#: includes/Managers/Features/Extensions.php:38
+#: includes/Managers/Features/Extensions.php:39
 msgid "JSON File Upload Support"
 msgstr "Fichier JSON en charge du Téléchargement"
 
@@ -3753,7 +3753,7 @@ msgstr "Lottie Conteneur"
 msgid "Lottie Height"
 msgstr "Lottie Hauteur"
 
-#: includes/Managers/Features/Modules.php:163
+#: includes/Managers/Features/Modules.php:164
 #: includes/Modules/Lottie.php:41
 msgid "Lottie Image"
 msgstr "Lottie Image"
@@ -3780,7 +3780,7 @@ msgstr "Aimer Escouade Modules Lite?"
 msgid "Main Content"
 msgstr "Contenu Principal"
 
-#: includes/Managers/Features/Modules.php:70
+#: includes/Managers/Features/Modules.php:71
 msgid "Make a bold statement offering enhanced customization and design options for impactful and visually stunning headings."
 msgstr "Faire une déclaration audacieuse offrant plus de personnalisation et les options de conception pour percutants et visuellement époustouflant en-têtes."
 
@@ -3902,9 +3902,9 @@ msgstr "Forme De Masque De Largeur"
 msgid "Maybe Later"
 msgstr "Peut-Être Plus Tard"
 
-#: includes/Managers/Features/Extensions.php:44
-#: includes/Managers/Features/Extensions.php:55
-#: includes/Managers/Features/Extensions.php:66
+#: includes/Managers/Features/Extensions.php:45
+#: includes/Managers/Features/Extensions.php:56
+#: includes/Managers/Features/Extensions.php:67
 msgid "Media Upload"
 msgstr "Les Médias Télécharger"
 
@@ -3959,7 +3959,7 @@ msgstr "Modifié"
 msgid "Modified Date"
 msgstr "Date De Modification"
 
-#: includes/Managers/Assets/Admin.php:197
+#: includes/Managers/Assets/Admin.php:212
 #: includes/Managers/Menus/AdminMenu.php:73
 msgid "Modules"
 msgstr "Les Modules de"
@@ -4201,7 +4201,7 @@ msgstr "Surnom"
 msgid "Nightly"
 msgstr "Tous les soirs"
 
-#: includes/Managers/Features/Modules.php:474
+#: includes/Managers/Features/Modules.php:475
 #: includes/Modules/FormStylers/NinjaForms.php:36
 #: includes/Modules/FormStylers/NinjaForms.php:37
 msgid "Ninja Forms"
@@ -4537,7 +4537,7 @@ msgstr "Poste De L'Auteur"
 msgid "Post Count"
 msgstr "Nombre De Post"
 
-#: includes/Managers/Features/Modules.php:182
+#: includes/Managers/Features/Modules.php:183
 #: includes/Modules/PostGridChild.php:46
 msgid "Post Element"
 msgstr "Post Élément"
@@ -4546,7 +4546,7 @@ msgstr "Post Élément"
 msgid "Post Elements"
 msgstr "Post Éléments"
 
-#: includes/Managers/Features/Modules.php:179
+#: includes/Managers/Features/Modules.php:180
 #: includes/Modules/PostGrid.php:77
 msgid "Post Grid"
 msgstr "Post Grille"
@@ -4563,7 +4563,7 @@ msgstr "Nom Du Poste"
 msgid "Post Offset"
 msgstr "Post Décalage"
 
-#: includes/Managers/Features/Modules.php:340
+#: includes/Managers/Features/Modules.php:341
 #: includes/Modules/PostReadingTime.php:45
 msgid "Post Reading Time"
 msgstr "Post De Temps De Lecture"
@@ -4606,14 +4606,14 @@ msgstr "Pré-Vente À La Question"
 msgid "Premium %s was successfully activated."
 msgstr "Prime de %s a été activé avec succès."
 
-#: includes/Managers/Features/Modules.php:47
-#: includes/Managers/Features/Modules.php:56
-#: includes/Managers/Features/Modules.php:65
-#: includes/Managers/Features/Modules.php:74
-#: includes/Managers/Features/Modules.php:83
-#: includes/Managers/Features/Modules.php:92
-#: includes/Managers/Features/Modules.php:101
-#: includes/Managers/Features/Modules.php:110
+#: includes/Managers/Features/Modules.php:48
+#: includes/Managers/Features/Modules.php:57
+#: includes/Managers/Features/Modules.php:66
+#: includes/Managers/Features/Modules.php:75
+#: includes/Managers/Features/Modules.php:84
+#: includes/Managers/Features/Modules.php:93
+#: includes/Managers/Features/Modules.php:102
+#: includes/Managers/Features/Modules.php:111
 msgid "Premium Modules"
 msgstr "Premium Modules"
 
@@ -4790,7 +4790,7 @@ msgstr "Bouton de droite Lien d'URL"
 msgid "Right Button Text"
 msgstr "Bouton De Droite De Texte"
 
-#: includes/Managers/Features/Modules.php:460
+#: includes/Managers/Features/Modules.php:461
 msgid "Right into your Divi's site easily without having to worry about anything else."
 msgstr "Dans votre Divi du site facilement sans avoir à se soucier d'autre chose."
 
@@ -4831,7 +4831,7 @@ msgstr "Défilement Du Texte De L'Espace Réservé Ici"
 msgid "Scrolling Settings"
 msgstr "Le Défilement Des Paramètres"
 
-#: includes/Managers/Features/Modules.php:384
+#: includes/Managers/Features/Modules.php:385
 #: includes/Modules/ScrollingText.php:39
 #: includes/Modules/ScrollingText.php:60
 #: includes/Modules/ScrollingText.php:102
@@ -5001,7 +5001,7 @@ msgstr "Afficher Le Formulaire De Description"
 msgid "Show Form Title"
 msgstr "Afficher Le Formulaire De Titre"
 
-#: includes/Managers/Features/Modules.php:341
+#: includes/Managers/Features/Modules.php:342
 msgid "Show how long it takes to read your blog posts. Useful for readers planning their time."
 msgstr "Montrer combien de temps il faut pour lire vos messages de blog. Utile pour les lecteurs de la planification de leur temps."
 
@@ -5075,11 +5075,11 @@ msgstr "Afficher Le Titre De L'Icône Sur Le Vol Stationnaire"
 msgid "Show Your Love"
 msgstr "Montrez Votre Amour"
 
-#: includes/Managers/Features/Modules.php:97
+#: includes/Managers/Features/Modules.php:98
 msgid "Showcase your Custom Post Types creating a visually appealing grid layout."
 msgstr "Mettre en valeur vos Types de Poste Personnalisés création d'un visuel attrayant de la grille de mise en page."
 
-#: includes/Managers/Features/Modules.php:61
+#: includes/Managers/Features/Modules.php:62
 msgid "Showcase your users allowing you to display user profiles in a sleek and customizable list format."
 msgstr "Vitrine de vos utilisateurs, vous permettant d'afficher les profils utilisateur dans un design élégant et personnalisable format de liste."
 
@@ -5162,7 +5162,7 @@ msgstr "Empilés"
 msgid "Star"
 msgstr "Star"
 
-#: includes/Managers/Features/Modules.php:399
+#: includes/Managers/Features/Modules.php:400
 #: includes/Modules/StarRating.php:38
 msgid "Star Rating"
 msgstr "Étoiles"
@@ -5276,7 +5276,7 @@ msgstr "Le Type De Support"
 msgid "SVG"
 msgstr "SVG"
 
-#: includes/Managers/Features/Extensions.php:49
+#: includes/Managers/Features/Extensions.php:50
 msgid "SVG Image Upload Support"
 msgstr "Image SVG en charge du Téléchargement"
 
@@ -5296,7 +5296,7 @@ msgstr "Tags Séparateur"
 msgid "Take your 2 minutes to review the plugin and spread the love to encourage us to keep it going."
 msgstr "Prenez 2 minutes pour lire le plugin et à répandre l'amour pour nous encourager à continuer."
 
-#: includes/Managers/Features/Modules.php:87
+#: includes/Managers/Features/Modules.php:88
 msgid "Taxonomy List"
 msgstr "Liste De Taxonomie"
 
@@ -5816,7 +5816,7 @@ msgstr "pour"
 msgid "Top"
 msgstr "Top"
 
-#: includes/Managers/Features/Modules.php:79
+#: includes/Managers/Features/Modules.php:80
 msgid "Transform your content offering dynamic and customizable sliders to captivate your audience effortlessly."
 msgstr "Transformer votre offre de contenu dynamique et personnalisable curseurs pour captiver votre auditoire sans effort."
 
@@ -5887,7 +5887,7 @@ msgstr "Paramètres De Saisie"
 msgid "Typing Speed (ms)"
 msgstr "La Vitesse de frappe (ms)"
 
-#: includes/Managers/Features/Modules.php:197
+#: includes/Managers/Features/Modules.php:198
 #: includes/Modules/TypingText.php:41
 #: includes/Modules/TypingText.php:293
 msgid "Typing Text"
@@ -6039,7 +6039,7 @@ msgstr "Utiliser L'Icône De Séparation"
 msgid "Use Text Box"
 msgstr "Utiliser La Zone De Texte"
 
-#: includes/Managers/Features/Modules.php:60
+#: includes/Managers/Features/Modules.php:61
 msgid "User List"
 msgstr "Liste Des Utilisateurs"
 
@@ -6070,7 +6070,7 @@ msgstr "Centrée Verticalement"
 msgid "Video MP4 File"
 msgstr "Vidéo MP4 Fichier"
 
-#: includes/Managers/Features/Modules.php:444
+#: includes/Managers/Features/Modules.php:445
 #: includes/Modules/VideoPopup.php:45
 msgid "Video Popup"
 msgstr "Vidéo Popup"
@@ -6132,7 +6132,7 @@ msgstr "Nous ferons de notre mieux pour revenir vers vous dès que nous le pouvo
 msgid "What would you like to know before purchasing?"
 msgstr "Qu'aimeriez-vous savoir avant d'acheter?"
 
-#: includes/Managers/Assets/Admin.php:199
+#: includes/Managers/Assets/Admin.php:214
 #: includes/Managers/Menus/AdminMenu.php:83
 msgid "What's New"
 msgstr "Ce qui est Nouveau"
@@ -6162,7 +6162,7 @@ msgstr "WordPress.org"
 msgid "Words Per Minute"
 msgstr "Mots Par Minute"
 
-#: includes/Managers/Features/Modules.php:306
+#: includes/Managers/Features/Modules.php:307
 #: includes/Modules/FormStylers/WPForms.php:44
 #: includes/Modules/FormStylers/WPForms.php:45
 msgid "WP Forms"
@@ -6362,19 +6362,43 @@ msgstr ""
 msgid "Activate %s"
 msgstr ""
 
-#: includes/Managers/RestRoutes/Version1/Extensions.php:106
-#: includes/Managers/RestRoutes/Version1/Modules.php:106
+#: includes/Managers/Emails/ErrorReport.php:101
+msgid "Failed to send error report email."
+msgstr ""
+
+#. translators: %s Error field name.
+#: includes/Managers/Emails/ErrorReport.php:125
+msgid "%s is required for error reporting."
+msgstr ""
+
+#: includes/Managers/Emails/ErrorReport.php:200
+msgid "Error report email template not found."
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Extensions.php:107
+#: includes/Managers/RestRoutes/Version1/Modules.php:107
 #: includes/Managers/RestRoutes/Version1/Notices/Discount.php:60
 #: includes/Managers/RestRoutes/Version1/Notices/ProActivation.php:60
 #: includes/Managers/RestRoutes/Version1/Notices/Review.php:87
 msgid "You do not have permissions to perform this action."
 msgstr ""
 
-#: includes/Managers/RestRoutes/Version1/Extensions.php:190
+#: includes/Managers/RestRoutes/Version1/Extensions.php:189
 msgid "Invalid parameter: active_extensions must be an array of strings."
 msgstr ""
 
-#: includes/Managers/RestRoutes/Version1/Extensions.php:205
+#. translators: %s: comma-separated list of invalid module names
+#: includes/Managers/RestRoutes/Version1/Extensions.php:214
+msgid "Invalid extension names provided: %s"
+msgstr ""
+
+#. translators: %s: comma-separated list of invalid module names
+#: includes/Managers/RestRoutes/Version1/Extensions.php:231
+#: includes/Managers/RestRoutes/Version1/Modules.php:216
+msgid "Invalid module names provided: %s"
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Extensions.php:245
 msgid "The list of active extensions has been updated."
 msgstr ""
 
@@ -6382,16 +6406,11 @@ msgstr ""
 msgid "You do not have permissions to duplicate posts."
 msgstr ""
 
-#: includes/Managers/RestRoutes/Version1/Modules.php:192
+#: includes/Managers/RestRoutes/Version1/Modules.php:191
 msgid "Invalid parameter: active_modules must be an array of strings."
 msgstr ""
 
-#. translators: %s: comma-separated list of invalid module names
-#: includes/Managers/RestRoutes/Version1/Modules.php:207
-msgid "Invalid module names provided: %s"
-msgstr ""
-
-#: includes/Managers/RestRoutes/Version1/Modules.php:221
+#: includes/Managers/RestRoutes/Version1/Modules.php:243
 msgid "The list of active modules has been updated."
 msgstr ""
 

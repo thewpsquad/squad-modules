@@ -10,6 +10,7 @@
 
 namespace DiviSquad;
 
+use DiviSquad\Managers\Emails\ErrorReport;
 use DiviSquad\Utils\Polyfills\Constant;
 use DiviSquad\Utils\WP;
 use function add_action;
@@ -234,6 +235,14 @@ final class SquadModules extends Integrations\Core {
 			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
 			error_log( 'SQUAD ERROR: Failed to retrieve plugin data.' );
 			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+
+			// Send an error report.
+			ErrorReport::quick_send(
+				new \Exception( 'Failed to retrieve plugin data.' ),
+				array(
+					'additional_info' => 'An error message from plugin initialization.',
+				)
+			);
 			return;
 		}
 
@@ -273,6 +282,14 @@ final class SquadModules extends Integrations\Core {
 			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
 			error_log( 'SQUAD ERROR: Error running SquadModules: ' . $e->getMessage() );
 			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+
+			// Send an error report.
+			ErrorReport::quick_send(
+				$e,
+				array(
+					'additional_info' => 'An error message from plugin runner.',
+				)
+			);
 		}
 	}
 
@@ -282,22 +299,36 @@ final class SquadModules extends Integrations\Core {
 	 * @return void
 	 */
 	private function load_components() {
-		$this->load_text_domain();
-		$this->load_assets();
-		$this->load_global_assets();
-		$this->load_extensions();
-		$this->load_modules_for_builder();
-		$this->load_admin();
-		$this->localize_scripts_data();
+		try {
+			$this->load_text_domain();
+			$this->load_assets();
+			$this->load_global_assets();
+			$this->load_extensions();
+			$this->load_modules_for_builder();
+			$this->load_admin();
+			$this->localize_scripts_data();
 
-		/**
-		 * Fires after the plugin components are loaded.
-		 *
-		 * @since 3.1.0
-		 *
-		 * @param SquadModules $instance The SquadModules instance.
-		 */
-		do_action( 'divi_squad_load_components', $this );
+			/**
+			 * Fires after the plugin components are loaded.
+			 *
+			 * @since 3.1.0
+			 *
+			 * @param SquadModules $instance The SquadModules instance.
+			 */
+			do_action( 'divi_squad_load_components', $this );
+		} catch ( \Exception $e ) {
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			error_log( 'SQUAD ERROR: Error loading plugin components: ' . $e->getMessage() );
+			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+
+			// Send an error report.
+			ErrorReport::quick_send(
+				$e,
+				array(
+					'additional_info' => 'An error message from plugin components loader.',
+				)
+			);
+		}
 	}
 
 	/**
@@ -307,16 +338,30 @@ final class SquadModules extends Integrations\Core {
 	 * @throws \Exception If the class file is not found.
 	 */
 	public function load_additional_components() {
-		Base\DiviBuilder\Utils\Elements\CustomFields::init();
+		try {
+			Base\DiviBuilder\Utils\Elements\CustomFields::init();
 
-		/**
-		 * Fires after the plugin additional components are loaded.
-		 *
-		 * @since 3.1.0
-		 *
-		 * @param SquadModules $instance The SquadModules instance.
-		 */
-		do_action( 'divi_squad_load_additional_components', $this );
+			/**
+			 * Fires after the plugin additional components are loaded.
+			 *
+			 * @since 3.1.0
+			 *
+			 * @param SquadModules $instance The SquadModules instance.
+			 */
+			do_action( 'divi_squad_load_additional_components', $this );
+		} catch ( \Exception $e ) {
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			error_log( 'SQUAD ERROR: Error loading additional components: ' . $e->getMessage() );
+			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+
+			// Send an error report.
+			ErrorReport::quick_send(
+				$e,
+				array(
+					'additional_info' => 'An error message from additional components loader.',
+				)
+			);
+		}
 	}
 
 	/**

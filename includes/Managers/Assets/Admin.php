@@ -13,6 +13,7 @@ namespace DiviSquad\Managers\Assets;
 use DiviSquad\Base\Factories\AdminMenu as AdminMenuFactory;
 use DiviSquad\Base\Factories\PluginAsset\Asset;
 use DiviSquad\Base\Factories\RestRoute as RestRouteFactory;
+use DiviSquad\Managers\Emails\ErrorReport;
 use DiviSquad\Managers\Notices\Discount;
 use DiviSquad\Utils\Asset as AssetUtil;
 use DiviSquad\Utils\Helper as HelperUtil;
@@ -44,7 +45,21 @@ class Admin extends Asset {
 			return;
 		}
 
-		$this->enqueue_admin_scripts( $hook_suffix );
+		try {
+			$this->enqueue_admin_scripts( $hook_suffix );
+		} catch ( \Exception $e ) {
+			// phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			error_log( sprintf( 'SQUAD ERROR: %s', $e->getMessage() ) );
+			// phpcs:enable WordPress.PHP.DevelopmentFunctions.error_log_error_log
+
+			// Send an error report.
+			ErrorReport::quick_send(
+				$e,
+				array(
+					'additional_info' => 'An error message from admin asset manager.',
+				)
+			);
+		}
 	}
 
 	/**

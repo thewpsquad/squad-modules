@@ -14,6 +14,7 @@
 namespace DiviSquad\Managers\RestRoutes\Version1;
 
 use DiviSquad\Base\Factories\RestRoute\Route;
+use DiviSquad\Managers\Emails\ErrorReport;
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
@@ -185,16 +186,55 @@ class Extensions extends Route {
 		$active_extensions = $request->get_json_params();
 
 		if ( ! is_array( $active_extensions ) ) {
+			$error_message = esc_html__( 'Invalid parameter: active_extensions must be an array of strings.', 'squad-modules-for-divi' );
+
+			// Send an error report.
+			ErrorReport::quick_send(
+				new \Exception( $error_message ),
+				array(
+					'additional_info' => 'An error message from lite extensions rest api.',
+				)
+			);
+
+			// Send error message to the frontend.
 			return new WP_Error(
 				'invalid_parameter',
-				__( 'Invalid parameter: active_extensions must be an array of strings.', 'squad-modules-for-divi' ),
+				$error_message,
 				array( 'status' => 400 )
 			);
 		}
 
 		$active_extensions   = array_values( array_map( 'sanitize_text_field', $active_extensions ) );
-		$all_extensions      = divi_squad()->extensions->get_registered_list();
-		$all_extension_names = array_column( $all_extensions, 'name' );
+		$all_extension_names = array_column( divi_squad()->extensions->get_registered_list(), 'name' );
+		$invalid_extensions  = array_diff( $active_extensions, $all_extension_names );
+
+		if ( ! empty( $invalid_extensions ) ) {
+			$error_message = sprintf(
+			/* translators: %s: comma-separated list of invalid module names */
+				esc_html__( 'Invalid extension names provided: %s', 'squad-modules-for-divi' ),
+				implode( ', ', $invalid_extensions )
+			);
+
+			// Send an error report.
+			ErrorReport::quick_send(
+				new \Exception( $error_message ),
+				array(
+					'additional_info' => 'An error message from lite extensions rest api.',
+				)
+			);
+
+			// Send error message to the frontend.
+			return new WP_Error(
+				'invalid_module',
+				sprintf(
+				/* translators: %s: comma-separated list of invalid module names */
+					esc_html__( 'Invalid module names provided: %s', 'squad-modules-for-divi' ),
+					implode( ', ', $invalid_extensions )
+				),
+				array( 'status' => 400 )
+			);
+		}
+
 		$inactive_extensions = array_values( array_diff( $all_extension_names, $active_extensions ) );
 
 		$this->update_extension_memory( $active_extensions, $inactive_extensions );

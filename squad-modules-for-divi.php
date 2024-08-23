@@ -11,7 +11,7 @@
  * Plugin Name:         Squad Modules Lite
  * Plugin URI:          https://squadmodules.com/
  * Description:         The Advanced Divi plugin you install after Divi or Extra Theme!
- * Version:             3.1.6
+ * Version:             3.1.7
  * Requires at least:   5.0.0
  * Requires PHP:        5.6.40
  * Author:              WP Squad
@@ -121,4 +121,12 @@ try {
 	// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
 	error_log( 'SQUAD ERROR: ' . $e->getMessage() );
 	// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+
+	// Send an error report.
+	DiviSquad\Managers\Emails\ErrorReport::quick_send(
+		$e,
+		array(
+			'additional_info' => 'An error message from plugin bootstrap file.',
+		)
+	);
 }

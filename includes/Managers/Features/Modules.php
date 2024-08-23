@@ -12,6 +12,7 @@ namespace DiviSquad\Managers\Features;
 
 use DiviSquad\Base\Factories\SquadFeatures as ManagerBase;
 use DiviSquad\Base\Memory;
+use DiviSquad\Managers\Emails\ErrorReport;
 use DiviSquad\Utils\WP;
 use function apply_filters;
 use function divi_squad;
@@ -599,53 +600,67 @@ class Modules extends ManagerBase {
 	 * @return void
 	 */
 	protected function load_module_files( $path, $memory ) {
-		// Retrieve total active modules and current version from the memory.
-		$current_version  = $memory->get( 'version' );
-		$active_modules   = $memory->get( 'active_modules' );
-		$inactive_modules = $memory->get( 'inactive_modules', array() );
+		try {
+			// Retrieve total active modules and current version from the memory.
+			$current_version  = $memory->get( 'version' );
+			$active_modules   = $memory->get( 'active_modules' );
+			$inactive_modules = $memory->get( 'inactive_modules', array() );
 
-		// Get all registered and default modules.
-		$features = array_map( array( $this, 'custom_array_slice' ), $this->get_registered_list() );
-		$defaults = array_map( array( $this, 'custom_array_slice' ), $this->get_default_registries() );
+			// Get all registered and default modules.
+			$features = array_map( array( $this, 'custom_array_slice' ), $this->get_registered_list() );
+			$defaults = array_map( array( $this, 'custom_array_slice' ), $this->get_default_registries() );
 
-		// Filter and verify all active modules.
-		$available = $this->get_filtered_registries( $features, array( $this, 'verify_module_type' ) );
-		$activated = $this->get_verified_registries( $available, $defaults, $active_modules, $inactive_modules, $current_version );
+			// Filter and verify all active modules.
+			$available = $this->get_filtered_registries( $features, array( $this, 'verify_module_type' ) );
+			$activated = $this->get_verified_registries( $available, $defaults, $active_modules, $inactive_modules, $current_version );
 
-		// Collect all active plugins from the current installation.
-		$active_plugins = array_column( WP::get_active_plugins(), 'slug' );
+			// Collect all active plugins from the current installation.
+			$active_plugins = array_column( WP::get_active_plugins(), 'slug' );
 
-		foreach ( $activated as $activated_module ) {
-			/**
-			 * Load modules from the class path.
-			 *
-			 * @since 2.1.2
-			 */
-			if ( ! empty( $activated_module['classes']['root_class'] ) && class_exists( $activated_module['classes']['root_class'] ) ) {
-				if ( $this->verify_requirements( $activated_module, $active_plugins ) ) {
-					$this->load_module_if_exists( $activated_module, 'name' );
-					$this->load_module_if_exists( $activated_module, 'child_name' );
-					$this->load_module_if_exists( $activated_module, 'full_width_name' );
-					$this->load_module_if_exists( $activated_module, 'full_width_child_name' );
-				}
-			} else {
-				$module_path_full = sprintf( '%1$s/Modules/%2$s/%2$s.php', $path, $activated_module['name'] );
+			foreach ( $activated as $activated_module ) {
+				/**
+				 * Load modules from the class path.
+				 *
+				 * @since 2.1.2
+				 */
+				if ( ! empty( $activated_module['classes']['root_class'] ) && class_exists( $activated_module['classes']['root_class'] ) ) {
+					if ( $this->verify_requirements( $activated_module, $active_plugins ) ) {
+						$this->load_module_if_exists( $activated_module, 'name' );
+						$this->load_module_if_exists( $activated_module, 'child_name' );
+						$this->load_module_if_exists( $activated_module, 'full_width_name' );
+						$this->load_module_if_exists( $activated_module, 'full_width_child_name' );
+					}
+				} else {
+					$module_path_full = sprintf( '%1$s/Modules/%2$s/%2$s.php', $path, $activated_module['name'] );
 
-				if ( $this->verify_requirements( $activated_module, $active_plugins ) && file_exists( $module_path_full ) ) {
-					$module_names = array_filter(
-						array(
-							! empty( $activated_module['name'] ) ? $activated_module['name'] : null,
-							! empty( $activated_module['child_name'] ) ? $activated_module['child_name'] : null,
-							! empty( $activated_module['full_width_name'] ) ? $activated_module['full_width_name'] : null,
-							! empty( $activated_module['full_width_child_name'] ) ? $activated_module['full_width_child_name'] : null,
-						)
-					);
+					if ( $this->verify_requirements( $activated_module, $active_plugins ) && file_exists( $module_path_full ) ) {
+						$module_names = array_filter(
+							array(
+								! empty( $activated_module['name'] ) ? $activated_module['name'] : null,
+								! empty( $activated_module['child_name'] ) ? $activated_module['child_name'] : null,
+								! empty( $activated_module['full_width_name'] ) ? $activated_module['full_width_name'] : null,
+								! empty( $activated_module['full_width_child_name'] ) ? $activated_module['full_width_child_name'] : null,
+							)
+						);
 
-					foreach ( $module_names as $module_name ) {
-						$this->require_module_path( $path, $module_name );
+						foreach ( $module_names as $module_name ) {
+							$this->require_module_path( $path, $module_name );
+						}
 					}
 				}
 			}
+		} catch ( \Exception $e ) {
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			error_log( sprintf( 'SQUAD ERROR: %s', $e->getMessage() ) );
+			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+
+			// Send an error report.
+			ErrorReport::quick_send(
+				$e,
+				array(
+					'additional_info' => 'Error loading modules from the class path.',
+				)
+			);
 		}
 	}
 

@@ -10,6 +10,7 @@
 
 namespace DiviSquad\Base\Traits;
 
+use DiviSquad\Managers\Emails\ErrorReport;
 use DiviSquad\Utils\WP;
 
 /**
@@ -110,30 +111,44 @@ trait DeprecatedClassLoader {
 	 * @param array  $config     Class configuration.
 	 */
 	private function load_deprecated_class( $class_name, $config ) {
-		if ( class_exists( $class_name ) ) {
-			return;
+		try {
+			if ( class_exists( $class_name ) ) {
+				return;
+			}
+
+			if ( interface_exists( $class_name ) ) {
+				return;
+			}
+
+			$file_path = $this->get_deprecated_class_path( $class_name );
+
+			if ( ! file_exists( $file_path ) ) {
+				$this->log_deprecated_class_error( $file_path );
+				return;
+			}
+
+			$this->execute_callback( $config, 'before', $class_name );
+
+			if ( isset( $config['action'] ) ) {
+				$this->schedule_class_loading( $config, $class_name, $file_path );
+			} else {
+				require_once $file_path;
+			}
+
+			$this->execute_callback( $config, 'after', $class_name );
+		} catch ( \Exception $e ) {
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			error_log( sprintf( 'SQUAD ERROR: %s', $e->getMessage() ) );
+			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+
+			// Send an error report.
+			ErrorReport::quick_send(
+				$e,
+				array(
+					'additional_info' => 'An error message from deprecated class loader.',
+				)
+			);
 		}
-
-		if ( interface_exists( $class_name ) ) {
-			return;
-		}
-
-		$file_path = $this->get_deprecated_class_path( $class_name );
-
-		if ( ! file_exists( $file_path ) ) {
-			$this->log_deprecated_class_error( $file_path );
-			return;
-		}
-
-		$this->execute_callback( $config, 'before', $class_name );
-
-		if ( isset( $config['action'] ) ) {
-			$this->schedule_class_loading( $config, $class_name, $file_path );
-		} else {
-			require_once $file_path;
-		}
-
-		$this->execute_callback( $config, 'after', $class_name );
 	}
 
 	/**

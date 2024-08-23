@@ -124,7 +124,7 @@ msgstr "বোঝার জন্য আগে এবং পরে ছবি য
 msgid "Add Before Icon"
 msgstr "আইকন আগে যোগ করুন"
 
-#: includes/Managers/Features/Modules.php:385
+#: includes/Managers/Features/Modules.php:386
 msgid "Add dynamic, attention-grabbing text animations to your Divi-powered website."
 msgstr "আপনার Divi-চালিত ওয়েবসাইটে গতিশীল, মনোযোগ আকর্ষণকারী পাঠ্য অ্যানিমেশন যোগ করুন।"
 
@@ -152,7 +152,7 @@ msgstr "এক বা একাধিক ছবি যোগ করুন।"
 msgid "Add Start And Time"
 msgstr "শুরু এবং সময় যোগ করুন"
 
-#: includes/Managers/Features/Modules.php:400
+#: includes/Managers/Features/Modules.php:401
 msgid "Add stylish star ratings to your content for user feedback and ratings."
 msgstr "ব্যবহারকারীর প্রতিক্রিয়া এবং রেটিং এর জন্য আপনার সামগ্রীতে স্টাইলিশ তারকা রেটিং যোগ করুন।"
 
@@ -200,15 +200,15 @@ msgstr "সেপারেটরের প্রস্থ সংশোধন ক
 msgid "Adjust the width of the time text."
 msgstr "সময়ের পাঠ্যের প্রস্থ সামঞ্জস্য করুন।"
 
-#: includes/Managers/Features/Modules.php:105
+#: includes/Managers/Features/Modules.php:106
 msgid "Advanced Accordion"
 msgstr "উন্নত অ্যাকর্ডিয়ন"
 
-#: includes/Managers/Features/Modules.php:51
+#: includes/Managers/Features/Modules.php:52
 msgid "Advanced Blurb"
 msgstr "উন্নত ব্লার্ব"
 
-#: includes/Managers/Features/Modules.php:133
+#: includes/Managers/Features/Modules.php:134
 #: includes/Modules/Divider.php:47
 msgid "Advanced Divider"
 msgstr "উন্নত ডিভাইডার"
@@ -217,15 +217,15 @@ msgstr "উন্নত ডিভাইডার"
 msgid "Advanced Dividers"
 msgstr "উন্নত ডিভাইডারসমূহ"
 
-#: includes/Managers/Features/Modules.php:69
+#: includes/Managers/Features/Modules.php:70
 msgid "Advanced Heading"
 msgstr "উন্নত শিরোনাম"
 
-#: includes/Managers/Features/Modules.php:42
+#: includes/Managers/Features/Modules.php:43
 msgid "Advanced List"
 msgstr "উন্নত তালিকা"
 
-#: includes/Managers/Features/Modules.php:78
+#: includes/Managers/Features/Modules.php:79
 msgid "Advanced Slider"
 msgstr "উন্নত স্লাইডার"
 
@@ -359,7 +359,7 @@ msgstr "অ্যানিমেশন স্পীড"
 msgid "Animation Type"
 msgstr "অ্যানিমেশন টাইপ"
 
-#: includes/Managers/Features/Modules.php:213
+#: includes/Managers/Features/Modules.php:214
 msgid "Apply stunning masks to your images, adding creativity and visual appeal to your website."
 msgstr "আপনার ছবিতে অত্যাশ্চর্য মাস্ক প্রয়োগ করুন, আপনার ওয়েবসাইটে সৃজনশীলতা এবং ভিজ্যুয়াল আবেদন যোগ করুন।"
 
@@ -443,7 +443,7 @@ msgstr "ব্যাকগ্রাউন্ড"
 msgid "Before"
 msgstr "পূর্বে"
 
-#: includes/Managers/Features/Modules.php:260
+#: includes/Managers/Features/Modules.php:261
 #: includes/Modules/BeforeAfterImageSlider.php:44
 msgid "Before After Image Slider"
 msgstr "বিফোর আফটার ইমেজ স্লাইডার"
@@ -534,7 +534,7 @@ msgstr "সীমানা ব্যাসার্ধ"
 msgid "Bottom"
 msgstr "নীচে"
 
-#: includes/Managers/Features/Modules.php:414
+#: includes/Managers/Features/Modules.php:415
 #: includes/Modules/Breadcrumbs.php:40
 #: includes/Modules/Breadcrumbs.php:41
 #: includes/Modules/Breadcrumbs.php:58
@@ -545,7 +545,7 @@ msgstr "ব্রেডক্রাম্বস"
 msgid "Bug"
 msgstr "বাগ"
 
-#: includes/Managers/Features/Modules.php:246
+#: includes/Managers/Features/Modules.php:247
 #: includes/Modules/BusinessHoursChild.php:39
 msgid "Business Day"
 msgstr "ব্যবসা দিন"
@@ -554,7 +554,7 @@ msgstr "ব্যবসা দিন"
 msgid "Business Days"
 msgstr "ব্যবসা দিনসমূহ"
 
-#: includes/Managers/Features/Modules.php:243
+#: includes/Managers/Features/Modules.php:244
 #: includes/Modules/BusinessHours.php:40
 #: includes/Modules/BusinessHours.php:41
 msgid "Business Hours"
@@ -971,7 +971,7 @@ msgstr "মন্তব্যসমূহ"
 msgid "Comments Count"
 msgstr "মন্তব্য গণনা"
 
-#: includes/Managers/Features/Modules.php:290
+#: includes/Managers/Features/Modules.php:291
 #: includes/Modules/FormStylers/ContactForm7.php:36
 #: includes/Modules/FormStylers/ContactForm7.php:37
 msgid "Contact Form 7"
@@ -1003,9 +1003,9 @@ msgstr "কন্টেন্ট"
 msgid "Content Alignment"
 msgstr "বিষয়বস্তু প্রান্তিককরণ"
 
-#: includes/Managers/Features/Modules.php:235
-#: includes/Managers/Features/Modules.php:253
-#: includes/Managers/Features/Modules.php:467
+#: includes/Managers/Features/Modules.php:236
+#: includes/Managers/Features/Modules.php:254
+#: includes/Managers/Features/Modules.php:468
 msgid "Content Modules"
 msgstr "বিষয়বস্তু মডিউল"
 
@@ -1042,7 +1042,7 @@ msgstr "এখন কপি করুন!"
 msgid "Copy Options"
 msgstr "অনুলিপি বিকল্প"
 
-#: includes/Managers/Features/Extensions.php:82
+#: includes/Managers/Features/Extensions.php:83
 msgid "Copy Post or Page"
 msgstr "পোস্ট বা পেজ কপি করুন"
 
@@ -1054,43 +1054,43 @@ msgstr "এই কপি"
 msgid "copy(s)"
 msgstr "কপি(গুলি)"
 
-#: includes/Managers/Features/Modules.php:96
+#: includes/Managers/Features/Modules.php:97
 msgid "CPT Grid"
 msgstr "CPT গ্রিড"
 
-#: includes/Managers/Features/Modules.php:52
+#: includes/Managers/Features/Modules.php:53
 msgid "Craft engaging and informative content with advanced styling and layout options for a standout user experience."
 msgstr "একটি স্ট্যান্ডআউট ব্যবহারকারীর অভিজ্ঞতার জন্য উন্নত স্টাইলিং এবং লেআউট বিকল্পগুলির সাথে আকর্ষক এবং তথ্যপূর্ণ সামগ্রী তৈরি করুন৷"
 
-#: includes/Managers/Features/Modules.php:198
+#: includes/Managers/Features/Modules.php:199
 msgid "Create eye-catching animated title or heading text that simulates a typing effect."
 msgstr "নজরকাড়া অ্যানিমেটেড শিরোনাম বা শিরোনাম পাঠ্য তৈরি করুন যা একটি টাইপিং প্রভাব অনুকরণ করে।"
 
-#: includes/Managers/Features/Modules.php:356
+#: includes/Managers/Features/Modules.php:357
 msgid "Create eye-catching headlines and captions with a mesmerizing glitch effect."
 msgstr "একটি মুগ্ধকর গ্লিচ এফেক্ট সহ নজরকাড়া শিরোনাম এবং ক্যাপশন তৈরি করুন।"
 
-#: includes/Managers/Features/Modules.php:371
+#: includes/Managers/Features/Modules.php:372
 msgid "Create eye-catching headlines, captions, and more with this versatile and dynamic module."
 msgstr "এই বহুমুখী এবং গতিশীল মডিউল দিয়ে নজরকাড়া শিরোনাম, ক্যাপশন এবং আরও অনেক কিছু তৈরি করুন৷"
 
-#: includes/Managers/Features/Modules.php:134
+#: includes/Managers/Features/Modules.php:135
 msgid "Create visually appealing dividers with various styles, shapes, and customization options."
 msgstr "বিভিন্ন শৈলী, আকার এবং কাস্টমাইজেশন বিকল্পগুলির সাথে দৃশ্যত আকর্ষণীয় বিভাজক তৈরি করুন।"
 
-#: includes/Managers/Features/Modules.php:430
+#: includes/Managers/Features/Modules.php:431
 msgid "Create visually appealing drop caps to add emphasis and style to your text content."
 msgstr "আপনার পাঠ্য সামগ্রীতে জোর এবং শৈলী যোগ করার জন্য দৃশ্যত আকর্ষণীয় ড্রপ ক্যাপ তৈরি করুন।"
 
-#: includes/Managers/Features/Modules.php:141
-#: includes/Managers/Features/Modules.php:156
-#: includes/Managers/Features/Modules.php:205
-#: includes/Managers/Features/Modules.php:363
-#: includes/Managers/Features/Modules.php:377
-#: includes/Managers/Features/Modules.php:392
-#: includes/Managers/Features/Modules.php:407
-#: includes/Managers/Features/Modules.php:422
-#: includes/Managers/Features/Modules.php:437
+#: includes/Managers/Features/Modules.php:142
+#: includes/Managers/Features/Modules.php:157
+#: includes/Managers/Features/Modules.php:206
+#: includes/Managers/Features/Modules.php:364
+#: includes/Managers/Features/Modules.php:378
+#: includes/Managers/Features/Modules.php:393
+#: includes/Managers/Features/Modules.php:408
+#: includes/Managers/Features/Modules.php:423
+#: includes/Managers/Features/Modules.php:438
 msgid "Creative Modules"
 msgstr "সৃজনশীল মডিউল"
 
@@ -1141,7 +1141,7 @@ msgstr "পাঠ্যের পর কাস্টম ক্ষেত্র"
 msgid "Custom Field Before Text"
 msgstr "পাঠ্যের আগে কাস্টম ক্ষেত্র"
 
-#: includes/Managers/Features/Extensions.php:60
+#: includes/Managers/Features/Extensions.php:61
 msgid "Custom Fonts Upload Support"
 msgstr "কাস্টম ফন্ট আপলোড সমর্থন"
 
@@ -1200,7 +1200,7 @@ msgstr "ডিভাইডার সাইড কালার কাস্টম
 msgid "Customize Divider Size"
 msgstr "বিভাজক আকার কাস্টমাইজ করুন"
 
-#: includes/Managers/Assets/Admin.php:196
+#: includes/Managers/Assets/Admin.php:211
 #: includes/Managers/Menus/AdminMenu.php:68
 msgid "Dashboard"
 msgstr "ড্যাশবোর্ড"
@@ -1354,7 +1354,7 @@ msgstr "এই নোটিশ বাতিল কর।"
 msgid "Display By"
 msgstr "দেখানো"
 
-#: includes/Managers/Features/Modules.php:228
+#: includes/Managers/Features/Modules.php:229
 msgid "Display content on one side, then on hover, flip to reveal more info or a different design."
 msgstr "একদিকে সামগ্রী প্রদর্শন করুন, তারপরে হোভারে, আরও তথ্য বা একটি ভিন্ন ডিজাইন প্রকাশ করতে ফ্লিপ করুন৷"
 
@@ -1372,11 +1372,11 @@ msgstr "বর্তমান পৃষ্ঠার জন্য পোস্ট
 msgid "Display Type"
 msgstr "প্রদর্শনের ধরন"
 
-#: includes/Managers/Features/Modules.php:180
+#: includes/Managers/Features/Modules.php:181
 msgid "Display your blog posts in a stylish and organized grid layout."
 msgstr "আপনার ব্লগ পোস্টগুলি একটি আড়ম্বরপূর্ণ এবং সংগঠিত গ্রিড বিন্যাসে প্রদর্শন করুন৷"
 
-#: includes/Managers/Features/Modules.php:244
+#: includes/Managers/Features/Modules.php:245
 msgid "Display your business hours in a clear and organized manner."
 msgstr "একটি পরিষ্কার এবং সংগঠিত পদ্ধতিতে আপনার ব্যবসার সময় প্রদর্শন করুন."
 
@@ -1389,7 +1389,7 @@ msgstr "DIV ট্যাগ"
 msgid "Dive into the Changelog and discover all the magic behind the scenes!"
 msgstr "চেঞ্জলগে ডুব দিন এবং পর্দার পিছনে সমস্ত জাদু আবিষ্কার করুন!"
 
-#: includes/Managers/Features/Extensions.php:71
+#: includes/Managers/Features/Extensions.php:72
 msgid "Divi Library Shortcode"
 msgstr "ডিভি লাইব্রেরি শর্টকোড"
 
@@ -1484,7 +1484,7 @@ msgstr "ক্যাপ লেটার ফেলে দিন"
 msgid "Drop Cap Letter Text"
 msgstr "ক্যাপ লেটার টেক্সট ড্রপ করুন"
 
-#: includes/Managers/Features/Modules.php:429
+#: includes/Managers/Features/Modules.php:430
 #: includes/Modules/DropCapText.php:40
 msgid "Drop Cap Text"
 msgstr "ক্যাপ টেক্সট ড্রপ করুন"
@@ -1493,7 +1493,7 @@ msgstr "ক্যাপ টেক্সট ড্রপ করুন"
 msgid "Drop Cap Texts"
 msgstr "ক্যাপ টেক্সট বাদ দিন"
 
-#: includes/Managers/Features/Modules.php:148
+#: includes/Managers/Features/Modules.php:149
 #: includes/Modules/DualButton.php:44
 msgid "Dual Button"
 msgstr "ডুয়াল বাটন"
@@ -1502,12 +1502,12 @@ msgstr "ডুয়াল বাটন"
 msgid "Dual Buttons"
 msgstr "ডুয়াল বাটনসমূহ"
 
-#: includes/Managers/Features/Modules.php:190
-#: includes/Managers/Features/Modules.php:348
+#: includes/Managers/Features/Modules.php:191
+#: includes/Managers/Features/Modules.php:349
 msgid "Dynamic Content Modules"
 msgstr "ডায়নামিক কন্টেন্ট মডিউল"
 
-#: includes/Managers/Features/Modules.php:88
+#: includes/Managers/Features/Modules.php:89
 msgid "Easily organize and display your taxonomy enhancing user experience."
 msgstr "সহজেই সংগঠিত এবং আপনার শ্রেণীবিন্যাস প্রদর্শন ব্যবহারকারীর অভিজ্ঞতা বৃদ্ধি."
 
@@ -1531,31 +1531,31 @@ msgstr "প্রভাব 04"
 msgid "Effect 05"
 msgstr "প্রভাব 05"
 
-#: includes/Managers/Features/Modules.php:164
+#: includes/Managers/Features/Modules.php:165
 msgid "Effortlessly add animated elements for a more engaging website experience"
 msgstr "আরও আকর্ষক ওয়েবসাইট অভিজ্ঞতার জন্য অনায়াসে অ্যানিমেটেড উপাদান যোগ করুন"
 
-#: includes/Managers/Features/Modules.php:276
+#: includes/Managers/Features/Modules.php:277
 msgid "Effortlessly create stunning galleries to engage and captivate your audience."
 msgstr "অনায়াসে অত্যাশ্চর্য গ্যালারি তৈরি করুন যাতে আপনার দর্শকদের আকৃষ্ট করা যায়।"
 
-#: includes/Managers/Features/Modules.php:291
+#: includes/Managers/Features/Modules.php:292
 msgid "Effortlessly customize Contact Form 7 design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "অনায়াসে যোগাযোগ ফর্ম 7 ডিজাইন কাস্টমাইজ করুন। রঙ, ফন্ট, ব্যবধান সামঞ্জস্য করুন এবং আপনার পছন্দসই চেহারার জন্য CSS যোগ করুন।"
 
-#: includes/Managers/Features/Modules.php:493
+#: includes/Managers/Features/Modules.php:494
 msgid "Effortlessly customize Fluent Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "অনায়াসে ফ্লুয়েন্ট ফর্ম ডিজাইন কাস্টমাইজ করুন। রঙ, ফন্ট, ব্যবধান সামঞ্জস্য করুন এবং আপনার পছন্দসই চেহারার জন্য CSS যোগ করুন।"
 
-#: includes/Managers/Features/Modules.php:323
+#: includes/Managers/Features/Modules.php:324
 msgid "Effortlessly customize Gravity Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "অনায়াসে গ্র্যাভিটি ফর্ম ডিজাইন কাস্টমাইজ করুন। রঙ, ফন্ট, ব্যবধান সামঞ্জস্য করুন এবং আপনার পছন্দসই চেহারার জন্য CSS যোগ করুন।"
 
-#: includes/Managers/Features/Modules.php:475
+#: includes/Managers/Features/Modules.php:476
 msgid "Effortlessly customize Ninja Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "অনায়াসে নিনজা ফর্ম ডিজাইন কাস্টমাইজ করুন। রঙ, ফন্ট, ব্যবধান সামঞ্জস্য করুন এবং আপনার পছন্দসই চেহারার জন্য CSS যোগ করুন।"
 
-#: includes/Managers/Features/Modules.php:307
+#: includes/Managers/Features/Modules.php:308
 msgid "Effortlessly customize WP Forms design. Adjust colors, fonts, spacing, and add CSS for your desired look."
 msgstr "অনায়াসে WP ফর্ম ডিজাইন কাস্টমাইজ করুন। রঙ, ফন্ট, ব্যবধান সামঞ্জস্য করুন এবং আপনার পছন্দসই চেহারার জন্য CSS যোগ করুন।"
 
@@ -1612,11 +1612,11 @@ msgstr "উপাদান অনুভূমিক প্রান্তিক�
 msgid "Elements Vertical Alignment"
 msgstr "উপাদান উল্লম্ব প্রান্তিককরণ"
 
-#: includes/Managers/Features/Modules.php:43
+#: includes/Managers/Features/Modules.php:44
 msgid "Elevate your content presentation providing versatile and stylish list formats for a captivating user experience."
 msgstr "একটি মনোমুগ্ধকর ব্যবহারকারীর অভিজ্ঞতার জন্য বহুমুখী এবং আড়ম্বরপূর্ণ তালিকা বিন্যাস প্রদান করে আপনার বিষয়বস্তু উপস্থাপনাকে উন্নত করুন।"
 
-#: includes/Managers/Features/Modules.php:106
+#: includes/Managers/Features/Modules.php:107
 msgid "Elevate your website bringing a sleek and interactive touch to content presentation."
 msgstr "বিষয়বস্তু উপস্থাপনায় একটি মসৃণ এবং ইন্টারেক্টিভ স্পর্শ এনে আপনার ওয়েবসাইটটিকে উন্নত করুন।"
 
@@ -1676,23 +1676,23 @@ msgstr "সাফ সক্ষম করুন"
 msgid "Enable Text Limit"
 msgstr "পাঠ্য সীমা সক্ষম করুন"
 
-#: includes/Managers/Features/Extensions.php:72
+#: includes/Managers/Features/Extensions.php:73
 msgid "Enable this feature only if you would like add Divi library shortcode feature."
 msgstr "আপনি যদি Divi লাইব্রেরি শর্টকোড বৈশিষ্ট্য যোগ করতে চান তবেই এই বৈশিষ্ট্যটি সক্ষম করুন৷"
 
-#: includes/Managers/Features/Extensions.php:83
+#: includes/Managers/Features/Extensions.php:84
 msgid "Enable this feature only if you would like add Post or Page coping feature."
 msgstr "আপনি পোস্ট বা পৃষ্ঠা মোকাবেলা বৈশিষ্ট্য যোগ করতে চাইলে শুধুমাত্র এই বৈশিষ্ট্যটি সক্ষম করুন৷"
 
-#: includes/Managers/Features/Extensions.php:61
+#: includes/Managers/Features/Extensions.php:62
 msgid "Enable this feature only if you would like allow Font file through WordPress Media Uploader."
 msgstr "আপনি ওয়ার্ডপ্রেস মিডিয়া আপলোডারের মাধ্যমে ফন্ট ফাইলের অনুমতি দিতে চাইলে শুধুমাত্র এই বৈশিষ্ট্যটি সক্ষম করুন৷"
 
-#: includes/Managers/Features/Extensions.php:39
+#: includes/Managers/Features/Extensions.php:40
 msgid "Enable this feature only if you would like allow JSON file through WordPress Media Uploader."
 msgstr "আপনি যদি ওয়ার্ডপ্রেস মিডিয়া আপলোডারের মাধ্যমে JSON ফাইলের অনুমতি দিতে চান তবেই এই ফিচারটি চালু করুন৷"
 
-#: includes/Managers/Features/Extensions.php:50
+#: includes/Managers/Features/Extensions.php:51
 msgid "Enable this feature only if you would like allow svg file through WordPress Media Uploader."
 msgstr "আপনি যদি ওয়ার্ডপ্রেস মিডিয়া আপলোডারের মাধ্যমে svg ফাইলের অনুমতি দিতে চান তবেই এই ফিচারটি চালু করুন৷"
 
@@ -1704,15 +1704,15 @@ msgstr "সক্রিয় এক্সটেনশন সংরক্ষি�
 msgid "End Time"
 msgstr "শেষ সময়"
 
-#: includes/Managers/Features/Modules.php:445
+#: includes/Managers/Features/Modules.php:446
 msgid "Engage visitors with customizable video popups for YouTube and Vimeo."
 msgstr "YouTube এবং Vimeo-এর জন্য কাস্টমাইজযোগ্য ভিডিও পপআপের মাধ্যমে দর্শকদের আকৃষ্ট করুন।"
 
-#: includes/Managers/Features/Modules.php:261
+#: includes/Managers/Features/Modules.php:262
 msgid "Engage your visitors with interactive image comparisons."
 msgstr "ইন্টারেক্টিভ ইমেজ তুলনা দিয়ে আপনার দর্শকদের জড়িত করুন."
 
-#: includes/Managers/Features/Modules.php:415
+#: includes/Managers/Features/Modules.php:416
 msgid "Enhance navigation with a clear path for users to trace their steps through your website."
 msgstr "ব্যবহারকারীদের আপনার ওয়েবসাইটের মাধ্যমে তাদের পদক্ষেপগুলি ট্রেস করার জন্য একটি পরিষ্কার পথ দিয়ে নেভিগেশন উন্নত করুন৷"
 
@@ -1766,7 +1766,7 @@ msgctxt "et_builder"
 msgid "<p>Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content in the module Design settings and even apply custom CSS to this text in the module Advanced settings.</p>"
 msgstr "<p>আপনার সামগ্রিক বিষয়বস্তুটি এখানে যায়। এই টেক্সটটি ইনলাইনে বা মডিউল কনটেন্ট সেটিংসে সম্পাদনা বা সরানো যাতে পারে। আপনি মডিউল ডিজাইন সেটিংসে এই বিষয়বস্তুর প্রতিটি দিকের স্টাইল করতে পারেন এবং এই টেক্সটে কাস্টম CSS প্রয়োগ করতে পারেন মডিউল এডভান্সড সেটিংসে।</p>"
 
-#: includes/Managers/Assets/Admin.php:198
+#: includes/Managers/Assets/Admin.php:213
 msgid "Extension"
 msgstr "এক্সটেনশন"
 
@@ -1884,7 +1884,7 @@ msgstr "নামের প্রথম অংশ"
 msgid "Flip Animation"
 msgstr "ফ্লিপ অ্যানিমেশন"
 
-#: includes/Managers/Features/Modules.php:227
+#: includes/Managers/Features/Modules.php:228
 #: includes/Modules/FlipBox.php:45
 msgid "Flip Box"
 msgstr "ফ্লিপ বাক্স"
@@ -1905,7 +1905,7 @@ msgstr "ফ্লিপ সেটিংস"
 msgid "Flip the mask horizontally or vertically to change the shape and its direction."
 msgstr "আকৃতি এবং এর দিক পরিবর্তন করতে মাস্কটি অনুভূমিকভাবে বা উল্লম্বভাবে ফ্লিপ করুন।"
 
-#: includes/Managers/Features/Modules.php:492
+#: includes/Managers/Features/Modules.php:493
 #: includes/Modules/FormStylers/FluentForms.php:38
 #: includes/Modules/FormStylers/FluentForms.php:39
 msgid "Fluent Forms"
@@ -1943,11 +1943,11 @@ msgstr "ফর্ম কনফিগার ডেটা উপলব্ধ ন�
 msgid "Form has not been submitted, please see the errors below."
 msgstr "ফর্ম জমা দেওয়া হয়নি, দয়া করে নীচের ত্রুটিগুলি দেখুন৷"
 
-#: includes/Managers/Features/Modules.php:301
-#: includes/Managers/Features/Modules.php:315
-#: includes/Managers/Features/Modules.php:333
-#: includes/Managers/Features/Modules.php:485
-#: includes/Managers/Features/Modules.php:503
+#: includes/Managers/Features/Modules.php:302
+#: includes/Managers/Features/Modules.php:316
+#: includes/Managers/Features/Modules.php:334
+#: includes/Managers/Features/Modules.php:486
+#: includes/Managers/Features/Modules.php:504
 msgid "Form Styler Modules"
 msgstr "ফর্ম স্টাইলার মডিউল"
 
@@ -2107,7 +2107,7 @@ msgstr "গ্লিচ প্রভাব"
 msgid "Glitch Settings"
 msgstr "গ্লিচ সেটিংস"
 
-#: includes/Managers/Features/Modules.php:355
+#: includes/Managers/Features/Modules.php:356
 #: includes/Modules/GlitchText.php:38
 #: includes/Modules/GlitchText.php:59
 #: includes/Modules/GlitchText.php:95
@@ -2135,7 +2135,7 @@ msgstr "প্লাগইন-এ যান"
 msgid "Google API Key"
 msgstr "গুগল ম্যাপ এপিআই কী"
 
-#: includes/Managers/Features/Modules.php:459
+#: includes/Managers/Features/Modules.php:460
 #: includes/Modules/GoogleMap.php:42
 msgid "Google Embed Map"
 msgstr "Google এম্বেড মানচিত্র"
@@ -2156,7 +2156,7 @@ msgstr "গ্রেডিয়েন্ট"
 msgid "Gradient Colors"
 msgstr "গ্রেডিয়েন্ট রং"
 
-#: includes/Managers/Features/Modules.php:370
+#: includes/Managers/Features/Modules.php:371
 #: includes/Modules/GradientText.php:38
 #: includes/Modules/GradientText.php:62
 #: includes/Modules/GradientText.php:108
@@ -2172,7 +2172,7 @@ msgstr "গ্রেডিয়েন্ট টেক্সট ট্যাগ"
 msgid "Gradient Texts"
 msgstr "গ্রেডিয়েন্ট টেক্সট"
 
-#: includes/Managers/Features/Modules.php:322
+#: includes/Managers/Features/Modules.php:323
 #: includes/Modules/FormStylers/GravityForms.php:35
 #: includes/Modules/FormStylers/GravityForms.php:36
 msgid "Gravity Forms"
@@ -3286,11 +3286,11 @@ msgstr "ইমেজ"
 msgid "Image & Icon"
 msgstr "ছবি এবং আইকন"
 
-#: includes/Managers/Features/Modules.php:171
-#: includes/Managers/Features/Modules.php:220
-#: includes/Managers/Features/Modules.php:268
-#: includes/Managers/Features/Modules.php:283
-#: includes/Managers/Features/Modules.php:452
+#: includes/Managers/Features/Modules.php:172
+#: includes/Managers/Features/Modules.php:221
+#: includes/Managers/Features/Modules.php:269
+#: includes/Managers/Features/Modules.php:284
+#: includes/Managers/Features/Modules.php:453
 msgid "Image & Media Modules"
 msgstr "ছবি ও মিডিয়া মডিউল"
 
@@ -3333,7 +3333,7 @@ msgstr "ইমেজ ফোর্স পূর্ণ-প্রস্থ"
 msgid "Image Galleries"
 msgstr "ইমেজ গ্যালারি"
 
-#: includes/Managers/Features/Modules.php:275
+#: includes/Managers/Features/Modules.php:276
 #: includes/Modules/ImageGallery.php:55
 msgid "Image Gallery"
 msgstr "ছবির গ্যালারি"
@@ -3356,7 +3356,7 @@ msgstr "ছবির অনুভূমিক অবস্থান"
 msgid "Image Label Text"
 msgstr "চিত্র লেবেল পাঠ্য"
 
-#: includes/Managers/Features/Modules.php:212
+#: includes/Managers/Features/Modules.php:213
 #: includes/Modules/ImageMask.php:38
 msgid "Image Mask"
 msgstr "ইমেজ মাস্ক"
@@ -3499,7 +3499,7 @@ msgstr "আপনার প্রাথমিক প্রশাসক অ্য
 msgid "Instead of providing your primary FTP account, create a new FTP user that can be disabled when the support case is closed."
 msgstr "আপনার প্রাথমিক FTP অ্যাকাউন্ট প্রদান করার পরিবর্তে, একটি নতুন FTP ব্যবহারকারী তৈরি করুন যা সমর্থন কেস বন্ধ হয়ে গেলে অক্ষম করা যেতে পারে।"
 
-#: includes/Managers/Features/Modules.php:149
+#: includes/Managers/Features/Modules.php:150
 msgid "It allows you to display two buttons side by side with customizable styles and text."
 msgstr "এটি আপনাকে কাস্টমাইজযোগ্য শৈলী এবং পাঠ্য সহ দুটি বোতাম পাশাপাশি প্রদর্শন করতে দেয়।"
 
@@ -3519,7 +3519,7 @@ msgstr "কমিউনিটিতে যোগ দিন"
 msgid "Join the user community and discuss with fellow developers & users."
 msgstr "ব্যবহারকারীর কমিউনিটিতে যোগ দিয়ে ডেভলপার ও ব্যবহারকারীদের সাথে যুক্ত থাকুন।"
 
-#: includes/Managers/Features/Extensions.php:38
+#: includes/Managers/Features/Extensions.php:39
 msgid "JSON File Upload Support"
 msgstr "JSON ফাইল আপলোড সমর্থন"
 
@@ -3703,7 +3703,7 @@ msgstr "লটি কন্টেইনার"
 msgid "Lottie Height"
 msgstr "লটি উচ্চতা"
 
-#: includes/Managers/Features/Modules.php:163
+#: includes/Managers/Features/Modules.php:164
 #: includes/Modules/Lottie.php:41
 msgid "Lottie Image"
 msgstr "লটি ছবি"
@@ -3730,7 +3730,7 @@ msgstr "প্রেমময় স্কোয়াড মডিউল লা
 msgid "Main Content"
 msgstr "মূল"
 
-#: includes/Managers/Features/Modules.php:70
+#: includes/Managers/Features/Modules.php:71
 msgid "Make a bold statement offering enhanced customization and design options for impactful and visually stunning headings."
 msgstr "প্রভাবশালী এবং দৃশ্যত অত্যাশ্চর্য শিরোনামগুলির জন্য উন্নত কাস্টমাইজেশন এবং ডিজাইনের বিকল্পগুলি অফার করে একটি সাহসী বিবৃতি তৈরি করুন৷"
 
@@ -3903,7 +3903,7 @@ msgstr "পরিবর্তিত"
 msgid "Modified Date"
 msgstr "পরিবর্তিত তারিখ"
 
-#: includes/Managers/Assets/Admin.php:197
+#: includes/Managers/Assets/Admin.php:212
 #: includes/Managers/Menus/AdminMenu.php:73
 msgid "Modules"
 msgstr "মডিউলস"
@@ -4145,7 +4145,7 @@ msgstr "ডাকনাম"
 msgid "Nightly"
 msgstr "রাত্রিবেলা"
 
-#: includes/Managers/Features/Modules.php:474
+#: includes/Managers/Features/Modules.php:475
 #: includes/Modules/FormStylers/NinjaForms.php:36
 #: includes/Modules/FormStylers/NinjaForms.php:37
 msgid "Ninja Forms"
@@ -4477,7 +4477,7 @@ msgstr "পোর্ট্রেট"
 msgid "Post Count"
 msgstr "পোস্ট গননা"
 
-#: includes/Managers/Features/Modules.php:182
+#: includes/Managers/Features/Modules.php:183
 #: includes/Modules/PostGridChild.php:46
 msgid "Post Element"
 msgstr "পোস্টের উপাদান"
@@ -4486,7 +4486,7 @@ msgstr "পোস্টের উপাদান"
 msgid "Post Elements"
 msgstr "পোস্টের উপাদানসমূহ"
 
-#: includes/Managers/Features/Modules.php:179
+#: includes/Managers/Features/Modules.php:180
 #: includes/Modules/PostGrid.php:77
 msgid "Post Grid"
 msgstr "পোস্ট গ্রিড"
@@ -4499,7 +4499,7 @@ msgstr "পোস্ট গ্রিডসমূহ"
 msgid "Post Offset"
 msgstr "পোস্ট অফসেট"
 
-#: includes/Managers/Features/Modules.php:340
+#: includes/Managers/Features/Modules.php:341
 #: includes/Modules/PostReadingTime.php:45
 msgid "Post Reading Time"
 msgstr "পোস্ট পড়ার সময়"
@@ -4711,7 +4711,7 @@ msgstr "রাইট বাটন লিঙ্ক URL"
 msgid "Right Button Text"
 msgstr "ডান বাটন টেক্সট"
 
-#: includes/Managers/Features/Modules.php:460
+#: includes/Managers/Features/Modules.php:461
 #, fuzzy
 msgid "Right into your Divi's site easily without having to worry about anything else."
 msgstr "Google এম্বেড ম্যাপ সরাসরি আপনার Divi এর সাইটে অন্য কিছু নিয়ে চিন্তা না করে সহজেই।"
@@ -4753,7 +4753,7 @@ msgstr "স্ক্রোলিং প্লেসহোল্ডার পা�
 msgid "Scrolling Settings"
 msgstr "স্ক্রোলিং সেটিংস"
 
-#: includes/Managers/Features/Modules.php:384
+#: includes/Managers/Features/Modules.php:385
 #: includes/Modules/ScrollingText.php:39
 #: includes/Modules/ScrollingText.php:60
 #: includes/Modules/ScrollingText.php:102
@@ -4923,7 +4923,7 @@ msgstr "লিংকের বিবরণ প্রদর্শন করুন
 msgid "Show Form Title"
 msgstr "ফর্মের শিরোনাম দেখান"
 
-#: includes/Managers/Features/Modules.php:341
+#: includes/Managers/Features/Modules.php:342
 msgid "Show how long it takes to read your blog posts. Useful for readers planning their time."
 msgstr "আপনার ব্লগ পোস্ট পড়তে কতক্ষণ লাগে তা দেখান। পাঠকদের তাদের সময় পরিকল্পনা জন্য দরকারী."
 
@@ -4997,11 +4997,11 @@ msgstr "হোভার উপর শিরোনাম আইকন দেখ�
 msgid "Show Your Love"
 msgstr "আপনার ভালোবাসা প্রকাশ করুন"
 
-#: includes/Managers/Features/Modules.php:97
+#: includes/Managers/Features/Modules.php:98
 msgid "Showcase your Custom Post Types creating a visually appealing grid layout."
 msgstr "একটি দৃশ্যমান আকর্ষণীয় গ্রিড লেআউট তৈরি করে আপনার কাস্টম পোস্টের ধরনগুলি প্রদর্শন করুন৷"
 
-#: includes/Managers/Features/Modules.php:61
+#: includes/Managers/Features/Modules.php:62
 msgid "Showcase your users allowing you to display user profiles in a sleek and customizable list format."
 msgstr "আপনার ব্যবহারকারীদের প্রদর্শন করুন যা আপনাকে ব্যবহারকারীর প্রোফাইলগুলিকে একটি মসৃণ এবং কাস্টমাইজযোগ্য তালিকা বিন্যাসে প্রদর্শন করার অনুমতি দেয়৷"
 
@@ -5084,7 +5084,7 @@ msgstr "স্তুপীকৃত"
 msgid "Star"
 msgstr "তারা"
 
-#: includes/Managers/Features/Modules.php:399
+#: includes/Managers/Features/Modules.php:400
 #: includes/Modules/StarRating.php:38
 msgid "Star Rating"
 msgstr "তারকা রেটিং"
@@ -5198,7 +5198,7 @@ msgstr "সমর্থন প্রকার"
 msgid "SVG"
 msgstr "SVG"
 
-#: includes/Managers/Features/Extensions.php:49
+#: includes/Managers/Features/Extensions.php:50
 msgid "SVG Image Upload Support"
 msgstr "SVG ছবি আপলোড সমর্থন"
 
@@ -5218,7 +5218,7 @@ msgstr "ট্যাগ বিভাজক"
 msgid "Take your 2 minutes to review the plugin and spread the love to encourage us to keep it going."
 msgstr "প্লাগইন পর্যালোচনা করতে আপনার 2 মিনিট সময় নিন এবং এটি চালিয়ে যেতে আমাদের উত্সাহিত করতে ভালবাসা ছড়িয়ে দিন।"
 
-#: includes/Managers/Features/Modules.php:87
+#: includes/Managers/Features/Modules.php:88
 msgid "Taxonomy List"
 msgstr "শ্রেণীবিন্যাস তালিকা"
 
@@ -5732,7 +5732,7 @@ msgstr "প্রতি"
 msgid "Top"
 msgstr "উপরে"
 
-#: includes/Managers/Features/Modules.php:79
+#: includes/Managers/Features/Modules.php:80
 msgid "Transform your content offering dynamic and customizable sliders to captivate your audience effortlessly."
 msgstr "অনায়াসে আপনার শ্রোতাদের মোহিত করতে গতিশীল এবং কাস্টমাইজযোগ্য স্লাইডার অফার করে আপনার সামগ্রীকে রূপান্তর করুন।"
 
@@ -5803,7 +5803,7 @@ msgstr "টাইপিং সেটিংস"
 msgid "Typing Speed (ms)"
 msgstr "টাইপিং গতি ( এমএস )"
 
-#: includes/Managers/Features/Modules.php:197
+#: includes/Managers/Features/Modules.php:198
 #: includes/Modules/TypingText.php:41
 #: includes/Modules/TypingText.php:293
 msgid "Typing Text"
@@ -5945,7 +5945,7 @@ msgstr "সেপারেটর আইকন ব্যবহার করুন
 msgid "Use Text Box"
 msgstr "টেক্সট বক্স ব্যবহার করুন"
 
-#: includes/Managers/Features/Modules.php:60
+#: includes/Managers/Features/Modules.php:61
 msgid "User List"
 msgstr "ব্যবহারকারীর তালিকা"
 
@@ -5976,7 +5976,7 @@ msgstr "উল্লম্বভাবে কেন্দ্রীভূত"
 msgid "Video MP4 File"
 msgstr "ভিডিও MP4 ফাইল"
 
-#: includes/Managers/Features/Modules.php:444
+#: includes/Managers/Features/Modules.php:445
 #: includes/Modules/VideoPopup.php:45
 msgid "Video Popup"
 msgstr "ভিডিও পপআপ"
@@ -6033,7 +6033,7 @@ msgstr "আমরা যত তাড়াতাড়ি সম্ভব আ�
 msgid "What would you like to know before purchasing?"
 msgstr "কেনার আগে আপনি কি জানতে চান?"
 
-#: includes/Managers/Assets/Admin.php:199
+#: includes/Managers/Assets/Admin.php:214
 #: includes/Managers/Menus/AdminMenu.php:83
 msgid "What's New"
 msgstr "নতুন কি"
@@ -6063,7 +6063,7 @@ msgstr "WordPress.org"
 msgid "Words Per Minute"
 msgstr "প্রতি মিনিটে শব্দ"
 
-#: includes/Managers/Features/Modules.php:306
+#: includes/Managers/Features/Modules.php:307
 #: includes/Modules/FormStylers/WPForms.php:44
 #: includes/Modules/FormStylers/WPForms.php:45
 msgid "WP Forms"
@@ -6318,41 +6318,65 @@ msgstr ""
 msgid "Activate %s"
 msgstr ""
 
-#: includes/Managers/Features/Extensions.php:44
-#: includes/Managers/Features/Extensions.php:55
-#: includes/Managers/Features/Extensions.php:66
+#: includes/Managers/Emails/ErrorReport.php:101
+msgid "Failed to send error report email."
+msgstr ""
+
+#. translators: %s Error field name.
+#: includes/Managers/Emails/ErrorReport.php:125
+msgid "%s is required for error reporting."
+msgstr ""
+
+#: includes/Managers/Emails/ErrorReport.php:200
+msgid "Error report email template not found."
+msgstr ""
+
+#: includes/Managers/Features/Extensions.php:45
+#: includes/Managers/Features/Extensions.php:56
+#: includes/Managers/Features/Extensions.php:67
 msgid "Media Upload"
 msgstr ""
 
-#: includes/Managers/Features/Extensions.php:77
-#: includes/Managers/Features/Extensions.php:89
+#: includes/Managers/Features/Extensions.php:78
+#: includes/Managers/Features/Extensions.php:90
 msgid "Enhancement"
 msgstr ""
 
-#: includes/Managers/Features/Modules.php:47
-#: includes/Managers/Features/Modules.php:56
-#: includes/Managers/Features/Modules.php:65
-#: includes/Managers/Features/Modules.php:74
-#: includes/Managers/Features/Modules.php:83
-#: includes/Managers/Features/Modules.php:92
-#: includes/Managers/Features/Modules.php:101
-#: includes/Managers/Features/Modules.php:110
+#: includes/Managers/Features/Modules.php:48
+#: includes/Managers/Features/Modules.php:57
+#: includes/Managers/Features/Modules.php:66
+#: includes/Managers/Features/Modules.php:75
+#: includes/Managers/Features/Modules.php:84
+#: includes/Managers/Features/Modules.php:93
+#: includes/Managers/Features/Modules.php:102
+#: includes/Managers/Features/Modules.php:111
 msgid "Premium Modules"
 msgstr ""
 
-#: includes/Managers/RestRoutes/Version1/Extensions.php:106
-#: includes/Managers/RestRoutes/Version1/Modules.php:106
+#: includes/Managers/RestRoutes/Version1/Extensions.php:107
+#: includes/Managers/RestRoutes/Version1/Modules.php:107
 #: includes/Managers/RestRoutes/Version1/Notices/Discount.php:60
 #: includes/Managers/RestRoutes/Version1/Notices/ProActivation.php:60
 #: includes/Managers/RestRoutes/Version1/Notices/Review.php:87
 msgid "You do not have permissions to perform this action."
 msgstr ""
 
-#: includes/Managers/RestRoutes/Version1/Extensions.php:190
+#: includes/Managers/RestRoutes/Version1/Extensions.php:189
 msgid "Invalid parameter: active_extensions must be an array of strings."
 msgstr ""
 
-#: includes/Managers/RestRoutes/Version1/Extensions.php:205
+#. translators: %s: comma-separated list of invalid module names
+#: includes/Managers/RestRoutes/Version1/Extensions.php:214
+msgid "Invalid extension names provided: %s"
+msgstr ""
+
+#. translators: %s: comma-separated list of invalid module names
+#: includes/Managers/RestRoutes/Version1/Extensions.php:231
+#: includes/Managers/RestRoutes/Version1/Modules.php:216
+msgid "Invalid module names provided: %s"
+msgstr ""
+
+#: includes/Managers/RestRoutes/Version1/Extensions.php:245
 msgid "The list of active extensions has been updated."
 msgstr ""
 
@@ -6360,16 +6384,11 @@ msgstr ""
 msgid "You do not have permissions to duplicate posts."
 msgstr ""
 
-#: includes/Managers/RestRoutes/Version1/Modules.php:192
+#: includes/Managers/RestRoutes/Version1/Modules.php:191
 msgid "Invalid parameter: active_modules must be an array of strings."
 msgstr ""
 
-#. translators: %s: comma-separated list of invalid module names
-#: includes/Managers/RestRoutes/Version1/Modules.php:207
-msgid "Invalid module names provided: %s"
-msgstr ""
-
-#: includes/Managers/RestRoutes/Version1/Modules.php:221
+#: includes/Managers/RestRoutes/Version1/Modules.php:243
 msgid "The list of active modules has been updated."
 msgstr ""
 

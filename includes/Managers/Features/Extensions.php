@@ -13,6 +13,7 @@ namespace DiviSquad\Managers\Features;
 use DiviSquad\Base\Extension;
 use DiviSquad\Base\Factories\SquadFeatures as ManagerBase;
 use DiviSquad\Base\Memory;
+use DiviSquad\Managers\Emails\ErrorReport;
 use DiviSquad\Utils\Polyfills\Arr;
 use function divi_squad;
 use function esc_html__;
@@ -145,22 +146,36 @@ class Extensions extends ManagerBase {
 	 * @return void
 	 */
 	protected function load_extensions_files( $path, $memory ) {
-		// Retrieve total active extensions and current version from the memory.
-		$current_version     = $memory->get( 'version' );
-		$active_extensions   = $memory->get( 'active_extensions' );
-		$inactive_extensions = $memory->get( 'inactive_extensions', array() );
+		try {
+			// Retrieve total active extensions and current version from the memory.
+			$current_version     = $memory->get( 'version' );
+			$active_extensions   = $memory->get( 'active_extensions' );
+			$inactive_extensions = $memory->get( 'inactive_extensions', array() );
 
-		// Get all registered and default extensions.
-		$features = $this->get_registered_list();
-		$defaults = $this->get_default_registries();
+			// Get all registered and default extensions.
+			$features = $this->get_registered_list();
+			$defaults = $this->get_default_registries();
 
-		// Get verified active modules.
-		$activated = $this->get_verified_registries( $features, $defaults, $active_extensions, $inactive_extensions, $current_version );
+			// Get verified active modules.
+			$activated = $this->get_verified_registries( $features, $defaults, $active_extensions, $inactive_extensions, $current_version );
 
-		foreach ( $activated as $extension ) {
-			if ( isset( $extension['classes']['root_class'] ) ) {
-				new $extension['classes']['root_class']();
+			foreach ( $activated as $extension ) {
+				if ( isset( $extension['classes']['root_class'] ) ) {
+					new $extension['classes']['root_class']();
+				}
 			}
+		} catch ( \Exception $e ) {
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			error_log( sprintf( 'SQUAD ERROR: %s', $e->getMessage() ) );
+			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_error_log
+
+			// Send an error report.
+			ErrorReport::quick_send(
+				$e,
+				array(
+					'additional_info' => 'An error message from extension loader.',
+				)
+			);
 		}
 	}
 }

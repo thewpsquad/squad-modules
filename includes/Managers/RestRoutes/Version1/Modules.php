@@ -14,6 +14,7 @@
 namespace DiviSquad\Managers\RestRoutes\Version1;
 
 use DiviSquad\Base\Factories\RestRoute\Route;
+use DiviSquad\Managers\Emails\ErrorReport;
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
@@ -187,26 +188,47 @@ class Modules extends Route {
 		$active_modules = $request->get_json_params();
 
 		if ( ! is_array( $active_modules ) ) {
+			$error_message = esc_html__( 'Invalid parameter: active_modules must be an array of strings.', 'squad-modules-for-divi' );
+
+			// Send an error report.
+			ErrorReport::quick_send(
+				new \Exception( $error_message ),
+				array(
+					'additional_info' => 'An error message from lite modules rest api.',
+				)
+			);
+
+			// Send error message to the frontend.
 			return new WP_Error(
 				'invalid_parameter',
-				__( 'Invalid parameter: active_modules must be an array of strings.', 'squad-modules-for-divi' ),
+				$error_message,
 				array( 'status' => 400 )
 			);
 		}
 
 		$active_modules   = array_values( array_map( 'sanitize_text_field', $active_modules ) );
-		$all_modules      = divi_squad()->modules->get_registered_list();
-		$all_module_names = array_column( $all_modules, 'name' );
-		$invalid_modules  = array_diff( $active_modules, $all_modules );
+		$all_module_names = array_column( divi_squad()->modules->get_registered_list(), 'name' );
+		$invalid_modules  = array_diff( $active_modules, $all_module_names );
 
 		if ( ! empty( $invalid_modules ) ) {
+			$error_message = sprintf(
+			/* translators: %s: comma-separated list of invalid module names */
+				esc_html__( 'Invalid module names provided: %s', 'squad-modules-for-divi' ),
+				implode( ', ', $invalid_modules )
+			);
+
+			// Send an error report.
+			ErrorReport::quick_send(
+				new \Exception( $error_message ),
+				array(
+					'additional_info' => 'An error message from lite modules rest api.',
+				)
+			);
+
+			// Send error message to the frontend.
 			return new WP_Error(
 				'invalid_module',
-				sprintf(
-				/* translators: %s: comma-separated list of invalid module names */
-					esc_html__( 'Invalid module names provided: %s', 'squad-modules-for-divi' ),
-					implode( ', ', $invalid_modules )
-				),
+				$error_message,
 				array( 'status' => 400 )
 			);
 		}
