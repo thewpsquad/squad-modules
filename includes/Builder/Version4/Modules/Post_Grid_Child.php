@@ -1296,7 +1296,7 @@ class Post_Grid_Child extends Child_Module {
 	 * @return void
 	 */
 	private function squad_generate_element_title_font_icon_styles( array $attrs ): void {
-		if ( isset( $attrs['element_title_icon__enable'] ) && 'on' === $attrs['element_title_icon__enable'] && '' !== $attrs['element_title_icon'] ) {
+		if ( isset( $attrs['element_title_icon__enable'] ) && 'on' === $attrs['element_title_icon__enable'] && '' !== ( $attrs['element_title_icon'] ?? '' ) ) {
 			$this->props = array_merge( $this->props, $attrs );
 
 			// Load font Awesome css for frontend.
@@ -1528,7 +1528,7 @@ class Post_Grid_Child extends Child_Module {
 				'row-reverse' => '0 0 0 -#px',
 			);
 
-			if ( 'on' === $attrs['element_icon_hover_move_icon'] ) {
+			if ( 'on' === ( $attrs['element_icon_hover_move_icon'] ?? 'off' ) ) {
 				$mapping_values = array(
 					'column'      => '#px 0 -#px 0',
 					'row'         => '0 -#px 0 #px',

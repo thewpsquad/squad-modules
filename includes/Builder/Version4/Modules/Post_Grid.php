@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
+use DiviSquad\Builder\Utils\Elements\Custom_Fields;
 use DiviSquad\Builder\Utils\Elements\Custom_Fields\Collection_Interface;
 use DiviSquad\Builder\Version4\Abstracts\Module;
 use DiviSquad\Core\Supports\Polyfills\Str;
@@ -1473,7 +1474,7 @@ class Post_Grid extends Module {
 				$this->squad_generate_layout_styles( $attrs );
 
 				// Load font Awesome css for frontend.
-				Divi::inject_fa_icons( $this->prop( 'load_more_button_icon', '&#xx4e;||divi||400' ) );
+				Divi::inject_fa_icons( $this->prop( 'load_more_button_icon', '&#x4e;||divi||400' ) );
 				Divi::inject_fa_icons( $this->prop( 'pagination_old_entries_icon', '&#x3c;||divi||400' ) );
 				Divi::inject_fa_icons( $this->prop( 'pagination_next_entries_icon', '&#x3d;||divi||400' ) );
 
@@ -1597,8 +1598,8 @@ class Post_Grid extends Module {
 			print '</ul>';
 		}
 
-		static::squad_maybe_render_pagination( $post_query, $attrs, $content, $multi_view );
 		static::squad_maybe_render_load_more_button( $post_query, $attrs, $content, $multi_view );
+		static::squad_maybe_render_pagination( $post_query, $attrs, $content, $multi_view );
 
 		/* Restore original Post Data */
 		wp_reset_postdata();
@@ -1721,10 +1722,16 @@ class Post_Grid extends Module {
 	protected static function squad_build_post_query_args( array $attrs, $content = '' ): array {
 		global $paged;
 
+		// On the (public, unauthenticated) load-more request the count arrives in
+		// $attrs from the request body, so cap posts_per_page to bound WP_Query
+		// memory/CPU and prevent a resource-exhaustion DoS. Filterable for layouts
+		// that legitimately need more.
+		$max_per_page = max( 1, (int) apply_filters( 'divi_squad_post_grid_max_posts_per_page', 100 ) );
+
 		$query_args = array(
 			'post_status'    => array( 'publish' ),
 			'perm'           => array( 'readable' ),
-			'posts_per_page' => isset( $attrs['list_post_count'] ) ? absint( $attrs['list_post_count'] ) : 10,
+			'posts_per_page' => min( isset( $attrs['list_post_count'] ) ? absint( $attrs['list_post_count'] ) : 10, $max_per_page ),
 			'orderby'        => isset( $attrs['list_post_order_by'] ) ? sanitize_key( $attrs['list_post_order_by'] ) : 'date',
 			'order'          => isset( $attrs['list_post_order'] ) ? sanitize_key( $attrs['list_post_order'] ) : 'ASC',
 		);
@@ -2097,7 +2104,7 @@ class Post_Grid extends Module {
 	}
 
 	/**
-	 * Render the pagination or load more button.
+	 * Render the load more button.
 	 *
 	 * @param WP_Query                                              $post_query The WP_Query object.
 	 * @param array<string, mixed>                                  $attrs      The module attributes.
@@ -2106,8 +2113,8 @@ class Post_Grid extends Module {
 	 *
 	 * @return void
 	 */
-	protected static function squad_maybe_render_pagination( WP_Query $post_query, array $attrs, $content = null, $multi_view = null ): void {
-		// A valid multi-view instance is required to render the pagination markup.
+	protected static function squad_maybe_render_load_more_button( WP_Query $post_query, array $attrs, $content = null, $multi_view = null ): void {
+		// A valid multi-view instance is required to render the load more markup.
 		if ( ! $multi_view instanceof ET_Builder_Module_Helper_MultiViewOptions ) {
 			return;
 		}
@@ -2223,7 +2230,7 @@ class Post_Grid extends Module {
 	}
 
 	/**
-	 * Render the pagination or load more button.
+	 * Render the pagination.
 	 *
 	 * @param WP_Query                                              $post_query The WP_Query object.
 	 * @param array<string, mixed>                                  $attrs      The module attributes.
@@ -2232,7 +2239,7 @@ class Post_Grid extends Module {
 	 *
 	 * @return void
 	 */
-	protected static function squad_maybe_render_load_more_button( WP_Query $post_query, array $attrs, $content = null, $multi_view = null ): void {
+	protected static function squad_maybe_render_pagination( WP_Query $post_query, array $attrs, $content = null, $multi_view = null ): void {
 		// A valid multi-view instance is required to render the pagination markup.
 		if ( ! $multi_view instanceof ET_Builder_Module_Helper_MultiViewOptions ) {
 			return;
@@ -2254,8 +2261,8 @@ class Post_Grid extends Module {
 			$next_text         = ''; // &#x3d;.
 			$icon_only__enable = $attrs['pagination_icon_only__enable'] ?? 'off';
 			$numbers__enable   = $attrs['pagination_numbers__enable'] ?? 'off';
-			$old_entries_text  = isset( $attrs['pagination_old_entries_text'] ) ? esc_html( $attrs['pagination_old_entries_text'] ) : __( 'Old Entries', 'squad-modules-for-divi' );
-			$next_entries_text = isset( $attrs['pagination_next_entries_text'] ) ? esc_html( $attrs['pagination_next_entries_text'] ) : __( 'Next Entries', 'squad-modules-for-divi' );
+			$old_entries_text  = isset( $attrs['pagination_old_entries_text'] ) ? (string) $attrs['pagination_old_entries_text'] : __( 'Old Entries', 'squad-modules-for-divi' );
+			$next_entries_text = isset( $attrs['pagination_next_entries_text'] ) ? (string) $attrs['pagination_next_entries_text'] : __( 'Next Entries', 'squad-modules-for-divi' );
 
 			// Set icon for pagination prev element.
 			$prev_text .= $multi_view->render_element(
@@ -2904,7 +2911,7 @@ class Post_Grid extends Module {
 	 * @return string
 	 */
 	protected function squad_render_comments_element( array $attrs, WP_Post $post, string $class_name ): string {
-		$comment_before_text = isset( $attrs['element_comment_before'] ) ? sanitize_text_field( (string) $attrs['element_comment_before'] ) : '';
+		$comment_before_text = isset( $attrs['element_comments_before'] ) ? sanitize_text_field( (string) $attrs['element_comments_before'] ) : '';
 		$comment_after_text  = isset( $attrs['element_comments_after'] ) ? sanitize_text_field( (string) $attrs['element_comments_after'] ) : '';
 
 		return sprintf(
@@ -3111,7 +3118,7 @@ class Post_Grid extends Module {
 			return '';
 		}
 
-		$acf_fields     = divi_squad()->custom_fields_element->get( 'custom_fields' );
+		$acf_fields     = divi_squad()->custom_fields_element->get( Custom_Fields::FIELD_ACF );
 		$acf_field_type = isset( $attrs['element_advanced_custom_field_type'] ) ? sanitize_text_field( (string) $attrs['element_advanced_custom_field_type'] ) : 'text';
 
 		// Add new body class when user set advanced custom field image class.
@@ -3181,7 +3188,7 @@ class Post_Grid extends Module {
 				return wp_get_attachment_image( (int) $acf_field_value, array( (int) $acf_image_width, 0 ) );
 
 			default:
-				return $acf_field_value;
+				return (string) $acf_field_value;
 		}
 	}
 

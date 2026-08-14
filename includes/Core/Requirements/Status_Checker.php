@@ -127,6 +127,11 @@ class Status_Checker {
 
 			return $is_fulfilled;
 		} catch ( Throwable $e ) {
+			// Surface unexpected failures (e.g. a TypeError in Divi detection) to the log
+			// instead of silently reporting "requirements not met" and disabling the
+			// plugin. report=false so this never re-enters the error-report pipeline.
+			divi_squad()->log_error( $e, 'Requirements check failed', false );
+
 			$this->last_error = $e->getMessage();
 
 			$this->status['is_fulfilled'] = false;

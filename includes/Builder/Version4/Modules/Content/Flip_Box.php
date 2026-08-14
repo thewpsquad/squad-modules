@@ -3148,7 +3148,7 @@ class Flip_Box extends Module {
 
 			$sub_title_text_element = sprintf(
 				'<div class="slide-element slide-%3$s-element slide-title-wrapper"><%1$s class="slide-sub-title-text">%2$s</%1$s></div>',
-				divi_squad()->d4_module_helper->sanitize_html_tag( (string) $this->prop( "{$slide_type}_sub_title_tag", 'h2' ), 'h2' ),
+				divi_squad()->d4_module_helper->sanitize_html_tag( (string) $this->prop( "{$slide_type}_sub_title_tag", 'h5' ), 'h5' ),
 				wp_kses_post( $sub_title_text ),
 				$slide_type
 			);
@@ -3173,7 +3173,7 @@ class Flip_Box extends Module {
 				)
 			);
 
-			$sub_title_text_element = sprintf(
+			$body_text_element = sprintf(
 				'<div class="slide-element slide-%2$s-element slide-content-wrapper"><span class="slide-content-text">%1$s</span></div>',
 				wp_kses_post( $body_text ),
 				$slide_type
@@ -3225,6 +3225,7 @@ class Flip_Box extends Module {
 
 			if ( 'on' === $button_target ) {
 				$button_attrs['target'] = '_blank';
+				$button_attrs['rel']    = 'noopener noreferrer';
 			} else {
 				$button_attrs['target'] = '_self';
 			}

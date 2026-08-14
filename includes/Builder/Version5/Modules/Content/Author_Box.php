@@ -251,11 +251,18 @@ class Author_Box extends Module {
 			return '';
 		}
 
-		$size = absint( $inner['avatarSize'] ?? 96 );
+		$size   = absint( $inner['avatarSize'] ?? 96 );
+		$avatar = get_avatar( $user->ID, $size, '', esc_attr( $user->display_name ) );
+
+		// Avatars can be disabled site-wide (get_avatar() returns false); don't emit
+		// an empty, still-styled avatar wrapper in that case (matches Divi 4).
+		if ( false === $avatar || '' === (string) $avatar ) {
+			return '';
+		}
 
 		return sprintf(
 			'<div class="squad-author-box__avatar">%s</div>',
-			(string) get_avatar( $user->ID, $size, '', esc_attr( $user->display_name ) )
+			(string) $avatar
 		);
 	}
 

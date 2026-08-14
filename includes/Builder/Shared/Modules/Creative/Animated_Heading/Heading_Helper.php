@@ -169,9 +169,12 @@ final class Heading_Helper {
 	 * @return string
 	 */
 	public static function build_shell( array $config ): string {
-		$tag    = self::is_valid_tag( $config['heading_tag'] ?? 'h2' ) ? $config['heading_tag'] : 'h2';
-		$gran   = self::is_valid_granularity( $config['granularity'] ?? 'word' ) ? $config['granularity'] : 'word';
-		$effect = self::is_valid_effect( $config['effect'] ?? 'fade' ) ? $config['effect'] : 'fade';
+		$tag    = (string) ( $config['heading_tag'] ?? 'h2' );
+		$tag    = self::is_valid_tag( $tag ) ? $tag : 'h2';
+		$gran   = (string) ( $config['granularity'] ?? 'word' );
+		$gran   = self::is_valid_granularity( $gran ) ? $gran : 'word';
+		$effect = (string) ( $config['effect'] ?? 'fade' );
+		$effect = self::is_valid_effect( $effect ) ? $effect : 'fade';
 
 		$classes = array( 'squad-anim-heading', "squad-anim-heading--$effect", "squad-anim-heading--$gran" );
 

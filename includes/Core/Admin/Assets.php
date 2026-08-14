@@ -133,12 +133,12 @@ class Assets implements Hookable {
 		try {
 			// Add common admin data.
 			if ( is_admin() || ( DiviUtil::is_fb_enabled() && is_user_logged_in() ) ) {
-				$global_data = array_merge_recursive( $global_data, $this->get_common_localize_data() );
+				$global_data = array_merge( $global_data, $this->get_common_localize_data() );
 			}
 
 			// Add squad page specific data.
 			if ( HelperUtil::is_squad_page() ) {
-				$global_data = array_merge_recursive( $global_data, $this->get_admin_localize_data() );
+				$global_data = array_merge( $global_data, $this->get_admin_localize_data() );
 			}
 		} catch ( Throwable $e ) {
 			divi_squad()->log_error( $e, 'Failed to add localization data' );
@@ -305,9 +305,12 @@ class Assets implements Hookable {
 			 */
 			return apply_filters( 'divi_squad_premium_status', $status );
 		} catch ( Throwable $e ) {
-			divi_squad()->log_error( $e, 'Failed to get premium status' );
+			divi_squad()->log_error( $e, 'Failed to get premium status', false );
 
+			// status_error lets the React shell show "couldn't load license status"
+			// instead of silently rendering a paying customer as a free/unlicensed user.
 			return array(
+				'status_error' => true,
 				'is_active'    => false,
 				'is_installed' => false,
 				'has_license'  => false,
@@ -352,7 +355,7 @@ class Assets implements Hookable {
 
 			// Brand links consumed by the React shell (what's-new, footer/account).
 			$links = array(
-				'documentation' => 'https://docs.squadmodules.com/' . $utm,
+				'documentation' => 'https://squadmodules.com/docs/' . $utm,
 				'changelog'     => 'https://squadmodules.com/changelog' . $utm,
 			);
 
@@ -378,11 +381,16 @@ class Assets implements Hookable {
 			 */
 			return apply_filters( 'divi_squad_admin_links', $links );
 		} catch ( Throwable $e ) {
-			divi_squad()->log_error( $e, 'Failed to get admin links' );
+			divi_squad()->log_error( $e, 'Failed to get admin links', false );
 
+			// Same key shape as the success path so the React shell's links.account /
+			// links.upgrade / links.pricing lookups don't become undefined on error.
 			return array(
-				'site_url' => home_url( '/' ),
-				'plugins'  => admin_url( 'plugins.php' ),
+				'documentation' => 'https://squadmodules.com/docs/',
+				'changelog'     => 'https://squadmodules.com/changelog',
+				'account'       => '',
+				'upgrade'       => '',
+				'pricing'       => '',
 			);
 		}
 	}

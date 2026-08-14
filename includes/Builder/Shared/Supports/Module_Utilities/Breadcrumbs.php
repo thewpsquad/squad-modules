@@ -76,7 +76,7 @@ class Breadcrumbs {
 		$link_before    = '<li property="itemListElement" typeof="ListItem" class="breadcrumb-list" style="display: inline; list-style: none;">';
 		$link_after     = '</li>';
 		$link_attr      = ' property="item" typeof="WebPage"';
-		$link           = $link_before . '<a' . $link_attr . ' href="%1$s"><span property="name">%2$s<span></a><meta property="position" content="positionhere">' . $link_after;
+		$link           = $link_before . '<a' . $link_attr . ' href="%1$s"><span property="name">%2$s</span></a><meta property="position" content="positionhere">' . $link_after;
 		$delimiter      = $_delimiter;              // Delimiter between crumbs.
 		$before         = '<li class="current">'; // Tag before the current crumb.
 		$after          = '</li>';                // Tag after the current crumb.
@@ -154,7 +154,7 @@ class Breadcrumbs {
 				if ( $post_type_object instanceof \WP_Post_Type ) {
 					$archive_link = get_post_type_archive_link( $post_type );
 					if ( false !== $archive_link ) {
-						$post_type_link = sprintf( $link, esc_url( $archive_link ), $post_type_object->labels->singular_name );
+						$post_type_link = sprintf( $link, esc_url( $archive_link ), esc_html( $post_type_object->labels->singular_name ) );
 						$post_type_link = str_replace( 'positionhere', (string) $position++, $post_type_link );
 					}
 				}
@@ -296,7 +296,7 @@ class Breadcrumbs {
 				$post_type_object = get_post_type_object( $post_type );
 
 				if ( $post_type_object instanceof \WP_Post_Type ) {
-					$trail = $before . $post_type_object->labels->singular_name . $after;
+					$trail = $before . esc_html( $post_type_object->labels->singular_name ) . $after;
 				}
 			}
 		}

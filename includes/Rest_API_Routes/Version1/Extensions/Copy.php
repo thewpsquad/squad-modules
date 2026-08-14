@@ -290,7 +290,7 @@ class Copy extends Base_Route {
 				'divi_squad_rest_copy_error_response',
 				new WP_Error(
 					'rest_error',
-					$e->getMessage(),
+					esc_html__( 'Unable to duplicate the item. Please try again.', 'squad-modules-for-divi' ),
 					array( 'status' => 400 )
 				),
 				$e,

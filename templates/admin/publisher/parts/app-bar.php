@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $divi_squad_is_pro    = function_exists( 'divi_squad_fs' ) && divi_squad_fs()->can_use_premium_code();
-$divi_squad_version   = divi_squad()->get_version();
+$divi_squad_version   = divi_squad()->get_version_dot();
 $divi_squad = admin_url( 'admin.php?page=divi_squad' );
 ?>
 

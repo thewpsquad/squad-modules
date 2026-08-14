@@ -34,6 +34,7 @@ use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
 use Throwable;
 use WP_Block;
 use function esc_attr;
+use function esc_html__;
 use function esc_url;
 use function in_array;
 use function is_wp_error;
@@ -256,15 +257,23 @@ class Video_Popup extends Module {
 				$video_link = str_replace( 'youtu.be/', 'youtube.com/watch?v=', $video_link );
 			}
 
+			// An icon-only trigger has no visible text, so give the anchor an
+			// accessible name (parity with the Divi 4 module).
+			$trigger_label = trim( (string) ( $inner['text'] ?? '' ) );
+			$aria_label    = 'icon' === ( $inner['triggerElement'] ?? 'icon' )
+				? sprintf( ' aria-label="%s"', esc_attr( '' !== $trigger_label ? $trigger_label : esc_html__( 'Play video', 'squad-modules-for-divi' ) ) )
+				: '';
+
 			$html = sprintf(
-				'<div class="video-popup"> %5$s <div class="video-popup-wrap"> <a class="video-popup-trigger popup-%6$s" data-order="%4$s" data-type="%6$s" href="%3$s" %7$s>%1$s</a></div>%2$s</div>',
+				'<div class="video-popup"> %5$s <div class="video-popup-wrap"> <a class="video-popup-trigger popup-%6$s" data-order="%4$s" data-type="%6$s" href="%3$s" %7$s%8$s>%1$s</a></div>%2$s</div>',
 				self::render_trigger( $inner ),
 				$img_overlay,
 				esc_url( $video_link ),
 				esc_attr( (string) $order_number ),
 				$inline_modal,
 				esc_attr( $type ),
-				$data_modal
+				$data_modal,
+				$aria_label
 			);
 
 			return DiviModule::render(
@@ -304,7 +313,7 @@ class Video_Popup extends Module {
 
 		// Generate the SVG icon.
 		if ( in_array( $trigger_element, array( 'icon', 'icon_text' ), true ) ) {
-			$image = divi_squad()->load_image( '/build/admin/images/icons' );
+			$image = divi_squad()->load_image( '/build/admin/images/ui-icons' );
 
 			if ( $image->is_path_validated() ) {
 				$images = array(

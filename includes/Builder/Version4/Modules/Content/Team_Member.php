@@ -125,11 +125,13 @@ class Team_Member extends Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
+		$content = $this->squad_render_child_content( (string) $content );
+
 		$this->apply_grid_css( $render_slug );
 
 		return sprintf(
 			'<div class="squad-team-members squad-team-members--grid">%s</div>',
-			(string) $content
+			$content
 		);
 	}
 

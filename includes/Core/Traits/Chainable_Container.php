@@ -74,14 +74,17 @@ trait Chainable_Container {
 	 *
 	 * @param string $key The key to retrieve the value for.
 	 *
-	 * @return mixed  The value associated with the key or an empty stdClass if not found.
+	 * @return mixed  The value associated with the key, or null if not found.
 	 */
 	public function __get( string $key ) {
 		if ( array_key_exists( $key, $this->container ) ) {
 			return $this->container[ $key ];
 		}
 
-		return new \stdClass();
+		// Return null (not a chainable stdClass) for a missing key, so an unwired
+		// collaborator surfaces at the access point via isset()/`?? ` checks rather than
+		// as a confusing "call to a member function on stdClass" far downstream.
+		return null;
 	}
 
 	/**

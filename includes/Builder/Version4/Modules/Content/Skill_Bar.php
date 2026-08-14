@@ -100,23 +100,11 @@ class Skill_Bar extends Module {
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'title_content',
 			),
-			'title_level'   => divi_squad()->d4_module_helper->add_select_box_field(
-				esc_html__( 'Title Heading Level', 'squad-modules-for-divi' ),
-				array(
-					'description' => esc_html__( 'HTML heading tag for the title.', 'squad-modules-for-divi' ),
-					'options'     => array(
-						'h1' => 'H1',
-						'h2' => 'H2',
-						'h3' => 'H3',
-						'h4' => 'H4',
-						'h5' => 'H5',
-						'h6' => 'H6',
-					),
-					'default'     => 'h3',
-					'tab_slug'    => 'general',
-					'toggle_slug' => 'title_content',
-				)
-			),
+			// No 'title_level' field here: the 'title' font group declares
+			// 'header_level', and Divi generates "{font group key}_level" from it —
+			// so the control this module reads, 'title_level', already exists.
+			// Divi merges the generated advanced fields after get_fields(), so a
+			// duplicate declared here would be silently overwritten anyway.
 			'bar_spacing'   => divi_squad()->d4_module_helper->add_range_field(
 				esc_html__( 'Spacing Between Bars', 'squad-modules-for-divi' ),
 				array(
@@ -154,6 +142,8 @@ class Skill_Bar extends Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
+		$content = $this->squad_render_child_content( (string) $content );
+
 		wp_enqueue_script( 'squad-module-skill-bar' );
 
 		$this->apply_spacing_css( $render_slug );

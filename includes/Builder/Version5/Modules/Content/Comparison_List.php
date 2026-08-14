@@ -35,6 +35,7 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function absint;
@@ -42,9 +43,9 @@ use function esc_attr;
 use function esc_html__;
 use function et_pb_get_extended_font_icon_value;
 use function in_array;
+use function is_array;
 use function max;
 use function sprintf;
-use function wp_json_encode;
 
 /**
  * Comparison List parent module class.
@@ -162,9 +163,104 @@ class Comparison_List extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+
+		// Same source attribute group the former inline `<style>` builders read from.
+		$group_attr = $attrs['comparisonList']['innerContent'] ?? array();
+
+		// `columns` is the only field in this group flagged
+		// `features.responsive` (see `module.json`), so it is handed the whole
+		// attr group and Divi's own breakpoint iteration re-creates the
+		// hand-written `max-width: 980px` / `max-width: 767px` rules natively.
+		// Every other field is non-responsive and was read from
+		// `…['desktop']['value']` only — printed once, outside any media query
+		// — so those rules are handed just the desktop breakpoint to keep that
+		// behaviour byte-for-byte.
+		$desktop_attr = isset( $group_attr['desktop'] )
+			? array( 'desktop' => $group_attr['desktop'] )
+			: array();
+
+		// Scoped to the real module order class via Divi's native style
+		// pipeline (no inline `<style>`, no bespoke uid class). Selectors mirror
+		// the Divi 4 parent's `%%order_class%%` output exactly, so both builders
+		// feed the same `--squad-cl-*` custom properties to the shared
+		// stylesheet.
+		$advanced_styles = array(
+			array(
+				'componentName' => 'divi/common',
+				'props'         => array(
+					'selector'            => "{$order_class} .squad-comparison-list",
+					'attr'                => $group_attr,
+					'declarationFunction' => array( self::class, 'columns_style_declaration' ),
+				),
+			),
+			array(
+				'componentName' => 'divi/common',
+				'props'         => array(
+					'selector'            => "{$order_class} .squad-comparison-list",
+					'attr'                => $desktop_attr,
+					'declarationFunction' => array( self::class, 'layout_style_declaration' ),
+				),
+			),
+			array(
+				'componentName' => 'divi/common',
+				'props'         => array(
+					'selector'            => "{$order_class} .squad-comparison-list",
+					'attr'                => $desktop_attr,
+					'declarationFunction' => array( self::class, 'row_style_declaration' ),
+				),
+			),
+		);
+
+		// One glyph rule + one icon-colour rule per status, exactly as the
+		// former `get_icon_css()` / `get_row_icon_css()` pair emitted them. The
+		// status is taken from the `self::STATUSES` allow-list before it reaches
+		// a selector string.
+		$icon_declarations = array(
+			'included' => array(
+				'glyph' => array( self::class, 'included_icon_glyph_style_declaration' ),
+				'color' => array( self::class, 'included_icon_color_style_declaration' ),
+			),
+			'excluded' => array(
+				'glyph' => array( self::class, 'excluded_icon_glyph_style_declaration' ),
+				'color' => array( self::class, 'excluded_icon_color_style_declaration' ),
+			),
+			'neutral'  => array(
+				'glyph' => array( self::class, 'neutral_icon_glyph_style_declaration' ),
+				'color' => array( self::class, 'neutral_icon_color_style_declaration' ),
+			),
+		);
+
+		foreach ( self::STATUSES as $status ) {
+			$advanced_styles[] = array(
+				'componentName' => 'divi/common',
+				'props'         => array(
+					'selector'            => sprintf(
+						'%1$s .squad-comparison-list__item[data-status="%2$s"] .squad-comparison-list__icon::before',
+						$order_class,
+						$status
+					),
+					'attr'                => $desktop_attr,
+					'declarationFunction' => $icon_declarations[ $status ]['glyph'],
+				),
+			);
+
+			$advanced_styles[] = array(
+				'componentName' => 'divi/common',
+				'props'         => array(
+					'selector'            => sprintf(
+						'%1$s .squad-comparison-list__item[data-status="%2$s"]',
+						$order_class,
+						$status
+					),
+					'attr'                => $desktop_attr,
+					'declarationFunction' => $icon_declarations[ $status ]['color'],
+				),
+			);
+		}
 
 		Style::add(
 			array(
@@ -177,9 +273,10 @@ class Comparison_List extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
 								),
+								'advancedStyles' => $advanced_styles,
 							),
 						)
 					),
@@ -189,6 +286,307 @@ class Comparison_List extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Responsive column count custom property (`--squad-cl-columns`).
+	 *
+	 * Divi calls this once per breakpoint present in the attr group, so the
+	 * tablet / phone media queries the former inline `<style>` hand-wrote are
+	 * produced natively. The desktop rule was emitted unconditionally (default
+	 * `1`); tablet / phone were emitted only when that breakpoint actually
+	 * carried a `columns` value — hence the `isset()` guard below.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function columns_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$breakpoint = (string) ( $params['breakpoint'] ?? 'desktop' );
+		if ( 'desktop' !== $breakpoint && ! isset( $value['columns'] ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( '--squad-cl-columns', (string) max( 1, absint( $value['columns'] ?? 1 ) ) );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Row gap and icon size custom properties. These are consumed by the shared
+	 * stylesheet as `var( --squad-cl-row-gap )` / `var( --squad-cl-icon-size )`
+	 * rather than being hardcoded here, so the same variable names can be
+	 * shared with the Divi 4 output.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function layout_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+
+		$declarations->add(
+			'--squad-cl-row-gap',
+			self::sanitize_css_length( (string) ( $value['rowGap'] ?? '12px' ), '12px' )
+		);
+		$declarations->add(
+			'--squad-cl-icon-size',
+			self::sanitize_css_length( (string) ( $value['iconSize'] ?? '20px' ), '20px' )
+		);
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Row background, zebra-stripe, and divider custom properties.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function row_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+
+		$bg = self::sanitize_css_background( (string) ( $value['rowBackground'] ?? '' ) );
+		if ( '' !== $bg ) {
+			$declarations->add( '--squad-cl-row-bg', $bg );
+		}
+
+		$bg_alt = self::sanitize_css_background( (string) ( $value['rowBackgroundAlt'] ?? '' ) );
+		if ( '' !== $bg_alt ) {
+			$declarations->add( '--squad-cl-row-bg-alt', $bg_alt );
+		}
+
+		if ( 'off' !== (string) ( $value['rowDivider'] ?? 'on' ) ) {
+			$divider_color = self::sanitize_css_background( (string) ( $value['rowDividerColor'] ?? '#e5e7eb' ) );
+			if ( '' === $divider_color ) {
+				$divider_color = '#e5e7eb';
+			}
+			$declarations->add( '--squad-cl-row-divider-color', $divider_color );
+
+			$declarations->add(
+				'--squad-cl-row-divider-width',
+				self::sanitize_css_length( (string) ( $value['rowDividerWidth'] ?? '1px' ), '1px' )
+			);
+
+			$divider_style = (string) ( $value['rowDividerStyle'] ?? 'solid' );
+			$divider_style = in_array( $divider_style, self::DIVIDER_STYLES, true ) ? $divider_style : 'solid';
+			$declarations->add( '--squad-cl-row-divider-style', $divider_style );
+		}
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Included-row icon glyph (`content` + `font-family`).
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function included_icon_glyph_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+
+		return is_array( $value )
+			? self::build_icon_glyph_declaration( $value, 'includedIcon', self::DEFAULT_INCLUDED_ICON )
+			: '';
+	}
+
+	/**
+	 * Excluded-row icon glyph (`content` + `font-family`).
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function excluded_icon_glyph_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+
+		return is_array( $value )
+			? self::build_icon_glyph_declaration( $value, 'excludedIcon', self::DEFAULT_EXCLUDED_ICON )
+			: '';
+	}
+
+	/**
+	 * Neutral-row icon glyph (`content` + `font-family`).
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function neutral_icon_glyph_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+
+		return is_array( $value )
+			? self::build_icon_glyph_declaration( $value, 'neutralIcon', self::DEFAULT_NEUTRAL_ICON )
+			: '';
+	}
+
+	/**
+	 * Included-row icon colour custom property.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function included_icon_color_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+
+		return is_array( $value )
+			? self::build_icon_color_declaration( $value, 'includedIconColor', '#2ecc71' )
+			: '';
+	}
+
+	/**
+	 * Excluded-row icon colour custom property.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function excluded_icon_color_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+
+		return is_array( $value )
+			? self::build_icon_color_declaration( $value, 'excludedIconColor', '#e74c3c' )
+			: '';
+	}
+
+	/**
+	 * Neutral-row icon colour custom property.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function neutral_icon_color_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+
+		return is_array( $value )
+			? self::build_icon_color_declaration( $value, 'neutralIconColor', '#9aa0a6' )
+			: '';
+	}
+
+	/**
+	 * Build the `content` + `font-family` declaration for one comparison-list
+	 * status icon.
+	 *
+	 * `Comparison_List_Item` deliberately renders an empty, `aria-hidden`
+	 * icon span and tags its row with `data-status` (see that class's
+	 * `render_callback()`) rather than printing the glyph itself — this
+	 * parent owns the icon/color configuration for all three states and
+	 * paints every row sharing a status identically via the
+	 * `[data-status="…"]` attribute selector, so no HTML string-parsing of
+	 * the already-rendered child content is required.
+	 *
+	 * The author picks each state's icon with the native Divi icon picker
+	 * (`type => 'select_icon'`). The raw extended-icon value is resolved to a
+	 * glyph exactly as the Divi 4 parent (and `Inline_Content_Item`) do —
+	 * `Divi::inject_fa_icons()` (loads the relevant icon font) then
+	 * `et_pb_get_extended_font_icon_value()`. Because the resolved glyph is
+	 * interpolated into a CSS `content` string (not HTML text, so
+	 * `esc_html()` can't apply) it is first run through
+	 * `sanitize_css_background()` to strip any character that could break
+	 * out of the declaration — the raw picker value is never written to CSS
+	 * unvalidated.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param array<string, mixed> $value        Packed `comparisonList.innerContent` desktop values.
+	 * @param string               $icon_field   Attr key holding the extended-icon value.
+	 * @param string               $default_icon Fallback extended-icon value.
+	 *
+	 * @return string
+	 */
+	protected static function build_icon_glyph_declaration( array $value, string $icon_field, string $default_icon ): string {
+		$icon_raw = (string) ( $value[ $icon_field ] ?? $default_icon );
+		if ( '' === $icon_raw ) {
+			$icon_raw = $default_icon;
+		}
+
+		Divi::inject_fa_icons( $icon_raw );
+		$icon_glyph = (string) et_pb_get_extended_font_icon_value( $icon_raw, true );
+
+		// Strip any CSS-breakout characters before interpolating the
+		// resolved glyph into a `content` declaration.
+		$icon_glyph = self::sanitize_css_background( $icon_glyph );
+		if ( '' === $icon_glyph ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'content', '"' . $icon_glyph . '"' );
+		$declarations->add( 'font-family', '"ETModules"' );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Build the `--squad-cl-icon-color` declaration for one comparison-list
+	 * status.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param array<string, mixed> $value         Packed `comparisonList.innerContent` desktop values.
+	 * @param string               $color_field   Attr key holding the icon color.
+	 * @param string               $default_color Fallback icon color.
+	 *
+	 * @return string
+	 */
+	protected static function build_icon_color_declaration( array $value, string $color_field, string $default_color ): string {
+		$color = self::sanitize_css_background( (string) ( $value[ $color_field ] ?? $default_color ) );
+		if ( '' === $color ) {
+			$color = $default_color;
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( '--squad-cl-icon-color', $color );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -214,28 +612,22 @@ class Comparison_List extends Module {
 
 			// Parent settings are packed under the `comparisonList.innerContent`
 			// group (same convention as Data Table's `dataTable.innerContent`).
-			$inner        = $attrs['comparisonList']['innerContent']['desktop']['value'] ?? array();
-			$inner_tablet = $attrs['comparisonList']['innerContent']['tablet']['value'] ?? array();
-			$inner_phone  = $attrs['comparisonList']['innerContent']['phone']['value'] ?? array();
+			// The design CSS built from this group is emitted by
+			// `module_styles()` through Divi's native style pipeline; only the
+			// two markup-level tokens are read here.
+			$inner = $attrs['comparisonList']['innerContent']['desktop']['value'] ?? array();
 
 			$icon_position = (string) ( $inner['iconPosition'] ?? 'left' );
 			$icon_position = in_array( $icon_position, self::ICON_POSITIONS, true ) ? $icon_position : 'left';
 
 			$divider = 'off' === (string) ( $inner['rowDivider'] ?? 'on' ) ? 'off' : 'on';
 
-			$uid        = self::get_instance_uid( $block );
-			$inline_css = self::get_layout_css( $inner, $inner_tablet, $inner_phone, $uid )
-				. self::get_row_css( $inner, $uid )
-				. self::get_icon_css( $inner, $uid );
-
-			$comparison_list_html = ( '' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '' )
-				. sprintf(
-					'<div class="%1$s squad-comparison-list squad-comparison-list--icon-%2$s" data-divider="%3$s">%4$s</div>',
-					esc_attr( $uid ),
-					esc_attr( $icon_position ),
-					esc_attr( $divider ),
-					$child_modules_content
-				);
+			$comparison_list_html = sprintf(
+				'<div class="squad-comparison-list squad-comparison-list--icon-%1$s" data-divider="%2$s">%3$s</div>',
+				esc_attr( $icon_position ),
+				esc_attr( $divider ),
+				$child_modules_content
+			);
 
 			$style_components = $elements instanceof ModuleElements
 				? (string) $elements->style_components( array( 'attrName' => 'module' ) )
@@ -261,216 +653,5 @@ class Comparison_List extends Module {
 
 			return '';
 		}
-	}
-
-	/**
-	 * Build a stable per-instance uid for scoping layout/icon CSS selectors.
-	 *
-	 * @since 4.4.0
-	 *
-	 * @param WP_Block $block The parsed block.
-	 *
-	 * @return string
-	 */
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return '' !== $uid
-			? 'squad-cl-' . $uid
-			: 'squad-cl-' . substr( md5( $raw . wp_json_encode( $block->parsed_block['orderIndex'] ?? 0 ) ), 0, 10 );
-	}
-
-	/**
-	 * Generate scoped responsive column count, row gap, and icon size custom
-	 * properties for this instance. These are consumed by the static CSS as
-	 * `var( --squad-cl-columns )`, etc., rather than being hardcoded here, so
-	 * the same variable names can be shared with the Divi 4 output.
-	 *
-	 * @since 4.4.0
-	 *
-	 * @param array<string, mixed> $inner        Packed `comparisonList.innerContent` desktop values.
-	 * @param array<string, mixed> $inner_tablet Packed `comparisonList.innerContent` tablet values.
-	 * @param array<string, mixed> $inner_phone  Packed `comparisonList.innerContent` phone values.
-	 * @param string                $uid          Per-instance identifier.
-	 *
-	 * @return string Raw CSS (no <style> tags).
-	 */
-	protected static function get_layout_css( array $inner, array $inner_tablet, array $inner_phone, string $uid ): string {
-		$cols_desktop = max( 1, absint( $inner['columns'] ?? 1 ) );
-
-		$row_gap = self::sanitize_css_length( (string) ( $inner['rowGap'] ?? '12px' ), '12px' );
-
-		$icon_size = self::sanitize_css_length( (string) ( $inner['iconSize'] ?? '20px' ), '20px' );
-
-		$css = sprintf(
-			'.%1$s.squad-comparison-list{--squad-cl-columns:%2$d;--squad-cl-row-gap:%3$s;--squad-cl-icon-size:%4$s}',
-			$uid,
-			$cols_desktop,
-			$row_gap,
-			$icon_size
-		);
-
-		if ( isset( $inner_tablet['columns'] ) ) {
-			$cols_tablet = max( 1, absint( $inner_tablet['columns'] ) );
-			$css        .= sprintf(
-				'@media(max-width:980px){.%1$s.squad-comparison-list{--squad-cl-columns:%2$d}}',
-				$uid,
-				$cols_tablet
-			);
-		}
-
-		if ( isset( $inner_phone['columns'] ) ) {
-			$cols_phone = max( 1, absint( $inner_phone['columns'] ) );
-			$css       .= sprintf(
-				'@media(max-width:767px){.%1$s.squad-comparison-list{--squad-cl-columns:%2$d}}',
-				$uid,
-				$cols_phone
-			);
-		}
-
-		return $css;
-	}
-
-	/**
-	 * Generate scoped row background, zebra-stripe, and divider custom
-	 * properties for this instance.
-	 *
-	 * @since 4.4.0
-	 *
-	 * @param array<string, mixed> $inner Packed `comparisonList.innerContent` desktop values.
-	 * @param string               $uid   Per-instance identifier.
-	 *
-	 * @return string Raw CSS (no <style> tags).
-	 */
-	protected static function get_row_css( array $inner, string $uid ): string {
-		$declarations = array();
-
-		$bg = self::sanitize_css_background( (string) ( $inner['rowBackground'] ?? '' ) );
-		if ( '' !== $bg ) {
-			$declarations[] = "--squad-cl-row-bg:{$bg}";
-		}
-
-		$bg_alt = self::sanitize_css_background( (string) ( $inner['rowBackgroundAlt'] ?? '' ) );
-		if ( '' !== $bg_alt ) {
-			$declarations[] = "--squad-cl-row-bg-alt:{$bg_alt}";
-		}
-
-		if ( 'off' !== (string) ( $inner['rowDivider'] ?? 'on' ) ) {
-			$divider_color = self::sanitize_css_background( (string) ( $inner['rowDividerColor'] ?? '#e5e7eb' ) );
-			if ( '' === $divider_color ) {
-				$divider_color = '#e5e7eb';
-			}
-			$declarations[] = "--squad-cl-row-divider-color:{$divider_color}";
-
-			$divider_width   = self::sanitize_css_length( (string) ( $inner['rowDividerWidth'] ?? '1px' ), '1px' );
-			$declarations[] = "--squad-cl-row-divider-width:{$divider_width}";
-
-			$divider_style = (string) ( $inner['rowDividerStyle'] ?? 'solid' );
-			$divider_style = in_array( $divider_style, self::DIVIDER_STYLES, true ) ? $divider_style : 'solid';
-			$declarations[] = "--squad-cl-row-divider-style:{$divider_style}";
-		}
-
-		if ( array() === $declarations ) {
-			return '';
-		}
-
-		return sprintf( '.%1$s.squad-comparison-list{%2$s}', $uid, implode( ';', $declarations ) );
-	}
-
-	/**
-	 * Generate the per-status icon glyph and color CSS for all three states.
-	 *
-	 * @since 4.4.0
-	 *
-	 * @param array<string, mixed> $inner Packed `comparisonList.innerContent` desktop values.
-	 * @param string               $uid   Per-instance identifier.
-	 *
-	 * @return string Raw CSS (no <style> tags).
-	 */
-	protected static function get_icon_css( array $inner, string $uid ): string {
-		return self::get_row_icon_css( $inner, $uid, 'included', 'includedIcon', 'includedIconColor', self::DEFAULT_INCLUDED_ICON, '#2ecc71' )
-			. self::get_row_icon_css( $inner, $uid, 'excluded', 'excludedIcon', 'excludedIconColor', self::DEFAULT_EXCLUDED_ICON, '#e74c3c' )
-			. self::get_row_icon_css( $inner, $uid, 'neutral', 'neutralIcon', 'neutralIconColor', self::DEFAULT_NEUTRAL_ICON, '#9aa0a6' );
-	}
-
-	/**
-	 * Build the CSS glyph + color custom property for one comparison-list
-	 * status.
-	 *
-	 * `Comparison_List_Item` deliberately renders an empty, `aria-hidden`
-	 * icon span and tags its row with `data-status` (see that class's
-	 * `render_callback()`) rather than printing the glyph itself — this
-	 * parent owns the icon/color configuration for all three states and
-	 * paints every row sharing a status identically via the
-	 * `[data-status="…"]` attribute selector, so no HTML string-parsing of
-	 * the already-rendered child content is required.
-	 *
-	 * The author picks each state's icon with the native Divi icon picker
-	 * (`type => 'select_icon'`). The raw extended-icon value is resolved to a
-	 * glyph exactly as the Divi 4 parent (and `Inline_Content_Item`) do —
-	 * `Divi::inject_fa_icons()` (loads the relevant icon font) then
-	 * `et_pb_get_extended_font_icon_value()`. Because the resolved glyph is
-	 * interpolated into a CSS `content` string (not HTML text, so
-	 * `esc_html()` can't apply) it is first run through
-	 * `sanitize_css_background()` to strip any character that could break
-	 * out of the declaration — the raw picker value is never written to CSS
-	 * unvalidated.
-	 *
-	 * Named `get_row_icon_css()` rather than `render_image()`/`render_button()`
-	 * to avoid colliding with `ET_Builder_Element`'s reserved method names.
-	 *
-	 * @since 4.4.0
-	 *
-	 * @param array<string, mixed> $inner         Packed `comparisonList.innerContent` desktop values.
-	 * @param string               $uid           Per-instance identifier.
-	 * @param string               $status        One of self::STATUSES.
-	 * @param string               $icon_field    Attr key holding the extended-icon value.
-	 * @param string               $color_field   Attr key holding the icon color.
-	 * @param string               $default_icon  Fallback extended-icon value.
-	 * @param string               $default_color Fallback icon color.
-	 *
-	 * @return string Raw CSS (no <style> tags).
-	 */
-	protected static function get_row_icon_css( array $inner, string $uid, string $status, string $icon_field, string $color_field, string $default_icon, string $default_color ): string {
-		if ( ! in_array( $status, self::STATUSES, true ) ) {
-			return '';
-		}
-
-		$css = '';
-
-		$icon_raw = (string) ( $inner[ $icon_field ] ?? $default_icon );
-		if ( '' === $icon_raw ) {
-			$icon_raw = $default_icon;
-		}
-
-		Divi::inject_fa_icons( $icon_raw );
-		$icon_glyph = (string) et_pb_get_extended_font_icon_value( $icon_raw, true );
-
-		// Strip any CSS-breakout characters before interpolating the
-		// resolved glyph into a `content` declaration.
-		$icon_glyph = self::sanitize_css_background( $icon_glyph );
-		if ( '' !== $icon_glyph ) {
-			$css .= sprintf(
-				'.%1$s .squad-comparison-list__item[data-status="%2$s"] .squad-comparison-list__icon::before{content:"%3$s";font-family:"ETModules"}',
-				$uid,
-				$status,
-				$icon_glyph
-			);
-		}
-
-		$color = self::sanitize_css_background( (string) ( $inner[ $color_field ] ?? $default_color ) );
-		if ( '' === $color ) {
-			$color = $default_color;
-		}
-
-		$css .= sprintf(
-			'.%1$s .squad-comparison-list__item[data-status="%2$s"]{--squad-cl-icon-color:%3$s}',
-			$uid,
-			$status,
-			$color
-		);
-
-		return $css;
 	}
 }

@@ -34,5 +34,5 @@ class Constant {
 	 *
 	 * @var integer
 	 */
-	public const PHP_INT_MIN = - 9223372036854775808; // @phpstan-ignore-line.
+	public const PHP_INT_MIN = \PHP_INT_MIN; // Native since PHP 7.0; the literal below PHP_INT_MAX would parse as a float.
 }

@@ -199,6 +199,10 @@ class Notice {
 				array(
 					'file' => 'notices',
 					'path' => 'admin',
+					// Dashicons provides the glyph font for button icons (e.g.
+					// dashicons-plugins-checked). Declared explicitly so it is
+					// enqueued and preserved by the squad dependency cleaner.
+					'deps' => array( 'dashicons' ),
 				)
 			);
 
@@ -207,6 +211,7 @@ class Notice {
 				array(
 					'file' => 'notices-legacy',
 					'path' => 'admin',
+					'deps' => array( 'dashicons' ),
 				)
 			);
 
@@ -322,17 +327,34 @@ class Notice {
 					continue;
 				}
 
-				/**
-				 * Instantiate the notice class.
-				 *
-				 * @var Notice_Interface $notice_instance
-				 */
-				$notice_instance = new $class_name();
+				// Instantiate and register the notice, guarded PER ITEM: a throwing
+				// constructor / can_render_it() skips only this class instead of aborting
+				// the loop and dropping every remaining notice.
+				try {
+					$notice_instance = new $class_name();
 
-				// Skip notices that cannot be rendered.
-				if ( ! $notice_instance->can_render_it() ) {
+					// Skip (and narrow the type) if the class is not a Notice_Interface.
+					if ( ! $notice_instance instanceof Notice_Interface ) {
+						continue;
+					}
+
+					// Skip notices that cannot be rendered.
+					if ( ! $notice_instance->can_render_it() ) {
+						/**
+						 * Action when a notice is skipped due to can_render_it returning false.
+						 *
+						 * @since 3.3.3
+						 *
+						 * @param Notice_Interface $notice_instance The notice instance.
+						 * @param string           $class_name      The notice class name.
+						 * @param Notice           $manager         The Admin Notice Manager instance.
+						 */
+						do_action( 'divi_squad_notice_skipped', $notice_instance, $class_name, $this );
+						continue;
+					}
+
 					/**
-					 * Action when a notice is skipped due to can_render_it returning false.
+					 * Action when a notice is successfully validated.
 					 *
 					 * @since 3.3.3
 					 *
@@ -340,22 +362,13 @@ class Notice {
 					 * @param string           $class_name      The notice class name.
 					 * @param Notice           $manager         The Admin Notice Manager instance.
 					 */
-					do_action( 'divi_squad_notice_skipped', $notice_instance, $class_name, $this );
+					do_action( 'divi_squad_notice_validated', $notice_instance, $class_name, $this );
+
+					$this->notice_instances[] = $notice_instance;
+				} catch ( Throwable $e ) {
+					divi_squad()->log_error( $e, sprintf( 'Failed to register notice class: %s', $class_name ), false );
 					continue;
 				}
-
-				/**
-				 * Action when a notice is successfully validated.
-				 *
-				 * @since 3.3.3
-				 *
-				 * @param Notice_Interface $notice_instance The notice instance.
-				 * @param string           $class_name      The notice class name.
-				 * @param Notice           $manager         The Admin Notice Manager instance.
-				 */
-				do_action( 'divi_squad_notice_validated', $notice_instance, $class_name, $this );
-
-				$this->notice_instances[] = $notice_instance;
 			}
 
 			/**
@@ -757,7 +770,7 @@ class Notice {
 
 			// Merge any extra data.
 			if ( count( $extra_data ) > 0 ) {
-				$notice_data = array_merge_recursive( $notice_data, $extra_data );
+				$notice_data = array_merge( $notice_data, $extra_data );
 			}
 
 			/**
@@ -773,7 +786,7 @@ class Notice {
 
 			// Update notices data to existing localize data store.
 			$data['notices'] = $data['notices'] ?? array();
-			$data['notices'] = array_merge_recursive( $data['notices'], $notice_data );
+			$data['notices'] = array_merge( $data['notices'], $notice_data );
 		} catch ( Throwable $e ) {
 			divi_squad()->log_error( $e, 'Failed to add notice localization data' );
 		} finally {

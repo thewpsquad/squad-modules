@@ -27,6 +27,7 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function esc_attr;
@@ -39,6 +40,7 @@ use function get_the_excerpt;
 use function get_the_title;
 use function home_url;
 use function in_array;
+use function is_array;
 use function is_singular;
 use function sanitize_text_field;
 use function sanitize_textarea_field;
@@ -110,9 +112,11 @@ class Social_Share extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+		$share_attr  = $attrs['shareSettings']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -125,8 +129,46 @@ class Social_Share extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance share layout (columns, gap), icon size and button
+								// colour/padding, scoped to the module order class through Divi's
+								// native style pipeline. Mirrors the former inline <style> block
+								// and the Divi 4 %%order_class%% output.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-social-share--inline .squad-social-share__list",
+											'attr'                => $share_attr,
+											'declarationFunction' => array( self::class, 'inline_list_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-social-share__list",
+											'attr'                => $share_attr,
+											'declarationFunction' => array( self::class, 'list_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-social-share__icon",
+											'attr'                => $share_attr,
+											'declarationFunction' => array( self::class, 'icon_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-social-share__btn",
+											'attr'                => $share_attr,
+											'declarationFunction' => array( self::class, 'button_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -137,6 +179,125 @@ class Social_Share extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Inline (horizontal) list declaration (grid column count).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function inline_list_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$columns = max( 1, min( 8, (int) ( $value['columns'] ?? 4 ) ) );
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'grid-template-columns', sprintf( 'repeat(%d,minmax(0,max-content))', $columns ) );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Button list declaration (gap between buttons).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function list_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$gap = self::sanitize_css_length( (string) ( $value['itemGap'] ?? '10px' ) );
+		if ( '' === $gap ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'gap', $gap );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Icon declaration (icon size).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function icon_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$icon_size = self::sanitize_css_length( (string) ( $value['iconSize'] ?? '18px' ) );
+		if ( '' === $icon_size ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'font-size', $icon_size );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Share button declaration (icon colour, background, padding).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function button_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+
+		$icon_color = self::sanitize_css_background( (string) ( $value['iconColor'] ?? '#ffffff' ) );
+		if ( '' !== $icon_color ) {
+			$declarations->add( 'color', $icon_color );
+		}
+
+		// Only when non-empty; the child brand colour is the default background.
+		$button_bg = self::sanitize_css_background( (string) ( $value['buttonBg'] ?? '' ) );
+		if ( '' !== $button_bg ) {
+			$declarations->add( 'background-color', $button_bg );
+		}
+
+		$button_padding = self::sanitize_css_length( (string) ( $value['buttonPadding'] ?? '12px' ) );
+		if ( '' !== $button_padding ) {
+			$declarations->add( 'padding', $button_padding );
+		}
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	public static function render_callback( array $attrs, string $child_modules_content, WP_Block $block, $elements ): string {
@@ -160,8 +321,6 @@ class Social_Share extends Module {
 			self::$share_target   = self::resolve_share_target( $inner );
 			self::$button_context = array( 'style' => $style, 'enable_popup' => $enable_popup );
 
-			$uid = self::get_instance_uid( $block );
-
 			$orientation = 'stacked' === ( $inner['orientation'] ?? 'inline' ) ? 'stacked' : 'inline';
 			$shape       = (string) ( $inner['buttonShape'] ?? 'rounded' );
 			$shape       = in_array( $shape, array( 'square', 'rounded', 'circle' ), true ) ? $shape : 'rounded';
@@ -184,15 +343,12 @@ class Social_Share extends Module {
 				}
 			}
 
-			$inline_css = self::get_layout_css( $inner, $uid );
-
 			$style_components = $elements instanceof ModuleElements
 				? (string) $elements->style_components( array( 'attrName' => 'module' ) )
 				: '';
 
 			$wrapper_html = sprintf(
-				'%1$s<div class="squad-social-share squad-social-share--%2$s squad-social-share--shape-%3$s squad-social-share--hover-%4$s squad-social-share--style-%5$s">%6$s<div class="squad-social-share__list">%7$s</div></div>',
-				'' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '',
+				'<div class="squad-social-share squad-social-share--%1$s squad-social-share--shape-%2$s squad-social-share--hover-%3$s squad-social-share--style-%4$s">%5$s<div class="squad-social-share__list">%6$s</div></div>',
 				esc_attr( $orientation ),
 				esc_attr( $shape ),
 				esc_attr( $hover ),
@@ -264,58 +420,4 @@ class Social_Share extends Module {
 		);
 	}
 
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return '' !== $uid
-			? 'squad-ss-' . $uid
-			: 'squad-ss-' . substr( md5( $raw ), 0, 10 );
-	}
-
-	/**
-	 * Build the scoped inline CSS for the share layout.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param array<string, mixed> $inner Parent inner content values.
-	 * @param string               $uid   Unique scoping class for this instance.
-	 *
-	 * @return string Scoped CSS (may be empty).
-	 */
-	protected static function get_layout_css( array $inner, string $uid ): string {
-		$gap     = self::sanitize_css_length( (string) ( $inner['itemGap'] ?? '10px' ) );
-		$columns = max( 1, min( 8, (int) ( $inner['columns'] ?? 4 ) ) );
-
-		$css = ".{$uid} .squad-social-share--inline .squad-social-share__list{grid-template-columns:repeat({$columns},minmax(0,max-content))}";
-		if ( '' !== $gap ) {
-			$css .= ".{$uid} .squad-social-share__list{gap:{$gap}}";
-		}
-
-		// icon_size → font-size on .squad-social-share__icon.
-		$icon_size = self::sanitize_css_length( (string) ( $inner['iconSize'] ?? '18px' ) );
-		if ( '' !== $icon_size ) {
-			$css .= ".{$uid} .squad-social-share__icon{font-size:{$icon_size}}";
-		}
-
-		// icon_color → color on .squad-social-share__btn.
-		$icon_color = self::sanitize_css_background( (string) ( $inner['iconColor'] ?? '#ffffff' ) );
-		if ( '' !== $icon_color ) {
-			$css .= ".{$uid} .squad-social-share__btn{color:{$icon_color}}";
-		}
-
-		// button_bg → background-color on .squad-social-share__btn (only when non-empty; child brand color is the default).
-		$button_bg = self::sanitize_css_background( (string) ( $inner['buttonBg'] ?? '' ) );
-		if ( '' !== $button_bg ) {
-			$css .= ".{$uid} .squad-social-share__btn{background-color:{$button_bg}}";
-		}
-
-		// button_padding → padding on .squad-social-share__btn.
-		$button_padding = self::sanitize_css_length( (string) ( $inner['buttonPadding'] ?? '12px' ) );
-		if ( '' !== $button_padding ) {
-			$css .= ".{$uid} .squad-social-share__btn{padding:{$button_padding}}";
-		}
-
-		return $css;
-	}
 }

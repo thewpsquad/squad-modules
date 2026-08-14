@@ -293,10 +293,14 @@ final class Video_Helper {
 	 * @return array<string, mixed>
 	 */
 	public static function resolve_config( array $raw ): array {
-		$source  = self::is_valid_source( (string) ( $raw['source'] ?? 'youtube' ) ) ? (string) $raw['source'] : 'youtube';
-		$display = self::is_valid_display( (string) ( $raw['display'] ?? 'inline' ) ) ? (string) $raw['display'] : 'inline';
-		$aspect  = self::is_valid_aspect( (string) ( $raw['aspect_ratio'] ?? '16-9' ) ) ? (string) $raw['aspect_ratio'] : '16-9';
-		$pos     = self::is_valid_sticky_position( (string) ( $raw['sticky_position'] ?? 'bottom-right' ) ) ? (string) $raw['sticky_position'] : 'bottom-right';
+		$source  = (string) ( $raw['source'] ?? 'youtube' );
+		$source  = self::is_valid_source( $source ) ? $source : 'youtube';
+		$display = (string) ( $raw['display'] ?? 'inline' );
+		$display = self::is_valid_display( $display ) ? $display : 'inline';
+		$aspect  = (string) ( $raw['aspect_ratio'] ?? '16-9' );
+		$aspect  = self::is_valid_aspect( $aspect ) ? $aspect : '16-9';
+		$pos     = (string) ( $raw['sticky_position'] ?? 'bottom-right' );
+		$pos     = self::is_valid_sticky_position( $pos ) ? $pos : 'bottom-right';
 
 		$id    = self::extract_id( $source, (string) ( $raw['video_url'] ?? '' ) );
 		$embed = self::build_embed_url(

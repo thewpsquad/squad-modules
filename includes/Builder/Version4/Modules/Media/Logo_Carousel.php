@@ -306,6 +306,8 @@ class Logo_Carousel extends Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
+		$content = $this->squad_render_child_content( (string) $content );
+
 		$order_class = (string) self::get_module_order_class( $render_slug );
 
 		wp_enqueue_style( 'squad-vendor-swiper' );

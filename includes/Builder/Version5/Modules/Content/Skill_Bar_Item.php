@@ -25,11 +25,12 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function absint;
-use function esc_attr;
 use function esc_html;
+use function is_array;
 
 /**
  * Skill Bar Item (child) module class.
@@ -83,9 +84,11 @@ class Skill_Bar_Item extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+		$item_attr   = $attrs['slideItem']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -98,8 +101,29 @@ class Skill_Bar_Item extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance bar geometry/colours, scoped to the module
+								// order class via Divi's native style pipeline (no inline
+								// <style>, no bespoke uid class).
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-skill-bar__wrapper",
+											'attr'                => $item_attr,
+											'declarationFunction' => array( self::class, 'bar_wrapper_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-skill-bar__fill",
+											'attr'                => $item_attr,
+											'declarationFunction' => array( self::class, 'bar_fill_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -112,6 +136,77 @@ class Skill_Bar_Item extends Module {
 		);
 	}
 
+	/**
+	 * Fill-track wrapper declaration (height, radius, track background).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function bar_wrapper_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+
+		$height = self::sanitize_css_length( (string) ( $value['barHeight'] ?? '30px' ) );
+		$radius = self::sanitize_css_length( (string) ( $value['barRadius'] ?? '40px' ) );
+
+		$track = self::sanitize_css_background( (string) ( $value['trackGradient'] ?? '' ) );
+		if ( '' === $track ) {
+			$track = self::sanitize_css_background( (string) ( $value['trackColor'] ?? '#dddddd' ) );
+		}
+
+		if ( '' !== $height ) {
+			$declarations->add( 'height', $height );
+		}
+		if ( '' !== $radius ) {
+			$declarations->add( 'border-radius', $radius );
+		}
+		if ( '' !== $track ) {
+			$declarations->add( 'background', $track );
+		}
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Fill (progress) declaration (fill background).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function bar_fill_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$fill = self::sanitize_css_background( (string) ( $value['fillGradient'] ?? '' ) );
+		if ( '' === $fill ) {
+			$fill = self::sanitize_css_background( (string) ( $value['fillColor'] ?? '#5E2EFF' ) );
+		}
+		if ( '' === $fill ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'background', $fill );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
 	public static function render_callback( array $attrs, string $content, WP_Block $block, $elements ): string {
 		try {
 			$item       = $attrs['slideItem']['innerContent']['desktop']['value'] ?? array();
@@ -119,7 +214,6 @@ class Skill_Bar_Item extends Module {
 			$use_name   = 'off' !== ( $item['useName'] ?? 'on' );
 			$hide_level = 'on' === ( $item['hideLevel'] ?? 'off' );
 			$placement  = 'outside' === ( $item['textPlacement'] ?? 'inside' ) ? 'outside' : 'inside';
-			$uid        = self::get_instance_uid( $block );
 
 			$name_html  = $use_name ? sprintf( '<span class="squad-skill-bar__name">%s</span>', esc_html( $item['name'] ?? '' ) ) : '';
 			$level_html = ! $hide_level ? sprintf( '<span class="squad-skill-bar__level">%d%%</span>', $level ) : '';
@@ -127,15 +221,12 @@ class Skill_Bar_Item extends Module {
 				? sprintf( '<div class="squad-skill-bar__text squad-skill-bar__text--%1$s">%2$s%3$s</div>', $placement, $name_html, $level_html )
 				: '';
 
-			$inline_css = self::get_bar_css( $item, $uid );
-
 			$style_components = $elements instanceof ModuleElements
 				? (string) $elements->style_components( array( 'attrName' => 'module' ) )
 				: '';
 
 			$bar_html = sprintf(
-				'%1$s<div class="squad-skill-bar__wrapper"><div class="squad-skill-bar__fill" style="--squad-sb-level:%2$d%%">%3$s</div></div>',
-				'' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '',
+				'<div class="squad-skill-bar__wrapper"><div class="squad-skill-bar__fill" style="--squad-sb-level:%1$d%%">%2$s</div></div>',
 				$level,
 				$text_html
 			);
@@ -162,60 +253,4 @@ class Skill_Bar_Item extends Module {
 		}
 	}
 
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return '' !== $uid
-			? 'squad-sb-' . $uid
-			: 'squad-sb-' . substr( md5( $raw ), 0, 10 );
-	}
-
-	/**
-	 * Build the scoped inline CSS for a single skill bar.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param array<string, mixed> $item Skill bar item values.
-	 * @param string               $uid  Unique scoping class for this instance.
-	 *
-	 * @return string Scoped CSS (may be empty).
-	 */
-	protected static function get_bar_css( array $item, string $uid ): string {
-		$sel_wrap = ".{$uid} .squad-skill-bar__wrapper";
-		$sel_fill = ".{$uid} .squad-skill-bar__fill";
-
-		$height = self::sanitize_css_length( (string) ( $item['barHeight'] ?? '30px' ) );
-		$radius = self::sanitize_css_length( (string) ( $item['barRadius'] ?? '40px' ) );
-
-		$track_bg = self::sanitize_css_background( (string) ( $item['trackGradient'] ?? '' ) );
-		if ( '' === $track_bg ) {
-			$track_bg = self::sanitize_css_background( (string) ( $item['trackColor'] ?? '#dddddd' ) );
-		}
-		$fill_bg = self::sanitize_css_background( (string) ( $item['fillGradient'] ?? '' ) );
-		if ( '' === $fill_bg ) {
-			$fill_bg = self::sanitize_css_background( (string) ( $item['fillColor'] ?? '#5E2EFF' ) );
-		}
-
-		$wrap_decl = '';
-		if ( '' !== $height ) {
-			$wrap_decl .= "height:{$height};";
-		}
-		if ( '' !== $radius ) {
-			$wrap_decl .= "border-radius:{$radius};";
-		}
-		if ( '' !== $track_bg ) {
-			$wrap_decl .= 'background:' . esc_attr( $track_bg ) . ';';
-		}
-
-		$css = '';
-		if ( '' !== $wrap_decl ) {
-			$css .= "{$sel_wrap}{{$wrap_decl}}";
-		}
-		if ( '' !== $fill_bg ) {
-			$css .= "{$sel_fill}{background:" . esc_attr( $fill_bg ) . ';}';
-		}
-
-		return $css;
-	}
 }

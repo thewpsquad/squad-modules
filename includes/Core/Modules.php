@@ -238,9 +238,13 @@ class Modules {
 			// Retrieve stored inactive modules.
 			$this->inactive_modules = (array) $this->memory->get( 'inactive_modules', array() );
 
-			// If no active modules stored yet, use defaults.
-			if ( 0 === count( $this->active_modules ) ) {
+			// Seed defaults only on first run. Keying on a one-time flag (not an empty
+			// list) means a user who disables every module keeps that choice instead of
+			// having it silently reverted to all-defaults on the next request.
+			if ( ! (bool) $this->memory->get( 'active_modules_initialized', false ) ) {
 				$this->active_modules = array_column( $this->get_default_registries(), 'name' );
+				$this->memory->set( 'active_modules', $this->active_modules );
+				$this->memory->set( 'active_modules_initialized', true );
 			}
 
 			/**

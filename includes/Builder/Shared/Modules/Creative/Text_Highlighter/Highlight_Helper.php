@@ -153,8 +153,10 @@ final class Highlight_Helper {
 	 * @return string
 	 */
 	public static function build_shell( array $config ): string {
-		$tag          = self::is_valid_tag( $config['heading_tag'] ?? 'h2' ) ? $config['heading_tag'] : 'h2';
-		$type         = self::is_valid_type( $config['type'] ?? 'underline' ) ? $config['type'] : 'underline';
+		$tag          = (string) ( $config['heading_tag'] ?? 'h2' );
+		$tag          = self::is_valid_tag( $tag ) ? $tag : 'h2';
+		$type         = (string) ( $config['type'] ?? 'underline' );
+		$type         = self::is_valid_type( $type ) ? $type : 'underline';
 		$animate      = ( 'on' === ( $config['animate'] ?? 'on' ) );
 		$loop         = $animate && ( 'on' === ( $config['anim_loop'] ?? 'off' ) );
 		$use_gradient = ( 'on' === ( $config['use_gradient'] ?? 'off' ) );

@@ -130,7 +130,7 @@ class Rate_Limiter {
 		} catch ( Throwable $e ) {
 			divi_squad()->log_error( $e, 'Rate limit check failed', false );
 
-			return true; // Allow on error for safety.
+			return false; // Fail closed: a broken limiter must suppress, not flood.
 		}
 	}
 

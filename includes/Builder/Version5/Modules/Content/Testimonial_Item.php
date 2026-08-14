@@ -27,16 +27,16 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function esc_attr;
 use function esc_html;
 use function esc_url;
 use function in_array;
+use function is_array;
 use function max;
 use function min;
-use function preg_replace;
-use function substr;
 use function wp_kses_post;
 use function wpautop;
 
@@ -86,9 +86,11 @@ class Testimonial_Item extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+		$item_attr   = $attrs['testimonial']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -101,8 +103,21 @@ class Testimonial_Item extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance star colour, scoped to the module order
+								// class via Divi's native style pipeline (no inline
+								// <style>, no bespoke uid class).
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-testimonial .squad-testimonial__star.is-filled",
+											'attr'                => $item_attr,
+											'declarationFunction' => array( self::class, 'star_color_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -113,6 +128,34 @@ class Testimonial_Item extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Filled-star colour declaration (star color).
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function star_color_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$star_color = self::sanitize_css_background( (string) ( $value['starColor'] ?? '#FFB400' ) );
+		if ( '' === $star_color ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'color', $star_color );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -136,7 +179,6 @@ class Testimonial_Item extends Module {
 			$avatar    = (string) ( $item['avatar'] ?? '' );
 			$alignment = (string) ( $item['alignment'] ?? 'left' );
 			$alignment = in_array( $alignment, array( 'left', 'center', 'right' ), true ) ? $alignment : 'left';
-			$uid       = self::get_instance_uid( $block );
 
 			$rating_html = '';
 			if ( 'off' !== ( $item['useRating'] ?? 'on' ) ) {
@@ -171,17 +213,13 @@ class Testimonial_Item extends Module {
 				)
 				: '';
 
-			$inline_css = self::get_card_css( $item, $uid );
-
 			$style_components = $elements instanceof ModuleElements
 				? (string) $elements->style_components( array( 'attrName' => 'module' ) )
 				: '';
 
 			$card_html = sprintf(
-				'%1$s<div class="squad-testimonial squad-testimonial--align-%2$s %3$s" itemscope itemtype="https://schema.org/Review">%4$s%5$s%6$s</div>',
-				'' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '',
+				'<div class="squad-testimonial squad-testimonial--align-%1$s" itemscope itemtype="https://schema.org/Review">%2$s%3$s%4$s</div>',
 				esc_attr( $alignment ),
-				esc_attr( $uid ),
 				$rating_html,
 				$quote_html,
 				$author_block
@@ -209,15 +247,6 @@ class Testimonial_Item extends Module {
 		}
 	}
 
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return ( null !== $uid && '' !== $uid )
-			? 'squad-tsi-' . $uid
-			: 'squad-tsi-' . substr( md5( $raw ), 0, 10 );
-	}
-
 	/**
 	 * Build the star-rating markup with schema.org Rating.
 	 *
@@ -242,24 +271,5 @@ class Testimonial_Item extends Module {
 			$rating,
 			$stars
 		);
-	}
-
-	/**
-	 * Build the scoped star-color CSS for a single testimonial.
-	 *
-	 * @since 4.2.0
-	 *
-	 * @param array<string, mixed> $item Testimonial item values.
-	 * @param string               $uid  Unique scoping class for this instance.
-	 *
-	 * @return string Scoped CSS (may be empty).
-	 */
-	protected static function get_card_css( array $item, string $uid ): string {
-		$star_color = self::sanitize_css_background( (string) ( $item['starColor'] ?? '#FFB400' ) );
-		if ( '' === $star_color ) {
-			return '';
-		}
-
-		return ".{$uid} .squad-testimonial__star.is-filled{color:" . esc_attr( $star_color ) . ';}';
 	}
 }

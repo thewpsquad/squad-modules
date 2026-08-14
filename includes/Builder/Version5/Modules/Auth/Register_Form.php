@@ -180,7 +180,7 @@ class Register_Form extends Module {
 			}
 
 			// phpcs:ignore WordPress.Security.NonceVerification
-			$success = isset( $_GET['registered'] ) && 'true' === sanitize_text_field( (string) ( $_GET['registered'] ?? '' ) );
+			$success = isset( $_GET['registered'] ) && 'true' === sanitize_text_field( (string) wp_unslash( $_GET['registered'] ?? '' ) );
 
 			$action_url = esc_url( site_url( 'wp-login.php?action=register', 'login_post' ) );
 

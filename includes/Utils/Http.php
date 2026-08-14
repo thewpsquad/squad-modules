@@ -29,7 +29,7 @@ class Http {
 	 * @return bool
 	 */
 	public static function is_localhost(): bool {
-		$server_name = isset( $_SERVER['SERVER_NAME'] ) ? sanitize_key( wp_unslash( $_SERVER['SERVER_NAME'] ) ) : '';
+		$server_name = isset( $_SERVER['SERVER_NAME'] ) ? strtolower( sanitize_text_field( (string) wp_unslash( $_SERVER['SERVER_NAME'] ) ) ) : '';
 
 		return in_array( $server_name, array( 'localhost', '127.0.0.1' ), true ) ||
 			   strpos( $server_name, '.local' ) !== false ||

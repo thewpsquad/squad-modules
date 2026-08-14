@@ -210,7 +210,11 @@ class Helper {
 		if ( '' !== $array_values ) {
 			$key_value_pairs = explode( ' ', $array_values );
 			foreach ( $key_value_pairs as $key_value_pair ) {
-				[ $key, $value ] = explode( '=', $key_value_pair );
+				$parts = explode( '=', $key_value_pair, 2 );
+				if ( count( $parts ) < 2 ) {
+					continue; // Skip tokens without a "key=value" shape.
+				}
+				[ $key, $value ]  = $parts;
 				$result[ $key ] = $value;
 			}
 		}

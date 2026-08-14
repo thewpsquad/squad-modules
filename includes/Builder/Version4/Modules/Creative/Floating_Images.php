@@ -102,6 +102,8 @@ class Floating_Images extends Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
+		$content = $this->squad_render_child_content( (string) $content );
+
 		$this->apply_min_height_css( $render_slug );
 
 		return sprintf( '<div class="squad-floating">%s</div>', $content );

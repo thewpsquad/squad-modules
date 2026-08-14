@@ -27,14 +27,13 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
-use function esc_attr;
 use function esc_html__;
+use function is_array;
 use function max;
 use function min;
-use function preg_replace;
-use function substr;
 use function trim;
 
 /**
@@ -83,9 +82,12 @@ class Pricing_Table extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+		$plans_attr  = $attrs['plans']['innerContent'] ?? array();
+		$grid        = "{$order_class} .squad-pricing-tables--grid";
 
 		Style::add(
 			array(
@@ -98,8 +100,46 @@ class Pricing_Table extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance plans grid (columns + gaps) scoped to the module
+								// order class through Divi's native style pipeline, mirroring the
+								// Divi 4 `%%order_class%% .squad-pricing-tables--grid` rules that
+								// replaced the former inline <style> block and its bespoke uid class.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => $grid,
+											'attr'                => $plans_attr,
+											'declarationFunction' => array( self::class, 'grid_style_declaration' ),
+										),
+									),
+									// The tablet/phone column counts are fixed (not attribute
+									// driven) in Divi 5, so they are emitted through explicit
+									// at-rules rather than the attribute's own breakpoints. The
+									// breakpoint values match the former hand-written media
+									// queries and the Divi 4 `max_width_980` / `max_width_767`
+									// media queries.
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => $grid,
+											'attr'                => $plans_attr,
+											'atRules'             => '@media only screen and (max-width: 980px)',
+											'declarationFunction' => array( self::class, 'grid_tablet_columns_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => $grid,
+											'attr'                => $plans_attr,
+											'atRules'             => '@media only screen and (max-width: 767px)',
+											'declarationFunction' => array( self::class, 'grid_phone_columns_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -110,6 +150,84 @@ class Pricing_Table extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Plans grid declaration (grid display, desktop column count and gaps).
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function grid_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$columns = max( 1, min( 4, (int) ( $value['columns'] ?? 3 ) ) );
+		$col_gap = self::sanitize_css_length( (string) ( $value['columnGap'] ?? '24px' ) );
+		$row_gap = self::sanitize_css_length( (string) ( $value['rowGap'] ?? '24px' ) );
+
+		$col_value = '' !== $col_gap ? $col_gap : '24px';
+		$row_value = '' !== $row_gap ? $row_gap : '24px';
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'display', 'grid' );
+		$declarations->add( 'grid-template-columns', sprintf( 'repeat(%d,minmax(0,1fr))', $columns ) );
+		$declarations->add( 'gap', "{$row_value} {$col_value}" );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Plans grid tablet column override (fixed two columns).
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function grid_tablet_columns_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'grid-template-columns', 'repeat(2,minmax(0,1fr))' );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Plans grid phone column override (fixed single column).
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function grid_phone_columns_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'grid-template-columns', '1fr' );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -131,15 +249,8 @@ class Pricing_Table extends Module {
 				);
 			}
 
-			$inner = $attrs['plans']['innerContent']['desktop']['value'] ?? array();
-			$uid   = self::get_instance_uid( $block );
-
-			$inline_css = self::get_grid_css( $inner, $uid );
-
 			$grid_html = sprintf(
-				'%1$s<div class="squad-pricing-tables squad-pricing-tables--grid %2$s">%3$s</div>',
-				'' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '',
-				esc_attr( $uid ),
+				'<div class="squad-pricing-tables squad-pricing-tables--grid">%s</div>',
 				$child_modules_content
 			);
 
@@ -163,37 +274,5 @@ class Pricing_Table extends Module {
 
 			return '';
 		}
-	}
-
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return ( null !== $uid && '' !== $uid )
-			? 'squad-pt-' . $uid
-			: 'squad-pt-' . substr( md5( $raw ), 0, 10 );
-	}
-
-	/**
-	 * Build the responsive grid CSS for the plans wrapper.
-	 *
-	 * @param array<string, mixed> $inner The module's content inner values.
-	 * @param string               $uid   Unique instance identifier used as the CSS scope.
-	 *
-	 * @return string The generated CSS, or an empty string when nothing is set.
-	 */
-	protected static function get_grid_css( array $inner, string $uid ): string {
-		$columns = max( 1, min( 4, (int) ( $inner['columns'] ?? 3 ) ) );
-		$col_gap = self::sanitize_css_length( (string) ( $inner['columnGap'] ?? '24px' ) );
-		$row_gap = self::sanitize_css_length( (string) ( $inner['rowGap'] ?? '24px' ) );
-
-		$col_value = '' !== $col_gap ? $col_gap : '24px';
-		$row_value = '' !== $row_gap ? $row_gap : '24px';
-
-		$css  = ".{$uid}.squad-pricing-tables--grid{display:grid;grid-template-columns:repeat({$columns},minmax(0,1fr));gap:{$row_value} {$col_value};}";
-		$css .= "@media(max-width:980px){.{$uid}.squad-pricing-tables--grid{grid-template-columns:repeat(2,minmax(0,1fr));}}";
-		$css .= "@media(max-width:767px){.{$uid}.squad-pricing-tables--grid{grid-template-columns:1fr;}}";
-
-		return $css;
 	}
 }

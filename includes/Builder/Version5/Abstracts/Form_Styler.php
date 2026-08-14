@@ -120,7 +120,9 @@ abstract class Form_Styler extends Module {
 	 * @return string Raw form id, or empty string when unresolved.
 	 */
 	protected static function resolve_form_id( string $picker_value ): string {
-		if ( '' === $picker_value ) {
+		// Empty, or the "Select a form" placeholder sentinel (which the picker seeds
+		// as its default value), means no form is chosen — matches the Divi 4 guard.
+		if ( '' === $picker_value || \DiviSquad\Builder\Utils\Elements\Forms::DEFAULT_FORM_ID === $picker_value ) {
 			return '';
 		}
 

@@ -346,19 +346,17 @@ class Social_Share extends Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
-		$enable_popup = 'off' === $this->prop( 'enable_popup', 'on' ) ? 'off' : 'on';
-		$style        = 'icon_text' === $this->prop( 'button_style', 'icon' ) ? 'icon_text' : 'icon';
+		// Children were already rendered by this point (Divi runs do_shortcode on the
+		// inner content before render(), and squad_render_child_content() covers the
+		// Divi 5 path), so the shared context they read is published in
+		// squad_publish_share_context() via before_render() instead.
+		$content = $this->squad_render_child_content( (string) $content );
 
-		if ( 'on' === $enable_popup ) {
+		$this->squad_publish_share_context();
+
+		if ( 'on' === self::$button_context['enable_popup'] ) {
 			wp_enqueue_script( 'squad-module-social-share' );
 		}
-
-		// Resolve the share target once and expose it to children.
-		self::$share_target   = $this->resolve_share_target();
-		self::$button_context = array(
-			'style'        => $style,
-			'enable_popup' => $enable_popup,
-		);
 
 		$this->apply_layout_css( $render_slug );
 
@@ -374,7 +372,12 @@ class Social_Share extends Module {
 			$subtitle = sanitize_text_field( $this->prop( 'header_subtitle', '' ) );
 			$inner    = '';
 			if ( '' !== $title ) {
-				$inner .= sprintf( '<h3 class="squad-social-share__header-title">%s</h3>', esc_html( $title ) );
+				// The 'header_title' font group declares header_level, so Divi generates
+				// this H1-H6 control; honour it instead of hardcoding the tag.
+				$level = (string) $this->prop( 'header_title_level', 'h3' );
+				$level = in_array( $level, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ), true ) ? $level : 'h3';
+
+				$inner .= sprintf( '<%1$s class="squad-social-share__header-title">%2$s</%1$s>', $level, esc_html( $title ) );
 			}
 			if ( '' !== $subtitle ) {
 				$inner .= sprintf( '<p class="squad-social-share__header-subtitle">%s</p>', esc_html( $subtitle ) );
@@ -389,10 +392,44 @@ class Social_Share extends Module {
 			esc_attr( $orientation ),
 			esc_attr( $shape ),
 			esc_attr( $hover ),
-			esc_attr( $style ),
+			esc_attr( self::$button_context['style'] ),
 			$header_html,
 			$content
 		);
+	}
+
+	/**
+	 * Publish the share target and button context for the child modules.
+	 *
+	 * Divi renders a parent's inner shortcodes before calling its render()
+	 * (class-et-builder-element.php runs do_shortcode() on the content at ~2975,
+	 * while render() is invoked later at ~3322), so anything the children read
+	 * has to be in place before that. before_render() runs at ~2931, once
+	 * $this->props is fully populated, which is early enough.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return void
+	 */
+	public function squad_publish_share_context(): void {
+		self::$share_target   = $this->resolve_share_target();
+		self::$button_context = array(
+			'style'        => 'icon_text' === $this->prop( 'button_style', 'icon' ) ? 'icon_text' : 'icon',
+			'enable_popup' => 'off' === $this->prop( 'enable_popup', 'on' ) ? 'off' : 'on',
+		);
+	}
+
+	/**
+	 * Publish the child-facing share context before the inner shortcodes render.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return void
+	 */
+	public function before_render() {
+		parent::before_render();
+
+		$this->squad_publish_share_context();
 	}
 
 	/**

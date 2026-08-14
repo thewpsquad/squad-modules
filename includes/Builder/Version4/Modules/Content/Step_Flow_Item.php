@@ -285,7 +285,12 @@ class Step_Flow_Item extends Child_Module {
 			$content_inner .= sprintf( '<span class="squad-step-flow__label">%s</span>', esc_html( $label ) );
 		}
 		if ( '' !== $title ) {
-			$content_inner .= sprintf( '<h4 class="squad-step-flow__title">%s</h4>', esc_html( $title ) );
+			// The 'title' font group declares header_level, so Divi generates this
+			// H1-H6 control; honour it instead of hardcoding the tag.
+			$level = (string) $this->prop( 'title_level', 'h4' );
+			$level = in_array( $level, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ), true ) ? $level : 'h4';
+
+			$content_inner .= sprintf( '<%1$s class="squad-step-flow__title">%2$s</%1$s>', $level, esc_html( $title ) );
 		}
 		if ( '' !== $description ) {
 			$content_inner .= sprintf( '<div class="squad-step-flow__description">%s</div>', wp_kses_post( $description ) );

@@ -125,11 +125,13 @@ class Pricing_Table extends Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
+		$content = $this->squad_render_child_content( (string) $content );
+
 		$this->apply_grid_css( $render_slug );
 
 		return sprintf(
 			'<div class="squad-pricing-tables squad-pricing-tables--grid">%s</div>',
-			(string) $content
+			$content
 		);
 	}
 

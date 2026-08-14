@@ -50,8 +50,11 @@ abstract class Base_Extension implements Extension_Interface {
 	 */
 	public function __construct() {
 		$this->memory      = divi_squad()->memory;
-		$this->inactivates = $this->memory->get( 'inactive_extensions', array() );
-		$this->name_lists  = array_column( $this->inactivates, 'name' );
+		// inactive_extensions is persisted as a flat list of extension-name strings
+		// (see Core\Extensions), so use it directly — array_column() on a string
+		// list returns [], which silently disabled this self-guard (fail-open).
+		$this->inactivates = (array) $this->memory->get( 'inactive_extensions', array() );
+		$this->name_lists  = $this->inactivates;
 
 		// Verify the current extension, is in the allowed list.
 		if ( ! in_array( $this->get_name(), $this->name_lists, true ) ) {

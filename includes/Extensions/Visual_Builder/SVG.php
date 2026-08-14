@@ -120,10 +120,11 @@ class SVG extends Base_Extension {
 	/**
 	 * Sanitize an uploaded SVG before it is stored.
 	 *
-	 * Runs on `wp_handle_upload_prefilter`. Strips scripts, event handlers,
-	 * `javascript:`/`data:` URLs, `<foreignObject>` and animation-based vectors,
-	 * and external entity declarations (XXE) from the SVG markup. Rejects the
-	 * upload if the file cannot be parsed as SVG.
+	 * Runs on `wp_handle_upload_prefilter`. Strips scripts, `<style>` blocks,
+	 * event handlers, `javascript:`/`data:` URLs (including whitespace- and
+	 * control-character-obfuscated variants), `<foreignObject>` and
+	 * animation-based vectors, and external entity declarations (XXE) from the
+	 * SVG markup. Rejects the upload if the file cannot be parsed as SVG.
 	 *
 	 * @since 3.4.2
 	 *
@@ -208,6 +209,7 @@ class SVG extends Base_Extension {
 		// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHP DOM API properties (childNodes, localName, nodeName, nodeValue) cannot be renamed.
 		$blocked_tags = array(
 			'script',
+			'style',
 			'foreignobject',
 			'iframe',
 			'embed',
@@ -250,9 +252,16 @@ class SVG extends Base_Extension {
 			$attr_name  = strtolower( (string) $attribute->nodeName );
 			$attr_value = (string) $attribute->nodeValue;
 
-			$is_event   = 0 === strpos( $attr_name, 'on' );
-			$is_href    = in_array( $attr_name, array( 'href', 'xlink:href', 'src' ), true ) || 'href' === (string) $attribute->localName;
-			$bad_scheme = 1 === preg_match( '/^\s*(?:javascript|vbscript|data)\s*:/i', $attr_value );
+			$is_event = 0 === strpos( $attr_name, 'on' );
+			$is_href  = in_array( $attr_name, array( 'href', 'xlink:href', 'src' ), true ) || 'href' === (string) $attribute->localName;
+
+			// Browsers ignore whitespace and control characters embedded inside a
+			// URL scheme (e.g. "java\tscript:", or "j&#9;avascript:" which the XML
+			// parser decodes to a real tab before we ever see it). Strip every
+			// C0 control character and space before matching so the scheme test
+			// cannot be trivially obfuscated.
+			$scheme_probe = (string) preg_replace( '/[\x00-\x20\x7f]+/', '', $attr_value );
+			$bad_scheme   = 1 === preg_match( '/^(?:javascript|vbscript|livescript|mocha|data):/i', $scheme_probe );
 
 			if ( $is_event || ( $is_href && $bad_scheme ) ) {
 				$node->removeAttributeNode( $attribute );

@@ -269,7 +269,7 @@ class Hover_Box extends Module {
 				$icon_char = self::resolve_icon( $inner['icon'] ?? array() );
 				if ( '' !== $icon_char ) {
 					$icon_html = sprintf(
-						'<span class="squad-hoverbox__icon"><span class="et-pb-icon">%s</span></span>',
+						'<span class="squad-hoverbox__icon" aria-hidden="true"><span class="et-pb-icon">%s</span></span>',
 						esc_html( $icon_char )
 					);
 				}

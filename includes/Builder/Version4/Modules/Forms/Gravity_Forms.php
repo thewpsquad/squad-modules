@@ -741,8 +741,8 @@ class Gravity_Forms extends Form_Styler {
 				esc_html__( 'Field Label', 'squad-modules-for-divi' ),
 				array(
 					'css'         => array(
-						'main'  => $this->squad_get_css_selector_string( 'fields.label' ),
-						'hover' => $this->squad_get_hover_selector_string( 'fields.label' ),
+						'main'  => $this->squad_get_css_selector_string( 'typography.labels' ),
+						'hover' => $this->squad_get_hover_selector_string( 'typography.labels' ),
 					),
 					'font_size'   => array( 'default' => '14px' ),
 					'tab_slug'    => 'advanced',
@@ -1331,7 +1331,7 @@ class Gravity_Forms extends Form_Styler {
 		 */
 		$attrs = (array) apply_filters( 'divi_squad_module_gravity_forms_get_form_html_attrs', $attrs );
 
-		if ( ! function_exists( '\gravity_form' ) || '' === $attrs['form_id'] || divi_squad()->forms_element::DEFAULT_FORM_ID === $attrs['form_id'] ) {
+		if ( ! function_exists( '\gravity_form' ) || '' === ( $attrs['form_id'] ?? '' ) || divi_squad()->forms_element::DEFAULT_FORM_ID === $attrs['form_id'] ) {
 			return '';
 		}
 

@@ -340,7 +340,7 @@ class Post_Grid extends Base_Route {
 				'divi_squad_rest_post_grid_error_response',
 				new WP_Error(
 					'rest_error',
-					$e->getMessage(),
+					esc_html__( 'Unable to load more posts. Please try again later.', 'squad-modules-for-divi' ),
 					array( 'status' => 500 )
 				),
 				$e,
@@ -418,7 +418,7 @@ class Post_Grid extends Base_Route {
 
 			return new WP_Error(
 				'rest_error',
-				$e->getMessage(),
+				esc_html__( 'Unable to load more posts. Please try again later.', 'squad-modules-for-divi' ),
 				array( 'status' => 500 )
 			);
 		}

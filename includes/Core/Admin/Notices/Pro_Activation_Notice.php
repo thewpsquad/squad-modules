@@ -95,16 +95,16 @@ class Pro_Activation_Notice extends Notice_Base {
 				'title'           => esc_html__( 'Approaching closer to unlocking the benefits of the Pro plugin.', 'squad-modules-for-divi' ),
 				'content'         => sprintf(
 				/* translators: %1$s: Product title; */
-					esc_html__( ' The paid plugin of %1$s is already installed. Please activate it to start benefiting the Pro features.', 'squad-modules-for-divi' ),
+					esc_html__( 'The paid plugin of %1$s is already installed. Please activate it to start benefiting from the Pro features.', 'squad-modules-for-divi' ),
 					sprintf( '<em>%s</em>', esc_html__( 'Squad Modules Lite', 'squad-modules-for-divi' ) )
 				),
 				'action_buttons'  => array(
 					'left' => array(
 						array(
 							'link'    => wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . divi_squad()->get_pro_basename(), 'activate-plugin_' . divi_squad()->get_pro_basename() ),
-							'text'    => esc_html__( 'Active Pro Plugin', 'squad-modules-for-divi' ),
+							'text'    => esc_html__( 'Activate Pro Plugin', 'squad-modules-for-divi' ),
 							'classes' => 'button-primary divi-squad-notice-action-button',
-							'icon'    => 'dashicons-plugins-checked',
+							'icon'    => 'dashicons-yes-alt',
 							'style'   => '',
 							'type'    => 'primary',
 							'action'  => null, // External link to plugins page.
@@ -118,7 +118,7 @@ class Pro_Activation_Notice extends Notice_Base {
 			);
 
 			// Merge with default args.
-			$args = array_merge_recursive( $args, $activation_args );
+			$args = array_merge( $args, $activation_args );
 
 			/**
 			 * Filter the pro activation notice template arguments.

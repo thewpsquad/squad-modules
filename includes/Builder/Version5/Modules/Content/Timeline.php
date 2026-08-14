@@ -31,15 +31,15 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function absint;
-use function esc_attr;
 use function esc_html__;
+use function is_array;
 use function max;
 use function min;
 use function wp_enqueue_script;
-use function wp_json_encode;
 
 /**
  * Timeline parent module class.
@@ -100,9 +100,11 @@ class Timeline extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs         = $args['attrs'] ?? array();
+		$elements      = $args['elements'];
+		$settings      = $args['settings'] ?? array();
+		$order_class   = (string) ( $args['orderClass'] ?? '' );
+		$timeline_attr = $attrs['timeline']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -115,8 +117,38 @@ class Timeline extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance line/marker colours, scoped to the module order
+								// class via Divi's native style pipeline (no inline <style>,
+								// no bespoke uid class) — mirrors the Divi 4 module's
+								// %%order_class%% colour output.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-timeline__line",
+											'attr'                => $timeline_attr,
+											'declarationFunction' => array( self::class, 'line_color_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-timeline__marker",
+											'attr'                => $timeline_attr,
+											'declarationFunction' => array( self::class, 'marker_color_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-timeline__dot, {$order_class} .squad-timeline__number, {$order_class} .squad-timeline__icon",
+											'attr'                => $timeline_attr,
+											'declarationFunction' => array( self::class, 'marker_glyph_color_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -127,6 +159,91 @@ class Timeline extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Connecting-line declaration (line background colour).
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function line_color_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$line_color = self::sanitize_css_background( (string) ( $value['lineColor'] ?? '' ) );
+		if ( '' === $line_color ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'background-color', $line_color );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Marker declaration (marker foreground + background colour).
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function marker_color_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$marker_color = self::sanitize_css_background( (string) ( $value['markerColor'] ?? '' ) );
+		if ( '' === $marker_color ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'color', $marker_color );
+		$declarations->add( 'background-color', $marker_color );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Marker glyph declaration (dot / number / icon colour).
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function marker_glyph_color_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$marker_color = self::sanitize_css_background( (string) ( $value['markerColor'] ?? '' ) );
+		if ( '' === $marker_color ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'color', $marker_color );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -163,12 +280,7 @@ class Timeline extends Module {
 				'stagger'     => max( 0, min( 600, absint( $inner['revealStagger'] ?? 120 ) ) ),
 			);
 
-			$uid        = self::get_instance_uid( $block );
-			$inline_css = self::get_color_css( $inner, $uid );
-			$track_html = Timeline_Helper::build_track( $config, $child_modules_content );
-
-			$timeline_html = ( '' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '' )
-				. sprintf( '<div class="%s">%s</div>', esc_attr( $uid ), $track_html );
+			$timeline_html = Timeline_Helper::build_track( $config, $child_modules_content );
 
 			$style_components = $elements instanceof ModuleElements
 				? (string) $elements->style_components( array( 'attrName' => 'module' ) )
@@ -194,50 +306,5 @@ class Timeline extends Module {
 
 			return '';
 		}
-	}
-
-	/**
-	 * Build a stable per-instance uid for scoping color CSS selectors.
-	 *
-	 * @since 4.3.0
-	 *
-	 * @param WP_Block $block The parsed block.
-	 *
-	 * @return string
-	 */
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return '' !== $uid
-			? 'squad-tl-' . $uid
-			: 'squad-tl-' . substr( md5( $raw . wp_json_encode( $block->parsed_block['orderIndex'] ?? 0 ) ), 0, 10 );
-	}
-
-	/**
-	 * Generate scoped line / marker color CSS for this instance.
-	 *
-	 * @since 4.3.0
-	 *
-	 * @param array<string, mixed> $inner Packed `timeline.innerContent` desktop values.
-	 * @param string               $uid   Per-instance identifier.
-	 *
-	 * @return string Raw CSS (no <style> tags).
-	 */
-	protected static function get_color_css( array $inner, string $uid ): string {
-		$css = '';
-
-		$line_color = self::sanitize_css_background( (string) ( $inner['lineColor'] ?? '' ) );
-		if ( '' !== $line_color ) {
-			$css .= ".{$uid} .squad-timeline__line{background-color:{$line_color}}";
-		}
-
-		$marker_color = self::sanitize_css_background( (string) ( $inner['markerColor'] ?? '' ) );
-		if ( '' !== $marker_color ) {
-			$css .= ".{$uid} .squad-timeline__marker{color:{$marker_color};background-color:{$marker_color}}";
-			$css .= ".{$uid} .squad-timeline__dot,.{$uid} .squad-timeline__number,.{$uid} .squad-timeline__icon{color:{$marker_color}}";
-		}
-
-		return $css;
 	}
 }

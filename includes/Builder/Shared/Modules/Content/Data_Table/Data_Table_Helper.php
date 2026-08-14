@@ -130,7 +130,8 @@ final class Data_Table_Helper {
 	 */
 	public static function build_table( array $config, string $rows_html ): string {
 		$headers     = isset( $config['headers'] ) && is_array( $config['headers'] ) ? $config['headers'] : array();
-		$responsive  = self::is_valid_responsive( (string) ( $config['responsive'] ?? 'stack' ) ) ? (string) $config['responsive'] : 'stack';
+		$responsive  = (string) ( $config['responsive'] ?? 'stack' );
+		$responsive  = self::is_valid_responsive( $responsive ) ? $responsive : 'stack';
 		$sticky      = self::normalize_flag( (string) ( $config['sticky'] ?? 'off' ), 'off' );
 		$striped     = self::normalize_flag( (string) ( $config['striped'] ?? 'off' ), 'off' );
 		$sortable    = self::normalize_flag( (string) ( $config['sortable'] ?? 'off' ), 'off' );

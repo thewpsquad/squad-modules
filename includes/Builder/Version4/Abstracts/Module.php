@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
+use DiviSquad\Builder\Shared\Supports\Shortcode_Content;
 use DiviSquad\Builder\Version4\Contracts\Module_Interface;
 use DiviSquad\Builder\Version4\Supports\Module_Utility;
 use DiviSquad\Core\Supports\Links;
@@ -384,5 +385,26 @@ abstract class Module extends ET_Builder_Module implements Module_Interface {
 			return $value;
 		}
 		return $fallback;
+	}
+
+	/**
+	 * Render nested child-module shortcodes contained in a parent's content.
+	 *
+	 * Divi 4 renders child-module shortcodes into the `$content` passed to a
+	 * parent module's render(). Divi 5's Divi-4-shortcode compatibility layer
+	 * (ET\Builder\Packages\ShortcodeModule) instead hands the parent its raw
+	 * inner content, so nested child shortcodes (e.g. `[disq_timeline_item]`)
+	 * would otherwise reach the front end as literal text. Rendering them here
+	 * fixes the Divi 5 path and is a safe no-op on Divi 4, where `$content`
+	 * arrives already rendered (no child shortcodes remain to process).
+	 *
+	 * @since 4.4.2
+	 *
+	 * @param string $content Raw or already-rendered child-module content.
+	 *
+	 * @return string Content with any remaining child shortcodes rendered.
+	 */
+	protected function squad_render_child_content( string $content ): string {
+		return Shortcode_Content::render_children( $content, (string) $this->child_slug );
 	}
 }

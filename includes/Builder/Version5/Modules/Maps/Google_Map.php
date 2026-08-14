@@ -193,7 +193,13 @@ class Google_Map extends Module {
 		} catch ( Throwable $e ) {
 			divi_squad()->log_error( $e, 'Failed to render Divi 5 Google Map module' );
 
-			return '';
+			/** This filter is documented in includes/Builder/Version4/Modules/Maps/Google_Map.php */
+			return (string) apply_filters(
+				'divi_squad_google_map_error_message',
+				'<div class="disq-error-message">' . esc_html__( 'Unable to load map. Please try again later.', 'squad-modules-for-divi' ) . '</div>',
+				$e,
+				null
+			);
 		}
 	}
 
@@ -215,6 +221,8 @@ class Google_Map extends Module {
 		$address        = $inner['address'] ?? '';
 		$zoom           = isset( $inner['zoom'] ) ? (int) $inner['zoom'] : 10;
 		$module_api_key = $inner['googleApiKey'] ?? '';
+
+		wp_enqueue_script( 'squad-module-google-map' );
 
 		/** This filter is documented in includes/Builder/Version4/Modules/Maps/Google_Map.php */
 		$address = apply_filters( 'divi_squad_google_map_address', $address, $attrs, null );
@@ -261,6 +269,9 @@ class Google_Map extends Module {
 		$iframe_html = '<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ';
 		$iframe_html .= 'src="' . esc_url( $src_url ) . '" ';
 		$iframe_html .= 'aria-label="' . esc_attr( $address ) . '"></iframe>';
+
+		/** This action is documented in includes/Builder/Version4/Modules/Maps/Google_Map.php */
+		do_action( 'divi_squad_after_google_map_render', $iframe_html, $attrs, null );
 
 		/** This filter is documented in includes/Builder/Version4/Modules/Maps/Google_Map.php */
 		return (string) apply_filters( 'divi_squad_google_map_iframe_html', $iframe_html, $src_url, $address, $zoom, null );

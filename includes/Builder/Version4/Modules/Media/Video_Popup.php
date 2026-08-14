@@ -920,7 +920,7 @@ class Video_Popup extends Module {
 		// Generate svg icon.
 		if ( in_array( $trigger_element, array( 'icon', 'icon_text' ), true ) ) {
 			// Load the image loader.
-			$image = divi_squad()->load_image( '/build/admin/images/icons' );
+			$image = divi_squad()->load_image( '/build/admin/images/ui-icons' );
 
 			// Check if image is validated.
 			if ( ! $image->is_path_validated() ) {

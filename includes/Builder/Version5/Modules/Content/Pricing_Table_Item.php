@@ -28,15 +28,15 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function esc_attr;
 use function esc_html;
 use function esc_url;
 use function explode;
+use function is_array;
 use function ltrim;
-use function preg_replace;
-use function substr;
 use function trim;
 
 /**
@@ -85,9 +85,11 @@ class Pricing_Table_Item extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+		$plan_attr   = $attrs['plan']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -100,8 +102,38 @@ class Pricing_Table_Item extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance accent colour (button + ribbon background and the
+								// featured-card border), scoped to the module order class via
+								// Divi's native style pipeline (no inline <style>, no bespoke uid
+								// class) — mirrors the Divi 4 %%order_class%% output.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-pricing .squad-pricing__button",
+											'attr'                => $plan_attr,
+											'declarationFunction' => array( self::class, 'button_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-pricing .squad-pricing__ribbon",
+											'attr'                => $plan_attr,
+											'declarationFunction' => array( self::class, 'ribbon_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-pricing.is-featured",
+											'attr'                => $plan_attr,
+											'declarationFunction' => array( self::class, 'featured_card_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -112,6 +144,93 @@ class Pricing_Table_Item extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Resolve the plan accent colour from a declaration params payload.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string Sanitized accent colour, or empty string.
+	 */
+	protected static function get_accent_color( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		return self::sanitize_css_background( (string) ( $value['accentColor'] ?? '#5E2EFF' ) );
+	}
+
+	/**
+	 * Call-to-action button declaration (accent background).
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function button_style_declaration( array $params ): string {
+		$accent = self::get_accent_color( $params );
+		if ( '' === $accent ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'background', $accent );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Ribbon declaration (accent background).
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function ribbon_style_declaration( array $params ): string {
+		$accent = self::get_accent_color( $params );
+		if ( '' === $accent ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'background', $accent );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Featured card declaration (accent border colour).
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function featured_card_style_declaration( array $params ): string {
+		$accent = self::get_accent_color( $params );
+		if ( '' === $accent ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'border-color', $accent );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -137,7 +256,6 @@ class Pricing_Table_Item extends Module {
 			$features    = (string) ( $item['features'] ?? '' );
 			$button_text = (string) ( $item['buttonText'] ?? '' );
 			$button_url  = (string) ( $item['buttonUrl'] ?? '#' );
-			$uid         = self::get_instance_uid( $block );
 
 			$ribbon_html = '' !== $ribbon ? sprintf( '<div class="squad-pricing__ribbon">%s</div>', esc_html( $ribbon ) ) : '';
 			$title_html  = '' !== $title ? sprintf( '<h3 class="squad-pricing__title" itemprop="name">%s</h3>', esc_html( $title ) ) : '';
@@ -164,17 +282,13 @@ class Pricing_Table_Item extends Module {
 				);
 			}
 
-			$inline_css = self::get_card_css( $item, $uid );
-
 			$style_components = $elements instanceof ModuleElements
 				? (string) $elements->style_components( array( 'attrName' => 'module' ) )
 				: '';
 
 			$card_html = sprintf(
-				'%1$s<div class="squad-pricing%2$s %3$s" itemscope itemtype="https://schema.org/Product">%4$s<div class="squad-pricing__head">%5$s%6$s%7$s</div>%8$s%9$s</div>',
-				'' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '',
+				'<div class="squad-pricing%1$s" itemscope itemtype="https://schema.org/Product">%2$s<div class="squad-pricing__head">%3$s%4$s%5$s</div>%6$s%7$s</div>',
 				$is_featured ? ' is-featured' : '',
-				esc_attr( $uid ),
 				$ribbon_html,
 				$title_html,
 				$price_html,
@@ -203,15 +317,6 @@ class Pricing_Table_Item extends Module {
 
 			return '';
 		}
-	}
-
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return ( null !== $uid && '' !== $uid )
-			? 'squad-pti-' . $uid
-			: 'squad-pti-' . substr( md5( $raw ), 0, 10 );
 	}
 
 	/**
@@ -247,30 +352,5 @@ class Pricing_Table_Item extends Module {
 		}
 
 		return '' !== $items ? sprintf( '<ul class="squad-pricing__features">%s</ul>', $items ) : '';
-	}
-
-	/**
-	 * Build the scoped accent CSS for a single plan card.
-	 *
-	 * @since 4.2.0
-	 *
-	 * @param array<string, mixed> $item Plan item values.
-	 * @param string               $uid  Unique scoping class for this instance.
-	 *
-	 * @return string Scoped CSS (may be empty).
-	 */
-	protected static function get_card_css( array $item, string $uid ): string {
-		$accent = self::sanitize_css_background( (string) ( $item['accentColor'] ?? '#5E2EFF' ) );
-		if ( '' === $accent ) {
-			return '';
-		}
-
-		$accent = esc_attr( $accent );
-
-		$css  = ".{$uid} .squad-pricing__button{background:{$accent};}";
-		$css .= ".{$uid} .squad-pricing__ribbon{background:{$accent};}";
-		$css .= ".{$uid} .squad-pricing.is-featured{border-color:{$accent};}";
-
-		return $css;
 	}
 }

@@ -384,10 +384,10 @@ class Post_Reading_Time extends Module {
 		divi_squad()->d4_module_helper->fix_box_shadow_transition( $fields, 'time_element', "$this->main_css_element div .time-text-wrapper .time-text-container" );
 
 		// divider styles.
-		$fields['divider_color']  = array( 'border-top-color' => "$this->main_css_element div .time-text-wrapper .time-text-item.time-divider-element:before" );
+		$fields['divider_color']  = array( 'border-top-color' => "$this->main_css_element div .time-text-wrapper .time-text-item.time-text-divider-element:before" );
 		$fields['divider_weight'] = array(
-			'border-top-width' => "$this->main_css_element div .time-text-wrapper .time-text-item.time-divider-element:before",
-			'height'           => "$this->main_css_element div .time-text-wrapper .time-text-item.time-divider-element:before",
+			'border-top-width' => "$this->main_css_element div .time-text-wrapper .time-text-item.time-text-divider-element:before",
+			'height'           => "$this->main_css_element div .time-text-wrapper .time-text-item.time-text-divider-element:before",
 		);
 
 		// Default styles.

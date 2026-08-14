@@ -372,6 +372,8 @@ class Comparison_List extends Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
+		$content = $this->squad_render_child_content( (string) $content );
+
 		$this->apply_layout_css( $render_slug );
 		$this->apply_row_css( $render_slug );
 		$this->apply_icon_css( $render_slug );
@@ -385,7 +387,7 @@ class Comparison_List extends Module {
 			'<div class="squad-comparison-list squad-comparison-list--icon-%1$s" data-divider="%2$s">%3$s</div>',
 			esc_attr( $icon_position ),
 			esc_attr( $divider ),
-			(string) $content
+			$content
 		);
 	}
 

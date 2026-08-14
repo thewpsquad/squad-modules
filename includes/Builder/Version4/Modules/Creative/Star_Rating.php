@@ -17,10 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
+use DiviSquad\Builder\Shared\Modules\Creative\Star_Rating\Star_Rating_Helper;
 use DiviSquad\Builder\Version4\Abstracts\Module;
 use function esc_attr;
 use function esc_html__;
-use function wp_parse_args;
 
 /**
  * Star Rating Module Class.
@@ -504,7 +504,9 @@ class Star_Rating extends Module {
 				'<%1$s class="star-rating-title et_pb_module_header"><span%3$s>%2$s</span></%1$s>',
 				esc_attr( divi_squad()->d4_module_helper->sanitize_html_tag( $this->prop( 'text_element_tag', 'h2' ), 'h2' ) ),
 				esc_html( $title ),
-				'on' === $stars_schema_markup ? esc_attr( ' itemprop="name"' ) : ''
+				// Static microdata attribute: esc_attr() here would encode the quotes
+				// and break the itemprop value for schema.org consumers.
+				'on' === $stars_schema_markup ? ' itemprop="name"' : ''
 			);
 		}
 
@@ -528,7 +530,7 @@ class Star_Rating extends Module {
 				esc_attr( (string) $rating_scale ),
 				$stars_output,
 				'right' === $title_inline_position ? $title : '',
-				'on' === $stars_schema_markup ? esc_attr( ' itemprop=reviewRating itemscope itemtype=http://schema.org/Rating' ) : ''
+				'on' === $stars_schema_markup ? ' itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"' : ''
 			);
 		} else {
 			$position_output = sprintf(
@@ -538,7 +540,7 @@ class Star_Rating extends Module {
 				esc_attr( (string) $rating_scale ),
 				$stars_output,
 				'bottom' === $title_stacked_position ? $title : '',
-				'on' === $stars_schema_markup ? esc_attr( ' itemprop=reviewRating itemscope itemtype=http://schema.org/Rating' ) : ''
+				'on' === $stars_schema_markup ? ' itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating"' : ''
 			);
 		}
 
@@ -590,46 +592,7 @@ class Star_Rating extends Module {
 	 * @return string
 	 */
 	public static function get_star_rating( array $args = array() ): string {
-		$defaults = array(
-			'rating_scale'        => 5,
-			'rating'              => 5.0,
-			'show_number'         => 'off',
-			'stars_schema_markup' => 'off',
-		);
-
-		$args = wp_parse_args( $args, $defaults );
-
-		$int_rating = absint( $args['rating'] );
-		$precision  = ( (float) $args['rating'] ) - $int_rating;
-		$output     = '';
-
-		for ( $stars = 1; $stars <= $args['rating_scale']; $stars ++ ) {
-			if ( $stars <= $int_rating ) {
-				$output .= '<i class="star-full" aria-hidden="true">☆</i>';
-			} elseif ( $int_rating + 1 === $stars && $precision > 0 ) {
-				// Partial star with precision using CSS custom property.
-				$decimal = number_format( $precision * 100, 0, '', '' );
-				$output  .= sprintf(
-					'<i class="star-precision" aria-hidden="true" style="--squad-star-rating-precision: %1$s">☆</i>',
-					esc_attr( $decimal )
-				);
-			} else {
-				// Empty star.
-				$output .= '<i class="star-empty" aria-hidden="true">☆</i>';
-			}
-		}
-
-		if ( 'on' === $args['show_number'] ) {
-			if ( 'on' === $args['stars_schema_markup'] ) {
-				$stars_number_html = '<meta itemprop="worstRating" content="1">(<span itemprop="ratingValue">' . $args['rating'] . '</span>/<span itemprop="bestRating">' . $args['rating_scale'] . '</span>)';
-			} else {
-				$stars_number_html = '(<span>' . $args['rating'] . '</span>/<span>' . $args['rating_scale'] . '</span>)';
-			}
-
-			$output .= ' <span class="star-rating-text">' . $stars_number_html . '</span>';
-		}
-
-		return $output;
+		return Star_Rating_Helper::get_star_rating( $args );
 	}
 
 	/**
@@ -690,7 +653,9 @@ class Star_Rating extends Module {
 				'selector'       => "$this->main_css_element div .star-rating",
 				'css_property'   => 'font-size',
 				'render_slug'    => $this->slug,
-				'type'           => 'input',
+				// 'range' (not 'input') so Divi appends the default_unit; with 'input'
+				// the unitless '14' default emits an invalid `font-size: 14`.
+				'type'           => 'range',
 			)
 		);
 

@@ -291,10 +291,12 @@ class Assets implements Hookable {
 				 */
 				$should_remove = apply_filters( 'divi_squad_should_remove_dependency', $should_remove, $dependency, $scripts_deps, $root );
 
-				// Dequeue and remove the dependency if it should be removed.
+				// Dequeue only — do NOT remove()/deregister. Deregistering a same-origin
+				// handle globally breaks other plugins that depend on it (their admin UI
+				// on a Squad screen, or dependency resolution). Dequeue keeps the handle
+				// registered but unprinted on Squad admin pages.
 				if ( $should_remove ) {
 					$root->dequeue( $dependency->handle );
-					$root->remove( $dependency->handle );
 				}
 			}
 		} catch ( Throwable $e ) {

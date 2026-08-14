@@ -795,7 +795,7 @@ class Fluent_Forms extends Form_Styler {
 		 */
 		$attrs = (array) apply_filters( 'divi_squad_module_fluent_forms_get_form_html_attrs', $attrs );
 
-		if ( ! function_exists( 'wpFluentForm' ) || '' === $attrs['form_id'] || divi_squad()->forms_element::DEFAULT_FORM_ID === $attrs['form_id'] ) {
+		if ( ! function_exists( 'wpFluentForm' ) || '' === ( $attrs['form_id'] ?? '' ) || divi_squad()->forms_element::DEFAULT_FORM_ID === $attrs['form_id'] ) {
 			return '';
 		}
 

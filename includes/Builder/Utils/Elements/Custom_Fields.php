@@ -455,9 +455,9 @@ class Custom_Fields {
 			 */
 			$fields = apply_filters( 'divi_squad_custom_fields', $fields, $post_id, $field_type, $fields_processor );
 
-			$this->storage['options'][ $cache_key ] = array(
-				$post_id => $fields,
-			);
+			// Key by post ID so rendering a grid of posts accumulates each post's
+			// fields; a whole-bucket assignment would discard every prior post.
+			$this->storage['options'][ $cache_key ][ $post_id ] = $fields;
 
 			/**
 			 * Action after retrieving fields for a post.

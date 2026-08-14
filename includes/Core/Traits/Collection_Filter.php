@@ -42,21 +42,23 @@ trait Collection_Filter {
 	 * @return array<string, mixed> Filtered collection.
 	 */
 	protected function filter_collection( array $collection, callable $callback ): array {
-		try {
-			return array_filter(
-				$collection,
-				static function ( $item, $key ) use ( $callback ) {
-					return $callback( $item, $key );
-				},
-				ARRAY_FILTER_USE_BOTH
-			);
-		} catch ( Throwable $e ) {
-			// Log error if logging is available.
-			if ( function_exists( 'divi_squad' ) ) {
-				divi_squad()->log_error( $e, 'Failed to filter collection' );
-			}
+		$filtered = array();
 
-			return array();
+		// Catch PER ITEM, not around the whole array_filter: a single throwing callback
+		// must skip only that item, never collapse the entire collection to [] (which
+		// would silently disable every module/extension the caller was filtering).
+		foreach ( $collection as $key => $item ) {
+			try {
+				if ( $callback( $item, $key ) ) {
+					$filtered[ $key ] = $item;
+				}
+			} catch ( Throwable $e ) {
+				if ( function_exists( 'divi_squad' ) ) {
+					divi_squad()->log_error( $e, 'Failed to filter collection item', false );
+				}
+			}
 		}
+
+		return $filtered;
 	}
 }

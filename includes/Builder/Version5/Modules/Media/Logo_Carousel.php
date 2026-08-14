@@ -29,12 +29,14 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function absint;
 use function esc_attr;
 use function esc_attr__;
 use function esc_html__;
+use function is_array;
 use function wp_enqueue_script;
 use function wp_enqueue_style;
 use function wp_json_encode;
@@ -104,9 +106,11 @@ class Logo_Carousel extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs         = $args['attrs'] ?? array();
+		$elements      = $args['elements'];
+		$settings      = $args['settings'] ?? array();
+		$order_class   = (string) ( $args['orderClass'] ?? '' );
+		$carousel_attr = $attrs['carousel']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -119,8 +123,38 @@ class Logo_Carousel extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance logo hover effect and logo sizing, scoped to the
+								// module order class via Divi's native style pipeline (no inline
+								// <style>, no bespoke uid class). Mirrors the Divi 4 module's
+								// %%order_class%% set_style() output.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-logo-carousel__logo",
+											'attr'                => $carousel_attr,
+											'declarationFunction' => array( self::class, 'logo_hover_base_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-logo-carousel__slide:hover .squad-logo-carousel__logo",
+											'attr'                => $carousel_attr,
+											'declarationFunction' => array( self::class, 'logo_hover_state_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-logo-carousel__logo",
+											'attr'                => $carousel_attr,
+											'declarationFunction' => array( self::class, 'logo_sizing_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -167,14 +201,11 @@ class Logo_Carousel extends Module {
 
 			$uid = self::get_instance_uid( $block );
 
-			$inline_css = self::get_hover_css( $inner, $uid ) . self::get_sizing_css( $inner, $uid );
-
 			$carousel_html = sprintf(
-				'%1$s<div class="squad-logo-carousel swiper" data-swiper-options=\'%2$s\'>
-					<div class="swiper-wrapper squad-logo-carousel__wrapper">%3$s</div>
-					%4$s
+				'<div class="squad-logo-carousel swiper" data-swiper-options=\'%1$s\'>
+					<div class="swiper-wrapper squad-logo-carousel__wrapper">%2$s</div>
+					%3$s
 				</div>',
-				'' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '',
 				esc_attr( (string) wp_json_encode( self::build_swiper_options( $inner, $uid ) ) ),
 				$child_modules_content,
 				self::render_navigation( $inner, $uid )
@@ -308,67 +339,120 @@ class Logo_Carousel extends Module {
 	}
 
 	/**
-	 * Generate scoped hover-effect CSS for this instance.
+	 * Resting-state hover-effect declaration for the logo image.
 	 *
 	 * @since 4.0.0
 	 *
-	 * @param array<string, mixed> $inner Carousel innerContent values.
-	 * @param string               $uid   Per-instance identifier.
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
 	 *
-	 * @return string Raw CSS (no <style> tags).
+	 * @return string
 	 */
-	protected static function get_hover_css( array $inner, string $uid ): string {
-		$effect  = (string) ( $inner['hoverEffect'] ?? 'grayscale' );
-		$uid_sel = '.' . $uid;
-		$logo    = "{$uid_sel} .squad-logo-carousel__logo";
-		$hover   = "{$uid_sel} .squad-logo-carousel__slide:hover .squad-logo-carousel__logo";
+	public static function logo_hover_base_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
 
-		switch ( $effect ) {
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+
+		switch ( (string) ( $value['hoverEffect'] ?? 'grayscale' ) ) {
 			case 'grayscale':
-				return "{$logo}{filter:grayscale(100%);transition:filter .3s ease}"
-				       . "{$hover}{filter:grayscale(0%)}";
+				$declarations->add( 'filter', 'grayscale(100%)' );
+				$declarations->add( 'transition', 'filter .3s ease' );
+				break;
 
 			case 'opacity':
-				$opacity = max( 0.0, min( 1.0, (float) ( $inner['hoverOpacity'] ?? '0.5' ) ) );
+				$opacity = max( 0.0, min( 1.0, (float) ( $value['hoverOpacity'] ?? '0.5' ) ) );
 
-				return "{$logo}{opacity:{$opacity};transition:opacity .3s ease}"
-				       . "{$hover}{opacity:1}";
+				$declarations->add( 'opacity', (string) $opacity );
+				$declarations->add( 'transition', 'opacity .3s ease' );
+				break;
 
 			case 'zoom':
-				return "{$logo}{transition:transform .3s ease}"
-				       . "{$hover}{transform:scale(1.05)}";
+				$declarations->add( 'transition', 'transform .3s ease' );
+				break;
 
 			default:
 				return '';
 		}
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
-	 * Generate scoped logo sizing CSS for this instance.
+	 * Hovered-state hover-effect declaration for the logo image.
 	 *
 	 * @since 4.0.0
 	 *
-	 * @param array<string, mixed> $inner Carousel innerContent values.
-	 * @param string               $uid   Per-instance identifier.
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
 	 *
-	 * @return string Raw CSS (no <style> tags).
+	 * @return string
 	 */
-	protected static function get_sizing_css( array $inner, string $uid ): string {
-		$max_width  = self::sanitize_css_length( (string) ( $inner['logoMaxWidth'] ?? '160px' ) );
-		$max_height = self::sanitize_css_length( (string) ( $inner['logoMaxHeight'] ?? '80px' ) );
+	public static function logo_hover_state_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+
+		switch ( (string) ( $value['hoverEffect'] ?? 'grayscale' ) ) {
+			case 'grayscale':
+				$declarations->add( 'filter', 'grayscale(0%)' );
+				break;
+
+			case 'opacity':
+				$declarations->add( 'opacity', '1' );
+				break;
+
+			case 'zoom':
+				$declarations->add( 'transform', 'scale(1.05)' );
+				break;
+
+			default:
+				return '';
+		}
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Logo sizing declaration (max-width / max-height).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function logo_sizing_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$max_width  = self::sanitize_css_length( (string) ( $value['logoMaxWidth'] ?? '160px' ) );
+		$max_height = self::sanitize_css_length( (string) ( $value['logoMaxHeight'] ?? '80px' ) );
 
 		if ( '' === $max_width && '' === $max_height ) {
 			return '';
 		}
 
-		$decl = '';
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+
 		if ( '' !== $max_width ) {
-			$decl .= "max-width:{$max_width};";
+			$declarations->add( 'max-width', $max_width );
 		}
 		if ( '' !== $max_height ) {
-			$decl .= "max-height:{$max_height};";
+			$declarations->add( 'max-height', $max_height );
 		}
 
-		return ".{$uid} .squad-logo-carousel__logo{{$decl}}";
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 }

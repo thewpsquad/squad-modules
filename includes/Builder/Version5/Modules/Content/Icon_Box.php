@@ -28,14 +28,14 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function esc_attr;
 use function esc_html;
 use function esc_url;
 use function in_array;
-use function preg_replace;
-use function substr;
+use function is_array;
 use function wp_enqueue_script;
 use function wp_kses_post;
 use function wpautop;
@@ -86,9 +86,11 @@ class Icon_Box extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+		$icon_attr   = $attrs['iconBox']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -101,8 +103,31 @@ class Icon_Box extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance icon colour/size and icon-wrapper background,
+								// scoped to the module order class via Divi's native style
+								// pipeline (no inline <style>, no bespoke uid class). Mirrors
+								// the Divi 4 `%%order_class%% .squad-icon-box__icon …` output,
+								// which Divi 5 does not substitute automatically.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-icon-box .squad-icon-box__icon .et-pb-icon",
+											'attr'                => $icon_attr,
+											'declarationFunction' => array( self::class, 'icon_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-icon-box .squad-icon-box__icon",
+											'attr'                => $icon_attr,
+											'declarationFunction' => array( self::class, 'icon_background_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -113,6 +138,73 @@ class Icon_Box extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Icon glyph declaration (colour and size).
+	 *
+	 * Only emitted for the `icon` element type, matching the former inline CSS.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function icon_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		if ( 'icon' !== ( $value['elementType'] ?? 'icon' ) ) {
+			return '';
+		}
+
+		$icon_color = self::sanitize_css_background( (string) ( $value['iconColor'] ?? '#5E2EFF' ) );
+		$icon_size  = self::sanitize_css_length( (string) ( $value['iconSize'] ?? '48px' ) );
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+
+		if ( '' !== $icon_color ) {
+			$declarations->add( 'color', $icon_color );
+		}
+		if ( '' !== $icon_size ) {
+			$declarations->add( 'font-size', $icon_size );
+			$declarations->add( 'line-height', $icon_size );
+		}
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Icon wrapper declaration (background).
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function icon_background_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$icon_bg = self::sanitize_css_background( (string) ( $value['iconBgColor'] ?? '' ) );
+		if ( '' === $icon_bg ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'background', $icon_bg );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -128,7 +220,6 @@ class Icon_Box extends Module {
 	public static function render_callback( array $attrs, string $content, WP_Block $block, $elements ): string {
 		try {
 			$inner = $attrs['iconBox']['innerContent']['desktop']['value'] ?? array();
-			$uid   = self::get_instance_uid( $block );
 
 			$placement = (string) ( $inner['iconPlacement'] ?? 'top' );
 			$placement = in_array( $placement, array( 'top', 'left', 'right' ), true ) ? $placement : 'top';
@@ -154,14 +245,10 @@ class Icon_Box extends Module {
 			$icon_wrap    = '' !== $element_html ? sprintf( '<div class="squad-icon-box__icon">%s</div>', $element_html ) : '';
 			$content_wrap = sprintf( '<div class="squad-icon-box__content">%1$s%2$s%3$s</div>', $badge_html, $title_html, $body_html );
 
-			$inline_css = self::get_box_css( $inner, $uid );
-
 			$box = sprintf(
-				'%1$s<div class="squad-icon-box squad-icon-box--placement-%2$s squad-icon-box--align-%3$s %4$s">%5$s%6$s</div>',
-				'' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '',
+				'<div class="squad-icon-box squad-icon-box--placement-%1$s squad-icon-box--align-%2$s">%3$s%4$s</div>',
 				esc_attr( $placement ),
 				esc_attr( $alignment ),
-				esc_attr( $uid ),
 				$icon_wrap,
 				$content_wrap
 			);
@@ -253,49 +340,4 @@ class Icon_Box extends Module {
 		return '';
 	}
 
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return ( null !== $uid && '' !== $uid )
-			? 'squad-ib-' . $uid
-			: 'squad-ib-' . substr( md5( $raw ), 0, 10 );
-	}
-
-	/**
-	 * Build the scoped icon color/size/background CSS.
-	 *
-	 * @since 4.2.0
-	 *
-	 * @param array<string, mixed> $inner Icon box inner values.
-	 * @param string               $uid   Unique scoping class for this instance.
-	 *
-	 * @return string Scoped CSS (may be empty).
-	 */
-	protected static function get_box_css( array $inner, string $uid ): string {
-		$css = '';
-
-		if ( 'icon' === ( $inner['elementType'] ?? 'icon' ) ) {
-			$icon_color = self::sanitize_css_background( (string) ( $inner['iconColor'] ?? '#5E2EFF' ) );
-			$icon_size  = self::sanitize_css_length( (string) ( $inner['iconSize'] ?? '48px' ) );
-
-			$decl = '';
-			if ( '' !== $icon_color ) {
-				$decl .= 'color:' . esc_attr( $icon_color ) . ';';
-			}
-			if ( '' !== $icon_size ) {
-				$decl .= 'font-size:' . $icon_size . ';line-height:' . $icon_size . ';';
-			}
-			if ( '' !== $decl ) {
-				$css .= ".{$uid} .squad-icon-box__icon .et-pb-icon{{$decl}}";
-			}
-		}
-
-		$icon_bg = self::sanitize_css_background( (string) ( $inner['iconBgColor'] ?? '' ) );
-		if ( '' !== $icon_bg ) {
-			$css .= ".{$uid} .squad-icon-box__icon{background:" . esc_attr( $icon_bg ) . ';}';
-		}
-
-		return $css;
-	}
 }

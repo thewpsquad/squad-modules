@@ -149,8 +149,8 @@ class Reset_Password_Form extends Module {
 			$button_text            = esc_html( (string) ( $inner['buttonText'] ?? 'Save Password' ) );
 
 			// phpcs:disable WordPress.Security.NonceVerification
-			$rp_key   = sanitize_text_field( (string) ( $_GET['key'] ?? '' ) );
-			$rp_login = sanitize_text_field( (string) ( $_GET['login'] ?? '' ) );
+			$rp_key   = sanitize_text_field( (string) wp_unslash( $_GET['key'] ?? '' ) );
+			$rp_login = sanitize_text_field( (string) wp_unslash( $_GET['login'] ?? '' ) );
 			// phpcs:enable
 
 			if ( '' === $rp_key || '' === $rp_login ) {

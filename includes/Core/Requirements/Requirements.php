@@ -270,7 +270,9 @@ class Requirements implements Hookable {
 		try {
 			return $this->status_checker->is_fulfilled();
 		} catch ( Throwable $e ) {
-			divi_squad()->log_error( $e, 'Requirements_Check_Failed' );
+			// report=false: Status_Checker already logs its own failures; avoid emailing
+			// the vendor (and double-logging) on a requirements check.
+			divi_squad()->log_error( $e, 'Requirements_Check_Failed', false );
 
 			return false;
 		}

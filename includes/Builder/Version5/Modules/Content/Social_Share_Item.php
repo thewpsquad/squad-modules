@@ -26,12 +26,14 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function esc_attr;
 use function esc_html;
 use function esc_html__;
 use function esc_url;
+use function is_array;
 use function sanitize_text_field;
 use function sprintf;
 
@@ -87,9 +89,11 @@ class Social_Share_Item extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+		$item_attr   = $attrs['itemSettings']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -102,8 +106,22 @@ class Social_Share_Item extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-item brand/override colours on the share button, scoped to
+								// the module order class via Divi's native style pipeline (no
+								// inline <style>, no bespoke uid class) — mirrors the former
+								// inline rule and the D4 %%order_class%% output.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-social-share__btn",
+											'attr'                => $item_attr,
+											'declarationFunction' => array( self::class, 'button_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -114,6 +132,54 @@ class Social_Share_Item extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Share button colour declaration (brand background, optional custom overrides).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function button_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$network = (string) ( $value['network'] ?? 'facebook' );
+		$meta    = Networks::get_network( $network );
+		if ( null === $meta ) {
+			return '';
+		}
+
+		$use_custom = 'on' === ( $value['useCustomColors'] ?? 'off' );
+
+		$bg = $meta['color']; // trusted hardcoded hex from Networks registry — no sanitize needed.
+		if ( $use_custom ) {
+			$override = self::sanitize_css_background( (string) ( $value['bgColorOverride'] ?? '' ) );
+			if ( '' !== $override ) {
+				$bg = $override;
+			}
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+
+		if ( '' !== $bg ) {
+			$declarations->add( 'background-color', $bg );
+		}
+		if ( $use_custom ) {
+			$icon = self::sanitize_css_background( (string) ( $value['iconColorOverride'] ?? '' ) );
+			if ( '' !== $icon ) {
+				$declarations->add( 'color', $icon );
+			}
+		}
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	public static function render_callback( array $attrs, string $content, WP_Block $block, $elements ): string {
@@ -147,9 +213,6 @@ class Social_Share_Item extends Module {
 				$label = $meta['label'];
 			}
 
-			$uid        = self::get_instance_uid( $block );
-			$inline_css = self::get_color_css( $item, $meta['color'], $uid );
-
 			$link_attrs = sprintf( 'href="%s"', esc_url( $href ) );
 			if ( ! $is_email ) {
 				$link_attrs .= ' target="_blank" rel="noopener noreferrer nofollow"';
@@ -168,8 +231,7 @@ class Social_Share_Item extends Module {
 				: '';
 
 			$btn_html = sprintf(
-				'%1$s<a class="squad-social-share__btn squad-social-share__btn--%2$s" %3$s aria-label="%4$s">%5$s%6$s</a>',
-				'' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '',
+				'<a class="squad-social-share__btn squad-social-share__btn--%1$s" %2$s aria-label="%3$s">%4$s%5$s</a>',
 				esc_attr( $network ),
 				$link_attrs,
 				/* translators: %s: network label */
@@ -200,48 +262,4 @@ class Social_Share_Item extends Module {
 		}
 	}
 
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return '' !== $uid
-			? 'squad-ss-' . $uid
-			: 'squad-ss-' . substr( md5( $raw ), 0, 10 );
-	}
-
-	/**
-	 * Build the per-item inline color CSS.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param array<string, mixed> $item        Item settings (network, color overrides, etc.).
-	 * @param string               $brand_color Default brand color from the Networks registry.
-	 * @param string               $uid         Unique instance identifier used in the selector.
-	 *
-	 * @return string Inline CSS rule (may be empty).
-	 */
-	protected static function get_color_css( array $item, string $brand_color, string $uid ): string {
-		$use_custom = 'on' === ( $item['useCustomColors'] ?? 'off' );
-
-		$bg = $brand_color; // trusted hardcoded hex from Networks registry — no sanitize needed.
-		if ( $use_custom ) {
-			$override = self::sanitize_css_background( (string) ( $item['bgColorOverride'] ?? '' ) );
-			if ( '' !== $override ) {
-				$bg = $override;
-			}
-		}
-
-		$decl = '';
-		if ( '' !== $bg ) {
-			$decl .= 'background-color:' . $bg . ';';
-		}
-		if ( $use_custom ) {
-			$icon = self::sanitize_css_background( (string) ( $item['iconColorOverride'] ?? '' ) );
-			if ( '' !== $icon ) {
-				$decl .= 'color:' . $icon . ';';
-			}
-		}
-
-		return '' !== $decl ? ".{$uid} .squad-social-share__btn{{$decl}}" : '';
-	}
 }

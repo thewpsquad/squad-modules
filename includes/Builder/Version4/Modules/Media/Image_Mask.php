@@ -101,7 +101,7 @@ class Image_Mask extends Module {
 		$this->custom_css_fields = array(
 			'image' => array(
 				'label'    => esc_html__( 'Image', 'squad-modules-for-divi' ),
-				'selector' => 'div .image-elements .squad-mask-image',
+				'selector' => 'div .image-elements svg image',
 			),
 		);
 	}

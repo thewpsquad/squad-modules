@@ -30,14 +30,14 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function esc_attr;
 use function esc_html__;
 use function in_array;
+use function is_array;
 use function max;
-use function preg_replace;
-use function substr;
 use function trim;
 use function wp_enqueue_script;
 
@@ -87,9 +87,11 @@ class Advanced_Tabs extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+		$tabs_attr   = $attrs['tabs']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -102,8 +104,29 @@ class Advanced_Tabs extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance tab navigation colours, scoped to the module order
+								// class through Divi's native style pipeline (no inline <style>,
+								// no bespoke uid class). Mirrors the Divi 4 %%order_class%% output.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-tabs .squad-tabs__nav-item",
+											'attr'                => $tabs_attr,
+											'declarationFunction' => array( self::class, 'nav_item_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-tabs .squad-tabs__nav-item.is-active",
+											'attr'                => $tabs_attr,
+											'declarationFunction' => array( self::class, 'active_nav_item_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -114,6 +137,67 @@ class Advanced_Tabs extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Inactive tab navigation item declaration (text colour).
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function nav_item_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$tab_color = self::sanitize_css_background( (string) ( $value['tabTextColor'] ?? '' ) );
+		if ( '' === $tab_color ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'color', $tab_color );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Active tab navigation item declaration (background, border colour, text colour).
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function active_nav_item_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+
+		$active_bg = self::sanitize_css_background( (string) ( $value['activeBgColor'] ?? '#5E2EFF' ) );
+		if ( '' !== $active_bg ) {
+			$declarations->add( 'background', $active_bg );
+			$declarations->add( 'border-color', $active_bg );
+		}
+
+		$active_color = self::sanitize_css_background( (string) ( $value['activeTextColor'] ?? '#ffffff' ) );
+		if ( '' !== $active_color ) {
+			$declarations->add( 'color', $active_color );
+		}
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -138,7 +222,6 @@ class Advanced_Tabs extends Module {
 			wp_enqueue_script( 'squad-module-advanced-tabs' );
 
 			$inner = $attrs['tabs']['innerContent']['desktop']['value'] ?? array();
-			$uid   = self::get_instance_uid( $block );
 
 			$layout = (string) ( $inner['layout'] ?? 'horizontal' );
 			$layout = in_array( $layout, array( 'horizontal', 'vertical' ), true ) ? $layout : 'horizontal';
@@ -150,15 +233,11 @@ class Advanced_Tabs extends Module {
 			$accordion   = 'off' !== ( $inner['mobileAccordion'] ?? 'on' );
 			$enable_hash = 'on' === ( $inner['enableHash'] ?? 'off' );
 
-			$inline_css = self::get_tabs_css( $inner, $uid );
-
 			$tabs_html = sprintf(
-				'%1$s<div class="squad-tabs squad-tabs--%2$s squad-tabs--align-%3$s%4$s %5$s" data-active="%6$d" data-accordion="%7$s" data-hash="%8$s"><div class="squad-tabs__nav" role="tablist"></div><div class="squad-tabs__panels">%9$s</div></div>',
-				'' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '',
+				'<div class="squad-tabs squad-tabs--%1$s squad-tabs--align-%2$s%3$s" data-active="%4$d" data-accordion="%5$s" data-hash="%6$s"><div class="squad-tabs__nav" role="tablist"></div><div class="squad-tabs__panels">%7$s</div></div>',
 				esc_attr( $layout ),
 				esc_attr( $align ),
 				$accordion ? ' squad-tabs--mobile-accordion' : '',
-				esc_attr( $uid ),
 				$active - 1,
 				$accordion ? 'on' : 'off',
 				$enable_hash ? 'on' : 'off',
@@ -191,43 +270,4 @@ class Advanced_Tabs extends Module {
 		}
 	}
 
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return ( null !== $uid && '' !== $uid )
-			? 'squad-tabs-' . $uid
-			: 'squad-tabs-' . substr( md5( $raw ), 0, 10 );
-	}
-
-	/**
-	 * Build the scoped active/inactive tab colour CSS.
-	 *
-	 * @since 4.2.0
-	 *
-	 * @param array<string, mixed> $inner The module's content inner values.
-	 * @param string               $uid   Unique instance identifier used as the CSS scope.
-	 *
-	 * @return string The generated CSS, or an empty string when nothing is set.
-	 */
-	protected static function get_tabs_css( array $inner, string $uid ): string {
-		$css = '';
-
-		$tab_color = self::sanitize_css_background( (string) ( $inner['tabTextColor'] ?? '' ) );
-		if ( '' !== $tab_color ) {
-			$css .= ".{$uid} .squad-tabs__nav-item{color:" . esc_attr( $tab_color ) . ';}';
-		}
-
-		$active_bg = self::sanitize_css_background( (string) ( $inner['activeBgColor'] ?? '#5E2EFF' ) );
-		if ( '' !== $active_bg ) {
-			$css .= ".{$uid} .squad-tabs__nav-item.is-active{background:" . esc_attr( $active_bg ) . ';border-color:' . esc_attr( $active_bg ) . ';}';
-		}
-
-		$active_color = self::sanitize_css_background( (string) ( $inner['activeTextColor'] ?? '#ffffff' ) );
-		if ( '' !== $active_color ) {
-			$css .= ".{$uid} .squad-tabs__nav-item.is-active{color:" . esc_attr( $active_color ) . ';}';
-		}
-
-		return $css;
-	}
 }

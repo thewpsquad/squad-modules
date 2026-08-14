@@ -28,11 +28,12 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function absint;
 use function esc_html__;
-use function wp_json_encode;
+use function is_array;
 
 /**
  * Logo Grid parent module class.
@@ -90,9 +91,11 @@ class Logo_Grid extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+		$grid_attr   = $attrs['grid']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -105,8 +108,70 @@ class Logo_Grid extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Grid geometry, logo sizing and hover effects, scoped to the
+								// module order class via Divi's native style pipeline (no inline
+								// <style>, no bespoke uid class). Mirrors the Divi 4
+								// `%%order_class%% .squad-logo-grid` output, which Divi 5 does
+								// not substitute automatically.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-logo-grid",
+											'attr'                => $grid_attr,
+											'declarationFunction' => array( self::class, 'grid_style_declaration' ),
+										),
+									),
+									// Tablet/phone column counts come from dedicated non-responsive
+									// sub-attributes (`columnsTablet`/`columnsPhone`) rather than
+									// Divi breakpoint values, so the hardcoded breakpoints of the
+									// Divi 4 module (`max_width_980` / `max_width_767`) are carried
+									// over verbatim through `atRules`.
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-logo-grid",
+											'attr'                => $grid_attr,
+											'atRules'             => '@media only screen and (max-width: 980px)',
+											'declarationFunction' => array( self::class, 'grid_columns_tablet_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-logo-grid",
+											'attr'                => $grid_attr,
+											'atRules'             => '@media only screen and (max-width: 767px)',
+											'declarationFunction' => array( self::class, 'grid_columns_phone_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-logo-grid__logo",
+											'attr'                => $grid_attr,
+											'declarationFunction' => array( self::class, 'logo_sizing_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-logo-grid__logo",
+											'attr'                => $grid_attr,
+											'declarationFunction' => array( self::class, 'logo_hover_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-logo-grid__item:hover .squad-logo-grid__logo",
+											'attr'                => $grid_attr,
+											'declarationFunction' => array( self::class, 'logo_hover_state_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -120,6 +185,236 @@ class Logo_Grid extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Grid layout declaration (display, column count, gap).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function grid_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$columns = max( 1, absint( $value['columns'] ?? 4 ) );
+		$gap     = max( 0, absint( $value['gap'] ?? 30 ) );
+
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important'  => false,
+			)
+		);
+		$declarations->add( 'display', 'grid' );
+		$declarations->add( 'grid-template-columns', "repeat({$columns},1fr)" );
+		$declarations->add( 'gap', "{$gap}px" );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Tablet column count declaration (emitted inside the 980px at-rule).
+	 *
+	 * Falls back to the desktop column count when no tablet count is set.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function grid_columns_tablet_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) || 'desktop' !== ( $params['breakpoint'] ?? 'desktop' ) ) {
+			return '';
+		}
+
+		$columns_desktop = max( 1, absint( $value['columns'] ?? 4 ) );
+		$columns         = max( 1, absint( $value['columnsTablet'] ?? $columns_desktop ) );
+
+		return self::grid_columns_declaration( $columns );
+	}
+
+	/**
+	 * Phone column count declaration (emitted inside the 767px at-rule).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function grid_columns_phone_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) || 'desktop' !== ( $params['breakpoint'] ?? 'desktop' ) ) {
+			return '';
+		}
+
+		$columns = max( 1, absint( $value['columnsPhone'] ?? 2 ) );
+
+		return self::grid_columns_declaration( $columns );
+	}
+
+	/**
+	 * Build a `grid-template-columns` declaration for a column count.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param int $columns Number of columns.
+	 *
+	 * @return string
+	 */
+	protected static function grid_columns_declaration( int $columns ): string {
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important'  => false,
+			)
+		);
+		$declarations->add( 'grid-template-columns', "repeat({$columns},1fr)" );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Logo sizing declaration (max-width, max-height).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function logo_sizing_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$max_width  = self::sanitize_css_length( (string) ( $value['logoMaxWidth'] ?? '160px' ) );
+		$max_height = self::sanitize_css_length( (string) ( $value['logoMaxHeight'] ?? '80px' ) );
+
+		if ( '' === $max_width && '' === $max_height ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important'  => false,
+			)
+		);
+		if ( '' !== $max_width ) {
+			$declarations->add( 'max-width', $max_width );
+		}
+		if ( '' !== $max_height ) {
+			$declarations->add( 'max-height', $max_height );
+		}
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Resting hover-effect declaration for the logo image.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function logo_hover_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important'  => false,
+			)
+		);
+
+		switch ( (string) ( $value['hoverEffect'] ?? 'grayscale' ) ) {
+			case 'grayscale':
+				$declarations->add( 'filter', 'grayscale(100%)' );
+				$declarations->add( 'transition', 'filter .3s ease' );
+				break;
+
+			case 'opacity':
+				$opacity = max( 0.0, min( 1.0, (float) ( $value['hoverOpacity'] ?? '0.5' ) ) );
+				$declarations->add( 'opacity', (string) $opacity );
+				$declarations->add( 'transition', 'opacity .3s ease' );
+				break;
+
+			case 'zoom':
+				$declarations->add( 'transition', 'transform .3s ease' );
+				break;
+
+			default:
+				return '';
+		}
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Hovered-state declaration for the logo image.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function logo_hover_state_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important'  => false,
+			)
+		);
+
+		switch ( (string) ( $value['hoverEffect'] ?? 'grayscale' ) ) {
+			case 'grayscale':
+				$declarations->add( 'filter', 'grayscale(0%)' );
+				break;
+
+			case 'opacity':
+				$declarations->add( 'opacity', '1' );
+				break;
+
+			case 'zoom':
+				$declarations->add( 'transform', 'scale(1.1)' );
+				break;
+
+			default:
+				return '';
+		}
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -143,16 +438,8 @@ class Logo_Grid extends Module {
 				);
 			}
 
-			$inner = $attrs['grid']['innerContent']['desktop']['value'] ?? array();
-			$uid   = self::get_instance_uid( $block );
-
-			$inline_css = self::get_grid_css( $inner, $uid )
-			              . self::get_hover_css( $inner, $uid )
-			              . self::get_sizing_css( $inner, $uid );
-
 			$grid_html = sprintf(
-				'%1$s<div class="squad-logo-grid">%2$s</div>',
-				'' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '',
+				'<div class="squad-logo-grid">%s</div>',
 				$child_modules_content
 			);
 
@@ -178,111 +465,4 @@ class Logo_Grid extends Module {
 		}
 	}
 
-	/**
-	 * Build stable per-instance uid for scoping CSS selectors.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param WP_Block $block The parsed block.
-	 *
-	 * @return string e.g. "squad-lg-a1b2c3d4e5"
-	 */
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return '' !== $uid
-			? 'squad-lg-' . $uid
-			: 'squad-lg-' . substr( md5( $raw . wp_json_encode( $block->parsed_block['orderIndex'] ?? 0 ) ), 0, 10 );
-	}
-
-	/**
-	 * Generate scoped CSS grid layout for this instance.
-	 *
-	 * Emits desktop, tablet (≤980px), and phone (≤767px) breakpoints.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param array<string, mixed> $inner Grid innerContent values.
-	 * @param string               $uid   Per-instance identifier.
-	 *
-	 * @return string Raw CSS (no <style> tags).
-	 */
-	protected static function get_grid_css( array $inner, string $uid ): string {
-		$cols_desk = max( 1, absint( $inner['columns'] ?? 4 ) );
-		$cols_tab  = max( 1, absint( $inner['columnsTablet'] ?? $cols_desk ) );
-		$cols_mob  = max( 1, absint( $inner['columnsPhone'] ?? 2 ) );
-		$gap       = max( 0, absint( $inner['gap'] ?? 30 ) );
-
-		$sel = '.' . $uid . ' .squad-logo-grid';
-
-		return "{$sel}{display:grid;grid-template-columns:repeat({$cols_desk},1fr);gap:{$gap}px}"
-		       . "@media(max-width:980px){{$sel}{grid-template-columns:repeat({$cols_tab},1fr)}}"
-		       . "@media(max-width:767px){{$sel}{grid-template-columns:repeat({$cols_mob},1fr)}}";
-	}
-
-	/**
-	 * Generate scoped hover-effect CSS for this instance.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param array<string, mixed> $inner Grid innerContent values.
-	 * @param string               $uid   Per-instance identifier.
-	 *
-	 * @return string Raw CSS (no <style> tags).
-	 */
-	protected static function get_hover_css( array $inner, string $uid ): string {
-		$effect  = (string) ( $inner['hoverEffect'] ?? 'grayscale' );
-		$uid_sel = '.' . $uid;
-		$logo    = "{$uid_sel} .squad-logo-grid__logo";
-		$hover   = "{$uid_sel} .squad-logo-grid__item:hover .squad-logo-grid__logo";
-
-		switch ( $effect ) {
-			case 'grayscale':
-				return "{$logo}{filter:grayscale(100%);transition:filter .3s ease}"
-				       . "{$hover}{filter:grayscale(0%)}";
-
-			case 'opacity':
-				$opacity = max( 0.0, min( 1.0, (float) ( $inner['hoverOpacity'] ?? '0.5' ) ) );
-
-				return "{$logo}{opacity:{$opacity};transition:opacity .3s ease}"
-				       . "{$hover}{opacity:1}";
-
-			case 'zoom':
-				return "{$logo}{transition:transform .3s ease}"
-				       . "{$hover}{transform:scale(1.1)}";
-
-			default:
-				return '';
-		}
-	}
-
-	/**
-	 * Generate scoped logo sizing CSS for this instance.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param array<string, mixed> $inner Grid innerContent values.
-	 * @param string               $uid   Per-instance identifier.
-	 *
-	 * @return string Raw CSS (no <style> tags).
-	 */
-	protected static function get_sizing_css( array $inner, string $uid ): string {
-		$max_width  = self::sanitize_css_length( (string) ( $inner['logoMaxWidth'] ?? '160px' ) );
-		$max_height = self::sanitize_css_length( (string) ( $inner['logoMaxHeight'] ?? '80px' ) );
-
-		if ( '' === $max_width && '' === $max_height ) {
-			return '';
-		}
-
-		$decl = '';
-		if ( '' !== $max_width ) {
-			$decl .= "max-width:{$max_width};";
-		}
-		if ( '' !== $max_height ) {
-			$decl .= "max-height:{$max_height};";
-		}
-
-		return ".{$uid} .squad-logo-grid__logo{{$decl}}";
-	}
 }

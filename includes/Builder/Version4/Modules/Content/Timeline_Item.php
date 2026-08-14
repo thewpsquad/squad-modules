@@ -52,11 +52,18 @@ class Timeline_Item extends Child_Module {
 		$this->squad_utils = divi_squad()->d4_module_helper->connect( $this );
 
 		$this->settings_modal_toggles = array(
-			'general' => array(
+			'general'  => array(
 				'toggles' => array(
 					'content_settings' => esc_html__( 'Content', 'squad-modules-for-divi' ),
 					'marker_settings'  => esc_html__( 'Marker', 'squad-modules-for-divi' ),
 					'link_settings'    => esc_html__( 'Link', 'squad-modules-for-divi' ),
+				),
+			),
+			'advanced' => array(
+				'toggles' => array(
+					// Divi only auto-registers a toggle for the 'default' border group,
+					// so the 'card' group below needs its toggle declared here.
+					'card' => esc_html__( 'Card', 'squad-modules-for-divi' ),
 				),
 			),
 		);

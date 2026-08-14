@@ -234,7 +234,12 @@ class Team_Member_Item extends Child_Module {
 			);
 		}
 
-		$name_html     = '' !== $name ? sprintf( '<h3 class="squad-team-member__name" itemprop="name">%s</h3>', esc_html( $name ) ) : '';
+		// The 'name' font group declares header_level, so Divi generates this H1-H6
+		// control; honour it instead of hardcoding the tag.
+		$name_level = (string) $this->prop( 'name_level', 'h3' );
+		$name_level = in_array( $name_level, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ), true ) ? $name_level : 'h3';
+
+		$name_html     = '' !== $name ? sprintf( '<%1$s class="squad-team-member__name" itemprop="name">%2$s</%1$s>', $name_level, esc_html( $name ) ) : '';
 		$position_html = '' !== $position ? sprintf( '<div class="squad-team-member__position" itemprop="jobTitle">%s</div>', esc_html( $position ) ) : '';
 		$bio_html      = '' !== $bio ? sprintf( '<div class="squad-team-member__bio" itemprop="description">%s</div>', wpautop( wp_kses_post( $bio ) ) ) : '';
 

@@ -35,6 +35,7 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function esc_attr;
@@ -112,9 +113,10 @@ class Image_Mask extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
 
 		Style::add(
 			array(
@@ -127,8 +129,29 @@ class Image_Mask extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Decoration layer fill colours, scoped to the module order
+								// class. Mirrors the Divi 4 `%%order_class%% .s0X { fill }`
+								// output, which Divi 5 does not substitute automatically.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .s02",
+											'attr'                => $attrs['decoration1']['innerContent'] ?? array(),
+											'declarationFunction' => array( self::class, 'decoration_layer_2_fill_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .s03",
+											'attr'                => $attrs['decoration2']['innerContent'] ?? array(),
+											'declarationFunction' => array( self::class, 'decoration_layer_3_fill_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -142,6 +165,74 @@ class Image_Mask extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Fill declaration for decoration layer 2 (`.s02`).
+	 *
+	 * @since 3.4.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function decoration_layer_2_fill_declaration( array $params ): string {
+		return self::decoration_fill_declaration( $params['attrValue'] ?? array(), '#ff0000' );
+	}
+
+	/**
+	 * Fill declaration for decoration layer 3 (`.s03`).
+	 *
+	 * @since 3.4.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function decoration_layer_3_fill_declaration( array $params ): string {
+		return self::decoration_fill_declaration( $params['attrValue'] ?? array(), '#00ff00' );
+	}
+
+	/**
+	 * Build the `fill` declaration for a decoration layer.
+	 *
+	 * Emits the fill colour only when the layer is enabled and a decoration
+	 * element is selected, matching the Divi 4 render conditions.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @param mixed  $attr_value    The breakpoint value object for the decoration group.
+	 * @param string $default_color Fallback fill colour when none is set.
+	 *
+	 * @return string
+	 */
+	protected static function decoration_fill_declaration( $attr_value, string $default_color ): string {
+		if ( ! is_array( $attr_value ) ) {
+			return '';
+		}
+
+		$enabled = 'on' === ( $attr_value['layerEnable'] ?? 'off' );
+		$element = (string) ( $attr_value['decorationElement'] ?? 'none' );
+		if ( ! $enabled || 'none' === $element ) {
+			return '';
+		}
+
+		$color = self::sanitize_css_background( (string) ( $attr_value['layerBackgroundColor'] ?? $default_color ) );
+		if ( '' === $color ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important'  => false,
+			)
+		);
+		$declarations->add( 'fill', $color );
+
+		$value = $declarations->value();
+
+		return is_string( $value ) ? $value : '';
 	}
 
 	/**
@@ -328,11 +419,12 @@ class Image_Mask extends Module {
 			}
 		}
 
-		// Decoration layers (Layer 2 and Layer 3).
+		// Decoration layers (Layer 2 and Layer 3). The fill colour is emitted as
+		// order-class-scoped CSS in module_styles() (Divi 5 has no `%%order_class%%`
+		// substitution), so here we only build the SVG markup.
 		$bottom_layers   = '';
 		$top_layers      = '';
 		$decoration_util = new Decorations();
-		$inline_styles   = '';
 		$layer_map       = array(
 			2 => $decoration1,
 			3 => $decoration2,
@@ -341,13 +433,6 @@ class Image_Mask extends Module {
 			$element = $values['decorationElement'] ?? 'none';
 			if ( 'on' === ( $values['layerEnable'] ?? 'off' ) && 'none' !== $element ) {
 				$decoration_class = "s0{$layer}";
-				$default_color    = 2 === $layer ? '#ff0000' : '#00ff00';
-
-				$inline_styles .= sprintf(
-					'%%order_class%% .%s{fill: %s;}',
-					$decoration_class,
-					self::sanitize_css_background( (string) ( $values['layerBackgroundColor'] ?? $default_color ) )
-				);
 
 				$decoration_transform = sprintf(
 					'translate(%s, %s) scale(%s) rotate(%s)',
@@ -431,10 +516,6 @@ class Image_Mask extends Module {
 			esc_attr( $image_transform ),
 			$top_layers
 		);
-
-		if ( '' !== $inline_styles ) {
-			$markup .= sprintf( '<style>%s</style>', $inline_styles );
-		}
 
 		return $markup;
 	}

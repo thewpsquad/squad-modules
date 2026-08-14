@@ -1,11 +1,11 @@
 === Squad Modules Lite – Free Divi 5 & Divi 4 Modules for Divi Builder ===
 Contributors: wpsquad, mralaminahamed
 Donate link: https://squadmodules.com/
-Tags: divi, divi-5, divi builder, divi module, divi addons
+Tags: divi, divi 5, divi builder, divi modules, divi addons
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 4.4.1
+Stable tag: 4.5.0
 License: GPL-3.0-only
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -17,7 +17,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
 [View all modules →](https://squadmodules.com/modules?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink) | [Upgrade to Pro](https://squadmodules.com/pricing?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink)
 
-Trusted by Divi builders worldwide and actively maintained — with frequent security patches, new modules, and fast compatibility updates for new Divi releases. The v4.4.0 release completes Wave 3 of the free-module roadmap: Image Accordion, Step Flow, Text Effects, and Comparison List, taking the free library to 65 modules — more than any other free Divi pack.
+Trusted by Divi builders worldwide and actively maintained — with frequent security patches, new modules, and fast compatibility updates for new Divi releases. The free library now spans 65 modules — more than any other free Divi pack — and v4.5.0 is a quality release that repairs a long list of module settings that previously had no effect.
 
 **Why Squad Modules?**
 
@@ -176,6 +176,20 @@ Squad Modules is built by [The WP Squad](https://squadmodules.com/?utm_campaign=
 
 If this plugin saves you time, please [leave a 5-star review](https://wordpress.org/support/plugin/squad-modules-for-divi/reviews/?rate=5#new-post) — it helps more Divi users find it.
 
+= More from us =
+
+Other free plugins by the same author, all on WordPress.org.
+
+**For any site**
+
+* [Swift Menu Duplicator](https://wordpress.org/plugins/swift-menu-duplicator/) - Duplicate menus in one click, snapshot revisions, export and import, WP-CLI and REST.
+* [Author Profile Blocks](https://wordpress.org/plugins/author-profile-blocks/) - Author and team profiles as Gutenberg blocks — grid, carousel, list and single.
+
+**For the WordPress AI Client**
+
+* [AI Provider for OpenCode Zen](https://wordpress.org/plugins/alamin-ai-provider-for-opencode-zen/) - One API key, 57 models including GPT-5, Claude and Gemini 3, for the WordPress AI Client.
+* [AI Provider for MiniMax](https://wordpress.org/plugins/alamin-ai-provider-for-minimax/) - MiniMax M2 and M3 models for text generation, for the WordPress AI Client.
+
 == Installation ==
 
 **Requirements**
@@ -199,8 +213,8 @@ If this plugin saves you time, please [leave a 5-star review](https://wordpress.
 
 == Frequently Asked Questions ==
 
-**What's new in 4.4.0?**
-Version 4.4.0 completes Wave 3 of the free-module roadmap with four new modules — Image Accordion, Step Flow, Text Effects, and Comparison List — each native in both the Divi 5 Visual Builder and the classic Divi 4 builder. The free library now has 65 modules. This release also extends the WPML translation config to cover every module's translatable strings. No migration is needed; existing pages keep working.
+**What's new in 4.5.0?**
+Version 4.5.0 is a quality release. It fixes a long list of controls that appeared to work but had no effect: Logo Grid and Logo Carousel settings (columns, gap, logo sizing, hover effects) never reached the front end in Divi 5, the Inline Content module produced no output at all in Divi 4, and heading-level controls in several modules changed the text size without changing the heading tag. Divi 4 parent modules also render nested child modules correctly again under the latest Divi. Some pages will look slightly different where a previously-dead control now applies — that is the fix. No migration is needed; existing pages keep working.
 
 **Is Squad Modules Lite free?**
 Yes, completely free with no feature limits on the 65 included modules. [Squad Modules Pro](https://squadmodules.com/pricing?utm_campaign=wporg&utm_source=squadmoduleslite&utm_medium=textlink) adds 30+ premium modules.
@@ -258,6 +272,9 @@ Free: [WordPress.org support forum](https://wordpress.org/support/plugin/squad-m
 8. Login Experience — fully branded wp-login.php replacement built with Divi modules (Login Form, Register Form, Lost Password, Reset Password).
 
 == Upgrade Notice ==
+= 4.5.0 =
+Quality release: fixes a long list of controls that looked like they worked but did nothing. Divi 5 modules now deliver their design CSS through Divi's own style pipeline, which also revives Logo Grid and Logo Carousel settings (columns, gap, logo sizing, hover effects) that had never applied on the front end. Divi 4 gets a working Inline Content module, correct heading-level controls, and many repaired settings. Some pages will look slightly different where a previously-dead control now takes effect — that is the fix. No migration required.
+
 = 4.4.1 =
 Maintenance release: fixes a possible blank-screen fatal in wp-admin, adds security hardening (URL escaping, safe new-tab links), confirms Divi 5.9.0 compatibility, and improves multisite uninstall cleanup. Recommended for all users.
 
@@ -279,7 +296,57 @@ Security and bug-fix patch: resolves XSS and CSS injection vulnerabilities in mu
 = 4.1.0 =
 Feature release: a rebuilt React admin dashboard (live stats, module/extension management, dark mode) and 15 new modules including Social Share, Table of Contents, Number Counter, Advanced Button, Hover Box, Animated Heading, Image Carousel, and Logo Grid. The admin page slug changed from "divi_squad_dashboard" to "divi_squad"; old bookmarks are redirected automatically. Divi 4 and Divi 5 builder support continue unchanged.
 
+== External Services ==
+
+The modules themselves render on your server and call nothing. One service is
+contacted, and it is about licensing rather than content.
+
+**Freemius** — `api.freemius.com`. This is the platform that handles the plugin's
+licensing, updates and opt-in usage tracking. Checking for an update, and
+activating or deactivating a licence, sends the site URL, the plugin version and
+the licence key. Usage tracking — which sends the WordPress and PHP versions and
+which of the plugin's features are in use — is opt-in: the plugin asks on
+activation and does nothing if you decline or dismiss it.
+
+The WhatsApp module builds a `wa.me` / `api.whatsapp.com/send` link for the
+visitor to click. That is a link in the page, not a request from your site;
+nothing is sent unless a visitor follows it, and then it is their browser talking
+to WhatsApp, not your server.
+
+Terms: https://freemius.com/terms — Privacy: https://freemius.com/privacy
+
 == Changelog ==
+= 4.5.0 (08-08-2026) =
+
+**Bug fixes:**
+- Divi 4 parent modules now render their child shortcodes correctly under the latest Divi, fixing timelines and other nested modules that showed raw `[disq_*]` text on the front end and in preview.
+- Inline Content: the Divi 4 item module had no settings and produced no output, so the whole module was blank. It now renders all five content types (text, icon, image, button, divider) and matches the Divi 5 output exactly.
+- Logo Grid and Logo Carousel: column count, gap, logo sizing and every hover effect (grayscale, opacity, zoom) never reached the page in Divi 5. They now apply.
+- Image Mask: the Divi 5 decoration layers rendered with no fill colour.
+- Social Share: every share button linked to an empty target, "Icon + Text" never showed labels, and a second module on the page inherited the first one's link.
+- Heading level controls in Social Share, Step Flow and Team Member changed the text size but never the heading tag, producing a document outline the author did not choose.
+- Post Grid: the Advanced Custom Field element bypassed ACF's own value formatting; the Comments "Before Text" setting was permanently empty; pagination labels containing `&` were double-escaped.
+- Dual Button: the alignment control did nothing in vertical layout.
+- Star Rating: the default star size was ignored, and the review schema markup was malformed.
+- Author Box: choosing the SPAN tag silently rendered an H4; avatar alt text was double-escaped.
+- Divider, Business Hours, Flip Box: heading tag settings could resolve to an empty value and remove the element entirely.
+- Timeline Item and Logo Carousel Item: border and radius settings never appeared in the builder.
+- Lottie, Business Hours, Post Reading Time, Image Mask: several settings targeted elements the modules never output, so they had no effect.
+- Google Maps (Divi 5): the module script was not enqueued and errors were silent.
+- Contact Form 7, Fluent Forms, Formidable, Forminator, Gravity Forms, Ninja Forms, MetForm, SureForms, WPForms: a module added without a form selected produced a PHP warning; the Field Label typography control had no effect; Ninja Forms fired the wrong hook.
+
+**Security:**
+- Gradient Text and Glitch Text now validate the wrapper tag and effect name against a strict allowlist instead of trusting the stored value.
+- Flip Box buttons that open in a new tab include `rel="noopener"`.
+- REST endpoints no longer return raw exception messages.
+- Extensions that are disabled can no longer load because of a faulty guard.
+
+**Improvements:**
+- Divi 5 modules now register their per-instance CSS through Divi's native style pipeline instead of writing an inline `<style>` tag per module, so the CSS takes part in Divi's critical-CSS and deduplication.
+- Design settings that are marked responsive now work on tablet and phone, where previously only the desktop value was ever used.
+- New v4 plugin icon and icon set.
+- Accessibility: decorative icons are hidden from screen readers, icon-only video triggers have labels, and empty avatar wrappers are no longer emitted.
+
 = 4.4.1 (14-07-2026) =
 
 **Security:**
@@ -348,7 +415,7 @@ Feature release: a rebuilt React admin dashboard (live stats, module/extension m
 - The free module library grows to 54 modules — the largest of any free Divi pack — with 53 running in both Divi 5 and Divi 4 (Post Carousel remains Divi 5-only).
 - Extended WPML String Translation config for every new module's translatable attributes.
 
-= 4.1.1 (14-07-2026) =
+= 4.1.1 (19-06-2026) =
 
 **Security:**
 - Fixed XSS in Typing Text (D4) — `text_element_tag` prop was used as a raw HTML tag name without allowlist validation; `wp_kses_post()` on a plain string like `script` does not strip it.

@@ -169,7 +169,7 @@ class Business_Hours_Child extends Child_Module {
 			),
 			'time'    => array(
 				'label'    => esc_html__( 'Time', 'squad-modules-for-divi' ),
-				'selector' => 'div .day-elements .day-element.day-time-text',
+				'selector' => 'div .day-elements .day-element.day-element-time',
 			),
 			'wrapper' => array(
 				'label'    => esc_html__( 'Wrapper', 'squad-modules-for-divi' ),

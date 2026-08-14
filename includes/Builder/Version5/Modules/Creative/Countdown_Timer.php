@@ -170,8 +170,10 @@ class Countdown_Timer extends Module {
 
 			$inner = $attrs['countdownSettings']['innerContent']['desktop']['value'] ?? array();
 
-			$mode      = Countdown_Helper::is_valid_mode( (string) ( $inner['mode'] ?? 'fixed' ) ) ? (string) $inner['mode'] : 'fixed';
-			$separator = Countdown_Helper::is_valid_separator( (string) ( $inner['separator'] ?? 'colon' ) ) ? (string) $inner['separator'] : 'colon';
+			$mode      = (string) ( $inner['mode'] ?? 'fixed' );
+			$mode      = Countdown_Helper::is_valid_mode( $mode ) ? $mode : 'fixed';
+			$separator = (string) ( $inner['separator'] ?? 'colon' );
+			$separator = Countdown_Helper::is_valid_separator( $separator ) ? $separator : 'colon';
 
 			$config = array(
 				'mode'      => $mode,

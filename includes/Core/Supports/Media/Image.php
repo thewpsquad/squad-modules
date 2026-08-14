@@ -174,7 +174,10 @@ class Image {
 			// Get raw image data.
 			$image_data = $this->get_image_raw( $image );
 			if ( is_wp_error( $image_data ) ) {
-				throw new RuntimeException( $image_data->get_error_message() );
+				// get_image_raw() already logged this failure; return its WP_Error
+				// directly instead of rethrowing (the outer catch would log/report the
+				// same event a second time). Preserves the string|WP_Error contract.
+				return $image_data;
 			}
 
 			// Process image based on format.
@@ -195,9 +198,12 @@ class Image {
 			 */
 			$processed_image = apply_filters( 'divi_squad_processed_image', $processed_image, $image, $type, $as_base64, $this );
 
-			// Cache the processed image.
-			$this->images[ $image_key ] = $processed_image;
-			divi_squad()->cache->set( $cache_key, $processed_image, 'divi-squad', HOUR_IN_SECONDS );
+			// Cache the processed image — but never cache an empty result, or a transient
+			// processing failure would be served from cache for the next hour.
+			if ( '' !== $processed_image ) {
+				$this->images[ $image_key ] = $processed_image;
+				divi_squad()->cache->set( $cache_key, $processed_image, 'divi-squad', HOUR_IN_SECONDS );
+			}
 
 			/**
 			 * Fires after an image is successfully retrieved.
@@ -329,7 +335,22 @@ class Image {
 	 */
 	protected function get_image_raw( string $image ) {
 		try {
-			$image_path = $this->path . '/' . $image;
+			// Resolve the reference relative to the base directory. Sub-directories
+			// (e.g. "logos/foo.svg", "ui-icons/bar.svg") are supported, but any parent
+			// traversal or absolute path is rejected so the read can never escape
+			// $this->path.
+			$relative = ltrim( str_replace( '\\', '/', $image ), '/' );
+			if ( '' === $relative || in_array( '..', explode( '/', $relative ), true ) ) {
+				throw new RuntimeException(
+					sprintf(
+					// translators: %s: image reference.
+						esc_html__( 'Invalid image path (%s).', 'squad-modules-for-divi' ),
+						esc_html( $image )
+					)
+				);
+			}
+
+			$image_path = $this->path . '/' . $relative;
 			$cache_key  = 'image_raw_' . md5( $image_path );
 
 			/**
@@ -721,6 +742,12 @@ class Image {
 
 			divi_squad()->cache->delete( $raw_cache_key, 'divi-squad' );
 			divi_squad()->cache->delete( $base64_cache_key, 'divi-squad' );
+
+			// Also clear get_image_raw()'s underlying file cache, which keys on the raw
+			// path ( $this->path . '/' . $image ), not the processed key above — without
+			// this the raw content stays cached until its TTL despite an explicit clear.
+			$raw_relative = ltrim( str_replace( '\\', '/', $image ), '/' );
+			divi_squad()->cache->delete( 'image_raw_' . md5( $this->path . '/' . $raw_relative ), 'divi-squad' );
 
 			/**
 			 * Fires after a specific image cache is cleared.

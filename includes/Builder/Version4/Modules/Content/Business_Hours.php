@@ -220,7 +220,7 @@ class Business_Hours extends Module {
 			),
 			'time'    => array(
 				'label'    => esc_html__( 'Time', 'squad-modules-for-divi' ),
-				'selector' => '.day-elements .day-time-text',
+				'selector' => '.day-elements .day-element-time',
 			),
 			'wrapper' => array(
 				'label'    => esc_html__( 'Day Wrapper', 'squad-modules-for-divi' ),
@@ -527,6 +527,9 @@ class Business_Hours extends Module {
 	 * @return string module's rendered output
 	 */
 	public function render( $attrs, $content, $render_slug ): string { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
+		// Render nested child-item shortcodes (raw under the Divi 5 compat layer).
+		$this->content = $this->squad_render_child_content( (string) $this->content );
+
 		// Show a notice message in the frontend if the list item is empty.
 		$content_warning  = sprintf( '<div class="squad-notice">%s</div>', esc_html__( 'Add one or more business day.', 'squad-modules-for-divi' ) );
 		$title_verified   = 'on' === $this->prop( 'title__enable', 'off' ) ? $this->squad_render_title_text() : null;
@@ -551,8 +554,10 @@ class Business_Hours extends Module {
 	protected function squad_render_title_text(): string {
 		$multi_view = et_pb_multi_view_options( $this );
 
-		// title tag, by default is h4.
-		$title_tag = $this->props['title_tag'] ?? 'h2';
+		// Title tag, h2 by default. Validate rather than relying on ?? alone: that
+		// only covers an unset key, and an empty value makes Divi's multi-view bail
+		// and drop the whole title element.
+		$title_tag = divi_squad()->d4_module_helper->sanitize_html_tag( (string) ( $this->props['title_tag'] ?? '' ), 'h2' );
 
 		$title_text = $multi_view->render_element(
 			array(

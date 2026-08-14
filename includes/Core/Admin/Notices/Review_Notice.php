@@ -201,7 +201,7 @@ class Review_Notice extends Notice_Base {
 							'classes'  => 'support',
 							'style'    => '',
 							'text'     => esc_html__( 'Help Needed? Create a Issue', 'squad-modules-for-divi' ),
-							'icon_svg' => 'icons/question.svg',
+							'icon_svg' => 'ui-icons/question.svg',
 							'type'     => 'link',
 							'action'   => 'ask_support',
 						),
@@ -217,7 +217,7 @@ class Review_Notice extends Notice_Base {
 			);
 
 			// Merge with default args.
-			$args = array_merge_recursive( $args, $review_args );
+			$args = array_merge( $args, $review_args );
 
 			/**
 			 * Filter the review notice template arguments.

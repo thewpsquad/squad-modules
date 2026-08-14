@@ -52,7 +52,7 @@ class Copy extends Base_Extension {
 	 * @return string
 	 */
 	public function get_name(): string {
-		return 'Post_Duplicator';
+		return 'Copy';
 	}
 
 	/**
@@ -484,11 +484,15 @@ class Copy extends Base_Extension {
 							$values[] = $wpdb->prepare( '(%d, %s, %s)', $new_post_id, $meta_key, $meta_value[0] );
 						}
 
-						// Join all values.
-						$query .= implode( ', ', $values );
+						// Only run the INSERT when at least one tuple survived the
+						// exclusion filter; an empty VALUES list is a SQL syntax error.
+						if ( count( $values ) > 0 ) {
+							// Join all values.
+							$query .= implode( ', ', $values );
 
-						// Insert the post meta.
-						$wpdb->query( $query ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
+							// Insert the post meta.
+							$wpdb->query( $query ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
+						}
 					}
 				}
 

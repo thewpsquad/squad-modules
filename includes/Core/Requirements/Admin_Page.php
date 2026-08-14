@@ -320,7 +320,7 @@ class Admin_Page implements Hookable {
 					</div>
 				</div>',
 				esc_url( $action['url'] ),
-				strpos( $action['url'], 'http' ) === 0 ? 'target="_blank"' : '',
+				strpos( $action['url'], 'http' ) === 0 ? 'target="_blank" rel="noopener noreferrer"' : '',
 				esc_attr( $action['icon'] ),
 				esc_html( $action['text'] )
 			);

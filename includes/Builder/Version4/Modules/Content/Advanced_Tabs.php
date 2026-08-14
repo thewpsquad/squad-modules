@@ -196,7 +196,9 @@ class Advanced_Tabs extends Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
-		if ( '' === trim( (string) $content ) ) {
+		$content = $this->squad_render_child_content( (string) $content );
+
+		if ( '' === trim( $content ) ) {
 			return sprintf(
 				'<div class="squad-notice">%s</div>',
 				esc_html__( 'Add at least one Tab.', 'squad-modules-for-divi' )
@@ -225,7 +227,7 @@ class Advanced_Tabs extends Module {
 			$active - 1,
 			$accordion ? 'on' : 'off',
 			$enable_hash ? 'on' : 'off',
-			(string) $content
+			$content
 		);
 	}
 

@@ -32,13 +32,13 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function absint;
-use function esc_attr;
 use function esc_html__;
+use function is_array;
 use function wp_enqueue_script;
-use function wp_json_encode;
 
 /**
  * Data Table parent module class.
@@ -99,9 +99,11 @@ class Data_Table extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+		$table_attr  = $attrs['dataTable']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -114,8 +116,30 @@ class Data_Table extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance header / cell colours, scoped to the module
+								// order class via Divi's native style pipeline — mirrors the
+								// Divi 4 `%%order_class%% .squad-data-table__th|__td` output
+								// (no inline <style>, no bespoke uid class).
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-data-table__th",
+											'attr'                => $table_attr,
+											'declarationFunction' => array( self::class, 'header_cell_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-data-table__td",
+											'attr'                => $table_attr,
+											'declarationFunction' => array( self::class, 'body_cell_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -126,6 +150,66 @@ class Data_Table extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Header cell declaration (header background colour + header text colour).
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function header_cell_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+
+		$header_bg = self::sanitize_css_background( (string) ( $value['headerBgColor'] ?? '' ) );
+		if ( '' !== $header_bg ) {
+			$declarations->add( 'background-color', $header_bg );
+		}
+
+		$header_text = self::sanitize_css_background( (string) ( $value['headerTextColor'] ?? '' ) );
+		if ( '' !== $header_text ) {
+			$declarations->add( 'color', $header_text );
+		}
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Body cell declaration (cell text colour).
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function body_cell_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$cell_text = self::sanitize_css_background( (string) ( $value['cellTextColor'] ?? '' ) );
+		if ( '' === $cell_text ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'color', $cell_text );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -167,12 +251,7 @@ class Data_Table extends Module {
 				'ribbon'          => (string) ( $inner['ribbonText'] ?? '' ),
 			);
 
-			$uid        = self::get_instance_uid( $block );
-			$inline_css = self::get_color_css( $inner, $uid );
-			$table_html = Data_Table_Helper::build_table( $config, $child_modules_content );
-
-			$data_table_html = ( '' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '' )
-				. sprintf( '<div class="%s">%s</div>', esc_attr( $uid ), $table_html );
+			$data_table_html = Data_Table_Helper::build_table( $config, $child_modules_content );
 
 			$style_components = $elements instanceof ModuleElements
 				? (string) $elements->style_components( array( 'attrName' => 'module' ) )
@@ -198,54 +277,5 @@ class Data_Table extends Module {
 
 			return '';
 		}
-	}
-
-	/**
-	 * Build a stable per-instance uid for scoping color CSS selectors.
-	 *
-	 * @since 4.3.0
-	 *
-	 * @param WP_Block $block The parsed block.
-	 *
-	 * @return string
-	 */
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return '' !== $uid
-			? 'squad-dt-' . $uid
-			: 'squad-dt-' . substr( md5( $raw . wp_json_encode( $block->parsed_block['orderIndex'] ?? 0 ) ), 0, 10 );
-	}
-
-	/**
-	 * Generate scoped header / cell color CSS for this instance.
-	 *
-	 * @since 4.3.0
-	 *
-	 * @param array<string, mixed> $inner Packed `dataTable.innerContent` desktop values.
-	 * @param string               $uid   Per-instance identifier.
-	 *
-	 * @return string Raw CSS (no <style> tags).
-	 */
-	protected static function get_color_css( array $inner, string $uid ): string {
-		$css = '';
-
-		$header_bg = self::sanitize_css_background( (string) ( $inner['headerBgColor'] ?? '' ) );
-		if ( '' !== $header_bg ) {
-			$css .= ".{$uid} .squad-data-table__th{background-color:{$header_bg}}";
-		}
-
-		$header_text = self::sanitize_css_background( (string) ( $inner['headerTextColor'] ?? '' ) );
-		if ( '' !== $header_text ) {
-			$css .= ".{$uid} .squad-data-table__th{color:{$header_text}}";
-		}
-
-		$cell_text = self::sanitize_css_background( (string) ( $inner['cellTextColor'] ?? '' ) );
-		if ( '' !== $cell_text ) {
-			$css .= ".{$uid} .squad-data-table__td{color:{$cell_text}}";
-		}
-
-		return $css;
 	}
 }

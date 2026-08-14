@@ -247,6 +247,8 @@ class Data_Table extends Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
+		$content = $this->squad_render_child_content( (string) $content );
+
 		wp_enqueue_script( 'squad-module-data-table' );
 
 		$highlight_ui = absint( $this->prop( 'highlight_column', '0' ) );

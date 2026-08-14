@@ -64,6 +64,18 @@ class Memory {
 	private bool $is_modified = false;
 
 	/**
+	 * Whether loading from storage failed this request.
+	 *
+	 * When true, sync_data() must NOT persist: the in-memory store is not a faithful
+	 * copy of the option, so writing it would overwrite real settings with empty/partial
+	 * data.
+	 *
+	 * @since 4.2.1
+	 * @var bool
+	 */
+	private bool $load_failed = false;
+
+	/**
 	 * Batch operations queue.
 	 *
 	 * @since 2.0.0
@@ -119,8 +131,11 @@ class Memory {
 			$this->maybe_migrate_legacy_options();
 		} catch ( Throwable $e ) {
 			// Log the error but initialize with empty data to prevent critical failure.
-			divi_squad()->log_error( $e, 'Failed to load data from storage' );
-			$this->data = array();
+			// Mark the load as failed so sync_data() won't persist this empty store over
+			// the real option (which would wipe active modules/extensions/migration flags).
+			divi_squad()->log_error( $e, 'Failed to load data from storage', false );
+			$this->data        = array();
+			$this->load_failed = true;
 		}
 	}
 
@@ -170,8 +185,13 @@ class Memory {
 					continue;
 				}
 
-				// Merge data.
-				$this->data        = array_merge_recursive( $this->data, $legacy_data );
+				// Merge data. Legacy values win on key collision so the user's
+				// prior configuration is restored over the (near-default) current
+				// store this migration runs against. `array_merge` (not
+				// `array_merge_recursive`) is required: on a scalar collision the
+				// recursive variant corrupts the value into an array
+				// (`version => array( '3.4', '1.2' )`) instead of overriding.
+				$this->data        = array_merge( $this->data, $legacy_data );
 				$this->is_modified = true;
 
 				// Delete old option only after successful merge.
@@ -449,6 +469,12 @@ class Memory {
 	public function sync_data(): void {
 		try {
 			if ( ! $this->is_modified ) {
+				return;
+			}
+
+			if ( $this->load_failed ) {
+				// Loading from storage failed this request, so $this->data is not a
+				// faithful copy of the option. Persisting it would destroy real settings.
 				return;
 			}
 

@@ -30,24 +30,24 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function absint;
 use function esc_attr;
 use function esc_html__;
 use function in_array;
+use function is_array;
+use function is_string;
 use function max;
 use function min;
 use function preg_quote;
 use function preg_replace;
 use function preg_replace_callback;
 use function sprintf;
-use function strtolower;
-use function substr;
 use function substr_count;
 use function trim;
 use function wp_enqueue_script;
-use function wp_json_encode;
 
 /**
  * Image Accordion parent module class.
@@ -99,9 +99,11 @@ class Image_Accordion extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs          = $args['attrs'] ?? array();
+		$elements       = $args['elements'];
+		$settings       = $args['settings'] ?? array();
+		$order_class    = (string) ( $args['orderClass'] ?? '' );
+		$accordion_attr = $attrs['accordion']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -114,8 +116,22 @@ class Image_Accordion extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance panel-sizing / overlay custom properties on the
+								// accordion wrapper, scoped to the module order class via Divi's
+								// native style pipeline (mirrors the former inline <style> block
+								// and the Divi 4 %%order_class%% output).
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-image-accordion",
+											'attr'                => $accordion_attr,
+											'declarationFunction' => array( self::class, 'panel_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -126,6 +142,39 @@ class Image_Accordion extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Panel-sizing / overlay custom properties for the accordion wrapper.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function panel_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+
+		$collapsed = self::sanitize_css_length( (string) ( $value['collapsedSize'] ?? '60px' ), '60px' );
+		$declarations->add( '--squad-ia-collapsed', $collapsed );
+
+		$overlay_bg = self::sanitize_css_background( (string) ( $value['overlayBackground'] ?? 'rgba(0,0,0,0.6)' ) );
+		if ( '' !== $overlay_bg ) {
+			$declarations->add( '--squad-ia-overlay-bg', $overlay_bg );
+		}
+
+		$opacity_pct = max( 0, min( 100, absint( $value['overlayOpacity'] ?? 60 ) ) );
+		$declarations->add( '--squad-ia-overlay-opacity', (string) ( $opacity_pct / 100 ) );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -152,7 +201,6 @@ class Image_Accordion extends Module {
 			wp_enqueue_script( 'squad-module-image-accordion' );
 
 			$inner = $attrs['accordion']['innerContent']['desktop']['value'] ?? array();
-			$uid   = self::get_instance_uid( $block );
 
 			$orientation = (string) ( $inner['orientation'] ?? 'horizontal' );
 			$orientation = in_array( $orientation, array( 'horizontal', 'vertical' ), true ) ? $orientation : 'horizontal';
@@ -160,15 +208,11 @@ class Image_Accordion extends Module {
 			$trigger = (string) ( $inner['expandTrigger'] ?? 'click' );
 			$trigger = in_array( $trigger, array( 'click', 'hover' ), true ) ? $trigger : 'click';
 
-			$inline_css = self::get_panel_css( $inner, $uid );
-
 			list( $child_modules_content, $active_index ) = self::mark_active_panel( $child_modules_content, $inner );
 
 			$accordion_html = sprintf(
-				'%1$s<div class="squad-image-accordion squad-image-accordion--%2$s %3$s" data-trigger="%4$s" data-active-index="%5$d">%6$s</div>',
-				'' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '',
+				'<div class="squad-image-accordion squad-image-accordion--%1$s" data-trigger="%2$s" data-active-index="%3$d">%4$s</div>',
 				esc_attr( $orientation ),
-				esc_attr( $uid ),
 				esc_attr( $trigger ),
 				$active_index,
 				$child_modules_content
@@ -198,51 +242,6 @@ class Image_Accordion extends Module {
 
 			return '';
 		}
-	}
-
-	/**
-	 * Build stable per-instance uid for scoping CSS selectors.
-	 *
-	 * @since 4.4.0
-	 *
-	 * @param WP_Block $block The parsed block.
-	 *
-	 * @return string e.g. "squad-ia-a1b2c3d4e5"
-	 */
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return '' !== $uid
-			? 'squad-ia-' . $uid
-			: 'squad-ia-' . substr( md5( $raw . wp_json_encode( $block->parsed_block['orderIndex'] ?? 0 ) ), 0, 10 );
-	}
-
-	/**
-	 * Generate scoped panel-sizing / overlay CSS custom properties.
-	 *
-	 * @since 4.4.0
-	 *
-	 * @param array<string, mixed> $inner Accordion innerContent values.
-	 * @param string               $uid   Per-instance identifier.
-	 *
-	 * @return string Raw CSS (no <style> tags).
-	 */
-	protected static function get_panel_css( array $inner, string $uid ): string {
-		$collapsed = self::sanitize_css_length( (string) ( $inner['collapsedSize'] ?? '60px' ), '60px' );
-
-		$decl = "--squad-ia-collapsed:{$collapsed};";
-
-		$overlay_bg = self::sanitize_css_background( (string) ( $inner['overlayBackground'] ?? 'rgba(0,0,0,0.6)' ) );
-		if ( '' !== $overlay_bg ) {
-			$decl .= "--squad-ia-overlay-bg:{$overlay_bg};";
-		}
-
-		$opacity_pct = max( 0, min( 100, absint( $inner['overlayOpacity'] ?? 60 ) ) );
-		$opacity     = $opacity_pct / 100;
-		$decl       .= "--squad-ia-overlay-opacity:{$opacity};";
-
-		return ".{$uid}{{$decl}}";
 	}
 
 	/**

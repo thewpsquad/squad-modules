@@ -706,6 +706,15 @@ class Reporter {
 	 * @return string Redacted text.
 	 */
 	protected static function redact_sensitive( string $text ): string {
+		// Strip the site's absolute filesystem paths (path-disclosure). WP_CONTENT_DIR
+		// first (it is usually a longer prefix under ABSPATH).
+		if ( defined( 'WP_CONTENT_DIR' ) ) {
+			$text = str_replace( WP_CONTENT_DIR, '[wp-content]', $text );
+		}
+		if ( defined( 'ABSPATH' ) ) {
+			$text = str_replace( untrailingslashit( ABSPATH ), '[abspath]', $text );
+		}
+
 		$patterns = array(
 			// key=value / key: value secrets (api_key, secret, token, password, authorization, bearer).
 			'/\b(api[_-]?key|secret|token|password|passwd|pwd|authorization|bearer)\b\s*[:=]\s*\S+/i' => '$1: [redacted]',
@@ -746,17 +755,19 @@ class Reporter {
 	 */
 	public function quick_send( Throwable $throwable, array $additional_data = array() ): bool {
 		try {
+			// Redact secrets/emails/IPs/paths from every free-text field before the
+			// report leaves the site. The client IP is dropped entirely (PII, not needed
+			// for debugging); the URI is redacted for query-string tokens.
 			$error_data = array(
-				'error_message' => $throwable->getMessage(),
+				'error_message' => self::redact_sensitive( $throwable->getMessage() ),
 				'error_code'    => $throwable->getCode(),
-				'error_file'    => $throwable->getFile(),
+				'error_file'    => self::redact_sensitive( $throwable->getFile() ),
 				'error_line'    => $throwable->getLine(),
-				'stack_trace'   => $throwable->getTraceAsString(),
+				'stack_trace'   => self::redact_sensitive( $throwable->getTraceAsString() ),
 				'debug_log'     => '',
 				'request_data'  => array(
 					'method' => isset( $_SERVER['REQUEST_METHOD'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) : '',
-					'uri'    => isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '',
-					'ip'     => isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '',
+					'uri'    => isset( $_SERVER['REQUEST_URI'] ) ? self::redact_sensitive( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) : '',
 				),
 			);
 

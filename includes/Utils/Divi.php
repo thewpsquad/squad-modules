@@ -526,8 +526,8 @@ class Divi {
 		}
 
 		// Strategy 3: Check for Divi/Extra framework presence through constants..
-		if ( in_array( 'constants', $use_strategies, true ) ) {
-			return static::has_divi_constants();
+		if ( in_array( 'constants', $use_strategies, true ) && static::has_divi_constants() ) {
+			return true;
 		}
 
 		// Strategy 4: Check for Divi/Extra framework presence through functions..

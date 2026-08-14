@@ -18,12 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 use DiviSquad\Core\Assets;
 use DiviSquad\Core\Contracts\Hookable;
 use DiviSquad\Core\Supports\Polyfills\Constant;
-use DiviSquad\Core\Supports\Polyfills\Str;
-use DiviSquad\SquadModules;
 use Freemius;
 use Throwable;
 use function add_action;
-use function apply_filters;
 use function esc_html__;
 use function fs_dynamic_init;
 use function load_template;
@@ -79,7 +76,7 @@ class Distribution implements Hookable {
 				'type'                => 'plugin',
 				'public_key'          => 'pk_016b4bcadcf416ffec072540ef065',
 				'is_premium'          => false,
-				'premium_suffix'      => esc_html__( 'Pro', 'squad-modules-for-divi' ),
+				'premium_suffix'      => 'Pro',
 				'has_premium_version' => true,
 				'has_addons'          => false,
 				'has_paid_plans'      => true,
@@ -131,27 +128,18 @@ class Distribution implements Hookable {
 			return;
 		}
 
-		// Set SDK to work in anonymous mode automatically.
-		$this->fs->skip_connection();
+		// Work in anonymous mode automatically, but ONLY for sites that are neither
+		// registered nor licensed. Calling skip_connection() unconditionally pins a
+		// registered/licensed site to the anonymous state, and Freemius only adds the
+		// Account (and other) submenu items when is_registered() is true
+		// (class-freemius.php:18913) — so an unconditional skip makes the Account menu
+		// vanish for paying users. Guarding it keeps free installs quiet while letting
+		// licensed/registered sites resolve their account menu.
+		if ( ! $this->fs->is_registered() && ! $this->fs->has_active_valid_license() ) {
+			$this->fs->skip_connection();
+		}
 
-		// Update some features.
-		$this->fs->override_i18n(
-			array(
-				'hey'                         => esc_html__( 'Hey', 'squad-modules-for-divi' ),
-				'yee-haw'                     => esc_html__( 'Hello Friend', 'squad-modules-for-divi' ),
-				'skip'                        => esc_html__( 'Not today', 'squad-modules-for-divi' ),
-				'opt-in-connect'              => esc_html__( "Yes - I'm in!", 'squad-modules-for-divi' ),
-				'install-update-now'          => esc_html__( 'Update Now', 'squad-modules-for-divi' ),
-				/* translators: %s: Plan title */
-				'activate-x-features'         => esc_html__( 'Activate %s', 'squad-modules-for-divi' ),
-				/* translators: %s The plugin name, example: Squad Modules Lite */
-				'plugin-x-activation-message' => esc_html__( '%s was successfully activated.', 'squad-modules-for-divi' ),
-				/* translators: %s The module type */
-				'premium-activated-message'   => esc_html__( 'Premium %s was successfully activated.', 'squad-modules-for-divi' ),
-				/* translators: %1$s: Product title; %2$s: Plan title; %3$s: Activation link */
-				'activate-premium-version'    => esc_html__( ' The paid plugin of %1$s is already installed. Please activate it to start benefiting the %2$s plugin. %3$s', 'squad-modules-for-divi' ),
-			)
-		);
+		// Freemius behaviour tweaks.
 		$this->fs->add_filter( 'enable_cpt_advanced_menu_logic', '__return_true' );
 		$this->fs->add_filter( 'hide_account_tabs', '__return_true' );
 		$this->fs->add_filter( 'deactivate_on_activation', '__return_false' );
@@ -159,31 +147,20 @@ class Distribution implements Hookable {
 		$this->fs->add_filter( 'is_submenu_visible', array( $this, 'fs_hook_is_submenu_visible' ), 10, 2 );
 		$this->fs->add_filter( 'show_admin_notice', array( $this, 'fs_hook_show_admin_notice' ), 10, 2 );
 		$this->fs->add_filter( 'plugin_icon', array( $this, 'fs_hook_plugin_icon' ) );
-		$this->fs->add_filter( 'plugin_title', array( $this, 'fs_hook_plugin_title' ) );
-		$this->fs->add_filter( 'plugin_version', array( $this, 'fs_hook_plugin_version' ) );
-		$this->fs->add_filter( 'support_forum_url', array( $this, 'fs_hook_support_forum_url' ) );
 
-		// Override the default templates.
+		// Override the default Freemius screen templates with the plugin's own.
 		$this->fs->add_filter( '/forms/affiliation.php', array( $this, 'fs_hook_get_account_template' ) );
 		$this->fs->add_filter( 'templates/account.php', array( $this, 'fs_hook_get_account_template' ) );
 		$this->fs->add_filter( 'templates/connect.php', array( $this, 'fs_hook_get_default_template' ) );
 		$this->fs->add_filter( 'templates/checkout.php', array( $this, 'fs_hook_get_default_template' ) );
 		$this->fs->add_filter( 'templates/pricing.php', array( $this, 'fs_hook_get_default_template' ) );
 
-		// Enqueue the plugin's scripts and styles files in the WordPress admin area.
+		// Register/enqueue the publisher stylesheet in the admin.
 		add_action( 'divi_squad_register_admin_assets', array( $this, 'register_scripts' ) );
 		add_action( 'divi_squad_enqueue_admin_assets', array( $this, 'enqueue_scripts' ) );
 
-		// Add filter to hide menu items when requirements aren't met.
-		add_filter( 'divi_squad_publisher_is_submenu_visible', array( $this, 'maybe_disable_menu_items' ) );
-
-		// Update the admin menu title.
+		// Relabel the Freemius submenu items under the Divi Squad menu.
 		add_action( 'admin_menu', array( $this, 'wp_hook_update_admin_menu_title' ), Constant::PHP_INT_MAX );
-
-		/**
-		 * Initialize the plugin.
-		 */
-		do_action( 'divi_squad_publisher_init', $this );
 	}
 
 	/**
@@ -218,9 +195,12 @@ class Distribution implements Hookable {
 	}
 
 	/**
-	 * Show the contact submenu item only when the user has a valid non-expired license.
+	 * Control Freemius submenu visibility.
 	 *
-	 * @param bool   $is_visible The filtered value. Whether the submenu item should be visible or not.
+	 * The Support item is shown only on the free plan; every Freemius submenu item is
+	 * hidden while the plugin's requirements are unmet.
+	 *
+	 * @param bool   $is_visible Whether the submenu item should be visible.
 	 * @param string $menu_id    The ID of the submenu item.
 	 *
 	 * @return bool If true, the menu item should be visible.
@@ -231,23 +211,11 @@ class Distribution implements Hookable {
 				return $is_visible;
 			}
 
-			// Set default visibility for specific menu items.
 			if ( 'support' === $menu_id ) {
 				$is_visible = $this->fs->is_free_plan();
 			}
 
-			/**
-			 * Filter whether the submenu item should be visible or not.
-			 * This allows external code to override visibility for any menu item.
-			 *
-			 * @since 3.2.3
-			 *
-			 * @param bool   $is_visible The visibility value for this menu item.
-			 * @param string $menu_id    The ID of the submenu item.
-			 *
-			 * @return bool If true, the menu item should be visible.
-			 */
-			return (bool) apply_filters( 'divi_squad_publisher_is_submenu_visible', $is_visible, $menu_id );
+			return $is_visible && divi_squad()->requirements->is_fulfilled();
 		} catch ( Throwable $e ) {
 			divi_squad()->log_error( $e, sprintf( 'Failed to determine submenu visibility for menu ID: %s', $menu_id ) );
 
@@ -256,40 +224,12 @@ class Distribution implements Hookable {
 	}
 
 	/**
-	 * Disables specific menu items when requirements aren't fulfilled.
-	 *
-	 * @param bool $is_visible The current visibility status of the menu item.
-	 *
-	 * @return bool Updated visibility status.
-	 */
-	public function maybe_disable_menu_items( bool $is_visible ): bool {
-		// If we're already hiding the item, don't override that decision.
-		if ( ! $is_visible ) {
-			return false;
-		}
-
-		// Get requirement instance and check if fulfilled.
-		return divi_squad()->requirements->is_fulfilled();
-	}
-
-	/**
-	 * Update plugin icon url for opt-in screen,.
+	 * Plugin icon url for the opt-in screen.
 	 *
 	 * @return string The src url of plugin icon.
 	 */
 	public function fs_hook_plugin_icon(): string {
-		$default_icon = divi_squad()->get_path( '/build/admin/images/logos/divi-squad-default.png' );
-
-		/**
-		 * Filter the plugin icon url for opt-in screen.
-		 *
-		 * @since 3.2.3
-		 *
-		 * @param string $default_icon The default icon url.
-		 *
-		 * @return string The src url of plugin icon.
-		 */
-		return (string) apply_filters( 'divi_squad_publisher_plugin_icon', $default_icon );
+		return divi_squad()->get_path( '/build/admin/images/logos/divi-squad-default.png' );
 	}
 
 	/**
@@ -303,19 +243,11 @@ class Distribution implements Hookable {
 		try {
 			ob_start();
 
-			$template = divi_squad()->get_template_path( 'admin/publisher/account.php' );
-
-			/**
-			 * Filter the account template path.
-			 *
-			 * @since 3.3.0
-			 *
-			 * @param string $template The template path.
-			 */
-			$template = apply_filters( 'divi_squad_publisher_account_template', $template );
-
-			// Load the template.
-			load_template( $template, true, array( 'content' => $content ) );
+			load_template(
+				divi_squad()->get_template_path( 'admin/publisher/account.php' ),
+				true,
+				array( 'content' => $content )
+			);
 
 			return ob_get_clean();
 		} catch ( Throwable $e ) {
@@ -336,19 +268,11 @@ class Distribution implements Hookable {
 		try {
 			ob_start();
 
-			$template = divi_squad()->get_template_path( 'admin/publisher/default.php' );
-
-			/**
-			 * Filter the default template path.
-			 *
-			 * @since 3.3.0
-			 *
-			 * @param string $template The template path.
-			 */
-			$template = apply_filters( 'divi_squad_publisher_default_template', $template );
-
-			// Load the template.
-			load_template( $template, true, array( 'content' => $content ) );
+			load_template(
+				divi_squad()->get_template_path( 'admin/publisher/default.php' ),
+				true,
+				array( 'content' => $content )
+			);
 
 			return ob_get_clean();
 		} catch ( Throwable $e ) {
@@ -382,78 +306,6 @@ class Distribution implements Hookable {
 	}
 
 	/**
-	 * Modify the plugin title based on free and pro plugin
-	 *
-	 * @since  2.0.0
-	 *
-	 * @param string $title The plugin title.
-	 *
-	 * @return string The activated plugin title between free and pro
-	 */
-	public function fs_hook_plugin_title( string $title ): string {
-		/**
-		 * Filter the plugin title based on free and pro plugin.
-		 *
-		 * @since 3.2.3
-		 *
-		 * @param string        $title  The plugin title.
-		 * @param Freemius|null $fs     The instance of Freemius SDK.
-		 * @param SquadModules  $plugin The plugin instance.
-		 *
-		 * @return string The activated plugin title between free and pro
-		 */
-		return (string) apply_filters( 'divi_squad_publisher_plugin_title', $title, $this->fs, divi_squad() );
-	}
-
-	/**
-	 * Modify the plugin version based on free and pro plugin
-	 *
-	 * @since  2.0.0
-	 *
-	 * @param string $version The plugin version.
-	 *
-	 * @return string The activated plugin title between free and pro
-	 */
-	public function fs_hook_plugin_version( string $version ): string {
-		/**
-		 * Filter the plugin version based on free and pro plugin.
-		 *
-		 * @since 3.2.3
-		 *
-		 * @param string        $version The plugin version.
-		 * @param Freemius|null $fs      The instance of Freemius SDK.
-		 * @param SquadModules  $plugin  The plugin instance.
-		 *
-		 * @return string The activated plugin title between free and pro
-		 */
-		return (string) apply_filters( 'divi_squad_publisher_plugin_version', $version, $this->fs, divi_squad() );
-	}
-
-	/**
-	 * Modify the support forum url based on free and pro plugin
-	 *
-	 * @since  3.3.0
-	 *
-	 * @param string $url The support forum url.
-	 *
-	 * @return string The activated plugin title between free and pro
-	 */
-	public function fs_hook_support_forum_url( string $url ): string {
-		/**
-		 * Filter the support forum url.
-		 *
-		 * @since 3.3.0
-		 *
-		 * @param string        $url    The support forum url.
-		 * @param Freemius|null $fs     The instance of Freemius SDK.
-		 * @param SquadModules  $plugin The plugin instance.
-		 *
-		 * @return string The activated plugin title between free and pro
-		 */
-		return (string) apply_filters( 'divi_squad_publisher_support_forum_url', $url, $this->fs, divi_squad() );
-	}
-
-	/**
 	 * Register the plugin's scripts and styles files in the WordPress admin area.
 	 *
 	 * @param Assets $assets The assets manager instance.
@@ -484,7 +336,7 @@ class Distribution implements Hookable {
 	}
 
 	/**
-	 * Update the admin menu title.
+	 * Relabel the Freemius submenu items under the Divi Squad menu.
 	 *
 	 * @since 3.3.0
 	 *
@@ -494,73 +346,23 @@ class Distribution implements Hookable {
 		try {
 			global $submenu;
 
-			if ( ! is_array( $submenu ) || ! isset( $submenu['divi_squad'] ) ) {
+			if ( ! isset( $submenu['divi_squad'] ) || ! is_array( $submenu['divi_squad'] ) ) {
 				return;
 			}
 
-			foreach ( $submenu as $parent => $sub ) {
-				// Check if the parent is the desired one.
-				if ( 'divi_squad' !== $parent ) {
-					continue;
+			$titles = array(
+				'divi_squad-affiliation'      => esc_html__( 'Affiliation', 'squad-modules-for-divi' ),
+				'divi_squad-account'          => esc_html__( 'Account', 'squad-modules-for-divi' ),
+				'divi_squad-wp-support-forum' => esc_html__( 'Support Forum', 'squad-modules-for-divi' ),
+				'divi_squad-pricing'          => esc_html__( 'Pricing', 'squad-modules-for-divi' ),
+			);
+			$prefix = esc_html__( 'Divi Squad', 'squad-modules-for-divi' );
+
+			foreach ( $submenu['divi_squad'] as $index => $data ) {
+				if ( isset( $data[2], $data[3], $titles[ $data[2] ] ) ) {
+					// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+					$submenu['divi_squad'][ $index ][3] = sprintf( '%s ‹ %s', $prefix, $titles[ $data[2] ] );
 				}
-
-				foreach ( $sub as $index => $data ) {
-					if ( isset( $data[2], $data[3] ) && Str::starts_with( $data[2], 'divi_squad-' ) ) {
-						if ( 'divi_squad-affiliation' === $data[2] ) {
-							$submenu[ $parent ][ $index ][3] = sprintf( // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-								'%s ‹ %s',
-								esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
-								esc_html__( 'Affiliation', 'squad-modules-for-divi' )
-							);
-						}
-
-						if ( 'divi_squad-account' === $data[2] ) {
-							$submenu[ $parent ][ $index ][3] = sprintf( // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-								'%s ‹ %s',
-								esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
-								esc_html__( 'Account', 'squad-modules-for-divi' )
-							);
-						}
-
-						if ( 'divi_squad-wp-support-forum' === $data[2] ) {
-							$submenu[ $parent ][ $index ][3] = sprintf( // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-								'%s ‹ %s',
-								esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
-								esc_html__( 'Support Forum', 'squad-modules-for-divi' )
-							);
-						}
-
-						if ( 'divi_squad-pricing' === $data[2] ) {
-							$submenu[ $parent ][ $index ][3] = sprintf( // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-								'%s ‹ %s',
-								esc_html__( 'Divi Squad', 'squad-modules-for-divi' ),
-								esc_html__( 'Pricing', 'squad-modules-for-divi' )
-							);
-						}
-
-						/**
-						 * Filter the admin menu title.
-						 *
-						 * @since 3.3.0
-						 *
-						 * @param string $title   The admin menu title.
-						 * @param array  $data    The submenu data.
-						 * @param int    $index   The index of the submenu.
-						 * @param string $parent  The parent menu slug.
-						 * @param array  $submenu The submenu array.
-						 */
-						do_action( 'divi_squad_update_admin_menu_title', $submenu[ $parent ][ $index ], $data, $index, $parent, $submenu );
-					}
-				}
-
-				/**
-				 * Filter the admin menu title.
-				 *
-				 * @since 3.3.0
-				 *
-				 * @param array $data The submenu data.
-				 */
-				do_action( 'divi_squad_update_admin_menu_title_after', $submenu[ $parent ] );
 			}
 		} catch ( Throwable $e ) {
 			divi_squad()->log_error( $e, 'Failed to update admin menu titles' );

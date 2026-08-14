@@ -33,15 +33,15 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function absint;
-use function esc_attr;
 use function esc_html__;
+use function is_array;
 use function max;
 use function min;
 use function wp_enqueue_script;
-use function wp_json_encode;
 
 /**
  * Chat Button parent module class.
@@ -102,9 +102,11 @@ class Chat_Button extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+		$button_attr = $attrs['chatButton']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -117,8 +119,22 @@ class Chat_Button extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance launcher colour, scoped to the module order
+								// class via Divi's native style pipeline (no inline <style>,
+								// no bespoke uid class). Mirrors the Divi 4 module's
+								// `%%order_class%% .squad-chat-button__toggle` rule.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-chat-button__toggle",
+											'attr'                => $button_attr,
+											'declarationFunction' => array( self::class, 'toggle_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -129,6 +145,34 @@ class Chat_Button extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Floating launcher (toggle) declaration (button background colour).
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function toggle_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$button_color = self::sanitize_css_background( (string) ( $value['buttonColor'] ?? '' ) );
+		if ( '' === $button_color ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'background-color', $button_color );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -168,12 +212,7 @@ class Chat_Button extends Module {
 				'scheduleEnd'     => max( 0, min( 23, absint( $inner['scheduleEnd'] ?? 17 ) ) ),
 			);
 
-			$uid         = self::get_instance_uid( $block );
-			$inline_css  = self::get_color_css( $inner, $uid );
 			$widget_html = Chat_Button_Helper::build_widget( $config, $child_modules_content );
-
-			$chat_button_html = ( '' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '' )
-				. sprintf( '<div class="%s">%s</div>', esc_attr( $uid ), $widget_html );
 
 			$style_components = $elements instanceof ModuleElements
 				? (string) $elements->style_components( array( 'attrName' => 'module' ) )
@@ -191,7 +230,7 @@ class Chat_Button extends Module {
 					'classnamesFunction'  => array( static::class, 'module_classnames' ),
 					'stylesComponent'     => array( static::class, 'module_styles' ),
 					'scriptDataComponent' => array( static::class, 'module_script_data' ),
-					'children'            => $style_components . $chat_button_html,
+					'children'            => $style_components . $widget_html,
 				)
 			);
 		} catch ( Throwable $e ) {
@@ -199,44 +238,5 @@ class Chat_Button extends Module {
 
 			return '';
 		}
-	}
-
-	/**
-	 * Build a stable per-instance uid for scoping color CSS selectors.
-	 *
-	 * @since 4.3.0
-	 *
-	 * @param WP_Block $block The parsed block.
-	 *
-	 * @return string
-	 */
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return '' !== $uid
-			? 'squad-cb-' . $uid
-			: 'squad-cb-' . substr( md5( $raw . wp_json_encode( $block->parsed_block['orderIndex'] ?? 0 ) ), 0, 10 );
-	}
-
-	/**
-	 * Generate scoped button color CSS for this instance.
-	 *
-	 * @since 4.3.0
-	 *
-	 * @param array<string, mixed> $inner Packed `chatButton.innerContent` desktop values.
-	 * @param string               $uid   Per-instance identifier.
-	 *
-	 * @return string Raw CSS (no <style> tags).
-	 */
-	protected static function get_color_css( array $inner, string $uid ): string {
-		$css = '';
-
-		$button_color = self::sanitize_css_background( (string) ( $inner['buttonColor'] ?? '' ) );
-		if ( '' !== $button_color ) {
-			$css .= ".{$uid} .squad-chat-button__toggle{background-color:{$button_color}}";
-		}
-
-		return $css;
 	}
 }

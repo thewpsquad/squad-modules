@@ -412,9 +412,9 @@ class Lottie extends Module {
 	 */
 	public function get_transition_fields_css_props() {
 		$fields                  = parent::get_transition_fields_css_props();
-		$fields['lottie_color']  = array( 'fill' => "$this->main_css_element .squad-lottie-wrapper .lottie-image svg path" );
-		$fields['lottie_width']  = array( 'width' => "$this->main_css_element .squad-lottie-wrapper .lottie-image" );
-		$fields['lottie_height'] = array( 'height' => "$this->main_css_element .squad-lottie-wrapper .lottie-image" );
+		$fields['lottie_color']  = array( 'fill' => "$this->main_css_element .squad-lottie-wrapper .squad-lottie-player svg path" );
+		$fields['lottie_width']  = array( 'width' => "$this->main_css_element .squad-lottie-wrapper .squad-lottie-player" );
+		$fields['lottie_height'] = array( 'height' => "$this->main_css_element .squad-lottie-wrapper .squad-lottie-player" );
 
 		return $fields;
 	}

@@ -242,8 +242,8 @@ class Author_Box extends Module {
 				array(
 					'description'      => esc_html__( 'Choose the author box layout.', 'squad-modules-for-divi' ),
 					'options'          => array(
-						'horizontal' => array( 'value' => 'horizontal', 'label' => esc_html__( 'Horizontal', 'squad-modules-for-divi' ) ),
-						'vertical'   => array( 'value' => 'vertical', 'label' => esc_html__( 'Vertical', 'squad-modules-for-divi' ) ),
+						'horizontal' => esc_html__( 'Horizontal', 'squad-modules-for-divi' ),
+						'vertical'   => esc_html__( 'Vertical', 'squad-modules-for-divi' ),
 					),
 					'default_on_front' => 'horizontal',
 					'default'          => 'horizontal',
@@ -364,8 +364,8 @@ class Author_Box extends Module {
 				array(
 					'description'     => esc_html__( 'Choose whether the link opens in the same or a new tab.', 'squad-modules-for-divi' ),
 					'options'         => array(
-						'_blank' => array( 'value' => '_blank', 'label' => esc_html__( 'New Tab', 'squad-modules-for-divi' ) ),
-						'_self'  => array( 'value' => '_self', 'label' => esc_html__( 'Same Tab', 'squad-modules-for-divi' ) ),
+						'_blank' => esc_html__( 'New Tab', 'squad-modules-for-divi' ),
+						'_self'  => esc_html__( 'Same Tab', 'squad-modules-for-divi' ),
 					),
 					'default'         => '_blank',
 					'depends_show_if' => 'on',
@@ -404,8 +404,8 @@ class Author_Box extends Module {
 				array(
 					'description'     => esc_html__( 'Choose whether the link opens in the same or a new tab.', 'squad-modules-for-divi' ),
 					'options'         => array(
-						'_blank' => array( 'value' => '_blank', 'label' => esc_html__( 'New Tab', 'squad-modules-for-divi' ) ),
-						'_self'  => array( 'value' => '_self', 'label' => esc_html__( 'Same Tab', 'squad-modules-for-divi' ) ),
+						'_blank' => esc_html__( 'New Tab', 'squad-modules-for-divi' ),
+						'_self'  => esc_html__( 'Same Tab', 'squad-modules-for-divi' ),
 					),
 					'default'         => '_blank',
 					'depends_show_if' => 'on',
@@ -491,7 +491,8 @@ class Author_Box extends Module {
 		}
 
 		$size   = absint( $this->prop( 'avatar_size', '96' ) );
-		$avatar = get_avatar( $user->ID, $size, '', esc_attr( $user->display_name ) );
+		// get_avatar() escapes the alt itself (pluggable.php), so pass it raw.
+		$avatar = get_avatar( $user->ID, $size, '', $user->display_name );
 		if ( false === $avatar ) {
 			return '';
 		}
@@ -538,9 +539,10 @@ class Author_Box extends Module {
 			return '';
 		}
 
-		$allowed_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div' );
-		$tag          = $this->prop( 'name_tag', 'h4' );
-		$tag          = in_array( $tag, $allowed_tags, true ) ? $tag : 'h4';
+		// Validate against the same (filterable) list that populated the select, so
+		// the offered options and the accepted ones cannot drift apart. A hardcoded
+		// allowlist here previously omitted 'span', silently coercing it to 'h4'.
+		$tag = divi_squad()->d4_module_helper->sanitize_html_tag( (string) $this->prop( 'name_tag', 'h4' ), 'h4' );
 
 		return sprintf(
 			'<%1$s class="squad-author-box__name">%2$s</%1$s>',

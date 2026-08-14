@@ -420,7 +420,11 @@ class Fields extends Manager {
 	 * @return void
 	 */
 	protected function clear_post_type_cache( string $post_type ): void {
-		wp_cache_delete( 'custom_field_keys_' . md5( $post_type . '30' ), $this->cache_group );
+		// get_cached_data() stores under "{cache_key_prefix}_{key}", so the delete
+		// must include the same prefix or it never matches the stored entry (the
+		// dropdown then stays stale for up to the cache lifetime). '30' is get_data()'s
+		// default limit, which is the value used to build the key in practice.
+		wp_cache_delete( $this->cache_key_prefix . '_custom_field_keys_' . md5( $post_type . '30' ), $this->cache_group );
 
 		/**
 		 * Action fired when the cache for a post type is cleared.

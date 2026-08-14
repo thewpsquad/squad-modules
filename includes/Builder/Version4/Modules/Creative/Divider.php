@@ -249,6 +249,10 @@ class Divider extends Module {
 				array(
 					'description'      => esc_html__( 'Choose a tag to display with your icon text.', 'squad-modules-for-divi' ),
 					'options'          => divi_squad()->d4_module_helper->get_html_tag_elements(),
+					// Both keys are required: without an explicit 'default' the field
+					// helper stores '', which reaches the front end as an empty tag and
+					// makes the whole element disappear.
+					'default'          => 'h2',
 					'default_on_front' => 'h2',
 					'depends_show_if'  => 'text',
 					'tab_slug'         => 'general',
@@ -1735,12 +1739,12 @@ class Divider extends Module {
 		return (string) $multi_view->render_element(
 			array(
 				// Divi's multi-view sanitizes 'tag' via et_core_sanitize_element_tag().
-				'tag'     => $this->prop( 'divider_icon_text_tag', 'span' ),
-				'content' => '{{divider_icon_text}}',
-				'attrs'   => array(
-					'class'          => 'divider-icon-text',
-					'hover_selector' => "$this->main_css_element div .divider-elements",
+				'tag'            => $this->prop( 'divider_icon_text_tag', 'h2' ),
+				'content'        => '{{divider_icon_text}}',
+				'attrs'          => array(
+					'class' => 'divider-icon-text',
 				),
+				'hover_selector' => "$this->main_css_element div .divider-elements",
 			)
 		);
 	}

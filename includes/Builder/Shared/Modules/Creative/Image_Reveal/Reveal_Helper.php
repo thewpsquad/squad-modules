@@ -176,9 +176,12 @@ final class Reveal_Helper {
 			return '';
 		}
 
-		$style   = self::is_valid_style( (string) ( $config['style'] ?? 'overlay' ) ) ? (string) $config['style'] : 'overlay';
-		$dir     = self::is_valid_direction( (string) ( $config['direction'] ?? 'ltr' ) ) ? (string) $config['direction'] : 'ltr';
-		$trigger = self::is_valid_trigger( (string) ( $config['trigger'] ?? 'scroll' ) ) ? (string) $config['trigger'] : 'scroll';
+		$style   = (string) ( $config['style'] ?? 'overlay' );
+		$style   = self::is_valid_style( $style ) ? $style : 'overlay';
+		$dir     = (string) ( $config['direction'] ?? 'ltr' );
+		$dir     = self::is_valid_direction( $dir ) ? $dir : 'ltr';
+		$trigger = (string) ( $config['trigger'] ?? 'scroll' );
+		$trigger = self::is_valid_trigger( $trigger ) ? $trigger : 'scroll';
 		$zoom_on = 'on' === (string) ( $config['zoom'] ?? 'off' );
 
 		$classes = array(

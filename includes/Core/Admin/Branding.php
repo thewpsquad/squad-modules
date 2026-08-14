@@ -796,7 +796,9 @@ class Branding {
 			$css = apply_filters( 'divi_squad_custom_css_result', $css, $this );
 
 			if ( '' !== $css ) {
-				echo '<style type="text/css">' . $css . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				// wp_strip_all_tags() prevents a `</style><script>` breakout if any custom_css
+				// asset ever returns attacker-influenced text (CSS carries no HTML tags).
+				echo '<style type="text/css">' . wp_strip_all_tags( $css ) . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			/**

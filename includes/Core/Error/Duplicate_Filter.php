@@ -111,7 +111,9 @@ class Duplicate_Filter {
 		} catch ( Throwable $e ) {
 			divi_squad()->log_error( $e, 'Duplicate check failed', false );
 
-			return false; // Allow reporting on error.
+			// Fail closed: when the dedup store is broken, treat as duplicate and skip the
+			// email (the error is still captured in debug.log via log_error above).
+			return true;
 		}
 	}
 
@@ -206,11 +208,8 @@ class Duplicate_Filter {
 
 		$signature_data = implode( '|', $components );
 
-		// Use hash function if available (faster), otherwise fallback to md5.
-		if ( function_exists( 'hash' ) ) {
-			return substr( hash( 'crc32b', $signature_data ), 0, 16 );
-		}
-
+		// 16 hex chars, always available. (crc32b is only 8 hex / 32-bit — too
+		// collision-prone for a dedup key, which silently drops distinct errors.)
 		return substr( md5( $signature_data ), 0, 16 );
 	}
 

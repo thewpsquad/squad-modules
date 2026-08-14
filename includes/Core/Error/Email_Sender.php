@@ -357,7 +357,8 @@ class Email_Sender {
 			 */
 			return apply_filters( 'divi_squad_error_report_html_content', $output, $template_data );
 		} catch ( Throwable $e ) {
-			divi_squad()->log_error( $e, 'Error generating email HTML content' );
+			// report=false: this runs inside the report pipeline; reporting here would re-enter it.
+			divi_squad()->log_error( $e, 'Error generating email HTML content', false );
 
 			return $this->generate_fallback_message( $data );
 		}
@@ -401,7 +402,8 @@ class Email_Sender {
 			 */
 			return apply_filters( 'divi_squad_error_report_fallback_message', $message, $data );
 		} catch ( Throwable $e ) {
-			divi_squad()->log_error( $e, 'Error generating fallback message' );
+			// report=false: inside the report pipeline; reporting here would re-enter it.
+			divi_squad()->log_error( $e, 'Error generating fallback message', false );
 
 			return '<h2>Error Report</h2><p>An error occurred while generating this report.</p>';
 		}
@@ -446,7 +448,8 @@ class Email_Sender {
 			 */
 			do_action( 'divi_squad_error_report_mail_failed', $error );
 		} catch ( Throwable $e ) {
-			divi_squad()->log_error( $e, 'Error handling mail failure' );
+			// report=false: this is the mail-failure handler; reporting here would loop.
+			divi_squad()->log_error( $e, 'Error handling mail failure', false );
 		}
 	}
 

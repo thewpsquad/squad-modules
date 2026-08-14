@@ -19,6 +19,7 @@ if ( ! class_exists( 'ET\Builder\Packages\Module\Module' ) ) {
 	return;
 }
 
+use DiviSquad\Builder\Shared\Modules\Creative\Star_Rating\Star_Rating_Helper;
 use DiviSquad\Builder\Version5\Abstracts\Module;
 use ET\Builder\FrontEnd\Module\Style;
 use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
@@ -29,8 +30,6 @@ use Throwable;
 use WP_Block;
 use function esc_attr;
 use function esc_html;
-use function number_format;
-use function wp_parse_args;
 
 /**
  * Star Rating Module class.
@@ -164,39 +163,7 @@ class Star_Rating extends Module {
 	 * @return string
 	 */
 	public static function get_star_rating( array $args = array() ): string {
-		$defaults = array(
-			'rating_scale' => 5,
-			'rating'       => 5.0,
-			'show_number'  => 'off',
-		);
-
-		$args = wp_parse_args( $args, $defaults );
-
-		$int_rating = (int) $args['rating'];
-		$precision  = ( (float) $args['rating'] ) - $int_rating;
-		$output     = '';
-
-		for ( $stars = 1; $stars <= (int) $args['rating_scale']; $stars ++ ) {
-			if ( $stars <= $int_rating ) {
-				$output .= '<i class="star-full">☆</i>';
-			} elseif ( $int_rating + 1 === $stars && $precision > 0 ) {
-				// Partial star with precision using CSS custom property.
-				$decimal = number_format( $precision * 100, 0, '', '' );
-				$output  .= sprintf(
-					'<i class="star-precision" style="--squad-star-rating-precision: %1$s">☆</i>',
-					esc_attr( $decimal )
-				);
-			} else {
-				// Empty star.
-				$output .= '<i class="star-empty">☆</i>';
-			}
-		}
-
-		if ( 'on' === $args['show_number'] ) {
-			$output .= ' <span class="star-rating-text">(<span>' . esc_html( (string) $args['rating'] ) . '</span>/<span>' . esc_html( (string) $args['rating_scale'] ) . '</span>)</span>';
-		}
-
-		return $output;
+		return Star_Rating_Helper::get_star_rating( $args );
 	}
 
 	/**

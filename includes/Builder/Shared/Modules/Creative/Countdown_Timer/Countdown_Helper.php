@@ -135,10 +135,12 @@ final class Countdown_Helper {
 	 * @return string
 	 */
 	public static function build_shell( array $config, array $units ): string {
-		$mode      = self::is_valid_mode( (string) ( $config['mode'] ?? 'fixed' ) ) ? (string) $config['mode'] : 'fixed';
+		$mode      = (string) ( $config['mode'] ?? 'fixed' );
+		$mode      = self::is_valid_mode( $mode ) ? $mode : 'fixed';
 		$timezone  = self::sanitize_timezone( (string) ( $config['timezone'] ?? 'site' ) );
 		$on_expiry = self::sanitize_on_expiry( (string) ( $config['on_expiry'] ?? 'message' ) );
-		$sep_key   = self::is_valid_separator( (string) ( $config['separator'] ?? 'colon' ) ) ? (string) $config['separator'] : 'colon';
+		$sep_key   = (string) ( $config['separator'] ?? 'colon' );
+		$sep_key   = self::is_valid_separator( $sep_key ) ? $sep_key : 'colon';
 		$sep_char  = self::separator_char( $sep_key );
 
 		$target   = (string) ( $config['target'] ?? '' );

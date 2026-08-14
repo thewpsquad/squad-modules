@@ -162,39 +162,40 @@ trait Table_Population_Trait {
 		);
 
 		try {
-			// Initialize meta query to exclude hidden meta keys and filter by post types.
-			$meta_query = array(
-				'relation' => 'AND',
-				array(
-					'key'     => 'meta_key',
-					'compare' => 'NOT LIKE',
-					'value'   => '_%',
-				),
+			// Fetch the next chunk of post IDs that still have untracked, visible
+			// meta keys, paged by the real postmeta.meta_id column.
+			//
+			// This cannot be done with WP_Query's meta_query: a meta_query clause's
+			// `key` maps to the meta_key column (WP_Meta_Query::get_sql_for_clause
+			// emits `meta_key = %s`), so a `'key' => 'meta_id'` clause matches rows
+			// whose meta_key literally equals "meta_id" — which never exist — and
+			// every batch after the first returned zero posts, leaving large sites
+			// with only their newest chunk_size posts ever scanned. Page at the
+			// postmeta level instead, mirroring the next-id boundary query below so
+			// selection and termination stay consistent.
+			$post_type_placeholders = implode( ',', array_fill( 0, count( $post_types ), '%s' ) );
+
+			// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.LikeWildcardsInQuery -- Table/column names are internal identifiers; the LIKE '_%%' pattern is a fixed literal, not user input.
+			$post_ids = $wpdb->get_col(
+				$wpdb->prepare(
+					"SELECT DISTINCT p.ID
+					FROM {$wpdb->postmeta} pm
+					INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+					WHERE pm.meta_id > %d
+						AND pm.meta_key NOT LIKE '_%%'
+						AND p.post_type IN ({$post_type_placeholders})
+						AND NOT EXISTS (
+							SELECT 1
+							FROM {$this->table_name} cf
+							WHERE cf.meta_key = pm.meta_key
+							AND cf.post_type = p.post_type
+						)
+					ORDER BY pm.meta_id ASC
+					LIMIT %d",
+					array_merge( array( $last_id ), $post_types, array( $chunk_size ) )
+				)
 			);
-
-			// Build WP_Query to fetch posts with meta keys.
-			$args = array(
-				'post_type'      => $post_types,
-				'posts_per_page' => $chunk_size,
-				'meta_query'     => $meta_query,
-				'fields'         => 'ids',
-				'no_found_rows'  => true,
-				'meta_key'       => '',
-				'post_status'    => 'any',
-			);
-
-			// If last_id is provided, filter meta_id greater than last_id.
-			if ( $last_id > 0 ) {
-				$args['meta_query'][] = array(
-					'key'     => 'meta_id',
-					'value'   => $last_id,
-					'compare' => '>',
-					'type'    => 'NUMERIC',
-				);
-			}
-
-			$query    = new WP_Query( $args );
-			$post_ids = $query->posts;
+			// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.LikeWildcardsInQuery
 
 			if ( 0 === count( $post_ids ) ) {
 				divi_squad()->log_debug( 'No posts found for batch processing' );

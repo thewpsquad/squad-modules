@@ -184,7 +184,6 @@ class Breadcrumbs extends Module {
 				'class'           => array( 'et-pb-font-icon' ),
 				'tab_slug'        => 'general',
 				'toggle_slug'     => 'icon',
-				'show_if'         => array( 'use_before_icon' => 'on' ),
 			),
 
 			// Colors.

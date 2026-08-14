@@ -502,7 +502,11 @@ abstract class Migration implements Migration_Interface {
 	 * @return mixed
 	 */
 	public static function maybe_override_content( $content, array $attrs, array $unprocessed_attrs, string $module_slug ) {
-		if ( '' === $attrs['_builder_version'] ) {
+		// Divi 5's Conversion\ShortcodeMigration fires this filter with attributes
+		// that may omit `_builder_version`; default it without assuming the key
+		// exists, otherwise get_migrations() below receives null and fatals under
+		// strict_types (mirrors the guard in maybe_override_shortcode_attributes).
+		if ( '' === ( $attrs['_builder_version'] ?? '' ) ) {
 			$attrs['_builder_version'] = '3.0.47';
 		}
 

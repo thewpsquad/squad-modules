@@ -27,11 +27,13 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
 use function esc_html;
 use function esc_html__;
 use function in_array;
+use function is_array;
 use function wp_enqueue_script;
 
 /**
@@ -80,9 +82,11 @@ class Skill_Bar extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs       = $args['attrs'] ?? array();
+		$elements    = $args['elements'];
+		$settings    = $args['settings'] ?? array();
+		$order_class = (string) ( $args['orderClass'] ?? '' );
+		$bars_attr   = $attrs['bars']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -95,8 +99,30 @@ class Skill_Bar extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance bar/title spacing, scoped to the module order
+								// class via Divi's native style pipeline (no inline <style>,
+								// no bespoke uid class) — mirrors the Divi 4 module's
+								// %%order_class%% spacing output.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-skill-bar .squad-skill-bar__item",
+											'attr'                => $bars_attr,
+											'declarationFunction' => array( self::class, 'bar_spacing_style_declaration' ),
+										),
+									),
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-skill-bar__title",
+											'attr'                => $bars_attr,
+											'declarationFunction' => array( self::class, 'title_spacing_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -107,6 +133,62 @@ class Skill_Bar extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Skill bar item spacing declaration (gap between bars).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function bar_spacing_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$bar_gap = self::sanitize_css_length( (string) ( $value['barSpacing'] ?? '20px' ) );
+		if ( '' === $bar_gap ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'margin-bottom', $bar_gap );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
+	}
+
+	/**
+	 * Title spacing declaration (gap below the module title).
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function title_spacing_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$title_gap = self::sanitize_css_length( (string) ( $value['titleSpacing'] ?? '10px' ) );
+		if ( '' === $title_gap ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'margin-bottom', $title_gap );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -131,7 +213,6 @@ class Skill_Bar extends Module {
 			wp_enqueue_script( 'squad-module-skill-bar' );
 
 			$inner = $attrs['bars']['innerContent']['desktop']['value'] ?? array();
-			$uid   = self::get_instance_uid( $block );
 
 			$title      = (string) ( $inner['title'] ?? '' );
 			$title_html = '';
@@ -141,11 +222,8 @@ class Skill_Bar extends Module {
 				$title_html = sprintf( '<%1$s class="squad-skill-bar__title">%2$s</%1$s>', $level, esc_html( $title ) );
 			}
 
-			$inline_css = self::get_spacing_css( $inner, $uid );
-
 			$grid_html = sprintf(
-				'%1$s%2$s<div class="squad-skill-bar">%3$s</div>',
-				'' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '',
+				'%1$s<div class="squad-skill-bar">%2$s</div>',
 				$title_html,
 				$child_modules_content
 			);
@@ -172,34 +250,4 @@ class Skill_Bar extends Module {
 		}
 	}
 
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return '' !== $uid
-			? 'squad-sb-' . $uid
-			: 'squad-sb-' . substr( md5( $raw ), 0, 10 );
-	}
-
-	/**
-	 * Build the inline spacing CSS for the skill bar wrapper.
-	 *
-	 * @param array<string, mixed> $inner The module's content inner values.
-	 * @param string               $uid   Unique instance identifier used as the CSS scope.
-	 *
-	 * @return string The generated CSS, or an empty string when no spacing is set.
-	 */
-	protected static function get_spacing_css( array $inner, string $uid ): string {
-		$bar_gap   = self::sanitize_css_length( (string) ( $inner['barSpacing'] ?? '20px' ) );
-		$title_gap = self::sanitize_css_length( (string) ( $inner['titleSpacing'] ?? '10px' ) );
-
-		$css = '';
-		if ( '' !== $bar_gap ) {
-			$css .= ".{$uid} .squad-skill-bar .squad-skill-bar__item{margin-bottom:{$bar_gap};}";
-		}
-		if ( '' !== $title_gap ) {
-			$css .= ".{$uid} .squad-skill-bar__title{margin-bottom:{$title_gap};}";
-		}
-
-		return $css;
-	}}
+}

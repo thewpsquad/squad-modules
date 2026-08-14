@@ -197,7 +197,9 @@ class Image_Accordion extends Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
-		if ( '' === trim( (string) $content ) ) {
+		$content = $this->squad_render_child_content( (string) $content );
+
+		if ( '' === trim( $content ) ) {
 			return sprintf(
 				'<div class="squad-notice">%s</div>',
 				esc_html__( 'Add at least one Image Accordion Item.', 'squad-modules-for-divi' )
@@ -214,7 +216,7 @@ class Image_Accordion extends Module {
 		$trigger = (string) $this->prop( 'expand_trigger', 'click' );
 		$trigger = in_array( $trigger, array( 'click', 'hover' ), true ) ? $trigger : 'click';
 
-		list( $content, $active_index ) = $this->mark_active_panel( (string) $content );
+		list( $content, $active_index ) = $this->mark_active_panel( $content );
 
 		return sprintf(
 			'<div class="squad-image-accordion squad-image-accordion--%1$s" data-trigger="%2$s" data-active-index="%3$d">%4$s</div>',

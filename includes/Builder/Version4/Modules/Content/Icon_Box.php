@@ -193,23 +193,11 @@ class Icon_Box extends Module {
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'content',
 			),
-			'title_level'    => divi_squad()->d4_module_helper->add_select_box_field(
-				esc_html__( 'Title Heading Level', 'squad-modules-for-divi' ),
-				array(
-					'description' => esc_html__( 'HTML heading tag for the title.', 'squad-modules-for-divi' ),
-					'options'     => array(
-						'h1' => 'H1',
-						'h2' => 'H2',
-						'h3' => 'H3',
-						'h4' => 'H4',
-						'h5' => 'H5',
-						'h6' => 'H6',
-					),
-					'default'     => 'h3',
-					'tab_slug'    => 'general',
-					'toggle_slug' => 'content',
-				)
-			),
+			// No 'title_level' field here: the 'title' font group declares
+			// 'header_level', and Divi generates "{font group key}_level" from it —
+			// so the control this module reads, 'title_level', already exists.
+			// Divi merges the generated advanced fields after get_fields(), so a
+			// duplicate declared here would be silently overwritten anyway.
 			'content'        => array(
 				'label'       => esc_html__( 'Body', 'squad-modules-for-divi' ),
 				'description' => esc_html__( 'The description text.', 'squad-modules-for-divi' ),

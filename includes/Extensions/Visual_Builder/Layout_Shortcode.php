@@ -40,7 +40,7 @@ class Layout_Shortcode extends Base_Extension {
 	 * @return string
 	 */
 	public function get_name(): string {
-		return 'Divi_Library_Shortcode';
+		return 'Divi_Layout_Shortcode';
 	}
 
 	/**

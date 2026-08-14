@@ -154,6 +154,25 @@ class Ai {
 	 */
 	public function register_abilities(): void {
 		try {
+			/**
+			 * Filter whether to register the Squad AI abilities.
+			 *
+			 * These abilities are placeholder scaffolding — their generate_* callbacks
+			 * return empty until a real AI backend is wired via the
+			 * `divi_squad_ai_generate_*` filters. They are OFF by default so an
+			 * unimplemented ability is never exposed publicly through REST/MCP
+			 * (show_in_rest + mcp.public). A Pro build or integration that implements the
+			 * generation filters can enable them.
+			 *
+			 * @since 4.2.1
+			 *
+			 * @param bool $enabled Whether to register the AI abilities. Default false.
+			 * @param Ai   $ai      The AI instance.
+			 */
+			if ( ! (bool) apply_filters( 'divi_squad_enable_ai_abilities', false, $this ) ) {
+				return;
+			}
+
 			// Check if the Abilities API is available.
 			if ( ! function_exists( 'wp_register_ability' ) ) {
 				/**

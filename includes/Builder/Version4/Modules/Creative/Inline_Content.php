@@ -149,6 +149,8 @@ class Inline_Content extends Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
+		$content = $this->squad_render_child_content( (string) $content );
+
 		$raw_align  = (string) $this->prop( 'content_alignment', 'left' );
 		$raw_valign = (string) $this->prop( 'vertical_align', 'center' );
 

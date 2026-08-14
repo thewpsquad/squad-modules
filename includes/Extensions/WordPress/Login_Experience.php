@@ -340,7 +340,7 @@ class Login_Experience extends Base_Extension {
 			}
 
 			if ( isset( $_GET['redirect_to'] ) && '' !== $_GET['redirect_to'] ) {
-				$url = add_query_arg( 'redirect_to', rawurlencode( sanitize_text_field( wp_unslash( $_GET['redirect_to'] ) ) ), $url );
+				$url = add_query_arg( 'redirect_to', sanitize_text_field( wp_unslash( $_GET['redirect_to'] ) ), $url );
 			}
 			// phpcs:enable
 
@@ -373,7 +373,7 @@ class Login_Experience extends Base_Extension {
 				add_query_arg(
 					array(
 						'login' => 'failed',
-						'email' => rawurlencode( $username ),
+						'email' => sanitize_text_field( $username ),
 					),
 					$url
 				)

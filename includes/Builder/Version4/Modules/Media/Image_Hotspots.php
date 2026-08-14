@@ -159,6 +159,8 @@ class Image_Hotspots extends Module {
 	 * @return string
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
+		$content = $this->squad_render_child_content( (string) $content );
+
 		wp_enqueue_script( 'squad-module-image-hotspots' );
 
 		$config = array(
@@ -169,7 +171,7 @@ class Image_Hotspots extends Module {
 
 		$this->apply_color_styles( $render_slug );
 
-		return Image_Hotspots_Helper::build_canvas( $config, (string) $content );
+		return Image_Hotspots_Helper::build_canvas( $config, $content );
 	}
 
 	/**

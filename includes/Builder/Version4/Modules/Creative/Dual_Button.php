@@ -1217,7 +1217,7 @@ class Dual_Button extends Module {
 					'hover_selector' => "$this->main_css_element div .elements:hover",
 					'css_property'   => 'align-items',
 					'type'           => 'align',
-					'mappingValues'  => array(
+					'mapping_values' => array(
 						'left'   => 'flex-start',
 						'center' => 'center',
 						'right'  => 'flex-end',

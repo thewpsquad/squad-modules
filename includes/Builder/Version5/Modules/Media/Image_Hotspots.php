@@ -31,11 +31,11 @@ use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;
 use ET\Builder\Packages\Module\Module as DiviModule;
 use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
+use ET\Builder\Packages\StyleLibrary\Utils\StyleDeclarations;
 use Throwable;
 use WP_Block;
-use function esc_attr;
+use function is_array;
 use function wp_enqueue_script;
-use function wp_json_encode;
 
 /**
  * Image Hotspots parent module class.
@@ -96,9 +96,11 @@ class Image_Hotspots extends Module {
 	 * @return void
 	 */
 	public static function module_styles( array $args ): void {
-		$attrs    = $args['attrs'] ?? array();
-		$elements = $args['elements'];
-		$settings = $args['settings'] ?? array();
+		$attrs         = $args['attrs'] ?? array();
+		$elements      = $args['elements'];
+		$settings      = $args['settings'] ?? array();
+		$order_class   = (string) ( $args['orderClass'] ?? '' );
+		$hotspots_attr = $attrs['imageHotspots']['innerContent'] ?? array();
 
 		Style::add(
 			array(
@@ -111,8 +113,22 @@ class Image_Hotspots extends Module {
 						array(
 							'attrName'   => 'module',
 							'styleProps' => array(
-								'disabledOn' => array(
+								'disabledOn'     => array(
 									'disabledModuleVisibility' => $settings['disabledModuleVisibility'] ?? null,
+								),
+								// Per-instance pin (marker) colour, scoped to the module order
+								// class via Divi's native style pipeline (no inline <style>, no
+								// bespoke uid class). Mirrors the Divi 4 module's
+								// `%%order_class%% .squad-hotspots__marker { background-color }`.
+								'advancedStyles' => array(
+									array(
+										'componentName' => 'divi/common',
+										'props'         => array(
+											'selector'            => "{$order_class} .squad-hotspots__marker",
+											'attr'                => $hotspots_attr,
+											'declarationFunction' => array( self::class, 'pin_color_style_declaration' ),
+										),
+									),
 								),
 							),
 						)
@@ -123,6 +139,34 @@ class Image_Hotspots extends Module {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Pin (marker) colour declaration.
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param array<string, mixed> $params Declaration params supplied by Divi.
+	 *
+	 * @return string
+	 */
+	public static function pin_color_style_declaration( array $params ): string {
+		$value = $params['attrValue'] ?? array();
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
+		$pin_color = self::sanitize_css_background( (string) ( $value['pinColor'] ?? '' ) );
+		if ( '' === $pin_color ) {
+			return '';
+		}
+
+		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations->add( 'background-color', $pin_color );
+
+		$out = $declarations->value();
+
+		return is_string( $out ) ? $out : '';
 	}
 
 	/**
@@ -151,12 +195,7 @@ class Image_Hotspots extends Module {
 				'trigger'  => (string) ( $inner['trigger'] ?? 'hover' ),
 			);
 
-			$uid         = self::get_instance_uid( $block );
-			$inline_css  = self::get_color_css( $inner, $uid );
 			$canvas_html = Image_Hotspots_Helper::build_canvas( $config, $child_modules_content );
-
-			$hotspots_html = ( '' !== $inline_css ? sprintf( '<style>%s</style>', $inline_css ) : '' )
-				. sprintf( '<div class="%s">%s</div>', esc_attr( $uid ), $canvas_html );
 
 			$style_components = $elements instanceof ModuleElements
 				? (string) $elements->style_components( array( 'attrName' => 'module' ) )
@@ -174,7 +213,7 @@ class Image_Hotspots extends Module {
 					'classnamesFunction'  => array( static::class, 'module_classnames' ),
 					'stylesComponent'     => array( static::class, 'module_styles' ),
 					'scriptDataComponent' => array( static::class, 'module_script_data' ),
-					'children'            => $style_components . $hotspots_html,
+					'children'            => $style_components . $canvas_html,
 				)
 			);
 		} catch ( Throwable $e ) {
@@ -182,44 +221,5 @@ class Image_Hotspots extends Module {
 
 			return '';
 		}
-	}
-
-	/**
-	 * Build a stable per-instance uid for scoping color CSS selectors.
-	 *
-	 * @since 4.3.0
-	 *
-	 * @param WP_Block $block The parsed block.
-	 *
-	 * @return string
-	 */
-	protected static function get_instance_uid( WP_Block $block ): string {
-		$raw = (string) ( $block->parsed_block['id'] ?? '' );
-		$uid = preg_replace( '/[^a-z0-9]/', '', strtolower( $raw ) );
-
-		return '' !== $uid
-			? 'squad-hs-' . $uid
-			: 'squad-hs-' . substr( md5( $raw . wp_json_encode( $block->parsed_block['orderIndex'] ?? 0 ) ), 0, 10 );
-	}
-
-	/**
-	 * Generate scoped pin (marker) color CSS for this instance.
-	 *
-	 * @since 4.3.0
-	 *
-	 * @param array<string, mixed> $inner Packed `imageHotspots.innerContent` desktop values.
-	 * @param string               $uid   Per-instance identifier.
-	 *
-	 * @return string Raw CSS (no <style> tags).
-	 */
-	protected static function get_color_css( array $inner, string $uid ): string {
-		$css = '';
-
-		$pin_color = self::sanitize_css_background( (string) ( $inner['pinColor'] ?? '' ) );
-		if ( '' !== $pin_color ) {
-			$css .= ".{$uid} .squad-hotspots__marker{background-color:{$pin_color}}";
-		}
-
-		return $css;
 	}
 }

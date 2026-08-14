@@ -420,10 +420,15 @@ class Post_Grid extends Module {
 	 * @return string The rendered `<li>` items, or an empty string when no posts remain.
 	 */
 	public static function render_more_posts( array $client_args, string $template ): string {
+		// $client_args comes straight from the (public, unauthenticated) load-more
+		// request body, so cap posts_per_page to bound WP_Query memory/CPU and
+		// prevent a resource-exhaustion DoS. Filterable for layouts that need more.
+		$max_per_page = max( 1, (int) apply_filters( 'divi_squad_post_grid_max_posts_per_page', 100 ) );
+
 		$args = array(
 			'post_status'    => array( 'publish' ),
 			'perm'           => array( 'readable' ),
-			'posts_per_page' => absint( $client_args['posts_per_page'] ?? 10 ),
+			'posts_per_page' => min( absint( $client_args['posts_per_page'] ?? 10 ), $max_per_page ),
 			'offset'         => absint( $client_args['offset'] ?? 0 ),
 			'orderby'        => sanitize_key( $client_args['orderby'] ?? 'date' ),
 			'order'          => 'ASC' === strtoupper( (string) ( $client_args['order'] ?? 'DESC' ) ) ? 'ASC' : 'DESC',

@@ -169,7 +169,8 @@ class Gradient_Text extends Module {
 				return '';
 			}
 
-			$tag      = $inner['gradientTextTag'] ?? 'p';
+			$tag      = strtolower( (string) ( $inner['gradientTextTag'] ?? 'p' ) );
+			$tag      = in_array( $tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div' ), true ) ? $tag : 'p';
 			$gradient = self::build_gradient( $inner );
 
 			$style = sprintf(
@@ -180,7 +181,7 @@ class Gradient_Text extends Module {
 			$html = sprintf(
 				'<div class="gradient-text-wrapper et_pb_with_background"><%2$s class="gradient-text-element" style="%3$s"><span>%1$s</span></%2$s></div>',
 				wp_kses_post( $text ),
-				tag_escape( $tag ),
+				$tag,
 				esc_attr( $style )
 			);
 

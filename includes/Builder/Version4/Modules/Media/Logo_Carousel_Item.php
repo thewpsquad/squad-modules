@@ -49,10 +49,17 @@ class Logo_Carousel_Item extends Child_Module {
 		$this->squad_utils = divi_squad()->d4_module_helper->connect( $this );
 
 		$this->settings_modal_toggles = array(
-			'general' => array(
+			'general'  => array(
 				'toggles' => array(
 					'image_settings' => esc_html__( 'Logo Image', 'squad-modules-for-divi' ),
 					'link_settings'  => esc_html__( 'Logo Link', 'squad-modules-for-divi' ),
+				),
+			),
+			'advanced' => array(
+				'toggles' => array(
+					// Divi only auto-registers a toggle for the 'default' border group,
+					// so the 'image' group below needs its toggle declared here.
+					'image' => esc_html__( 'Image', 'squad-modules-for-divi' ),
 				),
 			),
 		);

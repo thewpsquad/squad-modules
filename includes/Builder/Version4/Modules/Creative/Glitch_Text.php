@@ -280,6 +280,24 @@ class Glitch_Text extends Module {
 	}
 
 	/**
+	 * Validate the glitch effect token against the declared option list.
+	 *
+	 * The token is used both as a CSS class and as part of a generated
+	 * stylesheet selector, so it must never reach either unchecked.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param mixed $effect Raw effect value from the module props.
+	 *
+	 * @return string One of the declared effect tokens, defaulting to 'one'.
+	 */
+	protected static function squad_sanitize_effect( $effect ): string {
+		$allowed = array( 'one', 'two', 'three', 'four', 'five' );
+
+		return in_array( (string) $effect, $allowed, true ) ? (string) $effect : 'one';
+	}
+
+	/**
 	 * Renders the module output.
 	 *
 	 * @param array<string, mixed> $attrs       List of attributes.
@@ -290,7 +308,7 @@ class Glitch_Text extends Module {
 	 */
 	public function render( $attrs, $content, $render_slug ): string { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
 		if ( '' !== $this->prop( 'glitch_text', '' ) ) {
-			$glitch_text_effect = $this->prop( 'glitch_text_effect', 'one' );
+			$glitch_text_effect = self::squad_sanitize_effect( $this->prop( 'glitch_text_effect', 'one' ) );
 			$glitch_text_tag    = divi_squad()->d4_module_helper->sanitize_html_tag( $this->prop( 'glitch_text_tag', 'p' ), 'p' );
 			$glitch_text        = esc_html( $this->prop( 'glitch_text', '' ) );
 
@@ -310,7 +328,7 @@ class Glitch_Text extends Module {
 				'<div class="glitch-text-wrapper et_pb_with_background %3$s"><%4$s class="glitch-text-element" data-text="%2$s">%1$s</%4$s></div>',
 				wp_kses_post( $glitch_text ),
 				esc_html( $this->prop( 'glitch_text', '' ) ),
-				wp_kses_post( $glitch_text_effect ),
+				esc_attr( $glitch_text_effect ),
 				wp_kses_post( $glitch_text_tag )
 			);
 		}
@@ -326,7 +344,7 @@ class Glitch_Text extends Module {
 	private function squad_generate_additional_styles( array $attrs ): void {
 		// Fixed: the custom background doesn't work at frontend.
 		$this->props = array_merge( $attrs, $this->props );
-		$text_effect = $this->prop( 'glitch_text_effect', 'one' );
+		$text_effect = self::squad_sanitize_effect( $this->prop( 'glitch_text_effect', 'one' ) );
 
 		// Collect colors.
 		$color_primary_attribute   = "glitch_color_primary_$text_effect";

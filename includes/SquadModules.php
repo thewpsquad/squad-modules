@@ -9,7 +9,7 @@ declare( strict_types=1 );
  *
  * @since       1.0.0
  * @author      The WP Squad <support@squadmodules.com>
- * @copyright   2023-2025 The WP Squad (https://squadmodules.com/)
+ * @copyright   2023-2026 The WP Squad (https://squadmodules.com/)
  * @license     GPL-3.0-only
  * @link        https://squadmodules.com
  * @package DiviSquad

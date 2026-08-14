@@ -1317,7 +1317,7 @@ class Builder_Placeholders extends Placeholder {
 			),
 		);
 
-		$merged_definitions = array_merge_recursive( $exists, $module_definitions );
+		$merged_definitions = array_replace_recursive( $exists, $module_definitions );
 
 		/**
 		 * Filter the final module definitions before they are returned.

@@ -190,9 +190,13 @@ class Extensions implements Hookable {
 			// Retrieve stored inactive extensions.
 			$this->inactive_extensions = (array) $this->memory->get( 'inactive_extensions', array() );
 
-			// If no active extensions stored yet, use defaults.
-			if ( count( $this->active_extensions ) === 0 ) {
+			// Seed defaults only on first run. Keying on a one-time flag (not an empty
+			// list) means a user who disables every extension keeps that choice instead
+			// of having it silently reverted to all-defaults on the next request.
+			if ( ! (bool) $this->memory->get( 'active_extensions_initialized', false ) ) {
 				$this->active_extensions = array_column( $this->get_default_registries(), 'name' );
+				$this->memory->set( 'active_extensions', $this->active_extensions );
+				$this->memory->set( 'active_extensions_initialized', true );
 			}
 
 			/**
@@ -432,7 +436,8 @@ class Extensions implements Hookable {
 		try {
 			foreach ( $this->registered_extensions as $extension ) {
 				if (
-					'' !== ( $extension['classes']['root_class'] ) &&
+					isset( $extension['classes']['root_class'] ) &&
+					'' !== $extension['classes']['root_class'] &&
 					$extension['classes']['root_class'] === $class_name &&
 					$this->is_extension_active( $extension['name'] )
 				) {
@@ -656,6 +661,11 @@ class Extensions implements Hookable {
 			$this->active_extensions[] = $extension_name;
 			$this->memory->set( self::ACTIVE_EXTENSIONS_KEY, $this->active_extensions );
 
+			// Keep the inactive list in sync (mirror of disable_extension) so a
+			// re-enabled extension doesn't linger in both lists.
+			$this->inactive_extensions = array_values( array_diff( $this->inactive_extensions, array( $extension_name ) ) );
+			$this->memory->set( self::INACTIVE_EXTENSIONS_KEY, $this->inactive_extensions );
+
 			$extension_data = $this->registered_extensions[ $extension_name ] ?? array();
 
 			/**
@@ -878,49 +888,6 @@ class Extensions implements Hookable {
 			divi_squad()->log_error( $e, sprintf( 'Failed to check if extension class exists: %s', $extension_name ) );
 
 			return false;
-		}
-	}
-
-	/**
-	 * Filter a specific type of extension registries
-	 *
-	 * Allows developers to modify extension registries before they're used,
-	 * such as adding custom data or modifying configuration.
-	 *
-	 * @since 3.4.0
-	 *
-	 * @param array<string, array<string, mixed>> $registries The extension registries.
-	 * @param string                              $type       Registry type ('active', 'inactive', 'default').
-	 *
-	 * @return array<string, array<string, mixed>> Modified registries
-	 */
-	private function filter_extension_registries( array $registries, string $type ): array {
-		try {
-			$result = $this->filter_extensions(
-				function ( $extension ) use ( $registries ) {
-					return in_array( $extension['name'], $registries, true );
-				}
-			);
-
-			/**
-			 * Filter a specific type of extension registries
-			 *
-			 * Allows developers to modify extension registries before they're used,
-			 * such as adding custom data or modifying configuration.
-			 *
-			 * @since 3.4.0
-			 *
-			 * @param array<string, array<string, mixed>> $registries The extension registries
-			 * @param string                              $type       Registry type ('active', 'inactive', 'default')
-			 * @param self                                $instance   Extensions manager instance
-			 *
-			 * @return array<string, array<string, mixed>> Modified registries
-			 */
-			return apply_filters( "divi_squad_{$type}_extension_registries", $result, $type, $this );
-		} catch ( Throwable $e ) {
-			divi_squad()->log_error( $e, sprintf( 'Failed to filter %s extension registries', $type ) );
-
-			return array();
 		}
 	}
 

@@ -119,7 +119,6 @@ class Advanced extends Definition {
 				array(
 					'description'     => esc_html__( 'Choose a custom field to display for current post.', 'squad-modules-for-divi' ),
 					'options'         => $options,
-					'default'         => 'publish',
 					'depends_show_if' => 'advanced_custom_field',
 					'tab_slug'        => 'general',
 					'toggle_slug'     => 'elements',
