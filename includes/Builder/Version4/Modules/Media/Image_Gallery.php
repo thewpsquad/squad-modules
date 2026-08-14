@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Direct access forbidden.' );
 }
 
+use DiviSquad\Builder\Shared\Modules\Media\Image_Gallery\Gallery_Image;
 use DiviSquad\Builder\Version4\Abstracts\Module;
 use DiviSquad\Utils\Divi;
 use ET_Builder_Module_Helper_Overlay as OverlayHelper;

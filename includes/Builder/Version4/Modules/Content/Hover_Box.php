@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 use DiviSquad\Builder\Shared\Modules\Content\Hover_Box\Hoverbox_Helper;
 use DiviSquad\Builder\Version4\Abstracts\Module;
 use DiviSquad\Utils\Divi;
+use ET_Builder_Element;
 use function absint;
 use function esc_html__;
 use function et_pb_get_extended_font_icon_value;

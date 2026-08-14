@@ -128,6 +128,12 @@ class Post_Carousel extends Post_Grid {
 	 * @return string module's rendered output.
 	 */
 	public function render( $attrs, $content, $render_slug ): string {
+		// This render does not delegate to Post_Grid::render(), so it has to claim the
+		// rendering slot itself; the inherited post-element handlers step aside for any
+		// instance that is not the one rendering. See Post_Grid::squad_is_rendering_module().
+		$previous_rendering_instance     = self::$squad_rendering_instance;
+		self::$squad_rendering_instance = $this;
+
 		try {
 			// Show a notice message in the frontend if the list item is empty.
 			if ( '' === $content ) {
@@ -187,6 +193,8 @@ class Post_Carousel extends Post_Grid {
 			divi_squad()->log_error( $e, 'Error in Squad Post Carousel module render method' );
 
 			return '';
+		} finally {
+			self::$squad_rendering_instance = $previous_rendering_instance;
 		}
 	}
 

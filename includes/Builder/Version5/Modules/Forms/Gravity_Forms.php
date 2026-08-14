@@ -26,8 +26,6 @@ if ( ! class_exists( 'ET\Builder\Packages\Module\Module' ) ) {
 
 use DiviSquad\Builder\Version5\Abstracts\Form_Styler;
 use function gravity_form;
-use function ob_get_clean;
-use function ob_start;
 
 /**
  * Gravity Forms Styler module class.
@@ -102,9 +100,29 @@ class Gravity_Forms extends Form_Styler {
 		$display_description = 'on' === ( $inner['formDescription'] ?? 'off' );
 		$use_ajax            = 'on' === ( $inner['formAjax'] ?? 'off' );
 
-		ob_start();
-		gravity_form( $form_id, $display_title, $display_description, false, null, $use_ajax, 0, true );
-
-		return (string) ob_get_clean();
+		/*
+		 * The eighth argument is `$echo`. Passing false makes gravity_form() return the
+		 * markup through GFForms::get_form() instead of printing it, so no output buffer
+		 * is needed. This module previously printed the form and captured it with
+		 * ob_start()/ob_get_clean(), which is the only place any form styler buffered
+		 * output, and it broke the Visual Builder.
+		 *
+		 * Divi 5 renders modules inside a REST request. If gravity_form() threw — a
+		 * missing or corrupt form, a fatal in an add-on's field rendering — the buffer
+		 * opened by ob_start() was never closed, because the throw unwound past
+		 * ob_get_clean() into the catch in Form_Styler::render_callback(). That catch
+		 * logged the error and returned an empty string, so the module looked handled
+		 * while an unbalanced buffer was still open. Whatever Gravity Forms had already
+		 * printed then leaked into the REST response body, the builder could not parse
+		 * the JSON, and it showed "Oops! An Error Has Occurred. This content could not
+		 * be displayed."
+		 *
+		 * Returning the markup removes the buffer, so a throw inside Gravity Forms is
+		 * now caught and logged without corrupting the response. The Divi 4 module has
+		 * always passed false here; this brings Divi 5 in line with it.
+		 *
+		 * @see gravityforms.php gravity_form() — `if ( ! $echo ) { return GFForms::get_form( … ); }`
+		 */
+		return (string) gravity_form( $form_id, $display_title, $display_description, false, null, $use_ajax, 0, false );
 	}
 }

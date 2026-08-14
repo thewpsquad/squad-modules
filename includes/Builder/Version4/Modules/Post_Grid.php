@@ -73,6 +73,22 @@ use function wp_strip_all_tags;
 class Post_Grid extends Module {
 
 	/**
+	 * The instance whose render() is currently executing, if any.
+	 *
+	 * Post elements are rendered from a static context, so the instance reaches that
+	 * context through a global filter. Every instance subscribes to that filter, which
+	 * means a subscriber must be able to tell whether the current render is its own.
+	 *
+	 * Null outside a render — notably the `computed_callback` path, which Divi calls
+	 * statically over AJAX with no instance at all.
+	 *
+	 * @since 4.6.1
+	 *
+	 * @var static|null
+	 */
+	protected static ?self $squad_rendering_instance = null;
+
+	/**
 	 * Initiate Module.
 	 * Set the module name on init.
 	 *
@@ -510,8 +526,8 @@ class Post_Grid extends Module {
 	 * @return void
 	 */
 	public function squad_init_custom_hooks(): void {
-		add_filter( 'divi_squad_post_query_current_post_element_outside', array( $this, 'wp_hook_squad_current_outside_post_element' ), 10, 2 );
-		add_filter( 'divi_squad_post_query_current_post_element_main', array( $this, 'wp_hook_squad_current_main_post_element' ), 10, 2 );
+		add_filter( 'divi_squad_post_query_current_post_element_outside', array( $this, 'wp_hook_squad_current_outside_post_element' ), 10, 3 );
+		add_filter( 'divi_squad_post_query_current_post_element_main', array( $this, 'wp_hook_squad_current_main_post_element' ), 10, 3 );
 	}
 
 	/**
@@ -1457,6 +1473,9 @@ class Post_Grid extends Module {
 	 * @return string module's rendered output.
 	 */
 	public function render( $attrs, $content, $render_slug ): string { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed
+		$previous_rendering_instance   = self::$squad_rendering_instance;
+		self::$squad_rendering_instance = $this;
+
 		try {
 			// Show a notice message in the frontend if the list item is empty.
 			if ( '' === $content ) {
@@ -1489,6 +1508,10 @@ class Post_Grid extends Module {
 			divi_squad()->log_error( $e, 'Error in Squad Post Grid module render method' );
 
 			return '';
+		} finally {
+			// Restore rather than clear: nested renders (a grid inside a Theme Builder
+			// layout) would otherwise leave the outer render unattributed.
+			self::$squad_rendering_instance = $previous_rendering_instance;
 		}
 	}
 
@@ -1523,13 +1546,21 @@ class Post_Grid extends Module {
 	/**
 	 * Render the post-elements in the outside wrapper.
 	 *
+	 * @since 4.6.1 Signature changed: the filtered markup is now the first argument and
+	 *              the post moved to context, matching the corrected filter.
+	 *
+	 * @param string                       $markup  Markup accumulated by earlier callbacks.
 	 * @param WP_Post                      $post    The current post.
 	 * @param string|array<string, string> $content The parent content.
 	 *
 	 * @return string
 	 * @throws Exception Thrown when the callback is not callable.
 	 */
-	public function wp_hook_squad_current_outside_post_element( WP_Post $post, $content ): string {
+	public function wp_hook_squad_current_outside_post_element( string $markup, WP_Post $post, $content ): string {
+		if ( ! $this->squad_is_rendering_module() ) {
+			return $markup;
+		}
+
 		$callback = function ( WP_Post $post, array $child_prop ) {
 			return $this->squad_render_post_element( $post, $child_prop, 'on' );
 		};
@@ -1540,18 +1571,48 @@ class Post_Grid extends Module {
 	/**
 	 * Render the post-elements in the main wrapper.
 	 *
+	 * @since 4.6.1 Signature changed: see the outside-wrapper handler above.
+	 *
+	 * @param string                       $markup  Markup accumulated by earlier callbacks.
 	 * @param WP_Post                      $post    The WP POST object.
 	 * @param string|array<string, string> $content The parent content.
 	 *
 	 * @return string
 	 * @throws Exception Thrown when the callback is not callable.
 	 */
-	public function wp_hook_squad_current_main_post_element( WP_Post $post, $content ): string {
+	public function wp_hook_squad_current_main_post_element( string $markup, WP_Post $post, $content ): string {
+		if ( ! $this->squad_is_rendering_module() ) {
+			return $markup;
+		}
+
 		$callback = function ( WP_Post $post, array $child_prop ) {
 			return $this->squad_render_post_element( $post, $child_prop, 'off' );
 		};
 
 		return $this->squad_generate_props_content( $post, $content, $callback );
+	}
+
+	/**
+	 * Whether this instance is the one currently rendering.
+	 *
+	 * Both handlers above are registered on a global filter, once per module instance.
+	 * Post_Carousel extends this class and calls `parent::init()`, so from 4.6.0 two
+	 * subscribers sat on each hook and every post element was rendered by both — the
+	 * carousel's handler re-rendering what the grid had just produced, and vice versa.
+	 *
+	 * The rendering instance records itself in `render()`, so each handler can tell
+	 * whether the current render belongs to it and step aside if not.
+	 *
+	 * When nothing is rendering — the `computed_callback` path, which Divi invokes
+	 * statically over AJAX with no module instance — no handler contributes, which is
+	 * the behaviour that path already relied on.
+	 *
+	 * @since 4.6.1
+	 *
+	 * @return bool
+	 */
+	protected function squad_is_rendering_module(): bool {
+		return self::$squad_rendering_instance === $this;
 	}
 
 	/**
@@ -1999,12 +2060,22 @@ class Post_Grid extends Module {
 		 * This filter allows you to add or modify content that will be rendered
 		 * in the outer wrapper of each post in the grid.
 		 *
-		 * @since 1.0.0
+		 * Until 4.6.1 the filtered value was the {@see WP_Post} itself rather than the
+		 * markup, so every callback received an object where the filtered value belongs.
+		 * Any third-party callback that assumed the documented string — including core's
+		 * own `wptexturize()` — died with a TypeError, and because WordPress feeds each
+		 * callback the previous one's return value, a second subscriber received the
+		 * first one's markup where it expected a WP_Post. The post is now context and
+		 * the value is the markup, which is what a filter is for.
 		 *
+		 * @since 1.0.0
+		 * @since 4.6.1 The filtered value is the markup string; `$post` moved to context.
+		 *
+		 * @param string  $outside The markup for the outer wrapper.
 		 * @param WP_Post $post    The current post object.
 		 * @param mixed   $content The content being processed.
 		 */
-		$outside = apply_filters( 'divi_squad_post_query_current_post_element_outside', $post, $content );
+		$outside = apply_filters( 'divi_squad_post_query_current_post_element_outside', '', $post, $content );
 
 		/**
 		 * Filters the post elements in the main wrapper.
@@ -2012,12 +2083,16 @@ class Post_Grid extends Module {
 		 * This filter allows you to add or modify content that will be rendered
 		 * in the main wrapper of each post in the grid.
 		 *
-		 * @since 1.0.0
+		 * See the note on the `…_outside` filter above for why the signature changed.
 		 *
+		 * @since 1.0.0
+		 * @since 4.6.1 The filtered value is the markup string; `$post` moved to context.
+		 *
+		 * @param string  $inside  The markup for the main wrapper.
 		 * @param WP_Post $post    The current post object.
 		 * @param mixed   $content The content being processed.
 		 */
-		$inside = apply_filters( 'divi_squad_post_query_current_post_element_main', $post, $content );
+		$inside = apply_filters( 'divi_squad_post_query_current_post_element_main', '', $post, $content );
 
 		// Show outer elements in the frontend.
 		if ( '' !== $outside && is_string( $outside ) ) {

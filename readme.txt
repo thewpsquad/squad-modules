@@ -5,7 +5,7 @@ Tags: divi, divi 5, divi builder, divi modules, divi addons
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 4.6.0
+Stable tag: 4.6.1
 License: GPL-3.0-only
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -272,6 +272,9 @@ Free: [WordPress.org support forum](https://wordpress.org/support/plugin/squad-m
 8. Login Experience — fully branded wp-login.php replacement built with Divi modules (Login Form, Register Form, Lost Password, Reset Password).
 
 == Upgrade Notice ==
+= 4.6.1 =
+Fixes two modules that could fail outright: Hover Box errored instead of rendering in the classic builder, and the Gravity Forms styler could stop the Divi 5 builder from loading a form. Also fixes Post Grid crashing pages when another plugin hooked its filters, and post elements rendering twice when Post Grid and Post Carousel were both enabled.
+
 = 4.6.0 =
 Feature release: Post Carousel now works in the classic Divi builder as well as the Divi 5 Visual Builder — it was previously Divi 5 only, which is why enabling it appeared to do nothing. Also fixes heading tags being silently changed when a Divi 4 layout is converted to Divi 5, and restores the uninstall cleanup, which had never actually shipped. No migration; existing pages keep working.
 
@@ -319,6 +322,24 @@ to WhatsApp, not your server.
 Terms: https://freemius.com/terms — Privacy: https://freemius.com/privacy
 
 == Changelog ==
+= 4.6.1 (14-08-2026) =
+
+**Bug fixes:**
+- Hover Box produced a fatal error instead of rendering in the classic Divi builder. It referenced one of Divi's own classes without importing it, so PHP looked for that class inside the module's own namespace and stopped with "Class not found" as soon as the module tried to output its overlay styles, which happens on every render.
+- The Gravity Forms styler could stop the Divi 5 builder loading a form, showing "Oops! An Error Has Occurred. This content could not be displayed." It captured the form with an output buffer, and if Gravity Forms failed while producing the form the buffer was left open, so stray output reached the builder and it could not read the response. The form is now requested directly, the way the Divi 4 module has always done it.
+- Post Grid could take a page down. Its post-element filters passed the post object where the markup belonged, so any other plugin hooking them received the wrong type and crashed the page — WordPress's own text formatting was enough to trigger it. The filters now pass the markup, with the post alongside it as context.
+- With both Post Grid and Post Carousel enabled, every post element was rendered twice, once by each module. Each module now renders only its own output.
+
+**Improvements:**
+- The gallery image helper was duplicated once per builder; it is now a single shared class.
+- Documentation accuracy: several files still said Post Carousel was Divi 5 only and that 64 of the 65 modules ran in Divi 4. All 65 have run in both builders since 4.6.0.
+- Post Carousel was missing from the WPML configuration, so its attributes were invisible to translation tooling.
+
+**Internal:**
+- The code quality checks that had been switched off in CI are running again. PHP coding standards, static analysis and the PHP test suite were all disabled, so none of them had run against any change.
+- Style and script linting could not report problems without also rewriting files, because both commands had the fix flag built in. Each now has a separate check and fix command. Turning checking on surfaced 958 stylesheet problems and 320 script problems that had been passing silently; all of them are resolved, and several were rules configured to contradict each other rather than faults in the code.
+- Divi 4 preview components no longer nest conditional expressions several levels deep, and three of them declared their render method after private helpers. A shadowed variable and a stale module path in the type declarations are also fixed.
+
 = 4.6.0 (09-08-2026) =
 
 **New:**

@@ -25,6 +25,7 @@ if ( ! class_exists( 'ET\Builder\Packages\Module\Module' ) ) {
 	return;
 }
 
+use DiviSquad\Builder\Shared\Modules\Media\Image_Gallery\Gallery_Image;
 use DiviSquad\Builder\Version5\Abstracts\Module;
 use ET\Builder\FrontEnd\Module\Style;
 use ET\Builder\Packages\Module\Layout\Components\ModuleElements\ModuleElements;

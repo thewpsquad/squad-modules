@@ -1,4 +1,7 @@
 == Upgrade Notice ==
+= 4.6.1 =
+Fixes two modules that could fail outright: Hover Box errored instead of rendering in the classic builder, and the Gravity Forms styler could stop the Divi 5 builder from loading a form. Also fixes Post Grid crashing pages when another plugin hooked its filters, and post elements rendering twice when Post Grid and Post Carousel were both enabled.
+
 = 4.6.0 =
 Feature release: Post Carousel now works in the classic Divi builder as well as the Divi 5 Visual Builder — it was previously Divi 5 only, which is why enabling it appeared to do nothing. Also fixes heading tags being silently changed when a Divi 4 layout is converted to Divi 5, and restores the uninstall cleanup, which had never actually shipped. No migration; existing pages keep working.
 
