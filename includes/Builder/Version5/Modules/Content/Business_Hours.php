@@ -149,8 +149,13 @@ class Business_Hours extends Module {
 			$title_html  = '';
 
 			if ( 'on' === ( $title_attrs['titleEnable'] ?? 'off' ) && '' !== ( $title_attrs['title'] ?? '' ) ) {
+				$allowed_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div' );
+				$title_tag    = (string) ( $title_attrs['titleTag'] ?? 'h2' );
+				$title_tag    = in_array( $title_tag, $allowed_tags, true ) ? $title_tag : 'h2';
+
 				$title_html = sprintf(
-					'<div class="bh-element bh-title-wrapper"><span class="bh-title-text">%s</span></div>',
+					'<div class="bh-element bh-title-wrapper"><%1$s class="bh-title-text">%2$s</%1$s></div>',
+					$title_tag,
 					wp_kses_post( $title_attrs['title'] )
 				);
 			}

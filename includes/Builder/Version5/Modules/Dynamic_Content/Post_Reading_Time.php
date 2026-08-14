@@ -336,7 +336,7 @@ class Post_Reading_Time extends Module {
 	protected static function calculate_images_time( int $total_images, int $words_per_minute ): float {
 		$additional_time = 0.0;
 
-		for ( $i = 1; $i <= $total_images; $i ++ ) {
+		for ( $i = 1; $i <= $total_images; $i++ ) {
 			if ( $i >= 10 ) {
 				$additional_time += 3 * $words_per_minute / 60;
 			} else {

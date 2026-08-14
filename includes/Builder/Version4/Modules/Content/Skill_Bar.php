@@ -30,6 +30,14 @@ use function wp_enqueue_script;
  */
 class Skill_Bar extends Module {
 
+	/**
+	 * Set up the parent module: name, slug, child slug, palette icon, toggles and
+	 * the title font field.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name      = esc_html__( 'Skill Bar', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Skill Bars', 'squad-modules-for-divi' );
@@ -109,7 +117,11 @@ class Skill_Bar extends Module {
 				esc_html__( 'Spacing Between Bars', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Vertical gap between bars.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '20px',
 					'mobile_options' => true,
 					'tab_slug'       => 'general',
@@ -120,7 +132,11 @@ class Skill_Bar extends Module {
 				esc_html__( 'Title Spacing Bottom', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Gap below the title.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '200', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '200',
+						'step' => '1',
+					),
 					'default'        => '10px',
 					'mobile_options' => true,
 					'tab_slug'       => 'general',
@@ -163,6 +179,15 @@ class Skill_Bar extends Module {
 		);
 	}
 
+	/**
+	 * Generate the bottom-margin spacing styles for the child bars and the title.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param string $render_slug Slug of module that is used for rendering output.
+	 *
+	 * @return void
+	 */
 	public function apply_spacing_css( string $render_slug ): void {
 		$this->squad_utils->field_css_generations->generate_additional_styles(
 			array(

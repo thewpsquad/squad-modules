@@ -36,6 +36,14 @@ use function wpautop;
  */
 class Testimonial_Item extends Child_Module {
 
+	/**
+	 * Set up the testimonial card child module: identity, child title variables,
+	 * settings-modal toggles and the quote / author / role font fields.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name   = esc_html__( 'Testimonial', 'squad-modules-for-divi' );
 		$this->plural = esc_html__( 'Testimonials', 'squad-modules-for-divi' );
@@ -175,7 +183,11 @@ class Testimonial_Item extends Child_Module {
 				esc_html__( 'Rating', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Number of stars (0–5).', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '5', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '5',
+						'step' => '1',
+					),
 					'default'        => '5',
 					'unitless'       => true,
 					'show_if'        => array( 'use_rating' => 'on' ),

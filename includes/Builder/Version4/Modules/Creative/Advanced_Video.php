@@ -36,6 +36,14 @@ use function wp_enqueue_style;
  */
 class Advanced_Video extends Module {
 
+	/**
+	 * Set up the module: name, slug, palette icon, builder support, the video /
+	 * poster / playback / sticky toggles and advanced (design) fields.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name      = esc_html__( 'Advanced Video', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Advanced Videos', 'squad-modules-for-divi' );
@@ -238,7 +246,11 @@ class Advanced_Video extends Module {
 			'start_time'      => divi_squad()->d4_module_helper->add_range_field(
 				esc_html__( 'Start Time (s)', 'squad-modules-for-divi' ),
 				array(
-					'range_settings' => array( 'min' => '0', 'max' => '3600', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '3600',
+						'step' => '1',
+					),
 					'default'        => '0',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -249,7 +261,11 @@ class Advanced_Video extends Module {
 				esc_html__( 'End Time (s)', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( '0 = play to the end.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '3600', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '3600',
+						'step' => '1',
+					),
 					'default'        => '0',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -285,7 +301,11 @@ class Advanced_Video extends Module {
 			'sticky_width'    => divi_squad()->d4_module_helper->add_range_field(
 				esc_html__( 'Sticky Width (px)', 'squad-modules-for-divi' ),
 				array(
-					'range_settings' => array( 'min' => '200', 'max' => '800', 'step' => '10' ),
+					'range_settings' => array(
+						'min' => '200',
+						'max' => '800',
+						'step' => '10',
+					),
 					'default'        => '400',
 					'unitless'       => true,
 					'show_if'        => array( 'sticky' => 'on' ),
@@ -305,16 +325,28 @@ class Advanced_Video extends Module {
 			// ── Advanced / Play Button ────────────────────────────────────────
 			'play_color'      => divi_squad()->d4_module_helper->add_color_field(
 				esc_html__( 'Play Icon Color', 'squad-modules-for-divi' ),
-				array( 'default' => '#ffffff', 'tab_slug' => 'advanced', 'toggle_slug' => 'play_style' )
+				array(
+					'default' => '#ffffff',
+					'tab_slug' => 'advanced',
+					'toggle_slug' => 'play_style',
+				)
 			),
 			'play_bg'         => divi_squad()->d4_module_helper->add_color_field(
 				esc_html__( 'Play Button Background', 'squad-modules-for-divi' ),
-				array( 'default' => 'rgba(0,0,0,0.6)', 'tab_slug' => 'advanced', 'toggle_slug' => 'play_style' )
+				array(
+					'default' => 'rgba(0,0,0,0.6)',
+					'tab_slug' => 'advanced',
+					'toggle_slug' => 'play_style',
+				)
 			),
 			'play_size'       => divi_squad()->d4_module_helper->add_range_field(
 				esc_html__( 'Play Button Size (px)', 'squad-modules-for-divi' ),
 				array(
-					'range_settings' => array( 'min' => '32', 'max' => '160', 'step' => '2' ),
+					'range_settings' => array(
+						'min' => '32',
+						'max' => '160',
+						'step' => '2',
+					),
 					'default'        => '68',
 					'unitless'       => true,
 					'tab_slug'       => 'advanced',
@@ -323,12 +355,20 @@ class Advanced_Video extends Module {
 			),
 			'overlay_color'   => divi_squad()->d4_module_helper->add_color_field(
 				esc_html__( 'Poster Overlay Color', 'squad-modules-for-divi' ),
-				array( 'default' => '', 'tab_slug' => 'advanced', 'toggle_slug' => 'play_style' )
+				array(
+					'default' => '',
+					'tab_slug' => 'advanced',
+					'toggle_slug' => 'play_style',
+				)
 			),
 			// ── Advanced / Frame ──────────────────────────────────────────────
 			'frame_bg'        => divi_squad()->d4_module_helper->add_color_field(
 				esc_html__( 'Frame Background', 'squad-modules-for-divi' ),
-				array( 'default' => '#000000', 'tab_slug' => 'advanced', 'toggle_slug' => 'frame_style' )
+				array(
+					'default' => '#000000',
+					'tab_slug' => 'advanced',
+					'toggle_slug' => 'frame_style',
+				)
 			),
 			'sticky_shadow'   => array(
 				'label'       => esc_html__( 'Sticky Drop Shadow', 'squad-modules-for-divi' ),
@@ -432,7 +472,13 @@ class Advanced_Video extends Module {
 		$shadow = 'off' === (string) $this->prop( 'sticky_shadow', 'on' ) ? 'none' : '0 10px 30px rgba(0,0,0,0.35)';
 		$decl   .= sprintf( '--squad-av-sticky-shadow:%s;', $shadow );
 
-		self::set_style( $render_slug, array( 'selector' => $root, 'declaration' => $decl ) );
+		self::set_style(
+			$render_slug,
+			array(
+				'selector' => $root,
+				'declaration' => $decl,
+			)
+		);
 
 		$aspect = (string) $this->prop( 'aspect_ratio', '16-9' );
 		self::set_style(
@@ -443,5 +489,4 @@ class Advanced_Video extends Module {
 			)
 		);
 	}
-
 }

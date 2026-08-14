@@ -1,4 +1,55 @@
 == Changelog ==
+= 4.6.0 (09-08-2026) =
+
+**New:**
+- Post Carousel is now available in the classic Divi builder. It previously existed only for the Divi 5 Visual Builder, so enabling it in Divi 4 appeared to do nothing. It shares Post Grid's query and post elements, so every element type, icon and design option carries over.
+
+**Bug fixes:**
+- Converting a Divi 4 layout to Divi 5 silently changed heading tags: Business Hours became a `span`, Flip Box titles became `h3`, Flip Box subtitles became a `div`, and the Advanced Divider's text became a `span`. Those modules now expose the same heading-tag control in both builders, and a converted layout keeps the tag you chose.
+- The uninstall routine has never run for anyone: `uninstall.php` was excluded from the released package, so removing the plugin left its options, transients and custom table behind.
+- Modules that only work in one builder are now labelled, and the switch is disabled when your site cannot use them, instead of turning on with no visible effect.
+- Button settings on Flip Box and the nine form stylers exposed a stray control created by a mis-nested field definition.
+- The packager rewrote a date inside the changelog on every build.
+
+**Improvements:**
+- Builder detection now asks Divi directly whether Divi 5 is enabled, so sites that deliberately run the classic builder are treated correctly.
+- Accuracy pass over the bundled documentation: several files still described the previous release, and one told contributors to edit a generated file.
+
+**Internal:**
+- Coding standards now check the module code. A pattern intended to skip `node_modules` was also skipping every Divi module, leaving 189 of 327 PHP files unchecked; the 522 issues that surfaced are fixed, including two double-escaped values in the login and lost-password forms.
+- Divi modules can now be built inside the test suite, so field definitions are actually executed rather than only inspected. This immediately caught the button-field defect above.
+
+= 4.5.0 (08-08-2026) =
+
+**Bug fixes:**
+- Divi 4 parent modules now render their child shortcodes correctly under the latest Divi, fixing timelines and other nested modules that showed raw `[disq_*]` text on the front end and in preview.
+- Inline Content: the Divi 4 item module had no settings and produced no output, so the whole module was blank. It now renders all five content types (text, icon, image, button, divider) and matches the Divi 5 output exactly.
+- Logo Grid and Logo Carousel: column count, gap, logo sizing and every hover effect (grayscale, opacity, zoom) never reached the page in Divi 5. They now apply.
+- Image Mask: the Divi 5 decoration layers rendered with no fill colour.
+- Social Share: every share button linked to an empty target, "Icon + Text" never showed labels, and a second module on the page inherited the first one's link.
+- Heading level controls in Social Share, Step Flow and Team Member changed the text size but never the heading tag, producing a document outline the author did not choose.
+- Post Grid: the Advanced Custom Field element bypassed ACF's own value formatting; the Comments "Before Text" setting was permanently empty; pagination labels containing `&` were double-escaped.
+- Dual Button: the alignment control did nothing in vertical layout.
+- Star Rating: the default star size was ignored, and the review schema markup was malformed.
+- Author Box: choosing the SPAN tag silently rendered an H4; avatar alt text was double-escaped.
+- Divider, Business Hours, Flip Box: heading tag settings could resolve to an empty value and remove the element entirely.
+- Timeline Item and Logo Carousel Item: border and radius settings never appeared in the builder.
+- Lottie, Business Hours, Post Reading Time, Image Mask: several settings targeted elements the modules never output, so they had no effect.
+- Google Maps (Divi 5): the module script was not enqueued and errors were silent.
+- Contact Form 7, Fluent Forms, Formidable, Forminator, Gravity Forms, Ninja Forms, MetForm, SureForms, WPForms: a module added without a form selected produced a PHP warning; the Field Label typography control had no effect; Ninja Forms fired the wrong hook.
+
+**Security:**
+- Gradient Text and Glitch Text now validate the wrapper tag and effect name against a strict allowlist instead of trusting the stored value.
+- Flip Box buttons that open in a new tab include `rel="noopener"`.
+- REST endpoints no longer return raw exception messages.
+- Extensions that are disabled can no longer load because of a faulty guard.
+
+**Improvements:**
+- Divi 5 modules now register their per-instance CSS through Divi's native style pipeline instead of writing an inline `<style>` tag per module, so the CSS takes part in Divi's critical-CSS and deduplication.
+- Design settings that are marked responsive now work on tablet and phone, where previously only the desktop value was ever used.
+- New v4 plugin icon and icon set.
+- Accessibility: decorative icons are hidden from screen readers, icon-only video triggers have labels, and empty avatar wrappers are no longer emitted.
+
 = 4.4.1 (14-07-2026) =
 
 **Security:**
@@ -67,7 +118,7 @@
 - The free module library grows to 54 modules — the largest of any free Divi pack — with 53 running in both Divi 5 and Divi 4 (Post Carousel remains Divi 5-only).
 - Extended WPML String Translation config for every new module's translatable attributes.
 
-= 4.1.1 (14-07-2026) =
+= 4.1.1 (19-06-2026) =
 
 **Security:**
 - Fixed XSS in Typing Text (D4) — `text_element_tag` prop was used as a raw HTML tag name without allowlist validation; `wp_kses_post()` on a plain string like `script` does not strip it.

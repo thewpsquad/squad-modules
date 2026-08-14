@@ -152,7 +152,7 @@ class Text_Effects extends Module {
 	 * @since 4.4.0
 	 *
 	 * @param array<string, mixed> $inner      Inner content values.
-	 * @param string                $style_type The active style type.
+	 * @param string               $style_type The active style type.
 	 *
 	 * @return string
 	 */

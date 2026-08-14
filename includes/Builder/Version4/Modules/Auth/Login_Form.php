@@ -204,7 +204,10 @@ class Login_Form extends Module {
 			'show_logo'            => array(
 				'label'       => esc_html__( 'Show Logo', 'squad-modules-for-divi' ),
 				'type'        => 'yes_no_button',
-				'options'     => array( 'off' => esc_html__( 'No', 'squad-modules-for-divi' ), 'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'off' => esc_html__( 'No', 'squad-modules-for-divi' ),
+					'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'on',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'header_element',
@@ -212,7 +215,10 @@ class Login_Form extends Module {
 			'show_title'           => array(
 				'label'       => esc_html__( 'Show Title', 'squad-modules-for-divi' ),
 				'type'        => 'yes_no_button',
-				'options'     => array( 'off' => esc_html__( 'No', 'squad-modules-for-divi' ), 'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'off' => esc_html__( 'No', 'squad-modules-for-divi' ),
+					'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'on',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'header_element',
@@ -228,7 +234,10 @@ class Login_Form extends Module {
 			'show_subtitle'        => array(
 				'label'       => esc_html__( 'Show Subtitle', 'squad-modules-for-divi' ),
 				'type'        => 'yes_no_button',
-				'options'     => array( 'off' => esc_html__( 'No', 'squad-modules-for-divi' ), 'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'off' => esc_html__( 'No', 'squad-modules-for-divi' ),
+					'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'off',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'header_element',
@@ -274,7 +283,10 @@ class Login_Form extends Module {
 			'show_remember_me'     => array(
 				'label'       => esc_html__( 'Show Remember Me', 'squad-modules-for-divi' ),
 				'type'        => 'yes_no_button',
-				'options'     => array( 'off' => esc_html__( 'No', 'squad-modules-for-divi' ), 'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'off' => esc_html__( 'No', 'squad-modules-for-divi' ),
+					'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'on',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'options_element',
@@ -290,7 +302,10 @@ class Login_Form extends Module {
 			'show_forgot_link'     => array(
 				'label'       => esc_html__( 'Show Forgot Password Link', 'squad-modules-for-divi' ),
 				'type'        => 'yes_no_button',
-				'options'     => array( 'off' => esc_html__( 'No', 'squad-modules-for-divi' ), 'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'off' => esc_html__( 'No', 'squad-modules-for-divi' ),
+					'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'on',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'options_element',
@@ -306,7 +321,10 @@ class Login_Form extends Module {
 			'show_register_link'   => array(
 				'label'       => esc_html__( 'Show Register Link', 'squad-modules-for-divi' ),
 				'type'        => 'yes_no_button',
-				'options'     => array( 'off' => esc_html__( 'No', 'squad-modules-for-divi' ), 'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'off' => esc_html__( 'No', 'squad-modules-for-divi' ),
+					'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'off',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'options_element',
@@ -359,31 +377,30 @@ class Login_Form extends Module {
 			$layout          = sanitize_text_field( $this->props['layout'] ?? 'card' );
 			$show_logo       = 'on' === ( $this->props['show_logo'] ?? 'on' );
 			$show_title      = 'on' === ( $this->props['show_title'] ?? 'on' );
-			$title_text      = esc_html( $this->props['title_text'] ?? __( 'Welcome back', 'squad-modules-for-divi' ) );
+			$title_text      = $this->props['title_text'] ?? __( 'Welcome back', 'squad-modules-for-divi' );
 			$show_subtitle   = 'on' === ( $this->props['show_subtitle'] ?? 'off' );
-			$subtitle_text   = esc_html( $this->props['subtitle_text'] ?? '' );
-			$username_label  = esc_html( $this->props['username_label'] ?? __( 'Username or Email', 'squad-modules-for-divi' ) );
-			$password_label  = esc_html( $this->props['password_label'] ?? __( 'Password', 'squad-modules-for-divi' ) );
-			$username_ph     = esc_attr( $this->props['username_placeholder'] ?? '' );
-			$password_ph     = esc_attr( $this->props['password_placeholder'] ?? '' );
+			$subtitle_text   = $this->props['subtitle_text'] ?? '';
+			$username_label  = $this->props['username_label'] ?? __( 'Username or Email', 'squad-modules-for-divi' );
+			$password_label  = $this->props['password_label'] ?? __( 'Password', 'squad-modules-for-divi' );
+			$username_ph     = $this->props['username_placeholder'] ?? '';
+			$password_ph     = $this->props['password_placeholder'] ?? '';
 			$show_remember   = 'on' === ( $this->props['show_remember_me'] ?? 'on' );
-			$remember_label  = esc_html( $this->props['remember_me_label'] ?? __( 'Remember me', 'squad-modules-for-divi' ) );
+			$remember_label  = $this->props['remember_me_label'] ?? __( 'Remember me', 'squad-modules-for-divi' );
 			$show_forgot     = 'on' === ( $this->props['show_forgot_link'] ?? 'on' );
-			$forgot_text     = esc_html( $this->props['forgot_link_text'] ?? __( 'Forgot password?', 'squad-modules-for-divi' ) );
+			$forgot_text     = $this->props['forgot_link_text'] ?? __( 'Forgot password?', 'squad-modules-for-divi' );
 			$show_register   = 'on' === ( $this->props['show_register_link'] ?? 'off' );
-			$register_text   = esc_html( $this->props['register_link_text'] ?? __( 'Create an account', 'squad-modules-for-divi' ) );
-			$button_text     = esc_html( $this->props['button_text'] ?? __( 'Log In', 'squad-modules-for-divi' ) );
-			$after_login_url = esc_url( $this->props['after_login_url'] ?? admin_url() );
+			$register_text   = $this->props['register_link_text'] ?? __( 'Create an account', 'squad-modules-for-divi' );
+			$button_text     = $this->props['button_text'] ?? __( 'Log In', 'squad-modules-for-divi' );
+			$after_login_url = $this->props['after_login_url'] ?? admin_url();
 
 			// phpcs:ignore WordPress.Security.NonceVerification
 			$error_key = sanitize_key( $_GET['login'] ?? '' );
 			$error_msg = '';
 			if ( '' !== $error_key ) {
 				$error_msg = self::ERROR_MAP[ $error_key ] ?? __( 'Login failed. Please try again.', 'squad-modules-for-divi' );
-				$error_msg = esc_html( $error_msg );
 			}
 
-			$action_url = esc_url( site_url( 'wp-login.php', 'login_post' ) );
+			$action_url = site_url( 'wp-login.php', 'login_post' );
 
 			ob_start();
 			?>
@@ -402,41 +419,41 @@ class Login_Form extends Module {
 					<?php endif; ?>
 
 					<?php if ( $show_title ) : ?>
-						<h2 class="disq-login-form__title"><?php echo $title_text; ?></h2>
+						<h2 class="disq-login-form__title"><?php echo esc_html( $title_text ); ?></h2>
 					<?php endif; ?>
 
 					<?php if ( $show_subtitle && '' !== $subtitle_text ) : ?>
-						<p class="disq-login-form__subtitle"><?php echo $subtitle_text; ?></p>
+						<p class="disq-login-form__subtitle"><?php echo esc_html( $subtitle_text ); ?></p>
 					<?php endif; ?>
 
 					<?php if ( '' !== $error_msg ) : ?>
-						<div class="disq-login-form__error" role="alert"><?php echo $error_msg; ?></div>
+						<div class="disq-login-form__error" role="alert"><?php echo esc_html( $error_msg ); ?></div>
 					<?php endif; ?>
 
-					<form class="disq-login-form__form" action="<?php echo $action_url; ?>" method="post">
+					<form class="disq-login-form__form" action="<?php echo esc_url( $action_url ); ?>" method="post">
 
 						<div class="disq-login-form__field">
-							<label class="disq-login-form__label" for="disq-user-login"><?php echo $username_label; ?></label>
+							<label class="disq-login-form__label" for="disq-user-login"><?php echo esc_html( $username_label ); ?></label>
 							<input
 								id="disq-user-login"
 								class="disq-login-form__input"
 								type="text"
 								name="log"
 								autocomplete="username"
-								placeholder="<?php echo $username_ph; ?>"
+								placeholder="<?php echo esc_attr( $username_ph ); ?>"
 								required
 							/>
 						</div>
 
 						<div class="disq-login-form__field">
-							<label class="disq-login-form__label" for="disq-user-pass"><?php echo $password_label; ?></label>
+							<label class="disq-login-form__label" for="disq-user-pass"><?php echo esc_html( $password_label ); ?></label>
 							<input
 								id="disq-user-pass"
 								class="disq-login-form__input"
 								type="password"
 								name="pwd"
 								autocomplete="current-password"
-								placeholder="<?php echo $password_ph; ?>"
+								placeholder="<?php echo esc_attr( $password_ph ); ?>"
 								required
 							/>
 						</div>
@@ -445,24 +462,24 @@ class Login_Form extends Module {
 							<div class="disq-login-form__remember">
 								<label>
 									<input type="checkbox" name="rememberme" value="forever"/>
-									<?php echo $remember_label; ?>
+									<?php echo esc_html( $remember_label ); ?>
 								</label>
 							</div>
 						<?php endif; ?>
 
-						<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $after_login_url ); ?>"/>
+						<input type="hidden" name="redirect_to" value="<?php echo esc_url( $after_login_url ); ?>"/>
 
-						<button type="submit" class="disq-login-form__submit"><?php echo $button_text; ?></button>
+						<button type="submit" class="disq-login-form__submit"><?php echo esc_html( $button_text ); ?></button>
 
 					</form>
 
 					<?php if ( $show_forgot || $show_register ) : ?>
 						<nav class="disq-login-form__nav">
 							<?php if ( $show_forgot ) : ?>
-								<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php echo $forgot_text; ?></a>
+								<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php echo esc_html( $forgot_text ); ?></a>
 							<?php endif; ?>
 							<?php if ( $show_register && (bool) get_option( 'users_can_register' ) ) : ?>
-								<a href="<?php echo esc_url( wp_registration_url() ); ?>"><?php echo $register_text; ?></a>
+								<a href="<?php echo esc_url( wp_registration_url() ); ?>"><?php echo esc_html( $register_text ); ?></a>
 							<?php endif; ?>
 						</nav>
 					<?php endif; ?>

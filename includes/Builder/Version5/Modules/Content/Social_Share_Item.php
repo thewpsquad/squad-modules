@@ -44,6 +44,13 @@ use function sprintf;
  */
 class Social_Share_Item extends Module {
 
+	/**
+	 * Relative path to the generated Social Share Item module.json metadata folder.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/social-share-item/';
 	}
@@ -127,7 +134,10 @@ class Social_Share_Item extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -165,7 +175,12 @@ class Social_Share_Item extends Module {
 			}
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		if ( '' !== $bg ) {
 			$declarations->add( 'background-color', $bg );
@@ -182,6 +197,18 @@ class Social_Share_Item extends Module {
 		return is_string( $out ) ? $out : '';
 	}
 
+	/**
+	 * Render one network share button as an anchor pointing at the resolved share URL.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $attrs    Block attributes.
+	 * @param string               $content  Inner block content (unused).
+	 * @param WP_Block             $block    Parsed block instance.
+	 * @param ModuleElements       $elements ModuleElements instance.
+	 *
+	 * @return string Rendered HTML.
+	 */
 	public static function render_callback( array $attrs, string $content, WP_Block $block, $elements ): string {
 		try {
 			$item    = $attrs['itemSettings']['innerContent']['desktop']['value'] ?? array();
@@ -261,5 +288,4 @@ class Social_Share_Item extends Module {
 			return '';
 		}
 	}
-
 }

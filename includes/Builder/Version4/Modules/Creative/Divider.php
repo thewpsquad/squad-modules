@@ -1176,7 +1176,6 @@ class Divider extends Module {
 	 *
 	 * @return mixed
 	 * @see   ET_Builder_Module_Helper_MultiViewOptions::filter_value
-	 *
 	 */
 	public function multi_view_filter_value( $raw_value, array $args ) {
 		$name = $args['name'] ?? '';

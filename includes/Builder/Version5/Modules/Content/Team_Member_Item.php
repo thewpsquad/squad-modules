@@ -59,6 +59,11 @@ class Team_Member_Item extends Module {
 		'Website'   => 'Website',
 	);
 
+	/**
+	 * Relative path to the generated Team Member Item module.json metadata folder.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/team-member-item/';
 	}
@@ -120,7 +125,10 @@ class Team_Member_Item extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)

@@ -34,6 +34,8 @@
   "module": {
     "front_title": "front.innerContent.*.title",
     "front_sub_title": "front.innerContent.*.subTitle",
+    "front_title_tag": "front.innerContent.*.titleTag",
+    "front_sub_title_tag": "front.innerContent.*.subTitleTag",
     "front_content": "front.innerContent.*.content",
     "front_icon_type": "front.innerContent.*.iconType",
     "front_icon": "front.innerContent.*.icon",
@@ -44,6 +46,8 @@
     "front_button_icon": "frontButton.innerContent.*.icon",
     "back_title": "back.innerContent.*.title",
     "back_sub_title": "back.innerContent.*.subTitle",
+    "back_title_tag": "back.innerContent.*.titleTag",
+    "back_sub_title_tag": "back.innerContent.*.subTitleTag",
     "back_content": "back.innerContent.*.content",
     "back_icon_type": "back.innerContent.*.iconType",
     "back_icon": "back.innerContent.*.icon",

@@ -343,37 +343,55 @@ class Logo_Carousel extends Module {
 
 		switch ( $effect ) {
 			case 'grayscale':
-				self::set_style( $render_slug, array(
-					'selector'    => $logo,
-					'declaration' => 'filter: grayscale(100%); transition: filter 0.3s ease;',
-				) );
-				self::set_style( $render_slug, array(
-					'selector'    => $hover,
-					'declaration' => 'filter: grayscale(0%);',
-				) );
+				self::set_style(
+					$render_slug,
+					array(
+						'selector'    => $logo,
+						'declaration' => 'filter: grayscale(100%); transition: filter 0.3s ease;',
+					)
+				);
+				self::set_style(
+					$render_slug,
+					array(
+						'selector'    => $hover,
+						'declaration' => 'filter: grayscale(0%);',
+					)
+				);
 				break;
 
 			case 'opacity':
 				$opacity = max( 0.0, min( 1.0, (float) $this->prop( 'hover_opacity', '0.5' ) ) );
-				self::set_style( $render_slug, array(
-					'selector'    => $logo,
-					'declaration' => "opacity: {$opacity}; transition: opacity 0.3s ease;",
-				) );
-				self::set_style( $render_slug, array(
-					'selector'    => $hover,
-					'declaration' => 'opacity: 1;',
-				) );
+				self::set_style(
+					$render_slug,
+					array(
+						'selector'    => $logo,
+						'declaration' => "opacity: {$opacity}; transition: opacity 0.3s ease;",
+					)
+				);
+				self::set_style(
+					$render_slug,
+					array(
+						'selector'    => $hover,
+						'declaration' => 'opacity: 1;',
+					)
+				);
 				break;
 
 			case 'zoom':
-				self::set_style( $render_slug, array(
-					'selector'    => $logo,
-					'declaration' => 'transition: transform 0.3s ease;',
-				) );
-				self::set_style( $render_slug, array(
-					'selector'    => $hover,
-					'declaration' => 'transform: scale(1.05);',
-				) );
+				self::set_style(
+					$render_slug,
+					array(
+						'selector'    => $logo,
+						'declaration' => 'transition: transform 0.3s ease;',
+					)
+				);
+				self::set_style(
+					$render_slug,
+					array(
+						'selector'    => $hover,
+						'declaration' => 'transform: scale(1.05);',
+					)
+				);
 				break;
 
 			case 'none':
@@ -407,10 +425,13 @@ class Logo_Carousel extends Module {
 			$declaration .= "max-height: {$max_height}; ";
 		}
 
-		self::set_style( $render_slug, array(
-			'selector'    => '%%order_class%% .squad-logo-carousel__logo',
-			'declaration' => rtrim( $declaration ),
-		) );
+		self::set_style(
+			$render_slug,
+			array(
+				'selector'    => '%%order_class%% .squad-logo-carousel__logo',
+				'declaration' => rtrim( $declaration ),
+			)
+		);
 	}
 
 	/**
@@ -441,8 +462,14 @@ class Logo_Carousel extends Module {
 			'wrapperClass'  => 'squad-logo-carousel__wrapper',
 			'slideClass'    => 'disq_logo_carousel_item',
 			'breakpoints'   => array(
-				'768'  => array( 'slidesPerView' => $spv_tab, 'spaceBetween' => $gap ),
-				'1024' => array( 'slidesPerView' => $spv_desk, 'spaceBetween' => $gap ),
+				'768'  => array(
+					'slidesPerView' => $spv_tab,
+					'spaceBetween' => $gap,
+				),
+				'1024' => array(
+					'slidesPerView' => $spv_desk,
+					'spaceBetween' => $gap,
+				),
 			),
 		);
 
@@ -483,7 +510,7 @@ class Logo_Carousel extends Module {
 		}
 
 		return '<button class="squad-logo-carousel__arrow squad-logo-carousel__arrow--prev" aria-label="' . esc_attr__( 'Previous slide', 'squad-modules-for-divi' ) . '"></button>'
-		       . '<button class="squad-logo-carousel__arrow squad-logo-carousel__arrow--next" aria-label="' . esc_attr__( 'Next slide', 'squad-modules-for-divi' ) . '"></button>';
+			   . '<button class="squad-logo-carousel__arrow squad-logo-carousel__arrow--next" aria-label="' . esc_attr__( 'Next slide', 'squad-modules-for-divi' ) . '"></button>';
 	}
 
 	/**

@@ -60,6 +60,13 @@ class Login_Form extends Module {
 		'invalidcombo' => 'Incorrect username or password.',
 	);
 
+	/**
+	 * Relative path to the generated module.json metadata folder.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/login-form/';
 	}
@@ -156,31 +163,30 @@ class Login_Form extends Module {
 			$layout          = sanitize_text_field( (string) ( $inner['layout'] ?? 'card' ) );
 			$show_logo       = 'on' === (string) ( $inner['showLogo'] ?? 'on' );
 			$show_title      = 'on' === (string) ( $inner['showTitle'] ?? 'on' );
-			$title_text      = esc_html( (string) ( $inner['titleText'] ?? 'Welcome back' ) );
+			$title_text      = (string) ( $inner['titleText'] ?? 'Welcome back' );
 			$show_subtitle   = 'on' === (string) ( $inner['showSubtitle'] ?? 'off' );
-			$subtitle_text   = esc_html( (string) ( $inner['subtitleText'] ?? '' ) );
-			$username_label  = esc_html( (string) ( $inner['usernameLabel'] ?? 'Username or Email' ) );
-			$password_label  = esc_html( (string) ( $inner['passwordLabel'] ?? 'Password' ) );
-			$username_ph     = esc_attr( (string) ( $inner['usernamePlaceholder'] ?? '' ) );
-			$password_ph     = esc_attr( (string) ( $inner['passwordPlaceholder'] ?? '' ) );
+			$subtitle_text   = (string) ( $inner['subtitleText'] ?? '' );
+			$username_label  = (string) ( $inner['usernameLabel'] ?? 'Username or Email' );
+			$password_label  = (string) ( $inner['passwordLabel'] ?? 'Password' );
+			$username_ph     = (string) ( $inner['usernamePlaceholder'] ?? '' );
+			$password_ph     = (string) ( $inner['passwordPlaceholder'] ?? '' );
 			$show_remember   = 'on' === (string) ( $inner['showRememberMe'] ?? 'on' );
-			$remember_label  = esc_html( (string) ( $inner['rememberMeLabel'] ?? 'Remember me' ) );
+			$remember_label  = (string) ( $inner['rememberMeLabel'] ?? 'Remember me' );
 			$show_forgot     = 'on' === (string) ( $inner['showForgotLink'] ?? 'on' );
-			$forgot_text     = esc_html( (string) ( $inner['forgotLinkText'] ?? 'Forgot password?' ) );
+			$forgot_text     = (string) ( $inner['forgotLinkText'] ?? 'Forgot password?' );
 			$show_register   = 'on' === (string) ( $inner['showRegisterLink'] ?? 'off' );
-			$register_text   = esc_html( (string) ( $inner['registerLinkText'] ?? 'Create an account' ) );
-			$button_text     = esc_html( (string) ( $inner['buttonText'] ?? 'Log In' ) );
-			$after_login_url = esc_url( (string) ( $inner['afterLoginUrl'] ?? admin_url() ) );
+			$register_text   = (string) ( $inner['registerLinkText'] ?? 'Create an account' );
+			$button_text     = (string) ( $inner['buttonText'] ?? 'Log In' );
+			$after_login_url = (string) ( $inner['afterLoginUrl'] ?? admin_url() );
 
 			// phpcs:ignore WordPress.Security.NonceVerification
 			$error_key = sanitize_key( $_GET['login'] ?? '' );
 			$error_msg = '';
 			if ( '' !== $error_key ) {
-				$raw_msg   = self::ERROR_MAP[ $error_key ] ?? 'Login failed. Please try again.';
-				$error_msg = esc_html( $raw_msg );
+				$error_msg = self::ERROR_MAP[ $error_key ] ?? 'Login failed. Please try again.';
 			}
 
-			$action_url = esc_url( site_url( 'wp-login.php', 'login_post' ) );
+			$action_url = site_url( 'wp-login.php', 'login_post' );
 
 			ob_start();
 			?>
@@ -199,41 +205,41 @@ class Login_Form extends Module {
 					<?php endif; ?>
 
 					<?php if ( $show_title ) : ?>
-						<h2 class="disq-login-form__title"><?php echo $title_text; ?></h2>
+						<h2 class="disq-login-form__title"><?php echo esc_html( $title_text ); ?></h2>
 					<?php endif; ?>
 
 					<?php if ( $show_subtitle && '' !== $subtitle_text ) : ?>
-						<p class="disq-login-form__subtitle"><?php echo $subtitle_text; ?></p>
+						<p class="disq-login-form__subtitle"><?php echo esc_html( $subtitle_text ); ?></p>
 					<?php endif; ?>
 
 					<?php if ( '' !== $error_msg ) : ?>
-						<div class="disq-login-form__error" role="alert"><?php echo $error_msg; ?></div>
+						<div class="disq-login-form__error" role="alert"><?php echo esc_html( $error_msg ); ?></div>
 					<?php endif; ?>
 
-					<form class="disq-login-form__form" action="<?php echo $action_url; ?>" method="post">
+					<form class="disq-login-form__form" action="<?php echo esc_url( $action_url ); ?>" method="post">
 
 						<div class="disq-login-form__field">
-							<label class="disq-login-form__label" for="disq-user-login"><?php echo $username_label; ?></label>
+							<label class="disq-login-form__label" for="disq-user-login"><?php echo esc_html( $username_label ); ?></label>
 							<input
 								id="disq-user-login"
 								class="disq-login-form__input"
 								type="text"
 								name="log"
 								autocomplete="username"
-								placeholder="<?php echo $username_ph; ?>"
+								placeholder="<?php echo esc_attr( $username_ph ); ?>"
 								required
 							/>
 						</div>
 
 						<div class="disq-login-form__field">
-							<label class="disq-login-form__label" for="disq-user-pass"><?php echo $password_label; ?></label>
+							<label class="disq-login-form__label" for="disq-user-pass"><?php echo esc_html( $password_label ); ?></label>
 							<input
 								id="disq-user-pass"
 								class="disq-login-form__input"
 								type="password"
 								name="pwd"
 								autocomplete="current-password"
-								placeholder="<?php echo $password_ph; ?>"
+								placeholder="<?php echo esc_attr( $password_ph ); ?>"
 								required
 							/>
 						</div>
@@ -242,24 +248,24 @@ class Login_Form extends Module {
 							<div class="disq-login-form__remember">
 								<label>
 									<input type="checkbox" name="rememberme" value="forever"/>
-									<?php echo $remember_label; ?>
+									<?php echo esc_html( $remember_label ); ?>
 								</label>
 							</div>
 						<?php endif; ?>
 
-						<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $after_login_url ); ?>"/>
+						<input type="hidden" name="redirect_to" value="<?php echo esc_url( $after_login_url ); ?>"/>
 
-						<button type="submit" class="disq-login-form__submit"><?php echo $button_text; ?></button>
+						<button type="submit" class="disq-login-form__submit"><?php echo esc_html( $button_text ); ?></button>
 
 					</form>
 
 					<?php if ( $show_forgot || $show_register ) : ?>
 						<nav class="disq-login-form__nav">
 							<?php if ( $show_forgot ) : ?>
-								<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php echo $forgot_text; ?></a>
+								<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php echo esc_html( $forgot_text ); ?></a>
 							<?php endif; ?>
 							<?php if ( $show_register && (bool) get_option( 'users_can_register' ) ) : ?>
-								<a href="<?php echo esc_url( wp_registration_url() ); ?>"><?php echo $register_text; ?></a>
+								<a href="<?php echo esc_url( wp_registration_url() ); ?>"><?php echo esc_html( $register_text ); ?></a>
 							<?php endif; ?>
 						</nav>
 					<?php endif; ?>

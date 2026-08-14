@@ -85,7 +85,7 @@ final class Toc_Helper {
 		$i = 2;
 		do {
 			$candidate = $base . '-' . $i;
-			$i ++;
+			$i++;
 		} while ( in_array( $candidate, $seen, true ) );
 
 		$seen[] = $candidate;
@@ -107,7 +107,7 @@ final class Toc_Helper {
 	 */
 	public static function selected_levels( array $props ): array {
 		$levels = array();
-		for ( $n = 1; $n <= 6; $n ++ ) {
+		for ( $n = 1; $n <= 6; $n++ ) {
 			if ( 'on' === ( $props[ 'include_h' . $n ] ?? '' ) ) {
 				$levels[] = $n;
 			}

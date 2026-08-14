@@ -276,8 +276,14 @@ class Logo_Carousel extends Module {
 			'speed'         => $speed,
 			'loop'          => $loop,
 			'breakpoints'   => array(
-				'768'  => array( 'slidesPerView' => $spv_tab, 'spaceBetween' => $gap ),
-				'1024' => array( 'slidesPerView' => $spv_desk, 'spaceBetween' => $gap ),
+				'768'  => array(
+					'slidesPerView' => $spv_tab,
+					'spaceBetween' => $gap,
+				),
+				'1024' => array(
+					'slidesPerView' => $spv_desk,
+					'spaceBetween' => $gap,
+				),
 			),
 		);
 
@@ -353,7 +359,12 @@ class Logo_Carousel extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		switch ( (string) ( $value['hoverEffect'] ?? 'grayscale' ) ) {
 			case 'grayscale':
@@ -396,7 +407,12 @@ class Logo_Carousel extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		switch ( (string) ( $value['hoverEffect'] ?? 'grayscale' ) ) {
 			case 'grayscale':
@@ -442,7 +458,12 @@ class Logo_Carousel extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		if ( '' !== $max_width ) {
 			$declarations->add( 'max-width', $max_width );

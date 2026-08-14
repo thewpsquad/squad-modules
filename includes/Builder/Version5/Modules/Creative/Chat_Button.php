@@ -140,7 +140,10 @@ class Chat_Button extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -167,7 +170,12 @@ class Chat_Button extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'background-color', $button_color );
 
 		$out = $declarations->value();

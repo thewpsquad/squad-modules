@@ -35,6 +35,11 @@ use function wp_generate_password;
  */
 class Reset_Password_Form extends Module {
 
+	/**
+	 * Initialize the module: labels, icon, slug and builder settings.
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name      = esc_html__( 'Reset Password Form', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Reset Password Forms', 'squad-modules-for-divi' );
@@ -86,6 +91,8 @@ class Reset_Password_Form extends Module {
 	}
 
 	/**
+	 * Declare the builder settings fields for the module.
+	 *
 	 * @return array<string, array<string, mixed>>
 	 */
 	public function get_fields(): array {
@@ -93,7 +100,10 @@ class Reset_Password_Form extends Module {
 			'layout'                 => array(
 				'label'       => esc_html__( 'Layout', 'squad-modules-for-divi' ),
 				'type'        => 'select',
-				'options'     => array( 'card' => esc_html__( 'Card', 'squad-modules-for-divi' ), 'split' => esc_html__( 'Split', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'card' => esc_html__( 'Card', 'squad-modules-for-divi' ),
+					'split' => esc_html__( 'Split', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'card',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'layout',
@@ -101,7 +111,10 @@ class Reset_Password_Form extends Module {
 			'show_logo'              => array(
 				'label'       => esc_html__( 'Show Logo', 'squad-modules-for-divi' ),
 				'type'        => 'yes_no_button',
-				'options'     => array( 'off' => esc_html__( 'No', 'squad-modules-for-divi' ), 'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'off' => esc_html__( 'No', 'squad-modules-for-divi' ),
+					'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'on',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'header_element',
@@ -130,7 +143,10 @@ class Reset_Password_Form extends Module {
 			'show_strength_meter'    => array(
 				'label'       => esc_html__( 'Show Strength Meter', 'squad-modules-for-divi' ),
 				'type'        => 'yes_no_button',
-				'options'     => array( 'off' => esc_html__( 'No', 'squad-modules-for-divi' ), 'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'off' => esc_html__( 'No', 'squad-modules-for-divi' ),
+					'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'on',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'fields_element',
@@ -164,11 +180,11 @@ class Reset_Password_Form extends Module {
 
 			$layout                 = sanitize_text_field( $this->props['layout'] ?? 'card' );
 			$show_logo              = 'on' === ( $this->props['show_logo'] ?? 'on' );
-			$title_text             = esc_html( $this->props['title_text'] ?? __( 'Set new password', 'squad-modules-for-divi' ) );
-			$new_password_label     = esc_html( $this->props['new_password_label'] ?? __( 'New Password', 'squad-modules-for-divi' ) );
-			$confirm_password_label = esc_html( $this->props['confirm_password_label'] ?? __( 'Confirm Password', 'squad-modules-for-divi' ) );
+			$title_text             = $this->props['title_text'] ?? __( 'Set new password', 'squad-modules-for-divi' );
+			$new_password_label     = $this->props['new_password_label'] ?? __( 'New Password', 'squad-modules-for-divi' );
+			$confirm_password_label = $this->props['confirm_password_label'] ?? __( 'Confirm Password', 'squad-modules-for-divi' );
 			$show_strength          = 'on' === ( $this->props['show_strength_meter'] ?? 'on' );
-			$button_text            = esc_html( $this->props['button_text'] ?? __( 'Save Password', 'squad-modules-for-divi' ) );
+			$button_text            = $this->props['button_text'] ?? __( 'Save Password', 'squad-modules-for-divi' );
 
 			// phpcs:disable WordPress.Security.NonceVerification
 			$rp_key   = sanitize_text_field( wp_unslash( $_GET['key'] ?? '' ) );
@@ -177,15 +193,15 @@ class Reset_Password_Form extends Module {
 
 			if ( '' === $rp_key || '' === $rp_login ) {
 				return '<div class="disq-resetpw-form disq-resetpw-form--error"><p>' .
-				       esc_html__( 'Invalid or missing reset link. Request a new one.', 'squad-modules-for-divi' ) .
-				       '</p></div>';
+					   esc_html__( 'Invalid or missing reset link. Request a new one.', 'squad-modules-for-divi' ) .
+					   '</p></div>';
 			}
 
 			if ( $show_strength ) {
 				wp_enqueue_script( 'user-profile' );
 			}
 
-			$action_url = esc_url( site_url( 'wp-login.php?action=resetpass', 'login_post' ) );
+			$action_url = site_url( 'wp-login.php?action=resetpass', 'login_post' );
 
 			ob_start();
 			?>
@@ -195,13 +211,13 @@ class Reset_Password_Form extends Module {
 				<div class="disq-resetpw-form__panel">
 					<?php if ( $show_logo ) : ?>
 						<div class="disq-resetpw-form__logo"><?php echo get_custom_logo(); // phpcs:ignore WordPress.Security.EscapeOutput ?></div><?php endif; ?>
-					<h2 class="disq-resetpw-form__title"><?php echo $title_text; ?></h2>
-					<form class="disq-resetpw-form__form" action="<?php echo $action_url; ?>" method="post" autocomplete="off">
+					<h2 class="disq-resetpw-form__title"><?php echo esc_html( $title_text ); ?></h2>
+					<form class="disq-resetpw-form__form" action="<?php echo esc_url( $action_url ); ?>" method="post" autocomplete="off">
 						<input type="hidden" name="rp_key" value="<?php echo esc_attr( $rp_key ); ?>"/>
 						<input type="hidden" name="rp_login" value="<?php echo esc_attr( $rp_login ); ?>"/>
 						<input type="hidden" name="user_login" value="<?php echo esc_attr( $rp_login ); ?>" class="hide-if-no-js"/>
 						<div class="disq-resetpw-form__field">
-							<label class="disq-resetpw-form__label" for="disq-pass1"><?php echo $new_password_label; ?></label>
+							<label class="disq-resetpw-form__label" for="disq-pass1"><?php echo esc_html( $new_password_label ); ?></label>
 							<div class="wp-pwd">
 								<input
 									id="disq-pass1"
@@ -218,7 +234,7 @@ class Reset_Password_Form extends Module {
 							</div>
 						</div>
 						<div class="disq-resetpw-form__field">
-							<label class="disq-resetpw-form__label" for="disq-pass2"><?php echo $confirm_password_label; ?></label>
+							<label class="disq-resetpw-form__label" for="disq-pass2"><?php echo esc_html( $confirm_password_label ); ?></label>
 							<input id="disq-pass2" class="disq-resetpw-form__input" type="password" name="pass2" autocomplete="new-password" required/>
 						</div>
 						<?php if ( $show_strength ) : ?>
@@ -226,7 +242,7 @@ class Reset_Password_Form extends Module {
 								<div id="pass-strength-result" aria-live="polite"></div>
 							</div>
 						<?php endif; ?>
-						<button type="submit" class="disq-resetpw-form__submit"><?php echo $button_text; ?></button>
+						<button type="submit" class="disq-resetpw-form__submit"><?php echo esc_html( $button_text ); ?></button>
 					</form>
 				</div>
 			</div>

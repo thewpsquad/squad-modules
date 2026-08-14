@@ -589,4 +589,5 @@ class Image_Mask extends Module {
 		}
 
 		return (string) $mask_shape;
-	}}
+	}
+}

@@ -39,6 +39,13 @@ use function is_array;
  */
 class Skill_Bar_Item extends Module {
 
+	/**
+	 * Relative path to the generated Skill Bar Item module.json metadata folder.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/skill-bar-item/';
 	}
@@ -129,7 +136,10 @@ class Skill_Bar_Item extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -151,7 +161,12 @@ class Skill_Bar_Item extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		$height = self::sanitize_css_length( (string) ( $value['barHeight'] ?? '30px' ) );
 		$radius = self::sanitize_css_length( (string) ( $value['barRadius'] ?? '40px' ) );
@@ -199,7 +214,12 @@ class Skill_Bar_Item extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'background', $fill );
 
 		$out = $declarations->value();
@@ -207,6 +227,18 @@ class Skill_Bar_Item extends Module {
 		return is_string( $out ) ? $out : '';
 	}
 
+	/**
+	 * Render a single skill bar with its clamped level and optional name/percentage text.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $attrs    Block attributes.
+	 * @param string               $content  Inner block content (unused).
+	 * @param WP_Block             $block    Parsed block instance.
+	 * @param ModuleElements       $elements ModuleElements instance.
+	 *
+	 * @return string Rendered HTML.
+	 */
 	public static function render_callback( array $attrs, string $content, WP_Block $block, $elements ): string {
 		try {
 			$item       = $attrs['slideItem']['innerContent']['desktop']['value'] ?? array();
@@ -252,5 +284,4 @@ class Skill_Bar_Item extends Module {
 			return '';
 		}
 	}
-
 }

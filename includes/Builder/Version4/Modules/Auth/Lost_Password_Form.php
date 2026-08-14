@@ -35,6 +35,11 @@ use function wp_login_url;
  */
 class Lost_Password_Form extends Module {
 
+	/**
+	 * Initialize the module: labels, icon, slug and builder settings.
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name      = esc_html__( 'Lost Password Form', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Lost Password Forms', 'squad-modules-for-divi' );
@@ -86,6 +91,8 @@ class Lost_Password_Form extends Module {
 	}
 
 	/**
+	 * Declare the builder settings fields for the module.
+	 *
 	 * @return array<string, array<string, mixed>>
 	 */
 	public function get_fields(): array {
@@ -93,7 +100,10 @@ class Lost_Password_Form extends Module {
 			'layout'          => array(
 				'label'       => esc_html__( 'Layout', 'squad-modules-for-divi' ),
 				'type'        => 'select',
-				'options'     => array( 'card' => esc_html__( 'Card', 'squad-modules-for-divi' ), 'split' => esc_html__( 'Split', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'card' => esc_html__( 'Card', 'squad-modules-for-divi' ),
+					'split' => esc_html__( 'Split', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'card',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'layout',
@@ -101,7 +111,10 @@ class Lost_Password_Form extends Module {
 			'show_logo'       => array(
 				'label'       => esc_html__( 'Show Logo', 'squad-modules-for-divi' ),
 				'type'        => 'yes_no_button',
-				'options'     => array( 'off' => esc_html__( 'No', 'squad-modules-for-divi' ), 'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'off' => esc_html__( 'No', 'squad-modules-for-divi' ),
+					'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'on',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'header_element',
@@ -116,7 +129,10 @@ class Lost_Password_Form extends Module {
 			'show_subtitle'   => array(
 				'label'       => esc_html__( 'Show Subtitle', 'squad-modules-for-divi' ),
 				'type'        => 'yes_no_button',
-				'options'     => array( 'off' => esc_html__( 'No', 'squad-modules-for-divi' ), 'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'off' => esc_html__( 'No', 'squad-modules-for-divi' ),
+					'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'on',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'header_element',
@@ -146,7 +162,10 @@ class Lost_Password_Form extends Module {
 			'show_login_link' => array(
 				'label'       => esc_html__( 'Show Login Link', 'squad-modules-for-divi' ),
 				'type'        => 'yes_no_button',
-				'options'     => array( 'off' => esc_html__( 'No', 'squad-modules-for-divi' ), 'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ) ),
+				'options'     => array(
+					'off' => esc_html__( 'No', 'squad-modules-for-divi' ),
+					'on' => esc_html__( 'Yes', 'squad-modules-for-divi' ),
+				),
 				'default'     => 'on',
 				'tab_slug'    => 'general',
 				'toggle_slug' => 'button_element',
@@ -180,13 +199,13 @@ class Lost_Password_Form extends Module {
 
 			$layout          = sanitize_text_field( $this->props['layout'] ?? 'card' );
 			$show_logo       = 'on' === ( $this->props['show_logo'] ?? 'on' );
-			$title_text      = esc_html( $this->props['title_text'] ?? __( 'Reset your password', 'squad-modules-for-divi' ) );
+			$title_text      = $this->props['title_text'] ?? __( 'Reset your password', 'squad-modules-for-divi' );
 			$show_subtitle   = 'on' === ( $this->props['show_subtitle'] ?? 'on' );
-			$subtitle_text   = esc_html( $this->props['subtitle_text'] ?? '' );
-			$username_label  = esc_html( $this->props['username_label'] ?? __( 'Username or Email', 'squad-modules-for-divi' ) );
-			$button_text     = esc_html( $this->props['button_text'] ?? __( 'Send Reset Link', 'squad-modules-for-divi' ) );
+			$subtitle_text   = $this->props['subtitle_text'] ?? '';
+			$username_label  = $this->props['username_label'] ?? __( 'Username or Email', 'squad-modules-for-divi' );
+			$button_text     = $this->props['button_text'] ?? __( 'Send Reset Link', 'squad-modules-for-divi' );
 			$show_login      = 'on' === ( $this->props['show_login_link'] ?? 'on' );
-			$success_message = esc_html( $this->props['success_message'] ?? __( 'Check your email for a reset link.', 'squad-modules-for-divi' ) );
+			$success_message = $this->props['success_message'] ?? __( 'Check your email for a reset link.', 'squad-modules-for-divi' );
 
 			// phpcs:ignore WordPress.Security.NonceVerification
 			$success = isset( $_GET['checkemail'] ) && 'confirm' === sanitize_key( $_GET['checkemail'] );
@@ -197,9 +216,9 @@ class Lost_Password_Form extends Module {
 				'invalidkey' => __( 'This reset link is invalid or has expired.', 'squad-modules-for-divi' ),
 				'expiredkey' => __( 'This reset link has expired. Request a new one.', 'squad-modules-for-divi' ),
 			);
-			$error_msg   = '' !== $error_value ? esc_html( $error_map[ $error_value ] ?? '' ) : '';
+			$error_msg   = '' !== $error_value ? ( $error_map[ $error_value ] ?? '' ) : '';
 
-			$action_url = esc_url( site_url( 'wp-login.php?action=lostpassword', 'login_post' ) );
+			$action_url = site_url( 'wp-login.php?action=lostpassword', 'login_post' );
 
 			ob_start();
 			?>
@@ -209,19 +228,22 @@ class Lost_Password_Form extends Module {
 				<div class="disq-lostpw-form__panel">
 					<?php if ( $show_logo ) : ?>
 						<div class="disq-lostpw-form__logo"><?php echo get_custom_logo(); // phpcs:ignore WordPress.Security.EscapeOutput ?></div><?php endif; ?>
-					<h2 class="disq-lostpw-form__title"><?php echo $title_text; ?></h2>
-					<?php if ( $show_subtitle && '' !== $subtitle_text ) : ?><p class="disq-lostpw-form__subtitle"><?php echo $subtitle_text; ?></p><?php endif; ?>
+					<h2 class="disq-lostpw-form__title"><?php echo esc_html( $title_text ); ?></h2>
+					<?php
+					if ( $show_subtitle && '' !== $subtitle_text ) :
+						?>
+						<p class="disq-lostpw-form__subtitle"><?php echo esc_html( $subtitle_text ); ?></p><?php endif; ?>
 					<?php if ( $success ) : ?>
-						<div class="disq-lostpw-form__success" role="status"><?php echo $success_message; ?></div>
+						<div class="disq-lostpw-form__success" role="status"><?php echo esc_html( $success_message ); ?></div>
 					<?php else : ?>
 						<?php if ( '' !== $error_msg ) : ?>
-							<div class="disq-lostpw-form__error" role="alert"><?php echo $error_msg; ?></div><?php endif; ?>
-						<form class="disq-lostpw-form__form" action="<?php echo $action_url; ?>" method="post">
+							<div class="disq-lostpw-form__error" role="alert"><?php echo esc_html( $error_msg ); ?></div><?php endif; ?>
+						<form class="disq-lostpw-form__form" action="<?php echo esc_url( $action_url ); ?>" method="post">
 							<div class="disq-lostpw-form__field">
-								<label class="disq-lostpw-form__label" for="disq-lostpw-login"><?php echo $username_label; ?></label>
+								<label class="disq-lostpw-form__label" for="disq-lostpw-login"><?php echo esc_html( $username_label ); ?></label>
 								<input id="disq-lostpw-login" class="disq-lostpw-form__input" type="text" name="user_login" autocomplete="username" required/>
 							</div>
-							<button type="submit" class="disq-lostpw-form__submit"><?php echo $button_text; ?></button>
+							<button type="submit" class="disq-lostpw-form__submit"><?php echo esc_html( $button_text ); ?></button>
 						</form>
 					<?php endif; ?>
 					<?php if ( $show_login ) : ?>

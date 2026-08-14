@@ -41,6 +41,11 @@ use function trim;
  */
 class Floating_Images extends Module {
 
+	/**
+	 * Relative path to the generated Floating Images module.json metadata folder.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/floating-images/';
 	}
@@ -117,7 +122,10 @@ class Floating_Images extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)

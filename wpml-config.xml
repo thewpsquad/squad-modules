@@ -112,7 +112,6 @@
                 <attribute>off_day_label_phone</attribute>
                 <attribute>off_day_label_tablet</attribute>
                 <attribute>off_day_label_hover</attribute>
-                <attribute>alt</attribute>
                 <attribute type="media-url">background_image</attribute>
                 <attribute type="link">link_option_url</attribute>
                 <attribute type="link">url</attribute>
@@ -478,7 +477,6 @@
                 <attribute>pagination_old_entries_text</attribute>
                 <attribute>pagination_next_entries_text</attribute>
                 <attribute>load_more_button_text</attribute>
-                <attribute>load_more_button_icon_text</attribute>
                 <attribute type="media-url">load_more_button_image</attribute>
                 <attribute type="media-url">background_image</attribute>
             </attributes>

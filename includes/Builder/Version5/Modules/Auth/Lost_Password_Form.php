@@ -30,9 +30,9 @@ use ET\Builder\Packages\Module\Options\Css\CssStyle;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
 use Throwable;
 use WP_Block;
+use function __;
 use function esc_attr;
 use function esc_html;
-use function esc_html__;
 use function esc_url;
 use function get_custom_logo;
 use function sanitize_key;
@@ -47,6 +47,13 @@ use function wp_login_url;
  */
 class Lost_Password_Form extends Module {
 
+	/**
+	 * Relative path to the generated module.json metadata folder.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/lost-password-form/';
 	}
@@ -142,13 +149,13 @@ class Lost_Password_Form extends Module {
 
 			$layout          = sanitize_text_field( (string) ( $inner['layout'] ?? 'card' ) );
 			$show_logo       = 'on' === (string) ( $inner['showLogo'] ?? 'on' );
-			$title_text      = esc_html( (string) ( $inner['titleText'] ?? 'Reset your password' ) );
+			$title_text      = (string) ( $inner['titleText'] ?? 'Reset your password' );
 			$show_subtitle   = 'on' === (string) ( $inner['showSubtitle'] ?? 'on' );
-			$subtitle_text   = esc_html( (string) ( $inner['subtitleText'] ?? '' ) );
-			$username_label  = esc_html( (string) ( $inner['usernameLabel'] ?? 'Username or Email' ) );
-			$button_text     = esc_html( (string) ( $inner['buttonText'] ?? 'Send Reset Link' ) );
+			$subtitle_text   = (string) ( $inner['subtitleText'] ?? '' );
+			$username_label  = (string) ( $inner['usernameLabel'] ?? 'Username or Email' );
+			$button_text     = (string) ( $inner['buttonText'] ?? 'Send Reset Link' );
 			$show_login      = 'on' === (string) ( $inner['showLoginLink'] ?? 'on' );
-			$success_message = esc_html( (string) ( $inner['successMessage'] ?? 'Check your email for a reset link.' ) );
+			$success_message = (string) ( $inner['successMessage'] ?? 'Check your email for a reset link.' );
 
 			// phpcs:ignore WordPress.Security.NonceVerification
 			$success = isset( $_GET['checkemail'] ) && 'confirm' === sanitize_key( (string) ( $_GET['checkemail'] ?? '' ) );
@@ -156,12 +163,12 @@ class Lost_Password_Form extends Module {
 			// phpcs:ignore WordPress.Security.NonceVerification
 			$error_value = sanitize_key( (string) ( $_GET['error'] ?? '' ) );
 			$error_map   = array(
-				'invalidkey' => esc_html__( 'This reset link is invalid or has expired.', 'squad-modules-for-divi' ),
-				'expiredkey' => esc_html__( 'This reset link has expired. Request a new one.', 'squad-modules-for-divi' ),
+				'invalidkey' => __( 'This reset link is invalid or has expired.', 'squad-modules-for-divi' ),
+				'expiredkey' => __( 'This reset link has expired. Request a new one.', 'squad-modules-for-divi' ),
 			);
-			$error_msg   = '' !== $error_value ? esc_html( $error_map[ $error_value ] ?? '' ) : '';
+			$error_msg   = '' !== $error_value ? ( $error_map[ $error_value ] ?? '' ) : '';
 
-			$action_url = esc_url( site_url( 'wp-login.php?action=lostpassword', 'login_post' ) );
+			$action_url = site_url( 'wp-login.php?action=lostpassword', 'login_post' );
 
 			ob_start();
 			?>
@@ -171,19 +178,22 @@ class Lost_Password_Form extends Module {
 				<div class="disq-lostpw-form__panel">
 					<?php if ( $show_logo ) : ?>
 						<div class="disq-lostpw-form__logo"><?php echo get_custom_logo(); // phpcs:ignore WordPress.Security.EscapeOutput ?></div><?php endif; ?>
-					<h2 class="disq-lostpw-form__title"><?php echo $title_text; ?></h2>
-					<?php if ( $show_subtitle && '' !== $subtitle_text ) : ?><p class="disq-lostpw-form__subtitle"><?php echo $subtitle_text; ?></p><?php endif; ?>
+					<h2 class="disq-lostpw-form__title"><?php echo esc_html( $title_text ); ?></h2>
+					<?php
+					if ( $show_subtitle && '' !== $subtitle_text ) :
+						?>
+						<p class="disq-lostpw-form__subtitle"><?php echo esc_html( $subtitle_text ); ?></p><?php endif; ?>
 					<?php if ( $success ) : ?>
-						<div class="disq-lostpw-form__success" role="status"><?php echo $success_message; ?></div>
+						<div class="disq-lostpw-form__success" role="status"><?php echo esc_html( $success_message ); ?></div>
 					<?php else : ?>
 						<?php if ( '' !== $error_msg ) : ?>
-							<div class="disq-lostpw-form__error" role="alert"><?php echo $error_msg; ?></div><?php endif; ?>
-						<form class="disq-lostpw-form__form" action="<?php echo $action_url; ?>" method="post">
+							<div class="disq-lostpw-form__error" role="alert"><?php echo esc_html( $error_msg ); ?></div><?php endif; ?>
+						<form class="disq-lostpw-form__form" action="<?php echo esc_url( $action_url ); ?>" method="post">
 							<div class="disq-lostpw-form__field">
-								<label class="disq-lostpw-form__label" for="disq-lostpw-login"><?php echo $username_label; ?></label>
+								<label class="disq-lostpw-form__label" for="disq-lostpw-login"><?php echo esc_html( $username_label ); ?></label>
 								<input id="disq-lostpw-login" class="disq-lostpw-form__input" type="text" name="user_login" autocomplete="username" required/>
 							</div>
-							<button type="submit" class="disq-lostpw-form__submit"><?php echo $button_text; ?></button>
+							<button type="submit" class="disq-lostpw-form__submit"><?php echo esc_html( $button_text ); ?></button>
 						</form>
 					<?php endif; ?>
 					<?php if ( $show_login ) : ?>

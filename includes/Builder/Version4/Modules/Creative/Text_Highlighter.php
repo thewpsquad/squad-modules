@@ -204,7 +204,11 @@ class Text_Highlighter extends Module {
 				esc_html__( 'Animation Duration (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'How long the stroke draw takes in milliseconds.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '100', 'max' => '5000', 'step' => '100' ),
+					'range_settings' => array(
+						'min' => '100',
+						'max' => '5000',
+						'step' => '100',
+					),
 					'default'        => '1200',
 					'unitless'       => true,
 					'show_if'        => array( 'animate' => 'on' ),
@@ -216,7 +220,11 @@ class Text_Highlighter extends Module {
 				esc_html__( 'Animation Delay (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Delay before the stroke starts drawing.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '3000', 'step' => '100' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '3000',
+						'step' => '100',
+					),
 					'default'        => '0',
 					'unitless'       => true,
 					'show_if'        => array( 'animate' => 'on' ),
@@ -277,7 +285,11 @@ class Text_Highlighter extends Module {
 				esc_html__( 'Gradient Angle (deg)', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Rotation of the gradient in degrees.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '360', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '360',
+						'step' => '1',
+					),
 					'default'        => '90',
 					'unitless'       => true,
 					'show_if'        => array( 'use_gradient' => 'on' ),
@@ -289,7 +301,11 @@ class Text_Highlighter extends Module {
 				esc_html__( 'Stroke Width', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Thickness of the SVG annotation stroke.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '1', 'max' => '20', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '1',
+						'max' => '20',
+						'step' => '1',
+					),
 					'default'        => '3',
 					'unitless'       => true,
 					'tab_slug'       => 'advanced',
@@ -300,7 +316,11 @@ class Text_Highlighter extends Module {
 				esc_html__( 'SVG Vertical Offset', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Nudge the SVG annotation up or down (px).', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '-20', 'max' => '20', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '-20',
+						'max' => '20',
+						'step' => '1',
+					),
 					'default'        => '0',
 					'unitless'       => true,
 					'tab_slug'       => 'advanced',
@@ -361,7 +381,7 @@ class Text_Highlighter extends Module {
 			self::set_style(
 				$render_slug,
 				array(
-					'selector'    => "%%order_class%% .squad-highlight__svg",
+					'selector'    => '%%order_class%% .squad-highlight__svg',
 					// Use margin-top instead of transform: translateY to avoid conflicting
 					// with per-shape transforms (e.g. strikethrough uses translateY(-50%)).
 					'declaration' => sprintf( 'margin-top: %dpx;', $svg_position_y ),

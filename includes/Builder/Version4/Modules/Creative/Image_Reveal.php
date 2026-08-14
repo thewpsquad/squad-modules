@@ -37,6 +37,14 @@ use function wp_enqueue_script;
  */
 class Image_Reveal extends Module {
 
+	/**
+	 * Set up the module: name, slug, palette icon, builder support, the image /
+	 * link / reveal toggles and advanced (design) fields.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name      = esc_html__( 'Image Reveal', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Image Reveals', 'squad-modules-for-divi' );
@@ -185,7 +193,11 @@ class Image_Reveal extends Module {
 				esc_html__( 'Animation Duration (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'How long the reveal takes.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '100', 'max' => '4000', 'step' => '50' ),
+					'range_settings' => array(
+						'min' => '100',
+						'max' => '4000',
+						'step' => '50',
+					),
 					'default'        => '600',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -196,7 +208,11 @@ class Image_Reveal extends Module {
 				esc_html__( 'Start Delay (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Delay before the reveal begins.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '5000', 'step' => '50' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '5000',
+						'step' => '50',
+					),
 					'default'        => '0',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -223,7 +239,11 @@ class Image_Reveal extends Module {
 				esc_html__( 'Viewport Trigger (%)', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'How much of the image must be visible before a scroll reveal fires.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '1', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '1',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '50',
 					'unitless'       => true,
 					'show_if'        => array( 'trigger' => 'scroll' ),
@@ -259,7 +279,11 @@ class Image_Reveal extends Module {
 				esc_html__( 'Zoom Scale', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Scale factor applied on hover.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '1', 'max' => '2', 'step' => '0.05' ),
+					'range_settings' => array(
+						'min' => '1',
+						'max' => '2',
+						'step' => '0.05',
+					),
 					'default'        => '1.1',
 					'unitless'       => true,
 					'show_if'        => array( 'hover_zoom' => 'on' ),
@@ -373,5 +397,4 @@ class Image_Reveal extends Module {
 
 		return '' !== $clean ? $clean : '1.1';
 	}
-
 }

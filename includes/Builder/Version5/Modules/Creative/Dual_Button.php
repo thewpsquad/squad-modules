@@ -140,10 +140,10 @@ class Dual_Button extends Module {
 	 */
 	private static function render_button( array $inner, string $element ): string {
 		$camel  = 'left_button' === $element ? 'leftButton' : 'rightButton';
-		$text   = $inner["{$camel}Text"] ?? '';
-		$url    = $inner["{$camel}Url"] ?? '';
-		$target = ( $inner["{$camel}UrlNewWindow"] ?? 'off' ) === 'on' ? '_blank' : '_self';
-		$icon   = $inner["{$camel}Icon"] ?? '';
+		$text   = $inner[ "{$camel}Text" ] ?? '';
+		$url    = $inner[ "{$camel}Url" ] ?? '';
+		$target = ( $inner[ "{$camel}UrlNewWindow" ] ?? 'off' ) === 'on' ? '_blank' : '_self';
+		$icon   = $inner[ "{$camel}Icon" ] ?? '';
 
 		if ( '' === $text ) {
 			return '';

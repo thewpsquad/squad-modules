@@ -336,17 +336,27 @@ class Flip_Box extends Module {
 
 		$elements = '';
 
+		$allowed_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div' );
+
 		if ( '' !== ( $content['title'] ?? '' ) ) {
+			$title_tag = (string) ( $content['titleTag'] ?? 'h2' );
+			$title_tag = in_array( $title_tag, $allowed_tags, true ) ? $title_tag : 'h2';
+
 			$elements .= sprintf(
-				'<div class="slide-element slide-%1$s-element slide-title-wrapper"><h3 class="slide-title-text">%2$s</h3></div>',
+				'<div class="slide-element slide-%1$s-element slide-title-wrapper"><%2$s class="slide-title-text">%3$s</%2$s></div>',
 				esc_attr( $side ),
+				$title_tag,
 				wp_kses_post( $content['title'] )
 			);
 		}
 		if ( '' !== ( $content['subTitle'] ?? '' ) ) {
+			$sub_title_tag = (string) ( $content['subTitleTag'] ?? 'h5' );
+			$sub_title_tag = in_array( $sub_title_tag, $allowed_tags, true ) ? $sub_title_tag : 'h5';
+
 			$elements .= sprintf(
-				'<div class="slide-element slide-%1$s-element slide-subtitle-wrapper"><div class="slide-sub-title-text">%2$s</div></div>',
+				'<div class="slide-element slide-%1$s-element slide-subtitle-wrapper"><%2$s class="slide-sub-title-text">%3$s</%2$s></div>',
 				esc_attr( $side ),
+				$sub_title_tag,
 				wp_kses_post( $content['subTitle'] )
 			);
 		}
@@ -380,5 +390,4 @@ class Flip_Box extends Module {
 			$elements
 		);
 	}
-
 }

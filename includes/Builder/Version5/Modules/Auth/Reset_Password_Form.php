@@ -47,6 +47,13 @@ use function wp_generate_password;
  */
 class Reset_Password_Form extends Module {
 
+	/**
+	 * Relative path to the generated module.json metadata folder.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/reset-password-form/';
 	}
@@ -142,11 +149,11 @@ class Reset_Password_Form extends Module {
 
 			$layout                 = sanitize_text_field( (string) ( $inner['layout'] ?? 'card' ) );
 			$show_logo              = 'on' === (string) ( $inner['showLogo'] ?? 'on' );
-			$title_text             = esc_html( (string) ( $inner['titleText'] ?? 'Set new password' ) );
-			$new_password_label     = esc_html( (string) ( $inner['newPasswordLabel'] ?? 'New Password' ) );
-			$confirm_password_label = esc_html( (string) ( $inner['confirmPasswordLabel'] ?? 'Confirm Password' ) );
+			$title_text             = (string) ( $inner['titleText'] ?? 'Set new password' );
+			$new_password_label     = (string) ( $inner['newPasswordLabel'] ?? 'New Password' );
+			$confirm_password_label = (string) ( $inner['confirmPasswordLabel'] ?? 'Confirm Password' );
 			$show_strength          = 'on' === (string) ( $inner['showStrengthMeter'] ?? 'on' );
-			$button_text            = esc_html( (string) ( $inner['buttonText'] ?? 'Save Password' ) );
+			$button_text            = (string) ( $inner['buttonText'] ?? 'Save Password' );
 
 			// phpcs:disable WordPress.Security.NonceVerification
 			$rp_key   = sanitize_text_field( (string) wp_unslash( $_GET['key'] ?? '' ) );
@@ -155,15 +162,15 @@ class Reset_Password_Form extends Module {
 
 			if ( '' === $rp_key || '' === $rp_login ) {
 				return '<div class="disq-resetpw-form disq-resetpw-form--error"><p>' .
-				       esc_html__( 'Invalid or missing reset link. Request a new one.', 'squad-modules-for-divi' ) .
-				       '</p></div>';
+					   esc_html__( 'Invalid or missing reset link. Request a new one.', 'squad-modules-for-divi' ) .
+					   '</p></div>';
 			}
 
 			if ( $show_strength ) {
 				wp_enqueue_script( 'user-profile' );
 			}
 
-			$action_url = esc_url( site_url( 'wp-login.php?action=resetpass', 'login_post' ) );
+			$action_url = site_url( 'wp-login.php?action=resetpass', 'login_post' );
 
 			ob_start();
 			?>
@@ -173,13 +180,13 @@ class Reset_Password_Form extends Module {
 				<div class="disq-resetpw-form__panel">
 					<?php if ( $show_logo ) : ?>
 						<div class="disq-resetpw-form__logo"><?php echo get_custom_logo(); // phpcs:ignore WordPress.Security.EscapeOutput ?></div><?php endif; ?>
-					<h2 class="disq-resetpw-form__title"><?php echo $title_text; ?></h2>
-					<form class="disq-resetpw-form__form" action="<?php echo $action_url; ?>" method="post" autocomplete="off">
+					<h2 class="disq-resetpw-form__title"><?php echo esc_html( $title_text ); ?></h2>
+					<form class="disq-resetpw-form__form" action="<?php echo esc_url( $action_url ); ?>" method="post" autocomplete="off">
 						<input type="hidden" name="rp_key" value="<?php echo esc_attr( $rp_key ); ?>"/>
 						<input type="hidden" name="rp_login" value="<?php echo esc_attr( $rp_login ); ?>"/>
 						<input type="hidden" name="user_login" value="<?php echo esc_attr( $rp_login ); ?>" class="hide-if-no-js"/>
 						<div class="disq-resetpw-form__field">
-							<label class="disq-resetpw-form__label" for="disq-pass1"><?php echo $new_password_label; ?></label>
+							<label class="disq-resetpw-form__label" for="disq-pass1"><?php echo esc_html( $new_password_label ); ?></label>
 							<div class="wp-pwd">
 								<input
 									id="disq-pass1"
@@ -196,7 +203,7 @@ class Reset_Password_Form extends Module {
 							</div>
 						</div>
 						<div class="disq-resetpw-form__field">
-							<label class="disq-resetpw-form__label" for="disq-pass2"><?php echo $confirm_password_label; ?></label>
+							<label class="disq-resetpw-form__label" for="disq-pass2"><?php echo esc_html( $confirm_password_label ); ?></label>
 							<input id="disq-pass2" class="disq-resetpw-form__input" type="password" name="pass2" autocomplete="new-password" required/>
 						</div>
 						<?php if ( $show_strength ) : ?>
@@ -204,7 +211,7 @@ class Reset_Password_Form extends Module {
 								<div id="pass-strength-result" aria-live="polite"></div>
 							</div>
 						<?php endif; ?>
-						<button type="submit" class="disq-resetpw-form__submit"><?php echo $button_text; ?></button>
+						<button type="submit" class="disq-resetpw-form__submit"><?php echo esc_html( $button_text ); ?></button>
 					</form>
 				</div>
 			</div>

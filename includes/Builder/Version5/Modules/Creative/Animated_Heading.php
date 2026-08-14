@@ -44,6 +44,11 @@ use function wp_enqueue_script;
  */
 class Animated_Heading extends Module {
 
+	/**
+	 * Relative path to the generated Animated Heading module.json metadata folder.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/animated-heading/';
 	}
@@ -160,7 +165,10 @@ class Animated_Heading extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)

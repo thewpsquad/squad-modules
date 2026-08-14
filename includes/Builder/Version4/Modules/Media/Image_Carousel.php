@@ -395,7 +395,9 @@ class Image_Carousel extends Module {
 		$spv_mob     = max( 1, '' !== $spv_mob_raw ? absint( $spv_mob_raw ) : 1 );
 
 		if ( 'fade' === $effect ) {
-			$spv_desk = $spv_tab = $spv_mob = 1;
+			$spv_desk = 1;
+			$spv_tab  = 1;
+			$spv_mob  = 1;
 		}
 
 		$gap   = absint( $this->prop( 'space_between', '20px' ) );
@@ -412,8 +414,14 @@ class Image_Carousel extends Module {
 			'wrapperClass'   => 'squad-image-carousel__wrapper',
 			'slideClass'     => 'disq_image_carousel_item',
 			'breakpoints'    => array(
-				'768'  => array( 'slidesPerView' => $spv_tab, 'spaceBetween' => $gap ),
-				'1024' => array( 'slidesPerView' => $spv_desk, 'spaceBetween' => $gap ),
+				'768'  => array(
+					'slidesPerView' => $spv_tab,
+					'spaceBetween' => $gap,
+				),
+				'1024' => array(
+					'slidesPerView' => $spv_desk,
+					'spaceBetween' => $gap,
+				),
 			),
 		);
 
@@ -469,7 +477,7 @@ class Image_Carousel extends Module {
 		}
 
 		return '<button class="squad-image-carousel__arrow squad-image-carousel__arrow--prev" aria-label="' . esc_attr__( 'Previous slide', 'squad-modules-for-divi' ) . '"></button>'
-		       . '<button class="squad-image-carousel__arrow squad-image-carousel__arrow--next" aria-label="' . esc_attr__( 'Next slide', 'squad-modules-for-divi' ) . '"></button>';
+			   . '<button class="squad-image-carousel__arrow squad-image-carousel__arrow--next" aria-label="' . esc_attr__( 'Next slide', 'squad-modules-for-divi' ) . '"></button>';
 	}
 
 	/**

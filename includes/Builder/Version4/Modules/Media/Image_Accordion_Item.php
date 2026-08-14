@@ -154,7 +154,8 @@ class Image_Accordion_Item extends Child_Module {
 		$label = esc_html( (string) $this->prop( 'label', '' ) );
 
 		return sprintf(
-			'<div class="squad-image-accordion__panel" data-index="%1$s" style="background-image:url(%2$s)" tabindex="0" role="button" aria-expanded="false"><span class="squad-image-accordion__label">%3$s</span><div class="squad-image-accordion__overlay"><div class="squad-image-accordion__content">%4$s</div></div></div>',
+			'<div class="squad-image-accordion__panel" data-index="%1$s" style="background-image:url(%2$s)" tabindex="0" role="button" aria-expanded="false"><span class="squad-image-accordion__label">%3$s</span><div class="squad-image-accordion__overlay"><div '
+				. 'class="squad-image-accordion__content">%4$s</div></div></div>',
 			esc_attr( self::INDEX_TOKEN ),
 			$image_url,
 			$label,

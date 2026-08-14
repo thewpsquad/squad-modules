@@ -1072,6 +1072,36 @@ class Modules extends Modules_V1 {
 	}
 
 	/**
+	 * Whether a module can run in the builder this site actually has.
+	 *
+	 * The registry records which builders each module ships for. A module typed
+	 * for Divi 5 alone has no Divi 4 shortcode class, so on a site without Divi 5
+	 * it can never appear in the builder no matter what the dashboard says —
+	 * enabling it there looks like a bug. The dashboard uses this to disable the
+	 * toggle rather than let the user switch on something inert.
+	 *
+	 * A module with no declared type is treated as supported, so an unrecognised
+	 * or future value never silently hides a working module.
+	 *
+	 * @since 4.5.1
+	 *
+	 * @param array<string, mixed> $module Module configuration from the registry.
+	 *
+	 * @return bool True when the current builder can render the module.
+	 */
+	protected function is_module_supported_by_builder( array $module ): bool {
+		$types = $module['type'] ?? '';
+		$types = is_array( $types ) ? $types : array( $types );
+		$types = array_values( array_filter( $types, static fn( $type ): bool => '' !== $type ) );
+
+		if ( array() === $types ) {
+			return true;
+		}
+
+		return in_array( divi_squad()->modules->get_builder_type(), $types, true );
+	}
+
+	/**
 	 * Prepare a module for the REST response.
 	 *
 	 * @since 3.3.0
@@ -1099,6 +1129,8 @@ class Modules extends Modules_V1 {
 			'category'           => $module['category'] ?? '',
 			'category_title'     => $module['category_title'] ?? '',
 			'is_active'          => $is_active,
+			'builder_type'       => divi_squad()->modules->get_builder_type(),
+			'is_supported'       => $this->is_module_supported_by_builder( $module ),
 			'has_settings'       => isset( $module['settings_route'] ) && (bool) $module['settings_route'],
 			'dependencies'       => $this->get_module_dependencies( $module ),
 			'version'            => $this->version,

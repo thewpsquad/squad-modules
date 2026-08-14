@@ -260,7 +260,9 @@ class Image_Carousel extends Module {
 		$spv_mob  = max( 1, absint( $inner['slidesPerViewPhone'] ?? 1 ) );
 
 		if ( 'fade' === $effect ) {
-			$spv_desk = $spv_tab = $spv_mob = 1;
+			$spv_desk = 1;
+			$spv_tab  = 1;
+			$spv_mob  = 1;
 		}
 
 		$gap   = absint( $inner['spaceBetween'] ?? 20 );
@@ -275,8 +277,14 @@ class Image_Carousel extends Module {
 			'loop'           => $loop,
 			'centeredSlides' => 'on' === ( $inner['centeredSlides'] ?? 'off' ),
 			'breakpoints'    => array(
-				'768'  => array( 'slidesPerView' => $spv_tab, 'spaceBetween' => $gap ),
-				'1024' => array( 'slidesPerView' => $spv_desk, 'spaceBetween' => $gap ),
+				'768'  => array(
+					'slidesPerView' => $spv_tab,
+					'spaceBetween' => $gap,
+				),
+				'1024' => array(
+					'slidesPerView' => $spv_desk,
+					'spaceBetween' => $gap,
+				),
 			),
 		);
 

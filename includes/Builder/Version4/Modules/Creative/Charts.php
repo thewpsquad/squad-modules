@@ -184,7 +184,11 @@ class Charts extends Module {
 				esc_html__( 'Chart Height', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Height of the chart canvas, in pixels.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '150', 'max' => '600', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '150',
+						'max' => '600',
+						'step' => '1',
+					),
 					'default'        => '300',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -195,7 +199,11 @@ class Charts extends Module {
 				esc_html__( 'Border Width', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Dataset border width, in pixels.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '6', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '6',
+						'step' => '1',
+					),
 					'default'        => '2',
 					'unitless'       => true,
 					'tab_slug'       => 'general',

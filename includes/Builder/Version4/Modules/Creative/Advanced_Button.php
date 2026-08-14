@@ -304,7 +304,11 @@ class Advanced_Button extends Module {
 				esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Size of the button icon.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '8', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '8',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '16px',
 					'show_if'        => array( 'use_icon' => 'on' ),
 					'tab_slug'       => 'advanced',
@@ -315,7 +319,11 @@ class Advanced_Button extends Module {
 				esc_html__( 'Icon Spacing', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Gap between the icon and the button text.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '80', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '80',
+						'step' => '1',
+					),
 					'default'        => '8px',
 					'show_if'        => array( 'use_icon' => 'on' ),
 					'tab_slug'       => 'advanced',

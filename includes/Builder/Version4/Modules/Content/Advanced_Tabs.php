@@ -35,6 +35,14 @@ use function wp_enqueue_script;
  */
 class Advanced_Tabs extends Module {
 
+	/**
+	 * Set up the parent module: identity, child slug, builder support, settings-modal
+	 * toggles and advanced (design) fields.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name      = esc_html__( 'Advanced Tabs', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Advanced Tabs', 'squad-modules-for-divi' );
@@ -130,7 +138,11 @@ class Advanced_Tabs extends Module {
 				esc_html__( 'Default Active Tab', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Which tab is open by default (1 = first).', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '1', 'max' => '20', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '1',
+						'max' => '20',
+						'step' => '1',
+					),
 					'default'        => '1',
 					'unitless'       => true,
 					'tab_slug'       => 'general',

@@ -336,11 +336,11 @@ class Post_Grid extends Module {
 			$args['author'] = $queried->ID;
 		} elseif ( $queried instanceof WP_Term && is_archive() ) {
 			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-			                            array(
-				                            'taxonomy' => $queried->taxonomy,
-				                            'field'    => 'term_id',
-				                            'terms'    => $queried->term_id,
-			                            ),
+										array(
+											'taxonomy' => $queried->taxonomy,
+											'field'    => 'term_id',
+											'terms'    => $queried->term_id,
+										),
 			);
 		} elseif ( is_search() ) {
 			$args['s'] = get_search_query();
@@ -863,6 +863,7 @@ class Post_Grid extends Module {
 
 		$text = '' !== $before || '' !== $after
 			? $before . (string) $count . $after
+			// translators: %s: formatted number of comments.
 			: sprintf( _n( '%s Comment', '%s Comments', $count, 'squad-modules-for-divi' ), number_format_i18n( $count ) );
 
 		return sprintf(
@@ -1182,4 +1183,5 @@ class Post_Grid extends Module {
 	 */
 	protected static function render_notice( string $message ): string {
 		return sprintf( '<div class="squad-notice squad-post-grid-notice">%s</div>', esc_html( $message ) );
-	}}
+	}
+}

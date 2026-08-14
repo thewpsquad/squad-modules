@@ -35,6 +35,14 @@ use function trim;
  */
 class Pricing_Table_Item extends Child_Module {
 
+	/**
+	 * Set up the plan card child module: identity, child title variables,
+	 * settings-modal toggles and the title / price font fields.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name   = esc_html__( 'Pricing Plan', 'squad-modules-for-divi' );
 		$this->plural = esc_html__( 'Pricing Plans', 'squad-modules-for-divi' );

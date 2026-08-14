@@ -235,5 +235,4 @@ class Glitch_Text extends Module {
 			return '';
 		}
 	}
-
 }

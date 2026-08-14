@@ -50,6 +50,14 @@ class Team_Member_Item extends Child_Module {
 		'website'   => 'Website',
 	);
 
+	/**
+	 * Set up the member card child module: identity, child title variables,
+	 * settings-modal toggles and the name / position / bio font fields.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name   = esc_html__( 'Team Member', 'squad-modules-for-divi' );
 		$this->plural = esc_html__( 'Team Members', 'squad-modules-for-divi' );

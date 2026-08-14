@@ -194,7 +194,11 @@ class Number_Counter extends Module {
 				esc_html__( 'Decimal Places', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Number of digits after the decimal separator.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '4', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '4',
+						'step' => '1',
+					),
 					'default'        => '0',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -205,7 +209,11 @@ class Number_Counter extends Module {
 				esc_html__( 'Animation Duration', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'How long the count-up runs (ms).', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '100', 'max' => '10000', 'step' => '100' ),
+					'range_settings' => array(
+						'min' => '100',
+						'max' => '10000',
+						'step' => '100',
+					),
 					'default'        => '2000',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -327,7 +335,11 @@ class Number_Counter extends Module {
 				esc_html__( 'Icon / Image Size', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Size of the icon or image.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '8', 'max' => '200', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '8',
+						'max' => '200',
+						'step' => '1',
+					),
 					'default'        => '48px',
 					'show_if_not'    => array( 'use_media' => 'none' ),
 					'tab_slug'       => 'advanced',
@@ -338,7 +350,11 @@ class Number_Counter extends Module {
 				esc_html__( 'Media Spacing', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Gap between the media and the number.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '80', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '80',
+						'step' => '1',
+					),
 					'default'        => '12px',
 					'show_if_not'    => array( 'use_media' => 'none' ),
 					'tab_slug'       => 'advanced',

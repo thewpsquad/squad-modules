@@ -33,6 +33,14 @@ use function sprintf;
  */
 class Social_Share_Item extends Child_Module {
 
+	/**
+	 * Set up the child module: identity, child title variables, the network and
+	 * colors toggles and advanced (design) fields.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name   = esc_html__( 'Social Share Item', 'squad-modules-for-divi' );
 		$this->plural = esc_html__( 'Social Share Items', 'squad-modules-for-divi' );
@@ -203,6 +211,17 @@ class Social_Share_Item extends Child_Module {
 		);
 	}
 
+	/**
+	 * Generate the share button background and icon color styles, honouring the
+	 * per-item custom color overrides when they are enabled.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param string $render_slug Slug of module that is used for rendering output.
+	 * @param string $brand_color Default brand color of the selected network.
+	 *
+	 * @return void
+	 */
 	public function apply_color_css( string $render_slug, string $brand_color ): void {
 		$use_custom = 'on' === $this->prop( 'use_custom_colors', 'off' );
 

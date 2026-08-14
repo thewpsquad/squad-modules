@@ -35,6 +35,14 @@ use function wp_enqueue_script;
  */
 class Animated_Heading extends Module {
 
+	/**
+	 * Set up the module: name, slug, palette icon, builder support, settings-modal
+	 * toggles and the prefix / rotating / suffix text font fields.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name      = esc_html__( 'Animated Heading', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Animated Headings', 'squad-modules-for-divi' );
@@ -197,7 +205,11 @@ class Animated_Heading extends Module {
 				esc_html__( 'Transition Duration (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'How long each in/out transition takes.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '100', 'max' => '3000', 'step' => '50' ),
+					'range_settings' => array(
+						'min' => '100',
+						'max' => '3000',
+						'step' => '50',
+					),
 					'default'        => '600',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -208,7 +220,11 @@ class Animated_Heading extends Module {
 				esc_html__( 'Hold Delay (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'How long each word is held before the next.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '200', 'max' => '10000', 'step' => '100' ),
+					'range_settings' => array(
+						'min' => '200',
+						'max' => '10000',
+						'step' => '100',
+					),
 					'default'        => '1500',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -235,7 +251,11 @@ class Animated_Heading extends Module {
 				esc_html__( 'Letter Stagger (ms)', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Per-character delay (letter granularity only).', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '300', 'step' => '5' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '300',
+						'step' => '5',
+					),
 					'default'        => '40',
 					'unitless'       => true,
 					'show_if'        => array( 'granularity' => 'letter' ),
@@ -349,5 +369,4 @@ class Animated_Heading extends Module {
 			);
 		}
 	}
-
 }

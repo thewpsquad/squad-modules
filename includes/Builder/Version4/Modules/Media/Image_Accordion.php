@@ -141,7 +141,11 @@ class Image_Accordion extends Module {
 				esc_html__( 'Default Active Panel', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Which panel is expanded by default (1 = first). Clamped to the number of panels.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '1', 'max' => '20', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '1',
+						'max' => '20',
+						'step' => '1',
+					),
 					'default'        => '1',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -152,7 +156,11 @@ class Image_Accordion extends Module {
 				esc_html__( 'Collapsed Size', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Thin-strip width (horizontal) / height (vertical) of inactive panels.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '600', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '600',
+						'step' => '1',
+					),
 					'allowed_units'  => array( 'px', '%', 'vw' ),
 					'default_unit'   => 'px',
 					'default'        => '60px',
@@ -173,7 +181,11 @@ class Image_Accordion extends Module {
 				esc_html__( 'Overlay Opacity', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Opacity of the active-panel scrim.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'allowed_units'  => array( '%' ),
 					'default_unit'   => '%',
 					'default'        => '60',

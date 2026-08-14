@@ -31,6 +31,14 @@ use function sprintf;
  */
 class Inline_Content extends Module {
 
+	/**
+	 * Set up the parent module: name, slug, child slug, palette icon and the layout
+	 * and gap toggles plus advanced (design) fields.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name      = esc_html__( 'Inline Content', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Inline Contents', 'squad-modules-for-divi' );
@@ -116,7 +124,11 @@ class Inline_Content extends Module {
 				esc_html__( 'Column Gap', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Horizontal gap between items.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '12px',
 					'mobile_options' => true,
 					'tab_slug'       => 'advanced',
@@ -127,7 +139,11 @@ class Inline_Content extends Module {
 				esc_html__( 'Row Gap', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Vertical gap when items wrap to a new row.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '8px',
 					'mobile_options' => true,
 					'tab_slug'       => 'advanced',
@@ -187,29 +203,69 @@ class Inline_Content extends Module {
 		// column_gap — desktop / tablet / phone.
 		$col_gap = self::sanitize_css_length( (string) $this->prop( 'column_gap', '12px' ) );
 		if ( '' !== $col_gap ) {
-			self::set_style( $render_slug, array( 'selector' => $inner_sel, 'declaration' => "column-gap: {$col_gap};" ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $inner_sel,
+					'declaration' => "column-gap: {$col_gap};",
+				)
+			);
 		}
 		$col_gap_tablet = self::sanitize_css_length( (string) $this->prop( 'column_gap_tablet', '' ) );
 		if ( '' !== $col_gap_tablet ) {
-			self::set_style( $render_slug, array( 'selector' => $inner_sel, 'declaration' => "column-gap: {$col_gap_tablet};", 'media_query' => self::get_media_query( 'max_width_980' ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $inner_sel,
+					'declaration' => "column-gap: {$col_gap_tablet};",
+					'media_query' => self::get_media_query( 'max_width_980' ),
+				)
+			);
 		}
 		$col_gap_phone = self::sanitize_css_length( (string) $this->prop( 'column_gap_phone', '' ) );
 		if ( '' !== $col_gap_phone ) {
-			self::set_style( $render_slug, array( 'selector' => $inner_sel, 'declaration' => "column-gap: {$col_gap_phone};", 'media_query' => self::get_media_query( 'max_width_767' ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $inner_sel,
+					'declaration' => "column-gap: {$col_gap_phone};",
+					'media_query' => self::get_media_query( 'max_width_767' ),
+				)
+			);
 		}
 
 		// row_gap — desktop / tablet / phone.
 		$row_gap = self::sanitize_css_length( (string) $this->prop( 'row_gap', '8px' ) );
 		if ( '' !== $row_gap ) {
-			self::set_style( $render_slug, array( 'selector' => $inner_sel, 'declaration' => "row-gap: {$row_gap};" ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $inner_sel,
+					'declaration' => "row-gap: {$row_gap};",
+				)
+			);
 		}
 		$row_gap_tablet = self::sanitize_css_length( (string) $this->prop( 'row_gap_tablet', '' ) );
 		if ( '' !== $row_gap_tablet ) {
-			self::set_style( $render_slug, array( 'selector' => $inner_sel, 'declaration' => "row-gap: {$row_gap_tablet};", 'media_query' => self::get_media_query( 'max_width_980' ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $inner_sel,
+					'declaration' => "row-gap: {$row_gap_tablet};",
+					'media_query' => self::get_media_query( 'max_width_980' ),
+				)
+			);
 		}
 		$row_gap_phone = self::sanitize_css_length( (string) $this->prop( 'row_gap_phone', '' ) );
 		if ( '' !== $row_gap_phone ) {
-			self::set_style( $render_slug, array( 'selector' => $inner_sel, 'declaration' => "row-gap: {$row_gap_phone};", 'media_query' => self::get_media_query( 'max_width_767' ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $inner_sel,
+					'declaration' => "row-gap: {$row_gap_phone};",
+					'media_query' => self::get_media_query( 'max_width_767' ),
+				)
+			);
 		}
 	}
 }

@@ -57,6 +57,8 @@ use function wp_enqueue_script;
 class Image_Accordion extends Module {
 
 	/**
+	 * Relative path to the generated module.json metadata folder.
+	 *
 	 * @since 4.4.0
 	 * @return string
 	 */
@@ -65,6 +67,8 @@ class Image_Accordion extends Module {
 	}
 
 	/**
+	 * Add the module classnames.
+	 *
 	 * @since 4.4.0
 	 *
 	 * @param array<string, mixed> $args Classnames arguments.
@@ -81,6 +85,8 @@ class Image_Accordion extends Module {
 	}
 
 	/**
+	 * Assign the module's frontend script data.
+	 *
 	 * @since 4.4.0
 	 *
 	 * @param array<string, mixed> $args Script data arguments.
@@ -92,6 +98,9 @@ class Image_Accordion extends Module {
 	}
 
 	/**
+	 * Register the module style declarations, including the per-instance panel
+	 * sizing and overlay custom properties scoped to the module order class.
+	 *
 	 * @since 4.4.0
 	 *
 	 * @param array<string, mixed> $args Style arguments.
@@ -137,7 +146,10 @@ class Image_Accordion extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -159,7 +171,12 @@ class Image_Accordion extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		$collapsed = self::sanitize_css_length( (string) ( $value['collapsedSize'] ?? '60px' ), '60px' );
 		$declarations->add( '--squad-ia-collapsed', $collapsed );
@@ -253,8 +270,8 @@ class Image_Accordion extends Module {
 	 *
 	 * @since 4.4.0
 	 *
-	 * @param string                $content Rendered (concatenated) child panel HTML.
-	 * @param array<string, mixed>  $inner   Accordion innerContent values (for `defaultActive`).
+	 * @param string               $content Rendered (concatenated) child panel HTML.
+	 * @param array<string, mixed> $inner   Accordion innerContent values (for `defaultActive`).
 	 *
 	 * @return array{0: string, 1: int} [$processed_content, $active_index (0-indexed)].
 	 */

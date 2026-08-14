@@ -141,7 +141,11 @@ class Countdown_Timer extends Module {
 				esc_html__( 'Evergreen Duration', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'How long the evergreen countdown runs, in seconds.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '2592000', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '2592000',
+						'step' => '1',
+					),
 					'default'        => '3600',
 					'unitless'       => true,
 					'show_if'        => array( 'mode' => 'evergreen' ),

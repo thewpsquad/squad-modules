@@ -1443,11 +1443,11 @@ class Flip_Box extends Module {
 			'button_padding',
 		);
 		foreach ( $button_cleanable_common_features as $button_common_feature ) {
-			$front_button["front_$button_common_feature"]['hover'] = false;
-			$back_button["back_$button_common_feature"]['hover']   = false;
+			$front_button[ "front_$button_common_feature" ]['hover'] = false;
+			$back_button[ "back_$button_common_feature" ]['hover']   = false;
 		}
 		foreach ( $button_cleanable_features as $button_cleanable_feature ) {
-			$front_button["front_$button_cleanable_feature"]['hover'] = false;
+			$front_button[ "front_$button_cleanable_feature" ]['hover'] = false;
 		}
 
 		// Extra features from buttons which are generating hover effects.
@@ -2345,7 +2345,6 @@ class Flip_Box extends Module {
 	 *
 	 * @return mixed
 	 * @see   ET_Builder_Module_Helper_MultiViewOptions::filter_value
-	 *
 	 */
 	public function multi_view_filter_value( $raw_value, $args ) {
 		$name = isset( $args['name'] ) && is_string( $args['name'] ) ? $args['name'] : '';

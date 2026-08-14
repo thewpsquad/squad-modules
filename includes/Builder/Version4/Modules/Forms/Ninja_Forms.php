@@ -83,7 +83,6 @@ class Ninja_Forms extends Form_Styler {
 		 * @param self                                                                              $module    The instance of the NinjaForms class.
 		 *
 		 * @see   squad_get_css_selectors() For the structure of the default selectors array.
-		 *
 		 */
 		$this->squad_css_selectors = apply_filters( 'divi_squad_module_ninja_forms_css_selectors', $selectors, $this );
 
@@ -1363,12 +1362,10 @@ class Ninja_Forms extends Form_Styler {
 			return '';
 		}
 
-		$i18n_json = wp_json_encode( $i18n );
-		if ( count( $i18n ) > 0 && false !== $i18n_json ) {
-			printf(
-				'<script type="application/json" id="squad-nf-builder-js-i18n">%s</script>',
-				$i18n_json
-			);
+		if ( count( $i18n ) > 0 ) {
+			echo '<script type="application/json" id="squad-nf-builder-js-i18n">' .
+				wp_json_encode( $i18n ) .
+				'</script>';
 		}
 
 		$html = (string) ob_get_clean();

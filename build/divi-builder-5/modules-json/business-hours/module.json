@@ -104,6 +104,55 @@
                 "type": "field",
                 "name": "divi/text"
               }
+            },
+            "titleTag": {
+              "groupSlug": "contentTitle",
+              "attrName": "bhTitle.innerContent",
+              "subName": "titleTag",
+              "label": "Title Tag",
+              "description": "HTML tag used for the title.",
+              "features": {
+                "responsive": false,
+                "hover": false,
+                "sticky": false
+              },
+              "render": true,
+              "priority": 30,
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "h1": {
+                      "label": "H1"
+                    },
+                    "h2": {
+                      "label": "H2"
+                    },
+                    "h3": {
+                      "label": "H3"
+                    },
+                    "h4": {
+                      "label": "H4"
+                    },
+                    "h5": {
+                      "label": "H5"
+                    },
+                    "h6": {
+                      "label": "H6"
+                    },
+                    "p": {
+                      "label": "P"
+                    },
+                    "span": {
+                      "label": "SPAN"
+                    },
+                    "div": {
+                      "label": "DIV"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -113,7 +162,8 @@
           "desktop": {
             "value": {
               "titleEnable": "on",
-              "title": "Business Hours"
+              "title": "Business Hours",
+              "titleTag": "h2"
             }
           }
         }

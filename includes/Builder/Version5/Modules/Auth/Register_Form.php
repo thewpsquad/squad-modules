@@ -62,6 +62,13 @@ class Register_Form extends Module {
 		'invalid_email'    => 'Please enter a valid email address.',
 	);
 
+	/**
+	 * Relative path to the generated module.json metadata folder.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/register-form/';
 	}
@@ -157,32 +164,31 @@ class Register_Form extends Module {
 
 			if ( ! (bool) get_option( 'users_can_register' ) ) {
 				return '<div class="disq-register-form disq-register-form--disabled"><p>' .
-				       esc_html__( 'Registration is currently disabled.', 'squad-modules-for-divi' ) .
-				       '</p></div>';
+					   esc_html__( 'Registration is currently disabled.', 'squad-modules-for-divi' ) .
+					   '</p></div>';
 			}
 
 			$layout         = sanitize_text_field( (string) ( $inner['layout'] ?? 'card' ) );
 			$show_logo      = 'on' === (string) ( $inner['showLogo'] ?? 'on' );
 			$show_title     = 'on' === (string) ( $inner['showTitle'] ?? 'on' );
-			$title_text     = esc_html( (string) ( $inner['titleText'] ?? 'Create an account' ) );
-			$username_label = esc_html( (string) ( $inner['usernameLabel'] ?? 'Username' ) );
-			$email_label    = esc_html( (string) ( $inner['emailLabel'] ?? 'Email Address' ) );
+			$title_text     = (string) ( $inner['titleText'] ?? 'Create an account' );
+			$username_label = (string) ( $inner['usernameLabel'] ?? 'Username' );
+			$email_label    = (string) ( $inner['emailLabel'] ?? 'Email Address' );
 			$show_login     = 'on' === (string) ( $inner['showLoginLink'] ?? 'on' );
-			$privacy_notice = wp_kses_post( (string) ( $inner['privacyNotice'] ?? '' ) );
-			$button_text    = esc_html( (string) ( $inner['buttonText'] ?? 'Register' ) );
+			$privacy_notice = (string) ( $inner['privacyNotice'] ?? '' );
+			$button_text    = (string) ( $inner['buttonText'] ?? 'Register' );
 
 			// phpcs:ignore WordPress.Security.NonceVerification
 			$error_code = sanitize_key( $_GET['registration'] ?? '' );
 			$error_msg  = '';
 			if ( '' !== $error_code ) {
-				$raw_msg   = self::ERROR_MAP[ $error_code ] ?? 'Registration failed. Please try again.';
-				$error_msg = esc_html( $raw_msg );
+				$error_msg = self::ERROR_MAP[ $error_code ] ?? 'Registration failed. Please try again.';
 			}
 
 			// phpcs:ignore WordPress.Security.NonceVerification
 			$success = isset( $_GET['registered'] ) && 'true' === sanitize_text_field( (string) wp_unslash( $_GET['registered'] ?? '' ) );
 
-			$action_url = esc_url( site_url( 'wp-login.php?action=register', 'login_post' ) );
+			$action_url = site_url( 'wp-login.php?action=register', 'login_post' );
 
 			ob_start();
 			?>
@@ -193,29 +199,29 @@ class Register_Form extends Module {
 					<?php if ( $show_logo ) : ?>
 						<div class="disq-register-form__logo"><?php echo get_custom_logo(); // phpcs:ignore WordPress.Security.EscapeOutput ?></div><?php endif; ?>
 					<?php if ( $show_title ) : ?>
-						<h2 class="disq-register-form__title"><?php echo $title_text; ?></h2>
+						<h2 class="disq-register-form__title"><?php echo esc_html( $title_text ); ?></h2>
 					<?php endif; ?>
 					<?php if ( $success ) : ?>
 						<div class="disq-register-form__success" role="status">
 							<?php esc_html_e( 'Registration successful. Please check your email.', 'squad-modules-for-divi' ); ?>
 						</div>
 					<?php elseif ( '' !== $error_msg ) : ?>
-						<div class="disq-register-form__error" role="alert"><?php echo $error_msg; ?></div>
+						<div class="disq-register-form__error" role="alert"><?php echo esc_html( $error_msg ); ?></div>
 					<?php endif; ?>
-					<form class="disq-register-form__form" action="<?php echo $action_url; ?>" method="post">
+					<form class="disq-register-form__form" action="<?php echo esc_url( $action_url ); ?>" method="post">
 						<div class="disq-register-form__field">
-							<label class="disq-register-form__label" for="disq-reg-login"><?php echo $username_label; ?></label>
+							<label class="disq-register-form__label" for="disq-reg-login"><?php echo esc_html( $username_label ); ?></label>
 							<input id="disq-reg-login" class="disq-register-form__input" type="text" name="user_login" autocomplete="username" required/>
 						</div>
 						<div class="disq-register-form__field">
-							<label class="disq-register-form__label" for="disq-reg-email"><?php echo $email_label; ?></label>
+							<label class="disq-register-form__label" for="disq-reg-email"><?php echo esc_html( $email_label ); ?></label>
 							<input id="disq-reg-email" class="disq-register-form__input" type="email" name="user_email" autocomplete="email" required/>
 						</div>
 						<?php if ( '' !== $privacy_notice ) : ?>
-							<div class="disq-register-form__privacy"><?php echo $privacy_notice; ?></div>
+							<div class="disq-register-form__privacy"><?php echo wp_kses_post( $privacy_notice ); ?></div>
 						<?php endif; ?>
 						<input type="hidden" name="redirect_to" value="<?php echo esc_attr( add_query_arg( 'registered', 'true', wp_login_url() ) ); ?>"/>
-						<button type="submit" class="disq-register-form__submit"><?php echo $button_text; ?></button>
+						<button type="submit" class="disq-register-form__submit"><?php echo esc_html( $button_text ); ?></button>
 					</form>
 					<?php if ( $show_login ) : ?>
 						<nav class="disq-register-form__nav">

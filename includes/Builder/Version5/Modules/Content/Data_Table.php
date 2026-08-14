@@ -145,7 +145,10 @@ class Data_Table extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -167,7 +170,12 @@ class Data_Table extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		$header_bg = self::sanitize_css_background( (string) ( $value['headerBgColor'] ?? '' ) );
 		if ( '' !== $header_bg ) {
@@ -204,7 +212,12 @@ class Data_Table extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'color', $cell_text );
 
 		$out = $declarations->value();

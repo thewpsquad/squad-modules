@@ -30,6 +30,14 @@ use function min;
  */
 class Pricing_Table extends Module {
 
+	/**
+	 * Set up the parent module: name, slug, child slug, palette icon and the grid
+	 * layout toggle plus advanced (design) fields.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name      = esc_html__( 'Pricing Table', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Pricing Tables', 'squad-modules-for-divi' );
@@ -80,7 +88,11 @@ class Pricing_Table extends Module {
 				esc_html__( 'Columns', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Number of plans per row.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '1', 'max' => '4', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '1',
+						'max' => '4',
+						'step' => '1',
+					),
 					'default'        => '3',
 					'unitless'       => true,
 					'mobile_options' => true,
@@ -92,7 +104,11 @@ class Pricing_Table extends Module {
 				esc_html__( 'Column Gap', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Horizontal gap between plans.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '24px',
 					'mobile_options' => true,
 					'tab_slug'       => 'general',
@@ -103,7 +119,11 @@ class Pricing_Table extends Module {
 				esc_html__( 'Row Gap', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Vertical gap between rows.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '24px',
 					'mobile_options' => true,
 					'tab_slug'       => 'general',

@@ -85,7 +85,7 @@ final class Counter_Helper {
 		}
 
 		// Only prefix '-' when the formatted result is non-zero.
-		$is_zero = (float) $fixed === 0.0;
+		$is_zero = 0.0 === (float) $fixed;
 		if ( $value < 0 && ! $is_zero ) {
 			$result = '-' . $result;
 		}

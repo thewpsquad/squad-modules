@@ -47,6 +47,11 @@ use function wpautop;
  */
 class Icon_Box extends Module {
 
+	/**
+	 * Locate the generated module.json metadata folder for the Icon Box module.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/icon-box/';
 	}
@@ -133,7 +138,10 @@ class Icon_Box extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -164,7 +172,12 @@ class Icon_Box extends Module {
 		$icon_color = self::sanitize_css_background( (string) ( $value['iconColor'] ?? '#5E2EFF' ) );
 		$icon_size  = self::sanitize_css_length( (string) ( $value['iconSize'] ?? '48px' ) );
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		if ( '' !== $icon_color ) {
 			$declarations->add( 'color', $icon_color );
@@ -199,7 +212,12 @@ class Icon_Box extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'background', $icon_bg );
 
 		$out = $declarations->value();
@@ -339,5 +357,4 @@ class Icon_Box extends Module {
 
 		return '';
 	}
-
 }

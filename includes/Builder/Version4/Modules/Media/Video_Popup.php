@@ -951,5 +951,4 @@ class Video_Popup extends Module {
 
 		return $icon_output_html;
 	}
-
 }

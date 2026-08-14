@@ -44,6 +44,13 @@ class WP_Forms extends Form_Styler {
 		return '/build/divi-builder-5/modules-json/wp-forms/';
 	}
 
+	/**
+	 * Root CSS classname applied to the WPForms styler wrapper.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @return string
+	 */
 	protected static function get_root_classname(): string {
 		return 'disq_form_styler_wp_forms';
 	}

@@ -44,6 +44,11 @@ use function wp_enqueue_script;
  */
 class Image_Reveal extends Module {
 
+	/**
+	 * Locate the generated module.json metadata folder for the Image Reveal module.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/image-reveal/';
 	}
@@ -159,7 +164,10 @@ class Image_Reveal extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -241,7 +249,13 @@ class Image_Reveal extends Module {
 		}
 	}
 
-	/** Sanitize a numeric scale value for CSS (digits + single dot only). */
+	/**
+	 * Sanitize a numeric scale value for CSS (digits + single dot only).
+	 *
+	 * @param string $value Raw hover-zoom scale value taken from the module attributes.
+	 *
+	 * @return string Sanitized scale, or the `1.1` fallback when nothing usable remains.
+	 */
 	private static function sanitize_scale( string $value ): string {
 		$clean = (string) preg_replace( '/[^0-9.]/', '', trim( $value ) );
 

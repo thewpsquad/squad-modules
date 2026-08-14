@@ -141,7 +141,10 @@ class Step_Flow extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -163,7 +166,12 @@ class Step_Flow extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		$style = (string) ( $value['connectorLineStyle'] ?? 'solid' );
 		$style = in_array( $style, array( 'solid', 'dashed', 'dotted' ), true ) ? $style : 'solid';
@@ -251,5 +259,4 @@ class Step_Flow extends Module {
 			return '';
 		}
 	}
-
 }

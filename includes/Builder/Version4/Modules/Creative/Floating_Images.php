@@ -29,6 +29,14 @@ use function sprintf;
  */
 class Floating_Images extends Module {
 
+	/**
+	 * Set up the parent module: name, slug, child slug, palette icon and the
+	 * container toggle plus advanced (design) fields.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name      = esc_html__( 'Floating Images', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Floating Images', 'squad-modules-for-divi' );
@@ -79,7 +87,11 @@ class Floating_Images extends Module {
 				esc_html__( 'Container Min Height', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Minimum height of the floating-image container.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '1', 'max' => '2000', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '1',
+						'max' => '2000',
+						'step' => '1',
+					),
 					'default'        => '400px',
 					'default_unit'   => 'px',
 					'mobile_options' => true,
@@ -123,16 +135,35 @@ class Floating_Images extends Module {
 
 		$mh = self::sanitize_css_length( (string) $this->prop( 'min_height', '400px' ) );
 		if ( '' !== $mh ) {
-			self::set_style( $render_slug, array( 'selector' => $sel, 'declaration' => "min-height: {$mh};" ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $sel,
+					'declaration' => "min-height: {$mh};",
+				)
+			);
 		}
 		$mh_tablet = self::sanitize_css_length( (string) $this->prop( 'min_height_tablet', '' ) );
 		if ( '' !== $mh_tablet ) {
-			self::set_style( $render_slug, array( 'selector' => $sel, 'declaration' => "min-height: {$mh_tablet};", 'media_query' => self::get_media_query( 'max_width_980' ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $sel,
+					'declaration' => "min-height: {$mh_tablet};",
+					'media_query' => self::get_media_query( 'max_width_980' ),
+				)
+			);
 		}
 		$mh_phone = self::sanitize_css_length( (string) $this->prop( 'min_height_phone', '' ) );
 		if ( '' !== $mh_phone ) {
-			self::set_style( $render_slug, array( 'selector' => $sel, 'declaration' => "min-height: {$mh_phone};", 'media_query' => self::get_media_query( 'max_width_767' ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $sel,
+					'declaration' => "min-height: {$mh_phone};",
+					'media_query' => self::get_media_query( 'max_width_767' ),
+				)
+			);
 		}
 	}
-
 }

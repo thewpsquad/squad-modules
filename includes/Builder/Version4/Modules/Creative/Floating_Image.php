@@ -34,6 +34,14 @@ use function sprintf;
  */
 class Floating_Image extends Child_Module {
 
+	/**
+	 * Set up the child module: identity, child title variables, the image /
+	 * position / animation / link toggles and advanced (design) fields.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name   = esc_html__( 'Floating Image', 'squad-modules-for-divi' );
 		$this->plural = esc_html__( 'Floating Images', 'squad-modules-for-divi' );
@@ -139,7 +147,11 @@ class Floating_Image extends Child_Module {
 				esc_html__( 'Horizontal Position', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Horizontal offset from the container left.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '0%',
 					'default_unit'   => '%',
 					'allowed_units'  => array( '%', 'px', 'em' ),
@@ -152,7 +164,11 @@ class Floating_Image extends Child_Module {
 				esc_html__( 'Vertical Position', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Vertical offset from the container top.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '0%',
 					'default_unit'   => '%',
 					'allowed_units'  => array( '%', 'px', 'em' ),
@@ -165,7 +181,11 @@ class Floating_Image extends Child_Module {
 				esc_html__( 'Float Distance', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'How far the image travels each cycle.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '200', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '200',
+						'step' => '1',
+					),
 					'default'        => '20px',
 					'default_unit'   => 'px',
 					'allowed_units'  => array( 'px', '%' ),
@@ -178,7 +198,11 @@ class Floating_Image extends Child_Module {
 				esc_html__( 'Rotate Angle (deg)', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Sway angle in degrees (may be negative).', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '-90', 'max' => '90', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '-90',
+						'max' => '90',
+						'step' => '1',
+					),
 					'default'        => '8',
 					'unitless'       => true,
 					'show_if'        => array( 'motion_type' => 'rotate' ),
@@ -189,7 +213,11 @@ class Floating_Image extends Child_Module {
 			'duration'            => divi_squad()->d4_module_helper->add_range_field(
 				esc_html__( 'Duration (ms)', 'squad-modules-for-divi' ),
 				array(
-					'range_settings' => array( 'min' => '100', 'max' => '20000', 'step' => '50' ),
+					'range_settings' => array(
+						'min' => '100',
+						'max' => '20000',
+						'step' => '50',
+					),
 					'default'        => '4000',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -199,7 +227,11 @@ class Floating_Image extends Child_Module {
 			'delay'               => divi_squad()->d4_module_helper->add_range_field(
 				esc_html__( 'Delay (ms)', 'squad-modules-for-divi' ),
 				array(
-					'range_settings' => array( 'min' => '0', 'max' => '5000', 'step' => '50' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '5000',
+						'step' => '50',
+					),
 					'default'        => '0',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -250,7 +282,11 @@ class Floating_Image extends Child_Module {
 			'image_max_width'     => divi_squad()->d4_module_helper->add_range_field(
 				esc_html__( 'Image Max Width', 'squad-modules-for-divi' ),
 				array(
-					'range_settings' => array( 'min' => '0', 'max' => '1000', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '1000',
+						'step' => '1',
+					),
 					'default'        => '',
 					'mobile_options' => true,
 					'tab_slug'       => 'advanced',
@@ -260,7 +296,11 @@ class Floating_Image extends Child_Module {
 			'image_max_height'    => divi_squad()->d4_module_helper->add_range_field(
 				esc_html__( 'Image Max Height', 'squad-modules-for-divi' ),
 				array(
-					'range_settings' => array( 'min' => '0', 'max' => '1000', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '1000',
+						'step' => '1',
+					),
 					'default'        => '',
 					'mobile_options' => true,
 					'tab_slug'       => 'advanced',
@@ -351,7 +391,13 @@ class Floating_Image extends Child_Module {
 			$decls .= "--squad-float-dist: {$d};";
 		}
 
-		self::set_style( $render_slug, array( 'selector' => $sel, 'declaration' => $decls ) );
+		self::set_style(
+			$render_slug,
+			array(
+				'selector' => $sel,
+				'declaration' => $decls,
+			)
+		);
 	}
 
 	/**
@@ -368,12 +414,24 @@ class Floating_Image extends Child_Module {
 
 		$w = self::sanitize_css_length( (string) $this->prop( 'image_max_width', '' ) );
 		if ( '' !== $w ) {
-			self::set_style( $render_slug, array( 'selector' => $sel, 'declaration' => "max-width: {$w};" ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $sel,
+					'declaration' => "max-width: {$w};",
+				)
+			);
 		}
 
 		$h = self::sanitize_css_length( (string) $this->prop( 'image_max_height', '' ) );
 		if ( '' !== $h ) {
-			self::set_style( $render_slug, array( 'selector' => $sel, 'declaration' => "max-height: {$h};" ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $sel,
+					'declaration' => "max-height: {$h};",
+				)
+			);
 		}
 	}
 
@@ -407,5 +465,4 @@ class Floating_Image extends Child_Module {
 
 		return sprintf( '<a %s>%s</a>', $attrs, $inner );
 	}
-
 }

@@ -66,7 +66,7 @@ final class Star_Rating_Helper {
 		$precision  = ( (float) $args['rating'] ) - (float) $int_rating;
 		$output     = '';
 
-		for ( $stars = 1; $stars <= $scale; $stars ++ ) {
+		for ( $stars = 1; $stars <= $scale; $stars++ ) {
 			if ( $stars <= $int_rating ) {
 				$output .= '<i class="star-full" aria-hidden="true">☆</i>';
 			} elseif ( $int_rating + 1 === $stars && $precision > 0 ) {

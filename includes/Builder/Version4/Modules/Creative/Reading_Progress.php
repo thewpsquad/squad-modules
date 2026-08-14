@@ -163,7 +163,11 @@ class Reading_Progress extends Module {
 				esc_html__( 'Bar Thickness', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Thickness of the progress bar, in pixels (bar style only).', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '2', 'max' => '12', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '2',
+						'max' => '12',
+						'step' => '1',
+					),
 					'default'        => '4',
 					'unitless'       => true,
 					'tab_slug'       => 'general',

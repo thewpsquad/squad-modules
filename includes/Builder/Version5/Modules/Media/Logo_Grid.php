@@ -43,6 +43,8 @@ use function is_array;
 class Logo_Grid extends Module {
 
 	/**
+	 * Relative path to the generated module.json metadata folder.
+	 *
 	 * @since 4.0.0
 	 * @return string
 	 */
@@ -51,6 +53,8 @@ class Logo_Grid extends Module {
 	}
 
 	/**
+	 * Add the module classnames.
+	 *
 	 * @since 4.0.0
 	 *
 	 * @param array<string, mixed> $args Classnames arguments.
@@ -69,6 +73,8 @@ class Logo_Grid extends Module {
 	}
 
 	/**
+	 * Assign the module's frontend script data.
+	 *
 	 * @since 4.0.0
 	 *
 	 * @param array<string, mixed> $args Script data arguments.
@@ -84,6 +90,9 @@ class Logo_Grid extends Module {
 	}
 
 	/**
+	 * Register the module style declarations, including the grid geometry, logo
+	 * sizing and hover effects scoped to the module order class.
+	 *
 	 * @since 4.0.0
 	 *
 	 * @param array<string, mixed> $args Style arguments.
@@ -464,5 +473,4 @@ class Logo_Grid extends Module {
 			return '';
 		}
 	}
-
 }

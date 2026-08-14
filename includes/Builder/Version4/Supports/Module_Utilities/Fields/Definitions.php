@@ -83,11 +83,18 @@ class Definitions extends Module_Utility {
 			)
 		);
 
-		// Button fields definitions.
-		$button_text_field = array_merge_recursive(
-			$conditions,
-			array(
-				"{$base_name}_text" => array(
+		/*
+		 * Button fields definitions.
+		 *
+		 * $conditions is a flat map of field properties, so it belongs inside the
+		 * field definition — merging it alongside made 'depends_show_if' a sibling
+		 * of the text field, i.e. a field named after a property. The icon_type and
+		 * background definitions below already nest it correctly.
+		 */
+		$button_text_field = array(
+			"{$base_name}_text" => array_merge_recursive(
+				$conditions,
+				array(
 					'label'           => esc_html__( 'Button', 'squad-modules-for-divi' ),
 					'description'     => esc_html__( 'The text of your button will appear in with the module.', 'squad-modules-for-divi' ),
 					'type'            => 'text',
@@ -97,8 +104,8 @@ class Definitions extends Module_Utility {
 					'dynamic_content' => 'text',
 					'hover'           => 'tabs',
 					'mobile_options'  => true,
-				),
-			)
+				)
+			),
 		);
 
 		/**

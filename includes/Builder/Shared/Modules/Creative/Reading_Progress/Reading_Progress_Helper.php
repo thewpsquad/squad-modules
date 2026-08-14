@@ -141,7 +141,8 @@ final class Reading_Progress_Helper {
 		}
 
 		return sprintf(
-			'<div class="squad-reading-progress squad-reading-progress--bar squad-reading-progress--%1$s" data-target="%2$s" data-hide-complete="%3$s" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="height:%4$dpx"><div class="squad-reading-progress__bar"%5$s></div></div>',
+			'<div class="squad-reading-progress squad-reading-progress--bar squad-reading-progress--%1$s" data-target="%2$s" data-hide-complete="%3$s" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="height:%4$dpx"><div '
+				. 'class="squad-reading-progress__bar"%5$s></div></div>',
 			esc_attr( $position ),
 			esc_attr( $target_selector ),
 			esc_attr( $hide_complete ),
@@ -179,7 +180,9 @@ final class Reading_Progress_Helper {
 			: '<span class="squad-reading-progress__percent" hidden>0%</span>';
 
 		return sprintf(
-			'<div class="squad-reading-progress squad-reading-progress--circular squad-reading-progress--%1$s" data-target="%2$s" data-hide-complete="%3$s" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width:48px;height:48px"><svg class="squad-reading-progress__ring" viewBox="0 0 44 44" aria-hidden="true"><circle class="squad-reading-progress__track" cx="22" cy="22" r="20" fill="none" stroke-width="4"></circle><circle class="squad-reading-progress__fill" cx="22" cy="22" r="20" fill="none" stroke-width="4"%4$s stroke-dasharray="%5$s" stroke-dashoffset="%5$s" transform="rotate(-90 22 22)"></circle></svg>%6$s</div>',
+			'<div class="squad-reading-progress squad-reading-progress--circular squad-reading-progress--%1$s" data-target="%2$s" data-hide-complete="%3$s" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width:48px;height:48px"><svg '
+				. 'class="squad-reading-progress__ring" viewBox="0 0 44 44" aria-hidden="true"><circle class="squad-reading-progress__track" cx="22" cy="22" r="20" fill="none" stroke-width="4"></circle><circle class="squad-reading-progress__fill" cx="22" cy="22" r="20" fill="none" '
+				. 'stroke-width="4"%4$s stroke-dasharray="%5$s" stroke-dashoffset="%5$s" transform="rotate(-90 22 22)"></circle></svg>%6$s</div>',
 			esc_attr( $position ),
 			esc_attr( $target_selector ),
 			esc_attr( $hide_complete ),

@@ -245,22 +245,31 @@ class Logo_Grid extends Module {
 		$cols_mob  = max( 1, absint( $cols_mob_value ) );
 		$gap       = max( 0, absint( $this->prop( 'gap', '30' ) ) );
 
-		self::set_style( $render_slug, array(
-			'selector'    => '%%order_class%% .squad-logo-grid',
-			'declaration' => "grid-template-columns: repeat({$cols_desk}, 1fr); gap: {$gap}px;",
-		) );
+		self::set_style(
+			$render_slug,
+			array(
+				'selector'    => '%%order_class%% .squad-logo-grid',
+				'declaration' => "grid-template-columns: repeat({$cols_desk}, 1fr); gap: {$gap}px;",
+			)
+		);
 
-		self::set_style( $render_slug, array(
-			'selector'    => '%%order_class%% .squad-logo-grid',
-			'declaration' => "grid-template-columns: repeat({$cols_tab}, 1fr);",
-			'media_query' => self::get_media_query( 'max_width_980' ),
-		) );
+		self::set_style(
+			$render_slug,
+			array(
+				'selector'    => '%%order_class%% .squad-logo-grid',
+				'declaration' => "grid-template-columns: repeat({$cols_tab}, 1fr);",
+				'media_query' => self::get_media_query( 'max_width_980' ),
+			)
+		);
 
-		self::set_style( $render_slug, array(
-			'selector'    => '%%order_class%% .squad-logo-grid',
-			'declaration' => "grid-template-columns: repeat({$cols_mob}, 1fr);",
-			'media_query' => self::get_media_query( 'max_width_767' ),
-		) );
+		self::set_style(
+			$render_slug,
+			array(
+				'selector'    => '%%order_class%% .squad-logo-grid',
+				'declaration' => "grid-template-columns: repeat({$cols_mob}, 1fr);",
+				'media_query' => self::get_media_query( 'max_width_767' ),
+			)
+		);
 	}
 
 	/**
@@ -279,37 +288,55 @@ class Logo_Grid extends Module {
 
 		switch ( $effect ) {
 			case 'grayscale':
-				self::set_style( $render_slug, array(
-					'selector'    => $logo,
-					'declaration' => 'filter: grayscale(100%); transition: filter 0.3s ease;',
-				) );
-				self::set_style( $render_slug, array(
-					'selector'    => $hover,
-					'declaration' => 'filter: grayscale(0%);',
-				) );
+				self::set_style(
+					$render_slug,
+					array(
+						'selector'    => $logo,
+						'declaration' => 'filter: grayscale(100%); transition: filter 0.3s ease;',
+					)
+				);
+				self::set_style(
+					$render_slug,
+					array(
+						'selector'    => $hover,
+						'declaration' => 'filter: grayscale(0%);',
+					)
+				);
 				break;
 
 			case 'opacity':
 				$opacity = max( 0.0, min( 1.0, (float) $this->prop( 'hover_opacity', '0.5' ) ) );
-				self::set_style( $render_slug, array(
-					'selector'    => $logo,
-					'declaration' => "opacity: {$opacity}; transition: opacity 0.3s ease;",
-				) );
-				self::set_style( $render_slug, array(
-					'selector'    => $hover,
-					'declaration' => 'opacity: 1;',
-				) );
+				self::set_style(
+					$render_slug,
+					array(
+						'selector'    => $logo,
+						'declaration' => "opacity: {$opacity}; transition: opacity 0.3s ease;",
+					)
+				);
+				self::set_style(
+					$render_slug,
+					array(
+						'selector'    => $hover,
+						'declaration' => 'opacity: 1;',
+					)
+				);
 				break;
 
 			case 'zoom':
-				self::set_style( $render_slug, array(
-					'selector'    => $logo,
-					'declaration' => 'transition: transform 0.3s ease;',
-				) );
-				self::set_style( $render_slug, array(
-					'selector'    => $hover,
-					'declaration' => 'transform: scale(1.1);',
-				) );
+				self::set_style(
+					$render_slug,
+					array(
+						'selector'    => $logo,
+						'declaration' => 'transition: transform 0.3s ease;',
+					)
+				);
+				self::set_style(
+					$render_slug,
+					array(
+						'selector'    => $hover,
+						'declaration' => 'transform: scale(1.1);',
+					)
+				);
 				break;
 
 			case 'none':
@@ -342,10 +369,12 @@ class Logo_Grid extends Module {
 			$declaration .= "max-height: {$max_height}; ";
 		}
 
-		self::set_style( $render_slug, array(
-			'selector'    => '%%order_class%% .squad-logo-grid__logo',
-			'declaration' => rtrim( $declaration ),
-		) );
+		self::set_style(
+			$render_slug,
+			array(
+				'selector'    => '%%order_class%% .squad-logo-grid__logo',
+				'declaration' => rtrim( $declaration ),
+			)
+		);
 	}
-
 }

@@ -30,6 +30,12 @@ use function esc_html__;
  */
 class Skill_Bar_Item extends Child_Module {
 
+	/**
+	 * Set up the child module: identity, child title variables, settings-modal
+	 * toggles and advanced (design) fields.
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name   = esc_html__( 'Skill Bar Item', 'squad-modules-for-divi' );
 		$this->plural = esc_html__( 'Skill Bar Items', 'squad-modules-for-divi' );
@@ -125,7 +131,11 @@ class Skill_Bar_Item extends Child_Module {
 				esc_html__( 'Level', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Fill percentage (0–100). This is the animation target.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '70',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -158,7 +168,11 @@ class Skill_Bar_Item extends Child_Module {
 				esc_html__( 'Bar Height', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Height of the bar track.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '30px',
 					'mobile_options' => true,
 					'tab_slug'       => 'advanced',
@@ -169,7 +183,11 @@ class Skill_Bar_Item extends Child_Module {
 				esc_html__( 'Bar Border Radius', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Corner radius of the bar track.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '40px',
 					'tab_slug'       => 'advanced',
 					'toggle_slug'    => 'bar_style',
@@ -240,6 +258,14 @@ class Skill_Bar_Item extends Child_Module {
 		);
 	}
 
+	/**
+	 * Generate the bar styles: responsive height, corner radius and the track and
+	 * fill backgrounds.
+	 *
+	 * @param string $render_slug Slug of module that is used for rendering output.
+	 *
+	 * @return void
+	 */
 	public function apply_bar_css( string $render_slug ): void {
 		$height = self::sanitize_css_length( (string) $this->prop( 'bar_height', '30px' ) );
 		$radius = self::sanitize_css_length( (string) $this->prop( 'bar_radius', '40px' ) );
@@ -248,33 +274,70 @@ class Skill_Bar_Item extends Child_Module {
 		$fill    = '%%order_class%% .squad-skill-bar__fill';
 
 		if ( '' !== $height ) {
-			self::set_style( $render_slug, array( 'selector' => $wrapper, 'declaration' => "height: {$height};" ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $wrapper,
+					'declaration' => "height: {$height};",
+				)
+			);
 			$tablet = self::sanitize_css_length( (string) $this->prop( 'bar_height_tablet', '' ) );
 			$phone  = self::sanitize_css_length( (string) $this->prop( 'bar_height_phone', '' ) );
 			if ( '' !== $tablet ) {
-				self::set_style( $render_slug, array( 'selector' => $wrapper, 'declaration' => "height: {$tablet};", 'media_query' => self::get_media_query( 'max_width_980' ) ) );
+				self::set_style(
+					$render_slug,
+					array(
+						'selector' => $wrapper,
+						'declaration' => "height: {$tablet};",
+						'media_query' => self::get_media_query( 'max_width_980' ),
+					)
+				);
 			}
 			if ( '' !== $phone ) {
-				self::set_style( $render_slug, array( 'selector' => $wrapper, 'declaration' => "height: {$phone};", 'media_query' => self::get_media_query( 'max_width_767' ) ) );
+				self::set_style(
+					$render_slug,
+					array(
+						'selector' => $wrapper,
+						'declaration' => "height: {$phone};",
+						'media_query' => self::get_media_query( 'max_width_767' ),
+					)
+				);
 			}
 		}
 		if ( '' !== $radius ) {
-			self::set_style( $render_slug, array( 'selector' => $wrapper, 'declaration' => "border-radius: {$radius};" ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $wrapper,
+					'declaration' => "border-radius: {$radius};",
+				)
+			);
 		}
 
 		$track_grad = self::sanitize_css_background( (string) $this->prop( 'track_gradient', '' ) );
 		$track_col  = self::sanitize_css_background( (string) $this->prop( 'track_color', '#dddddd' ) );
 		$track_bg   = '' !== $track_grad ? $track_grad : $track_col;
 		if ( '' !== $track_bg ) {
-			self::set_style( $render_slug, array( 'selector' => $wrapper, 'declaration' => sprintf( 'background: %s;', esc_attr( $track_bg ) ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $wrapper,
+					'declaration' => sprintf( 'background: %s;', esc_attr( $track_bg ) ),
+				)
+			);
 		}
 
 		$fill_grad = self::sanitize_css_background( (string) $this->prop( 'fill_gradient', '' ) );
 		$fill_col  = self::sanitize_css_background( (string) $this->prop( 'fill_color', '#5E2EFF' ) );
 		$fill_bg   = '' !== $fill_grad ? $fill_grad : $fill_col;
 		if ( '' !== $fill_bg ) {
-			self::set_style( $render_slug, array( 'selector' => $fill, 'declaration' => sprintf( 'background: %s;', esc_attr( $fill_bg ) ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $fill,
+					'declaration' => sprintf( 'background: %s;', esc_attr( $fill_bg ) ),
+				)
+			);
 		}
 	}
-
 }

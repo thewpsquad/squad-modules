@@ -257,5 +257,4 @@ class Star_Rating extends Module {
 			return '';
 		}
 	}
-
 }

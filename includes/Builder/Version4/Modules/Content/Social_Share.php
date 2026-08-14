@@ -60,6 +60,14 @@ class Social_Share extends Module {
 		'enable_popup' => 'on',
 	);
 
+	/**
+	 * Set up the parent module: name, slug, child slug, palette icon, toggles and
+	 * the label / header font fields.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name      = esc_html__( 'Social Share', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Social Shares', 'squad-modules-for-divi' );
@@ -247,7 +255,11 @@ class Social_Share extends Module {
 				esc_html__( 'Columns', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Number of columns when buttons wrap.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '1', 'max' => '8', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '1',
+						'max' => '8',
+						'step' => '1',
+					),
 					'default'        => '4',
 					'unitless'       => true,
 					'mobile_options' => true,
@@ -259,7 +271,11 @@ class Social_Share extends Module {
 				esc_html__( 'Gap Between Buttons', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Spacing between buttons.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '10px',
 					'mobile_options' => true,
 					'tab_slug'       => 'advanced',
@@ -299,7 +315,11 @@ class Social_Share extends Module {
 				esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Size of the network icon.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '8', 'max' => '64', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '8',
+						'max' => '64',
+						'step' => '1',
+					),
 					'default'        => '18px',
 					'mobile_options' => true,
 					'tab_slug'       => 'advanced',
@@ -326,7 +346,11 @@ class Social_Share extends Module {
 				esc_html__( 'Button Padding', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Inner padding of each button.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '60', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '60',
+						'step' => '1',
+					),
 					'default'        => '12px',
 					'mobile_options' => true,
 					'tab_slug'       => 'advanced',
@@ -462,7 +486,11 @@ class Social_Share extends Module {
 				$desc = $current_desc;
 			}
 
-			return array( 'url' => $url, 'title' => $title, 'desc' => $desc );
+			return array(
+				'url' => $url,
+				'title' => $title,
+				'desc' => $desc,
+			);
 		}
 
 		return array(
@@ -472,6 +500,16 @@ class Social_Share extends Module {
 		);
 	}
 
+	/**
+	 * Generate the layout styles: responsive item gap, icon size and button padding,
+	 * plus the icon / button colors and the grid column count.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param string $render_slug Slug of module that is used for rendering output.
+	 *
+	 * @return void
+	 */
 	public function apply_layout_css( string $render_slug ): void {
 		$gap_sel     = '%%order_class%% .squad-social-share__list';
 		$icon_sel    = '%%order_class%% .squad-social-share__icon';
@@ -480,43 +518,103 @@ class Social_Share extends Module {
 		// item_gap — desktop / tablet / phone.
 		$gap = self::sanitize_css_length( (string) $this->prop( 'item_gap', '10px' ) );
 		if ( '' !== $gap ) {
-			self::set_style( $render_slug, array( 'selector' => $gap_sel, 'declaration' => "gap: {$gap};" ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $gap_sel,
+					'declaration' => "gap: {$gap};",
+				)
+			);
 		}
 		$gap_tablet = self::sanitize_css_length( (string) $this->prop( 'item_gap_tablet', '' ) );
 		if ( '' !== $gap_tablet ) {
-			self::set_style( $render_slug, array( 'selector' => $gap_sel, 'declaration' => "gap: {$gap_tablet};", 'media_query' => self::get_media_query( 'max_width_980' ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $gap_sel,
+					'declaration' => "gap: {$gap_tablet};",
+					'media_query' => self::get_media_query( 'max_width_980' ),
+				)
+			);
 		}
 		$gap_phone = self::sanitize_css_length( (string) $this->prop( 'item_gap_phone', '' ) );
 		if ( '' !== $gap_phone ) {
-			self::set_style( $render_slug, array( 'selector' => $gap_sel, 'declaration' => "gap: {$gap_phone};", 'media_query' => self::get_media_query( 'max_width_767' ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $gap_sel,
+					'declaration' => "gap: {$gap_phone};",
+					'media_query' => self::get_media_query( 'max_width_767' ),
+				)
+			);
 		}
 
 		// icon_size — desktop / tablet / phone.
 		$icon_size = self::sanitize_css_length( (string) $this->prop( 'icon_size', '18px' ) );
 		if ( '' !== $icon_size ) {
-			self::set_style( $render_slug, array( 'selector' => $icon_sel, 'declaration' => "font-size: {$icon_size};" ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $icon_sel,
+					'declaration' => "font-size: {$icon_size};",
+				)
+			);
 		}
 		$icon_size_tablet = self::sanitize_css_length( (string) $this->prop( 'icon_size_tablet', '' ) );
 		if ( '' !== $icon_size_tablet ) {
-			self::set_style( $render_slug, array( 'selector' => $icon_sel, 'declaration' => "font-size: {$icon_size_tablet};", 'media_query' => self::get_media_query( 'max_width_980' ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $icon_sel,
+					'declaration' => "font-size: {$icon_size_tablet};",
+					'media_query' => self::get_media_query( 'max_width_980' ),
+				)
+			);
 		}
 		$icon_size_phone = self::sanitize_css_length( (string) $this->prop( 'icon_size_phone', '' ) );
 		if ( '' !== $icon_size_phone ) {
-			self::set_style( $render_slug, array( 'selector' => $icon_sel, 'declaration' => "font-size: {$icon_size_phone};", 'media_query' => self::get_media_query( 'max_width_767' ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $icon_sel,
+					'declaration' => "font-size: {$icon_size_phone};",
+					'media_query' => self::get_media_query( 'max_width_767' ),
+				)
+			);
 		}
 
 		// button_padding — desktop / tablet / phone.
 		$btn_padding = self::sanitize_css_length( (string) $this->prop( 'button_padding', '12px' ) );
 		if ( '' !== $btn_padding ) {
-			self::set_style( $render_slug, array( 'selector' => $padding_sel, 'declaration' => "padding: {$btn_padding};" ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $padding_sel,
+					'declaration' => "padding: {$btn_padding};",
+				)
+			);
 		}
 		$btn_padding_tablet = self::sanitize_css_length( (string) $this->prop( 'button_padding_tablet', '' ) );
 		if ( '' !== $btn_padding_tablet ) {
-			self::set_style( $render_slug, array( 'selector' => $padding_sel, 'declaration' => "padding: {$btn_padding_tablet};", 'media_query' => self::get_media_query( 'max_width_980' ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $padding_sel,
+					'declaration' => "padding: {$btn_padding_tablet};",
+					'media_query' => self::get_media_query( 'max_width_980' ),
+				)
+			);
 		}
 		$btn_padding_phone = self::sanitize_css_length( (string) $this->prop( 'button_padding_phone', '' ) );
 		if ( '' !== $btn_padding_phone ) {
-			self::set_style( $render_slug, array( 'selector' => $padding_sel, 'declaration' => "padding: {$btn_padding_phone};", 'media_query' => self::get_media_query( 'max_width_767' ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $padding_sel,
+					'declaration' => "padding: {$btn_padding_phone};",
+					'media_query' => self::get_media_query( 'max_width_767' ),
+				)
+			);
 		}
 
 		$icon_color = self::sanitize_css_background( (string) $this->prop( 'icon_color', '#ffffff' ) );

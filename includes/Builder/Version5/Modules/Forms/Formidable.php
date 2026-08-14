@@ -44,6 +44,13 @@ class Formidable extends Form_Styler {
 		return '/build/divi-builder-5/modules-json/formidable/';
 	}
 
+	/**
+	 * Root CSS classname applied to the Formidable Forms styler wrapper.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @return string
+	 */
 	protected static function get_root_classname(): string {
 		return 'disq_form_styler_formidable';
 	}

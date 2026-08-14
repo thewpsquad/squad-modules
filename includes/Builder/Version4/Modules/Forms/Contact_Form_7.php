@@ -88,7 +88,6 @@ class Contact_Form_7 extends Form_Styler {
 		 * @param self                                 $module    The current module instance.
 		 *
 		 * @see   squad_get_css_selectors() For the structure of the default selectors array.
-		 *
 		 */
 		$this->squad_css_selectors = apply_filters( 'divi_squad_module_cf7_css_selectors', $selectors, $this );
 

@@ -105,6 +105,55 @@
                 "name": "divi/text"
               }
             },
+            "dividerIconTextTag": {
+              "groupSlug": "contentDivider",
+              "attrName": "content.innerContent",
+              "subName": "dividerIconTextTag",
+              "label": "Text Tag",
+              "description": "HTML tag used for the divider text.",
+              "features": {
+                "responsive": false,
+                "hover": false,
+                "sticky": false
+              },
+              "render": true,
+              "priority": 25,
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "h1": {
+                      "label": "H1"
+                    },
+                    "h2": {
+                      "label": "H2"
+                    },
+                    "h3": {
+                      "label": "H3"
+                    },
+                    "h4": {
+                      "label": "H4"
+                    },
+                    "h5": {
+                      "label": "H5"
+                    },
+                    "h6": {
+                      "label": "H6"
+                    },
+                    "p": {
+                      "label": "P"
+                    },
+                    "span": {
+                      "label": "SPAN"
+                    },
+                    "div": {
+                      "label": "DIV"
+                    }
+                  }
+                }
+              }
+            },
             "dividerIconType": {
               "groupSlug": "contentIcon",
               "attrName": "content.innerContent",
@@ -299,6 +348,7 @@
               "dividerType": "icon",
               "dividerIconType": "icon",
               "dividerIconText": "Your Title Goes Here",
+              "dividerIconTextTag": "h2",
               "dividerIcon": "&#x4e;||divi||400",
               "lottieSrcType": "remote",
               "dividerColor": "#7ebec5",

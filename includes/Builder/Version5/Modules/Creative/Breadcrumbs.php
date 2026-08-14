@@ -289,5 +289,4 @@ class Breadcrumbs extends Module {
 
 		return is_string( $processed ) ? $processed : '';
 	}
-
 }

@@ -53,6 +53,8 @@ class Image_Accordion_Item extends Module {
 	public const INDEX_TOKEN = '%%SQUAD_IA_INDEX%%';
 
 	/**
+	 * Relative path to the generated module.json metadata folder.
+	 *
 	 * @since 4.4.0
 	 * @return string
 	 */
@@ -79,6 +81,8 @@ class Image_Accordion_Item extends Module {
 	}
 
 	/**
+	 * Assign the module's frontend script data.
+	 *
 	 * @since 4.4.0
 	 *
 	 * @param array<string, mixed> $args Script data arguments.
@@ -90,6 +94,8 @@ class Image_Accordion_Item extends Module {
 	}
 
 	/**
+	 * Register the module style declarations.
+	 *
 	 * @since 4.4.0
 	 *
 	 * @param array<string, mixed> $args Style arguments.
@@ -119,7 +125,10 @@ class Image_Accordion_Item extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -150,7 +159,8 @@ class Image_Accordion_Item extends Module {
 			$label = esc_html( (string) ( $item['label'] ?? '' ) );
 
 			$panel_html = sprintf(
-				'<div class="squad-image-accordion__panel" data-index="%1$s" style="background-image:url(%2$s)" tabindex="0" role="button" aria-expanded="false"><span class="squad-image-accordion__label">%3$s</span><div class="squad-image-accordion__overlay"><div class="squad-image-accordion__content">%4$s</div></div></div>',
+				'<div class="squad-image-accordion__panel" data-index="%1$s" style="background-image:url(%2$s)" tabindex="0" role="button" aria-expanded="false"><span class="squad-image-accordion__label">%3$s</span><div class="squad-image-accordion__overlay"><div '
+					. 'class="squad-image-accordion__content">%4$s</div></div></div>',
 				esc_attr( self::INDEX_TOKEN ),
 				$image_url,
 				$label,

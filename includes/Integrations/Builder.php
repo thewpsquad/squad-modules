@@ -319,6 +319,7 @@ class Builder implements Hookable {
 			),
 			array(
 				'classes'            => array(
+					'root_class'       => \DiviSquad\Builder\Version4\Modules\Post_Carousel::class,
 					'root_block_class' => \DiviSquad\Builder\Version5\Modules\Dynamic_Content\Post_Carousel::class,
 				),
 				'name'               => 'PostCarousel',
@@ -328,7 +329,7 @@ class Builder implements Hookable {
 				'release_version'    => '3.4.0',
 				'is_default_active'  => false,
 				'is_premium_feature' => false,
-				'type'               => array( 'D5' ),
+				'type'               => array( 'D4', 'D5' ),
 				'category'           => 'dynamic-content-modules',
 				'category_title'     => esc_html__( 'Dynamic Content Modules', 'squad-modules-for-divi' ),
 			),

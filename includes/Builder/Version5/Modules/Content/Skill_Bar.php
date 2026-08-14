@@ -43,6 +43,11 @@ use function wp_enqueue_script;
  */
 class Skill_Bar extends Module {
 
+	/**
+	 * Locate the generated module.json metadata folder for the Skill Bar module.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/skill-bar/';
 	}
@@ -128,7 +133,10 @@ class Skill_Bar extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -155,7 +163,12 @@ class Skill_Bar extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'margin-bottom', $bar_gap );
 
 		$out = $declarations->value();
@@ -183,7 +196,12 @@ class Skill_Bar extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'margin-bottom', $title_gap );
 
 		$out = $declarations->value();
@@ -249,5 +267,4 @@ class Skill_Bar extends Module {
 			return '';
 		}
 	}
-
 }

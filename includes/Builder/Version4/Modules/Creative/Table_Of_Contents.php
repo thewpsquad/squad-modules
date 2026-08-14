@@ -196,7 +196,11 @@ class Table_Of_Contents extends Module {
 				esc_html__( 'Minimum Headings', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Hide the module unless at least this many headings are found.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '1', 'max' => '20', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '1',
+						'max' => '20',
+						'step' => '1',
+					),
 					'default'        => '1',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -233,7 +237,11 @@ class Table_Of_Contents extends Module {
 				esc_html__( 'Scroll Offset', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Pixels to offset for a fixed header.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '300', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '300',
+						'step' => '1',
+					),
 					'default'        => '0',
 					'unitless'       => true,
 					'tab_slug'       => 'general',
@@ -282,7 +290,11 @@ class Table_Of_Contents extends Module {
 				esc_html__( 'Sticky Offset', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Top offset (px) when sticky.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '300', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '300',
+						'step' => '1',
+					),
 					'default'        => '0',
 					'unitless'       => true,
 					'show_if'        => array( 'sticky' => 'on' ),
@@ -314,7 +326,11 @@ class Table_Of_Contents extends Module {
 				esc_html__( 'Nested Indent', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Left indent per nested level.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '80', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '80',
+						'step' => '1',
+					),
 					'default'        => '16px',
 					'tab_slug'       => 'advanced',
 					'toggle_slug'    => 'list',
@@ -324,7 +340,11 @@ class Table_Of_Contents extends Module {
 				esc_html__( 'Link Spacing', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Vertical gap between links.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '40', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '40',
+						'step' => '1',
+					),
 					'default'        => '8px',
 					'tab_slug'       => 'advanced',
 					'toggle_slug'    => 'list',
@@ -369,7 +389,7 @@ class Table_Of_Contents extends Module {
 		$collapsible = 'on' === $this->prop( 'collapsible', 'off' ) && 'on' === $show_title;
 
 		$props = array();
-		for ( $n = 1; $n <= 6; $n ++ ) {
+		for ( $n = 1; $n <= 6; $n++ ) {
 			$props[ 'include_h' . $n ] = $this->prop( 'include_h' . $n, '' );
 		}
 		$levels = Toc_Helper::selected_levels( $props );

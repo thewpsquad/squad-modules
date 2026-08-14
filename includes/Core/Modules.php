@@ -162,8 +162,18 @@ class Modules {
 	 */
 	private function detect_builder_type(): void {
 		try {
-			// Detect if we're using Divi 5 by checking for the dependency tree class.
-			if ( class_exists( DependencyTree::class ) ) {
+			if ( function_exists( '\et_builder_d5_enabled' ) ) {
+				/*
+				 * Divi's own answer, which is authoritative: it returns true
+				 * unconditionally on Divi 5 but passes through the
+				 * `et_builder_d5_enabled` filter, so a site that switches Divi 5
+				 * off gets served Divi 4 modules. Reading the class alone would
+				 * miss that and report D5 for a site running the classic builder,
+				 * which is how a Divi 5-only module ends up enabled and invisible.
+				 */
+				$this->builder_type = \et_builder_d5_enabled() ? 'D5' : 'D4';
+			} elseif ( class_exists( DependencyTree::class ) ) {
+				// Divi 5 present but too old to expose the helper.
 				$this->builder_type = 'D5';
 			} else {
 				$this->builder_type = 'D4';

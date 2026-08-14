@@ -151,7 +151,10 @@ class Table_Of_Contents extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -180,7 +183,7 @@ class Table_Of_Contents extends Module {
 			$collapsible = 'on' === ( $inner['collapsible'] ?? 'off' ) && 'on' === $show_title;
 
 			$props = array();
-			for ( $n = 1; $n <= 6; $n ++ ) {
+			for ( $n = 1; $n <= 6; $n++ ) {
 				$props[ 'include_h' . $n ] = ( $inner[ 'includeH' . $n ] ?? '' );
 			}
 			$levels = Toc_Helper::selected_levels( $props );

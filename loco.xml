@@ -4,6 +4,7 @@
     <project name="Squad Modules Lite" slug="squad-modules-for-divi">
       <source>
         <directory>includes</directory>
+        <directory>templates</directory>
       </source>
       <target>
         <directory>languages</directory>

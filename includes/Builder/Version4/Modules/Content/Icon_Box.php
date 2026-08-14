@@ -38,6 +38,14 @@ use function wpautop;
  */
 class Icon_Box extends Module {
 
+	/**
+	 * Set up the module: name, slug, palette icon, builder support, settings-modal
+	 * toggles and the title / body font fields.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name      = esc_html__( 'Icon Box', 'squad-modules-for-divi' );
 		$this->plural    = esc_html__( 'Icon Boxes', 'squad-modules-for-divi' );
@@ -289,7 +297,11 @@ class Icon_Box extends Module {
 				esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 				array(
 					'description'     => esc_html__( 'Size of the font icon.', 'squad-modules-for-divi' ),
-					'range_settings'  => array( 'min' => '0', 'max' => '200', 'step' => '1' ),
+					'range_settings'  => array(
+						'min' => '0',
+						'max' => '200',
+						'step' => '1',
+					),
 					'default'         => '48px',
 					'depends_show_if' => 'icon',
 					'tab_slug'        => 'advanced',
@@ -455,12 +467,24 @@ class Icon_Box extends Module {
 
 		$icon_color = self::sanitize_css_background( (string) $this->prop( 'icon_color', '#5E2EFF' ) );
 		if ( '' !== $icon_color ) {
-			self::set_style( $render_slug, array( 'selector' => $icon_sel, 'declaration' => sprintf( 'color: %s;', esc_attr( $icon_color ) ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $icon_sel,
+					'declaration' => sprintf( 'color: %s;', esc_attr( $icon_color ) ),
+				)
+			);
 		}
 
 		$icon_size = self::sanitize_css_length( (string) $this->prop( 'icon_size', '48px' ) );
 		if ( '' !== $icon_size ) {
-			self::set_style( $render_slug, array( 'selector' => $icon_sel, 'declaration' => sprintf( 'font-size: %1$s; line-height: %1$s;', $icon_size ) ) );
+			self::set_style(
+				$render_slug,
+				array(
+					'selector' => $icon_sel,
+					'declaration' => sprintf( 'font-size: %1$s; line-height: %1$s;', $icon_size ),
+				)
+			);
 		}
 
 		$icon_bg = self::sanitize_css_background( (string) $this->prop( 'icon_bg_color', '' ) );

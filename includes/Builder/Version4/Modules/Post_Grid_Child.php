@@ -1491,8 +1491,8 @@ class Post_Grid_Child extends Child_Module {
 		// working with icon styles.
 		$placement         = 'element_icon_placement';
 		$placement_desktop = ( isset( $attrs[ $placement ] ) && '' !== $attrs[ $placement ] ) ? $attrs[ $placement ] : 'row';
-		$placement_tablet  = ( isset( $attrs["{$placement}_tablet"] ) && '' !== $attrs["{$placement}_tablet"] ) ? $attrs["{$placement}_tablet"] : $placement_desktop;
-		$placement_mobile  = ( isset( $attrs["{$placement}_phone"] ) && '' !== $attrs["{$placement}_phone"] ) ? $attrs["{$placement}_phone"] : $placement_tablet;
+		$placement_tablet  = ( isset( $attrs[ "{$placement}_tablet" ] ) && '' !== $attrs[ "{$placement}_tablet" ] ) ? $attrs[ "{$placement}_tablet" ] : $placement_desktop;
+		$placement_mobile  = ( isset( $attrs[ "{$placement}_phone" ] ) && '' !== $attrs[ "{$placement}_phone" ] ) ? $attrs[ "{$placement}_phone" ] : $placement_tablet;
 
 		// Icon placement with default, responsive, hover.
 		if ( ( 'column' === $placement_desktop ) || ( 'column' === $placement_tablet ) || ( 'column' === $placement_mobile ) ) {

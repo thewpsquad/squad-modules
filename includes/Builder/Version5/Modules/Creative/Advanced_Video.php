@@ -44,6 +44,13 @@ use function wp_enqueue_style;
  */
 class Advanced_Video extends Module {
 
+	/**
+	 * Locate the generated module.json metadata folder for the Advanced Video module.
+	 *
+	 * @since 4.1.0
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/advanced-video/';
 	}
@@ -174,7 +181,10 @@ class Advanced_Video extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)

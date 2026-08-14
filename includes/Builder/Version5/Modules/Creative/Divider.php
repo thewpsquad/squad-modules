@@ -254,7 +254,11 @@ class Divider extends Module {
 		if ( 'text' === $divider_type ) {
 			$text = $inner['dividerIconText'] ?? '';
 
-			$element = sprintf( '<span class="divider-icon-text">%1$s</span>', wp_kses_post( $text ) );
+			$allowed_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div' );
+			$text_tag     = (string) ( $inner['dividerIconTextTag'] ?? 'h2' );
+			$text_tag     = in_array( $text_tag, $allowed_tags, true ) ? $text_tag : 'h2';
+
+			$element = sprintf( '<%1$s class="divider-icon-text">%2$s</%1$s>', $text_tag, wp_kses_post( $text ) );
 		} elseif ( 'icon' === $divider_type ) {
 			switch ( $divider_icon_type ) {
 				case 'icon':

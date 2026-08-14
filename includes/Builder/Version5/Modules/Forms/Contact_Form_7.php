@@ -44,6 +44,13 @@ class Contact_Form_7 extends Form_Styler {
 		return '/build/divi-builder-5/modules-json/contact-form-7/';
 	}
 
+	/**
+	 * Root CSS classname applied to the Contact Form 7 styler wrapper.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @return string
+	 */
 	protected static function get_root_classname(): string {
 		return 'disq_form_styler_cf7';
 	}

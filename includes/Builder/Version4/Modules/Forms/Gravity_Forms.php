@@ -87,7 +87,6 @@ class Gravity_Forms extends Form_Styler {
 		 * @param self                                 $module    The GravityForms instance.
 		 *
 		 * @see    squad_get_css_selectors() For the structure of the default selectors array.
-		 *
 		 */
 		$this->squad_css_selectors = apply_filters( 'divi_squad_module_gravity_forms_css_selectors', $selectors, $this );
 
@@ -445,7 +444,9 @@ class Gravity_Forms extends Form_Styler {
 			'required_field'  => array(
 				'wrapper' => "$this->main_css_element div .gform-theme.gform-theme--framework.gform_wrapper .gfield.gfield_contains_required",
 				'text'    => "$this->main_css_element div .gform-theme.gform-theme--framework.gform_wrapper .gfield_required.gfield_required_text",
-				'input'   => "$this->main_css_element div .gform-theme.gform-theme--framework.gform_wrapper .gfield_contains_required input, $this->main_css_element div .gform-theme.gform-theme--framework.gform_wrapper .gfield_contains_required select, $this->main_css_element div .gform-theme.gform-theme--framework.gform_wrapper .gfield_contains_required textarea",
+				'input'   => "$this->main_css_element div .gform-theme.gform-theme--framework.gform_wrapper .gfield_contains_required input, "
+					. "$this->main_css_element div .gform-theme.gform-theme--framework.gform_wrapper .gfield_contains_required select, "
+					. "$this->main_css_element div .gform-theme.gform-theme--framework.gform_wrapper .gfield_contains_required textarea",
 				'error'   => "$this->main_css_element div .gform-theme.gform-theme--framework.gform_wrapper .gfield_contains_required.gfield_error",
 			),
 			'description'     => array(

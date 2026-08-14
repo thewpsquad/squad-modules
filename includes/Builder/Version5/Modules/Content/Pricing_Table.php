@@ -43,6 +43,11 @@ use function trim;
  */
 class Pricing_Table extends Module {
 
+	/**
+	 * Relative path to the generated Pricing Table module.json metadata folder.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/pricing-table/';
 	}
@@ -145,7 +150,10 @@ class Pricing_Table extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -174,7 +182,12 @@ class Pricing_Table extends Module {
 		$col_value = '' !== $col_gap ? $col_gap : '24px';
 		$row_value = '' !== $row_gap ? $row_gap : '24px';
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'display', 'grid' );
 		$declarations->add( 'grid-template-columns', sprintf( 'repeat(%d,minmax(0,1fr))', $columns ) );
 		$declarations->add( 'gap', "{$row_value} {$col_value}" );
@@ -199,7 +212,12 @@ class Pricing_Table extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'grid-template-columns', 'repeat(2,minmax(0,1fr))' );
 
 		$out = $declarations->value();
@@ -222,7 +240,12 @@ class Pricing_Table extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'grid-template-columns', '1fr' );
 
 		$out = $declarations->value();

@@ -46,6 +46,11 @@ use function trim;
  */
 class Pricing_Table_Item extends Module {
 
+	/**
+	 * Relative path to the generated Pricing Table Item module.json metadata folder.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/pricing-table-item/';
 	}
@@ -139,7 +144,10 @@ class Pricing_Table_Item extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -179,7 +187,12 @@ class Pricing_Table_Item extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'background', $accent );
 
 		$out = $declarations->value();
@@ -202,7 +215,12 @@ class Pricing_Table_Item extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'background', $accent );
 
 		$out = $declarations->value();
@@ -225,7 +243,12 @@ class Pricing_Table_Item extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'border-color', $accent );
 
 		$out = $declarations->value();

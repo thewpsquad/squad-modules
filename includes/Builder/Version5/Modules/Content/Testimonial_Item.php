@@ -47,6 +47,11 @@ use function wpautop;
  */
 class Testimonial_Item extends Module {
 
+	/**
+	 * Relative path to the generated Testimonial Item module.json metadata folder.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/testimonial-item/';
 	}
@@ -123,7 +128,10 @@ class Testimonial_Item extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -150,7 +158,12 @@ class Testimonial_Item extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'color', $star_color );
 
 		$out = $declarations->value();

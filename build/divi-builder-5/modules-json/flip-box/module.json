@@ -502,6 +502,104 @@
                 "name": "divi/text"
               }
             },
+            "titleTag": {
+              "groupSlug": "contentFront",
+              "attrName": "front.innerContent",
+              "subName": "titleTag",
+              "label": "Front Title Tag",
+              "description": "HTML tag used for this text.",
+              "features": {
+                "responsive": false,
+                "hover": false,
+                "sticky": false
+              },
+              "render": true,
+              "priority": 55,
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "h1": {
+                      "label": "H1"
+                    },
+                    "h2": {
+                      "label": "H2"
+                    },
+                    "h3": {
+                      "label": "H3"
+                    },
+                    "h4": {
+                      "label": "H4"
+                    },
+                    "h5": {
+                      "label": "H5"
+                    },
+                    "h6": {
+                      "label": "H6"
+                    },
+                    "p": {
+                      "label": "P"
+                    },
+                    "span": {
+                      "label": "SPAN"
+                    },
+                    "div": {
+                      "label": "DIV"
+                    }
+                  }
+                }
+              }
+            },
+            "subTitleTag": {
+              "groupSlug": "contentFront",
+              "attrName": "front.innerContent",
+              "subName": "subTitleTag",
+              "label": "Front Subtitle Tag",
+              "description": "HTML tag used for this text.",
+              "features": {
+                "responsive": false,
+                "hover": false,
+                "sticky": false
+              },
+              "render": true,
+              "priority": 65,
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "h1": {
+                      "label": "H1"
+                    },
+                    "h2": {
+                      "label": "H2"
+                    },
+                    "h3": {
+                      "label": "H3"
+                    },
+                    "h4": {
+                      "label": "H4"
+                    },
+                    "h5": {
+                      "label": "H5"
+                    },
+                    "h6": {
+                      "label": "H6"
+                    },
+                    "p": {
+                      "label": "P"
+                    },
+                    "span": {
+                      "label": "SPAN"
+                    },
+                    "div": {
+                      "label": "DIV"
+                    }
+                  }
+                }
+              }
+            },
             "content": {
               "groupSlug": "contentFront",
               "attrName": "front.innerContent",
@@ -531,6 +629,8 @@
               "iconType": "icon",
               "title": "Your Title Here",
               "subTitle": "Subtitle",
+              "titleTag": "h2",
+              "subTitleTag": "h5",
               "content": "Add the front content of your flip box here. Keep it short and engaging."
             }
           }
@@ -670,6 +770,104 @@
                 "name": "divi/text"
               }
             },
+            "titleTag": {
+              "groupSlug": "contentBack",
+              "attrName": "back.innerContent",
+              "subName": "titleTag",
+              "label": "Back Title Tag",
+              "description": "HTML tag used for this text.",
+              "features": {
+                "responsive": false,
+                "hover": false,
+                "sticky": false
+              },
+              "render": true,
+              "priority": 55,
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "h1": {
+                      "label": "H1"
+                    },
+                    "h2": {
+                      "label": "H2"
+                    },
+                    "h3": {
+                      "label": "H3"
+                    },
+                    "h4": {
+                      "label": "H4"
+                    },
+                    "h5": {
+                      "label": "H5"
+                    },
+                    "h6": {
+                      "label": "H6"
+                    },
+                    "p": {
+                      "label": "P"
+                    },
+                    "span": {
+                      "label": "SPAN"
+                    },
+                    "div": {
+                      "label": "DIV"
+                    }
+                  }
+                }
+              }
+            },
+            "subTitleTag": {
+              "groupSlug": "contentBack",
+              "attrName": "back.innerContent",
+              "subName": "subTitleTag",
+              "label": "Back Subtitle Tag",
+              "description": "HTML tag used for this text.",
+              "features": {
+                "responsive": false,
+                "hover": false,
+                "sticky": false
+              },
+              "render": true,
+              "priority": 65,
+              "component": {
+                "type": "field",
+                "name": "divi/select",
+                "props": {
+                  "options": {
+                    "h1": {
+                      "label": "H1"
+                    },
+                    "h2": {
+                      "label": "H2"
+                    },
+                    "h3": {
+                      "label": "H3"
+                    },
+                    "h4": {
+                      "label": "H4"
+                    },
+                    "h5": {
+                      "label": "H5"
+                    },
+                    "h6": {
+                      "label": "H6"
+                    },
+                    "p": {
+                      "label": "P"
+                    },
+                    "span": {
+                      "label": "SPAN"
+                    },
+                    "div": {
+                      "label": "DIV"
+                    }
+                  }
+                }
+              }
+            },
             "content": {
               "groupSlug": "contentBack",
               "attrName": "back.innerContent",
@@ -699,6 +897,8 @@
               "iconType": "icon",
               "title": "Back Title",
               "subTitle": "Subtitle",
+              "titleTag": "h2",
+              "subTitleTag": "h5",
               "content": "Add the back content of your flip box here. Reveal more details on hover or tap."
             }
           }

@@ -1,4 +1,10 @@
 == Upgrade Notice ==
+= 4.6.0 =
+Feature release: Post Carousel now works in the classic Divi builder as well as the Divi 5 Visual Builder — it was previously Divi 5 only, which is why enabling it appeared to do nothing. Also fixes heading tags being silently changed when a Divi 4 layout is converted to Divi 5, and restores the uninstall cleanup, which had never actually shipped. No migration; existing pages keep working.
+
+= 4.5.0 =
+Quality release: fixes a long list of controls that looked like they worked but did nothing. Divi 5 modules now deliver their design CSS through Divi's own style pipeline, which also revives Logo Grid and Logo Carousel settings (columns, gap, logo sizing, hover effects) that had never applied on the front end. Divi 4 gets a working Inline Content module, correct heading-level controls, and many repaired settings. Some pages will look slightly different where a previously-dead control now takes effect — that is the fix. No migration required.
+
 = 4.4.1 =
 Maintenance release: fixes a possible blank-screen fatal in wp-admin, adds security hardening (URL escaping, safe new-tab links), confirms Divi 5.9.0 compatibility, and improves multisite uninstall cleanup. Recommended for all users.
 

@@ -281,7 +281,10 @@ class Comparison_List extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -314,7 +317,12 @@ class Comparison_List extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( '--squad-cl-columns', (string) max( 1, absint( $value['columns'] ?? 1 ) ) );
 
 		$out = $declarations->value();
@@ -340,7 +348,12 @@ class Comparison_List extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		$declarations->add(
 			'--squad-cl-row-gap',
@@ -371,7 +384,12 @@ class Comparison_List extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		$bg = self::sanitize_css_background( (string) ( $value['rowBackground'] ?? '' ) );
 		if ( '' !== $bg ) {
@@ -554,7 +572,12 @@ class Comparison_List extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'content', '"' . $icon_glyph . '"' );
 		$declarations->add( 'font-family', '"ETModules"' );
 
@@ -581,7 +604,12 @@ class Comparison_List extends Module {
 			$color = $default_color;
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( '--squad-cl-icon-color', $color );
 
 		$out = $declarations->value();

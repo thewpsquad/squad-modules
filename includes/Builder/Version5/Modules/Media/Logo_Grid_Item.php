@@ -38,6 +38,8 @@ use function esc_url;
 class Logo_Grid_Item extends Module {
 
 	/**
+	 * Relative path to the generated module.json metadata folder.
+	 *
 	 * @since 4.0.0
 	 * @return string
 	 */
@@ -67,6 +69,8 @@ class Logo_Grid_Item extends Module {
 	}
 
 	/**
+	 * Assign the module's frontend script data.
+	 *
 	 * @since 4.0.0
 	 *
 	 * @param array<string, mixed> $args Script data arguments.
@@ -82,6 +86,8 @@ class Logo_Grid_Item extends Module {
 	}
 
 	/**
+	 * Register the module and logo image style declarations.
+	 *
 	 * @since 4.0.0
 	 *
 	 * @param array<string, mixed> $args Style arguments.

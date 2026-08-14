@@ -88,7 +88,6 @@ class WP_Forms extends Form_Styler {
 		 * @param self                                 $module    The current module instance.
 		 *
 		 * @see   squad_get_css_selectors() For the structure of the default selectors array.
-		 *
 		 */
 		$this->squad_css_selectors = apply_filters( 'divi_squad_module_wpforms_css_selectors', $selectors, $this );
 
@@ -328,7 +327,8 @@ class WP_Forms extends Form_Styler {
 				),
 			),
 			'fields'        => array(
-				'all'      => "$this->main_css_element div.wpforms-container form.wpforms-form .wpforms-field input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), $this->main_css_element div.wpforms-container form.wpforms-form .wpforms-field textarea, $this->main_css_element div.wpforms-container form.wpforms-form .wpforms-field select",
+				'all'      => "$this->main_css_element div.wpforms-container form.wpforms-form .wpforms-field input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), $this->main_css_element div.wpforms-container form.wpforms-form "
+					. ".wpforms-field textarea, $this->main_css_element div.wpforms-container form.wpforms-form .wpforms-field select",
 				'input'    => "$this->main_css_element div.wpforms-container form.wpforms-form .wpforms-field input",
 				'textarea' => "$this->main_css_element div.wpforms-container form.wpforms-form .wpforms-field textarea",
 				'select'   => "$this->main_css_element div.wpforms-container form.wpforms-form .wpforms-field select",

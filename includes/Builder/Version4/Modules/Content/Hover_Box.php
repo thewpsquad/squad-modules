@@ -360,7 +360,11 @@ class Hover_Box extends Module {
 				esc_html__( 'Box Height', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Height of the hover box.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '100', 'max' => '800', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '100',
+						'max' => '800',
+						'step' => '1',
+					),
 					'default'        => '300px',
 					'default_unit'   => 'px',
 					'tab_slug'       => 'advanced',
@@ -380,7 +384,11 @@ class Hover_Box extends Module {
 				esc_html__( 'Overlay Opacity', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Opacity of the overlay at full-hover state (0–100).', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '0', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '0',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '100',
 					'unitless'       => true,
 					'tab_slug'       => 'advanced',
@@ -400,7 +408,11 @@ class Hover_Box extends Module {
 				esc_html__( 'Icon Size', 'squad-modules-for-divi' ),
 				array(
 					'description'    => esc_html__( 'Size of the overlay icon.', 'squad-modules-for-divi' ),
-					'range_settings' => array( 'min' => '8', 'max' => '100', 'step' => '1' ),
+					'range_settings' => array(
+						'min' => '8',
+						'max' => '100',
+						'step' => '1',
+					),
 					'default'        => '32px',
 					'show_if'        => array( 'use_icon' => 'on' ),
 					'tab_slug'       => 'advanced',
@@ -606,5 +618,4 @@ class Hover_Box extends Module {
 			$content_valign
 		);
 	}
-
 }

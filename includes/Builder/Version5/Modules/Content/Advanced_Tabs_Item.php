@@ -41,6 +41,11 @@ use function wpautop;
  */
 class Advanced_Tabs_Item extends Module {
 
+	/**
+	 * Relative path to the generated Advanced Tabs Item module.json metadata folder.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/advanced-tabs-item/';
 	}
@@ -102,7 +107,10 @@ class Advanced_Tabs_Item extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)

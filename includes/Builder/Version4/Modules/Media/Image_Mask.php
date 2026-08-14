@@ -359,7 +359,7 @@ class Image_Mask extends Module {
 		foreach ( array( 2, 3 ) as $layer ) {
 			$current_layer = (string) ( $layer - 1 ); // Adjust layer index for display.
 
-			$decoration_fields["layer_{$layer}_enable"]           = divi_squad()->d4_module_helper->add_yes_no_field(
+			$decoration_fields[ "layer_{$layer}_enable" ]           = divi_squad()->d4_module_helper->add_yes_no_field(
 			// translators: %s is the layer number.
 				sprintf( esc_html__( 'Enable Decoration Layer %s', 'squad-modules-for-divi' ), $current_layer ),
 				array(
@@ -380,7 +380,7 @@ class Image_Mask extends Module {
 					'toggle_slug'     => "decoration_{$current_layer}",
 				)
 			);
-			$decoration_fields["decoration_element_{$layer}"]     = divi_squad()->d4_module_helper->add_select_box_field(
+			$decoration_fields[ "decoration_element_{$layer}" ]     = divi_squad()->d4_module_helper->add_select_box_field(
 			// translators: %s is the layer number.
 				sprintf( esc_html__( 'Decoration Element %s', 'squad-modules-for-divi' ), $current_layer ),
 				array(
@@ -398,7 +398,7 @@ class Image_Mask extends Module {
 					'toggle_slug'     => "decoration_{$current_layer}",
 				)
 			);
-			$decoration_fields["layer_{$layer}_above_image"]      = divi_squad()->d4_module_helper->add_yes_no_field(
+			$decoration_fields[ "layer_{$layer}_above_image" ]      = divi_squad()->d4_module_helper->add_yes_no_field(
 			// translators: %s is the layer number.
 				sprintf( esc_html__( 'Place Decoration Element %s Above Image', 'squad-modules-for-divi' ), $current_layer ),
 				array(
@@ -411,7 +411,7 @@ class Image_Mask extends Module {
 					'toggle_slug'     => "decoration_{$current_layer}",
 				)
 			);
-			$decoration_fields["layer_{$layer}_background_color"] = divi_squad()->d4_module_helper->add_color_field(
+			$decoration_fields[ "layer_{$layer}_background_color" ] = divi_squad()->d4_module_helper->add_color_field(
 			// translators: %s is the layer number.
 				sprintf( esc_html__( 'Decoration %s Color', 'squad-modules-for-divi' ), $current_layer ),
 				array(
@@ -423,7 +423,7 @@ class Image_Mask extends Module {
 					'toggle_slug'     => "decoration_{$current_layer}",
 				)
 			);
-			$decoration_fields["layer_{$layer}_horz"]             = divi_squad()->d4_module_helper->add_range_field(
+			$decoration_fields[ "layer_{$layer}_horz" ]             = divi_squad()->d4_module_helper->add_range_field(
 			// translators: %s is the layer number.
 				sprintf( esc_html__( 'Decoration %s Horizontal Position', 'squad-modules-for-divi' ), $current_layer ),
 				array(
@@ -441,7 +441,7 @@ class Image_Mask extends Module {
 					'toggle_slug'     => "decoration_{$current_layer}",
 				)
 			);
-			$decoration_fields["layer_{$layer}_vert"]             = divi_squad()->d4_module_helper->add_range_field(
+			$decoration_fields[ "layer_{$layer}_vert" ]             = divi_squad()->d4_module_helper->add_range_field(
 			// translators: %s is the layer number.
 				sprintf( esc_html__( 'Decoration %s Vertical Position', 'squad-modules-for-divi' ), $current_layer ),
 				array(
@@ -459,7 +459,7 @@ class Image_Mask extends Module {
 					'toggle_slug'     => "decoration_{$current_layer}",
 				)
 			);
-			$decoration_fields["layer_{$layer}_scale"]            = divi_squad()->d4_module_helper->add_range_field(
+			$decoration_fields[ "layer_{$layer}_scale" ]            = divi_squad()->d4_module_helper->add_range_field(
 			// translators: %s is the layer number.
 				sprintf( esc_html__( 'Decoration %s Scale', 'squad-modules-for-divi' ), $current_layer ),
 				array(
@@ -477,7 +477,7 @@ class Image_Mask extends Module {
 					'toggle_slug'     => "decoration_{$current_layer}",
 				)
 			);
-			$decoration_fields["layer_{$layer}_rotate"]           = divi_squad()->d4_module_helper->add_range_field(
+			$decoration_fields[ "layer_{$layer}_rotate" ]           = divi_squad()->d4_module_helper->add_range_field(
 			// translators: %s is the layer number.
 				sprintf( esc_html__( 'Decoration %s Rotation', 'squad-modules-for-divi' ), $current_layer ),
 				array(
@@ -909,5 +909,4 @@ class Image_Mask extends Module {
 			$top_layers
 		);
 	}
-
 }

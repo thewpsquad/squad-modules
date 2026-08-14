@@ -1500,7 +1500,6 @@ class Post_Grid extends Module {
 	 *
 	 * @return mixed
 	 * @see   ET_Builder_Module_Helper_MultiViewOptions::filter_value
-	 *
 	 */
 	public function multi_view_filter_value( $raw_value, $args ) {
 		$name = $args['name'] ?? '';
@@ -1563,11 +1562,13 @@ class Post_Grid extends Module {
 	 * @param array<string, mixed>                             $attrs      List of unprocessed attributes.
 	 * @param string|array<string, mixed>|null                 $content    Content being processed.
 	 * @param ET_Builder_Module_Helper_MultiViewOptions|string $multi_view Multiview object instance.
+	 * @param string                                           $item_tag   HTML tag used to wrap each rendered post. Defaults to the grid `li`.
+	 * @param string                                           $item_class Extra class appended to each rendered post wrapper. Empty by default.
 	 *
 	 * @return string the html output for the post-grid.
 	 * @throws Exception Thrown when the callback is not callable.
 	 */
-	public static function squad_get_posts_html( array $attrs, $content = '', $multi_view = '' ): string {
+	public static function squad_get_posts_html( array $attrs, $content = '', $multi_view = '', string $item_tag = 'li', string $item_class = '' ): string {
 		// Set the default values.
 		$is_rest_query = $attrs['is_rest_query'] ?? 'off';
 
@@ -1591,7 +1592,7 @@ class Post_Grid extends Module {
 				continue;
 			}
 
-			static::squad_render_current_post( $post, $attrs, $content );
+			static::squad_render_current_post( $post, $attrs, $content, $item_tag, $item_class );
 		}
 
 		if ( 'off' === $is_rest_query ) {
@@ -1938,13 +1939,15 @@ class Post_Grid extends Module {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param WP_Post               $post    The WP POST object.
-	 * @param array<string, string> $attrs   The module attributes.
-	 * @param mixed                 $content The content being processed.
+	 * @param WP_Post               $post       The WP POST object.
+	 * @param array<string, string> $attrs      The module attributes.
+	 * @param mixed                 $content    The content being processed.
+	 * @param string                $item_tag   HTML tag used to wrap the rendered post. Defaults to the grid `li`.
+	 * @param string                $item_class Extra class appended to the post wrapper. Empty by default.
 	 *
 	 * @return void
 	 */
-	protected static function squad_render_current_post( WP_Post $post, array $attrs, $content = '' ): void {
+	protected static function squad_render_current_post( WP_Post $post, array $attrs, $content = '', string $item_tag = 'li', string $item_class = '' ): void {
 		// Identify the current page state.
 		$is_divi_builder = '' !== $content && is_array( $content );
 
@@ -1952,7 +1955,14 @@ class Post_Grid extends Module {
 		$date_format  = $attrs['date_format'] ?? 'M j, Y';
 		$post_classes = get_post_class( 'post', $post );
 
-		printf( '<li class="%s">', esc_attr( implode( ' ', $post_classes ) ) );
+		// Only a bare element name is accepted; anything else falls back to the grid default.
+		$item_tag   = 1 === preg_match( '/^[a-z][a-z0-9]*$/', $item_tag ) ? $item_tag : 'li';
+		$item_class = trim( $item_class );
+		if ( '' !== $item_class ) {
+			$post_classes[] = $item_class;
+		}
+
+		printf( '<%1$s class="%2$s">', esc_html( $item_tag ), esc_attr( implode( ' ', $post_classes ) ) );
 
 		if ( $is_divi_builder ) {
 			$date_replacement = str_replace( '\\\\', '\\', $date_format );
@@ -1978,10 +1988,9 @@ class Post_Grid extends Module {
 			 */
 			$post_data = apply_filters( 'divi_squad_post_query_current_post_data', $post_data, $post, $content );
 
-			printf(
-				'<script type="application/json" style="display: none">%s</script>',
-				(string) wp_json_encode( $post_data )
-			);
+			echo '<script type="application/json" style="display: none">' .
+				wp_json_encode( $post_data ) .
+				'</script>';
 		}
 
 		/**
@@ -2020,7 +2029,7 @@ class Post_Grid extends Module {
 			printf( '<div class="squad-post-inner">%s</div>', wp_kses_post( $inside ) );
 		}
 
-		echo '</li>';
+		printf( '</%1$s>', esc_html( $item_tag ) );
 	}
 
 	/**
@@ -2218,12 +2227,14 @@ class Post_Grid extends Module {
 				);
 
 				print sprintf(
-					'<div class="squad-load-more-button-wrapper" data-options=\'%4$s\'><script type="application/json" style="display: none">%5$s</script><div class="%3$s">%1$s%2$s</div></div>',
+					'<div class="squad-load-more-button-wrapper" data-options=\'%4$s\'>%5$s<div class="%3$s">%1$s%2$s</div></div>',
 					wp_kses_post( $button_text ),
 					wp_kses_post( $icon_element_html ),
 					esc_attr( $button_classes ),
 					esc_attr( (string) wp_json_encode( $button_options ) ),
-					(string) wp_json_encode( $query_options )
+					'<script type="application/json" style="display: none">' .
+						wp_json_encode( $query_options ) .
+						'</script>'
 				);
 			}
 		}

@@ -33,6 +33,7 @@
   },
   "module": {
     "title__enable": "bhTitle.innerContent.*.titleEnable",
-    "title": "bhTitle.innerContent.*.title"
+    "title": "bhTitle.innerContent.*.title",
+    "title_tag": "bhTitle.innerContent.*.titleTag"
   }
 }

@@ -43,6 +43,11 @@ use function trim;
  */
 class Team_Member extends Module {
 
+	/**
+	 * Locate the generated module.json metadata folder for the Team Member module.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/team-member/';
 	}
@@ -141,7 +146,10 @@ class Team_Member extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -170,7 +178,12 @@ class Team_Member extends Module {
 		$col_value = '' !== $col_gap ? $col_gap : '30px';
 		$row_value = '' !== $row_gap ? $row_gap : '30px';
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'display', 'grid' );
 		$declarations->add( 'grid-template-columns', sprintf( 'repeat(%d,minmax(0,1fr))', $columns ) );
 		$declarations->add( 'gap', "{$row_value} {$col_value}" );
@@ -195,7 +208,12 @@ class Team_Member extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'grid-template-columns', 'repeat(2,minmax(0,1fr))' );
 
 		$out = $declarations->value();
@@ -218,7 +236,12 @@ class Team_Member extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'grid-template-columns', '1fr' );
 
 		$out = $declarations->value();

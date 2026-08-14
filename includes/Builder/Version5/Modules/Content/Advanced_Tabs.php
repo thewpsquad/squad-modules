@@ -48,6 +48,11 @@ use function wp_enqueue_script;
  */
 class Advanced_Tabs extends Module {
 
+	/**
+	 * Relative path to the generated Advanced Tabs module.json metadata folder.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/advanced-tabs/';
 	}
@@ -132,7 +137,10 @@ class Advanced_Tabs extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -159,7 +167,12 @@ class Advanced_Tabs extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'color', $tab_color );
 
 		$out = $declarations->value();
@@ -182,7 +195,12 @@ class Advanced_Tabs extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		$active_bg = self::sanitize_css_background( (string) ( $value['activeBgColor'] ?? '#5E2EFF' ) );
 		if ( '' !== $active_bg ) {
@@ -269,5 +287,4 @@ class Advanced_Tabs extends Module {
 			return '';
 		}
 	}
-
 }

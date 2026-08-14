@@ -290,5 +290,4 @@ class Lottie extends Module {
 			esc_attr( (string) $data_options )
 		);
 	}
-
 }

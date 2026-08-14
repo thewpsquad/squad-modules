@@ -44,6 +44,13 @@ class Fluent_Forms extends Form_Styler {
 		return '/build/divi-builder-5/modules-json/fluent-forms/';
 	}
 
+	/**
+	 * Root CSS classname that scopes the Fluent Forms styler SCSS.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @return string
+	 */
 	protected static function get_root_classname(): string {
 		return 'disq_form_styler_fluent_forms';
 	}

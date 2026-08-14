@@ -58,15 +58,29 @@ class Social_Share extends Module {
 	 *
 	 * @var array{url: string, title: string, desc: string}
 	 */
-	public static $share_target = array( 'url' => '', 'title' => '', 'desc' => '' );
+	public static $share_target = array(
+		'url' => '',
+		'title' => '',
+		'desc' => '',
+	);
 
 	/**
 	 * Resolved button context shared with child render passes.
 	 *
 	 * @var array<string, string>
 	 */
-	public static $button_context = array( 'style' => 'icon', 'enable_popup' => 'on' );
+	public static $button_context = array(
+		'style' => 'icon',
+		'enable_popup' => 'on',
+	);
 
+	/**
+	 * Relative path to the generated Social Share module.json metadata folder.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/social-share/';
 	}
@@ -174,7 +188,10 @@ class Social_Share extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -198,7 +215,12 @@ class Social_Share extends Module {
 
 		$columns = max( 1, min( 8, (int) ( $value['columns'] ?? 4 ) ) );
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'grid-template-columns', sprintf( 'repeat(%d,minmax(0,max-content))', $columns ) );
 
 		$out = $declarations->value();
@@ -226,7 +248,12 @@ class Social_Share extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'gap', $gap );
 
 		$out = $declarations->value();
@@ -254,7 +281,12 @@ class Social_Share extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 		$declarations->add( 'font-size', $icon_size );
 
 		$out = $declarations->value();
@@ -277,7 +309,12 @@ class Social_Share extends Module {
 			return '';
 		}
 
-		$declarations = new StyleDeclarations( array( 'returnType' => 'string', 'important' => false ) );
+		$declarations = new StyleDeclarations(
+			array(
+				'returnType' => 'string',
+				'important' => false,
+			)
+		);
 
 		$icon_color = self::sanitize_css_background( (string) ( $value['iconColor'] ?? '#ffffff' ) );
 		if ( '' !== $icon_color ) {
@@ -300,6 +337,18 @@ class Social_Share extends Module {
 		return is_string( $out ) ? $out : '';
 	}
 
+	/**
+	 * Render the Social Share wrapper around its child share buttons.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param array<string, mixed> $attrs                 Block attributes.
+	 * @param string               $child_modules_content Inner (child) block content.
+	 * @param WP_Block             $block                 Parsed block instance.
+	 * @param ModuleElements       $elements              ModuleElements instance.
+	 *
+	 * @return string Rendered HTML.
+	 */
 	public static function render_callback( array $attrs, string $child_modules_content, WP_Block $block, $elements ): string {
 		try {
 			if ( '' === trim( $child_modules_content ) ) {
@@ -319,7 +368,10 @@ class Social_Share extends Module {
 			}
 
 			self::$share_target   = self::resolve_share_target( $inner );
-			self::$button_context = array( 'style' => $style, 'enable_popup' => $enable_popup );
+			self::$button_context = array(
+				'style' => $style,
+				'enable_popup' => $enable_popup,
+			);
 
 			$orientation = 'stacked' === ( $inner['orientation'] ?? 'inline' ) ? 'stacked' : 'inline';
 			$shape       = (string) ( $inner['buttonShape'] ?? 'rounded' );
@@ -410,7 +462,11 @@ class Social_Share extends Module {
 				$desc = $current_desc;
 			}
 
-			return array( 'url' => $url, 'title' => $title, 'desc' => $desc );
+			return array(
+				'url' => $url,
+				'title' => $title,
+				'desc' => $desc,
+			);
 		}
 
 		return array(
@@ -419,5 +475,4 @@ class Social_Share extends Module {
 			'desc'  => $current_desc,
 		);
 	}
-
 }

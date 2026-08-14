@@ -33,6 +33,14 @@ use function wpautop;
  */
 class Advanced_Tabs_Item extends Child_Module {
 
+	/**
+	 * Set up the tab panel child module: identity, child title variables,
+	 * settings-modal toggles and advanced (design) fields.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @return void
+	 */
 	public function init(): void {
 		$this->name   = esc_html__( 'Tab', 'squad-modules-for-divi' );
 		$this->plural = esc_html__( 'Tabs', 'squad-modules-for-divi' );

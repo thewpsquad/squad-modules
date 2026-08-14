@@ -31,6 +31,7 @@
   "module": {
     "divider_type": "content.innerContent.*.dividerType",
     "divider_icon_text": "content.innerContent.*.dividerIconText",
+    "divider_icon_text_tag": "content.innerContent.*.dividerIconTextTag",
     "divider_icon_type": "content.innerContent.*.dividerIconType",
     "divider_icon": "content.innerContent.*.dividerIcon",
     "divider_image": "content.innerContent.*.dividerImage",

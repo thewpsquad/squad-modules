@@ -45,6 +45,11 @@ use function wp_kses_post;
  */
 class Inline_Content_Item extends Module {
 
+	/**
+	 * Relative path to the generated Inline Content Item module.json metadata folder.
+	 *
+	 * @return string
+	 */
 	protected static function get_metadata_folder_path(): string {
 		return '/build/divi-builder-5/modules-json/inline-content-item/';
 	}
@@ -220,7 +225,10 @@ class Inline_Content_Item extends Module {
 						)
 					),
 					CssStyle::style(
-						array( 'selector' => $args['orderClass'], 'attr' => $attrs['css'] ?? array() )
+						array(
+							'selector' => $args['orderClass'],
+							'attr' => $attrs['css'] ?? array(),
+						)
 					),
 				),
 			)
@@ -318,7 +326,13 @@ class Inline_Content_Item extends Module {
 		}
 	}
 
-	/** @param array<string, mixed> $item */
+	/**
+	 * Render the plain-text variant, optionally wrapped in a link.
+	 *
+	 * @param array<string, mixed> $item Deserialized itemSettings inner content.
+	 *
+	 * @return string Inner HTML, or an empty string when the text is empty.
+	 */
 	protected static function render_text( array $item ): string {
 		$text = (string) ( $item['text'] ?? '' );
 		if ( '' === $text ) {
@@ -329,7 +343,13 @@ class Inline_Content_Item extends Module {
 		return self::maybe_wrap_link( $span, $item );
 	}
 
-	/** @param array<string, mixed> $item */
+	/**
+	 * Render the Divi icon variant, injecting the Font Awesome set when required.
+	 *
+	 * @param array<string, mixed> $item Deserialized itemSettings inner content.
+	 *
+	 * @return string Inner HTML, or an empty string when no icon is selected.
+	 */
 	protected static function render_icon( array $item ): string {
 		$icon_raw = (string) ( $item['icon'] ?? '' );
 		if ( '' === $icon_raw ) {
@@ -348,7 +368,13 @@ class Inline_Content_Item extends Module {
 		return self::maybe_wrap_link( $html, $item );
 	}
 
-	/** @param array<string, mixed> $item */
+	/**
+	 * Render the image variant from the resolved upload URL.
+	 *
+	 * @param array<string, mixed> $item Deserialized itemSettings inner content.
+	 *
+	 * @return string Inner HTML, or an empty string when the image is unset.
+	 */
 	protected static function render_image( array $item ): string {
 		$src = self::resolve_upload_url( $item['image'] ?? '' );
 		if ( '' === $src ) {
@@ -365,7 +391,13 @@ class Inline_Content_Item extends Module {
 		return self::maybe_wrap_link( $html, $item );
 	}
 
-	/** @param array<string, mixed> $item */
+	/**
+	 * Render the button variant as a Divi-styled anchor.
+	 *
+	 * @param array<string, mixed> $item Deserialized itemSettings inner content.
+	 *
+	 * @return string Inner HTML, or an empty string when both label and URL are empty.
+	 */
 	protected static function render_button( array $item ): string {
 		$button_text = (string) ( $item['buttonText'] ?? '' );
 		$button_url  = (string) ( $item['buttonUrl'] ?? '' );
@@ -393,7 +425,13 @@ class Inline_Content_Item extends Module {
 		);
 	}
 
-	/** @param array<string, mixed> $item */
+	/**
+	 * Render the divider variant in the allow-listed line or dot style.
+	 *
+	 * @param array<string, mixed> $item Deserialized itemSettings inner content.
+	 *
+	 * @return string Divider markup.
+	 */
 	protected static function render_divider( array $item ): string {
 		$raw_style     = (string) ( $item['dividerStyle'] ?? 'line' );
 		$divider_style = in_array( $raw_style, array( 'line', 'dot' ), true ) ? $raw_style : 'line';
